@@ -686,14 +686,13 @@ class HitsterEngine {
         <div class="corner-bracket bracket-bl"></div>
         <div class="corner-bracket bracket-br"></div>
 
-        <div class="card-topbar">
-          <div class="category-chip">
+        <div class="card-topbar card-topbar-stacked">
+          <div class="topbar-group-eyebrow">
             <i data-lucide="${groupIcon}"></i>
-            <span>${card.grupo_nombre} • ${card.categoria_nombre}</span>
+            <span>${card.grupo_nombre}</span>
           </div>
+          <div class="topbar-category-title">${card.categoria_nombre}</div>
         </div>
-
-        ${centerArtifactHTML}
 
         <div class="clue-stage">
           <p class="clue-statement">${hitoFormatted}</p>
@@ -713,13 +712,6 @@ class HitsterEngine {
         <div class="corner-bracket bracket-tr"></div>
         <div class="corner-bracket bracket-bl"></div>
         <div class="corner-bracket bracket-br"></div>
-
-        <div class="card-topbar">
-          <div class="category-chip">
-            <i data-lucide="${groupIcon}"></i>
-            <span>${card.grupo_nombre} • ${card.categoria_nombre}</span>
-          </div>
-        </div>
 
         <div class="year-revelation">
           <div class="year-digits">${card.year}</div>
