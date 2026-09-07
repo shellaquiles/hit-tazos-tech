@@ -332,7 +332,7 @@ main {
   z-index: 2;
 }
 
-.hitster-card-3d {
+.hittazos-card-3d {
   width: 100%;
   height: 100%;
   position: relative;
@@ -341,8 +341,20 @@ main {
   border-radius: var(--card-radius);
 }
 
-.hitster-card-3d.is-flipped {
+.hittazos-card-3d.is-flipped {
   transform: rotateY(180deg);
+}
+
+.hittazos-card-3d:not(.is-flipped) .sheet-back {
+  pointer-events: none !important;
+}
+
+.hittazos-card-3d.is-flipped .sheet-front {
+  pointer-events: none !important;
+}
+
+.hittazos-card-3d.is-flipped .sheet-back {
+  pointer-events: auto !important;
 }
 
 /* Card Faces */
@@ -1056,44 +1068,43 @@ main {
 
 
 /* ==========================================================================
-   HITSTER / FRASES CHINGONAS: PURE COLOR MINIMAL MATTE CARDS
+   HIT-TAZOS TECH: PURE COLOR MINIMAL MATTE CARDS (1:1 SQUARE)
    ========================================================================== */
 
-/* ==========================================================================
-   HITSTER / FRASES CHINGONAS: PURE COLOR MINIMAL MATTE CARDS (1:1 SQUARE)
-   ========================================================================== */
-
-.hitster-matte-card {
-  background: var(--hitster-bg, #e86328) !important;
+.hittazos-matte-card {
+  background: var(--hittazos-bg, var(--card-bg, #e86328)) !important;
   color: #111111;
-  padding: 1.35rem 1.4rem 1.1rem 1.4rem;
+  padding: 1.25rem 1.3rem 1.0rem 1.3rem;
   border-radius: var(--card-radius);
   border: 1px solid rgba(0, 0, 0, 0.08) !important;
   box-shadow: 
     0 12px 28px -6px rgba(15, 23, 42, 0.16),
     0 2px 8px rgba(15, 23, 42, 0.06) !important;
+  box-sizing: border-box;
 }
 
-/* 1. FRONT FACE: Pure Centered Quote Layout */
-.sheet-front.hitster-matte-card {
-  background: var(--hitster-front-bg, #101626) !important;
+/* 1. FRONT FACE: Mirrored after Print Tabloid Engine (Header + Divider + Centered Clue + Corner Meta) */
+.sheet-front.hittazos-matte-card {
+  background: var(--hittazos-front-bg, var(--card-front-bg, #101626)) !important;
   color: #ffffff !important;
   box-shadow: 
     0 14px 32px -6px rgba(15, 23, 42, 0.22),
     0 2px 8px rgba(15, 23, 42, 0.08) !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .card-topbar-minimal {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
   position: relative;
   z-index: 2;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: #ffffff;
-  padding-bottom: 0.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 0.5rem;
+  width: 100%;
 }
 
 .group-badge-tiny {
@@ -1101,8 +1112,11 @@ main {
   align-items: center;
   gap: 0.4rem;
   text-transform: uppercase;
-  color: var(--hitster-bg, #38bdf8);
-  font-weight: 700;
+  color: var(--hittazos-bg, var(--card-bg, #38bdf8));
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
 }
 
 .group-badge-tiny svg {
@@ -1111,14 +1125,14 @@ main {
 }
 
 .category-badge-tiny {
-  color: rgba(255, 255, 255, 0.75);
-  font-weight: 500;
-  font-size: 0.68rem;
-  max-width: 55%;
-  text-align: right;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: #a0aec0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.7rem;
+  line-height: 1.3;
+  text-align: left;
+  white-space: normal;
+  display: block;
 }
 
 .clue-stage-pure {
@@ -1126,19 +1140,21 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 0.8rem 0.5rem;
+  text-align: left;
+  padding: 1.0rem 0.2rem;
   position: relative;
   z-index: 2;
 }
 
 .clue-quote {
   font-family: var(--font-sans);
-  font-size: 1.05rem;
-  font-weight: 500;
+  font-size: 1.08rem;
+  font-weight: 400;
   line-height: 1.55;
   color: #ffffff;
   letter-spacing: -0.01em;
+  text-align: left;
+  width: 100%;
 }
 
 .clue-quote strong {
@@ -1148,7 +1164,7 @@ main {
 
 .clue-quote em {
   font-style: italic;
-  color: var(--hitster-bg, #38bdf8);
+  color: inherit;
 }
 
 .clue-quote code {
@@ -1165,34 +1181,43 @@ main {
 .card-footbar-minimal {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   position: relative;
   z-index: 2;
-  padding-top: 0.4rem;
+  padding-top: 0.35rem;
+  width: 100%;
 }
 
-.corner-meta-left,
-.corner-meta-right {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: rgba(255, 255, 255, 0.6);
+.sheet-front .corner-meta-left {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+
+.sheet-front .corner-meta-right {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.55) !important;
 }
 
 .flip-pill {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.85);
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  padding: 0.22rem 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.2rem 0.6rem;
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.3rem;
   cursor: pointer;
   transition: all 0.2s ease;
+  user-select: none;
 }
 
 .flip-pill:hover {
@@ -1202,68 +1227,180 @@ main {
 }
 
 .flip-pill svg {
-  width: 12px;
-  height: 12px;
+  width: 11px;
+  height: 11px;
 }
 
-/* 2. BACK FACE: Pure Hitster Harmonic Proportions */
-.sheet-back.hitster-matte-card {
+/* 2. BACK FACE: Pure Harmonic Proportions */
+.sheet-back.hittazos-matte-card {
   transform: rotateY(180deg);
-  background: var(--hitster-bg, #e86328) !important;
+  background: var(--hittazos-bg, var(--card-bg, #e86328)) !important;
   color: #111111 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-/* Autor / Creador: Centrado, peso medio, no cursiva (como 'Flans' en la tarjeta original) */
+/* Autor / Creador: Centrado, peso 600, sin cursiva (como 'Flans' en la tarjeta original) */
 .card-back-top {
   text-align: center;
   position: relative;
   z-index: 2;
-  min-height: 38px;
+  min-height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.2rem 0.5rem 0 0.5rem;
+  padding: 0.1rem 0.4rem;
 }
 
 .back-author-title {
   font-family: var(--font-sans);
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 600;
   line-height: 1.25;
-  color: #111111;
+  color: #111111 !important;
   letter-spacing: -0.01em;
   font-style: normal;
   max-width: 95%;
 }
 
-/* Año: Centro absoluto, protagónico y masivo, negro puro */
+.back-author-title em {
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Año: Centro absoluto, interactivo (oculto por defecto para adivinar), negro puro */
 .year-center-stage {
   flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  z-index: 2;
+  z-index: 10;
   margin: 0;
+  cursor: pointer;
+  user-select: none;
+  pointer-events: auto !important;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.year-center-stage:hover {
+  transform: scale(1.035);
 }
 
 .year-digits-hero {
   font-family: var(--font-display);
   font-size: 5.6rem;
   font-weight: 900;
-  letter-spacing: -0.04em;
+  letter-spacing: -1.8px;
   line-height: 0.85;
-  color: #111111;
+  color: #111111 !important;
   text-align: center;
+  pointer-events: none;
 }
 
-/* Curiosidad / Lore: Abajo, centrado, cursiva sutil, negro puro */
+/* Estado Oculto (Misterio) */
+.year-center-stage.is-hidden .year-digits-hero {
+  display: none !important;
+}
+
+.year-mystery-box {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  pointer-events: none;
+}
+
+.year-center-stage.is-hidden .year-mystery-box {
+  display: flex;
+  animation: pulseMystery 2.8s infinite ease-in-out;
+}
+
+.year-mystery-digits {
+  font-family: var(--font-display);
+  font-size: 5.2rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  line-height: 0.85;
+  color: #111111 !important;
+  text-align: center;
+  opacity: 0.88;
+  pointer-events: none;
+}
+
+.year-reveal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(17, 17, 17, 0.9);
+  color: #ffffff;
+  padding: 0.28rem 0.85rem;
+  pointer-events: none;
+  border-radius: 9999px;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease;
+}
+
+.year-center-stage:hover .year-reveal-badge {
+  background: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+.year-reveal-badge i,
+.year-reveal-badge svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Animación de Revelado */
+.year-center-stage.is-revealed .year-digits-hero {
+  display: block;
+  animation: revealPop 0.42s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes revealPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.65) rotate(-3deg);
+    filter: blur(4px);
+  }
+  75% {
+    transform: scale(1.08) rotate(1deg);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes pulseMystery {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.92;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+}
+
+/* Curiosidad / Lore: Abajo, centrado, cursiva elegante, negro puro */
 .card-back-bottom {
   text-align: center;
-  padding: 0 0.6rem 0.2rem 0.6rem;
+  padding: 0 0.5rem 0.2rem 0.5rem;
   position: relative;
   z-index: 2;
-  min-height: 48px;
+  min-height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1272,9 +1409,9 @@ main {
 .back-trivia-phrase {
   font-family: var(--font-sans);
   font-style: italic;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   line-height: 1.42;
-  color: #111111;
+  color: #111111 !important;
   font-weight: 400;
   text-align: center;
   display: -webkit-box;
@@ -1284,15 +1421,38 @@ main {
 }
 
 .back-trivia-phrase strong {
-  font-weight: 800;
+  font-weight: 700;
+  font-style: italic;
   color: inherit;
 }
 
-/* Metadatos de esquinas: discretos, sutiles y sin protagonismo */
-.sheet-back .corner-meta-left,
-.sheet-back .corner-meta-right {
+.back-trivia-phrase em {
+  font-style: italic;
+  color: inherit;
+}
+
+.back-trivia-phrase code {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 0.85em;
+  background: rgba(0, 0, 0, 0.08);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+/* Metadatos de esquinas reverso: discretos, sutiles y sin protagonismo */
+.sheet-back .corner-meta-left {
+  font-family: var(--font-sans);
   color: rgba(255, 255, 255, 0.7) !important;
-  font-size: 0.58rem;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.sheet-back .corner-meta-right {
+  font-family: var(--font-display);
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 0.62rem;
   font-weight: 500;
   letter-spacing: 0.04em;
 }
@@ -1984,7 +2144,7 @@ main {
 
   /* Frente impreso (Cita / Pista) */
   .print-face-front {
-    background: var(--hitster-front-bg, #111827) !important;
+    background: var(--hittazos-front-bg, var(--card-front-bg, #111827)) !important;
     color: #ffffff !important;
   }
 
@@ -2030,7 +2190,7 @@ main {
 
   /* Reverso impreso (Año centrado, Creador arriba, Lore abajo) */
   .print-face-back {
-    background: var(--hitster-bg, #f59e0b) !important;
+    background: var(--hittazos-bg, var(--card-bg, #f59e0b)) !important;
     color: #111111 !important;
   }
 
@@ -2048,6 +2208,8 @@ main {
 
   .print-face-back .year-center-stage {
     margin: 1mm 0 !important;
+    cursor: default !important;
+    transform: none !important;
   }
 
   .print-face-back .year-digits-hero {
@@ -2079,7 +2241,7 @@ main {
   .print-face-back .corner-meta-left,
   .print-face-back .corner-meta-right {
     font-size: 6pt !important;
-    color: rgba(17, 17, 17, 0.7) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
   }
 }
 

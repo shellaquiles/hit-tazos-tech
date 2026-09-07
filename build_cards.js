@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * HITSTER Tech Edition - Card Compiler & Deck Shuffler
+ * Hit-Tazos Tech - Card Compiler & Deck Shuffler
  * 
  * Compila y baraja automáticamente todas las tarjetas de las 24 categorías
  * ubicadas en los 5 grupos de contenido:
@@ -10,7 +10,7 @@
  *  - grupo_d_ia_datos
  *  - grupo_e_cultura_hacker
  * 
- * Reglas de diseño (idéntico al mazo físico Hitster):
+ * Reglas de diseño oficial de Hit-Tazos Tech:
  *  1. Los años y categorías están distribuidos de forma no lineal (barajados).
  *  2. Las tarjetas reciben un número consecutivo impreso: card_number (1..531).
  *  3. Cada tarjeta conserva su id único correlacionado al número (#CAT-XXX).
@@ -66,7 +66,7 @@ function createPRNG(seed = 1337) {
 }
 
 function build() {
-  console.log('🔄 Compilando mazo Hitster Tech Edition...');
+  console.log('🔄 Compilando mazo Hit-Tazos Tech...');
   const { allCards, categoryMap } = loadAllCategoryCards();
   console.log(`📦 Tarjetas encontradas en categorías: ${allCards.length}`);
 
@@ -79,7 +79,7 @@ function build() {
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
 
-  // Asignar numeración consecutiva 1..N como en las tarjetas físicas de Hitster (sin campo 'id')
+  // Asignar numeración consecutiva 1..N oficial de Hit-Tazos Tech (sin campo 'id')
   shuffled.forEach((card, idx) => {
     card.card_number = idx + 1;
     delete card.id;

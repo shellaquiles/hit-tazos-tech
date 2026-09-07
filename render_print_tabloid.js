@@ -1,17 +1,17 @@
 #!/usr/bin/env node
 /**
- * HITSTER Tech Edition - Generador de Imposición Dúplex para Tabloide (11x17)
- * 100% Vectorial, Editable en Adobe Illustrator, Affinity Designer, Figma e Inkscape.
- * 
- * Genera:
- * 1. Pliegos SVG individuales en 'tabloide_pliegos_svg/' con capas (<g id="carta_001">),
- *    textos nativos editables (<text>) y guías de corte milimétricas.
- * 2. PDF vectorial editable 'tabloide_editable.pdf' (compilado con rsvg-convert y Cairo,
- *    con fuentes TrueType, sin Type 3 fonts ni rasterizados).
- * 3. Archivo HTML autoconclusivo 'tabloide_impresion.html' para vista previa o impresión web.
- * 
+ * Hit-Tazos Tech - Generador Maestro de Imposición Profesional para Imprenta Offset y Digital
+ * Cumple con los estándares de imprenta CDMX:
+ *  - 100% Vectorial, sin fuentes rasterizadas (TrueType Cairo / SVG).
+ *  - Sangrado técnico (bleed) de 3 mm (8.5 pt) por lado.
+ *  - Calles de separación (gutter) de 6 mm (17.0 pt) para doble corte independiente sin orillas vecinas.
+ *  - Margen de seguridad tipográfica >= 8 mm (22.7 pt) libre de corte.
+ *  - Cruces y marcas de corte (crop marks) profesionales de 5 mm fuera del sangrado.
+ *  - Rejilla estándar Tabloide (11x17 pulg): 3 columnas x 5 filas = 15 cartas con pinzas amplias (>36 mm).
+ *  - Soporte para Tabloide Rebasado / Super Tabloide (12x18 pulg): 3 columnas x 6 filas = 18 cartas.
+ *
  * Uso:
- *   node render_print_tabloid.js [--svg] [--pdf-editable] [--pdf] [--range=18|36|ALL] [--crop=guides|clean]
+ *   node render_print_tabloid.js [--format=11x17|12x18] [--range=15|18|ALL] [--crop=marks|guides|clean] [--pdf-editable] [--svg] [--pdf]
  */
 
 const fs = require('fs');
@@ -25,28 +25,30 @@ const OUTPUT_CHROME_PDF_PATH = path.join(ROOT_DIR, 'tabloide_impresion.pdf');
 const OUTPUT_EDITABLE_PDF_PATH = path.join(ROOT_DIR, 'tabloide_editable.pdf');
 const OUTPUT_SVG_DIR = path.join(ROOT_DIR, 'tabloide_pliegos_svg');
 
-// Dimensiones Tabloide (11 x 17 pulgadas / 279.4 x 431.8 mm)
-const PAGE_WIDTH_PT = 792.0;    // 11 * 72
-const PAGE_HEIGHT_PT = 1224.0;  // 17 * 72
-const CARD_SIZE_PT = 184.252;   // 65 mm en puntos
-const CARDS_COLS = 3;
-const CARDS_ROWS = 6;
-const CARDS_PER_SHEET = 18;
+// Medidas tipográficas e imprenta estándar (1 mm = 72 / 25.4 = 2.8346456 pt)
+const MM_TO_PT = 72.0 / 25.4;
 
-const GRID_WIDTH_PT = CARDS_COLS * CARD_SIZE_PT;   // 552.756 pt
-const GRID_HEIGHT_PT = CARDS_ROWS * CARD_SIZE_PT;  // 1105.512 pt
-const MARGIN_X_PT = (PAGE_WIDTH_PT - GRID_WIDTH_PT) / 2.0;   // ~119.62 pt (42.2 mm)
-const MARGIN_Y_PT = (PAGE_HEIGHT_PT - GRID_HEIGHT_PT) / 2.0; // ~59.24 pt (20.9 mm)
+const CARD_SIZE_MM = 65.0;
+const BLEED_MM = 3.0;
+const GUTTER_MM = 6.0;
+const SAFE_MARGIN_MM = 8.0;
+
+const CARD_SIZE_PT = CARD_SIZE_MM * MM_TO_PT;       // 184.252 pt
+const BLEED_PT = BLEED_MM * MM_TO_PT;               // 8.504 pt
+const GUTTER_PT = GUTTER_MM * MM_TO_PT;             // 17.008 pt
+const SAFE_MARGIN_PT = SAFE_MARGIN_MM * MM_TO_PT;   // 22.677 pt
+
+const CROP_LEN_PT = 5.0 * MM_TO_PT;                 // 14.173 pt (largo de marca de corte)
+const CROP_OFFSET_PT = 1.0 * MM_TO_PT;              // 2.835 pt (separación fuera del sangrado)
 
 let cardColorsConfig = null;
 try {
   cardColorsConfig = require('./card_colors.json');
 } catch (e) {
-  // archivo de configuración ausente o no generado
+  // Configuración ausente
 }
 
-// Paleta de colores Hitster (obtenida de card_colors.json o calculada como respaldo)
-function getHitsterCardTheme(card) {
+function getCardTheme(card) {
   let cardNum = card.card_number || 1;
   if (cardColorsConfig && cardColorsConfig.cards && cardColorsConfig.cards[cardNum]) {
     const c = cardColorsConfig.cards[cardNum];
@@ -55,6 +57,8 @@ function getHitsterCardTheme(card) {
       frontBg: c.front_bg_hsl,
       bgHex: c.bg_hex,
       frontBgHex: c.front_bg_hex,
+      bgCmyk: c.bg_cmyk || 'cmyk(0%, 0%, 0%, 0%)',
+      frontBgCmyk: c.front_bg_cmyk || 'cmyk(0%, 0%, 0%, 90%)',
       accentHex: c.accent_hex,
       textColor: '#111111',
       cornerColor: c.corner_color || 'rgba(255, 255, 255, 0.7)'
@@ -65,16 +69,16 @@ function getHitsterCardTheme(card) {
   const subStep = ((cardNum - 1) % 10) / 9;
 
   const paletteBlocks = [
-    { h1: 350, h2: 356, s1: 72, s2: 88, l1: 68, l2: 50 }, // 01-10: Rojo
-    { h1: 268, h2: 276, s1: 58, s2: 78, l1: 72, l2: 52 }, // 11-20: Violeta
-    { h1: 22, h2: 28, s1: 78, s2: 92, l1: 68, l2: 52 },   // 21-30: Naranja
-    { h1: 280, h2: 290, s1: 45, s2: 65, l1: 74, l2: 55 }, // 31-40: Lavanda
-    { h1: 42, h2: 48, s1: 82, s2: 96, l1: 72, l2: 54 },   // 41-50: Amarillo
-    { h1: 245, h2: 258, s1: 48, s2: 70, l1: 75, l2: 55 }, // 51-60: Lila
-    { h1: 68, h2: 82, s1: 72, s2: 85, l1: 70, l2: 54 },   // 61-70: Lima
-    { h1: 172, h2: 192, s1: 62, s2: 82, l1: 70, l2: 52 }, // 71-80: Turquesa
-    { h1: 335, h2: 345, s1: 68, s2: 86, l1: 72, l2: 52 }, // 81-90: Rosa
-    { h1: 32, h2: 38, s1: 65, s2: 82, l1: 70, l2: 52 }    // 91-100: Ocre
+    { h1: 350, h2: 356, s1: 72, s2: 88, l1: 70, l2: 54 }, // 01-10: Rojo
+    { h1: 268, h2: 276, s1: 58, s2: 78, l1: 72, l2: 56 }, // 11-20: Violeta
+    { h1: 22, h2: 28, s1: 78, s2: 92, l1: 70, l2: 54 },   // 21-30: Naranja
+    { h1: 280, h2: 290, s1: 45, s2: 65, l1: 74, l2: 58 }, // 31-40: Lavanda
+    { h1: 42, h2: 48, s1: 82, s2: 96, l1: 72, l2: 56 },   // 41-50: Amarillo
+    { h1: 245, h2: 258, s1: 48, s2: 70, l1: 75, l2: 58 }, // 51-60: Lila
+    { h1: 68, h2: 82, s1: 72, s2: 85, l1: 72, l2: 56 },   // 61-70: Lima
+    { h1: 172, h2: 192, s1: 62, s2: 82, l1: 72, l2: 54 }, // 71-80: Turquesa
+    { h1: 335, h2: 345, s1: 68, s2: 86, l1: 72, l2: 56 }, // 81-90: Rosa
+    { h1: 32, h2: 38, s1: 65, s2: 82, l1: 70, l2: 54 }    // 91-100: Ocre
   ];
 
   const currentBlock = paletteBlocks[blockIndex] || paletteBlocks[0];
@@ -82,7 +86,6 @@ function getHitsterCardTheme(card) {
   const saturation = currentBlock.s1 + (currentBlock.s2 - currentBlock.s1) * subStep;
   const lightness = currentBlock.l1 + (currentBlock.l2 - currentBlock.l1) * subStep;
 
-  // HSL a HEX para SVG
   function hslToHex(h, s, l) {
     l /= 100;
     const a = (s * Math.min(l, 1 - l)) / 100;
@@ -94,13 +97,17 @@ function getHitsterCardTheme(card) {
     return `#${f(0)}${f(8)}${f(4)}`;
   }
 
+  const bgHex = hslToHex(hue, saturation, lightness);
+  const frontBgHex = hslToHex(hue, 35, 10);
+
   return {
     bg: `hsl(${hue.toFixed(1)}, ${saturation.toFixed(0)}%, ${lightness.toFixed(0)}%)`,
     frontBg: `hsl(${hue.toFixed(1)}, 35%, 10%)`,
-    bgHex: hslToHex(hue, saturation, lightness),
-    frontBgHex: hslToHex(hue, 35, 10),
-    accentHex: hslToHex(hue, saturation, lightness),
-    textColor: lightness > 62 ? '#151217' : '#ffffff'
+    bgHex: bgHex,
+    frontBgHex: frontBgHex,
+    accentHex: bgHex,
+    textColor: '#111111',
+    cornerColor: 'rgba(255, 255, 255, 0.7)'
   };
 }
 
@@ -132,8 +139,8 @@ function formatMarkdown(str) {
     .replace(/`([^`]+)`/g, '<code>$1</code>');
 }
 
-// Divide texto en líneas para SVG nativo (<text><tspan>)
-function wrapTextToLines(text, maxCharsPerLine = 32) {
+// Divide texto en líneas para SVG nativo respetando el ancho disponible de 49mm
+function wrapTextToLines(text, maxCharsPerLine = 28) {
   const words = text.split(' ');
   const lines = [];
   let currentLine = '';
@@ -150,14 +157,49 @@ function wrapTextToLines(text, maxCharsPerLine = 32) {
   return lines;
 }
 
+// Genera marcas de corte (crop marks) exteriores de 5mm en las 4 esquinas de una tarjeta
+function generateCropMarksSvg(cutX, cutY, cutW, cutH) {
+  const hL1_x1 = (cutX - BLEED_PT - CROP_LEN_PT).toFixed(2);
+  const hL1_x2 = (cutX - BLEED_PT - CROP_OFFSET_PT).toFixed(2);
+  const hR1_x1 = (cutX + cutW + BLEED_PT + CROP_OFFSET_PT).toFixed(2);
+  const hR1_x2 = (cutX + cutW + BLEED_PT + CROP_LEN_PT).toFixed(2);
+
+  const vT1_y1 = (cutY - BLEED_PT - CROP_LEN_PT).toFixed(2);
+  const vT1_y2 = (cutY - BLEED_PT - CROP_OFFSET_PT).toFixed(2);
+  const vB1_y1 = (cutY + cutH + BLEED_PT + CROP_OFFSET_PT).toFixed(2);
+  const vB1_y2 = (cutY + cutH + BLEED_PT + CROP_LEN_PT).toFixed(2);
+
+  const yTop = cutY.toFixed(2);
+  const yBot = (cutY + cutH).toFixed(2);
+  const xLeft = cutX.toFixed(2);
+  const xRight = (cutX + cutW).toFixed(2);
+
+  return `      <!-- Marcas de corte (Crop marks 5mm) -->
+      <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
+        <!-- Top-Left -->
+        <line x1="${hL1_x1}" y1="${yTop}" x2="${hL1_x2}" y2="${yTop}" />
+        <line x1="${xLeft}" y1="${vT1_y1}" x2="${xLeft}" y2="${vT1_y2}" />
+        <!-- Top-Right -->
+        <line x1="${hR1_x1}" y1="${yTop}" x2="${hR1_x2}" y2="${yTop}" />
+        <line x1="${xRight}" y1="${vT1_y1}" x2="${xRight}" y2="${vT1_y2}" />
+        <!-- Bottom-Left -->
+        <line x1="${hL1_x1}" y1="${yBot}" x2="${hL1_x2}" y2="${yBot}" />
+        <line x1="${xLeft}" y1="${vB1_y1}" x2="${xLeft}" y2="${vB1_y2}" />
+        <!-- Bottom-Right -->
+        <line x1="${hR1_x1}" y1="${yBot}" x2="${hR1_x2}" y2="${yBot}" />
+        <line x1="${xRight}" y1="${vB1_y1}" x2="${xRight}" y2="${vB1_y2}" />
+      </g>\n`;
+}
+
 function parseArgs() {
   const args = process.argv.slice(2);
   const options = {
-    range: 'ALL',        // '18', '36', 'ALL'
-    crop: 'guides',      // 'guides', 'clean'
+    range: 'ALL',        // '15', '18', '30', '36', 'ALL'
+    crop: 'marks',       // 'marks' (cruces pro), 'guides' (guías punteadas), 'clean'
+    format: '11x17',     // '11x17' (Tabloide 3x5 = 15 cartas), '12x18' (Super Tabloide 3x6 = 18 cartas)
     pdf: false,          // Chrome PDF
     svg: false,          // Exportar hojas SVG
-    pdfEditable: false   // Exportar PDF editable con rsvg-convert y Cairo
+    pdfEditable: false   // Exportar PDF vectorial editable con rsvg-convert y Cairo
   };
 
   args.forEach(arg => {
@@ -169,9 +211,10 @@ function parseArgs() {
     }
     if (arg.startsWith('--range=')) options.range = arg.split('=')[1];
     if (arg.startsWith('--crop=')) options.crop = arg.split('=')[1];
+    if (arg.startsWith('--format=')) options.format = arg.split('=')[1];
   });
 
-  // Si no se especifica nada, generar SVG + PDF editable por defecto para herramientas de diseño
+  // Si no se especifica nada, generar SVG + PDF editable por defecto
   if (!options.pdf && !options.svg && !options.pdfEditable) {
     options.svg = true;
     options.pdfEditable = true;
@@ -185,13 +228,33 @@ function parseArgs() {
 // -------------------------------------------------------------
 function generateSvgSheets(cards, options) {
   fs.mkdirSync(OUTPUT_SVG_DIR, { recursive: true });
-  const totalSheets = Math.ceil(cards.length / CARDS_PER_SHEET);
-  const hasBorder = options.crop !== 'clean';
+
+  const isSuperTabloid = options.format === '12x18';
+  const cols = 3;
+  const rows = isSuperTabloid ? 6 : 5;
+  const cardsPerSheet = cols * rows;
+
+  const pageWidthPt = isSuperTabloid ? 12 * 72 : 11 * 72; // 864 o 792 pt
+  const pageHeightPt = isSuperTabloid ? 18 * 72 : 17 * 72; // 1296 o 1224 pt
+
+  const gridWidthPt = cols * CARD_SIZE_PT + (cols - 1) * GUTTER_PT;
+  const gridHeightPt = rows * CARD_SIZE_PT + (rows - 1) * GUTTER_PT;
+
+  const marginXPt = (pageWidthPt - gridWidthPt) / 2.0;
+  const marginYPt = (pageHeightPt - gridHeightPt) / 2.0;
+
+  const totalSheets = Math.ceil(cards.length / cardsPerSheet);
+  const showMarks = options.crop === 'marks';
+  const showGuides = options.crop === 'guides';
   const generatedFiles = [];
 
+  const paperLabel = isSuperTabloid
+    ? '12 × 18 PULGADAS (304.8 × 457.2 mm) — SUPER TABLOIDE'
+    : '11 × 17 PULGADAS (279.4 × 431.8 mm) — TABLOIDE';
+
   for (let s = 0; s < totalSheets; s++) {
-    const sheetCards = cards.slice(s * CARDS_PER_SHEET, (s + 1) * CARDS_PER_SHEET);
-    while (sheetCards.length < CARDS_PER_SHEET) {
+    const sheetCards = cards.slice(s * cardsPerSheet, (s + 1) * cardsPerSheet);
+    while (sheetCards.length < cardsPerSheet) {
       sheetCards.push(null);
     }
 
@@ -200,64 +263,82 @@ function generateSvgSheets(cards, options) {
     let frontCardsSvg = '';
 
     sheetCards.forEach((c, idx) => {
-      const col = idx % CARDS_COLS;
-      const row = Math.floor(idx / CARDS_COLS);
-      const x = (MARGIN_X_PT + col * CARD_SIZE_PT).toFixed(2);
-      const y = (MARGIN_Y_PT + row * CARD_SIZE_PT).toFixed(2);
+      const col = idx % cols;
+      const row = Math.floor(idx / cols);
+      const cutX = marginXPt + col * (CARD_SIZE_PT + GUTTER_PT);
+      const cutY = marginYPt + row * (CARD_SIZE_PT + GUTTER_PT);
 
       if (!c) {
-        if (hasBorder) {
-          frontCardsSvg += `    <rect x="${x}" y="${y}" width="${CARD_SIZE_PT.toFixed(2)}" height="${CARD_SIZE_PT.toFixed(2)}" fill="none" stroke="#cccccc" stroke-width="0.35" />\n`;
+        if (showGuides) {
+          frontCardsSvg += `    <rect x="${cutX.toFixed(2)}" y="${cutY.toFixed(2)}" width="${CARD_SIZE_PT.toFixed(2)}" height="${CARD_SIZE_PT.toFixed(2)}" fill="none" stroke="#e2e8f0" stroke-width="0.35" />\n`;
         }
         return;
       }
 
-      const theme = getHitsterCardTheme(c);
+      const theme = getCardTheme(c);
       const cardNumPad = String(c.card_number).padStart(3, '0');
       const numStr = `#${cardNumPad}`;
       const grupoText = escapeXml(stripMarkdown(c.grupo_nombre).toUpperCase());
       const catText = escapeXml(stripMarkdown(c.categoria_nombre));
       const clueText = stripMarkdown(c.hito);
-      
-      // Con textos limitados (máx 145 caracteres), ajuste tipográfico óptimo
-      const clueMaxChars = 30;
-      const clueLines = wrapTextToLines(clueText, clueMaxChars);
-      const clueFontSize = clueLines.length <= 4 ? 9.2 : (clueLines.length === 5 ? 8.8 : 8.4);
-      const clueLeading = clueLines.length <= 4 ? 13.5 : (clueLines.length === 5 ? 12.8 : 12.0);
 
-      // Centrado vertical óptico exacto entre divisor (y=31.5) y pie (y=164)
+      // Con textos limitados (máx 145 car.), ajuste en ancho 49mm (<= 28 car/línea)
+      const clueLines = wrapTextToLines(clueText, 27);
+      const clueFontSize = clueLines.length <= 4 ? 9.0 : (clueLines.length === 5 ? 8.6 : 8.2);
+      const clueLeading = clueLines.length <= 4 ? 13.0 : (clueLines.length === 5 ? 12.2 : 11.5);
+
+      // Centrado vertical óptico entre divisor (y=38) y zona inferior (y=150)
       const totalClueH = (clueLines.length - 1) * clueLeading;
-      const clueStartY = 33 + ((163 - 33) - totalClueH) / 2.0;
+      const clueStartY = 41 + ((148 - 41) - totalClueH) / 2.0;
 
       let clueTspans = '';
       clueLines.forEach((line, i) => {
-        clueTspans += `<tspan x="16" y="${(clueStartY + i * clueLeading).toFixed(1)}">${escapeXml(line)}</tspan>`;
+        clueTspans += `<tspan x="${SAFE_MARGIN_PT.toFixed(2)}" y="${(clueStartY + i * clueLeading).toFixed(1)}">${escapeXml(line)}</tspan>`;
       });
 
-      frontCardsSvg += `    <g id="carta_${cardNumPad}_frente" transform="translate(${x}, ${y})">
-      <clipPath id="clip_frente_${cardNumPad}">
-        <rect width="${CARD_SIZE_PT.toFixed(2)}" height="${CARD_SIZE_PT.toFixed(2)}" />
-      </clipPath>
-      <g clip-path="url(#clip_frente_${cardNumPad})">
-        <rect width="${CARD_SIZE_PT.toFixed(2)}" height="${CARD_SIZE_PT.toFixed(2)}" fill="${theme.frontBgHex}" />
-        <text x="16" y="19" font-family="'Outfit', sans-serif" font-size="6.4" font-weight="700" fill="${theme.accentHex}">${grupoText}</text>
-        <text x="16" y="27" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">${catText}</text>
-        <line x1="16" y1="31.5" x2="${(CARD_SIZE_PT - 16).toFixed(2)}" y2="31.5" stroke="rgba(255,255,255,0.15)" stroke-width="0.5" />
+      // Dimensiones con rebase (+3mm / 8.5pt hacia cada lado)
+      const bleedX = (cutX - BLEED_PT).toFixed(2);
+      const bleedY = (cutY - BLEED_PT).toFixed(2);
+      const bleedW = (CARD_SIZE_PT + 2 * BLEED_PT).toFixed(2);
+      const bleedH = (CARD_SIZE_PT + 2 * BLEED_PT).toFixed(2);
+
+      let marksSvg = '';
+      if (showMarks) {
+        marksSvg = generateCropMarksSvg(cutX, cutY, CARD_SIZE_PT, CARD_SIZE_PT);
+      }
+
+      frontCardsSvg += `    <!-- Tarjeta #${cardNumPad} Frente -->
+    <g id="carta_${cardNumPad}_frente">
+      ${marksSvg}
+      <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
+      <rect x="${bleedX}" y="${bleedY}" width="${bleedW}" height="${bleedH}" fill="${theme.frontBgHex}" />
+
+      <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
+      <g transform="translate(${cutX.toFixed(2)}, ${cutY.toFixed(2)})">
+        <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
+        <text x="${SAFE_MARGIN_PT.toFixed(2)}" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="${theme.accentHex}">${grupoText}</text>
+        <text x="${SAFE_MARGIN_PT.toFixed(2)}" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">${catText}</text>
+        <line x1="${SAFE_MARGIN_PT.toFixed(2)}" y1="38" x2="${(CARD_SIZE_PT - SAFE_MARGIN_PT).toFixed(2)}" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
+
+        <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="${clueFontSize}" font-weight="400" fill="#ffffff">
           ${clueTspans}
         </text>
-        <text x="12" y="${(CARD_SIZE_PT - 10).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255,255,255,0.45)">${escapeXml(c.categoria)}</text>
-        <text x="${(CARD_SIZE_PT - 12).toFixed(2)}" y="${(CARD_SIZE_PT - 10).toFixed(2)}" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">${numStr}</text>
+
+        <!-- Pie protegido (>= 8mm del borde inferior) -->
+        <text x="${SAFE_MARGIN_PT.toFixed(2)}" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">${escapeXml(c.categoria)}</text>
+        <text x="${(CARD_SIZE_PT - SAFE_MARGIN_PT).toFixed(2)}" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">${numStr}</text>
+
+        ${showGuides ? `<rect width="${CARD_SIZE_PT.toFixed(2)}" height="${CARD_SIZE_PT.toFixed(2)}" fill="none" stroke="rgba(255,255,255,0.25)" stroke-dasharray="2 2" stroke-width="0.35" />` : ''}
       </g>
-      ${hasBorder ? `<rect width="${CARD_SIZE_PT.toFixed(2)}" height="${CARD_SIZE_PT.toFixed(2)}" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.35" />` : ''}
     </g>\n`;
     });
 
     const frontSvgContent = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="279.4mm" height="431.8mm" viewBox="0 0 ${PAGE_WIDTH_PT} ${PAGE_HEIGHT_PT}" style="background-color: #ffffff;">
+<svg xmlns="http://www.w3.org/2000/svg" width="${(pageWidthPt / MM_TO_PT).toFixed(1)}mm" height="${(pageHeightPt / MM_TO_PT).toFixed(1)}mm" viewBox="0 0 ${pageWidthPt} ${pageHeightPt}" style="background-color: #ffffff;">
   <g id="encabezado_pliego">
-    <text x="${MARGIN_X_PT}" y="${MARGIN_Y_PT - 14}" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="700" fill="#555555">HITSTER TECH EDITION — PLIEGO TABLOIDE ${s + 1} DE ${totalSheets} [CARA A: FRENTES]</text>
-    <text x="${MARGIN_X_PT + GRID_WIDTH_PT}" y="${MARGIN_Y_PT - 14}" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="700" fill="#555555" text-anchor="end">11 × 17 PULGADAS (279.4 × 431.8 mm) — CORTE 65 × 65 mm</text>
+    <text x="${marginXPt.toFixed(2)}" y="${(marginYPt - 16).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="700" fill="#555555">HIT-TAZOS TECH — PLIEGO ${s + 1} DE ${totalSheets} [CARA A: FRENTES]</text>
+    <text x="${(marginXPt + gridWidthPt).toFixed(2)}" y="${(marginYPt - 16).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="700" fill="#555555" text-anchor="end">${paperLabel} — CORTE 65 × 65 mm (SANGRADO 3 mm)</text>
   </g>
   <g id="tarjetas_frente">
 ${frontCardsSvg}  </g>
@@ -266,88 +347,102 @@ ${frontCardsSvg}  </g>
     fs.writeFileSync(frontSvgPath, frontSvgContent, 'utf8');
     generatedFiles.push(frontSvgPath);
 
-    // --- CARA B: REVERSOS (Espejado Horizontal por Fila: [2, 1, 0]) ---
+    // --- CARA B: REVERSOS (Espejado Horizontal por Fila: [c2, c1, c0]) ---
     const backSvgPath = path.join(OUTPUT_SVG_DIR, `pliego_${String(s + 1).padStart(2, '0')}_reversos.svg`);
     let backCardsSvg = '';
 
-    for (let r = 0; r < CARDS_ROWS; r++) {
-      const rowIndices = [r * CARDS_COLS + 2, r * CARDS_COLS + 1, r * CARDS_COLS + 0];
+    for (let r = 0; r < rows; r++) {
+      const rowIndices = [r * cols + 2, r * cols + 1, r * cols + 0];
 
-      for (let col = 0; col < CARDS_COLS; col++) {
+      for (let col = 0; col < cols; col++) {
         const cardIndex = rowIndices[col];
         const c = sheetCards[cardIndex];
-        const x = (MARGIN_X_PT + col * CARD_SIZE_PT).toFixed(2);
-        const y = (MARGIN_Y_PT + r * CARD_SIZE_PT).toFixed(2);
+        const cutX = marginXPt + col * (CARD_SIZE_PT + GUTTER_PT);
+        const cutY = marginYPt + r * (CARD_SIZE_PT + GUTTER_PT);
 
         if (!c) {
-          if (hasBorder) {
-            backCardsSvg += `    <rect x="${x}" y="${y}" width="${CARD_SIZE_PT.toFixed(2)}" height="${CARD_SIZE_PT.toFixed(2)}" fill="none" stroke="#cccccc" stroke-width="0.35" />\n`;
+          if (showGuides) {
+            backCardsSvg += `    <rect x="${cutX.toFixed(2)}" y="${cutY.toFixed(2)}" width="${CARD_SIZE_PT.toFixed(2)}" height="${CARD_SIZE_PT.toFixed(2)}" fill="none" stroke="#e2e8f0" stroke-width="0.35" />\n`;
           }
           continue;
         }
 
-        const theme = getHitsterCardTheme(c);
+        const theme = getCardTheme(c);
         const cardNumPad = String(c.card_number).padStart(3, '0');
-        
-        // En el juego original Hitster, TODOS los textos donde está el año son NEGROS (#111111)
         const colorMain = '#111111';
-        // Metadatos de esquinas discretos, en color diferente para no llamar la atención (blanco sutil)
         const colorCorner = theme.cornerColor || 'rgba(255, 255, 255, 0.7)';
 
-        // 1. Autor (máx 45 chars): Limpio, centrado, peso medio (como 'Flans' en la tarjeta original)
+        // 1. Autor (máx 45 car.): Limpio, centrado, peso 600, no cursiva
         const autorText = stripMarkdown(c.creador);
-        const autorLines = wrapTextToLines(autorText, 28);
+        const autorLines = wrapTextToLines(autorText, 26);
         const autorFontSize = autorLines.length > 1 ? 8.0 : 8.8;
-        const autorLeading = 10.2;
-        const autorStartY = autorLines.length > 1 ? 23 : 28.5;
+        const autorLeading = 10.4;
+        const autorStartY = autorLines.length > 1 ? 24 : 29.5;
         let autorTspans = '';
         autorLines.forEach((line, i) => {
           autorTspans += `<tspan x="${(CARD_SIZE_PT / 2).toFixed(2)}" y="${autorStartY + i * autorLeading}">${escapeXml(line)}</tspan>`;
         });
 
-        // 2. Trivia (máx 150 chars): En cursiva en la parte inferior (como 'Bazar' en la original)
+        // 2. Trivia (máx 150 car.): En cursiva, masa equilibrada en zona inferior
         const triviaText = stripMarkdown(c.dato_curioso);
-        const triviaMaxChars = 32;
-        const triviaLines = wrapTextToLines(triviaText, triviaMaxChars);
-        const triviaFontSize = triviaLines.length <= 4 ? 7.4 : 7.0;
-        const triviaLeading = triviaLines.length <= 4 ? 9.8 : 9.2;
-
-        // Distribución Hitster: año masivo al centro (y=104) y trivia abajo
-        const triviaStartY = 125;
+        const triviaLines = wrapTextToLines(triviaText, 30);
+        const triviaFontSize = triviaLines.length <= 4 ? 7.2 : 6.8;
+        const triviaLeading = triviaLines.length <= 4 ? 9.5 : 9.0;
+        const triviaStartY = 118;
         let triviaTspans = '';
         triviaLines.forEach((line, i) => {
           triviaTspans += `<tspan x="${(CARD_SIZE_PT / 2).toFixed(2)}" y="${(triviaStartY + i * triviaLeading).toFixed(1)}">${escapeXml(line)}</tspan>`;
         });
 
-        // Número de tarjeta limpio sin hash (idéntico a '102' en la tarjeta física original)
         const cleanCardNum = String(c.card_number).padStart(3, '0');
 
-        backCardsSvg += `    <g id="carta_${cardNumPad}_reverso" transform="translate(${x}, ${y})">
-      <clipPath id="clip_reverso_${cardNumPad}">
-        <rect width="${CARD_SIZE_PT.toFixed(2)}" height="${CARD_SIZE_PT.toFixed(2)}" />
-      </clipPath>
-      <g clip-path="url(#clip_reverso_${cardNumPad})">
-        <rect width="${CARD_SIZE_PT.toFixed(2)}" height="${CARD_SIZE_PT.toFixed(2)}" fill="${theme.bgHex}" />
+        // Dimensiones con rebase (+3mm / 8.5pt hacia cada lado)
+        const bleedX = (cutX - BLEED_PT).toFixed(2);
+        const bleedY = (cutY - BLEED_PT).toFixed(2);
+        const bleedW = (CARD_SIZE_PT + 2 * BLEED_PT).toFixed(2);
+        const bleedH = (CARD_SIZE_PT + 2 * BLEED_PT).toFixed(2);
+
+        let marksSvg = '';
+        if (showMarks) {
+          marksSvg = generateCropMarksSvg(cutX, cutY, CARD_SIZE_PT, CARD_SIZE_PT);
+        }
+
+        backCardsSvg += `    <!-- Tarjeta #${cardNumPad} Reverso -->
+    <g id="carta_${cardNumPad}_reverso">
+      ${marksSvg}
+      <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
+      <rect x="${bleedX}" y="${bleedY}" width="${bleedW}" height="${bleedH}" fill="${theme.bgHex}" />
+
+      <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
+      <g transform="translate(${cutX.toFixed(2)}, ${cutY.toFixed(2)})">
+        <!-- Autor protegido (>= 8.5mm del borde superior) -->
         <text font-family="'Outfit', sans-serif" font-size="${autorFontSize}" font-weight="600" fill="${colorMain}" text-anchor="middle">
           ${autorTspans}
         </text>
-        <text x="${(CARD_SIZE_PT / 2).toFixed(2)}" y="104" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="900" letter-spacing="-1.8" fill="${colorMain}" text-anchor="middle">${c.year}</text>
+
+        <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
+        <text x="${(CARD_SIZE_PT / 2).toFixed(2)}" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="${colorMain}" text-anchor="middle">${c.year}</text>
+
+        <!-- Trivia protegida -->
         <text font-family="'Outfit', sans-serif" font-size="${triviaFontSize}" font-weight="400" font-style="italic" fill="${colorMain}" text-anchor="middle">
           ${triviaTspans}
         </text>
-        <text x="12" y="${(CARD_SIZE_PT - 10).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="${colorCorner}">${escapeXml(c.categoria)}</text>
-        <text x="${(CARD_SIZE_PT - 12).toFixed(2)}" y="${(CARD_SIZE_PT - 10).toFixed(2)}" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="${colorCorner}" text-anchor="end">${cleanCardNum}</text>
+
+        <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
+        <text x="${SAFE_MARGIN_PT.toFixed(2)}" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="${colorCorner}">${escapeXml(c.categoria)}</text>
+        <text x="${(CARD_SIZE_PT - SAFE_MARGIN_PT).toFixed(2)}" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="${colorCorner}" text-anchor="end">${cleanCardNum}</text>
+
+        ${showGuides ? `<rect width="${CARD_SIZE_PT.toFixed(2)}" height="${CARD_SIZE_PT.toFixed(2)}" fill="none" stroke="rgba(0,0,0,0.18)" stroke-dasharray="2 2" stroke-width="0.35" />` : ''}
       </g>
-      ${hasBorder ? `<rect width="${CARD_SIZE_PT.toFixed(2)}" height="${CARD_SIZE_PT.toFixed(2)}" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.35" />` : ''}
     </g>\n`;
       }
     }
 
     const backSvgContent = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="279.4mm" height="431.8mm" viewBox="0 0 ${PAGE_WIDTH_PT} ${PAGE_HEIGHT_PT}" style="background-color: #ffffff;">
+<svg xmlns="http://www.w3.org/2000/svg" width="${(pageWidthPt / MM_TO_PT).toFixed(1)}mm" height="${(pageHeightPt / MM_TO_PT).toFixed(1)}mm" viewBox="0 0 ${pageWidthPt} ${pageHeightPt}" style="background-color: #ffffff;">
   <g id="encabezado_pliego">
-    <text x="${MARGIN_X_PT}" y="${MARGIN_Y_PT - 14}" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="700" fill="#555555">HITSTER TECH EDITION — PLIEGO TABLOIDE ${s + 1} DE ${totalSheets} [CARA B: REVERSOS ESPEJADOS]</text>
-    <text x="${MARGIN_X_PT + GRID_WIDTH_PT}" y="${MARGIN_Y_PT - 14}" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="700" fill="#555555" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO</text>
+    <text x="${marginXPt.toFixed(2)}" y="${(marginYPt - 16).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="700" fill="#555555">HIT-TAZOS TECH — PLIEGO ${s + 1} DE ${totalSheets} [CARA B: REVERSOS ESPEJADOS]</text>
+    <text x="${(marginXPt + gridWidthPt).toFixed(2)}" y="${(marginYPt - 16).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="700" fill="#555555" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO (LONG EDGE DUPLEX)</text>
   </g>
   <g id="tarjetas_reverso">
 ${backCardsSvg}  </g>
@@ -377,13 +472,11 @@ function compileEditablePdf(svgFiles, outputPdfPath) {
       tempPdfs.push(pagePdf);
     });
 
-    // Unir todas las páginas en un único PDF multipágina
     execSync(`pdfunite ${tempPdfs.map(p => `"${p}"`).join(' ')} "${outputPdfPath}"`);
     console.log(`🎉 ¡PDF vectorial editable generado exitosamente!\n   📂 ${outputPdfPath}`);
   } catch (err) {
     console.error('⚠️ Error al compilar PDF editable:', err.message);
   } finally {
-    // Limpiar temporales
     tempPdfs.forEach(p => {
       try { fs.unlinkSync(p); } catch (_) {}
     });
@@ -395,13 +488,18 @@ function compileEditablePdf(svgFiles, outputPdfPath) {
 // Generador HTML (Vista Previa e Impresión Web)
 // -------------------------------------------------------------
 function generateHtmlPreview(cards, options) {
-  const totalSheets = Math.ceil(cards.length / CARDS_PER_SHEET);
-  const hasBorder = options.crop !== 'clean';
+  const isSuperTabloid = options.format === '12x18';
+  const cols = 3;
+  const rows = isSuperTabloid ? 6 : 5;
+  const cardsPerSheet = cols * rows;
+
+  const totalSheets = Math.ceil(cards.length / cardsPerSheet);
+  const showGuides = options.crop !== 'clean';
   let sheetsHtml = '';
 
   for (let s = 0; s < totalSheets; s++) {
-    const sheetCards = cards.slice(s * CARDS_PER_SHEET, (s + 1) * CARDS_PER_SHEET);
-    while (sheetCards.length < CARDS_PER_SHEET) {
+    const sheetCards = cards.slice(s * cardsPerSheet, (s + 1) * cardsPerSheet);
+    while (sheetCards.length < cardsPerSheet) {
       sheetCards.push(null);
     }
 
@@ -409,26 +507,28 @@ function generateHtmlPreview(cards, options) {
     let frontGridHtml = '';
     sheetCards.forEach((c) => {
       if (!c) {
-        frontGridHtml += `<div class="card-box ${hasBorder ? 'crop-border' : ''}"></div>`;
+        frontGridHtml += `<div class="card-cell ${showGuides ? 'has-crop' : ''}"></div>`;
         return;
       }
-      const theme = getHitsterCardTheme(c);
+      const theme = getCardTheme(c);
       const hito = formatMarkdown(c.hito);
       const numStr = `#${String(c.card_number).padStart(3, '0')}`;
 
       frontGridHtml += `
-        <div class="card-box ${hasBorder ? 'crop-border' : ''}">
-          <div class="card-face face-front" style="--card-front-bg: ${theme.frontBg}; --card-bg: ${theme.bg};">
-            <div class="topbar">
-              <span class="group-title">${c.grupo_nombre}</span>
-              <span class="category-name">${c.categoria_nombre}</span>
-            </div>
-            <div class="clue-stage">
-              <p class="clue-text">${hito}</p>
-            </div>
-            <div class="footbar">
-              <span class="cat-tag">${c.categoria}</span>
-              <span class="card-num">${numStr}</span>
+        <div class="card-cell ${showGuides ? 'has-crop' : ''}">
+          <div class="card-bleed" style="--card-bg: ${theme.bg}; --card-front-bg: ${theme.frontBg};">
+            <div class="card-cut face-front">
+              <div class="topbar">
+                <span class="group-title">${c.grupo_nombre}</span>
+                <span class="category-name">${c.categoria_nombre}</span>
+              </div>
+              <div class="clue-stage">
+                <p class="clue-text">${hito}</p>
+              </div>
+              <div class="footbar">
+                <span class="cat-tag">${c.categoria}</span>
+                <span class="card-num">${numStr}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -436,19 +536,19 @@ function generateHtmlPreview(cards, options) {
     });
 
     sheetsHtml += `
-      <section class="sheet sheet-front">
+      <section class="sheet ${isSuperTabloid ? 'sheet-12x18' : 'sheet-11x17'}">
         <header class="sheet-meta">
-          <span>HITSTER TECH EDITION — PLIEGO TABLOIDE ${s + 1} DE ${totalSheets} [CARA A: FRENTES]</span>
-          <span>11 &times; 17 PULGADAS (279.4 &times; 431.8 mm) — CORTE 65 &times; 65 mm</span>
+          <span>HIT-TAZOS TECH — PLIEGO ${s + 1} DE ${totalSheets} [CARA A: FRENTES]</span>
+          <span>${isSuperTabloid ? '12x18 PULG (305x457 mm)' : '11x17 PULG (279x432 mm)'} — CORTE 65x65mm (SANGRADO 3mm)</span>
         </header>
-        <div class="grid-3x6">${frontGridHtml}</div>
+        <div class="grid-${cols}x${rows}">${frontGridHtml}</div>
       </section>
     `;
 
     // Reversos Espejados
     const mirroredIndices = [];
-    for (let r = 0; r < CARDS_ROWS; r++) {
-      const base = r * CARDS_COLS;
+    for (let r = 0; r < rows; r++) {
+      const base = r * cols;
       mirroredIndices.push(base + 2, base + 1, base);
     }
 
@@ -456,23 +556,25 @@ function generateHtmlPreview(cards, options) {
     mirroredIndices.forEach((idx) => {
       const c = sheetCards[idx];
       if (!c) {
-        backGridHtml += `<div class="card-box ${hasBorder ? 'crop-border' : ''}"></div>`;
+        backGridHtml += `<div class="card-cell ${showGuides ? 'has-crop' : ''}"></div>`;
         return;
       }
-      const theme = getHitsterCardTheme(c);
+      const theme = getCardTheme(c);
       const creador = formatMarkdown(c.creador);
       const trivia = formatMarkdown(c.dato_curioso);
       const cleanCardNum = String(c.card_number).padStart(3, '0');
 
       backGridHtml += `
-        <div class="card-box ${hasBorder ? 'crop-border' : ''}">
-          <div class="card-face face-back" style="--card-bg: ${theme.bg}; --card-text: #111111;">
-            <div class="back-author">${creador}</div>
-            <div class="year-stage">${c.year}</div>
-            <div class="back-trivia">${trivia}</div>
-            <div class="footbar">
-              <span class="cat-tag">${c.categoria}</span>
-              <span class="card-num">${cleanCardNum}</span>
+        <div class="card-cell ${showGuides ? 'has-crop' : ''}">
+          <div class="card-bleed" style="--card-bg: ${theme.bg};">
+            <div class="card-cut face-back">
+              <div class="back-author">${creador}</div>
+              <div class="year-stage">${c.year}</div>
+              <div class="back-trivia">${trivia}</div>
+              <div class="footbar">
+                <span class="cat-tag">${c.categoria}</span>
+                <span class="card-num">${cleanCardNum}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -480,12 +582,12 @@ function generateHtmlPreview(cards, options) {
     });
 
     sheetsHtml += `
-      <section class="sheet sheet-back">
+      <section class="sheet ${isSuperTabloid ? 'sheet-12x18' : 'sheet-11x17'}">
         <header class="sheet-meta">
-          <span>HITSTER TECH EDITION — PLIEGO TABLOIDE ${s + 1} DE ${totalSheets} [CARA B: REVERSOS ESPEJADOS]</span>
+          <span>HIT-TAZOS TECH — PLIEGO ${s + 1} DE ${totalSheets} [CARA B: REVERSOS ESPEJADOS]</span>
           <span>IMPRESIÓN DÚPLEX: VOLTEAR POR EL BORDE LARGO</span>
         </header>
-        <div class="grid-3x6">${backGridHtml}</div>
+        <div class="grid-${cols}x${rows}">${backGridHtml}</div>
       </section>
     `;
   }
@@ -494,33 +596,38 @@ function generateHtmlPreview(cards, options) {
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>HITSTER Tech Edition — Imposición Tabloide Dúplex</title>
+  <title>HIT-TAZOS Tech — Imposición Profesional con Sangrado 3mm</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@700;800;900&display=swap');
-    @page { size: tabloid portrait; margin: 0; }
+    @page { size: ${isSuperTabloid ? '12in 18in' : 'tabloid'} portrait; margin: 0; }
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-    body { background: #e5e5e5; font-family: 'Outfit', sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px 0; }
-    .sheet { width: 279.4mm; height: 431.8mm; background: #ffffff; margin-bottom: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); page-break-after: always; break-after: page; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-    .sheet-meta { position: absolute; top: 12mm; left: 42.2mm; right: 42.2mm; display: flex; justify-content: space-between; font-size: 7.5pt; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 0.5pt solid #ddd; padding-bottom: 4px; }
-    .grid-3x6 { width: 195mm; height: 390mm; display: grid; grid-template-columns: repeat(3, 65mm); grid-template-rows: repeat(6, 65mm); margin-top: 10mm; }
-    .card-box { width: 65mm; height: 65mm; position: relative; overflow: hidden; }
-    .crop-border { outline: 0.4pt solid rgba(0, 0, 0, 0.15); }
-    .card-face { width: 100%; height: 100%; padding: 4.5mm 4.2mm; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
-    .face-front { background: var(--card-front-bg); color: #ffffff; }
-    .face-back { background: var(--card-bg); color: #111111; text-align: center; }
-    .topbar { display: flex; flex-direction: column; gap: 2px; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 3px; }
-    .group-title { font-size: 6.4pt; font-weight: 800; text-transform: uppercase; color: var(--card-bg); }
-    .category-name { font-size: 5.8pt; color: rgba(255,255,255,0.7); }
-    .clue-stage { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2.5mm 0; overflow: hidden; }
-    .clue-text { font-size: 9.0pt; line-height: 1.38; color: #ffffff; text-align: left; }
+    body { background: #dbeafe; font-family: 'Outfit', sans-serif; display: flex; flex-direction: column; align-items: center; padding: 25px 0; }
+    .sheet { background: #ffffff; margin-bottom: 30px; box-shadow: 0 12px 32px rgba(15,23,42,0.18); page-break-after: always; break-after: page; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .sheet-11x17 { width: 279.4mm; height: 431.8mm; }
+    .sheet-12x18 { width: 304.8mm; height: 457.2mm; }
+    .sheet-meta { position: absolute; top: 10mm; left: 30mm; right: 30mm; display: flex; justify-content: space-between; font-size: 7.5pt; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 0.5pt solid #cbd5e1; padding-bottom: 4px; }
+    .grid-3x5 { display: grid; grid-template-columns: repeat(3, 71mm); grid-template-rows: repeat(5, 71mm); gap: 0mm; margin-top: 10mm; }
+    .grid-3x6 { display: grid; grid-template-columns: repeat(3, 71mm); grid-template-rows: repeat(6, 71mm); gap: 0mm; margin-top: 10mm; }
+    .card-cell { width: 71mm; height: 71mm; position: relative; display: flex; align-items: center; justify-content: center; }
+    .has-crop::after { content: ''; position: absolute; width: 65mm; height: 65mm; outline: 0.4pt dashed rgba(255,255,255,0.4); pointer-events: none; z-index: 10; }
+    .face-back.has-crop::after { outline-color: rgba(0,0,0,0.25); }
+    .card-bleed { width: 71mm; height: 71mm; background: var(--card-bg); display: flex; align-items: center; justify-content: center; }
+    .face-front.card-cut { background: var(--card-front-bg); color: #ffffff; }
+    .face-back.card-cut { background: var(--card-bg); color: #111111; text-align: center; }
+    .card-cut { width: 65mm; height: 65mm; padding: 8mm 8mm; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
+    .topbar { display: flex; flex-direction: column; gap: 2px; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 2.5px; }
+    .group-title { font-size: 6.4pt; font-weight: 800; text-transform: uppercase; color: var(--card-bg); letter-spacing: 0.4px; }
+    .category-name { font-size: 5.6pt; color: rgba(255,255,255,0.7); line-height: 1.25; }
+    .clue-stage { flex: 1; display: flex; align-items: center; justify-content: flex-start; padding: 2mm 0; overflow: hidden; }
+    .clue-text { font-size: 8.8pt; line-height: 1.4; color: #ffffff; text-align: left; }
     .footbar { display: flex; justify-content: space-between; align-items: flex-end; }
     .cat-tag, .card-num { font-size: 5.2pt; font-weight: 500; color: rgba(255, 255, 255, 0.7); }
     .face-front .cat-tag { color: rgba(255, 255, 255, 0.45); }
     .face-front .card-num { color: rgba(255, 255, 255, 0.55); font-family: 'Space Grotesk', sans-serif; }
     .face-back .card-num { font-family: 'Space Grotesk', sans-serif; }
-    .back-author { font-size: 8.6pt; font-weight: 600; line-height: 1.2; min-height: 20px; display: flex; align-items: center; justify-content: center; }
-    .year-stage { font-family: 'Space Grotesk', sans-serif; font-size: 54pt; font-weight: 900; letter-spacing: -1.8px; line-height: 0.9; margin: 2px 0; }
-    .back-trivia { font-size: 7.4pt; font-style: italic; line-height: 1.35; flex: 1; display: flex; align-items: center; justify-content: center; padding: 0 1.5mm; }
+    .back-author { font-size: 8.4pt; font-weight: 600; line-height: 1.2; min-height: 18px; display: flex; align-items: center; justify-content: center; }
+    .year-stage { font-family: 'Space Grotesk', sans-serif; font-size: 50pt; font-weight: 900; letter-spacing: -1.8px; line-height: 0.88; margin: 1px 0; }
+    .back-trivia { font-size: 7.2pt; font-style: italic; line-height: 1.35; flex: 1; display: flex; align-items: center; justify-content: center; padding: 0 1mm; }
     @media print { body { background: transparent !important; padding: 0 !important; } .sheet { box-shadow: none !important; margin: 0 !important; } }
   </style>
 </head>
@@ -528,12 +635,12 @@ function generateHtmlPreview(cards, options) {
 </html>`;
 
   fs.writeFileSync(OUTPUT_HTML_PATH, fullHtml, 'utf8');
-  console.log(`✅ Archivo HTML de pliegos Tabloide generado: ${OUTPUT_HTML_PATH}`);
+  console.log(`✅ Archivo HTML de pliegos generado: ${OUTPUT_HTML_PATH}`);
 }
 
 function main() {
   const options = parseArgs();
-  console.log('🎨 HITSTER - Generador de Imposición Tabloide (11x17) para Imprenta y Diseño');
+  console.log('🎨 HIT-TAZOS TECH - Generador de Imposición Profesional (Sangrado 3mm, Margen 8mm, Crop Marks)');
 
   if (!fs.existsSync(CARDS_JSON_PATH)) {
     console.error('❌ No se encontró cards.json. Ejecuta primero `node build_cards.js`');
@@ -542,15 +649,19 @@ function main() {
 
   let cards = JSON.parse(fs.readFileSync(CARDS_JSON_PATH, 'utf8'));
   console.log(`📦 Total de tarjetas disponibles: ${cards.length}`);
+  console.log(`📐 Formato de pliego: ${options.format.toUpperCase()} | Marcas: ${options.crop.toUpperCase()}`);
 
-  if (options.range === '18' || options.range === 'SAMPLE_18') {
+  if (options.range === '15' || options.range === 'SAMPLE_15') {
+    cards = cards.slice(0, 15);
+    console.log('📄 Rango: Muestra de 1 pliego (15 cartas)');
+  } else if (options.range === '18' || options.range === 'SAMPLE_18') {
     cards = cards.slice(0, 18);
-    console.log('📄 Rango: Muestra de 1 pliego tabloide (18 cartas)');
-  } else if (options.range === '36' || options.range === 'SAMPLE_36') {
-    cards = cards.slice(0, 36);
-    console.log('📄 Rango: Muestra de 2 pliegos tabloide (36 cartas)');
+    console.log('📄 Rango: Muestra de 1 pliego (18 cartas)');
+  } else if (options.range === '30' || options.range === 'SAMPLE_30') {
+    cards = cards.slice(0, 30);
+    console.log('📄 Rango: Muestra de 2 pliegos (30 cartas)');
   } else {
-    console.log(`📄 Rango: Baraja completa de ${cards.length} cartas en pliegos tabloide`);
+    console.log(`📄 Rango: Baraja completa de ${cards.length} cartas`);
   }
 
   // 1. Generar HTML
@@ -581,9 +692,9 @@ function main() {
     }
   }
 
-  console.log('\n✨ Salidas disponibles para herramientas de diseño:');
+  console.log('\n✨ Salidas profesionales listas para imprenta:');
   if (options.svg) console.log(`   📂 Hojas SVG (Illustrator/Figma): ${OUTPUT_SVG_DIR}/`);
-  if (options.pdfEditable) console.log(`   📂 PDF vectorial editable:        ${OUTPUT_EDITABLE_PDF_PATH}`);
+  if (options.pdfEditable) console.log(`   📂 PDF vectorial editable (Cairo): ${OUTPUT_EDITABLE_PDF_PATH}`);
   if (options.pdf) console.log(`   📂 PDF de Chrome:                 ${OUTPUT_CHROME_PDF_PATH}`);
 }
 

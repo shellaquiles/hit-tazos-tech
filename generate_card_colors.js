@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Generador de Configuración de Colores por Millar para Hitster
+ * Generador de Configuración de Colores por Millar para Hit-Tazos Tech
  *
  * Los colores de las tarjetas son 100% independientes del contenido editorial;
  * el único vínculo es el `card_number`.
@@ -51,10 +51,26 @@ function generateMillar(millarIndex = 1, startNum = 1, endNum = 1000) {
     const bgHex = hslToHex(hue, saturation, lightness);
     const frontBgHex = hslToHex(hue, 35, 10);
     const accentHex = bgHex;
-    // En el juego original Hitster, todos los textos del reverso son negros
+    // En el diseño oficial de Hit-Tazos Tech, todos los textos del reverso son negros
     const textColor = '#111111';
     // Metadatos de esquinas discretos en blanco sutil / color atenuado
     const cornerColor = 'rgba(255, 255, 255, 0.7)';
+
+    function hexToCmyk(hex) {
+      const r = parseInt(hex.slice(1, 3), 16) / 255;
+      const g = parseInt(hex.slice(3, 5), 16) / 255;
+      const b = parseInt(hex.slice(5, 7), 16) / 255;
+      const k = 1 - Math.max(r, g, b);
+      if (k === 1) return { c: 0, m: 0, y: 0, k: 100, string: 'cmyk(0%, 0%, 0%, 100%)' };
+      const c = Math.round(((1 - r - k) / (1 - k)) * 100);
+      const m = Math.round(((1 - g - k) / (1 - k)) * 100);
+      const y = Math.round(((1 - b - k) / (1 - k)) * 100);
+      const kPct = Math.round(k * 100);
+      return { c, m, y, k: kPct, string: `cmyk(${c}%, ${m}%, ${y}%, ${kPct}%)` };
+    }
+
+    const bgCmyk = hexToCmyk(bgHex);
+    const frontBgCmyk = hexToCmyk(frontBgHex);
 
     colorsMap[num] = {
       card_number: num,
@@ -65,8 +81,10 @@ function generateMillar(millarIndex = 1, startNum = 1, endNum = 1000) {
       l: lightness,
       bg_hsl: `hsl(${hue}, ${saturation}%, ${lightness}%)`,
       bg_hex: bgHex,
+      bg_cmyk: bgCmyk.string,
       front_bg_hsl: `hsl(${hue}, 35%, 10%)`,
       front_bg_hex: frontBgHex,
+      front_bg_cmyk: frontBgCmyk.string,
       accent_hex: accentHex,
       text_color: textColor,
       corner_color: cornerColor
@@ -74,7 +92,7 @@ function generateMillar(millarIndex = 1, startNum = 1, endNum = 1000) {
   }
 
   return {
-    description: 'Hitster Tech Edition - Paleta cromática oficial independiente por card_number',
+    description: 'Hit-Tazos Tech - Paleta cromática oficial independiente por card_number',
     millar: millarIndex,
     total_cards: endNum - startNum + 1,
     start_card: startNum,

@@ -1,6 +1,6 @@
-// HITSTER Tech Edition - Application Core Engine with Curated Lucide Icons
+// Hit-Tazos Tech - Application Core Engine with Curated Lucide Icons
 
-class HitsterEngine {
+class HitTazosEngine {
   constructor() {
     this.cards = [];
     this.cardColors = {};
@@ -104,6 +104,7 @@ class HitsterEngine {
     this.btnSubmitGuess = document.getElementById('btn-submit-guess');
     this.guessResultPill = document.getElementById('guess-result-pill');
     this.btnFlip = document.getElementById('btn-flip');
+    this.btnReveal = document.getElementById('btn-reveal');
     this.btnNext = document.getElementById('btn-next');
     this.btnPrev = document.getElementById('btn-prev');
     this.btnShuffle = document.getElementById('btn-shuffle');
@@ -296,13 +297,19 @@ class HitsterEngine {
     });
 
     // 3D Card Click & Key Navigation
-    this.cardStage.addEventListener('click', () => this.flipCurrentCard());
+    this.cardStage.addEventListener('click', (e) => {
+      if (e.target.closest('.year-center-stage')) return;
+      this.flipCurrentCard();
+    });
     this.btnFlip.addEventListener('click', () => this.flipCurrentCard());
+    if (this.btnReveal) {
+      this.btnReveal.addEventListener('click', () => this.toggleActiveCardYear());
+    }
     this.btnNext.addEventListener('click', () => this.nextCard());
     this.btnPrev.addEventListener('click', () => this.prevCard());
     this.btnShuffle.addEventListener('click', () => this.shuffleCurrentDeck());
 
-    // Keyboard Space & Arrow support
+    // Keyboard Space, R & Arrow support
     window.addEventListener('keydown', (e) => {
       if (document.activeElement === this.inputYear || document.activeElement === this.galleryQuery) {
         return;
@@ -310,6 +317,9 @@ class HitsterEngine {
       if (e.code === 'Space') {
         e.preventDefault();
         this.flipCurrentCard();
+      } else if (e.code === 'KeyR') {
+        e.preventDefault();
+        this.toggleActiveCardYear();
       } else if (e.code === 'ArrowRight') {
         this.nextCard();
       } else if (e.code === 'ArrowLeft') {
@@ -479,7 +489,7 @@ class HitsterEngine {
               <rect class="svg-cursor-blink" x="84" y="44" width="5.5" height="11" fill="#38bdf8" rx="1"/>
               <!-- Bottom status bar -->
               <line x1="2" y1="72" x2="158" y2="72" stroke="#1e293b" stroke-width="1"/>
-              <text x="12" y="82" fill="#64748b" font-family="'JetBrains Mono', monospace" font-size="6.5">UTF-8 • PYTHON 3 • HITSTER</text>
+              <text x="12" y="82" fill="#64748b" font-family="'JetBrains Mono', monospace" font-size="6.5">UTF-8 • PYTHON 3 • HIT-TAZOS</text>
               <defs>
                 <radialGradient id="term-glow" cx="50%" cy="50%" r="50%">
                   <stop offset="0%" stop-color="#38bdf8"/>
@@ -510,7 +520,7 @@ class HitsterEngine {
               <!-- Colored header band on label -->
               <path d="M22 50C22 48.9 22.9 48 24 48H86C87.1 48 88 48.9 88 50V56H22V50Z" fill="#0284c7"/>
               <!-- Brand text on header -->
-              <text x="55" y="54" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="5.5" font-weight="bold" text-anchor="middle" letter-spacing="1">HITSTER 2HD</text>
+              <text x="55" y="54" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="5.5" font-weight="bold" text-anchor="middle" letter-spacing="1">HIT-TAZOS 2HD</text>
               <!-- Handwritten / Typed style title -->
               <text x="55" y="68" fill="#0f172a" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="900" text-anchor="middle">SOURCE CODE</text>
               <!-- Ruled line on label -->
@@ -629,7 +639,7 @@ class HitsterEngine {
 
               <!-- Processor Brand & Architectural Markings -->
               <text x="55" y="42" fill="#0f172a" font-family="'Space Grotesk', sans-serif" font-size="9" font-weight="900" text-anchor="middle" letter-spacing="1">NEURAL CPU</text>
-              <text x="55" y="52" fill="#334155" font-family="'JetBrains Mono', monospace" font-size="6.5" font-weight="bold" text-anchor="middle">HITSTER TENSOR-9</text>
+              <text x="55" y="52" fill="#334155" font-family="'JetBrains Mono', monospace" font-size="6.5" font-weight="bold" text-anchor="middle">HIT-TAZOS TENSOR-9</text>
 
               <!-- Center Laser-Etched Hologram Chip Logo -->
               <rect x="43" y="58" width="24" height="18" rx="2" fill="#0f172a" stroke="#0284c7" stroke-width="1"/>
@@ -705,7 +715,7 @@ class HitsterEngine {
     }
   }
 
-  // Generador cromático estructurado en bloques de 10 cartas según el mazo físico de Hitster:
+  // Generador cromático estructurado en bloques de 10 cartas para Hit-Tazos Tech:
   // Fila 1:
   //  - 01..10: Rosa / Coral cálido
   //  - 11..20: Lavanda / Lila pastel
@@ -720,7 +730,7 @@ class HitsterEngine {
   //  - 77..86: Verde lima / Menta fresco
   //  - 87..96: Turquesa / Cian cielo
   //  - 97..100+: Rojo carmín / Magenta intenso y morados profundos
-  getHitsterCardTheme(card) {
+  getCardTheme(card) {
     let cardNum = card.card_number || card.globalIndex;
     if (!cardNum || isNaN(cardNum)) {
       const matchNum = (card.id || '').match(/(\d+)$/);
@@ -746,7 +756,7 @@ class HitsterEngine {
     // Subpaso de 0 a 1 dentro del bloque de 10 cartas (carta 1 es la más clara, carta 10 es la más oscura/saturada)
     const subStep = ((cardNum - 1) % 10) / 9;
 
-    // Familias cromáticas por bloque de 10 (idénticas a la foto del mazo físico Hitster):
+    // Familias cromáticas por bloque de 10 oficial de Hit-Tazos Tech:
     // Cada bloque progresa de un tono claro y suave (l1 ~ 72-74%) a un tono más saturado y profundo (l2 ~ 48-52%)
     const paletteBlocks = [
       // 01-10: Bloque Rojo / Carmín cálido (foto: cartas 167-170)
@@ -792,7 +802,10 @@ class HitsterEngine {
     };
   }
 
-  buildCardHTML(card) {
+  buildCardHTML(card, options = {}) {
+    const isRevealed = options.isRevealed === true;
+    const yearStateClass = isRevealed ? 'is-revealed' : 'is-hidden';
+
     const hitoFormatted = this.formatMarkdown(card.hito);
     const creadorFormatted = this.formatMarkdown(card.creador);
     const triviaFormatted = this.formatMarkdown(card.dato_curioso);
@@ -810,16 +823,16 @@ class HitsterEngine {
     // Número de carta consecutivo (#001..#531)
     const cardNumStr = card.card_number ? `#${String(card.card_number).padStart(3, '0')}` : '';
 
-    // Tema cromático Hitster
-    const theme = this.getHitsterCardTheme(card);
+    // Tema cromático Hit-Tazos Tech
+    const theme = this.getCardTheme(card);
 
     return `
-      <!-- FRONT (Hitster / Frases Chingonas Pure Color Matte Face) -->
-      <div class="card-sheet sheet-front hitster-matte-card" style="--hitster-bg: ${theme.bg}; --hitster-front-bg: ${theme.frontBg}; --hitster-text: ${theme.text}; --hitster-subtext: ${theme.subText}; --hitster-accent: ${theme.accent};">
+      <!-- FRONT (Hit-Tazos / Pure Color Matte Face) -->
+      <div class="card-sheet sheet-front hittazos-matte-card" style="--hittazos-bg: ${theme.bg}; --card-bg: ${theme.bg}; --hittazos-front-bg: ${theme.frontBg}; --card-front-bg: ${theme.frontBg}; --card-text: ${theme.text}; --card-subtext: ${theme.subText}; --card-accent: ${theme.accent};">
         <div class="card-topbar-minimal">
           <span class="group-badge-tiny">
             <i data-lucide="${groupIcon}"></i>
-            ${card.grupo_nombre}
+            ${card.grupo_nombre.toUpperCase()}
           </span>
           <span class="category-badge-tiny">${card.categoria_nombre}</span>
         </div>
@@ -835,13 +848,20 @@ class HitsterEngine {
         </div>
       </div>
 
-      <!-- BACK (Hitster Solid Matte Reveal: Author Top, Year Center, Lore Bottom) -->
-      <div class="card-sheet sheet-back hitster-matte-card" style="--hitster-bg: ${theme.bg}; --hitster-text: ${theme.text}; --hitster-subtext: ${theme.subText}; --hitster-accent: ${theme.accent};">
+      <!-- BACK (Hit-Tazos Solid Matte Reveal: Author Top, Year Center, Lore Bottom) -->
+      <div class="card-sheet sheet-back hittazos-matte-card" style="--hittazos-bg: ${theme.bg}; --card-bg: ${theme.bg}; --card-text: ${theme.text}; --card-subtext: ${theme.subText}; --card-accent: ${theme.accent};">
         <div class="card-back-top">
           <div class="back-author-title">${creadorFormatted}</div>
         </div>
 
-        <div class="year-center-stage">
+        <div class="year-center-stage ${yearStateClass}" title="Haz clic para revelar el año [R]">
+          <div class="year-mystery-box">
+            <div class="year-mystery-digits">????</div>
+            <div class="year-reveal-badge">
+              <i data-lucide="eye"></i>
+              <span>Revelar año</span>
+            </div>
+          </div>
           <div class="year-digits-hero">${card.year}</div>
         </div>
 
@@ -864,21 +884,83 @@ class HitsterEngine {
     this.cardStage.innerHTML = '';
     const cardEl = document.createElement('div');
     cardEl.id = 'active-card-3d';
-    cardEl.className = `hitster-card-3d theme-${card.grupo}`;
-    cardEl.innerHTML = this.buildCardHTML(card);
+    cardEl.className = `hittazos-card-3d theme-${card.grupo}`;
+    cardEl.innerHTML = this.buildCardHTML(card, { isRevealed: false });
 
     this.cardStage.appendChild(cardEl);
     this.hudCardCounter.textContent = `${this.currentIndex + 1} / ${this.activeDeck.length}`;
     this.inputYear.value = '';
     this.guessResultPill.textContent = '';
+    this.updateRevealButtonState(false);
 
-    // Update Ambient Aura glow with Hitster Pop Color
+    // Update Ambient Aura glow with Card Pop Color
     if (this.ambientAura) {
-      const theme = this.getHitsterCardTheme(card);
+      const theme = this.getCardTheme(card);
       this.ambientAura.style.background = `radial-gradient(circle, ${theme.bg}55 0%, transparent 70%)`;
     }
 
+    // Interacción de clic en la zona del año para revelar/ocultar
+    const yearStage = cardEl.querySelector('.year-center-stage');
+    if (yearStage) {
+      yearStage.addEventListener('click', (e) => {
+        e.stopPropagation(); // no voltear la tarjeta, solo revelar el año
+        this.toggleActiveCardYear();
+      });
+    }
+
     this.attachArtifactCycler(cardEl, card);
+    this.refreshIcons();
+  }
+
+  updateRevealButtonState(isRevealed) {
+    if (!this.btnReveal) return;
+    if (isRevealed) {
+      this.btnReveal.innerHTML = `<i data-lucide="eye-off"></i> <span>Ocultar Año</span>`;
+      this.btnReveal.classList.add('active');
+    } else {
+      this.btnReveal.innerHTML = `<i data-lucide="eye"></i> <span>Revelar Año</span>`;
+      this.btnReveal.classList.remove('active');
+    }
+    this.refreshIcons();
+  }
+
+  revealActiveCardYear() {
+    const cardEl = document.getElementById('active-card-3d');
+    if (!cardEl) return;
+    const yearStage = cardEl.querySelector('.year-center-stage');
+    if (yearStage && yearStage.classList.contains('is-hidden')) {
+      yearStage.classList.remove('is-hidden');
+      yearStage.classList.add('is-revealed');
+      this.updateRevealButtonState(true);
+      this.refreshIcons();
+    }
+  }
+
+  toggleActiveCardYear() {
+    const cardEl = document.getElementById('active-card-3d');
+    if (!cardEl) return;
+
+    // Si la carta está en el frente, voltearla primero para ver el reverso
+    if (!cardEl.classList.contains('is-flipped')) {
+      cardEl.classList.add('is-flipped');
+      this.reset3DTilt();
+    }
+
+    const yearStage = cardEl.querySelector('.year-center-stage');
+    if (!yearStage) return;
+
+    const isHidden = yearStage.classList.contains('is-hidden');
+    if (isHidden) {
+      yearStage.classList.remove('is-hidden');
+      yearStage.classList.add('is-revealed');
+      this.updateRevealButtonState(true);
+      this.playAudioFeedback('hit');
+    } else {
+      yearStage.classList.remove('is-revealed');
+      yearStage.classList.add('is-hidden');
+      this.updateRevealButtonState(false);
+      this.playAudioFeedback('flip');
+    }
     this.refreshIcons();
   }
 
@@ -921,8 +1003,9 @@ class HitsterEngine {
       cardEl.classList.add('is-flipped');
       this.reset3DTilt();
     }
+    this.revealActiveCardYear();
 
-    const theme = this.getHitsterCardTheme(card);
+    const theme = this.getCardTheme(card);
     const cardColor = theme.bg;
 
     const diff = Math.abs(val - card.year);
@@ -1048,8 +1131,26 @@ class HitsterEngine {
       cell.className = 'catalog-card-cell';
 
       const cardEl = document.createElement('div');
-      cardEl.className = `hitster-card-3d theme-${card.grupo}`;
-      cardEl.innerHTML = this.buildCardHTML(card);
+      cardEl.className = `hittazos-card-3d theme-${card.grupo}`;
+      cardEl.innerHTML = this.buildCardHTML(card, { isRevealed: false });
+
+      const yearStage = cardEl.querySelector('.year-center-stage');
+      if (yearStage) {
+        yearStage.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isHidden = yearStage.classList.contains('is-hidden');
+          if (isHidden) {
+            yearStage.classList.remove('is-hidden');
+            yearStage.classList.add('is-revealed');
+            this.playAudioFeedback('hit');
+          } else {
+            yearStage.classList.remove('is-revealed');
+            yearStage.classList.add('is-hidden');
+            this.playAudioFeedback('flip');
+          }
+          this.refreshIcons();
+        });
+      }
 
       cardEl.addEventListener('click', () => {
         cardEl.classList.toggle('is-flipped');
@@ -1106,8 +1207,12 @@ class HitsterEngine {
       const frontSheet = document.createElement('div');
       frontSheet.className = 'print-sheet print-sheet-fronts';
       frontSheet.innerHTML = `
+      // --- PLIEGO IMPAR: FRENTES (Orden natural 0..17, 3x6) ---
+      const frontSheet = document.createElement('div');
+      frontSheet.className = 'print-sheet print-sheet-fronts';
+      frontSheet.innerHTML = `
         <div class="sheet-meta-header">
-          <span>HITSTER TECH EDITION — TABLOIDE ${sheetIdx + 1} DE ${totalSheets} [CARA A: FRENTES]</span>
+          <span>HIT-TAZOS TECH — TABLOIDE ${sheetIdx + 1} DE ${totalSheets} [CARA A: FRENTES]</span>
           <span>11x17 PULGADAS — 18 CARTAS (65x65mm) — CORTE MILIMÉTRICO</span>
         </div>
       `;
@@ -1120,13 +1225,13 @@ class HitsterEngine {
         box.className = `print-card-box ${hasBorder ? 'print-crop-border' : ''}`;
 
         if (card) {
-          const theme = this.getHitsterCardTheme(card);
+          const theme = this.getCardTheme(card);
           const groupIcon = this.getGroupIconName(card.grupo);
           const hitoFormatted = this.formatMarkdown(card.hito);
           const cardNumStr = card.card_number ? `#${String(card.card_number).padStart(3, '0')}` : '';
 
           box.innerHTML = `
-            <div class="print-card-face print-face-front" style="--hitster-bg: ${theme.bg}; --hitster-front-bg: ${theme.frontBg};">
+            <div class="print-card-face print-face-front" style="--hittazos-bg: ${theme.bg}; --card-bg: ${theme.bg}; --hittazos-front-bg: ${theme.frontBg}; --card-front-bg: ${theme.frontBg};">
               <div class="card-topbar-minimal">
                 <span class="group-badge-tiny">
                   <i data-lucide="${groupIcon}"></i>
@@ -1155,7 +1260,7 @@ class HitsterEngine {
       backSheet.className = 'print-sheet print-sheet-backs';
       backSheet.innerHTML = `
         <div class="sheet-meta-header">
-          <span>HITSTER TECH EDITION — TABLOIDE ${sheetIdx + 1} DE ${totalSheets} [CARA B: REVERSOS ESPEJADOS]</span>
+          <span>HIT-TAZOS TECH — TABLOIDE ${sheetIdx + 1} DE ${totalSheets} [CARA B: REVERSOS ESPEJADOS]</span>
           <span>VOLTEAR POR EL BORDE LARGO (LONG EDGE DUPLEX)</span>
         </div>
       `;
@@ -1176,13 +1281,13 @@ class HitsterEngine {
         box.className = `print-card-box ${hasBorder ? 'print-crop-border' : ''}`;
 
         if (card) {
-          const theme = this.getHitsterCardTheme(card);
+          const theme = this.getCardTheme(card);
           const creadorFormatted = this.formatMarkdown(card.creador);
           const triviaFormatted = this.formatMarkdown(card.dato_curioso);
           const cardNumStr = card.card_number ? `#${String(card.card_number).padStart(3, '0')}` : '';
 
           box.innerHTML = `
-            <div class="print-card-face print-face-back" style="--hitster-bg: ${theme.bg};">
+            <div class="print-card-face print-face-back" style="--hittazos-bg: ${theme.bg}; --card-bg: ${theme.bg};">
               <div class="card-back-top">
                 <div class="back-author-title">${creadorFormatted}</div>
               </div>
@@ -1194,7 +1299,7 @@ class HitsterEngine {
               </div>
               <div class="card-footbar-minimal">
                 <span class="corner-meta-left">${card.categoria}</span>
-                <span class="corner-meta-right">${cardNumStr}</span>
+                <span class="corner-meta-right">${String(card.card_number).padStart(3, '0')}</span>
               </div>
             </div>
           `;
@@ -1212,5 +1317,5 @@ class HitsterEngine {
 
 // Start on DOM Ready
 window.addEventListener('DOMContentLoaded', () => {
-  window.hitster = new HitsterEngine();
+  window.hitTazos = new HitTazosEngine();
 });

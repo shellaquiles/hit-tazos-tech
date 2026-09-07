@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Script editorial para auditar y optimizar la concisión tipográfica del corpus HITSTER.
+Script editorial para auditar y optimizar la concisión tipográfica del corpus Hit-Tazos Tech.
 Límites editoriales para tarjetas 65x65mm:
   - Creador: <= 45 caracteres
   - Hito:    <= 150 caracteres
