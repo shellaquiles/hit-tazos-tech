@@ -205,6 +205,10 @@ class HitsterEngine {
     try {
       const res = await fetch('cards.json');
       this.cards = await res.json();
+      // Asignar índice global continuo (1..N) para la correspondencia de color idéntica al mazo de 100 cartas
+      this.cards.forEach((c, idx) => {
+        c.globalIndex = idx + 1;
+      });
       this.activeDeck = [...this.cards];
       this.filteredCatalog = [...this.cards];
       this.counterTotal.textContent = this.cards.length;
@@ -658,6 +662,65 @@ class HitsterEngine {
     }
   }
 
+  // Generador cromático continuo idéntico a las 100 cartas de Hitster
+  getHitsterCardTheme(card) {
+    // Tomar el índice 1..100 de la carta
+    const matchNum = (card.id || '').match(/(\d+)$/);
+    let cardNum = card.globalIndex || (matchNum ? parseInt(matchNum[1], 10) : 0);
+    
+    if (!cardNum || isNaN(cardNum)) {
+      let hash = 0;
+      const str = card.id || String(card.year);
+      for (let i = 0; i < str.length; i++) {
+        hash = (hash * 31 + str.charCodeAt(i)) & 0xffffffff;
+      }
+      cardNum = Math.abs(hash);
+    }
+
+    // Espectro continuo calibrado para el abanico físico de las 100 cartas de Hitster:
+    // Carta 1 empieza en magenta/rosa (~340°), avanza suavemente por lavanda, naranja,
+    // amarillo cálido (~50°), lima (~85°), menta (~145°), cian (~185°), azul eléctrico (~220°),
+    // y cierra el ciclo hacia violeta/rosa de nuevo al llegar a 100.
+    const normalizedIndex = (cardNum - 1) % 100;
+    const hue = (340 + (normalizedIndex * (360 / 100))) % 360;
+
+    // Ajustar saturación y luminosidad para replicar la cartulina mate pigmentada de Hitster
+    let saturation = 76;
+    let lightness = 56;
+
+    if (hue >= 40 && hue <= 90) {
+      // Amarillos / limas: luminosos y saturados
+      saturation = 86;
+      lightness = 64;
+    } else if (hue >= 240 && hue <= 290) {
+      // Violetas / lavandas: más luminosos para máximo contraste con el texto oscuro
+      saturation = 68;
+      lightness = 62;
+    } else if (hue >= 170 && hue <= 220) {
+      // Turquesas / cianes
+      saturation = 74;
+      lightness = 58;
+    } else if (hue >= 330 || hue < 25) {
+      // Rosas / magentas / corales
+      saturation = 82;
+      lightness = 55;
+    }
+
+    const bg = `hsl(${hue.toFixed(1)}, ${saturation}%, ${lightness}%)`;
+    const accent = `hsl(${hue.toFixed(1)}, ${saturation}%, ${Math.min(85, lightness + 18)}%)`;
+    // Fondo oscuro profundo para el anverso con tinte sutil del mismo tono de la carta
+    const frontBg = `hsl(${hue.toFixed(1)}, 35%, 10%)`;
+
+    return {
+      hue: hue,
+      bg: bg,
+      frontBg: frontBg,
+      text: '#111111',
+      subText: 'rgba(17, 17, 17, 0.75)',
+      accent: accent
+    };
+  }
+
   buildCardHTML(card) {
     const hitoFormatted = this.formatMarkdown(card.hito);
     const creadorFormatted = this.formatMarkdown(card.creador);
@@ -677,80 +740,48 @@ class HitsterEngine {
     const matchConsecutivo = card.id.match(/(\d+)$/);
     const consecutiveId = matchConsecutivo ? matchConsecutivo[1] : card.id;
 
+    // Tema cromático Hitster
+    const theme = this.getHitsterCardTheme(card);
+
     return `
-      <!-- FRONT -->
-      <div class="card-sheet sheet-front">
-        <div class="card-glare-effect"></div>
-        <div class="corner-bracket bracket-tl"></div>
-        <div class="corner-bracket bracket-tr"></div>
-        <div class="corner-bracket bracket-bl"></div>
-        <div class="corner-bracket bracket-br"></div>
-
-        <div class="card-topbar card-topbar-stacked">
-          <div class="topbar-group-eyebrow">
+      <!-- FRONT (Hitster / Frases Chingonas Pure Color Matte Face) -->
+      <div class="card-sheet sheet-front hitster-matte-card" style="--hitster-bg: ${theme.bg}; --hitster-front-bg: ${theme.frontBg}; --hitster-text: ${theme.text}; --hitster-subtext: ${theme.subText}; --hitster-accent: ${theme.accent};">
+        <div class="card-topbar-minimal">
+          <span class="group-badge-tiny">
             <i data-lucide="${groupIcon}"></i>
-            <span>${card.grupo_nombre}</span>
-          </div>
-          <div class="topbar-category-title">${card.categoria_nombre}</div>
+            ${card.grupo_nombre}
+          </span>
+          <span class="category-badge-tiny">${card.categoria_nombre}</span>
         </div>
 
-        <div class="clue-stage">
-          <p class="clue-statement">${hitoFormatted}</p>
+        <div class="clue-stage-pure">
+          <p class="clue-quote">${hitoFormatted}</p>
         </div>
 
-        <div class="card-footbar">
-          <span class="edition-tag">${card.categoria}</span>
-          <span class="flip-cue"><i data-lucide="rotate-cw"></i> Voltear</span>
-          <span class="card-id-corner">${consecutiveId}</span>
+        <div class="card-footbar-minimal">
+          <span class="corner-meta-left">${card.categoria}</span>
+          <span class="flip-pill"><i data-lucide="rotate-cw"></i> Voltear</span>
+          <span class="corner-meta-right">${consecutiveId}</span>
         </div>
       </div>
 
-      <!-- BACK -->
-      <div class="card-sheet sheet-back">
-        <div class="card-glare-effect"></div>
-        <div class="corner-bracket bracket-tl"></div>
-        <div class="corner-bracket bracket-tr"></div>
-        <div class="corner-bracket bracket-bl"></div>
-        <div class="corner-bracket bracket-br"></div>
-
-        <div class="year-revelation">
-          <div class="year-digits">${card.year}</div>
+      <!-- BACK (Hitster Solid Matte Reveal: Author Top, Year Center, Lore Bottom) -->
+      <div class="card-sheet sheet-back hitster-matte-card" style="--hitster-bg: ${theme.bg}; --hitster-text: ${theme.text}; --hitster-subtext: ${theme.subText}; --hitster-accent: ${theme.accent};">
+        <div class="card-back-top">
+          <div class="back-author-title">${creadorFormatted}</div>
         </div>
 
-        <!-- Mini Timeline Spatial Widget -->
-        <div class="mini-timeline-widget">
-          <div class="timeline-axis">
-            <div class="timeline-pin" style="left: ${percent}%;"></div>
-          </div>
-          <div class="timeline-labels">
-            <span>1950</span>
-            <span>1975</span>
-            <span>2000</span>
-            <span>2026</span>
-          </div>
+        <div class="year-center-stage">
+          <div class="year-digits-hero">${card.year}</div>
         </div>
 
-        <!-- Creator Dossier -->
-        <div class="creator-dossier">
-          <div class="dossier-icon"><i data-lucide="user"></i></div>
-          <div class="dossier-meta">
-            <div class="dossier-label">Autoría</div>
-            <div class="dossier-name">${creadorFormatted}</div>
-          </div>
+        <div class="card-back-bottom">
+          <div class="back-trivia-phrase">${triviaFormatted}</div>
         </div>
 
-        <!-- Lore Box -->
-        <div class="lore-container">
-          <div class="lore-heading">
-            <i data-lucide="lightbulb"></i>
-            <span>Curiosidad</span>
-          </div>
-          <div class="lore-body">${triviaFormatted}</div>
-        </div>
-
-        <div class="card-footbar back-footbar">
-          <span class="edition-tag">${card.categoria}</span>
-          <span class="card-id-corner">${consecutiveId}</span>
+        <div class="card-footbar-minimal">
+          <span class="corner-meta-left">${card.categoria}</span>
+          <span class="corner-meta-right">${consecutiveId}</span>
         </div>
       </div>
     `;
@@ -771,17 +802,10 @@ class HitsterEngine {
     this.inputYear.value = '';
     this.guessResultPill.textContent = '';
 
-    // Update Ambient Aura glow
+    // Update Ambient Aura glow with Hitster Pop Color
     if (this.ambientAura) {
-      const glowColors = {
-        'A': 'rgba(56, 189, 248, 0.45)',
-        'B': 'rgba(34, 211, 238, 0.45)',
-        'C': 'rgba(52, 211, 153, 0.45)',
-        'D': 'rgba(244, 114, 182, 0.45)',
-        'E': 'rgba(251, 191, 36, 0.45)'
-      };
-      const glow = glowColors[card.grupo] || 'rgba(56, 189, 248, 0.45)';
-      this.ambientAura.style.background = `radial-gradient(circle, ${glow} 0%, transparent 70%)`;
+      const theme = this.getHitsterCardTheme(card);
+      this.ambientAura.style.background = `radial-gradient(circle, ${theme.bg}55 0%, transparent 70%)`;
     }
 
     this.attachArtifactCycler(cardEl, card);
@@ -828,14 +852,8 @@ class HitsterEngine {
       this.reset3DTilt();
     }
 
-    const themeColors = {
-      'A': '#38bdf8',
-      'B': '#22d3ee',
-      'C': '#34d399',
-      'D': '#f472b6',
-      'E': '#fbbf24'
-    };
-    const cardColor = themeColors[card.grupo] || '#38bdf8';
+    const theme = this.getHitsterCardTheme(card);
+    const cardColor = theme.bg;
 
     const diff = Math.abs(val - card.year);
     if (diff === 0) {
@@ -950,7 +968,7 @@ class HitsterEngine {
 
   renderCatalog() {
     this.catalogGrid.innerHTML = '';
-    const slice = this.filteredCatalog.slice(0, 60);
+    const slice = this.filteredCatalog.slice(0, 100);
 
     slice.forEach(card => {
       const cell = document.createElement('div');
