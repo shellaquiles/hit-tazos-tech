@@ -662,53 +662,67 @@ class HitsterEngine {
     }
   }
 
-  // Generador cromático continuo idéntico a las 100 cartas de Hitster
+  // Generador cromático estructurado en bloques de 10 cartas según el mazo físico de Hitster:
+  // Fila 1:
+  //  - 01..10: Rosa / Coral cálido
+  //  - 11..20: Lavanda / Lila pastel
+  //  - 21..30: Salmón / Naranja melocotón
+  // Fila 2:
+  //  - 31..40: Violeta / Púrpura medio
+  //  - 41..50: Arena / Caramelo / Mostaza suave
+  //  - 51..60: Amarillo girasol vibrante
+  //  - 61..66: Azul cerúleo / Cian brillante
+  // Fila 3:
+  //  - 67..76: Amarillo canario puro
+  //  - 77..86: Verde lima / Menta fresco
+  //  - 87..96: Turquesa / Cian cielo
+  //  - 97..100+: Rojo carmín / Magenta intenso y morados profundos
   getHitsterCardTheme(card) {
-    // Tomar el índice 1..100 de la carta
-    const matchNum = (card.id || '').match(/(\d+)$/);
-    let cardNum = card.globalIndex || (matchNum ? parseInt(matchNum[1], 10) : 0);
-    
+    let cardNum = card.card_number || card.globalIndex;
     if (!cardNum || isNaN(cardNum)) {
-      let hash = 0;
-      const str = card.id || String(card.year);
-      for (let i = 0; i < str.length; i++) {
-        hash = (hash * 31 + str.charCodeAt(i)) & 0xffffffff;
-      }
-      cardNum = Math.abs(hash);
+      const matchNum = (card.id || '').match(/(\d+)$/);
+      cardNum = matchNum ? parseInt(matchNum[1], 10) : 1;
     }
+    if (!cardNum || isNaN(cardNum)) cardNum = 1;
 
-    // Espectro continuo calibrado para el abanico físico de las 100 cartas de Hitster:
-    // Carta 1 empieza en magenta/rosa (~340°), avanza suavemente por lavanda, naranja,
-    // amarillo cálido (~50°), lima (~85°), menta (~145°), cian (~185°), azul eléctrico (~220°),
-    // y cierra el ciclo hacia violeta/rosa de nuevo al llegar a 100.
-    const normalizedIndex = (cardNum - 1) % 100;
-    const hue = (340 + (normalizedIndex * (360 / 100))) % 360;
+    // Bloques de 10 en 10 (0 a 9 repetidos cada 100 cartas)
+    const blockIndex = Math.floor(((cardNum - 1) % 100) / 10);
+    // Subpaso de 0 a 1 dentro del bloque de 10 cartas (carta 1 es la más clara, carta 10 es la más oscura/saturada)
+    const subStep = ((cardNum - 1) % 10) / 9;
 
-    // Ajustar saturación y luminosidad para replicar la cartulina mate pigmentada de Hitster
-    let saturation = 76;
-    let lightness = 56;
+    // Familias cromáticas por bloque de 10 (idénticas a la foto del mazo físico Hitster):
+    // Cada bloque progresa de un tono claro y suave (l1 ~ 72-74%) a un tono más saturado y profundo (l2 ~ 48-52%)
+    const paletteBlocks = [
+      // 01-10: Bloque Rojo / Carmín cálido (foto: cartas 167-170)
+      { h1: 350, h2: 356, s1: 72, s2: 88, l1: 68, l2: 50 },
+      // 11-20: Bloque Violeta / Morado medio (foto: cartas 171-175)
+      { h1: 268, h2: 276, s1: 58, s2: 78, l1: 72, l2: 52 },
+      // 21-30: Bloque Naranja cálido (foto: cartas 177-180)
+      { h1: 22, h2: 28, s1: 78, s2: 92, l1: 68, l2: 52 },
+      // 31-40: Bloque Lavanda / Malva suave (foto: cartas 181-186)
+      { h1: 280, h2: 290, s1: 45, s2: 65, l1: 74, l2: 55 },
+      // 41-50: Bloque Amarillo / Ámbar dorado (foto: cartas 187-192)
+      { h1: 42, h2: 48, s1: 82, s2: 96, l1: 72, l2: 54 },
+      // 51-60: Bloque Lila pálido / Azul pastel (foto: cartas 193-198)
+      { h1: 245, h2: 258, s1: 48, s2: 70, l1: 75, l2: 55 },
+      // 61-70: Bloque Lima / Verde amarillento fresco
+      { h1: 68, h2: 82, s1: 72, s2: 85, l1: 70, l2: 54 },
+      // 71-80: Bloque Turquesa / Cian oceánico
+      { h1: 172, h2: 192, s1: 62, s2: 82, l1: 70, l2: 52 },
+      // 81-90: Bloque Rosa coral / Fucsia suave
+      { h1: 335, h2: 345, s1: 68, s2: 86, l1: 72, l2: 52 },
+      // 91-100: Bloque Ocre / Canela tostado
+      { h1: 32, h2: 38, s1: 65, s2: 82, l1: 70, l2: 52 }
+    ];
 
-    if (hue >= 40 && hue <= 90) {
-      // Amarillos / limas: luminosos y saturados
-      saturation = 86;
-      lightness = 64;
-    } else if (hue >= 240 && hue <= 290) {
-      // Violetas / lavandas: más luminosos para máximo contraste con el texto oscuro
-      saturation = 68;
-      lightness = 62;
-    } else if (hue >= 170 && hue <= 220) {
-      // Turquesas / cianes
-      saturation = 74;
-      lightness = 58;
-    } else if (hue >= 330 || hue < 25) {
-      // Rosas / magentas / corales
-      saturation = 82;
-      lightness = 55;
-    }
+    const currentBlock = paletteBlocks[blockIndex] || paletteBlocks[0];
 
-    const bg = `hsl(${hue.toFixed(1)}, ${saturation}%, ${lightness}%)`;
-    const accent = `hsl(${hue.toFixed(1)}, ${saturation}%, ${Math.min(85, lightness + 18)}%)`;
-    // Fondo oscuro profundo para el anverso con tinte sutil del mismo tono de la carta
+    const hue = currentBlock.h1 + (currentBlock.h2 - currentBlock.h1) * subStep;
+    const saturation = currentBlock.s1 + (currentBlock.s2 - currentBlock.s1) * subStep;
+    const lightness = currentBlock.l1 + (currentBlock.l2 - currentBlock.l1) * subStep;
+
+    const bg = `hsl(${hue.toFixed(1)}, ${saturation.toFixed(0)}%, ${lightness.toFixed(0)}%)`;
+    const accent = `hsl(${hue.toFixed(1)}, ${saturation.toFixed(0)}%, ${Math.min(88, lightness + 16).toFixed(0)}%)`;
     const frontBg = `hsl(${hue.toFixed(1)}, 35%, 10%)`;
 
     return {
@@ -961,6 +975,8 @@ class HitsterEngine {
       this.filteredCatalog.sort((a, b) => b.year - a.year);
     } else if (sort === 'ID_ASC') {
       this.filteredCatalog.sort((a, b) => a.id.localeCompare(b.id));
+    } else if (sort === 'DECK_ORDER') {
+      this.filteredCatalog.sort((a, b) => (a.card_number || 0) - (b.card_number || 0));
     }
 
     this.renderCatalog();

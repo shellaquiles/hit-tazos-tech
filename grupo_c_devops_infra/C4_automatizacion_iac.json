@@ -1,6 +1,6 @@
 [
   {
-    "id": "#C4-001",
+    "id": "#C4-224",
     "grupo": "C",
     "grupo_nombre": "DevOps e Infraestructura",
     "categoria": "C4",
@@ -8,10 +8,11 @@
     "hito": "Creación de **CFEngine** en la Universidad de Oslo, formulando la teoría del mantenimiento del estado deseado y la **idempotencia**.",
     "year": 1993,
     "creador": "*Mark Burgess*",
-    "dato_curioso": "Burgess era físico teórico; aplicó principios de termodinámica y teoría de control para garantizar que un script pudiera ejecutarse mil veces produciendo siempre el mismo estado final."
+    "dato_curioso": "Burgess era físico teórico; aplicó principios de termodinámica y teoría de control para garantizar que un script pudiera ejecutarse mil veces produciendo siempre el mismo estado final.",
+    "card_number": 224
   },
   {
-    "id": "#C4-002",
+    "id": "#C4-380",
     "grupo": "C",
     "grupo_nombre": "DevOps e Infraestructura",
     "categoria": "C4",
@@ -19,10 +20,11 @@
     "hito": "Nacimiento de **Puppet**, profesionalizando la gestión declarativa de flotas de servidores con un lenguaje específico de dominio (*DSL*).",
     "year": 2005,
     "creador": "*Luke Kanies* (*Puppet Labs*)",
-    "dato_curioso": "Creado en Ruby tras la frustración de Kanies con las limitaciones de CFEngine; se convirtió en el estándar corporativo para administrar centros de datos de miles de nodos."
+    "dato_curioso": "Creado en Ruby tras la frustración de Kanies con las limitaciones de CFEngine; se convirtió en el estándar corporativo para administrar centros de datos de miles de nodos.",
+    "card_number": 380
   },
   {
-    "id": "#C4-003",
+    "id": "#C4-080",
     "grupo": "C",
     "grupo_nombre": "DevOps e Infraestructura",
     "categoria": "C4",
@@ -30,10 +32,11 @@
     "hito": "Lanzamiento de **Chef**, popularizando la metáfora culinaria de infraestructura programable mediante \"recetas\" y \"libros de cocina\" (*cookbooks*).",
     "year": 2009,
     "creador": "*Adam Jacob* (*Opscode*)",
-    "dato_curioso": "A diferencia de Puppet, permitía escribir código imperativo en Ruby puro, desatando una feroz rivalidad sobre qué enfoque era superior para la administración de sistemas."
+    "dato_curioso": "A diferencia de Puppet, permitía escribir código imperativo en Ruby puro, desatando una feroz rivalidad sobre qué enfoque era superior para la administración de sistemas.",
+    "card_number": 80
   },
   {
-    "id": "#C4-004",
+    "id": "#C4-045",
     "grupo": "C",
     "grupo_nombre": "DevOps e Infraestructura",
     "categoria": "C4",
@@ -41,10 +44,11 @@
     "hito": "Presentación de la legendaria conferencia *\"10+ Deploys Per Day: Dev and Ops Cooperation at Flickr\"*, alumbrando el movimiento **DevOps**.",
     "year": 2009,
     "creador": "*John Allspaw* y *Paul Hammond* (*Flickr*)",
-    "dato_curioso": "En una época donde desplegar software a producción tomaba meses y desataba pánico, mostraron cómo desarrolladores y operadores podían colaborar en armonía sin fricciones."
+    "dato_curioso": "En una época donde desplegar software a producción tomaba meses y desataba pánico, mostraron cómo desarrolladores y operadores podían colaborar en armonía sin fricciones.",
+    "card_number": 45
   },
   {
-    "id": "#C4-005",
+    "id": "#C4-028",
     "grupo": "C",
     "grupo_nombre": "DevOps e Infraestructura",
     "categoria": "C4",
@@ -52,10 +56,11 @@
     "hito": "Creación de **Vagrant**, permitiendo a cualquier desarrollador levantar entornos de virtualización locales idénticos con un simple `vagrant up`.",
     "year": 2010,
     "creador": "*Mitchell Hashimoto* y *John Bender*",
-    "dato_curioso": "Nació en un apartamento universitario; resolvió de un plumazo la excusa eterna del programador: *\"En mi máquina sí funcionaba\"*."
+    "dato_curioso": "Nació en un apartamento universitario; resolvió de un plumazo la excusa eterna del programador: *\"En mi máquina sí funcionaba\"*.",
+    "card_number": 28
   },
   {
-    "id": "#C4-006",
+    "id": "#C4-188",
     "grupo": "C",
     "grupo_nombre": "DevOps e Infraestructura",
     "categoria": "C4",
@@ -63,10 +68,11 @@
     "hito": "Debut de **Ansible**, un sistema de automatización en Python sin agentes (*agentless*) que orquesta servidores mediante conexiones seguras SSH.",
     "year": 2012,
     "creador": "*Michael DeHaan*",
-    "dato_curioso": "Utilizaba manifiestos en formato **YAML** llamados *playbooks*; al no exigir instalar ningún software daemon en los clientes, arrasó en adopción frente a Puppet y Chef."
+    "dato_curioso": "Utilizaba manifiestos en formato **YAML** llamados *playbooks*; al no exigir instalar ningún software daemon en los clientes, arrasó en adopción frente a Puppet y Chef.",
+    "card_number": 188
   },
   {
-    "id": "#C4-007",
+    "id": "#C4-447",
     "grupo": "C",
     "grupo_nombre": "DevOps e Infraestructura",
     "categoria": "C4",
@@ -74,10 +80,11 @@
     "hito": "Creación de **SaltStack** (**Salt**) en Python, priorizando la ejecución remota de comandos en tiempo real a velocidad de milisegundos.",
     "year": 2011,
     "creador": "*Thomas Hatch*",
-    "dato_curioso": "Diseñado sobre el bus de mensajería asíncrono *ZeroMQ*, era capaz de disparar comandos simultáneos a más de 10,000 servidores en menos de un segundo."
+    "dato_curioso": "Diseñado sobre el bus de mensajería asíncrono *ZeroMQ*, era capaz de disparar comandos simultáneos a más de 10,000 servidores en menos de un segundo.",
+    "card_number": 447
   },
   {
-    "id": "#C4-008",
+    "id": "#C4-407",
     "grupo": "C",
     "grupo_nombre": "DevOps e Infraestructura",
     "categoria": "C4",
@@ -85,10 +92,11 @@
     "hito": "Lanzamiento de **Terraform 0.1**, consolidando el paradigma de Infraestructura como Código (**IaC**) agnóstico a cualquier proveedor de nube.",
     "year": 2014,
     "creador": "*Mitchell Hashimoto* y *Armon Dadgar* (*HashiCorp*)",
-    "dato_curioso": "Introdujo el lenguaje declarativo **HCL** y el archivo de estado `terraform.tfstate`, permitiendo a equipos versionar redes, discos y clusters de nube como si fueran código ordinario."
+    "dato_curioso": "Introdujo el lenguaje declarativo **HCL** y el archivo de estado `terraform.tfstate`, permitiendo a equipos versionar redes, discos y clusters de nube como si fueran código ordinario.",
+    "card_number": 407
   },
   {
-    "id": "#C4-009",
+    "id": "#C4-375",
     "grupo": "C",
     "grupo_nombre": "DevOps e Infraestructura",
     "categoria": "C4",
@@ -96,10 +104,11 @@
     "hito": "Presentación de **Consul** por parte de HashiCorp, resolviendo el descubrimiento de servicios y la configuración distribuida mediante el algoritmo **Raft**.",
     "year": 2014,
     "creador": "*HashiCorp*",
-    "dato_curioso": "Permitió a microservicios efímeros en la nube encontrarse dinámicamente entre sí y balancear tráfico sin depender de configuraciones estáticas de DNS."
+    "dato_curioso": "Permitió a microservicios efímeros en la nube encontrarse dinámicamente entre sí y balancear tráfico sin depender de configuraciones estáticas de DNS.",
+    "card_number": 375
   },
   {
-    "id": "#C4-010",
+    "id": "#C4-391",
     "grupo": "C",
     "grupo_nombre": "DevOps e Infraestructura",
     "categoria": "C4",
@@ -107,10 +116,11 @@
     "hito": "Adquisición millonaria de **Ansible** por parte de **Red Hat** para integrarlo como el cerebro de automatización de sus soluciones empresariales.",
     "year": 2015,
     "creador": "*Red Hat*",
-    "dato_curioso": "Pagaron más de **$100 millones de dólares** por una startup con apenas una veintena de empleados, consagrando la madurez comercial de la automatización en Python."
+    "dato_curioso": "Pagaron más de **$100 millones de dólares** por una startup con apenas una veintena de empleados, consagrando la madurez comercial de la automatización en Python.",
+    "card_number": 391
   },
   {
-    "id": "#C4-011",
+    "id": "#C4-418",
     "grupo": "C",
     "grupo_nombre": "DevOps e Infraestructura",
     "categoria": "C4",
@@ -118,10 +128,11 @@
     "hito": "Creación de **Helm**, el gestor de paquetes de aplicaciones para orquestar despliegues repetibles de Kubernetes mediante plantillas (*charts*).",
     "year": 2015,
     "creador": "*Deis* (*Matt Butcher* et al.)",
-    "dato_curioso": "Nació en un hackatón de dos días de la empresa Deis; se convirtió en la herramienta oficial de la CNCF para empaquetar y distribuir aplicaciones en clusters de contenedores."
+    "dato_curioso": "Nació en un hackatón de dos días de la empresa Deis; se convirtió en la herramienta oficial de la CNCF para empaquetar y distribuir aplicaciones en clusters de contenedores.",
+    "card_number": 418
   },
   {
-    "id": "#C4-012",
+    "id": "#C4-196",
     "grupo": "C",
     "grupo_nombre": "DevOps e Infraestructura",
     "categoria": "C4",
@@ -129,10 +140,11 @@
     "hito": "Lanzamiento de **Pulumi**, permitiendo definir infraestructura de nube utilizando lenguajes de programación reales como Python, TypeScript y Go.",
     "year": 2018,
     "creador": "*Joe Duffy* (*Pulumi*)",
-    "dato_curioso": "Desafió la hegemonía de HCL permitiendo a los ingenieros utilizar bucles reales, pruebas unitarias estándar e interfaces de tipado fuerte para modelar infraestructuras."
+    "dato_curioso": "Desafió la hegemonía de HCL permitiendo a los ingenieros utilizar bucles reales, pruebas unitarias estándar e interfaces de tipado fuerte para modelar infraestructuras.",
+    "card_number": 196
   },
   {
-    "id": "#C4-013",
+    "id": "#C4-181",
     "grupo": "C",
     "grupo_nombre": "DevOps e Infraestructura",
     "categoria": "C4",
@@ -140,10 +152,11 @@
     "hito": "Acuñación del concepto **GitOps**, proponiendo que los repositorios de Git sean la única fuente de verdad para la infraestructura en Kubernetes.",
     "year": 2018,
     "creador": "*Alexis Richardson* (*Weaveworks*)",
-    "dato_curioso": "Promovió que agentes dentro del cluster sincronicen continuamente el estado real contra el repositorio, eliminando la necesidad de dar acceso SSH directo a producción."
+    "dato_curioso": "Promovió que agentes dentro del cluster sincronicen continuamente el estado real contra el repositorio, eliminando la necesidad de dar acceso SSH directo a producción.",
+    "card_number": 181
   },
   {
-    "id": "#C4-014",
+    "id": "#C4-066",
     "grupo": "C",
     "grupo_nombre": "DevOps e Infraestructura",
     "categoria": "C4",
@@ -151,10 +164,11 @@
     "hito": "Presentación de **Argo CD**, un controlador declarativo de despliegue continuo para Kubernetes guiado por principios GitOps.",
     "year": 2018,
     "creador": "*Applatix / Intuit*",
-    "dato_curioso": "Su intuitiva interfaz visual que compara en tiempo real el árbol de recursos deseado contra el estado vivo en el cluster lo consagró en el ecosistema cloud-native."
+    "dato_curioso": "Su intuitiva interfaz visual que compara en tiempo real el árbol de recursos deseado contra el estado vivo en el cluster lo consagró en el ecosistema cloud-native.",
+    "card_number": 66
   },
   {
-    "id": "#C4-015",
+    "id": "#C4-521",
     "grupo": "C",
     "grupo_nombre": "DevOps e Infraestructura",
     "categoria": "C4",
@@ -162,10 +176,11 @@
     "hito": "Lanzamiento de **GitHub Actions**, integrando la automatización de flujos de trabajo e integración continua directamente en los repositorios de código.",
     "year": 2019,
     "creador": "*GitHub* (*Nat Friedman*)",
-    "dato_curioso": "Eliminó la hegemonía histórica de servidores dedicados de *Jenkins*, permitiendo a millones de proyectos compilar, probar y desplegar software mediante archivos YAML en el repo."
+    "dato_curioso": "Eliminó la hegemonía histórica de servidores dedicados de *Jenkins*, permitiendo a millones de proyectos compilar, probar y desplegar software mediante archivos YAML en el repo.",
+    "card_number": 521
   },
   {
-    "id": "#C4-016",
+    "id": "#C4-298",
     "grupo": "C",
     "grupo_nombre": "DevOps e Infraestructura",
     "categoria": "C4",
@@ -173,10 +188,11 @@
     "hito": "Controversia global por el cambio de licencia de **Terraform** por parte de HashiCorp, abandonando el código abierto por la restrictiva licencia **BSL**.",
     "year": 2023,
     "creador": "*HashiCorp*",
-    "dato_curioso": "Provocó una rebelión masiva en la industria y el nacimiento en cuestión de días de la bifurcación comunitaria de código abierto **OpenTofu** bajo la *Linux Foundation*."
+    "dato_curioso": "Provocó una rebelión masiva en la industria y el nacimiento en cuestión de días de la bifurcación comunitaria de código abierto **OpenTofu** bajo la *Linux Foundation*.",
+    "card_number": 298
   },
   {
-    "id": "#C4-017",
+    "id": "#C4-465",
     "grupo": "C",
     "grupo_nombre": "DevOps e Infraestructura",
     "categoria": "C4",
@@ -184,6 +200,7 @@
     "hito": "Anuncio formal de la adquisición de **HashiCorp** por parte de **IBM** en una operación valorada en **$6,400 millones de dólares**.",
     "year": 2024,
     "creador": "*IBM* (*Arvind Krishna*)",
-    "dato_curioso": "Reflejó la necesidad de los gigantes de la computación corporativa de controlar las herramientas de automatización de nube e infraestructura que gobiernan las empresas."
+    "dato_curioso": "Reflejó la necesidad de los gigantes de la computación corporativa de controlar las herramientas de automatización de nube e infraestructura que gobiernan las empresas.",
+    "card_number": 465
   }
 ]

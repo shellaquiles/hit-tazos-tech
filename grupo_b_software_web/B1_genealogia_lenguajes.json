@@ -1,6 +1,6 @@
 [
   {
-    "id": "#B1-001",
+    "id": "#B1-207",
     "grupo": "B",
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B1",
@@ -8,10 +8,11 @@
     "hito": "Creación de **Fortran** (*Formula Translating System*), el primer lenguaje de programación de alto nivel comercialmente exitoso.",
     "year": 1957,
     "creador": "*John Backus* (*IBM*)",
-    "dato_curioso": "Los programadores de la época eran escépticos de que un compilador pudiera generar código máquina tan eficiente como el ensamblador manual; el equipo de Backus demostró lo contrario."
+    "dato_curioso": "Los programadores de la época eran escépticos de que un compilador pudiera generar código máquina tan eficiente como el ensamblador manual; el equipo de Backus demostró lo contrario.",
+    "card_number": 207
   },
   {
-    "id": "#B1-002",
+    "id": "#B1-349",
     "grupo": "B",
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B1",
@@ -19,10 +20,11 @@
     "hito": "Nacimiento de **Lisp** (*List Processing*), introduciendo la notación prefija de listas entre paréntesis, recursión y recolección de basura automática.",
     "year": 1958,
     "creador": "*John McCarthy* (*MIT*)",
-    "dato_curioso": "McCarthy concibió las funciones matemáticas de Lisp en una pizarra como un modelo teórico de computación; uno de sus alumnos (*Steve Russell*) sorprendió a todos al traducirlas a código real en una IBM 704."
+    "dato_curioso": "McCarthy concibió las funciones matemáticas de Lisp en una pizarra como un modelo teórico de computación; uno de sus alumnos (*Steve Russell*) sorprendió a todos al traducirlas a código real en una IBM 704.",
+    "card_number": 349
   },
   {
-    "id": "#B1-003",
+    "id": "#B1-420",
     "grupo": "B",
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B1",
@@ -30,10 +32,11 @@
     "hito": "Especificación inicial de **COBOL** (*Common Business-Oriented Language*), diseñado con sintaxis cercana al idioma inglés para aplicaciones empresariales.",
     "year": 1959,
     "creador": "*Grace Hopper* y *Comité CODASYL*",
-    "dato_curioso": "Grace Hopper defendió la idea radical de que los programas debían escribirse en palabras legibles por humanos y no en códigos de máquina, a pesar de las severas burlas de los teóricos militares."
+    "dato_curioso": "Grace Hopper defendió la idea radical de que los programas debían escribirse en palabras legibles por humanos y no en códigos de máquina, a pesar de las severas burlas de los teóricos militares.",
+    "card_number": 420
   },
   {
-    "id": "#B1-004",
+    "id": "#B1-422",
     "grupo": "B",
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B1",
@@ -41,10 +44,11 @@
     "hito": "Presentación de **BASIC** en la universidad de Dartmouth, democratizando el acceso a la computación para estudiantes no científicos.",
     "year": 1964,
     "creador": "*John G. Kemeny* y *Thomas E. Kurtz*",
-    "dato_curioso": "Se convirtió en el lenguaje que encendió la revolución de las microcomputadoras en los años 70 y 80, siendo la versión de Bill Gates y Paul Allen el primer producto de Microsoft."
+    "dato_curioso": "Se convirtió en el lenguaje que encendió la revolución de las microcomputadoras en los años 70 y 80, siendo la versión de Bill Gates y Paul Allen el primer producto de Microsoft.",
+    "card_number": 422
   },
   {
-    "id": "#B1-005",
+    "id": "#B1-238",
     "grupo": "B",
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B1",
@@ -52,227 +56,8 @@
     "hito": "Publicación de **Pascal**, concebido como un lenguaje estructurado estricto orientado a la enseñanza de buenas prácticas algorítmicas.",
     "year": 1970,
     "creador": "*Niklaus Wirth*",
-    "dato_curioso": "Bautizado en honor al filósofo Blaise Pascal, su compilador generaba un código intermedio llamado *p-code*, precursor conceptual del bytecode moderno de Java y C#."
-  },
-  {
-    "id": "#B1-006",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Desarrollo del lenguaje **C** en los laboratorios Bell para reescribir el sistema operativo Unix sobre máquinas PDP-11.",
-    "year": 1972,
-    "creador": "*Dennis Ritchie* (*Bell Labs*)",
-    "dato_curioso": "Evolucionó a partir del lenguaje *B* de Ken Thompson; su eficiencia implacable y manipulación directa de punteros de memoria lo transformaron en la lingua franca de la informática mundial."
-  },
-  {
-    "id": "#B1-007",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Creación de **Smalltalk**, sentando las bases puras de la programación orientada a objetos basada en el paso dinámico de mensajes.",
-    "year": 1972,
-    "creador": "*Alan Kay*, *Dan Ingalls* y *Adele Goldberg* (*Xerox PARC*)",
-    "dato_curioso": "En su laboratorio se inventó también la interfaz gráfica moderna con ventanas e iconos; Steve Jobs visitó PARC en 1979 y quedó maravillado por ambos conceptos."
-  },
-  {
-    "id": "#B1-008",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Aparición de **Prolog** (*Programmation en Logique*), fundando el paradigma de la programación lógica declarativa basada en cláusulas de Horn.",
-    "year": 1972,
-    "creador": "*Alain Colmerauer* y *Robert Kowalski*",
-    "dato_curioso": "En lugar de describir algoritmos paso a paso, los programadores declaran hechos y relaciones lógicas, dejando que el motor de inferencia deduzca las respuestas automáticamente."
-  },
-  {
-    "id": "#B1-009",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Nacimiento de **Scheme**, una variante minimalista y elegante de Lisp con alcance léxico estático (*lexical scoping*) y optimización de llamadas de cola.",
-    "year": 1975,
-    "creador": "*Guy L. Steele* y *Gerald Jay Sussman* (*MIT*)",
-    "dato_curioso": "Se convirtió en el vehículo pedagógico del célebre libro de ciencias de la computación *SICP* (*Structure and Interpretation of Computer Programs*), formando a generaciones en el MIT."
-  },
-  {
-    "id": "#B1-010",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Presentación de **Ada**, un lenguaje militar de tipado estricto diseñado para sistemas embebidos de misión crítica y armamento militar.",
-    "year": 1980,
-    "creador": "*Jean Ichbiah* (*DoD*)",
-    "dato_curioso": "Nombrado en homenaje a **Ada Lovelace**, la primera programadora de la historia; se impuso para controlar sistemas de aviónica, centrales nucleares y trenes de alta velocidad."
-  },
-  {
-    "id": "#B1-011",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Debut de **C++** bajo el nombre provisional de *\"C with Classes\"*, incorporando orientación a objetos y sobrecarga sin perder el rendimiento de C.",
-    "year": 1983,
-    "creador": "*Bjarne Stroustrup* (*Bell Labs*)",
-    "dato_curioso": "Stroustrup eligió el operador de incremento `++` para sugerir que era una evolución directa de C; su complejidad creció hasta convertirse en el estándar de la industria del videojuego y sistemas."
-  },
-  {
-    "id": "#B1-012",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Lanzamiento de **Erlang** en los laboratorios de Ericsson, implementando el modelo de actores (*Actor Model*) para telecomunicaciones tolerantes a fallos.",
-    "year": 1986,
-    "creador": "*Joe Armstrong*, *Robert Virding* y *Mike Williams*",
-    "dato_curioso": "Diseñado bajo el lema *\"Let it crash\"*; sus interruptores telefónicos alcanzaron la legendaria disponibilidad de **nueve nueves** (99.9999999%), menos de un segundo de inactividad en 20 años."
-  },
-  {
-    "id": "#B1-013",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Creación de **Perl** como una herramienta de extracción y generación de informes (*Practical Extraction and Report Language*).",
-    "year": 1987,
-    "creador": "*Larry Wall*",
-    "dato_curioso": "Acuñó el lema *\"There's more than one way to do it\"* (TMTOWTDI); dominó de forma absoluta los primeros scripts web CGI en los años 90 antes de que Python y PHP ganaran terreno."
-  },
-  {
-    "id": "#B1-014",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Publicación formal del estándar de **Haskell**, consolidando un lenguaje funcional puro, perezoso (*lazy*) y con un sistema avanzado de tipos monádicos.",
-    "year": 1990,
-    "creador": "*Comité Haskell* (*Simon Peyton Jones* et al.)",
-    "dato_curioso": "Bautizado en honor al lógico Haskell Curry; su rigor matemático influyó en los sistemas de tipos de prácticamente todos los lenguajes modernos contemporáneos."
-  },
-  {
-    "id": "#B1-015",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Lanzamiento de **Visual Basic 1.0**, permitiendo arrastrar botones y ventanas para programar aplicaciones gráficas en Windows de forma instantánea.",
-    "year": 1991,
-    "creador": "*Microsoft* (*Alan Cooper*)",
-    "dato_curioso": "El generador visual de interfaces fue ideado por Alan Cooper bajo el proyecto *Ruby* (sin relación con el lenguaje posterior); Bill Gates adquirió el prototipo al instante para Windows 3.0."
-  },
-  {
-    "id": "#B1-016",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Creación del lenguaje **Lua** en la universidad PUC-Río de Brasil como un motor de scripting embebido ultra liviano en C ANSI.",
-    "year": 1993,
-    "creador": "*Roberto Ierusalimschy*, *Waldemar Celes* y *Luiz H. de Figueiredo*",
-    "dato_curioso": "Diseñado en un país con severas restricciones a la importación tecnológica, Lua se transformó en el lenguaje de scripting preferido de gigantes de videojuegos como *World of Warcraft* y *Roblox*."
-  },
-  {
-    "id": "#B1-017",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Nacimiento de **Ruby**, fusionando la elegancia de Smalltalk, la potencia funcional de Lisp y la ergonomía textual de Perl.",
-    "year": 1993,
-    "creador": "*Yukihiro Matsumoto* (*Matz*)",
-    "dato_curioso": "Matz diseñó el lenguaje priorizando la felicidad del programador humano por encima de la eficiencia de la máquina, detonando una revolución mundial una década más tarde con Ruby on Rails."
-  },
-  {
-    "id": "#B1-018",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Presentación pública de **Java** bajo el lema promocional *\"Write Once, Run Anywhere\"* gracias a la máquina virtual **JVM**.",
-    "year": 1995,
-    "creador": "*James Gosling* (*Sun Microsystems*)",
-    "dato_curioso": "Nació originalmente con el nombre clave *Oak* para programar cajas de televisión interactiva inteligentes; el auge de Internet llevó a Sun a reconvertirlo en el motor del software empresarial."
-  },
-  {
-    "id": "#B1-019",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Implementación de **JavaScript** en apenas diez días para dotar de dinamismo y scripts al navegador *Netscape Navigator*.",
-    "year": 1995,
-    "creador": "*Brendan Eich* (*Netscape*)",
-    "dato_curioso": "A pesar de las prisas iniciales y sus controvertidas peculiaridades de diseño, se convirtió en el único lenguaje de programación ejecutado de forma nativa por todos los navegadores de la Tierra."
-  },
-  {
-    "id": "#B1-020",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Aparición de **PHP** (*Personal Home Page Tools*), facilitando la incrustación de lógica dinámica directamente dentro de documentos HTML.",
-    "year": 1995,
-    "creador": "*Rasmus Lerdorf*",
-    "dato_curioso": "Lerdorf afirmó inicialmente que no pretendía crear un nuevo lenguaje de programación, sino una simple colección de binarios en C para rastrear las visitas a su currículum vitae en línea."
-  },
-  {
-    "id": "#B1-021",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Creación de **C#** (*C-Sharp*) como el pilar del nuevo entorno de desarrollo .NET de Microsoft para competir contra la plataforma Java.",
-    "year": 2000,
-    "creador": "*Anders Hejlsberg* (*Microsoft*)",
-    "dato_curioso": "Su creador, el legendario arquitecto de *Turbo Pascal* y *Delphi*, dotó a C# de una rápida evolución que más tarde incorporaría características como LINQ y tipado dinámico seguro."
-  },
-  {
-    "id": "#B1-022",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Lanzamiento de **Scala**, integrando la orientación a objetos pura con la programación funcional sobre la máquina virtual de Java.",
-    "year": 2003,
-    "creador": "*Martin Odersky* (*EPFL*)",
-    "dato_curioso": "Demostró que un sistema de tipos estático y sofisticado podía convivir con la JVM, siendo la tecnología sobre la que se construyeron infraestructuras masivas como Apache Spark y Twitter."
-  },
-  {
-    "id": "#B1-023",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Creación de **Clojure**, resucitando la filosofía homoicónica de Lisp adaptada a estructuras de datos inmutables y concurrencia sobre la JVM.",
-    "year": 2007,
-    "creador": "*Rich Hickey*",
-    "dato_curioso": "Hickey financió el desarrollo tomándose un año sabático financiado por sus propios ahorros; su defensa de la simplicidad y la inmutabilidad caló hondo en la ingeniería de datos moderna."
-  },
-  {
-    "id": "#B1-024",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Anuncio oficial de **Go** por parte de ingenieros de Google, diseñado para compilar en segundos y simplificar la concurrencia masiva con *goroutines*.",
-    "year": 2009,
-    "creador": "*Robert Griesemer*, *Rob Pike* y *Ken Thompson* (*Google*)",
-    "dato_curioso": "Hartos de esperar horas para compilar gigantescos programas en C++ en los servidores de Google, sus veteranos creadores diseñaron un lenguaje sin herencia pero con concurrencia inspirada en CSP."
-  },
-  {
-    "id": "#B1-025",
-    "grupo": "B",
-    "grupo_nombre": "Software, Web y Datos",
-    "categoria": "B1",
-    "categoria_nombre": "Genealogía de Lenguajes de Programación",
-    "hito": "Publicación del primer compilador funcional de **Rust** respaldado por Mozilla Research para sustituir a C++ con seguridad de memoria estricta.",
-    "year": 2010,
-    "creador": "*Graydon Hoare* (*Mozilla*)",
-    "dato_curioso": "Bautizado en alusión al hongo del óxido (*rust fungus*), su revolucionario modelo de pertenencia de memoria (*borrow checker*) eliminó las fugas y carreras sin usar recolector de basura."
+    "dato_curioso": "Bautizado en honor al filósofo Blaise Pascal, su compilador generaba un código intermedio llamado *p-code*, precursor conceptual del bytecode moderno de Java y C#.",
+    "card_number": 238
   },
   {
     "id": "#B1-026",
@@ -280,13 +65,254 @@
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B1",
     "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Desarrollo del lenguaje **C** en los laboratorios Bell para reescribir el sistema operativo Unix sobre máquinas PDP-11.",
+    "year": 1972,
+    "creador": "*Dennis Ritchie* (*Bell Labs*)",
+    "dato_curioso": "Evolucionó a partir del lenguaje *B* de Ken Thompson; su eficiencia implacable y manipulación directa de punteros de memoria lo transformaron en la lingua franca de la informática mundial.",
+    "card_number": 26
+  },
+  {
+    "id": "#B1-419",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Creación de **Smalltalk**, sentando las bases puras de la programación orientada a objetos basada en el paso dinámico de mensajes.",
+    "year": 1972,
+    "creador": "*Alan Kay*, *Dan Ingalls* y *Adele Goldberg* (*Xerox PARC*)",
+    "dato_curioso": "En su laboratorio se inventó también la interfaz gráfica moderna con ventanas e iconos; Steve Jobs visitó PARC en 1979 y quedó maravillado por ambos conceptos.",
+    "card_number": 419
+  },
+  {
+    "id": "#B1-386",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Aparición de **Prolog** (*Programmation en Logique*), fundando el paradigma de la programación lógica declarativa basada en cláusulas de Horn.",
+    "year": 1972,
+    "creador": "*Alain Colmerauer* y *Robert Kowalski*",
+    "dato_curioso": "En lugar de describir algoritmos paso a paso, los programadores declaran hechos y relaciones lógicas, dejando que el motor de inferencia deduzca las respuestas automáticamente.",
+    "card_number": 386
+  },
+  {
+    "id": "#B1-231",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Nacimiento de **Scheme**, una variante minimalista y elegante de Lisp con alcance léxico estático (*lexical scoping*) y optimización de llamadas de cola.",
+    "year": 1975,
+    "creador": "*Guy L. Steele* y *Gerald Jay Sussman* (*MIT*)",
+    "dato_curioso": "Se convirtió en el vehículo pedagógico del célebre libro de ciencias de la computación *SICP* (*Structure and Interpretation of Computer Programs*), formando a generaciones en el MIT.",
+    "card_number": 231
+  },
+  {
+    "id": "#B1-162",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Presentación de **Ada**, un lenguaje militar de tipado estricto diseñado para sistemas embebidos de misión crítica y armamento militar.",
+    "year": 1980,
+    "creador": "*Jean Ichbiah* (*DoD*)",
+    "dato_curioso": "Nombrado en homenaje a **Ada Lovelace**, la primera programadora de la historia; se impuso para controlar sistemas de aviónica, centrales nucleares y trenes de alta velocidad.",
+    "card_number": 162
+  },
+  {
+    "id": "#B1-228",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Debut de **C++** bajo el nombre provisional de *\"C with Classes\"*, incorporando orientación a objetos y sobrecarga sin perder el rendimiento de C.",
+    "year": 1983,
+    "creador": "*Bjarne Stroustrup* (*Bell Labs*)",
+    "dato_curioso": "Stroustrup eligió el operador de incremento `++` para sugerir que era una evolución directa de C; su complejidad creció hasta convertirse en el estándar de la industria del videojuego y sistemas.",
+    "card_number": 228
+  },
+  {
+    "id": "#B1-461",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Lanzamiento de **Erlang** en los laboratorios de Ericsson, implementando el modelo de actores (*Actor Model*) para telecomunicaciones tolerantes a fallos.",
+    "year": 1986,
+    "creador": "*Joe Armstrong*, *Robert Virding* y *Mike Williams*",
+    "dato_curioso": "Diseñado bajo el lema *\"Let it crash\"*; sus interruptores telefónicos alcanzaron la legendaria disponibilidad de **nueve nueves** (99.9999999%), menos de un segundo de inactividad en 20 años.",
+    "card_number": 461
+  },
+  {
+    "id": "#B1-301",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Creación de **Perl** como una herramienta de extracción y generación de informes (*Practical Extraction and Report Language*).",
+    "year": 1987,
+    "creador": "*Larry Wall*",
+    "dato_curioso": "Acuñó el lema *\"There's more than one way to do it\"* (TMTOWTDI); dominó de forma absoluta los primeros scripts web CGI en los años 90 antes de que Python y PHP ganaran terreno.",
+    "card_number": 301
+  },
+  {
+    "id": "#B1-169",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Publicación formal del estándar de **Haskell**, consolidando un lenguaje funcional puro, perezoso (*lazy*) y con un sistema avanzado de tipos monádicos.",
+    "year": 1990,
+    "creador": "*Comité Haskell* (*Simon Peyton Jones* et al.)",
+    "dato_curioso": "Bautizado en honor al lógico Haskell Curry; su rigor matemático influyó en los sistemas de tipos de prácticamente todos los lenguajes modernos contemporáneos.",
+    "card_number": 169
+  },
+  {
+    "id": "#B1-466",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Lanzamiento de **Visual Basic 1.0**, permitiendo arrastrar botones y ventanas para programar aplicaciones gráficas en Windows de forma instantánea.",
+    "year": 1991,
+    "creador": "*Microsoft* (*Alan Cooper*)",
+    "dato_curioso": "El generador visual de interfaces fue ideado por Alan Cooper bajo el proyecto *Ruby* (sin relación con el lenguaje posterior); Bill Gates adquirió el prototipo al instante para Windows 3.0.",
+    "card_number": 466
+  },
+  {
+    "id": "#B1-392",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Creación del lenguaje **Lua** en la universidad PUC-Río de Brasil como un motor de scripting embebido ultra liviano en C ANSI.",
+    "year": 1993,
+    "creador": "*Roberto Ierusalimschy*, *Waldemar Celes* y *Luiz H. de Figueiredo*",
+    "dato_curioso": "Diseñado en un país con severas restricciones a la importación tecnológica, Lua se transformó en el lenguaje de scripting preferido de gigantes de videojuegos como *World of Warcraft* y *Roblox*.",
+    "card_number": 392
+  },
+  {
+    "id": "#B1-459",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Nacimiento de **Ruby**, fusionando la elegancia de Smalltalk, la potencia funcional de Lisp y la ergonomía textual de Perl.",
+    "year": 1993,
+    "creador": "*Yukihiro Matsumoto* (*Matz*)",
+    "dato_curioso": "Matz diseñó el lenguaje priorizando la felicidad del programador humano por encima de la eficiencia de la máquina, detonando una revolución mundial una década más tarde con Ruby on Rails.",
+    "card_number": 459
+  },
+  {
+    "id": "#B1-313",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Presentación pública de **Java** bajo el lema promocional *\"Write Once, Run Anywhere\"* gracias a la máquina virtual **JVM**.",
+    "year": 1995,
+    "creador": "*James Gosling* (*Sun Microsystems*)",
+    "dato_curioso": "Nació originalmente con el nombre clave *Oak* para programar cajas de televisión interactiva inteligentes; el auge de Internet llevó a Sun a reconvertirlo en el motor del software empresarial.",
+    "card_number": 313
+  },
+  {
+    "id": "#B1-345",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Implementación de **JavaScript** en apenas diez días para dotar de dinamismo y scripts al navegador *Netscape Navigator*.",
+    "year": 1995,
+    "creador": "*Brendan Eich* (*Netscape*)",
+    "dato_curioso": "A pesar de las prisas iniciales y sus controvertidas peculiaridades de diseño, se convirtió en el único lenguaje de programación ejecutado de forma nativa por todos los navegadores de la Tierra.",
+    "card_number": 345
+  },
+  {
+    "id": "#B1-362",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Aparición de **PHP** (*Personal Home Page Tools*), facilitando la incrustación de lógica dinámica directamente dentro de documentos HTML.",
+    "year": 1995,
+    "creador": "*Rasmus Lerdorf*",
+    "dato_curioso": "Lerdorf afirmó inicialmente que no pretendía crear un nuevo lenguaje de programación, sino una simple colección de binarios en C para rastrear las visitas a su currículum vitae en línea.",
+    "card_number": 362
+  },
+  {
+    "id": "#B1-160",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Creación de **C#** (*C-Sharp*) como el pilar del nuevo entorno de desarrollo .NET de Microsoft para competir contra la plataforma Java.",
+    "year": 2000,
+    "creador": "*Anders Hejlsberg* (*Microsoft*)",
+    "dato_curioso": "Su creador, el legendario arquitecto de *Turbo Pascal* y *Delphi*, dotó a C# de una rápida evolución que más tarde incorporaría características como LINQ y tipado dinámico seguro.",
+    "card_number": 160
+  },
+  {
+    "id": "#B1-081",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Lanzamiento de **Scala**, integrando la orientación a objetos pura con la programación funcional sobre la máquina virtual de Java.",
+    "year": 2003,
+    "creador": "*Martin Odersky* (*EPFL*)",
+    "dato_curioso": "Demostró que un sistema de tipos estático y sofisticado podía convivir con la JVM, siendo la tecnología sobre la que se construyeron infraestructuras masivas como Apache Spark y Twitter.",
+    "card_number": 81
+  },
+  {
+    "id": "#B1-006",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Creación de **Clojure**, resucitando la filosofía homoicónica de Lisp adaptada a estructuras de datos inmutables y concurrencia sobre la JVM.",
+    "year": 2007,
+    "creador": "*Rich Hickey*",
+    "dato_curioso": "Hickey financió el desarrollo tomándose un año sabático financiado por sus propios ahorros; su defensa de la simplicidad y la inmutabilidad caló hondo en la ingeniería de datos moderna.",
+    "card_number": 6
+  },
+  {
+    "id": "#B1-167",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Anuncio oficial de **Go** por parte de ingenieros de Google, diseñado para compilar en segundos y simplificar la concurrencia masiva con *goroutines*.",
+    "year": 2009,
+    "creador": "*Robert Griesemer*, *Rob Pike* y *Ken Thompson* (*Google*)",
+    "dato_curioso": "Hartos de esperar horas para compilar gigantescos programas en C++ en los servidores de Google, sus veteranos creadores diseñaron un lenguaje sin herencia pero con concurrencia inspirada en CSP.",
+    "card_number": 167
+  },
+  {
+    "id": "#B1-109",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
+    "hito": "Publicación del primer compilador funcional de **Rust** respaldado por Mozilla Research para sustituir a C++ con seguridad de memoria estricta.",
+    "year": 2010,
+    "creador": "*Graydon Hoare* (*Mozilla*)",
+    "dato_curioso": "Bautizado en alusión al hongo del óxido (*rust fungus*), su revolucionario modelo de pertenencia de memoria (*borrow checker*) eliminó las fugas y carreras sin usar recolector de basura.",
+    "card_number": 109
+  },
+  {
+    "id": "#B1-306",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B1",
+    "categoria_nombre": "Genealogía de Lenguajes de Programación",
     "hito": "Presentación de **Kotlin**, un lenguaje pragmático para la JVM totalmente interoperable con Java y con comprobación estricta de nulos.",
     "year": 2011,
     "creador": "*JetBrains* (*Andrey Breslav*)",
-    "dato_curioso": "Diseñado para acelerar las ventas de las herramientas de JetBrains, experimentó un éxito colosal tras ser declarado por Google como el lenguaje predilecto oficial para Android."
+    "dato_curioso": "Diseñado para acelerar las ventas de las herramientas de JetBrains, experimentó un éxito colosal tras ser declarado por Google como el lenguaje predilecto oficial para Android.",
+    "card_number": 306
   },
   {
-    "id": "#B1-027",
+    "id": "#B1-389",
     "grupo": "B",
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B1",
@@ -294,10 +320,11 @@
     "hito": "Lanzamiento público de **TypeScript**, introduciendo tipado estático opcional y capacidades de compilación a JavaScript estándar.",
     "year": 2012,
     "creador": "*Anders Hejlsberg* (*Microsoft*)",
-    "dato_curioso": "Inicialmente recibido con escepticismo por los puristas de la web, se convirtió en el estándar absoluto de desarrollo frontend y backend a gran escala en todo el planeta."
+    "dato_curioso": "Inicialmente recibido con escepticismo por los puristas de la web, se convirtió en el estándar absoluto de desarrollo frontend y backend a gran escala en todo el planeta.",
+    "card_number": 389
   },
   {
-    "id": "#B1-028",
+    "id": "#B1-402",
     "grupo": "B",
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B1",
@@ -305,10 +332,11 @@
     "hito": "Creación de **Elixir**, llevando la robustez tolerante a fallos de la máquina virtual BEAM de Erlang a una sintaxis moderna inspirada en Ruby.",
     "year": 2012,
     "creador": "*José Valim*",
-    "dato_curioso": "Valim, antiguo miembro del núcleo de Ruby on Rails, buscó una solución a los problemas de concurrencia web moderna al descubrir los poderes de los procesos aislados de Erlang."
+    "dato_curioso": "Valim, antiguo miembro del núcleo de Ruby on Rails, buscó una solución a los problemas de concurrencia web moderna al descubrir los poderes de los procesos aislados de Erlang.",
+    "card_number": 402
   },
   {
-    "id": "#B1-029",
+    "id": "#B1-143",
     "grupo": "B",
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B1",
@@ -316,10 +344,11 @@
     "hito": "Presentación de **Julia**, diseñado para eliminar el dilema de los dos lenguajes (*two-language problem*) en la computación científica y numérica.",
     "year": 2012,
     "creador": "*Jeff Bezanson*, *Stefan Karpinski*, *Viral B. Shah* y *Alan Edelman*",
-    "dato_curioso": "Combina la facilidad expresiva y dinámica de Python con la velocidad en tiempo de compilación JIT de C y Fortran mediante despacho múltiple (*multiple dispatch*)."
+    "dato_curioso": "Combina la facilidad expresiva y dinámica de Python con la velocidad en tiempo de compilación JIT de C y Fortran mediante despacho múltiple (*multiple dispatch*).",
+    "card_number": 143
   },
   {
-    "id": "#B1-030",
+    "id": "#B1-427",
     "grupo": "B",
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B1",
@@ -327,10 +356,11 @@
     "hito": "Debut de **Swift**, el moderno lenguaje compilado creado por Apple para reemplazar progresivamente a Objective-C en iOS y macOS.",
     "year": 2014,
     "creador": "*Chris Lattner* (*Apple*)",
-    "dato_curioso": "Lattner comenzó a diseñarlo en secreto en 2010; su presentación sorpresa en la conferencia WWDC fue aclamada por eliminar la arcaica sintaxis de corchetes de Objective-C."
+    "dato_curioso": "Lattner comenzó a diseñarlo en secreto en 2010; su presentación sorpresa en la conferencia WWDC fue aclamada por eliminar la arcaica sintaxis de corchetes de Objective-C.",
+    "card_number": 427
   },
   {
-    "id": "#B1-031",
+    "id": "#B1-271",
     "grupo": "B",
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B1",
@@ -338,10 +368,11 @@
     "hito": "Aparición de **Zig**, un lenguaje de programación de sistemas que aspira a reemplazar a C sin costos ocultos, sin macros complejas y con ejecución en tiempo de compilación (`comptime`).",
     "year": 2016,
     "creador": "*Andrew Kelley*",
-    "dato_curioso": "Su compilador incluye internamente un compilador cruzado completo para C/C++, lo que permite usar `zig cc` para compilar proyectos nativos en cualquier plataforma sin configuración."
+    "dato_curioso": "Su compilador incluye internamente un compilador cruzado completo para C/C++, lo que permite usar `zig cc` para compilar proyectos nativos en cualquier plataforma sin configuración.",
+    "card_number": 271
   },
   {
-    "id": "#B1-032",
+    "id": "#B1-492",
     "grupo": "B",
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B1",
@@ -349,10 +380,11 @@
     "hito": "Estandarización de **WebAssembly** (**Wasm**) como el cuarto lenguaje oficial de la web junto a HTML, CSS y JavaScript.",
     "year": 2019,
     "creador": "*W3C* (*World Wide Web Consortium*)",
-    "dato_curioso": "Permitió ejecutar binarios de C, C++, Rust y Go en el navegador a velocidades casi nativas dentro de una máquina virtual segura y aislada en sandbox."
+    "dato_curioso": "Permitió ejecutar binarios de C, C++, Rust y Go en el navegador a velocidades casi nativas dentro de una máquina virtual segura y aislada en sandbox.",
+    "card_number": 492
   },
   {
-    "id": "#B1-033",
+    "id": "#B1-354",
     "grupo": "B",
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B1",
@@ -360,6 +392,7 @@
     "hito": "Presentación de **Mojo**, prometiendo unificar la sintaxis familiar de Python con optimización para aceleradores de inteligencia artificial y GPUs.",
     "year": 2023,
     "creador": "*Chris Lattner* (*Modular*)",
-    "dato_curioso": "Permitió a los desarrolladores de machine learning descender de abstracciones de alto nivel a control de hardware y memoria SIMD sin abandonar la expresividad de Python."
+    "dato_curioso": "Permitió a los desarrolladores de machine learning descender de abstracciones de alto nivel a control de hardware y memoria SIMD sin abandonar la expresividad de Python.",
+    "card_number": 354
   }
 ]
