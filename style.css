@@ -39,9 +39,9 @@
   --font-display: 'Space Grotesk', var(--font-sans);
   --font-mono: 'JetBrains Mono', monospace;
   
-  --card-width: 330px;
-  --card-height: 500px;
-  --card-radius: 22px;
+  --card-width: 360px;
+  --card-height: 540px;
+  --card-radius: 24px;
 }
 
 * {
@@ -424,7 +424,8 @@ main {
 .card-topbar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: 0.6rem;
   position: relative;
   z-index: 2;
 }
@@ -433,9 +434,9 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
@@ -443,17 +444,25 @@ main {
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: var(--theme-color, #38bdf8);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  flex: 1;
+  line-height: 1.35;
 }
 
 .id-badge {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--text-secondary);
   background: rgba(0, 0, 0, 0.45);
-  padding: 0.22rem 0.6rem;
+  padding: 0.28rem 0.6rem;
   border-radius: 8px;
   border: 1px solid var(--border-glow);
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.05em;
 }
 
 /* Tech Artifact Hero Centerpiece (Dynamic Artifacts per Group) */
@@ -462,8 +471,8 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0.65rem 0;
-  height: 98px;
+  margin: 0.85rem 0 0.5rem 0;
+  height: 124px;
   position: relative;
   z-index: 2;
 }
@@ -476,17 +485,17 @@ main {
   height: 100%;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
   user-select: none;
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.65));
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.75));
 }
 
 .tech-artifact-svg-wrap:hover {
-  transform: scale(1.06);
+  transform: scale(1.08);
 }
 
 .artifact-svg {
-  height: 86px;
+  height: 112px;
   width: auto;
-  max-width: 165px;
+  max-width: 190px;
   display: block;
 }
 
@@ -1141,7 +1150,6 @@ main {
 
 .dossier-meta {
   flex: 1;
-  overflow: hidden;
 }
 
 .dossier-label {
@@ -1150,15 +1158,15 @@ main {
   letter-spacing: 0.08em;
   color: var(--text-muted);
   font-weight: 700;
+  margin-bottom: 0.15rem;
 }
 
 .dossier-name {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
+  line-height: 1.35;
   color: #fff;
   font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  word-break: break-word;
 }
 
 /* Classified Lore Box */
