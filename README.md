@@ -1,6 +1,6 @@
-# HITSTER: Tech, Python & Hacker Edition 🕹️💻
+# Hit-Tazos Tech 🕹️💻
 
-Edición de trivia cronológica técnica estilo **HITSTER** adaptada al ecosistema de **Tecnología, Desarrollo de Software, Infraestructura, Inteligencia Artificial y Cultura Hacker**, con un marcado énfasis en el **Universo Python**.
+Juego original e independiente de trivia cronológica técnica centrado en el ecosistema de **Tecnología, Desarrollo de Software, Infraestructura, Inteligencia Artificial y Cultura Hacker**, con un marcado énfasis en el **Universo Python**.
 
 El juego comprende **531 tarjetas físicas de trivia (1957 – 2026)** organizadas en 5 grandes grupos temáticos y 24 categorías, listas para jugar en mesa o explorar interactivamente en la web.
 
@@ -33,12 +33,12 @@ Ser el primer jugador o equipo en construir una **Línea de Tiempo cronológicam
 ### Preparación
 1. Toma el mazo barajado [`cards.json`](./cards.json) (o las tarjetas impresas correspondientes a sus números `#001` a `#531`).
 2. Cada jugador recibe **1 tarjeta inicial boca arriba** (con el año visible), marcando el inicio de su línea temporal personal.
-3. Cada jugador recibe **3 tokens HITSTER** (o fichas).
+3. Cada jugador recibe **3 tokens** (fichas o monedas de juego).
 
 ### Mecánica del Turno
 1. **El Lector:** El jugador a la izquierda toma la carta superior del mazo y lee en voz alta **únicamente** el texto del frente (`hito`), sin mostrar el reverso ni revelar el año ni el creador.
 2. **La Apuesta Cronológica:** El jugador en turno decide dónde encaja ese hito en su línea de tiempo actual (antes, entre dos cartas existentes, o después).
-3. **El Desafío HITSTER (Opcional):** Antes de revelar la carta, cualquier rival puede gritar *"¡HITSTER!"* y colocar un token en la posición donde considere que va si cree que el jugador activo se equivocó.
+3. **El Desafío (Opcional):** Antes de revelar la carta, cualquier rival puede levantar un token y colocarlo en la posición donde considere que va, si cree que el jugador activo se equivocó.
 4. **La Revelación:** Se voltea la tarjeta para verificar el año (`year`):
    - Si el jugador activo acertó: conserva la carta en su línea de tiempo.
    - Si falló y un rival colocó su token en la posición correcta: ese rival se queda con la carta.
