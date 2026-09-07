@@ -3,6 +3,7 @@
 class HitsterEngine {
   constructor() {
     this.cards = [];
+    this.cardColors = {};
     this.activeDeck = [];
     this.filteredCatalog = [];
     this.playerShelf = [];
@@ -203,8 +204,22 @@ class HitsterEngine {
 
   async loadData() {
     try {
-      const res = await fetch('cards.json');
-      this.cards = await res.json();
+      const [resCards, resColors] = await Promise.allSettled([
+        fetch('cards.json'),
+        fetch('card_colors.json')
+      ]);
+
+      if (resCards.status === 'fulfilled' && resCards.value.ok) {
+        this.cards = await resCards.value.json();
+      } else {
+        throw new Error('Could not load cards.json');
+      }
+
+      if (resColors.status === 'fulfilled' && resColors.value.ok) {
+        const colorsData = await resColors.value.json();
+        this.cardColors = colorsData.cards || {};
+      }
+
       // Asignar índice global continuo (1..N) para la correspondencia de color idéntica al mazo de 100 cartas
       this.cards.forEach((c, idx) => {
         c.globalIndex = idx + 1;
@@ -217,7 +232,7 @@ class HitsterEngine {
       this.renderCatalog();
       this.refreshIcons();
     } catch (err) {
-      console.error('Error fetching cards.json:', err);
+      console.error('Error fetching cards or colors:', err);
     }
   }
 
@@ -713,6 +728,19 @@ class HitsterEngine {
     }
     if (!cardNum || isNaN(cardNum)) cardNum = 1;
 
+    // Si existe en la configuración desacoplada card_colors.json, usarla directamente
+    if (this.cardColors && this.cardColors[cardNum]) {
+      const c = this.cardColors[cardNum];
+      return {
+        hue: c.h,
+        bg: c.bg_hsl,
+        frontBg: c.front_bg_hsl,
+        text: c.text_color,
+        subText: c.text_color === '#ffffff' ? 'rgba(255, 255, 255, 0.75)' : 'rgba(17, 17, 17, 0.75)',
+        accent: c.accent_hex
+      };
+    }
+
     // Bloques de 10 en 10 (0 a 9 repetidos cada 100 cartas)
     const blockIndex = Math.floor(((cardNum - 1) % 100) / 10);
     // Subpaso de 0 a 1 dentro del bloque de 10 cartas (carta 1 es la más clara, carta 10 es la más oscura/saturada)
@@ -752,13 +780,14 @@ class HitsterEngine {
     const bg = `hsl(${hue.toFixed(1)}, ${saturation.toFixed(0)}%, ${lightness.toFixed(0)}%)`;
     const accent = `hsl(${hue.toFixed(1)}, ${saturation.toFixed(0)}%, ${Math.min(88, lightness + 16).toFixed(0)}%)`;
     const frontBg = `hsl(${hue.toFixed(1)}, 35%, 10%)`;
+    const textColor = lightness > 62 ? '#151217' : '#ffffff';
 
     return {
       hue: hue,
       bg: bg,
       frontBg: frontBg,
-      text: '#111111',
-      subText: 'rgba(17, 17, 17, 0.75)',
+      text: textColor,
+      subText: textColor === '#ffffff' ? 'rgba(255, 255, 255, 0.75)' : 'rgba(17, 17, 17, 0.75)',
       accent: accent
     };
   }
@@ -822,7 +851,7 @@ class HitsterEngine {
 
         <div class="card-footbar-minimal">
           <span class="corner-meta-left">${card.categoria}</span>
-          <span class="corner-meta-right">${cardNumStr}</span>
+          <span class="corner-meta-right">${String(card.card_number).padStart(3, '0')}</span>
         </div>
       </div>
     `;
