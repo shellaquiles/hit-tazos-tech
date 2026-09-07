@@ -321,9 +321,8 @@ main {
   100% { transform: scale(1.1); opacity: 0.55; }
 }
 
-/* 3D Card Architecture */
+/* 3D Card Architecture — flip gestionado 100% por WAAPI en app.js */
 .card-perspective-stage {
-  perspective: 1600px;
   width: var(--card-width);
   height: var(--card-height);
   user-select: none;
@@ -336,25 +335,17 @@ main {
   width: 100%;
   height: 100%;
   position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.65s cubic-bezier(0.2, 0.9, 0.3, 1.05);
   border-radius: var(--card-radius);
 }
 
-.hittazos-card-3d.is-flipped {
-  transform: rotateY(180deg);
+/* Estado base: frente visible, reverso invisible */
+.hittazos-card-3d .sheet-front {
+  opacity: 1;
+  pointer-events: auto;
 }
-
-.hittazos-card-3d:not(.is-flipped) .sheet-back {
-  pointer-events: none !important;
-}
-
-.hittazos-card-3d.is-flipped .sheet-front {
-  pointer-events: none !important;
-}
-
-.hittazos-card-3d.is-flipped .sheet-back {
-  pointer-events: auto !important;
+.hittazos-card-3d .sheet-back {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Card Faces */
@@ -362,8 +353,6 @@ main {
   position: absolute;
   inset: 0;
   border-radius: var(--card-radius);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
   display: flex;
   flex-direction: column;
   padding: 1.4rem;
@@ -1233,7 +1222,6 @@ main {
 
 /* 2. BACK FACE: Pure Harmonic Proportions */
 .sheet-back.hittazos-matte-card {
-  transform: rotateY(180deg);
   background: var(--hittazos-bg, var(--card-bg, #e86328)) !important;
   color: #111111 !important;
   display: flex;

@@ -370,13 +370,14 @@ class HitTazosEngine {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
+    // No aplicar tilt durante el flip
+    if (card.dataset.flipping === '1') return;
+
     const rotateX = ((y - centerY) / centerY) * -12;
     const rotateY = ((x - centerX) / centerX) * 12;
 
-    const isFlipped = card.classList.contains('is-flipped');
-    const baseFlip = isFlipped ? 180 : 0;
-
-    card.style.transform = `rotateY(${baseFlip + rotateY}deg) rotateX(${rotateX}deg)`;
+    // Con WAAPI el contenedor no rota — solo aplicar el tilt suave del mouse
+    card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
 
     const glareX = (x / rect.width) * 100;
     const glareY = (y / rect.height) * 100;
@@ -388,8 +389,8 @@ class HitTazosEngine {
   reset3DTilt() {
     const card = document.getElementById('active-card-3d');
     if (!card) return;
-    const isFlipped = card.classList.contains('is-flipped');
-    card.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+    // Con WAAPI el contenedor no rota — solo limpiar glare
+    card.style.transform = '';
     card.style.setProperty('--glare-opacity', '0');
   }
 
@@ -941,8 +942,8 @@ class HitTazosEngine {
     if (!cardEl) return;
 
     // Si la carta está en el frente, voltearla primero para ver el reverso
-    if (!cardEl.classList.contains('is-flipped')) {
-      cardEl.classList.add('is-flipped');
+    if (!cardEl.classList.contains('is-flipped') && !cardEl.classList.contains('is-unflipping')) {
+      this.flipCard(cardEl);
       this.reset3DTilt();
     }
 
@@ -984,10 +985,94 @@ class HitTazosEngine {
     });
   }
 
+  /** Flip de tarjeta. Usa WAAPI (element.animate) para compatibilidad
+   *  total Firefox ESR + Chrome + Safari.
+   *  Patrón: animate → onfinish → commitStyles() → cancel()
+   *  Los inline styles resultantes siempre ganan en la cascade. */
+  flipCard(cardEl) {
+    if (!cardEl) return;
+    const front = cardEl.querySelector('.sheet-front');
+    const back  = cardEl.querySelector('.sheet-back');
+    if (!front || !back) return;
+
+    const HALF = 260; // ms — cada mitad del flip
+    const EASE = 'cubic-bezier(0.4, 0, 0.6, 1)';
+    const P = 'perspective(1400px)';
+    cardEl.dataset.flipping = '1';
+    cardEl.style.transform = ''; // limpiar tilt del hover
+
+    const commitAndCancel = (anim, el) => {
+      try { anim.commitStyles(); } catch(e) {
+        // fallback si commitStyles no disponible (no debería pasar en FF ESR 140)
+        const kf = anim.effect.getKeyframes();
+        if (kf.length) {
+          const last = kf[kf.length - 1];
+          if (last.opacity !== undefined) el.style.opacity = String(last.opacity);
+          if (last.transform !== undefined) el.style.transform = last.transform;
+        }
+      }
+      anim.cancel();
+    };
+
+    if (cardEl.classList.contains('is-flipped')) {
+      // ── Reverso → Frente ──────────────────────────────────────────────
+      const animBack = back.animate([
+        { transform: `${P} rotateY(0deg)`,   opacity: 1 },
+        { transform: `${P} rotateY(-90deg)`, opacity: 0 }
+      ], { duration: HALF, easing: EASE, fill: 'forwards' });
+
+      animBack.onfinish = () => {
+        commitAndCancel(animBack, back);
+        back.style.pointerEvents = 'none';
+
+        const animFront = front.animate([
+          { transform: `${P} rotateY(-90deg)`, opacity: 0 },
+          { transform: `${P} rotateY(0deg)`,   opacity: 1 }
+        ], { duration: HALF, easing: EASE, fill: 'forwards' });
+
+        animFront.onfinish = () => {
+          commitAndCancel(animFront, front);
+          // Limpiar transform residual del frente
+          front.style.transform = '';
+          front.style.pointerEvents = 'auto';
+          cardEl.classList.remove('is-flipped');
+          cardEl.dataset.flipping = '0';
+        };
+      };
+
+    } else {
+      // ── Frente → Reverso ──────────────────────────────────────────────
+      cardEl.classList.add('is-flipped');
+
+      const animFront = front.animate([
+        { transform: `${P} rotateY(0deg)`,   opacity: 1 },
+        { transform: `${P} rotateY(-90deg)`, opacity: 0 }
+      ], { duration: HALF, easing: EASE, fill: 'forwards' });
+
+      animFront.onfinish = () => {
+        commitAndCancel(animFront, front);
+        front.style.pointerEvents = 'none';
+
+        const animBack = back.animate([
+          { transform: `${P} rotateY(-90deg)`, opacity: 0 },
+          { transform: `${P} rotateY(0deg)`,   opacity: 1 }
+        ], { duration: HALF, easing: EASE, fill: 'forwards' });
+
+        animBack.onfinish = () => {
+          commitAndCancel(animBack, back);
+          // Limpiar transform residual del reverso
+          back.style.transform = '';
+          back.style.pointerEvents = 'auto';
+          cardEl.dataset.flipping = '0';
+        };
+      };
+    }
+  }
+
   flipCurrentCard() {
     const cardEl = document.getElementById('active-card-3d');
     if (cardEl) {
-      cardEl.classList.toggle('is-flipped');
+      this.flipCard(cardEl);
       this.reset3DTilt();
       this.playAudioFeedback('flip');
     }
@@ -999,8 +1084,8 @@ class HitTazosEngine {
     if (isNaN(val)) return;
 
     const cardEl = document.getElementById('active-card-3d');
-    if (!cardEl.classList.contains('is-flipped')) {
-      cardEl.classList.add('is-flipped');
+    if (!cardEl.classList.contains('is-flipped') && !cardEl.classList.contains('is-unflipping')) {
+      this.flipCard(cardEl);
       this.reset3DTilt();
     }
     this.revealActiveCardYear();
@@ -1153,7 +1238,7 @@ class HitTazosEngine {
       }
 
       cardEl.addEventListener('click', () => {
-        cardEl.classList.toggle('is-flipped');
+        this.flipCard(cardEl);
         this.playAudioFeedback('flip');
       });
 
@@ -1203,10 +1288,6 @@ class HitTazosEngine {
         sheetCards.push(null);
       }
 
-      // --- PLIEGO IMPAR: FRENTES (Orden natural 0..17, 3x6) ---
-      const frontSheet = document.createElement('div');
-      frontSheet.className = 'print-sheet print-sheet-fronts';
-      frontSheet.innerHTML = `
       // --- PLIEGO IMPAR: FRENTES (Orden natural 0..17, 3x6) ---
       const frontSheet = document.createElement('div');
       frontSheet.className = 'print-sheet print-sheet-fronts';
