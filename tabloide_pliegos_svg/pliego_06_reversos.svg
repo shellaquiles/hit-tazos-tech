@@ -1,333 +1,654 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="279.4mm" height="431.8mm" viewBox="0 0 792 1224" style="background-color: #ffffff;">
   <g id="encabezado_pliego">
-    <text x="119.62199999999996" y="45.243999999999915" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="700" fill="#555555">HITSTER TECH EDITION — PLIEGO TABLOIDE 6 DE 30 [CARA B: REVERSOS ESPEJADOS]</text>
-    <text x="672.378" y="45.243999999999915" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="700" fill="#555555" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO</text>
+    <text x="102.61" y="101.35" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="700" fill="#555555">HIT-TAZOS TECH — PLIEGO 6 DE 36 [CARA B: REVERSOS ESPEJADOS]</text>
+    <text x="689.39" y="101.35" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="700" fill="#555555" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO (LONG EDGE DUPLEX)</text>
   </g>
   <g id="tarjetas_reverso">
-    <g id="carta_093_reverso" transform="translate(119.62, 59.24)">
-      <clipPath id="clip_reverso_093">
-        <rect width="184.25" height="184.25" />
-      </clipPath>
-      <g clip-path="url(#clip_reverso_093)">
-        <rect width="184.25" height="184.25" fill="#e4af6c" />
+    <!-- Tarjeta #078 Reverso -->
+    <g id="carta_078_reverso">
+            <!-- Marcas de corte (Crop marks 5mm) -->
+      <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
+        <!-- Top-Left -->
+        <line x1="79.94" y1="117.35" x2="91.28" y2="117.35" />
+        <line x1="102.61" y1="94.68" x2="102.61" y2="106.02" />
+        <!-- Top-Right -->
+        <line x1="298.20" y1="117.35" x2="309.54" y2="117.35" />
+        <line x1="286.87" y1="94.68" x2="286.87" y2="106.02" />
+        <!-- Bottom-Left -->
+        <line x1="79.94" y1="301.61" x2="91.28" y2="301.61" />
+        <line x1="102.61" y1="312.94" x2="102.61" y2="324.28" />
+        <!-- Bottom-Right -->
+        <line x1="298.20" y1="301.61" x2="309.54" y2="301.61" />
+        <line x1="286.87" y1="312.94" x2="286.87" y2="324.28" />
+      </g>
+
+      <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
+      <rect x="94.11" y="108.85" width="201.26" height="201.26" fill="#40d2e7" />
+
+      <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
+      <g transform="translate(102.61, 117.35)">
+        <!-- Autor protegido (>= 8.5mm del borde superior) -->
+        <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="29.5">Amazon Web Services</tspan>
+        </text>
+
+        <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2021</text>
+
+        <!-- Trivia protegida -->
+        <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="118.0">Evidenció la enorme</tspan><tspan x="92.13" y="127.0">centralización de la web en el</tspan><tspan x="92.13" y="136.0">norte de Virginia (us-east-1),</tspan><tspan x="92.13" y="145.0">reabriendo el debate</tspan><tspan x="92.13" y="154.0">antimonopolio.</tspan>
+        </text>
+
+        <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">C3</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">078</text>
+
+        
+      </g>
+    </g>
+    <!-- Tarjeta #077 Reverso -->
+    <g id="carta_077_reverso">
+            <!-- Marcas de corte (Crop marks 5mm) -->
+      <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
+        <!-- Top-Left -->
+        <line x1="281.20" y1="117.35" x2="292.54" y2="117.35" />
+        <line x1="303.87" y1="94.68" x2="303.87" y2="106.02" />
+        <!-- Top-Right -->
+        <line x1="499.46" y1="117.35" x2="510.80" y2="117.35" />
+        <line x1="488.13" y1="94.68" x2="488.13" y2="106.02" />
+        <!-- Bottom-Left -->
+        <line x1="281.20" y1="301.61" x2="292.54" y2="301.61" />
+        <line x1="303.87" y1="312.94" x2="303.87" y2="324.28" />
+        <!-- Bottom-Right -->
+        <line x1="499.46" y1="301.61" x2="510.80" y2="301.61" />
+        <line x1="488.13" y1="312.94" x2="488.13" y2="324.28" />
+      </g>
+
+      <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
+      <rect x="295.37" y="108.85" width="201.26" height="201.26" fill="#4dd8e5" />
+
+      <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
+      <g transform="translate(303.87, 117.35)">
+        <!-- Autor protegido (>= 8.5mm del borde superior) -->
+        <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="29.5">Raymond Hettinger</tspan>
+        </text>
+
+        <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2003</text>
+
+        <!-- Trivia protegida -->
+        <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="118.0">Desterró el antipatrón</tspan><tspan x="92.13" y="127.0">omnipresente de usar variables</tspan><tspan x="92.13" y="136.0">contadoras manuales i = 0</tspan><tspan x="92.13" y="145.0">seguidas de i += 1 dentro de</tspan><tspan x="92.13" y="154.0">bucles for.</tspan>
+        </text>
+
+        <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">A1</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">077</text>
+
+        
+      </g>
+    </g>
+    <!-- Tarjeta #076 Reverso -->
+    <g id="carta_076_reverso">
+            <!-- Marcas de corte (Crop marks 5mm) -->
+      <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
+        <!-- Top-Left -->
+        <line x1="482.46" y1="117.35" x2="493.80" y2="117.35" />
+        <line x1="505.13" y1="94.68" x2="505.13" y2="106.02" />
+        <!-- Top-Right -->
+        <line x1="700.72" y1="117.35" x2="712.06" y2="117.35" />
+        <line x1="689.39" y1="94.68" x2="689.39" y2="106.02" />
+        <!-- Bottom-Left -->
+        <line x1="482.46" y1="301.61" x2="493.80" y2="301.61" />
+        <line x1="505.13" y1="312.94" x2="505.13" y2="324.28" />
+        <!-- Bottom-Right -->
+        <line x1="700.72" y1="301.61" x2="712.06" y2="301.61" />
+        <line x1="689.39" y1="312.94" x2="689.39" y2="324.28" />
+      </g>
+
+      <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
+      <rect x="496.63" y="108.85" width="201.26" height="201.26" fill="#57dee5" />
+
+      <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
+      <g transform="translate(505.13, 117.35)">
+        <!-- Autor protegido (>= 8.5mm del borde superior) -->
+        <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="29.5">Dan Kaminsky</tspan>
+        </text>
+
+        <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2008</text>
+
+        <!-- Trivia protegida -->
+        <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="118.0">Kaminsky coordinó en secreto</tspan><tspan x="92.13" y="127.0">un parche simultáneo con</tspan><tspan x="92.13" y="136.0">gigantes de la industria antes</tspan><tspan x="92.13" y="145.0">de revelar el fallo de DNS,</tspan><tspan x="92.13" y="154.0">salvando la web.</tspan>
+        </text>
+
+        <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">E2</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">076</text>
+
+        
+      </g>
+    </g>
+    <!-- Tarjeta #081 Reverso -->
+    <g id="carta_081_reverso">
+            <!-- Marcas de corte (Crop marks 5mm) -->
+      <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
+        <!-- Top-Left -->
+        <line x1="79.94" y1="318.61" x2="91.28" y2="318.61" />
+        <line x1="102.61" y1="295.94" x2="102.61" y2="307.28" />
+        <!-- Top-Right -->
+        <line x1="298.20" y1="318.61" x2="309.54" y2="318.61" />
+        <line x1="286.87" y1="295.94" x2="286.87" y2="307.28" />
+        <!-- Bottom-Left -->
+        <line x1="79.94" y1="502.87" x2="91.28" y2="502.87" />
+        <line x1="102.61" y1="514.20" x2="102.61" y2="525.54" />
+        <!-- Bottom-Right -->
+        <line x1="298.20" y1="502.87" x2="309.54" y2="502.87" />
+        <line x1="286.87" y1="514.20" x2="286.87" y2="525.54" />
+      </g>
+
+      <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
+      <rect x="94.11" y="310.11" width="201.26" height="201.26" fill="#e887b0" />
+
+      <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
+      <g transform="translate(102.61, 318.61)">
+        <!-- Autor protegido (>= 8.5mm del borde superior) -->
+        <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="29.5">Martin Odersky (EPFL)</tspan>
+        </text>
+
+        <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2003</text>
+
+        <!-- Trivia protegida -->
+        <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="118.0">Unió tipado funcional avanzado</tspan><tspan x="92.13" y="127.0">con la JVM, siendo la base</tspan><tspan x="92.13" y="136.0">sobre la que se levantaron</tspan><tspan x="92.13" y="145.0">gigantes como Apache Spark y</tspan><tspan x="92.13" y="154.0">Twitter.</tspan>
+        </text>
+
+        <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">B1</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">081</text>
+
+        
+      </g>
+    </g>
+    <!-- Tarjeta #080 Reverso -->
+    <g id="carta_080_reverso">
+            <!-- Marcas de corte (Crop marks 5mm) -->
+      <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
+        <!-- Top-Left -->
+        <line x1="281.20" y1="318.61" x2="292.54" y2="318.61" />
+        <line x1="303.87" y1="295.94" x2="303.87" y2="307.28" />
+        <!-- Top-Right -->
+        <line x1="499.46" y1="318.61" x2="510.80" y2="318.61" />
+        <line x1="488.13" y1="295.94" x2="488.13" y2="307.28" />
+        <!-- Bottom-Left -->
+        <line x1="281.20" y1="502.87" x2="292.54" y2="502.87" />
+        <line x1="303.87" y1="514.20" x2="303.87" y2="525.54" />
+        <!-- Bottom-Right -->
+        <line x1="499.46" y1="502.87" x2="510.80" y2="502.87" />
+        <line x1="488.13" y1="514.20" x2="488.13" y2="525.54" />
+      </g>
+
+      <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
+      <rect x="295.37" y="310.11" width="201.26" height="201.26" fill="#2ac3ea" />
+
+      <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
+      <g transform="translate(303.87, 318.61)">
+        <!-- Autor protegido (>= 8.5mm del borde superior) -->
+        <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="29.5">Adam Jacob (Opscode)</tspan>
+        </text>
+
+        <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2009</text>
+
+        <!-- Trivia protegida -->
+        <text font-family="'Outfit', sans-serif" font-size="7.2" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="118.0">Permitía usar Ruby imperativo</tspan><tspan x="92.13" y="127.5">frente a la sintaxis de</tspan><tspan x="92.13" y="137.0">Puppet, desatando una fuerte</tspan><tspan x="92.13" y="146.5">rivalidad entre sysadmins.</tspan>
+        </text>
+
+        <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">C4</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">080</text>
+
+        
+      </g>
+    </g>
+    <!-- Tarjeta #079 Reverso -->
+    <g id="carta_079_reverso">
+            <!-- Marcas de corte (Crop marks 5mm) -->
+      <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
+        <!-- Top-Left -->
+        <line x1="482.46" y1="318.61" x2="493.80" y2="318.61" />
+        <line x1="505.13" y1="295.94" x2="505.13" y2="307.28" />
+        <!-- Top-Right -->
+        <line x1="700.72" y1="318.61" x2="712.06" y2="318.61" />
+        <line x1="689.39" y1="295.94" x2="689.39" y2="307.28" />
+        <!-- Bottom-Left -->
+        <line x1="482.46" y1="502.87" x2="493.80" y2="502.87" />
+        <line x1="505.13" y1="514.20" x2="505.13" y2="525.54" />
+        <!-- Bottom-Right -->
+        <line x1="700.72" y1="502.87" x2="712.06" y2="502.87" />
+        <line x1="689.39" y1="514.20" x2="689.39" y2="525.54" />
+      </g>
+
+      <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
+      <rect x="496.63" y="310.11" width="201.26" height="201.26" fill="#35cbe9" />
+
+      <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
+      <g transform="translate(505.13, 318.61)">
+        <!-- Autor protegido (>= 8.5mm del borde superior) -->
+        <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="29.5">Richard Jones</tspan>
+        </text>
+
+        <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2003</text>
+
+        <!-- Trivia protegida -->
+        <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="118.0">Su apodo rendía homenaje a un</tspan><tspan x="92.13" y="127.0">célebre sketch de los Monty</tspan><tspan x="92.13" y="136.0">Python sobre una tienda de</tspan><tspan x="92.13" y="145.0">quesos que, cómicamente, no</tspan><tspan x="92.13" y="154.0">tenía queso alguno a la venta.</tspan>
+        </text>
+
+        <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">A5</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">079</text>
+
+        
+      </g>
+    </g>
+    <!-- Tarjeta #084 Reverso -->
+    <g id="carta_084_reverso">
+            <!-- Marcas de corte (Crop marks 5mm) -->
+      <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
+        <!-- Top-Left -->
+        <line x1="79.94" y1="519.87" x2="91.28" y2="519.87" />
+        <line x1="102.61" y1="497.20" x2="102.61" y2="508.54" />
+        <!-- Top-Right -->
+        <line x1="298.20" y1="519.87" x2="309.54" y2="519.87" />
+        <line x1="286.87" y1="497.20" x2="286.87" y2="508.54" />
+        <!-- Bottom-Left -->
+        <line x1="79.94" y1="704.13" x2="91.28" y2="704.13" />
+        <line x1="102.61" y1="715.46" x2="102.61" y2="726.80" />
+        <!-- Bottom-Right -->
+        <line x1="298.20" y1="704.13" x2="309.54" y2="704.13" />
+        <line x1="286.87" y1="715.46" x2="286.87" y2="726.80" />
+      </g>
+
+      <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
+      <rect x="94.11" y="511.37" width="201.26" height="201.26" fill="#e96d9a" />
+
+      <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
+      <g transform="translate(102.61, 519.87)">
+        <!-- Autor protegido (>= 8.5mm del borde superior) -->
         <text font-family="'Outfit', sans-serif" font-size="8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="23">Tribunales de EE.UU. y</tspan><tspan x="92.13" y="33.2">Hacktivistas</tspan>
+          <tspan x="92.13" y="24">Fabian Pedregosa et al.</tspan><tspan x="92.13" y="34.4">(scikit-learn)</tspan>
         </text>
-        <text x="92.13" y="104" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2024</text>
-        <text font-family="'Outfit', sans-serif" font-size="7" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="125.0">Un fallo judicial contra el</tspan><tspan x="92.13" y="134.2">préstamo digital controlado de</tspan><tspan x="92.13" y="143.4">libros puso en jaque a la mayor</tspan><tspan x="92.13" y="152.6">biblioteca de preservación de la</tspan><tspan x="92.13" y="161.8">web.</tspan>
+
+        <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2010</text>
+
+        <!-- Trivia protegida -->
+        <text font-family="'Outfit', sans-serif" font-size="7.2" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="118.0">Iniciado en un Summer of Code</tspan><tspan x="92.13" y="127.5">de Google; su API .fit(),</tspan><tspan x="92.13" y="137.0">.predict() y .transform() fijó</tspan><tspan x="92.13" y="146.5">el estándar de oro.</tspan>
         </text>
-        <text x="12" y="174.25" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)">E5</text>
-        <text x="172.25" y="174.25" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">093</text>
+
+        <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">D1</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">084</text>
+
+        
       </g>
-      <rect width="184.25" height="184.25" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.35" />
     </g>
-    <g id="carta_092_reverso" transform="translate(303.87, 59.24)">
-      <clipPath id="clip_reverso_092">
-        <rect width="184.25" height="184.25" />
-      </clipPath>
-      <g clip-path="url(#clip_reverso_092)">
-        <rect width="184.25" height="184.25" fill="#e4b277" />
+    <!-- Tarjeta #083 Reverso -->
+    <g id="carta_083_reverso">
+            <!-- Marcas de corte (Crop marks 5mm) -->
+      <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
+        <!-- Top-Left -->
+        <line x1="281.20" y1="519.87" x2="292.54" y2="519.87" />
+        <line x1="303.87" y1="497.20" x2="303.87" y2="508.54" />
+        <!-- Top-Right -->
+        <line x1="499.46" y1="519.87" x2="510.80" y2="519.87" />
+        <line x1="488.13" y1="497.20" x2="488.13" y2="508.54" />
+        <!-- Bottom-Left -->
+        <line x1="281.20" y1="704.13" x2="292.54" y2="704.13" />
+        <line x1="303.87" y1="715.46" x2="303.87" y2="726.80" />
+        <!-- Bottom-Right -->
+        <line x1="499.46" y1="704.13" x2="510.80" y2="704.13" />
+        <line x1="488.13" y1="715.46" x2="488.13" y2="726.80" />
+      </g>
+
+      <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
+      <rect x="295.37" y="511.37" width="201.26" height="201.26" fill="#e8739f" />
+
+      <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
+      <g transform="translate(303.87, 519.87)">
+        <!-- Autor protegido (>= 8.5mm del borde superior) -->
         <text font-family="'Outfit', sans-serif" font-size="8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="23">CSS WG (Rachel Andrew y Jen</tspan><tspan x="92.13" y="33.2">Simmons)</tspan>
+          <tspan x="92.13" y="24">Brandt Bucher y Guido van</tspan><tspan x="92.13" y="34.4">Rossum</tspan>
         </text>
-        <text x="92.13" y="104" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2017</text>
-        <text font-family="'Outfit', sans-serif" font-size="7.4" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="125.0">Primer sistema de diseño</tspan><tspan x="92.13" y="134.8">bidimensional completo que llegó</tspan><tspan x="92.13" y="144.6">a todos los navegadores sin</tspan><tspan x="92.13" y="154.4">hacks ni prefijos de proveedor.</tspan>
+
+        <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2020</text>
+
+        <!-- Trivia protegida -->
+        <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="118.0">Aportó capacidades de</tspan><tspan x="92.13" y="127.0">descomposición de objetos</tspan><tspan x="92.13" y="136.0">complejas inspiradas en</tspan><tspan x="92.13" y="145.0">lenguajes como Scala y Rust,</tspan><tspan x="92.13" y="154.0">superando con creces a un</tspan><tspan x="92.13" y="163.0">simple switch.</tspan>
         </text>
-        <text x="12" y="174.25" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)">B2</text>
-        <text x="172.25" y="174.25" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">092</text>
+
+        <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">A1</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">083</text>
+
+        
       </g>
-      <rect width="184.25" height="184.25" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.35" />
     </g>
-    <g id="carta_091_reverso" transform="translate(488.13, 59.24)">
-      <clipPath id="clip_reverso_091">
-        <rect width="184.25" height="184.25" />
-      </clipPath>
-      <g clip-path="url(#clip_reverso_091)">
-        <rect width="184.25" height="184.25" fill="#e4b681" />
-        <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="28.5">Guido van Rossum</tspan>
-        </text>
-        <text x="92.13" y="104" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2008</text>
-        <text font-family="'Outfit', sans-serif" font-size="7" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="125.0">La separación tajante entre</tspan><tspan x="92.13" y="134.2">texto str (Unicode) y datos</tspan><tspan x="92.13" y="143.4">binarios bytes provocó una</tspan><tspan x="92.13" y="152.6">traumática transición de casi</tspan><tspan x="92.13" y="161.8">una década en la industria.</tspan>
-        </text>
-        <text x="12" y="174.25" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)">A1</text>
-        <text x="172.25" y="174.25" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">091</text>
+    <!-- Tarjeta #082 Reverso -->
+    <g id="carta_082_reverso">
+            <!-- Marcas de corte (Crop marks 5mm) -->
+      <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
+        <!-- Top-Left -->
+        <line x1="482.46" y1="519.87" x2="493.80" y2="519.87" />
+        <line x1="505.13" y1="497.20" x2="505.13" y2="508.54" />
+        <!-- Top-Right -->
+        <line x1="700.72" y1="519.87" x2="712.06" y2="519.87" />
+        <line x1="689.39" y1="497.20" x2="689.39" y2="508.54" />
+        <!-- Bottom-Left -->
+        <line x1="482.46" y1="704.13" x2="493.80" y2="704.13" />
+        <line x1="505.13" y1="715.46" x2="505.13" y2="726.80" />
+        <!-- Bottom-Right -->
+        <line x1="700.72" y1="704.13" x2="712.06" y2="704.13" />
+        <line x1="689.39" y1="715.46" x2="689.39" y2="726.80" />
       </g>
-      <rect width="184.25" height="184.25" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.35" />
-    </g>
-    <g id="carta_096_reverso" transform="translate(119.62, 243.50)">
-      <clipPath id="clip_reverso_096">
-        <rect width="184.25" height="184.25" />
-      </clipPath>
-      <g clip-path="url(#clip_reverso_096)">
-        <rect width="184.25" height="184.25" fill="#e5a952" />
-        <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="28.5">Facundo Batista</tspan>
-        </text>
-        <text x="92.13" y="104" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2004</text>
-        <text font-family="'Outfit', sans-serif" font-size="7" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="125.0">Resolvió los clásicos y</tspan><tspan x="92.13" y="134.2">embarazosos errores de redondeo</tspan><tspan x="92.13" y="143.4">de punto flotante en cálculos</tspan><tspan x="92.13" y="152.6">contables bancarios donde 0.1 +</tspan><tspan x="92.13" y="161.8">0.2 != 0.3.</tspan>
-        </text>
-        <text x="12" y="174.25" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)">A1</text>
-        <text x="172.25" y="174.25" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">096</text>
-      </g>
-      <rect width="184.25" height="184.25" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.35" />
-    </g>
-    <g id="carta_095_reverso" transform="translate(303.87, 243.50)">
-      <clipPath id="clip_reverso_095">
-        <rect width="184.25" height="184.25" />
-      </clipPath>
-      <g clip-path="url(#clip_reverso_095)">
-        <rect width="184.25" height="184.25" fill="#e6ab5c" />
-        <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="28.5">Armin Ronacher</tspan>
-        </text>
-        <text x="92.13" y="104" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2008</text>
-        <text font-family="'Outfit', sans-serif" font-size="7.4" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="125.0">Tomó la sintaxis {{ variable }}</tspan><tspan x="92.13" y="134.8">de Django, perfeccionando su</tspan><tspan x="92.13" y="144.6">velocidad y seguridad con</tspan><tspan x="92.13" y="154.4">auto-escape automático nativo.</tspan>
-        </text>
-        <text x="12" y="174.25" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)">A4</text>
-        <text x="172.25" y="174.25" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">095</text>
-      </g>
-      <rect width="184.25" height="184.25" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.35" />
-    </g>
-    <g id="carta_094_reverso" transform="translate(488.13, 243.50)">
-      <clipPath id="clip_reverso_094">
-        <rect width="184.25" height="184.25" />
-      </clipPath>
-      <g clip-path="url(#clip_reverso_094)">
-        <rect width="184.25" height="184.25" fill="#e5ae66" />
+
+      <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
+      <rect x="496.63" y="511.37" width="201.26" height="201.26" fill="#e87da8" />
+
+      <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
+      <g transform="translate(505.13, 519.87)">
+        <!-- Autor protegido (>= 8.5mm del borde superior) -->
         <text font-family="'Outfit', sans-serif" font-size="8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="23">Guido van Rossum y Phillip</tspan><tspan x="92.13" y="33.2">Eby</tspan>
+          <tspan x="92.13" y="24">Inteligencia Exterior Rusa</tspan><tspan x="92.13" y="34.4">(SVR)</tspan>
         </text>
-        <text x="92.13" y="104" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2005</text>
-        <text font-family="'Outfit', sans-serif" font-size="7" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="125.0">Permitió inyectar valores</tspan><tspan x="92.13" y="134.2">directamente en generadores en</tspan><tspan x="92.13" y="143.4">ejecución, sentando los</tspan><tspan x="92.13" y="152.6">cimientos teóricos para los</tspan><tspan x="92.13" y="161.8">futuros frameworks asíncronos.</tspan>
+
+        <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2020</text>
+
+        <!-- Trivia protegida -->
+        <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="118.0">Inyectaron la puerta trasera</tspan><tspan x="92.13" y="127.0">Sunburst en el pipeline de</tspan><tspan x="92.13" y="136.0">compilación de SolarWinds,</tspan><tspan x="92.13" y="145.0">espiando al gobierno de EE.UU.</tspan><tspan x="92.13" y="154.0">por 9 meses.</tspan>
         </text>
-        <text x="12" y="174.25" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)">A1</text>
-        <text x="172.25" y="174.25" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">094</text>
+
+        <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">E2</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">082</text>
+
+        
       </g>
-      <rect width="184.25" height="184.25" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.35" />
     </g>
-    <g id="carta_099_reverso" transform="translate(119.62, 427.75)">
-      <clipPath id="clip_reverso_099">
-        <rect width="184.25" height="184.25" />
-      </clipPath>
-      <g clip-path="url(#clip_reverso_099)">
-        <rect width="184.25" height="184.25" fill="#e9a535" />
+    <!-- Tarjeta #087 Reverso -->
+    <g id="carta_087_reverso">
+            <!-- Marcas de corte (Crop marks 5mm) -->
+      <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
+        <!-- Top-Left -->
+        <line x1="79.94" y1="721.13" x2="91.28" y2="721.13" />
+        <line x1="102.61" y1="698.46" x2="102.61" y2="709.80" />
+        <!-- Top-Right -->
+        <line x1="298.20" y1="721.13" x2="309.54" y2="721.13" />
+        <line x1="286.87" y1="698.46" x2="286.87" y2="709.80" />
+        <!-- Bottom-Left -->
+        <line x1="79.94" y1="905.39" x2="91.28" y2="905.39" />
+        <line x1="102.61" y1="916.72" x2="102.61" y2="928.06" />
+        <!-- Bottom-Right -->
+        <line x1="298.20" y1="905.39" x2="309.54" y2="905.39" />
+        <line x1="286.87" y1="916.72" x2="286.87" y2="928.06" />
+      </g>
+
+      <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
+      <rect x="94.11" y="712.63" width="201.26" height="201.26" fill="#eb4c7d" />
+
+      <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
+      <g transform="translate(102.61, 721.13)">
+        <!-- Autor protegido (>= 8.5mm del borde superior) -->
         <text font-family="'Outfit', sans-serif" font-size="8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="23">Paul Menage y Rohit Seth</tspan><tspan x="92.13" y="33.2">(Google)</tspan>
+          <tspan x="92.13" y="24">Walter F. Tichy (Purdue</tspan><tspan x="92.13" y="34.4">University)</tspan>
         </text>
-        <text x="92.13" y="104" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2007</text>
-        <text font-family="'Outfit', sans-serif" font-size="7.4" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="125.0">Creados en Google como Process</tspan><tspan x="92.13" y="134.8">Containers, fijaron límites</tspan><tspan x="92.13" y="144.6">estrictos de RAM, CPU e I/O por</tspan><tspan x="92.13" y="154.4">grupo de procesos.</tspan>
+
+        <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">1982</text>
+
+        <!-- Trivia protegida -->
+        <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="118.0">Guardaba deltas inversos para</tspan><tspan x="92.13" y="127.0">que ver la última versión</tspan><tspan x="92.13" y="136.0">fuera instantáneo, motor</tspan><tspan x="92.13" y="145.0">estándar de servidores</tspan><tspan x="92.13" y="154.0">compartidos.</tspan>
         </text>
-        <text x="12" y="174.25" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)">C2</text>
-        <text x="172.25" y="174.25" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">099</text>
+
+        <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">B3</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">087</text>
+
+        
       </g>
-      <rect width="184.25" height="184.25" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.35" />
     </g>
-    <g id="carta_098_reverso" transform="translate(303.87, 427.75)">
-      <clipPath id="clip_reverso_098">
-        <rect width="184.25" height="184.25" />
-      </clipPath>
-      <g clip-path="url(#clip_reverso_098)">
-        <rect width="184.25" height="184.25" fill="#e7a740" />
+    <!-- Tarjeta #086 Reverso -->
+    <g id="carta_086_reverso">
+            <!-- Marcas de corte (Crop marks 5mm) -->
+      <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
+        <!-- Top-Left -->
+        <line x1="281.20" y1="721.13" x2="292.54" y2="721.13" />
+        <line x1="303.87" y1="698.46" x2="303.87" y2="709.80" />
+        <!-- Top-Right -->
+        <line x1="499.46" y1="721.13" x2="510.80" y2="721.13" />
+        <line x1="488.13" y1="698.46" x2="488.13" y2="709.80" />
+        <!-- Bottom-Left -->
+        <line x1="281.20" y1="905.39" x2="292.54" y2="905.39" />
+        <line x1="303.87" y1="916.72" x2="303.87" y2="928.06" />
+        <!-- Bottom-Right -->
+        <line x1="499.46" y1="905.39" x2="510.80" y2="905.39" />
+        <line x1="488.13" y1="916.72" x2="488.13" y2="928.06" />
+      </g>
+
+      <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
+      <rect x="295.37" y="712.63" width="201.26" height="201.26" fill="#ea5787" />
+
+      <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
+      <g transform="translate(303.87, 721.13)">
+        <!-- Autor protegido (>= 8.5mm del borde superior) -->
         <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="28.5">Donald Stufft y Nick Coghlan</tspan>
+          <tspan x="92.13" y="29.5">Neil Schemenauer</tspan>
         </text>
-        <text x="92.13" y="104" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2014</text>
-        <text font-family="'Outfit', sans-serif" font-size="7" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="125.0">Erradicó el tedioso ritual de</tspan><tspan x="92.13" y="134.2">descargar manualmente scripts</tspan><tspan x="92.13" y="143.4">flotantes como get-pip.py para</tspan><tspan x="92.13" y="152.6">configurar entornos de</tspan><tspan x="92.13" y="161.8">desarrollo nuevos.</tspan>
+
+        <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2000</text>
+
+        <!-- Trivia protegida -->
+        <text font-family="'Outfit', sans-serif" font-size="7.2" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="118.0">Añadió tres generaciones de</tspan><tspan x="92.13" y="127.5">recolección cíclica, evitando</tspan><tspan x="92.13" y="137.0">fugas de memoria sin degradar</tspan><tspan x="92.13" y="146.5">el conteo de referencias.</tspan>
         </text>
-        <text x="12" y="174.25" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)">A1</text>
-        <text x="172.25" y="174.25" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">098</text>
+
+        <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">A2</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">086</text>
+
+        
       </g>
-      <rect width="184.25" height="184.25" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.35" />
     </g>
-    <g id="carta_097_reverso" transform="translate(488.13, 427.75)">
-      <clipPath id="clip_reverso_097">
-        <rect width="184.25" height="184.25" />
-      </clipPath>
-      <g clip-path="url(#clip_reverso_097)">
-        <rect width="184.25" height="184.25" fill="#e6a647" />
+    <!-- Tarjeta #085 Reverso -->
+    <g id="carta_085_reverso">
+            <!-- Marcas de corte (Crop marks 5mm) -->
+      <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
+        <!-- Top-Left -->
+        <line x1="482.46" y1="721.13" x2="493.80" y2="721.13" />
+        <line x1="505.13" y1="698.46" x2="505.13" y2="709.80" />
+        <!-- Top-Right -->
+        <line x1="700.72" y1="721.13" x2="712.06" y2="721.13" />
+        <line x1="689.39" y1="698.46" x2="689.39" y2="709.80" />
+        <!-- Bottom-Left -->
+        <line x1="482.46" y1="905.39" x2="493.80" y2="905.39" />
+        <line x1="505.13" y1="916.72" x2="505.13" y2="928.06" />
+        <!-- Bottom-Right -->
+        <line x1="700.72" y1="905.39" x2="712.06" y2="905.39" />
+        <line x1="689.39" y1="916.72" x2="689.39" y2="928.06" />
+      </g>
+
+      <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
+      <rect x="496.63" y="712.63" width="201.26" height="201.26" fill="#ea6290" />
+
+      <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
+      <g transform="translate(505.13, 721.13)">
+        <!-- Autor protegido (>= 8.5mm del borde superior) -->
         <text font-family="'Outfit', sans-serif" font-size="8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="23">Brian Fox (Free Software</tspan><tspan x="92.13" y="33.2">Foundation)</tspan>
+          <tspan x="92.13" y="24">Thomas Kluyver, Brett</tspan><tspan x="92.13" y="34.4">Cannon et al.</tspan>
         </text>
-        <text x="92.13" y="104" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">1989</text>
-        <text font-family="'Outfit', sans-serif" font-size="7.4" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="125.0">Su nombre jugaba con Born Again;</tspan><tspan x="92.13" y="134.8">se convirtió en el shell</tspan><tspan x="92.13" y="144.6">interactivo por defecto</tspan><tspan x="92.13" y="154.4">indiscutible de casi todo Linux.</tspan>
+
+        <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2019</text>
+
+        <!-- Trivia protegida -->
+        <text font-family="'Outfit', sans-serif" font-size="7.2" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="118.0">Desacopló definitivamente a</tspan><tspan x="92.13" y="127.5">instaladores como pip de</tspan><tspan x="92.13" y="137.0">backends de compilación como</tspan><tspan x="92.13" y="146.5">flit, hatch o poetry-core.</tspan>
         </text>
-        <text x="12" y="174.25" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)">C1</text>
-        <text x="172.25" y="174.25" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">097</text>
+
+        <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">A5</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">085</text>
+
+        
       </g>
-      <rect width="184.25" height="184.25" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.35" />
     </g>
-    <g id="carta_102_reverso" transform="translate(119.62, 612.00)">
-      <clipPath id="clip_reverso_102">
-        <rect width="184.25" height="184.25" />
-      </clipPath>
-      <g clip-path="url(#clip_reverso_102)">
-        <rect width="184.25" height="184.25" fill="#ea7184" />
+    <!-- Tarjeta #090 Reverso -->
+    <g id="carta_090_reverso">
+            <!-- Marcas de corte (Crop marks 5mm) -->
+      <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
+        <!-- Top-Left -->
+        <line x1="79.94" y1="922.39" x2="91.28" y2="922.39" />
+        <line x1="102.61" y1="899.72" x2="102.61" y2="911.06" />
+        <!-- Top-Right -->
+        <line x1="298.20" y1="922.39" x2="309.54" y2="922.39" />
+        <line x1="286.87" y1="899.72" x2="286.87" y2="911.06" />
+        <!-- Bottom-Left -->
+        <line x1="79.94" y1="1106.65" x2="91.28" y2="1106.65" />
+        <line x1="102.61" y1="1117.98" x2="102.61" y2="1129.32" />
+        <!-- Bottom-Right -->
+        <line x1="298.20" y1="1106.65" x2="309.54" y2="1106.65" />
+        <line x1="286.87" y1="1117.98" x2="286.87" y2="1129.32" />
+      </g>
+
+      <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
+      <rect x="94.11" y="913.89" width="201.26" height="201.26" fill="#ef2e5f" />
+
+      <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
+      <g transform="translate(102.61, 922.39)">
+        <!-- Autor protegido (>= 8.5mm del borde superior) -->
         <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="28.5">Rob Malda (CmdrTaco)</tspan>
+          <tspan x="92.13" y="29.5">Oracle Labs</tspan>
         </text>
-        <text x="92.13" y="104" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">1999</text>
-        <text font-family="'Outfit', sans-serif" font-size="7.4" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="125.0">Originó el &quot;Efecto Slashdot&quot;, la</tspan><tspan x="92.13" y="134.8">caída fulminante de webs</tspan><tspan x="92.13" y="144.6">pequeñas que colapsaban al ser</tspan><tspan x="92.13" y="154.4">enlazadas en su portada.</tspan>
+
+        <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2021</text>
+
+        <!-- Trivia protegida -->
+        <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="118.0">Logró interoperabilidad nativa</tspan><tspan x="92.13" y="127.0">sin costo (zero-overhead)</tspan><tspan x="92.13" y="136.0">entre Python, Java,</tspan><tspan x="92.13" y="145.0">JavaScript, Ruby y lenguajes</tspan><tspan x="92.13" y="154.0">compilados por LLVM.</tspan>
         </text>
-        <text x="12" y="174.25" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)">B4</text>
-        <text x="172.25" y="174.25" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">102</text>
+
+        <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">A2</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">090</text>
+
+        
       </g>
-      <rect width="184.25" height="184.25" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.35" />
     </g>
-    <g id="carta_101_reverso" transform="translate(303.87, 612.00)">
-      <clipPath id="clip_reverso_101">
-        <rect width="184.25" height="184.25" />
-      </clipPath>
-      <g clip-path="url(#clip_reverso_101)">
-        <rect width="184.25" height="184.25" fill="#ea7b8e" />
+    <!-- Tarjeta #089 Reverso -->
+    <g id="carta_089_reverso">
+            <!-- Marcas de corte (Crop marks 5mm) -->
+      <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
+        <!-- Top-Left -->
+        <line x1="281.20" y1="922.39" x2="292.54" y2="922.39" />
+        <line x1="303.87" y1="899.72" x2="303.87" y2="911.06" />
+        <!-- Top-Right -->
+        <line x1="499.46" y1="922.39" x2="510.80" y2="922.39" />
+        <line x1="488.13" y1="899.72" x2="488.13" y2="911.06" />
+        <!-- Bottom-Left -->
+        <line x1="281.20" y1="1106.65" x2="292.54" y2="1106.65" />
+        <line x1="303.87" y1="1117.98" x2="303.87" y2="1129.32" />
+        <!-- Bottom-Right -->
+        <line x1="499.46" y1="1106.65" x2="510.80" y2="1106.65" />
+        <line x1="488.13" y1="1117.98" x2="488.13" y2="1129.32" />
+      </g>
+
+      <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
+      <rect x="295.37" y="913.89" width="201.26" height="201.26" fill="#ee3a6a" />
+
+      <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
+      <g transform="translate(303.87, 922.39)">
+        <!-- Autor protegido (>= 8.5mm del borde superior) -->
         <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="28.5">NIST, Cloudflare y Google</tspan>
+          <tspan x="92.13" y="29.5">Tarek Ziadé</tspan>
         </text>
-        <text x="92.13" y="104" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2024</text>
-        <text font-family="'Outfit', sans-serif" font-size="7" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="125.0">Estandarizó algoritmos</tspan><tspan x="92.13" y="134.2">resistentes a computación</tspan><tspan x="92.13" y="143.4">cuántica (ML-KEM / Kyber),</tspan><tspan x="92.13" y="152.6">blindando el futuro del cifrado</tspan><tspan x="92.13" y="161.8">web.</tspan>
+
+        <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2010</text>
+
+        <!-- Trivia protegida -->
+        <text font-family="'Outfit', sans-serif" font-size="7.2" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="118.0">Fue el juez inflexible de</tspan><tspan x="92.13" y="127.5">estilo que cuidó millones de</tspan><tspan x="92.13" y="137.0">repositorios antes de los</tspan><tspan x="92.13" y="146.5">formateadores automáticos.</tspan>
         </text>
-        <text x="12" y="174.25" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)">E1</text>
-        <text x="172.25" y="174.25" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">101</text>
+
+        <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">A5</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">089</text>
+
+        
       </g>
-      <rect width="184.25" height="184.25" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.35" />
     </g>
-    <g id="carta_100_reverso" transform="translate(488.13, 612.00)">
-      <clipPath id="clip_reverso_100">
-        <rect width="184.25" height="184.25" />
-      </clipPath>
-      <g clip-path="url(#clip_reverso_100)">
-        <rect width="184.25" height="184.25" fill="#eaa32a" />
-        <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="28.5">CoreOS (Alex Polvi)</tspan>
-        </text>
-        <text x="92.13" y="104" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2014</text>
-        <text font-family="'Outfit', sans-serif" font-size="7.4" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="125.0">Acusó a Docker de abandonar su</tspan><tspan x="92.13" y="134.8">estándar modular; el conflicto</tspan><tspan x="92.13" y="144.6">forzó a la industria a crear la</tspan><tspan x="92.13" y="154.4">especificación de la OCI.</tspan>
-        </text>
-        <text x="12" y="174.25" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)">C2</text>
-        <text x="172.25" y="174.25" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">100</text>
+    <!-- Tarjeta #088 Reverso -->
+    <g id="carta_088_reverso">
+            <!-- Marcas de corte (Crop marks 5mm) -->
+      <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
+        <!-- Top-Left -->
+        <line x1="482.46" y1="922.39" x2="493.80" y2="922.39" />
+        <line x1="505.13" y1="899.72" x2="505.13" y2="911.06" />
+        <!-- Top-Right -->
+        <line x1="700.72" y1="922.39" x2="712.06" y2="922.39" />
+        <line x1="689.39" y1="899.72" x2="689.39" y2="911.06" />
+        <!-- Bottom-Left -->
+        <line x1="482.46" y1="1106.65" x2="493.80" y2="1106.65" />
+        <line x1="505.13" y1="1117.98" x2="505.13" y2="1129.32" />
+        <!-- Bottom-Right -->
+        <line x1="700.72" y1="1106.65" x2="712.06" y2="1106.65" />
+        <line x1="689.39" y1="1117.98" x2="689.39" y2="1129.32" />
       </g>
-      <rect width="184.25" height="184.25" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.35" />
-    </g>
-    <g id="carta_105_reverso" transform="translate(119.62, 796.25)">
-      <clipPath id="clip_reverso_105">
-        <rect width="184.25" height="184.25" />
-      </clipPath>
-      <g clip-path="url(#clip_reverso_105)">
-        <rect width="184.25" height="184.25" fill="#eb5668" />
-        <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="28.5">NVIDIA (Ian Buck)</tspan>
-        </text>
-        <text x="92.13" y="104" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2006</text>
-        <text font-family="'Outfit', sans-serif" font-size="7" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="125.0">Permitió programar GPUs en</tspan><tspan x="92.13" y="134.2">C/C++; fue el catalizador que</tspan><tspan x="92.13" y="143.4">permitió entrenar todas las</tspan><tspan x="92.13" y="152.6">grandes redes neuronales</tspan><tspan x="92.13" y="161.8">modernas.</tspan>
-        </text>
-        <text x="12" y="174.25" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)">E6</text>
-        <text x="172.25" y="174.25" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">105</text>
-      </g>
-      <rect width="184.25" height="184.25" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.35" />
-    </g>
-    <g id="carta_104_reverso" transform="translate(303.87, 796.25)">
-      <clipPath id="clip_reverso_104">
-        <rect width="184.25" height="184.25" />
-      </clipPath>
-      <g clip-path="url(#clip_reverso_104)">
-        <rect width="184.25" height="184.25" fill="#ea6173" />
-        <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="28.5">Bill Joy (UC Berkeley CSRG)</tspan>
-        </text>
-        <text x="92.13" y="104" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">1977</text>
-        <text font-family="'Outfit', sans-serif" font-size="7" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="125.0">Financiado por DARPA, su stack</tspan><tspan x="92.13" y="134.2">TCP/IP se convirtió en la base</tspan><tspan x="92.13" y="143.4">de las redes de</tspan><tspan x="92.13" y="152.6">telecomunicaciones de todo el</tspan><tspan x="92.13" y="161.8">planeta.</tspan>
-        </text>
-        <text x="12" y="174.25" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)">C1</text>
-        <text x="172.25" y="174.25" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">104</text>
-      </g>
-      <rect width="184.25" height="184.25" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.35" />
-    </g>
-    <g id="carta_103_reverso" transform="translate(488.13, 796.25)">
-      <clipPath id="clip_reverso_103">
-        <rect width="184.25" height="184.25" />
-      </clipPath>
-      <g clip-path="url(#clip_reverso_103)">
-        <rect width="184.25" height="184.25" fill="#ea667a" />
-        <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="28.5">W3C y WHATWG (Ian Hickson)</tspan>
-        </text>
-        <text x="92.13" y="104" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2014</text>
-        <text font-family="'Outfit', sans-serif" font-size="7" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="125.0">Materializó la visión de una</tspan><tspan x="92.13" y="134.2">plataforma de aplicaciones rica</tspan><tspan x="92.13" y="143.4">e independiente de plugins</tspan><tspan x="92.13" y="152.6">propietarios como Adobe Flash o</tspan><tspan x="92.13" y="161.8">Microsoft Silverlight.</tspan>
-        </text>
-        <text x="12" y="174.25" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)">B2</text>
-        <text x="172.25" y="174.25" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">103</text>
-      </g>
-      <rect width="184.25" height="184.25" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.35" />
-    </g>
-    <g id="carta_108_reverso" transform="translate(119.62, 980.50)">
-      <clipPath id="clip_reverso_108">
-        <rect width="184.25" height="184.25" />
-      </clipPath>
-      <g clip-path="url(#clip_reverso_108)">
-        <rect width="184.25" height="184.25" fill="#ee3a4a" />
-        <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="28.5">OpenAI (Alec Radford et al.)</tspan>
-        </text>
-        <text x="92.13" y="104" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2018</text>
-        <text font-family="'Outfit', sans-serif" font-size="7" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="125.0">Demostró el poder de apilar</tspan><tspan x="92.13" y="134.2">decodificadores Transformers,</tspan><tspan x="92.13" y="143.4">iniciando el camino que detonó</tspan><tspan x="92.13" y="152.6">la explosión de la IA</tspan><tspan x="92.13" y="161.8">generativa.</tspan>
-        </text>
-        <text x="12" y="174.25" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)">D4</text>
-        <text x="172.25" y="174.25" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">108</text>
-      </g>
-      <rect width="184.25" height="184.25" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.35" />
-    </g>
-    <g id="carta_107_reverso" transform="translate(303.87, 980.50)">
-      <clipPath id="clip_reverso_107">
-        <rect width="184.25" height="184.25" />
-      </clipPath>
-      <g clip-path="url(#clip_reverso_107)">
-        <rect width="184.25" height="184.25" fill="#ed4051" />
+
+      <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
+      <rect x="496.63" y="913.89" width="201.26" height="201.26" fill="#ed4575" />
+
+      <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
+      <g transform="translate(505.13, 922.39)">
+        <!-- Autor protegido (>= 8.5mm del borde superior) -->
         <text font-family="'Outfit', sans-serif" font-size="8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="23">Wikipedia, Reddit, Google y</tspan><tspan x="92.13" y="33.2">activistas</tspan>
+          <tspan x="92.13" y="24">IBM (Feng-hsiung Hsu et</tspan><tspan x="92.13" y="34.4">al.)</tspan>
         </text>
-        <text x="92.13" y="104" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2012</text>
-        <text font-family="'Outfit', sans-serif" font-size="7" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="125.0">Wikipedia y miles de sitios</tspan><tspan x="92.13" y="134.2">apagaron sus webs por 24 horas</tspan><tspan x="92.13" y="143.4">en señal de luto digital,</tspan><tspan x="92.13" y="152.6">enterrando la ley antipiratería</tspan><tspan x="92.13" y="161.8">SOPA.</tspan>
+
+        <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">1997</text>
+
+        <!-- Trivia protegida -->
+        <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="118.0">Kasparov acusó a IBM de trampa</tspan><tspan x="92.13" y="127.0">humana tras ser desconcertado</tspan><tspan x="92.13" y="136.0">por una jugada de Deep Blue</tspan><tspan x="92.13" y="145.0">provocada por un bug de</tspan><tspan x="92.13" y="154.0">software.</tspan>
         </text>
-        <text x="12" y="174.25" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)">E5</text>
-        <text x="172.25" y="174.25" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">107</text>
+
+        <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">D3</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">088</text>
+
+        
       </g>
-      <rect width="184.25" height="184.25" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.35" />
-    </g>
-    <g id="carta_106_reverso" transform="translate(488.13, 980.50)">
-      <clipPath id="clip_reverso_106">
-        <rect width="184.25" height="184.25" />
-      </clipPath>
-      <g clip-path="url(#clip_reverso_106)">
-        <rect width="184.25" height="184.25" fill="#ec4b5d" />
-        <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="28.5">Andrew Godwin</tspan>
-        </text>
-        <text x="92.13" y="104" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2016</text>
-        <text font-family="'Outfit', sans-serif" font-size="7" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="125.0">Introdujo el concepto de capas</tspan><tspan x="92.13" y="134.2">de canales (channel layers)</tspan><tspan x="92.13" y="143.4">sobre Redis, permitiendo a</tspan><tspan x="92.13" y="152.6">Django cruzar la frontera de las</tspan><tspan x="92.13" y="161.8">arquitecturas HTTP clásicas.</tspan>
-        </text>
-        <text x="12" y="174.25" font-family="'Outfit', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)">A4</text>
-        <text x="172.25" y="174.25" font-family="'Space Grotesk', sans-serif" font-size="5.2" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">106</text>
-      </g>
-      <rect width="184.25" height="184.25" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="0.35" />
     </g>
   </g>
 </svg>
