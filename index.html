@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HITSTER Tech Edition 🕹️ | Trivia Cronológica</title>
+  <title>HITSTER Tech Edition | Trivia Cronológica</title>
   <meta name="description" content="Juego de cartas de trivia cronológica estilo HITSTER para Tecnología, Python, DevOps, Inteligencia Artificial y Cultura Hacker.">
   
   <!-- Google Fonts -->
@@ -11,87 +11,155 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
   
+  <!-- Curated Icon Library: Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+  <!-- Header -->
   <header>
     <div class="brand">
-      <div class="brand-icon">⚡</div>
+      <div class="brand-icon">
+        <i data-lucide="zap"></i>
+      </div>
       <div>
-        <div class="brand-title">HITSTER <span class="brand-badge">Tech Edition</span></div>
+        <div class="brand-title">
+          HITSTER 
+          <span class="brand-badge">Tech Edition</span>
+        </div>
       </div>
     </div>
 
     <div class="nav-actions">
       <button class="tab-btn active" id="btn-tab-play" data-view="play">
-        <span>🎮</span> Modo Juego
+        <i data-lucide="gamepad-2"></i> Modo Juego
       </button>
       <button class="tab-btn" id="btn-tab-gallery" data-view="gallery">
-        <span>🗂️</span> Explorador (<span id="counter-total">531</span>)
+        <i data-lucide="layout-grid"></i> Explorador (<span id="counter-total">531</span>)
       </button>
-      <button class="icon-btn" id="btn-sound-toggle" title="Sonido activado/desactivado">
-        🔊
+      <button class="icon-btn" id="btn-sound-toggle" title="Sonido activado / desactivado">
+        <i data-lucide="volume-2" id="icon-sound-state"></i>
       </button>
-      <button class="icon-btn" id="btn-print" title="Imprimir cartas">
-        🖨️
+      <button class="icon-btn" id="btn-print" title="Imprimir cartas para recortar">
+        <i data-lucide="printer"></i>
       </button>
     </div>
   </header>
 
+  <!-- Group Category Ribbon -->
+  <nav class="category-ribbon" id="group-ribbon">
+    <button class="ribbon-pill active" data-group="ALL">
+      <i data-lucide="layers"></i>
+      <span>Todos los Grupos</span>
+    </button>
+    <button class="ribbon-pill theme-A" data-group="A">
+      <i data-lucide="terminal"></i>
+      <span>Universo Python</span>
+    </button>
+    <button class="ribbon-pill theme-B" data-group="B">
+      <i data-lucide="code-2"></i>
+      <span>Software & Web</span>
+    </button>
+    <button class="ribbon-pill theme-C" data-group="C">
+      <i data-lucide="server"></i>
+      <span>DevOps & Infra</span>
+    </button>
+    <button class="ribbon-pill theme-D" data-group="D">
+      <i data-lucide="cpu"></i>
+      <span>Cómputo & IA</span>
+    </button>
+    <button class="ribbon-pill theme-E" data-group="E">
+      <i data-lucide="shield-alert"></i>
+      <span>Cultura Hacker</span>
+    </button>
+  </nav>
+
   <main>
-    <!-- VISTA 1: MODO JUEGO / CARTA 3D INTERACTIVA -->
+    <!-- VISTA 1: MODO JUEGO INTERACTIVO -->
     <section id="view-play" class="view-section active">
-      <div class="interactive-arena">
+      <div class="arena-wrapper">
         
-        <div class="game-controls-top">
-          <div class="stat-pill">Mazo: <strong id="deck-filter-name">Todos los Grupos</strong></div>
-          <div class="stat-pill">Carta: <strong id="game-card-counter">1 / 531</strong></div>
-          <div class="stat-pill">Aciertos: <strong id="game-score">0</strong></div>
+        <!-- HUD Superior -->
+        <div class="hud-bar">
+          <div class="hud-item">
+            <i data-lucide="disc"></i>
+            <span id="hud-group-label">Todos los Grupos</span>
+          </div>
+          <div class="hud-item">
+            <i data-lucide="calendar"></i>
+            Carta: <strong id="hud-card-counter">1 / 531</strong>
+          </div>
+          <div class="hud-item">
+            <i data-lucide="target"></i>
+            Aciertos: <strong id="hud-score">0</strong>
+          </div>
         </div>
 
-        <!-- Contenedor 3D de la carta -->
-        <div class="card-perspective-container" id="arena-card-container">
-          <!-- Renderizado dinámico de la carta -->
+        <!-- Escenario 3D de la Carta -->
+        <div class="card-perspective-stage" id="card-stage" title="Haz clic o presiona Espacio para voltear la carta">
+          <!-- Tarjeta inyectada dinámicamente -->
         </div>
 
-        <!-- Opciones de Juego / Adivinar año -->
-        <div class="guess-year-drawer" id="guess-drawer">
-          <span style="font-size: 0.85rem; color: var(--text-secondary);">¿Año del hito?</span>
-          <input type="number" id="input-guess-year" class="year-input" placeholder="YYYY" min="1950" max="2030">
-          <button class="primary-btn" id="btn-check-guess" style="padding: 0.55rem 1rem;">Comprobar</button>
-          <div id="guess-feedback" style="font-weight: 700; font-size: 0.9rem; margin-left: 0.5rem;"></div>
+        <!-- Consola Cronológica / Adivinar Año -->
+        <div class="chronological-console">
+          <button class="nudge-btn" id="btn-nudge-minus5">-5</button>
+          <button class="nudge-btn" id="btn-nudge-minus1">-1</button>
+          <input type="number" id="input-year" class="console-input" placeholder="AÑO" min="1950" max="2030">
+          <button class="nudge-btn" id="btn-nudge-plus1">+1</button>
+          <button class="nudge-btn" id="btn-nudge-plus5">+5</button>
+          <button class="btn-primary" id="btn-submit-guess">
+            <i data-lucide="check"></i>
+            Comprobar
+          </button>
+          <div id="guess-result-pill" style="font-weight: 700; font-size: 0.85rem; margin-left: 0.5rem;"></div>
         </div>
 
-        <!-- Barra de acciones inferiores -->
-        <div class="arena-actions">
-          <button class="secondary-btn" id="btn-prev-card" title="Carta anterior">
-            ⬅️ Anterior
+        <!-- Controles de Navegación -->
+        <div class="action-cluster">
+          <button class="btn-secondary" id="btn-prev">
+            <i data-lucide="arrow-left"></i> Anterior
           </button>
-          <button class="primary-btn" id="btn-flip-card">
-            🔄 Girar Carta (Espacio)
+          <button class="btn-primary" id="btn-flip">
+            <i data-lucide="rotate-cw"></i> Girar Carta [Espacio]
           </button>
-          <button class="secondary-btn" id="btn-next-card" title="Siguiente carta">
-            Siguiente ➡️
+          <button class="btn-secondary" id="btn-next">
+            Siguiente <i data-lucide="arrow-right"></i>
           </button>
-          <button class="secondary-btn" id="btn-shuffle-deck" title="Barajar mazo">
-            🔀 Barajar
+          <button class="btn-secondary" id="btn-shuffle" title="Barajar el mazo activo">
+            <i data-lucide="shuffle"></i> Barajar
           </button>
+        </div>
+
+        <!-- Bandeja de Línea de Tiempo del Jugador -->
+        <div class="timeline-shelf">
+          <div class="shelf-header">
+            <span>Tu Línea de Tiempo Personal</span>
+            <span id="shelf-counter">0 / 10 cartas para ganar</span>
+          </div>
+          <div class="shelf-cards-row" id="shelf-cards-container">
+            <div class="shelf-empty-prompt">
+              Acierta el año de una carta o colócala en tu cronología para sumarla a tu estante.
+            </div>
+          </div>
         </div>
 
       </div>
     </section>
 
-    <!-- VISTA 2: EXPLORADOR / GALERÍA DE CARTAS -->
+    <!-- VISTA 2: EXPLORADOR / CATÁLOGO COMPLETO -->
     <section id="view-gallery" class="view-section">
-      <div class="filter-bar">
-        <div class="search-box">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="gallery-search" class="search-input" placeholder="Buscar tecnología, autor, síntaxis o curiosidad...">
+      <div class="gallery-toolbar">
+        <div class="search-field-wrap">
+          <span class="search-icon-slot">
+            <i data-lucide="search"></i>
+          </span>
+          <input type="text" id="gallery-query" class="search-field" placeholder="Buscar tecnología, autor, paper, sintaxis o anécdota...">
         </div>
 
-        <div class="filter-selects">
-          <select id="select-group" class="custom-select">
+        <div class="dropdown-cluster">
+          <select id="select-filter-group" class="select-control">
             <option value="ALL">Todos los Grupos (A - E)</option>
             <option value="A">Grupo A: Universo Python</option>
             <option value="B">Grupo B: Software, Web y Datos</option>
@@ -100,20 +168,21 @@
             <option value="E">Grupo E: Cultura Hacker y Leyendas</option>
           </select>
 
-          <select id="select-sort" class="custom-select">
-            <option value="ID_ASC">Orden por Código (#)</option>
-            <option value="YEAR_ASC">Año: Antiguo ➡️ Reciente</option>
-            <option value="YEAR_DESC">Año: Reciente ➡️ Antiguo</option>
+          <select id="select-sort-order" class="select-control">
+            <option value="ID_ASC">Código (#ID)</option>
+            <option value="YEAR_ASC">Año: Cronológico (1957 - 2026)</option>
+            <option value="YEAR_DESC">Año: Reciente (2026 - 1957)</option>
           </select>
         </div>
       </div>
 
-      <div class="cards-grid" id="cards-grid-container">
-        <!-- Renderizado dinámico de cuadrícula -->
+      <div class="cards-catalog-grid" id="catalog-grid">
+        <!-- Tarjetas del catálogo -->
       </div>
     </section>
   </main>
 
+  <!-- Application Logic -->
   <script src="app.js"></script>
 </body>
 </html>
