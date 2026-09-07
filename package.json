@@ -1,9 +1,38 @@
 {
+  "name": "hit-tazos-tech",
+  "version": "1.0.0-rc.1",
+  "description": "Juego de cartas y trivia cronológica técnica centrado en el ecosistema de software, Python, infraestructura, IA y cultura hacker.",
+  "main": "app.js",
   "scripts": {
     "build": "node build_cards.js",
+    "audit": "python3 scratch_audit.py",
+    "test": "python3 scratch_audit.py && node --check app.js && node --check build_cards.js && node --check render_print_tabloid.js && node --check generate_card_colors.js && node --check server.js",
+    "validate": "npm test && npm run build",
+    "serve": "node server.js",
     "colors:generate": "node generate_card_colors.js",
     "print": "node render_print_tabloid.js",
     "print:test": "node render_print_tabloid.js --range=18",
     "print:chrome": "node render_print_tabloid.js --pdf"
-  }
+  },
+  "keywords": [
+    "hit-tazos",
+    "trivia",
+    "timeline",
+    "python",
+    "developer",
+    "open-source",
+    "board-game",
+    "card-game",
+    "shellaquiles"
+  ],
+  "author": "Shellaquiles Org <pixelead0>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shellaquiles/hit-tazos-tech.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shellaquiles/hit-tazos-tech/issues"
+  },
+  "homepage": "https://github.com/shellaquiles/hit-tazos-tech#readme"
 }

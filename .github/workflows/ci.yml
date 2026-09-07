@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validar presupuesto editorial (Scratch Audit)
+        run: python3 scratch_audit.py
+
+      - name: Verificar sintaxis JS de scripts
+        run: |
+          node --check app.js
+          node --check build_cards.js
+          node --check render_print_tabloid.js
+          node --check generate_card_colors.js
+          node --check server.js
+
+      - name: Recompilar mazo maestro y comprobar consistencia
+        run: |
+          node build_cards.js
+          git diff --exit-code cards.json || (echo "Error: cards.json desincronizado con los archivos de categorías fuente" && exit 1)

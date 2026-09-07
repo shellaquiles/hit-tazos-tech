@@ -11,17 +11,29 @@ Este documento es la **fuente canónica de verdad**, directrices técnicas, mode
 ### Estructura del Repositorio
 ```
 hit-tazos-tech/
-├── AGENTS.md                            # Especificación técnica maestra para agentes de IA
+├── .github/                             # Gobernanza GitHub Actions (CI, PR template, CODEOWNERS)
+│   ├── workflows/ci.yml                 # Workflow de CI obligatorio con job validate
+│   ├── CODEOWNERS                       # Asignación de mantenedores (@pixelead0)
+│   └── pull_request_template.md         # Plantilla oficial de Pull Requests
 ├── .agents/rules/hittazos-guidelines.md # Regla de detección para herramientas agentic
+├── AGENTS.md                            # Especificación técnica maestra para agentes de IA
+├── README.md                            # Documentación principal con insignias y reglas de juego
+├── CHANGELOG.md                         # Registro canónico de versiones (Keep a Changelog + SemVer)
+├── CONTRIBUTING.md                      # Guía de contribución y flujo de auditoría editorial
+├── CODE_OF_CONDUCT.md                   # Código de conducta de la comunidad Shellaquiles
+├── SECURITY.md                          # Política de seguridad y reporte responsable
+├── LICENSE                              # Licencia de código abierto MIT (Shellaquiles Org)
+├── VERSION                              # Archivo de versión semántica (1.0.0-rc.1)
+├── package.json                         # Manifiesto y scripts npm (test, validate, build, print)
 ├── cards.json                           # Archivo compilado de distribución (barajado oficial #001-#531)
 ├── card_colors.json                     # Configuración desacoplada de paletas cromáticas (#0001-#1000)
 ├── generate_card_colors.js              # Generador CLI de configuración cromática por millar
 ├── build_cards.js                       # Compilador y barajador determinista maestro
 ├── render_print_tabloid.js              # Generador de pliegos vectoriales (SVG, Cairo PDF, HTML)
 ├── scratch_audit.py                     # Script de auditoría de caracteres y presupuestos
-├── tabloide_editable.pdf                # PDF vectorial de 60 páginas con fuentes TrueType reales
+├── tabloide_editable.pdf                # PDF vectorial de 72 páginas con fuentes TrueType reales
 ├── tabloide_impresion.html              # Vista previa interactiva en navegador para impresión
-├── tabloide_pliegos_svg/                # 60 archivos SVG individuales con capas editables
+├── tabloide_pliegos_svg/                # 72 archivos SVG individuales con capas editables
 └── grupo_[a-e]_*/                       # 24 archivos JSON fuente de categorías
     ├── grupo_a_python/                  # A1 a A5 (194 tarjetas)
     ├── grupo_b_software_web/            # B1 a B5 (120 tarjetas)

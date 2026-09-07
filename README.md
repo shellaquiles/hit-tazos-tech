@@ -1,5 +1,7 @@
 # Hit-Tazos Tech 🕹️💻
 
+[![Version](https://img.shields.io/badge/version-1.0.0--rc.1-orange.svg?style=flat-square)](./CHANGELOG.md) [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](./LICENSE) [![Python](https://img.shields.io/badge/python-3.8%2B-3776AB.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/) [![Node](https://img.shields.io/badge/node-%3E%3D18-339933.svg?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/) [![Ecosystem](https://img.shields.io/badge/shellaquiles-ecosystem-9D2449.svg?style=flat-square)](https://github.com/shellaquiles)
+
 Juego original e independiente de trivia cronológica técnica centrado en el ecosistema de **Tecnología, Desarrollo de Software, Infraestructura, Inteligencia Artificial y Cultura Hacker**, con un marcado énfasis en el **Universo Python**.
 
 El juego comprende **531 tarjetas físicas de trivia (1957 – 2026)** organizadas en 5 grandes grupos temáticos y 24 categorías, listas para jugar en mesa o explorar interactivamente en la web.
@@ -12,14 +14,16 @@ La aplicación web funciona sin dependencias pesadas de frontend (Vanilla JS + C
 
 ```bash
 # Iniciar servidor local
-python3 -m http.server 3333
+npm run serve
+# o bien:
+# python3 -m http.server 3333
 
 # Abrir en el navegador:
 # http://localhost:3333/
 ```
 
 ### Modos de la Aplicación Web:
-* **🕹️ Partida Interactiva:** Tarjeta 3D que se voltea con clic o barra espaciadora, barra de adivinanza con chips de décadas, racha de aciertos y repisa cronológica para coleccionar 10 cartas.
+* **🕹️ Partida Interactiva:** Tarjeta 3D que se voltea con animación WAAPI o barra espaciadora, flujo multi-intento con pistas direccionales (más reciente / más antiguo) y temperatura (frío/tibio/caliente), chips de décadas, racha de aciertos y repisa cronológica para coleccionar 10 cartas.
 * **🔍 Explorador y Catálogo:** Visualización en cuadrícula con el **"Orden del Mazo (Bloques de Color #001..#531)"**, donde se aprecia la transición tonal continua de 10 en 10 de claro a oscuro, además de filtros por grupo y búsqueda en tiempo real.
 * **🔊 Audio y FX:** Efectos de sonido retro sintetizados con Web Audio API y confeti dinámico con la paleta de cada tarjeta al acertar.
 
@@ -49,19 +53,19 @@ Ser el primer jugador o equipo en construir una **Línea de Tiempo cronológicam
 
 ## 🖨️ Impresión Profesional en Tabloide (11×17 pulg)
 
-El repositorio incluye un motor de imposición para imprenta optimizado para hojas tamaño **Tabloide / Doble Carta (11 &times; 17 pulgadas / 279.4 &times; 431.8 mm)** con rejilla de **18 cartas cuadradas exactas por pliego (3 &times; 6, de 65 &times; 65 mm)**:
+El repositorio incluye un motor de imposición para imprenta optimizado para hojas tamaño **Tabloide / Doble Carta (11 &times; 17 pulgadas / 279.4 &times; 431.8 mm)** con rejilla de **15 cartas cuadradas por pliego (3 &times; 5, de 65 &times; 65 mm)**:
 
 ```bash
-# Compilar baraja completa (60 pliegos SVG + PDF vectorial editable)
+# Compilar baraja completa (72 pliegos SVG + PDF vectorial editable de 72 páginas)
 npm run print
 
-# Generar muestra de 1 pliego (18 cartas)
+# Generar muestra de prueba (1 pliego)
 npm run print:test
 ```
 
 ### Salidas Disponibles:
-* **[`tabloide_editable.pdf`](./tabloide_editable.pdf):** Documento vectorial de 60 páginas con fuentes TrueType (`Noto Sans`, `WinAnsi`), sin fuentes rasterizadas Tipo 3. La Cara A (frentes) y Cara B (reversos espejados `[2, 1, 0]`) garantizan coincidencia milimétrica en guillotina al imprimir a doble cara volteando por el borde largo.
-* **[`tabloide_pliegos_svg/`](./tabloide_pliegos_svg/):** 60 pliegos SVG individuales con capas organizadas (`<text>`, `<tspan>`, `<clipPath>`) listos para abrir y editar en **Adobe Illustrator, Figma, Affinity Designer o Inkscape**.
+* **[`tabloide_editable.pdf`](./tabloide_editable.pdf):** Documento vectorial de 72 páginas con fuentes TrueType (`Noto Sans`, `WinAnsi`), sin fuentes rasterizadas Tipo 3. La Cara A (frentes) y Cara B (reversos espejados `[2, 1, 0]`) garantizan coincidencia milimétrica en guillotina al imprimir a doble cara volteando por el borde largo.
+* **[`tabloide_pliegos_svg/`](./tabloide_pliegos_svg/):** Pliegos SVG individuales con capas organizadas (`<text>`, `<tspan>`, `<clipPath>`) listos para abrir y editar en **Adobe Illustrator, Figma, Affinity Designer o Inkscape**.
 * **[`tabloide_impresion.html`](./tabloide_impresion.html):** Vista previa para mandar a imprimir directamente desde el navegador web (`Ctrl+P`).
 
 ---
@@ -82,3 +86,15 @@ npm run print:test
 
 Para desarrolladores, diseñadores y agentes de inteligencia artificial:
 * Consulta [**`AGENTS.md`**](./AGENTS.md) para la **especificación técnica maestra**, incluyendo el contrato JSON de datos, presupuestos estrictos de caracteres ($\le 45$ autor, $\le 145$ hito, $\le 150$ trivia), matemáticas del sistema cromático HSL, fórmulas de imposición y flujo obligatorio de compilación.
+
+---
+
+## 📄 Comunidad y Licencia
+
+Desarrollado bajo la licencia MIT como parte del ecosistema de proyectos de **Shellaquiles Org**.
+
+- 📜 [Licencia MIT](./LICENSE)
+- 📋 [Historial de Cambios (Changelog)](./CHANGELOG.md)
+- 🤝 [Guía de Contribución](./CONTRIBUTING.md)
+- 🛡️ [Política de Seguridad](./SECURITY.md)
+- 📜 [Código de Conducta](./CODE_OF_CONDUCT.md)
