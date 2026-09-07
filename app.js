@@ -8,12 +8,14 @@ class HitsterEngine {
     this.playerShelf = [];
     this.currentIndex = 0;
     this.score = 0;
+    this.streak = 0;
     this.activeGroup = 'ALL';
     this.soundEnabled = true;
     this.audioCtx = null;
     
     this.initAudio();
     this.initDOM();
+    this.initFX();
     this.bindEvents();
     this.loadData();
   }
@@ -34,36 +36,46 @@ class HitsterEngine {
     }
     
     const now = this.audioCtx.currentTime;
-    const osc = this.audioCtx.createOscillator();
-    const gain = this.audioCtx.createGain();
-    osc.connect(gain);
-    gain.connect(this.audioCtx.destination);
 
     if (type === 'flip') {
+      const osc = this.audioCtx.createOscillator();
+      const gain = this.audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(this.audioCtx.destination);
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(240, now);
-      osc.frequency.exponentialRampToValueAtTime(480, now + 0.12);
-      gain.gain.setValueAtTime(0.12, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+      osc.frequency.setValueAtTime(260, now);
+      osc.frequency.exponentialRampToValueAtTime(540, now + 0.15);
+      gain.gain.setValueAtTime(0.14, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
       osc.start(now);
-      osc.stop(now + 0.12);
+      osc.stop(now + 0.15);
     } else if (type === 'hit') {
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(523.25, now); // C5
-      osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
-      osc.frequency.setValueAtTime(783.99, now + 0.16); // G5
-      gain.gain.setValueAtTime(0.16, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
-      osc.start(now);
-      osc.stop(now + 0.45);
+      // Lush multi-oscillator chord (Maj7 arpeggio)
+      const freqs = [523.25, 659.25, 783.99, 987.77];
+      freqs.forEach((f, idx) => {
+        const osc = this.audioCtx.createOscillator();
+        const gain = this.audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(this.audioCtx.destination);
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(f, now + idx * 0.06);
+        gain.gain.setValueAtTime(0.14, now + idx * 0.06);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5 + idx * 0.05);
+        osc.start(now + idx * 0.06);
+        osc.stop(now + 0.5 + idx * 0.05);
+      });
     } else if (type === 'miss') {
+      const osc = this.audioCtx.createOscillator();
+      const gain = this.audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(this.audioCtx.destination);
       osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(180, now);
-      osc.frequency.linearRampToValueAtTime(110, now + 0.22);
-      gain.gain.setValueAtTime(0.12, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+      osc.frequency.setValueAtTime(170, now);
+      osc.frequency.linearRampToValueAtTime(95, now + 0.25);
+      gain.gain.setValueAtTime(0.15, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
       osc.start(now);
-      osc.stop(now + 0.22);
+      osc.stop(now + 0.25);
     }
   }
 
@@ -81,9 +93,12 @@ class HitsterEngine {
     
     // Arena elements
     this.cardStage = document.getElementById('card-stage');
+    this.ambientAura = document.getElementById('ambient-card-aura');
     this.hudGroupLabel = document.getElementById('hud-group-label');
     this.hudCardCounter = document.getElementById('hud-card-counter');
     this.hudScore = document.getElementById('hud-score');
+    this.hudStreak = document.getElementById('hud-streak');
+    this.hudStreakBox = document.getElementById('hud-streak-box');
     this.inputYear = document.getElementById('input-year');
     this.btnSubmitGuess = document.getElementById('btn-submit-guess');
     this.guessResultPill = document.getElementById('guess-result-pill');
@@ -93,8 +108,12 @@ class HitsterEngine {
     this.btnShuffle = document.getElementById('btn-shuffle');
     this.shelfCardsContainer = document.getElementById('shelf-cards-container');
     this.shelfCounter = document.getElementById('shelf-counter');
+    this.shelfProgressFill = document.getElementById('shelf-progress-fill');
     this.counterTotal = document.getElementById('counter-total');
     
+    // Decade quick picker
+    this.decadeChips = document.querySelectorAll('.decade-chip');
+
     // Nudge buttons
     this.btnNudgeMinus5 = document.getElementById('btn-nudge-minus5');
     this.btnNudgeMinus1 = document.getElementById('btn-nudge-minus1');
@@ -106,6 +125,74 @@ class HitsterEngine {
     this.selectFilterGroup = document.getElementById('select-filter-group');
     this.selectSortOrder = document.getElementById('select-sort-order');
     this.catalogGrid = document.getElementById('catalog-grid');
+  }
+
+  initFX() {
+    this.fxCanvas = document.getElementById('fx-canvas');
+    if (!this.fxCanvas) return;
+    this.fxCtx = this.fxCanvas.getContext('2d');
+    this.particles = [];
+    
+    const resizeCanvas = () => {
+      this.fxCanvas.width = window.innerWidth;
+      this.fxCanvas.height = window.innerHeight;
+    };
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const loop = () => {
+      if (this.particles.length > 0) {
+        this.fxCtx.clearRect(0, 0, this.fxCanvas.width, this.fxCanvas.height);
+        for (let i = this.particles.length - 1; i >= 0; i--) {
+          const p = this.particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.18; // gravity
+          p.rot += p.vRot;
+          p.alpha -= 0.015;
+          
+          if (p.alpha <= 0) {
+            this.particles.splice(i, 1);
+            continue;
+          }
+
+          this.fxCtx.save();
+          this.fxCtx.translate(p.x, p.y);
+          this.fxCtx.rotate(p.rot);
+          this.fxCtx.globalAlpha = p.alpha;
+          this.fxCtx.fillStyle = p.color;
+          this.fxCtx.shadowColor = p.color;
+          this.fxCtx.shadowBlur = 8;
+          this.fxCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+          this.fxCtx.restore();
+        }
+      }
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+  }
+
+  triggerCyberConfetti(color = '#38bdf8') {
+    if (!this.fxCanvas) return;
+    const originX = window.innerWidth / 2;
+    const originY = window.innerHeight / 2 - 40;
+    const palette = [color, '#facc15', '#f472b6', '#34d399', '#ffffff'];
+
+    for (let i = 0; i < 70; i++) {
+      const angle = (Math.PI * 2 * i) / 70 + (Math.random() - 0.5) * 0.4;
+      const speed = Math.random() * 9 + 4;
+      this.particles.push({
+        x: originX,
+        y: originY,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - 3,
+        size: Math.random() * 8 + 4,
+        color: palette[Math.floor(Math.random() * palette.length)],
+        rot: Math.random() * Math.PI,
+        vRot: (Math.random() - 0.5) * 0.2,
+        alpha: 1
+      });
+    }
   }
 
   refreshIcons() {
@@ -183,6 +270,16 @@ class HitsterEngine {
       }
     });
 
+    // Decade Quick Picker
+    this.decadeChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const decade = chip.getAttribute('data-decade');
+        this.inputYear.value = decade;
+        this.inputYear.focus();
+        this.playAudioFeedback('flip');
+      });
+    });
+
     // 3D Tilt Parallax on Mousemove
     this.cardStage.addEventListener('mousemove', (e) => this.handle3DTilt(e));
     this.cardStage.addEventListener('mouseleave', () => this.reset3DTilt());
@@ -223,6 +320,12 @@ class HitsterEngine {
     const baseFlip = isFlipped ? 180 : 0;
     
     card.style.transform = `rotateY(${baseFlip + rotateY}deg) rotateX(${rotateX}deg)`;
+
+    const glareX = (x / rect.width) * 100;
+    const glareY = (y / rect.height) * 100;
+    card.style.setProperty('--glare-x', `${glareX}%`);
+    card.style.setProperty('--glare-y', `${glareY}%`);
+    card.style.setProperty('--glare-opacity', '0.9');
   }
 
   reset3DTilt() {
@@ -230,6 +333,7 @@ class HitsterEngine {
     if (!card) return;
     const isFlipped = card.classList.contains('is-flipped');
     card.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+    card.style.setProperty('--glare-opacity', '0');
   }
 
   nudgeYear(delta) {
@@ -285,6 +389,17 @@ class HitsterEngine {
     return map[grp] || 'layers';
   }
 
+  getEraLabel(year) {
+    if (year < 1970) return 'Era Pioneros & Mainframes';
+    if (year < 1980) return 'Era UNIX & Arpanet';
+    if (year < 1990) return 'Era Microordenadores & C';
+    if (year < 2000) return 'Era Web & Python';
+    if (year < 2008) return 'Era Burbuja .COM & Open Source';
+    if (year < 2015) return 'Era Cloud Native & Smartphones';
+    if (year < 2022) return 'Era Deep Learning & Contenedores';
+    return 'Era LLMs & IA Generativa';
+  }
+
   buildCardHTML(card) {
     const hitoFormatted = this.formatMarkdown(card.hito);
     const creadorFormatted = this.formatMarkdown(card.creador);
@@ -297,10 +412,17 @@ class HitsterEngine {
     const percent = ((clampedYear - minYear) / (maxYear - minYear)) * 100;
 
     const groupIcon = this.getGroupIconName(card.grupo);
+    const eraName = this.getEraLabel(card.year);
 
     return `
       <!-- FRONT -->
       <div class="card-sheet sheet-front">
+        <div class="card-glare-effect"></div>
+        <div class="corner-bracket bracket-tl"></div>
+        <div class="corner-bracket bracket-tr"></div>
+        <div class="corner-bracket bracket-bl"></div>
+        <div class="corner-bracket bracket-br"></div>
+
         <div class="card-topbar">
           <div class="category-chip">
             <i data-lucide="${groupIcon}"></i>
@@ -329,6 +451,12 @@ class HitsterEngine {
 
       <!-- BACK -->
       <div class="card-sheet sheet-back">
+        <div class="card-glare-effect"></div>
+        <div class="corner-bracket bracket-tl"></div>
+        <div class="corner-bracket bracket-tr"></div>
+        <div class="corner-bracket bracket-bl"></div>
+        <div class="corner-bracket bracket-br"></div>
+
         <div class="card-topbar">
           <div class="category-chip">
             <i data-lucide="${groupIcon}"></i>
@@ -338,6 +466,10 @@ class HitsterEngine {
         </div>
 
         <div class="year-revelation">
+          <div class="era-badge">
+            <i data-lucide="sparkles"></i>
+            <span>${eraName}</span>
+          </div>
           <div class="year-digits">${card.year}</div>
         </div>
 
@@ -389,6 +521,19 @@ class HitsterEngine {
     this.hudCardCounter.textContent = `${this.currentIndex + 1} / ${this.activeDeck.length}`;
     this.inputYear.value = '';
     this.guessResultPill.textContent = '';
+
+    // Update Ambient Aura glow
+    if (this.ambientAura) {
+      const glowColors = {
+        'A': 'rgba(56, 189, 248, 0.45)',
+        'B': 'rgba(34, 211, 238, 0.45)',
+        'C': 'rgba(52, 211, 153, 0.45)',
+        'D': 'rgba(244, 114, 182, 0.45)',
+        'E': 'rgba(251, 191, 36, 0.45)'
+      };
+      const glow = glowColors[card.grupo] || 'rgba(56, 189, 248, 0.45)';
+      this.ambientAura.style.background = `radial-gradient(circle, ${glow} 0%, transparent 70%)`;
+    }
     
     this.refreshIcons();
   }
@@ -411,25 +556,44 @@ class HitsterEngine {
     if (!cardEl.classList.contains('is-flipped')) {
       cardEl.classList.add('is-flipped');
       this.reset3DTilt();
-      this.playAudioFeedback('flip');
     }
+
+    const themeColors = {
+      'A': '#38bdf8',
+      'B': '#22d3ee',
+      'C': '#34d399',
+      'D': '#f472b6',
+      'E': '#fbbf24'
+    };
+    const cardColor = themeColors[card.grupo] || '#38bdf8';
 
     const diff = Math.abs(val - card.year);
     if (diff === 0) {
       this.guessResultPill.innerHTML = `<span style="color: #4ade80; display: inline-flex; align-items: center; gap: 0.35rem;"><i data-lucide="check-circle-2"></i> ¡Exacto! ${card.year} (+3 Puntos)</span>`;
       this.score += 3;
+      this.streak += 1;
       this.playAudioFeedback('hit');
+      this.triggerCyberConfetti(cardColor);
       this.addToShelf(card);
     } else if (diff <= 2) {
       this.guessResultPill.innerHTML = `<span style="color: #facc15; display: inline-flex; align-items: center; gap: 0.35rem;"><i data-lucide="sparkles"></i> Muy cerca: ${card.year} (+1 Punto)</span>`;
       this.score += 1;
+      this.streak += 1;
       this.playAudioFeedback('hit');
       this.addToShelf(card);
     } else {
       this.guessResultPill.innerHTML = `<span style="color: #f87171; display: inline-flex; align-items: center; gap: 0.35rem;"><i data-lucide="x-circle"></i> Ocurrió en ${card.year}</span>`;
+      this.streak = 0;
       this.playAudioFeedback('miss');
     }
+
     this.hudScore.textContent = this.score;
+    if (this.hudStreak) this.hudStreak.textContent = this.streak;
+    if (this.hudStreakBox) {
+      if (this.streak >= 2) this.hudStreakBox.classList.add('streak-hot');
+      else this.hudStreakBox.classList.remove('streak-hot');
+    }
+
     this.refreshIcons();
   }
 
@@ -449,9 +613,15 @@ class HitsterEngine {
       this.shelfCardsContainer.appendChild(chip);
     });
 
+    if (this.shelfProgressFill) {
+      const pct = Math.min(100, (this.playerShelf.length / 10) * 100);
+      this.shelfProgressFill.style.width = `${pct}%`;
+    }
+
     this.shelfCounter.textContent = `${this.playerShelf.length} / 10 cartas para ganar`;
     if (this.playerShelf.length >= 10) {
       this.shelfCounter.innerHTML = `<strong style="color: #4ade80; display: inline-flex; align-items: center; gap: 0.35rem;"><i data-lucide="trophy"></i> ¡Línea de Tiempo Completada! Victoria</strong>`;
+      this.triggerCyberConfetti('#facc15');
       this.refreshIcons();
     }
   }

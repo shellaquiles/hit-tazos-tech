@@ -76,6 +76,9 @@
     </button>
   </nav>
 
+  <!-- Full-screen FX Canvas for Cyber Confetti / Sparks -->
+  <canvas id="fx-canvas"></canvas>
+
   <main>
     <!-- VISTA 1: MODO JUEGO INTERACTIVO -->
     <section id="view-play" class="view-section active">
@@ -93,27 +96,51 @@
           </div>
           <div class="hud-item">
             <i data-lucide="target"></i>
-            Aciertos: <strong id="hud-score">0</strong>
+            Puntos: <strong id="hud-score">0</strong>
+          </div>
+          <div class="hud-item hud-streak-item" id="hud-streak-box">
+            <i data-lucide="flame"></i>
+            Racha: <strong id="hud-streak">0</strong>
           </div>
         </div>
 
-        <!-- Escenario 3D de la Carta -->
-        <div class="card-perspective-stage" id="card-stage" title="Haz clic o presiona Espacio para voltear la carta">
-          <!-- Tarjeta inyectada dinámicamente -->
+        <!-- Escenario 3D de la Carta con Aura Ambiental -->
+        <div class="arena-stage-container">
+          <div class="ambient-card-aura" id="ambient-card-aura"></div>
+          <div class="card-perspective-stage" id="card-stage" title="Haz clic o presiona Espacio para voltear la carta">
+            <!-- Tarjeta inyectada dinámicamente -->
+          </div>
         </div>
 
-        <!-- Consola Cronológica / Adivinar Año -->
-        <div class="chronological-console">
-          <button class="nudge-btn" id="btn-nudge-minus5">-5</button>
-          <button class="nudge-btn" id="btn-nudge-minus1">-1</button>
-          <input type="number" id="input-year" class="console-input" placeholder="AÑO" min="1950" max="2030">
-          <button class="nudge-btn" id="btn-nudge-plus1">+1</button>
-          <button class="nudge-btn" id="btn-nudge-plus5">+5</button>
-          <button class="btn-primary" id="btn-submit-guess">
-            <i data-lucide="check"></i>
-            Comprobar
-          </button>
-          <div id="guess-result-pill" style="font-weight: 700; font-size: 0.85rem; margin-left: 0.5rem;"></div>
+        <!-- Consola Cronológica / Deck DJ Sintetizador -->
+        <div class="chronological-console-wrapper">
+          <!-- Salto Rápido por Décadas -->
+          <div class="decade-quick-picker" id="decade-quick-picker">
+            <span class="decade-label">Saltar:</span>
+            <button class="decade-chip" data-decade="1960">'60s</button>
+            <button class="decade-chip" data-decade="1970">'70s</button>
+            <button class="decade-chip" data-decade="1980">'80s</button>
+            <button class="decade-chip" data-decade="1990">'90s</button>
+            <button class="decade-chip" data-decade="2000">'00s</button>
+            <button class="decade-chip" data-decade="2010">'10s</button>
+            <button class="decade-chip" data-decade="2020">'20s</button>
+          </div>
+
+          <div class="chronological-console">
+            <button class="nudge-btn" id="btn-nudge-minus5" title="Retroceder 5 años">-5</button>
+            <button class="nudge-btn" id="btn-nudge-minus1" title="Retroceder 1 año">-1</button>
+            <div class="console-input-wrap">
+              <input type="number" id="input-year" class="console-input" placeholder="AÑO" min="1950" max="2030">
+            </div>
+            <button class="nudge-btn" id="btn-nudge-plus1" title="Avanzar 1 año">+1</button>
+            <button class="nudge-btn" id="btn-nudge-plus5" title="Avanzar 5 años">+5</button>
+            <button class="btn-primary btn-submit-guess" id="btn-submit-guess">
+              <i data-lucide="check"></i>
+              <span>Comprobar</span>
+            </button>
+          </div>
+
+          <div id="guess-result-pill" class="guess-result-pill"></div>
         </div>
 
         <!-- Controles de Navegación -->
@@ -121,7 +148,7 @@
           <button class="btn-secondary" id="btn-prev">
             <i data-lucide="arrow-left"></i> Anterior
           </button>
-          <button class="btn-primary" id="btn-flip">
+          <button class="btn-primary btn-flip-cta" id="btn-flip">
             <i data-lucide="rotate-cw"></i> Girar Carta [Espacio]
           </button>
           <button class="btn-secondary" id="btn-next">
@@ -132,15 +159,21 @@
           </button>
         </div>
 
-        <!-- Bandeja de Línea de Tiempo del Jugador -->
+        <!-- Bandeja de Línea de Tiempo del Jugador (Rack Coleccionable) -->
         <div class="timeline-shelf">
           <div class="shelf-header">
-            <span>Tu Línea de Tiempo Personal</span>
+            <div class="shelf-title-wrap">
+              <i data-lucide="trophy"></i>
+              <span>Tu Línea de Tiempo Personal</span>
+            </div>
             <span id="shelf-counter">0 / 10 cartas para ganar</span>
+          </div>
+          <div class="shelf-progress-track">
+            <div class="shelf-progress-fill" id="shelf-progress-fill"></div>
           </div>
           <div class="shelf-cards-row" id="shelf-cards-container">
             <div class="shelf-empty-prompt">
-              Acierta el año de una carta o colócala en tu cronología para sumarla a tu estante.
+              Adivina el año exacto o cercano (±2) para coleccionar cartas y completar tu línea de tiempo.
             </div>
           </div>
         </div>
