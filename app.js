@@ -236,11 +236,39 @@ class HitsterEngine {
       }
     });
 
-    // Print
+    // Print Modal & Duplex Generator
+    this.printDialog = document.getElementById('print-dialog');
+    this.btnClosePrintModal = document.getElementById('btn-close-print-modal');
+    this.btnCancelPrint = document.getElementById('btn-cancel-print');
+    this.btnExecutePrint = document.getElementById('btn-execute-print');
+    this.printSheetsContainer = document.getElementById('print-sheets-container');
+    this.printSelectRange = document.getElementById('print-select-range');
+    this.printCropMarks = document.getElementById('print-crop-marks');
+
     this.btnPrint.addEventListener('click', () => {
-      this.switchView('gallery');
-      setTimeout(() => window.print(), 350);
+      if (this.printDialog && typeof this.printDialog.showModal === 'function') {
+        this.printDialog.showModal();
+        this.refreshIcons();
+      } else {
+        window.print();
+      }
     });
+
+    if (this.btnClosePrintModal) {
+      this.btnClosePrintModal.addEventListener('click', () => this.printDialog.close());
+    }
+    if (this.btnCancelPrint) {
+      this.btnCancelPrint.addEventListener('click', () => this.printDialog.close());
+    }
+    if (this.btnExecutePrint) {
+      this.btnExecutePrint.addEventListener('click', () => {
+        this.generatePrintSheets();
+        this.printDialog.close();
+        setTimeout(() => {
+          window.print();
+        }, 350);
+      });
+    }
 
     // Ribbon Group Selection
     this.groupRibbon.querySelectorAll('.ribbon-pill').forEach(pill => {
@@ -750,9 +778,8 @@ class HitsterEngine {
     const eraName = this.getEraLabel(card.year);
     const centerArtifactHTML = this.renderCenterArtifact(card);
 
-    // Consecutivo limpio (ej. '#A1-003' -> '003')
-    const matchConsecutivo = card.id.match(/(\d+)$/);
-    const consecutiveId = matchConsecutivo ? matchConsecutivo[1] : card.id;
+    // Número de carta consecutivo (#001..#531)
+    const cardNumStr = card.card_number ? `#${String(card.card_number).padStart(3, '0')}` : '';
 
     // Tema cromático Hitster
     const theme = this.getHitsterCardTheme(card);
@@ -775,7 +802,7 @@ class HitsterEngine {
         <div class="card-footbar-minimal">
           <span class="corner-meta-left">${card.categoria}</span>
           <span class="flip-pill"><i data-lucide="rotate-cw"></i> Voltear</span>
-          <span class="corner-meta-right">${consecutiveId}</span>
+          <span class="corner-meta-right">${cardNumStr}</span>
         </div>
       </div>
 
@@ -795,7 +822,7 @@ class HitsterEngine {
 
         <div class="card-footbar-minimal">
           <span class="corner-meta-left">${card.categoria}</span>
-          <span class="corner-meta-right">${consecutiveId}</span>
+          <span class="corner-meta-right">${cardNumStr}</span>
         </div>
       </div>
     `;
@@ -900,7 +927,7 @@ class HitsterEngine {
   }
 
   addToShelf(card) {
-    if (this.playerShelf.some(c => c.id === card.id)) return;
+    if (this.playerShelf.some(c => c.card_number === card.card_number)) return;
     this.playerShelf.push(card);
     this.playerShelf.sort((a, b) => a.year - b.year);
 
@@ -908,9 +935,10 @@ class HitsterEngine {
     this.playerShelf.forEach(c => {
       const chip = document.createElement('div');
       chip.className = `shelf-card-chip theme-${c.grupo}`;
+      const chipNum = c.card_number ? `#${String(c.card_number).padStart(3, '0')}` : '';
       chip.innerHTML = `
         <div class="shelf-year">${c.year}</div>
-        <div class="shelf-id">${c.id}</div>
+        <div class="shelf-id">${chipNum}</div>
       `;
       this.shelfCardsContainer.appendChild(chip);
     });
@@ -961,11 +989,13 @@ class HitsterEngine {
 
     this.filteredCatalog = this.cards.filter(c => {
       const matchGrp = grp === 'ALL' || c.grupo === grp;
+      const numStr = c.card_number ? String(c.card_number) : '';
       const matchQ = !q ||
         c.hito.toLowerCase().includes(q) ||
         c.creador.toLowerCase().includes(q) ||
         c.dato_curioso.toLowerCase().includes(q) ||
-        c.id.toLowerCase().includes(q);
+        numStr.includes(q) ||
+        `#${numStr}`.includes(q);
       return matchGrp && matchQ;
     });
 
@@ -973,8 +1003,6 @@ class HitsterEngine {
       this.filteredCatalog.sort((a, b) => a.year - b.year);
     } else if (sort === 'YEAR_DESC') {
       this.filteredCatalog.sort((a, b) => b.year - a.year);
-    } else if (sort === 'ID_ASC') {
-      this.filteredCatalog.sort((a, b) => a.id.localeCompare(b.id));
     } else if (sort === 'DECK_ORDER') {
       this.filteredCatalog.sort((a, b) => (a.card_number || 0) - (b.card_number || 0));
     }
@@ -1002,6 +1030,152 @@ class HitsterEngine {
       cell.appendChild(cardEl);
       this.catalogGrid.appendChild(cell);
     });
+
+    this.refreshIcons();
+  }
+
+  /**
+   * Generación Milimétrica de Pliegos Dúplex en Tabloide (11 x 17 pulg)
+   * 18 cartas por pliego en rejilla de 3 columnas x 6 filas (65mm x 65mm).
+   * Regla de correspondencia Dúplex al voltear por el borde largo:
+   *  - Cada fila [A, B, C] en el Frente se espeja horizontalmente en el Reverso como [C, B, A].
+   */
+  generatePrintSheets() {
+    if (!this.printSheetsContainer) return;
+    this.printSheetsContainer.innerHTML = '';
+
+    const rangeOption = this.printSelectRange ? this.printSelectRange.value : 'SAMPLE_18';
+    const cropOption = this.printCropMarks ? this.printCropMarks.value : 'GUIDES';
+    const hasBorder = cropOption === 'GUIDES';
+
+    let targetCards = [...this.cards];
+
+    if (rangeOption === 'SAMPLE_18') {
+      targetCards = targetCards.slice(0, 18);
+    } else if (rangeOption === 'SAMPLE_36') {
+      targetCards = targetCards.slice(0, 36);
+    } else if (rangeOption === 'CURRENT_GROUP') {
+      const currentActivePill = this.groupRibbon.querySelector('.ribbon-pill.active');
+      const activeGrp = currentActivePill ? currentActivePill.getAttribute('data-group') : 'ALL';
+      if (activeGrp && activeGrp !== 'ALL') {
+        targetCards = targetCards.filter(c => c.grupo === activeGrp);
+      }
+    }
+    // Si es 'ALL' toma las 531 cartas completas (30 pliegos tabloide)
+
+    const CARDS_PER_SHEET = 18;
+    const totalSheets = Math.ceil(targetCards.length / CARDS_PER_SHEET);
+
+    for (let sheetIdx = 0; sheetIdx < totalSheets; sheetIdx++) {
+      const sheetCards = targetCards.slice(sheetIdx * CARDS_PER_SHEET, (sheetIdx + 1) * CARDS_PER_SHEET);
+      // Rellenar hasta 18 si el último pliego tiene menos
+      while (sheetCards.length < CARDS_PER_SHEET) {
+        sheetCards.push(null);
+      }
+
+      // --- PLIEGO IMPAR: FRENTES (Orden natural 0..17, 3x6) ---
+      const frontSheet = document.createElement('div');
+      frontSheet.className = 'print-sheet print-sheet-fronts';
+      frontSheet.innerHTML = `
+        <div class="sheet-meta-header">
+          <span>HITSTER TECH EDITION — TABLOIDE ${sheetIdx + 1} DE ${totalSheets} [CARA A: FRENTES]</span>
+          <span>11x17 PULGADAS — 18 CARTAS (65x65mm) — CORTE MILIMÉTRICO</span>
+        </div>
+      `;
+
+      const frontGrid = document.createElement('div');
+      frontGrid.className = 'print-grid-18';
+
+      sheetCards.forEach((card, posIdx) => {
+        const box = document.createElement('div');
+        box.className = `print-card-box ${hasBorder ? 'print-crop-border' : ''}`;
+
+        if (card) {
+          const theme = this.getHitsterCardTheme(card);
+          const groupIcon = this.getGroupIconName(card.grupo);
+          const hitoFormatted = this.formatMarkdown(card.hito);
+          const cardNumStr = card.card_number ? `#${String(card.card_number).padStart(3, '0')}` : '';
+
+          box.innerHTML = `
+            <div class="print-card-face print-face-front" style="--hitster-bg: ${theme.bg}; --hitster-front-bg: ${theme.frontBg};">
+              <div class="card-topbar-minimal">
+                <span class="group-badge-tiny">
+                  <i data-lucide="${groupIcon}"></i>
+                  ${card.grupo_nombre}
+                </span>
+                <span class="category-badge-tiny">${card.categoria_nombre}</span>
+              </div>
+              <div class="clue-stage-pure">
+                <p class="clue-quote">${hitoFormatted}</p>
+              </div>
+              <div class="card-footbar-minimal">
+                <span class="corner-meta-left">${card.categoria}</span>
+                <span class="corner-meta-right">${cardNumStr}</span>
+              </div>
+            </div>
+          `;
+        }
+        frontGrid.appendChild(box);
+      });
+
+      frontSheet.appendChild(frontGrid);
+      this.printSheetsContainer.appendChild(frontSheet);
+
+      // --- PLIEGO PAR: REVERSOS (Espejado Horizontal Fila por Fila: [c2, c1, c0]) ---
+      const backSheet = document.createElement('div');
+      backSheet.className = 'print-sheet print-sheet-backs';
+      backSheet.innerHTML = `
+        <div class="sheet-meta-header">
+          <span>HITSTER TECH EDITION — TABLOIDE ${sheetIdx + 1} DE ${totalSheets} [CARA B: REVERSOS ESPEJADOS]</span>
+          <span>VOLTEAR POR EL BORDE LARGO (LONG EDGE DUPLEX)</span>
+        </div>
+      `;
+
+      const backGrid = document.createElement('div');
+      backGrid.className = 'print-grid-18';
+
+      // 6 filas de 3 columnas: [row*3+2, row*3+1, row*3+0]
+      const mirroredIndices = [];
+      for (let r = 0; r < 6; r++) {
+        const base = r * 3;
+        mirroredIndices.push(base + 2, base + 1, base);
+      }
+
+      mirroredIndices.forEach(idx => {
+        const card = sheetCards[idx];
+        const box = document.createElement('div');
+        box.className = `print-card-box ${hasBorder ? 'print-crop-border' : ''}`;
+
+        if (card) {
+          const theme = this.getHitsterCardTheme(card);
+          const creadorFormatted = this.formatMarkdown(card.creador);
+          const triviaFormatted = this.formatMarkdown(card.dato_curioso);
+          const cardNumStr = card.card_number ? `#${String(card.card_number).padStart(3, '0')}` : '';
+
+          box.innerHTML = `
+            <div class="print-card-face print-face-back" style="--hitster-bg: ${theme.bg};">
+              <div class="card-back-top">
+                <div class="back-author-title">${creadorFormatted}</div>
+              </div>
+              <div class="year-center-stage">
+                <div class="year-digits-hero">${card.year}</div>
+              </div>
+              <div class="card-back-bottom">
+                <div class="back-trivia-phrase">${triviaFormatted}</div>
+              </div>
+              <div class="card-footbar-minimal">
+                <span class="corner-meta-left">${card.categoria}</span>
+                <span class="corner-meta-right">${cardNumStr}</span>
+              </div>
+            </div>
+          `;
+        }
+        backGrid.appendChild(box);
+      });
+
+      backSheet.appendChild(backGrid);
+      this.printSheetsContainer.appendChild(backSheet);
+    }
 
     this.refreshIcons();
   }

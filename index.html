@@ -202,8 +202,7 @@
           </select>
 
           <select id="select-sort-order" class="select-control">
-            <option value="DECK_ORDER" selected>Orden del Mazo (Bloques de Color #001..#531)</option>
-            <option value="ID_ASC">Código (#ID)</option>
+            <option value="DECK_ORDER" selected>Orden del Mazo (Bloques de Color #1..#531)</option>
             <option value="YEAR_ASC">Año: Cronológico (1957 - 2026)</option>
             <option value="YEAR_DESC">Año: Reciente (2026 - 1957)</option>
           </select>
@@ -214,7 +213,64 @@
         <!-- Tarjetas del catálogo -->
       </div>
     </section>
+
+    <!-- VISTA 3: HOJAS DE IMPRESIÓN DÚPLEX (FRENTE Y REVERSO EN ESPEJO) -->
+    <div id="print-sheets-container" class="print-sheets-container"></div>
   </main>
+
+  <!-- Modal de Configuración de Impresión Milimétrica a 2 Caras -->
+  <dialog id="print-dialog" class="print-modal">
+    <div class="print-modal-content">
+      <div class="print-modal-header">
+        <div class="print-modal-title">
+          <i data-lucide="printer"></i>
+          <span>Impresión Dúplex (2 Caras Milimétricas)</span>
+        </div>
+        <button class="print-modal-close" id="btn-close-print-modal">&times;</button>
+      </div>
+      <div class="print-modal-body">
+        <p class="print-modal-desc">
+          Genera pliegos en tamaño <strong>Tabloide / Doble Carta (11 &times; 17 pulg / 279.4 &times; 431.8 mm)</strong> optimizados con <strong>18 cartas por pliego (rejilla 3 &times; 6, cuadradas de 6.5 &times; 6.5 cm)</strong>. Las páginas impares contienen los <strong>Frentes</strong> y las páginas pares contienen los <strong>Reversos espejados horizontalmente fila por fila</strong> para coincidencia milimétrica exacta al voltear por el borde largo.
+        </p>
+
+        <div class="print-form-group">
+          <label for="print-select-range">Seleccionar grupo o rango de cartas:</label>
+          <select id="print-select-range" class="select-control" style="width: 100%;">
+            <option value="SAMPLE_18">Muestra de prueba: 1 Pliego Tabloide (18 Cartas: #001 - #018)</option>
+            <option value="SAMPLE_36">Muestra de prueba: 2 Pliegos Tabloide (36 Cartas: #001 - #036)</option>
+            <option value="CURRENT_GROUP">Cartas del Grupo seleccionado en el filtro</option>
+            <option value="ALL">Baraja completa (Todas las 531 cartas — 30 pliegos)</option>
+          </select>
+        </div>
+
+        <div class="print-form-group">
+          <label for="print-crop-marks">Marcas de corte y guías:</label>
+          <select id="print-crop-marks" class="select-control" style="width: 100%;">
+            <option value="GUIDES" selected>Con líneas de corte finas (Recomendado para guillotina)</option>
+            <option value="CLEAN">Borde limpio sin líneas de corte</option>
+          </select>
+        </div>
+
+        <div class="print-instructions-box">
+          <strong>💡 Instrucciones de Impresión en tu impresora / centro de copiado:</strong>
+          <ul>
+            <li>Tamaño de papel: <strong>Tabloide / 11 &times; 17 pulg / Doble Carta</strong>.</li>
+            <li>Orientación: <strong>Vertical (Portrait)</strong>.</li>
+            <li>Escala: <strong>100% / Tamaño Real</strong> (desactiva "Ajustar a la página").</li>
+            <li>Márgenes: <strong>Ninguno / Mínimo</strong>.</li>
+            <li>Impresión a 2 caras: <strong>Doble cara automática volteando por el borde largo</strong>.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="print-modal-footer">
+        <button class="btn-secondary" id="btn-cancel-print">Cancelar</button>
+        <button class="btn-primary" id="btn-execute-print">
+          <i data-lucide="printer"></i>
+          Preparar e Imprimir
+        </button>
+      </div>
+    </div>
+  </dialog>
 
   <!-- Application Logic -->
   <script src="app.js"></script>

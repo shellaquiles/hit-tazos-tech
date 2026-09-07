@@ -79,12 +79,10 @@ function build() {
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
 
-  // Asignar numeración consecutiva 1..N como en las tarjetas físicas de Hitster
+  // Asignar numeración consecutiva 1..N como en las tarjetas físicas de Hitster (sin campo 'id')
   shuffled.forEach((card, idx) => {
-    const num = idx + 1;
-    const numStr = String(num).padStart(3, '0');
-    card.card_number = num;
-    card.id = `#${card.categoria}-${numStr}`;
+    card.card_number = idx + 1;
+    delete card.id;
   });
 
   // Guardar cards.json compilado
@@ -92,7 +90,7 @@ function build() {
   fs.writeFileSync(outputPath, JSON.stringify(shuffled, null, 2) + '\n', 'utf8');
   console.log(`✅ ${shuffled.length} tarjetas compiladas exitosamente en: ${outputPath}`);
 
-  // Actualizar también los archivos por categoría manteniendo sus nuevos IDs consistentes
+  // Actualizar también los archivos por categoría manteniendo sus nuevos card_number y sin 'id'
   const cardById = new Map();
   shuffled.forEach(c => {
     // Clave basada en hito y creador para ubicar la tarjeta original
@@ -106,14 +104,12 @@ function build() {
     const updatedList = originalList.map(item => {
       const key = `${item.categoria}|${item.hito}|${item.creador}|${item.year}`;
       const matched = cardById.get(key);
+      const copy = { ...item };
+      delete copy.id;
       if (matched) {
-        return {
-          ...item,
-          id: matched.id,
-          card_number: matched.card_number
-        };
+        copy.card_number = matched.card_number;
       }
-      return item;
+      return copy;
     });
     fs.writeFileSync(fullPath, JSON.stringify(updatedList, null, 2) + '\n', 'utf8');
     updatedFiles++;
