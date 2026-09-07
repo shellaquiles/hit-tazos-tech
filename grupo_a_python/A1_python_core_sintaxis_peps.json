@@ -4,10 +4,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A1",
     "categoria_nombre": "Python Core, Sintaxis y PEPs",
-    "hito": "Primera publicación en el grupo de noticias *alt.sources* del código fuente de **Python** (versión 0.9.0), con soporte nativo para clases con herencia y excepciones.",
+    "hito": "Primera publicación en *alt.sources* del código fuente de **Python** (0.9.0), con soporte para clases, herencia y excepciones.",
     "year": 1991,
     "creador": "*Guido van Rossum*",
-    "dato_curioso": "Desarrollado en el centro **CWI** de Ámsterdam durante las vacaciones navideñas de 1989 como sucesor de *ABC*, bautizado en homenaje al grupo cómico británico *Monty Python*.",
+    "dato_curioso": "Creado en el **CWI** en la navidad de 1989 como sucesor de *ABC*, bautizado en honor al grupo cómico británico *Monty Python*.",
     "card_number": 519
   },
   {
@@ -18,7 +18,7 @@
     "hito": "Incorporación de primitivas de programación funcional como `lambda`, `map()`, `filter()` y `reduce()` en el lanzamiento de **Python 1.0**.",
     "year": 1994,
     "creador": "*Steven Majewski*",
-    "dato_curioso": "Guido confesó años después que nunca fue devoto de la sintaxis funcional y que aceptó el parche solo porque un usuario entusiasta de Lisp lo envió completamente terminado.",
+    "dato_curioso": "Guido confesó que no era devoto de la programación funcional; aceptó el parche porque un fan de Lisp lo envió listo.",
     "card_number": 429
   },
   {
@@ -84,7 +84,7 @@
     "hito": "Formalización de la guía canónica de estilo de código mediante la publicación del **PEP 8**.",
     "year": 2001,
     "creador": "*Guido van Rossum* y *Barry Warsaw*",
-    "dato_curioso": "Estableció la sangría intocable de **4 espacios por nivel** y la regla de no superar 79 caracteres por línea, generando interminables debates sobre pureza visual.",
+    "dato_curioso": "Fijó la sangría de **4 espacios por nivel** y el límite de 79 caracteres por línea, generando eternos debates de estilo.",
     "card_number": 336
   },
   {
@@ -95,7 +95,7 @@
     "hito": "Revelación del *easter egg* `import this` conteniendo los 19 aforismos del **PEP 20** (*The Zen of Python*).",
     "year": 2001,
     "creador": "*Tim Peters*",
-    "dato_curioso": "El texto original está codificado en el código fuente mediante el cifrado simétrico *ROT13* para evitar que los desensambladores lo leyeran a simple vista.",
+    "dato_curioso": "El texto del Zen de Python está cifrado con *ROT13* en el código fuente para evitar leerlo a simple vista.",
     "card_number": 493
   },
   {
@@ -117,7 +117,7 @@
     "hito": "Unificación definitiva de tipos primitivos y clases (*new-style classes*) con herencia obligatoria de `object` en el **PEP 252**.",
     "year": 2001,
     "creador": "*Guido van Rossum*",
-    "dato_curioso": "Resolvió la histórica anomalía donde `type(1)` devolvía un tipo primitivo pero las instancias de clases creadas por el usuario devolvían la etiqueta genérica `instance`.",
+    "dato_curioso": "Resolvió la anomalía donde tipos nativos y clases de usuario diferían, unificando tipos y clases bajo el mismo modelo.",
     "card_number": 1
   },
   {
@@ -139,7 +139,7 @@
     "hito": "Implementación de ámbitos léxicos anidados (*nested lexical scopes*) resolviendo la regla clásica LEGB mediante el **PEP 227**.",
     "year": 2001,
     "creador": "*Jeremy Hylton*",
-    "dato_curioso": "Requirió inicialmente la importación `from __future__ import nested_scopes`, desatando resistencias entre desarrolladores acostumbrados al esquema plano tradicional.",
+    "dato_curioso": "Requirió inicialmente `from __future__ import nested_scopes`, desatando debates entre partidarios del esquema plano anterior.",
     "card_number": 42
   },
   {
@@ -194,7 +194,7 @@
     "hito": "Presentación de la elegante sintaxis de decoradores de funciones utilizando el símbolo `@` en el **PEP 318**.",
     "year": 2004,
     "creador": "*Anthony Baxter*",
-    "dato_curioso": "La elección del símbolo `@` provocó una batalla épica de meses en *python-dev*, barajándose alternativas extravagantes como `[decorate]` o palabras clave nuevas.",
+    "dato_curioso": "La elección de `@` desató meses de debate en *python-dev*, barajándose alternativas extravagantes como `[decorate]`.",
     "card_number": 328
   },
   {
@@ -238,7 +238,7 @@
     "hito": "Aprobación del operador condicional ternario `x if cond else y` para expresiones en una sola línea en el **PEP 308**.",
     "year": 2005,
     "creador": "*Guido van Rossum* y *Raymond Hettinger*",
-    "dato_curioso": "Guido lo había rechazado durante diez años temiendo código ilegible, hasta que constató que los desarrolladores abusaban peligrosamente del truco `(cond and [x] or [y])[0]`.",
+    "dato_curioso": "Guido lo rechazó por años temiendo código feo, hasta ver que se abusaba del truco inseguro `(cond and [x] or [y])[0]`.",
     "card_number": 73
   },
   {
@@ -293,7 +293,7 @@
     "hito": "Cambio obligatorio de sintaxis para captura de excepciones reemplazando comas por `except Exception as e:` en el **PEP 3110**.",
     "year": 2006,
     "creador": "*Collin Winter*",
-    "dato_curioso": "Erradicó el peligroso bug en el que novatos escribían accidentalmente `except ValueError, TypeError:` creyendo capturar dos errores cuando en realidad asignaban una variable.",
+    "dato_curioso": "Erradicó el bug donde novatos ponían `except ValueError, TypeError:` creyendo capturar dos errores y asignaban una variable.",
     "card_number": 393
   },
   {
@@ -326,7 +326,7 @@
     "hito": "Soporte nativo para identificadores no ASCII en código fuente mediante caracteres Unicode en el **PEP 3131**.",
     "year": 2007,
     "creador": "*Martin von Löwis*",
-    "dato_curioso": "Permitió declarar variables con eñes, tildes o caracteres cirílicos y chinos, provocando intensos debates sobre legibilidad en equipos multinacionales.",
+    "dato_curioso": "Permitió variables con eñes, tildes o caracteres no latinos, provocando debates sobre legibilidad en equipos globales.",
     "card_number": 500
   },
   {
@@ -414,7 +414,7 @@
     "hito": "Lanzamiento de **Python 2.7**, concebida como la versión de transición final y de soporte extendido de la rama 2.x.",
     "year": 2010,
     "creador": "*Benjamin Peterson*",
-    "dato_curioso": "Aunque su fin de vida (*EOL*) estaba previsto para 2015, la inmensa base de código heredada forzó a la PSF a postergar su muerte oficial hasta el 1 de enero de 2020.",
+    "dato_curioso": "Su fin de vida previsto para 2015 tuvo que postergarse al 1 de enero de 2020 por el inmenso código legacy sin migrar.",
     "card_number": 214
   },
   {
@@ -447,7 +447,7 @@
     "hito": "Optimización radical de memoria para cadenas Unicode con representación interna flexible en el **PEP 393**.",
     "year": 2012,
     "creador": "*Martin von Löwis*",
-    "dato_curioso": "Adaptó el almacenamiento de caracteres a 1, 2 o 4 bytes según el código más alto, reduciendo el consumo de RAM de cadenas ASCII a la mitad en Python 3.3.",
+    "dato_curioso": "Adaptó el tamaño de caracteres a 1, 2 o 4 bytes, reduciendo a la mitad el consumo de RAM en cadenas ASCII en Python 3.3.",
     "card_number": 360
   },
   {
@@ -523,8 +523,8 @@
     "categoria_nombre": "Python Core, Sintaxis y PEPs",
     "hito": "Formalización del sistema de pistas de tipado estático (*type hints*) mediante la aprobación del **PEP 484**.",
     "year": 2015,
-    "creador": "*Guido van Rossum*, *Jukka Lehtosalo* y *Łukasz Langa*",
-    "dato_curioso": "Tomó inspiración directa del proyecto de investigación *mypy*, revolucionando la verificación estática de código en grandes empresas sin afectar la ejecución dinámica.",
+    "creador": "*Guido van Rossum*, *J. Lehtosalo* y *Langa*",
+    "dato_curioso": "Inspirado en *mypy*, revolucionó el análisis estático en grandes empresas sin alterar la ejecución dinámica de Python.",
     "card_number": 44
   },
   {
@@ -557,7 +557,7 @@
     "hito": "Nacimiento de las cadenas literales interpoladas (*f-strings*) con prefijo `f\"...\"` mediante el **PEP 498**.",
     "year": 2016,
     "creador": "*Eric V. Smith*",
-    "dato_curioso": "Se convirtieron de inmediato en la forma predilecta de formatear texto gracias a su legibilidad y a que compilan directamente a código de bytes de alto rendimiento.",
+    "dato_curioso": "Se volvieron la forma predilecta de formatear texto por su claridad y porque compilan directo a bytecode ultrarrápido.",
     "card_number": 410
   },
   {
@@ -612,7 +612,7 @@
     "hito": "Aprobación del operador de asignación en expresiones (*walrus operator*) `:=` dictaminado en el polémico **PEP 572**.",
     "year": 2018,
     "creador": "*Chris Angelico*",
-    "dato_curioso": "La extrema toxicidad y descalificaciones en los debates comunitarios sobre esta sintaxis llevaron a Guido van Rossum a renunciar para siempre como *BDFL*.",
+    "dato_curioso": "La toxicidad en los debates comunitarios sobre esta sintaxis llevó a Guido van Rossum a renunciar para siempre como *BDFL*.",
     "card_number": 331
   },
   {
@@ -666,7 +666,7 @@
     "categoria_nombre": "Python Core, Sintaxis y PEPs",
     "hito": "Introducción de grupos de excepciones `ExceptionGroup` y de la sentencia `except*` para flujos concurrentes vía **PEP 654**.",
     "year": 2021,
-    "creador": "*Irit Katriel*, *Yury Selivanov* y *Guido van Rossum*",
+    "creador": "*Irit Katriel*, *Y. Selivanov* y *van Rossum*",
     "dato_curioso": "Diseñado para manejar múltiples errores simultáneos emanados de tareas paralelas o viveros de corrutinas asíncronas sin perder ninguna traza.",
     "card_number": 395
   },
@@ -700,7 +700,7 @@
     "hito": "Publicación de la propuesta de cadenas con plantilla etiquetada (*template strings*) `t\"...\"` para seguridad en el **PEP 750**.",
     "year": 2025,
     "creador": "*Jim Baker* y *Guido van Rossum*",
-    "dato_curioso": "Diseñada para prevenir inyecciones SQL y ataques XSS al diferir la evaluación de literales formateados hasta que un parser seguro inspeccione sus componentes.",
+    "dato_curioso": "Previene inyecciones SQL y XSS al diferir la evaluación de strings formateados hasta que un parser seguro los valide.",
     "card_number": 41
   }
 ]

@@ -7,7 +7,7 @@
     "hito": "Implementación original del cerrojo global del intérprete (*Global Interpreter Lock* o **GIL**) en el bucle central de **CPython**.",
     "year": 1992,
     "creador": "*Guido van Rossum*",
-    "dato_curioso": "Diseñado para simplificar la integración de librerías en C y evitar condiciones de carrera en el conteo de referencias de memoria, sin imaginar el dolor de cabeza que supondría para el cómputo multinúcleo décadas más tarde.",
+    "dato_curioso": "Evitaba carreras de memoria en C, sin prever el dolor de cabeza que causaría para el cómputo multinúcleo décadas después.",
     "card_number": 204
   },
   {
@@ -15,7 +15,7 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A2",
     "categoria_nombre": "Runtimes, Intérpretes y GIL",
-    "hito": "Nacimiento de **JPython** (rebautizado posteriormente como **Jython**), compilando código Python directamente a bytecode de la máquina virtual de Java (*JVM*).",
+    "hito": "Nacimiento de **JPython** (luego **Jython**), compilando código Python directamente a bytecode de Java (*JVM*).",
     "year": 1997,
     "creador": "*Jim Hugunin*",
     "dato_curioso": "Permitió interactuar de forma transparente con clases Java y prescindir del GIL, ya que delegaba la concurrencia en los hilos nativos de la *JVM*.",
@@ -26,10 +26,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A2",
     "categoria_nombre": "Runtimes, Intérpretes y GIL",
-    "hito": "Creación de **Stackless Python**, eliminando la dependencia de la pila de llamadas de C para habilitar micro-hilos extremadamente livianos (*tasklets*).",
+    "hito": "Creación de **Stackless Python**, desacoplando la pila de C para habilitar micro-hilos livianos (*tasklets*).",
     "year": 1998,
     "creador": "*Christian Tismer*",
-    "dato_curioso": "Se convirtió en el motor del videojuego espacial masivo **EVE Online**, permitiendo a sus servidores gestionar decenas de miles de naves concurrentes en un único proceso.",
+    "dato_curioso": "Fue el motor de **EVE Online**, permitiendo a sus servidores coordinar miles de naves espaciales en un único proceso.",
     "card_number": 193
   },
   {
@@ -40,7 +40,7 @@
     "hito": "Intento pionero de remover el GIL mediante el parche experimental *Free Threading* en **Python 1.4**.",
     "year": 1999,
     "creador": "*Greg Stein*",
-    "dato_curioso": "Aunque logró ejecutar hilos verdaderamente paralelos en CPUs SMP, el costo de bloquear cada operación individual duplicó el tiempo de ejecución de programas monohilo, forzando su descarte.",
+    "dato_curioso": "Logró hilos paralelos, pero bloquear cada operación duplicó el tiempo de ejecución monohilo, forzando su descarte.",
     "card_number": 40
   },
   {
@@ -51,7 +51,7 @@
     "hito": "Introducción del recolector de basura generacional para ciclos de referencias huérfanas en **Python 2.0**.",
     "year": 2000,
     "creador": "*Neil Schemenauer*",
-    "dato_curioso": "Añadió tres generaciones de recolección para objetos enlazados entre sí, evitando fugas de memoria sin degradar el rendimiento del conteo de referencias tradicional.",
+    "dato_curioso": "Añadió tres generaciones de recolección cíclica, evitando fugas de memoria sin degradar el conteo de referencias.",
     "card_number": 86
   },
   {
@@ -59,10 +59,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A2",
     "categoria_nombre": "Runtimes, Intérpretes y GIL",
-    "hito": "Debut de **Pyrex**, el compilador precursor que facilitó la creación de módulos de extensión en C mezclando sintaxis de Python con tipos estáticos.",
+    "hito": "Debut de **Pyrex**, compilador precursor de extensiones en C mezclando sintaxis de Python con tipos estáticos.",
     "year": 2002,
     "creador": "*Greg Ewing*",
-    "dato_curioso": "Sentó las bases para que los desarrolladores de extensiones pudieran escribir código optimizado sin manipular manualmente las complejas macros de la *Python C API*.",
+    "dato_curioso": "Permitió escribir extensiones rápidas sin manipular manualmente las complejas macros de la *Python C API*.",
     "card_number": 139
   },
   {
@@ -70,10 +70,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A2",
     "categoria_nombre": "Runtimes, Intérpretes y GIL",
-    "hito": "Fundación del proyecto **PyPy**, proponiendo una reimplementación de Python escrita en el propio lenguaje (*RPython*) con compilación Just-in-Time (*JIT*).",
+    "hito": "Fundación de **PyPy**, reimplementación de Python escrita en el propio lenguaje (*RPython*) con compilación *JIT*.",
     "year": 2003,
     "creador": "*Armin Rigo* y *Holger Krekel*",
-    "dato_curioso": "El proyecto recibió financiación de la Unión Europea para investigación y demostró ser capaz de superar en velocidad a CPython en bucles numéricos intensivos hasta por órdenes de magnitud.",
+    "dato_curioso": "Financiado por la UE, demostró superar a CPython en bucles numéricos intensivos por órdenes de magnitud gracias al JIT.",
     "card_number": 497
   },
   {
@@ -84,7 +84,7 @@
     "hito": "Presentación pública de **IronPython**, llevando la sintaxis de Python al entorno de ejecución de Microsoft *.NET* y *Mono*.",
     "year": 2004,
     "creador": "*Jim Hugunin* (*Microsoft*)",
-    "dato_curioso": "La demo inicial ejecutando Python sobre el CLR impresionó tanto a los directivos de Microsoft que contrataron inmediatamente a Hugunin para liderar el proyecto.",
+    "dato_curioso": "La demo en el CLR impresionó tanto a Microsoft que contrataron de inmediato a Hugunin para liderar el proyecto.",
     "card_number": 21
   },
   {
@@ -106,7 +106,7 @@
     "hito": "Aparición de **Shed Skin**, un compilador experimental que traducía programas en Python tipado estricto a código C++ nativo de alto rendimiento.",
     "year": 2005,
     "creador": "*Mark Dufour*",
-    "dato_curioso": "Demostró aceleraciones brutales de hasta 200x en algoritmos matemáticos puros, anticipando el interés de la industria por dialectos compilados de Python.",
+    "dato_curioso": "Demostró aceleraciones de hasta 200x en matemáticas puras, anticipando el interés de la industria por dialectos compilados.",
     "card_number": 159
   },
   {
@@ -117,7 +117,7 @@
     "hito": "Bifurcación comunitaria de Pyrex para fundar **Cython**, optimizado para el ecosistema de computación científica y *NumPy*.",
     "year": 2007,
     "creador": "*Robert Bradshaw* y *Stefan Behnel*",
-    "dato_curioso": "Se convirtió en el corazón silencioso de *SciPy*, *scikit-learn* y *Pandas*, permitiendo declarar variables `cdef` que compilan directamente a instrucciones en C nativo.",
+    "dato_curioso": "Es el corazón de *SciPy* y *Pandas*, permitiendo declarar variables `cdef` que compilan directo a código C nativo.",
     "card_number": 463
   },
   {
@@ -128,7 +128,7 @@
     "hito": "Publicación del célebre estudio *Inside the Python GIL*, exponiendo anomalías severas de contención en procesadores multinúcleo.",
     "year": 2009,
     "creador": "*David Beazley*",
-    "dato_curioso": "Reveló que en sistemas multicore los hilos con alta carga de CPU libraban una batalla constante por el GIL que degradaba el rendimiento respecto a un solo núcleo.",
+    "dato_curioso": "Mostró que en multinúcleo los hilos pesados libraban batallas por el GIL que rendían peor que en un solo núcleo.",
     "card_number": 268
   },
   {
@@ -139,7 +139,7 @@
     "hito": "Rediseño radical del mecanismo de paso de hilos en el núcleo con la llegada del *New GIL* a través del **PEP 399** en **Python 3.2**.",
     "year": 2010,
     "creador": "*Antoine Pitrou*",
-    "dato_curioso": "Reemplazó el contador arbitrario de 100 instrucciones de bytecode por un temporizador de intervalos (`switch_interval`), erradicando las batallas destructivas entre hilos en procesadores modernos.",
+    "dato_curioso": "Reemplazó los 100 bytecodes por un temporizador (`switch_interval`), erradicando batallas destructivas entre hilos.",
     "card_number": 237
   },
   {
@@ -147,10 +147,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A2",
     "categoria_nombre": "Runtimes, Intérpretes y GIL",
-    "hito": "Nacimiento de **Nuitka**, el compilador que traduce código Python ordinario directamente a representaciones en C++ compatibles al 100% con CPython.",
+    "hito": "Nacimiento de **Nuitka**, compilador que traduce código Python directamente a C++ compatible al 100% con CPython.",
     "year": 2010,
     "creador": "*Kay Hayen*",
-    "dato_curioso": "A diferencia de otros transpiladores, su objetivo primordial fue la compatibilidad total con todas las peculiaridades y librerías del lenguaje sin requerir reescrituras de sintaxis.",
+    "dato_curioso": "A diferencia de otros transpiladores, buscó 100% de compatibilidad con todas las librerías sin alterar sintaxis.",
     "card_number": 299
   },
   {
@@ -158,10 +158,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A2",
     "categoria_nombre": "Runtimes, Intérpretes y GIL",
-    "hito": "Financiación en Kickstarter y lanzamiento de **MicroPython**, una reimplementación compacta de Python 3 diseñada para correr en microcontroladores con recursos mínimos.",
+    "hito": "Financiación y estreno de **MicroPython**, reimplementación de Python 3 optimizada para microcontroladores y chips embebidos.",
     "year": 2013,
     "creador": "*Damien George*",
-    "dato_curioso": "Logró empaquetar un compilador, un runtime y un REPL completo de Python en chips con apenas **16 KB de memoria RAM**, abriendo la electrónica embebida a los programadores de software.",
+    "dato_curioso": "Empaquetó compilador, runtime y REPL de Python en chips con apenas **16 KB de RAM**, abriendo la electrónica embebida.",
     "card_number": 474
   },
   {
@@ -172,7 +172,7 @@
     "hito": "Presentación de **Pyston**, un motor JIT para CPython desarrollado por Dropbox para reducir sus colosales costos de servidores.",
     "year": 2014,
     "creador": "*Dropbox* (*Kevin Modzelewski*)",
-    "dato_curioso": "Utilizaba la infraestructura de compilación *LLVM*, logrando mejoras de velocidad del 25%, aunque el elevado consumo de memoria forzó al equipo a rediseñar su arquitectura años más tarde.",
+    "dato_curioso": "Usaba *LLVM* y aceleraba un 25%, pero el alto consumo de memoria forzó al equipo a rediseñar su arquitectura años después.",
     "card_number": 272
   },
   {
@@ -182,7 +182,7 @@
     "categoria_nombre": "Runtimes, Intérpretes y GIL",
     "hito": "Implementación de **Pyjion**, un proyecto experimental de runtime extensible con interfaz JIT conectable para CPython.",
     "year": 2016,
-    "creador": "*Brett Cannon* y *Dino Viehland* (*Microsoft*)",
+    "creador": "*Brett Cannon* y *D. Viehland* (*Microsoft*)",
     "dato_curioso": "Diseñado para explorar si la máquina virtual de Python podía beneficiarse del motor de compilación en tiempo de ejecución del CLR de .NET.",
     "card_number": 195
   },
@@ -191,10 +191,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A2",
     "categoria_nombre": "Runtimes, Intérpretes y GIL",
-    "hito": "Liberación de **Grumpy** por parte de ingenieros de Google, un transpilador que convertía código Python 2.7 directamente a programas concurrentes en **Go**.",
+    "hito": "Lanzamiento en Google de **Grumpy**, transpilador experimental que convertía código Python 2.7 a programas concurrentes en **Go**.",
     "year": 2017,
     "creador": "*Google* (*Dylan Trotter*)",
-    "dato_curioso": "Nació como solución interna para escalar servicios web sin el lastre del GIL, permitiendo a los scripts de Python beneficiarse del planificador de *goroutines*.",
+    "dato_curioso": "Nació para escalar servicios web sin el lastre del GIL, aprovechando el planificador de *goroutines* de Go.",
     "card_number": 424
   },
   {
@@ -205,7 +205,7 @@
     "hito": "Creación de **CircuitPython**, una derivación educativa y amigable de MicroPython impulsada para placas de desarrollo *Adafruit*.",
     "year": 2017,
     "creador": "*Adafruit Industries* (*Scott Shawcroft*)",
-    "dato_curioso": "Introdujo el comportamiento donde el microcontrolador se presenta a la computadora como una memoria USB ordinaria, permitiendo editar scripts guardando directamente un archivo `code.py`.",
+    "dato_curioso": "El microcontrolador se monta como memoria USB, permitiendo programar editando directo el archivo `code.py`.",
     "card_number": 365
   },
   {
@@ -224,10 +224,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A2",
     "categoria_nombre": "Runtimes, Intérpretes y GIL",
-    "hito": "Inicio del desarrollo de **RustPython**, una reimplementación completa del intérprete de Python 3 escrita desde cero en el lenguaje de sistemas **Rust**.",
+    "hito": "Inicio de **RustPython**, reimplementación completa del intérprete de Python 3 escrita desde cero en lenguaje **Rust**.",
     "year": 2018,
     "creador": "*Windel Bouwman* y comunidad",
-    "dato_curioso": "Diseñado con un enfoque moderno en seguridad de memoria, ofreciendo integración nativa en ecosistemas de WebAssembly y aplicaciones que requieren embeber Python de forma segura.",
+    "dato_curioso": "Enfocado en seguridad de memoria en Rust, con integración nativa en WebAssembly y entornos embebidos seguros.",
     "card_number": 359
   },
   {
@@ -248,8 +248,8 @@
     "categoria_nombre": "Runtimes, Intérpretes y GIL",
     "hito": "Sustitución del histórico parser LL(1) por un nuevo motor PEG (*Parsing Expression Grammar*) en el **PEP 617** para **Python 3.9**.",
     "year": 2020,
-    "creador": "*Guido van Rossum*, *Pablo Galindo Salgado* y *Lysandros Nikolaou*",
-    "dato_curioso": "Desbloqueó la capacidad de definir sintaxis complejas y elegantes con múltiples miradas hacia adelante (*lookahead*), base directa para el emparejamiento de patrones `match/case`.",
+    "creador": "*Guido van Rossum*, *P. Galindo* y *Nikolaou*",
+    "dato_curioso": "Permitió sintaxis complejas con múltiples miradas adelante (*lookahead*), base del `match/case` de Python 3.10.",
     "card_number": 23
   },
   {
@@ -257,10 +257,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A2",
     "categoria_nombre": "Runtimes, Intérpretes y GIL",
-    "hito": "Presentación del ambicioso plan quinquenal *Faster CPython* respaldado por Microsoft con el objetivo de multiplicar por 5 la velocidad del lenguaje.",
+    "hito": "Plan quinquenal *Faster CPython* respaldado por Microsoft para multiplicar por 5 la velocidad del lenguaje.",
     "year": 2020,
     "creador": "*Mark Shannon* y *Guido van Rossum*",
-    "dato_curioso": "Guido salió de su retiro para unirse al equipo de desarrollo en Microsoft, enfocándose en la optimización del bytecode y la especialización adaptativa del intérprete.",
+    "dato_curioso": "Guido salió de su retiro para unirse a Microsoft, enfocándose en la aceleración del intérprete de CPython.",
     "card_number": 486
   },
   {
@@ -271,7 +271,7 @@
     "hito": "Lanzamiento público de **GraalPy**, la implementación de Python para la máquina virtual políglota de alto rendimiento **GraalVM**.",
     "year": 2021,
     "creador": "*Oracle Labs*",
-    "dato_curioso": "Permitió interoperabilidad a velocidad nativa sin costo de puente (*zero-overhead*) entre Python, Java, JavaScript, Ruby y lenguajes compilados por LLVM.",
+    "dato_curioso": "Logró interoperabilidad nativa sin costo (*zero-overhead*) entre Python, Java, JavaScript, Ruby y lenguajes compilados por LLVM.",
     "card_number": 90
   },
   {
@@ -282,7 +282,7 @@
     "hito": "Incorporación del intérprete adaptativo con especialización dinámica de instrucciones en el **PEP 659** para **Python 3.11**.",
     "year": 2022,
     "creador": "*Mark Shannon*",
-    "dato_curioso": "Reemplazó instrucciones genéricas de bytecode en caliente por variantes monomórficas ultrarrápidas según los tipos de datos reales observados en ejecución, acelerando CPython entre 10% y 60%.",
+    "dato_curioso": "Reemplaza bytecodes en caliente por variantes monomórficas según tipos observados, acelerando CPython hasta un 60%.",
     "card_number": 7
   },
   {
@@ -290,10 +290,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A2",
     "categoria_nombre": "Runtimes, Intérpretes y GIL",
-    "hito": "Creación del objeto inmortal en memoria a través del **PEP 683**, permitiendo compartir tipos básicos entre núcleos sin mutar conteos de referencias.",
+    "hito": "Creación del objeto inmortal (**PEP 683**), permitiendo compartir tipos entre núcleos sin mutar conteos de referencias.",
     "year": 2023,
     "creador": "*Eric Snow* y *Eddie Elizondo* (*Meta*)",
-    "dato_curioso": "Habilitó a plataformas con arquitecturas *Copy-on-Write* como las de Instagram/Meta compartir gigabytes de memoria estática entre múltiples procesos sin degradar la memoria física.",
+    "dato_curioso": "Permitió a Instagram/Meta compartir gigabytes de memoria entre procesos sin activar *Copy-on-Write* accidentalmente.",
     "card_number": 110
   },
   {
@@ -304,7 +304,7 @@
     "hito": "Asignación de un cerrojo de intérprete independiente por cada subintérprete en CPython gracias al **PEP 684** en **Python 3.12**.",
     "year": 2023,
     "creador": "*Eric Snow*",
-    "dato_curioso": "Permitió por primera vez en la historia de CPython ejecutar código Python puro en paralelo a nivel de proceso utilizando subintérpretes aislados con su propio GIL individual.",
+    "dato_curioso": "Permitió por primera vez ejecutar código en paralelo real usando subintérpretes aislados con GIL individual.",
     "card_number": 511
   },
   {
@@ -312,10 +312,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A2",
     "categoria_nombre": "Runtimes, Intérpretes y GIL",
-    "hito": "Anuncio oficial de **Mojo**, un nuevo lenguaje de programación que combina la sintaxis idiomática de Python con rendimiento a nivel de hardware y aceleradores ML.",
+    "hito": "Anuncio oficial de **Mojo**, lenguaje que combina la sintaxis de Python con rendimiento directo en hardware y aceleradores de ML.",
     "year": 2023,
     "creador": "*Modular* (*Chris Lattner*)",
-    "dato_curioso": "Creado por el padre de *LLVM* y *Swift*, prometió compatibilidad total con el ecosistema de librerías de Python alcanzando velocidades de hasta 35,000x mediante tipado estricto y paralelismo en GPUs.",
+    "dato_curioso": "Creado por el autor de LLVM y Swift, promete acelerar código Python hasta 35,000x combinando tipado y GPUs.",
     "card_number": 199
   },
   {
@@ -326,7 +326,7 @@
     "hito": "Aprobación histórica de la propuesta *Free-threaded CPython* para eliminar el GIL del núcleo del lenguaje mediante el **PEP 703**.",
     "year": 2023,
     "creador": "*Sam Gross* (*Meta*)",
-    "dato_curioso": "Basado en el prototipo de investigación *nogil*, el Steering Council aceptó hacer del modo sin GIL el futuro oficial a largo plazo de CPython tras décadas de resistencia.",
+    "dato_curioso": "Tras décadas de resistencia, el Steering Council aceptó hacer del modo sin GIL el futuro oficial de CPython.",
     "card_number": 220
   },
   {
@@ -337,7 +337,7 @@
     "hito": "Introducción del compilador experimental Just-in-Time (*JIT*) basado en micro-opcodes para **Python 3.13**.",
     "year": 2024,
     "creador": "*Brandt Bucher*",
-    "dato_curioso": "Implementa una técnica conocida como *Copy-and-Patch JIT*, transformando trazas de bytecode optimizado directamente en código máquina sin depender de pesadas dependencias de compiladores externos.",
+    "dato_curioso": "Aplica *Copy-and-Patch JIT*, convirtiendo bytecode optimizado en código máquina sin pesados compiladores externos.",
     "card_number": 323
   },
   {
@@ -348,7 +348,7 @@
     "hito": "Publicación del instalador oficial con soporte experimental para modo libre de hilos (*free-threaded build*) en **Python 3.13**.",
     "year": 2024,
     "creador": "*CPython Core Team*",
-    "dato_curioso": "Permite compilar y ejecutar CPython sin el cerrojo global del GIL, desatando una carrera en todo el ecosistema (*NumPy*, *Cython*, *PyTorch*) para adaptar extensiones en C a la concurrencia real.",
+    "dato_curioso": "Ejecuta CPython sin GIL, impulsando a *NumPy* y *PyTorch* a adaptar sus extensiones C a concurrencia real.",
     "card_number": 48
   },
   {
@@ -359,7 +359,7 @@
     "hito": "Presentación del estándar de empaquetado para librerías con extensiones en C compatibles con el modo libre de hilos en el **PEP 753**.",
     "year": 2024,
     "creador": "*Daniele Nicolodi*",
-    "dato_curioso": "Estableció etiquetas de ruedas binarias (*wheels*) para diferenciar claramente módulos compilados con y sin GIL, evitando fallos de segmentación en producción.",
+    "dato_curioso": "Estableció tags de *wheels* (`cp313t`) para diferenciar módulos sin GIL y evitar fallos de segmentación.",
     "card_number": 503
   },
   {
@@ -370,7 +370,7 @@
     "hito": "Implementación del recolector de basura sin pausas globales (*mimalloc integration*) adaptado para el modelo *no-GIL* en CPython.",
     "year": 2024,
     "creador": "*Sam Gross*",
-    "dato_curioso": "Sustituyó el asignador de memoria clásico de pequeños bloques por el gestor de memoria concorrente *mimalloc* de Microsoft, clave para escalar el acceso paralelo a objetos.",
+    "dato_curioso": "Adoptó el gestor *mimalloc* de Microsoft, clave para escalar asignaciones concurrentes de memoria sin contención.",
     "card_number": 294
   },
   {
@@ -381,7 +381,7 @@
     "hito": "Despliegue de optimizaciones de desvirtualización de llamadas y análisis de escape en el compilador JIT experimental de **Python 3.14**.",
     "year": 2025,
     "creador": "*Faster CPython Team*",
-    "dato_curioso": "Permite que llamadas a métodos en clases monomórficas se traduzcan en saltos de memoria directos sin pasar por la tabla de despacho del diccionario del objeto.",
+    "dato_curioso": "Traduce llamadas monomórficas en saltos directos de memoria sin consultar el diccionario de clase en tiempo real.",
     "card_number": 61
   },
   {
@@ -392,7 +392,7 @@
     "hito": "Consolidación del módulo de alto nivel `interpreters` en la biblioteca estándar para orquestar subintérpretes concurrentes en **Python 3.14**.",
     "year": 2025,
     "creador": "*Eric Snow*",
-    "dato_curioso": "Permite a los desarrolladores de backend spawnear subintérpretes con canales de comunicación seguros (*channels*) como alternativa nativa y ligera al módulo `multiprocessing`.",
+    "dato_curioso": "Permite spawnear subintérpretes con canales seguros (*channels*), alternativa ligera a `multiprocessing`.",
     "card_number": 394
   },
   {
@@ -400,10 +400,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A2",
     "categoria_nombre": "Runtimes, Intérpretes y GIL",
-    "hito": "Debut de la biblioteca de compilación numérica de nueva generación para hardware heterogéneo basada en compilación multi-hilo nativa en Python 3.14.",
+    "hito": "Biblioteca de compilación numérica para hardware heterogéneo basada en ejecución multi-hilo en Python 3.14.",
     "year": 2025,
     "creador": "*Comunidad Científica Python*",
-    "dato_curioso": "Permitió a librerías como *SciPy* ejecutar rutinas de álgebra lineal distribuidas entre hilos de CPU sin el coste de serialización *inter-process* de las décadas anteriores.",
+    "dato_curioso": "Permite a *SciPy* ejecutar álgebra lineal en hilos de CPU sin el costo de serialización entre procesos.",
     "card_number": 146
   },
   {
@@ -411,10 +411,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A2",
     "categoria_nombre": "Runtimes, Intérpretes y GIL",
-    "hito": "Evaluación formal del hito de madurez del modo libre de hilos para declarar el soporte *no-GIL* como la configuración por defecto de **Python 3.15**.",
+    "hito": "Evaluación del modo libre de hilos para declarar el soporte *no-GIL* por defecto a partir de **Python 3.15**.",
     "year": 2026,
     "creador": "*Python Steering Council*",
-    "dato_curioso": "Cumplió el cronograma fijado por el consejo directivo para evaluar si la comunidad y las grandes librerías de C alcanzaron la estabilidad necesaria para apagar el GIL para siempre.",
+    "dato_curioso": "Evaluó la estabilidad del ecosistema C para apagar el GIL por defecto y unificar la distribución del lenguaje.",
     "card_number": 142
   }
 ]

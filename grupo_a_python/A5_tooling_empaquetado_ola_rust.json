@@ -62,7 +62,7 @@
     "hito": "Debut del framework de testing **pytest**, revolucionando la verificación de código mediante reescritura de la sentencia estándar `assert`.",
     "year": 2009,
     "creador": "*Holger Krekel* (*PyPy Team*)",
-    "dato_curioso": "Eliminó la necesidad de heredar pesadas clases `unittest.TestCase` con métodos verbose como `self.assertEqual()`, haciendo las pruebas legibles y concisas.",
+    "dato_curioso": "Eliminó herencias pesadas de `unittest.TestCase`, haciendo las pruebas legibles y concisas con simples `assert`.",
     "card_number": 8
   },
   {
@@ -84,7 +84,7 @@
     "hito": "Consagración de **flake8**, uniendo *PyFlakes*, el verificador de estilo *pep8* y el medidor de complejidad ciclomática *McCabe* en una sola CLI.",
     "year": 2010,
     "creador": "*Tarek Ziadé*",
-    "dato_curioso": "Fue el linter canónico y juez inflexible de estilo que veló por la pulcritud de millones de repositorios antes de la llegada de los formateadores automáticos.",
+    "dato_curioso": "Fue el juez inflexible de estilo que cuidó millones de repositorios antes de los formateadores automáticos.",
     "card_number": 89
   },
   {
@@ -95,7 +95,7 @@
     "hito": "Estandarización del formato de distribución binaria en rueda (**Wheel** con extensión `.whl`) mediante el **PEP 427**.",
     "year": 2012,
     "creador": "*Daniel Holth*",
-    "dato_curioso": "Sustituyó a los viejos `.egg`, permitiendo distribuir paquetes C precompilados que se instalan instantáneamente sin requerir compiladores en la máquina destino.",
+    "dato_curioso": "Sustituyó a los viejos `.egg`, permitiendo instalar paquetes C precompilados sin compilar en la máquina destino.",
     "card_number": 325
   },
   {
@@ -105,8 +105,8 @@
     "categoria_nombre": "Tooling, Empaquetado y Ola Rust",
     "hito": "Nacimiento de **Conda**, el gestor de paquetes y entornos binarios multiplataforma creado para el ecosistema analítico y científico.",
     "year": 2012,
-    "creador": "*Travis Oliphant* y *Peter Wang* (*Continuum Analytics*)",
-    "dato_curioso": "Resolvió la pesadilla de instalar librerías científicas complejas con dependencias nativas en Fortran, C y BLAS/LAPACK sin compilar en Windows o Linux.",
+    "creador": "*Travis Oliphant* y *Peter Wang*",
+    "dato_curioso": "Resolvió instalar librerías científicas con dependencias en Fortran y C sin compilar en Windows, macOS o Linux.",
     "card_number": 112
   },
   {
@@ -117,7 +117,7 @@
     "hito": "Publicación de **Twine**, la utilidad especializada en subir paquetes a PyPI de forma segura mediante conexiones cifradas TLS/HTTPS.",
     "year": 2014,
     "creador": "*Donald Stufft*",
-    "dato_curioso": "Nació como respuesta a vulnerabilidades graves en `setup.py upload`, que transmitía credenciales de autor en texto plano sin verificar certificados SSL.",
+    "dato_curioso": "Nació ante fallos en `setup.py upload`, que enviaba credenciales en texto plano sin verificar certificados SSL.",
     "card_number": 417
   },
   {
@@ -127,7 +127,7 @@
     "categoria_nombre": "Tooling, Empaquetado y Ola Rust",
     "hito": "Aprobación del archivo de configuración declarativo `pyproject.toml` para definir dependencias de compilación a través del **PEP 518**.",
     "year": 2016,
-    "creador": "*Brett Cannon*, *Donald Stufft* y *Nick Coghlan*",
+    "creador": "*Brett Cannon*, *Donald Stufft* y *Coghlan*",
     "dato_curioso": "Inició la jubilación de la ejecución arbitraria de código imperativo en `setup.py`, sentando las bases del empaquetado moderno en Python.",
     "card_number": 315
   },
@@ -136,10 +136,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A5",
     "categoria_nombre": "Tooling, Empaquetado y Ola Rust",
-    "hito": "Lanzamiento de **Pipenv**, combinando la gestión de archivos `Pipfile.lock` con entornos virtuales automáticos bajo el lema *\"Python Dev Workflow for Humans\"*.",
+    "hito": "Lanzamiento de **Pipenv**, combinando `Pipfile.lock` y entornos virtuales automáticos bajo el lema *\"Dev Workflow for Humans\"*.",
     "year": 2017,
     "creador": "*Kenneth Reitz*",
-    "dato_curioso": "Obtuvo el respaldo inicial de la PSF y causó furor al intentar emular la experiencia de *npm* o *Bundler*, aunque luego sufrió problemas de lentitud en su resolver.",
+    "dato_curioso": "Respaldado por la PSF para emular la experiencia de *npm*, causó furor aunque luego sufrió lentitud en su resolver.",
     "card_number": 16
   },
   {
@@ -158,10 +158,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A5",
     "categoria_nombre": "Tooling, Empaquetado y Ola Rust",
-    "hito": "Nacimiento de **Poetry**, proponiendo una gestión integral de dependencias deterministas, resolución de grafos y publicación en un único archivo `pyproject.toml`.",
+    "hito": "Nacimiento de **Poetry**, gestionando dependencias deterministas, resolución de grafos y empaquetado en `pyproject.toml`.",
     "year": 2018,
     "creador": "*Sébastien Eustace*",
-    "dato_curioso": "Su estricto resolver de dependencias y su intuitiva interfaz de línea de comandos lo convirtieron en el estándar predilecto de la comunidad profesional.",
+    "dato_curioso": "Su estricto resolver y su elegante CLI en Python lo convirtieron en el estándar predilecto de la comunidad.",
     "card_number": 165
   },
   {
@@ -172,7 +172,7 @@
     "hito": "Consagración de **Black** bajo la autodenominación *\"The Uncompromising Code Formatter\"*, zanjando para siempre los debates de estilo.",
     "year": 2018,
     "creador": "*Łukasz Langa*",
-    "dato_curioso": "Al reformatear automáticamente todo el código con un estilo único y configurable al mínimo, ahorró a las empresas millones de horas de discusiones en revisiones de PRs.",
+    "dato_curioso": "Al reformatear código con un estilo estricto e inflexible, ahorró millones de horas de debate en pull requests.",
     "card_number": 428
   },
   {
@@ -194,7 +194,7 @@
     "hito": "Lanzamiento del nuevo algoritmo de resolución de dependencias con retroceso (*backtracking resolver*) en **pip 20.3**.",
     "year": 2020,
     "creador": "*Pradyun Gedam* y *Paul Moore*",
-    "dato_curioso": "Eliminó el peligroso comportamiento legacy donde `pip` instalaba combinaciones incompatibles de librerías si un paquete posterior sobreescribía al anterior.",
+    "dato_curioso": "Eliminó el bug de `pip` que instalaba dependencias incompatibles si un paquete posterior pisaba al anterior.",
     "card_number": 184
   },
   {
@@ -216,7 +216,7 @@
     "hito": "Imposición obligatoria de la autenticación de dos factores (**2FA**) para los mantenedores de los paquetes más descargados en **PyPI**.",
     "year": 2022,
     "creador": "*Python Software Foundation*",
-    "dato_curioso": "La PSF envió llaves de seguridad físicas *YubiKeys* gratuitas a miles de autores para neutralizar oleadas de ataques de secuestro de cuentas en la cadena de suministros.",
+    "dato_curioso": "La PSF regaló llaves de seguridad *YubiKeys* a miles de autores para frenar ataques a la cadena de suministro.",
     "card_number": 414
   },
   {
@@ -238,7 +238,7 @@
     "hito": "Lanzamiento de **Ruff Format**, ofreciendo un reemplazo directo y drop-in para *Black* programado íntegramente en Rust.",
     "year": 2023,
     "creador": "*Astral*",
-    "dato_curioso": "Logró una compatibilidad visual superior al 99% con el estilo de *Black*, ejecutando el formateo de repositorios enteros de millones de líneas en microsegundos.",
+    "dato_curioso": "Replica el formato de *Black* con 99% de fidelidad, formateando repositorios enteros en microsegundos.",
     "card_number": 213
   },
   {
@@ -249,7 +249,7 @@
     "hito": "Introducción del sistema de autenticación sin contraseñas **Trusted Publishers** mediante OpenID Connect (*OIDC*) en **PyPI**.",
     "year": 2023,
     "creador": "*Dustin Ingram* y *William Woodruff*",
-    "dato_curioso": "Permitió a los flujos de *GitHub Actions* publicar nuevas versiones en PyPI utilizando tokens criptográficos efímeros sin almacenar API keys en repositorios.",
+    "dato_curioso": "Permite publicar en PyPI desde *GitHub Actions* con tokens efímeros sin guardar contraseñas en repositorios.",
     "card_number": 512
   },
   {
@@ -260,7 +260,7 @@
     "hito": "Activación del bloqueo de entornos administrados externamente en **pip** mediante el **PEP 668** en distros como Ubuntu y Debian.",
     "year": 2023,
     "creador": "*Pradyun Gedam*",
-    "dato_curioso": "Prohibió ejecutar `pip install` en el Python del sistema operativo para evitar que desarrolladores rompieran accidentalmente los paquetes base de la distribución.",
+    "dato_curioso": "Bloqueó `pip install` en el Python base del SO para evitar que usuarios rompieran paquetes de su distribución Linux.",
     "card_number": 369
   },
   {
@@ -271,7 +271,7 @@
     "hito": "Lanzamiento público de **uv**, el gestor de paquetes y resolución de entornos para Python escrito en **Rust** con velocidad extrema.",
     "year": 2024,
     "creador": "*Astral* (*Charlie Marsh*)",
-    "dato_curioso": "Capaz de resolver e instalar dependencias complejas entre **10x y 100x más rápido que pip**, sacudió los cimientos de los pipelines de CI/CD en todo el planeta.",
+    "dato_curioso": "Instala dependencias entre **10x y 100x más rápido que pip**, acelerando drásticamente pipelines de CI/CD.",
     "card_number": 379
   },
   {
@@ -279,7 +279,7 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A5",
     "categoria_nombre": "Tooling, Empaquetado y Ola Rust",
-    "hito": "Expansión de **uv** como gestor integral de proyectos, scripts monosemilla (*PEP 723*) y versiones de Python sin depender de herramientas externas.",
+    "hito": "Expansión de **uv** como gestor integral de proyectos, scripts monosemilla y versiones de Python.",
     "year": 2024,
     "creador": "*Astral*",
     "dato_curioso": "Permitió ejecutar scripts con dependencias embebidas directamente mediante `uv run` y descargar versiones de CPython a la carta en milisegundos.",
@@ -293,7 +293,7 @@
     "hito": "Eliminación definitiva del módulo histórico `distutils` de la biblioteca estándar de CPython en **Python 3.12**.",
     "year": 2024,
     "creador": "*Victor Stinner* y *CPython Core Team*",
-    "dato_curioso": "Tras una década de advertencias de obsolescencia, forzó a todo el software existente a migrar formalmente a estándares basados en `setuptools` o `pyproject.toml`.",
+    "dato_curioso": "Tras una década de avisos, forzó a la comunidad a migrar de `setup.py` hacia estándares en `pyproject.toml`.",
     "card_number": 138
   },
   {
@@ -304,7 +304,7 @@
     "hito": "Adopción generalizada de ruedas binarias firmadas con niveles de atestación criptográfica **SLSA** en todo el catálogo de PyPI.",
     "year": 2025,
     "creador": "*PyPI Security Team*",
-    "dato_curioso": "Garantizó la trazabilidad estricta entre el código fuente verificado en GitHub y los binarios distribuidos, blindando al ecosistema contra ataques de suministro.",
+    "dato_curioso": "Garantiza trazabilidad criptográfica entre el código de GitHub y los paquetes en PyPI contra ataques de suministro.",
     "card_number": 311
   }
 ]

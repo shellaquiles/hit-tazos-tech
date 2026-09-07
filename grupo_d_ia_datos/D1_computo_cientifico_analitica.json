@@ -7,7 +7,7 @@
     "hito": "Creación de **Numeric** (precursor de NumPy), introduciendo el primer objeto de array multidimensional homogéneo en C para Python.",
     "year": 1995,
     "creador": "*Jim Hugunin*",
-    "dato_curioso": "Desarrollado en colaboración con investigadores del laboratorio *LLNL*; demostró que Python podía rivalizar con MATLAB y Fortran en cálculo científico matricial.",
+    "dato_curioso": "Creado con el laboratorio *LLNL*; demostró que Python podía rivalizar con MATLAB y Fortran en cálculo matricial.",
     "card_number": 116
   },
   {
@@ -18,7 +18,7 @@
     "hito": "Nacimiento de **IPython**, una consola interactiva avanzada para Python con comandos mágicos, resaltado y depuración en vivo.",
     "year": 2001,
     "creador": "*Fernando Pérez*",
-    "dato_curioso": "Pérez era un estudiante colombiano de física cuántica en la Universidad de Colorado; creó la herramienta durante una tarde de frustración para agilizar su tesis doctoral.",
+    "dato_curioso": "Fernando Pérez lo creó como estudiante de física cuántica en Colorado en una tarde para agilizar su tesis doctoral.",
     "card_number": 215
   },
   {
@@ -26,10 +26,10 @@
     "grupo_nombre": "Cómputo, IA y Datos",
     "categoria": "D1",
     "categoria_nombre": "Cómputo Científico y Stack Analítico",
-    "hito": "Lanzamiento de **SciPy**, consolidando rutinas de álgebra lineal, optimización, transformada de Fourier y estadística en un paquete abierto unificado.",
+    "hito": "Lanzamiento de **SciPy**, consolidando rutinas de álgebra lineal, optimización y cálculo científico en Python.",
     "year": 2001,
-    "creador": "*Travis Oliphant*, *Eric Jones* y *Pearu Peterson*",
-    "dato_curioso": "Agrupó años de algoritmos científicos dispersos creados por la comunidad, transformando a Python en el entorno de investigación preferido de la academia mundial.",
+    "creador": "*Travis Oliphant*, *E. Jones* y *Peterson*",
+    "dato_curioso": "Agrupó algoritmos dispersos de la comunidad, convirtiendo a Python en el entorno científico preferido del mundo.",
     "card_number": 305
   },
   {
@@ -40,7 +40,7 @@
     "hito": "Debut de **Matplotlib**, la librería pionera de visualización de gráficos 2D inspirada en la sintaxis matemática de MATLAB.",
     "year": 2003,
     "creador": "*John D. Hunter*",
-    "dato_curioso": "Hunter la programó para analizar señales de electroencefalografía (*EEG*) de pacientes con epilepsia, antes de fallecer prematuramente en 2012 dejando un legado imborrable.",
+    "dato_curioso": "Creada para analizar señales de EEG de pacientes con epilepsia; Hunter falleció en 2012 dejando un legado imborrable.",
     "card_number": 405
   },
   {
@@ -51,7 +51,7 @@
     "hito": "Creación de **NumPy**, fusionando los proyectos divergentes *Numeric* y *Numarray* en un motor de arrays matriciales de alto rendimiento.",
     "year": 2005,
     "creador": "*Travis Oliphant*",
-    "dato_curioso": "Oliphant dedicó meses de trabajo titánico no remunerado para refactorizar la base de código en C y crear el objeto `ndarray` con difusión vectorial (*broadcasting*).",
+    "dato_curioso": "Oliphant refactorizó el código C sin cobrar, creando el `ndarray` y el mecanismo de *broadcasting* vectorial.",
     "card_number": 526
   },
   {
@@ -62,7 +62,7 @@
     "hito": "Desarrollo de **Pandas**, introduciendo las estructuras `Series` y `DataFrame` para el análisis y manipulación de datos tabulares en Python.",
     "year": 2008,
     "creador": "*Wes McKinney* (*AQR Capital Management*)",
-    "dato_curioso": "Nació dentro de un fondo de inversión cuantitativo de Wall Street para manipular series temporales financieras con fechas complejas y datos faltantes (*NaN*).",
+    "dato_curioso": "Nació en un hedge fund de Wall Street para manipular series temporales financieras complejas y valores *NaN*.",
     "card_number": 259
   },
   {
@@ -70,10 +70,10 @@
     "grupo_nombre": "Cómputo, IA y Datos",
     "categoria": "D1",
     "categoria_nombre": "Cómputo Científico y Stack Analítico",
-    "hito": "Lanzamiento público de **Scikit-learn**, el toolkit canónico de aprendizaje automático clásico con algoritmos de regresión, clasificación y clustering.",
+    "hito": "Lanzamiento de **Scikit-learn**, toolkit canónico de machine learning para regresión, clasificación y clustering.",
     "year": 2010,
-    "creador": "*Fabian Pedregosa*, *Gaël Varoquaux* et al. (*INRIA*)",
-    "dato_curioso": "Iniciado en un proyecto de Google Summer of Code; su estricta y cristalina API basada en `.fit()`, `.predict()` y `.transform()` sentó el estándar de oro de la industria.",
+    "creador": "*Fabian Pedregosa* et al. (*scikit-learn*)",
+    "dato_curioso": "Iniciado en un Summer of Code de Google; su API `.fit()`, `.predict()` y `.transform()` fijó el estándar de oro.",
     "card_number": 84
   },
   {
@@ -84,7 +84,7 @@
     "hito": "Presentación del entorno interactivo en el navegador **IPython Notebook**, combinando celdas de código vivo, ecuaciones LaTeX y visualizaciones.",
     "year": 2011,
     "creador": "*Fernando Pérez* y *Brian Granger*",
-    "dato_curioso": "Cambió la forma de comunicar la ciencia y el análisis de datos, permitiendo a investigadores publicar cuadernos ejecutables y reproducibles en todo el mundo.",
+    "dato_curioso": "Revolucionó la ciencia de datos, permitiendo publicar cuadernos ejecutables y reproducibles en todo el mundo.",
     "card_number": 342
   },
   {
@@ -92,10 +92,10 @@
     "grupo_nombre": "Cómputo, IA y Datos",
     "categoria": "D1",
     "categoria_nombre": "Cómputo Científico y Stack Analítico",
-    "hito": "Anuncio oficial del proyecto **Jupyter**, desacoplando la arquitectura del notebook web del intérprete de Python para soportar múltiples lenguajes.",
+    "hito": "Anuncio del proyecto **Jupyter**, desacoplando el notebook web de Python para soportar múltiples lenguajes.",
     "year": 2014,
     "creador": "*Fernando Pérez* y *Brian Granger*",
-    "dato_curioso": "Su nombre es un homenaje triple a los lenguajes fundamentales de datos: **Ju**lia, **Pyt**hon y **R**, así como a las lunas de Júpiter descubiertas por Galileo Galilei.",
+    "dato_curioso": "Homenaje triple a **Ju**lia, **Pyt**hon y **R**, y a las lunas de Júpiter descubiertas por Galileo Galilei.",
     "card_number": 70
   },
   {
@@ -106,7 +106,7 @@
     "hito": "Creación de **Dask**, una librería para paralelismo flexible y computación escalada de arrays y DataFrames sobre clusters en Python.",
     "year": 2014,
     "creador": "*Matthew Rocklin* (*Continuum Analytics*)",
-    "dato_curioso": "Permitió ejecutar operaciones analíticas sobre conjuntos de datos más grandes que la memoria RAM disponible, coordinando miles de núcleos de CPU sin abandonar la API de Pandas y NumPy.",
+    "dato_curioso": "Permite analizar datasets mayores que la RAM, coordinando miles de núcleos de CPU con la API de Pandas y NumPy.",
     "card_number": 399
   },
   {
@@ -114,10 +114,10 @@
     "grupo_nombre": "Cómputo, IA y Datos",
     "categoria": "D1",
     "categoria_nombre": "Cómputo Científico y Stack Analítico",
-    "hito": "Presentación de **Apache Arrow**, definiendo un estándar de formato en memoria columnar para procesamiento analítico masivo sin costo de serialización.",
+    "hito": "Presentación de **Apache Arrow**, definiendo un formato columnar en memoria para procesamiento analítico sin serialización.",
     "year": 2016,
     "creador": "*Wes McKinney* y *Apache Software Foundation*",
-    "dato_curioso": "Habilitó el intercambio de grandes volúmenes de datos con coste cero de copia (*zero-copy data sharing*) entre procesos de Python, R, C++, Rust y motores SQL.",
+    "dato_curioso": "Permite compartir datos en memoria sin coste de copia (*zero-copy*) entre Python, R, C++, Rust y motores SQL.",
     "card_number": 74
   },
   {
@@ -125,10 +125,10 @@
     "grupo_nombre": "Cómputo, IA y Datos",
     "categoria": "D1",
     "categoria_nombre": "Cómputo Científico y Stack Analítico",
-    "hito": "Lanzamiento de **Polars**, un motor de DataFrames ultrarrápido escrito en lenguaje **Rust** y basado en la arquitectura de memoria de Apache Arrow.",
+    "hito": "Lanzamiento de **Polars**, motor de DataFrames ultrarrápido escrito en **Rust** sobre memoria Apache Arrow.",
     "year": 2020,
     "creador": "*Ritchie Vink*",
-    "dato_curioso": "Su evaluación perezosa (*lazy evaluation*), motor de consultas optimizado y paralelismo nativo en todos los núcleos de CPU pulverizó los tiempos de procesamiento de Pandas tradicional.",
+    "dato_curioso": "Con evaluación perezosa y paralelismo nativo en Rust, pulverizó los tiempos de procesamiento de Pandas.",
     "card_number": 118
   },
   {
@@ -139,7 +139,7 @@
     "hito": "Liberación de **Pandas 2.0**, incorporando el backend de memoria de Apache Arrow como motor nativo opcional de tipos de datos.",
     "year": 2023,
     "creador": "*Pandas Development Team*",
-    "dato_curioso": "Mejoró drásticamente el rendimiento y la eficiencia de memoria en el manejo de columnas de cadenas de texto y valores nulos respecto a los antiguos tipos de NumPy.",
+    "dato_curioso": "Mejoró drásticamente el uso de memoria en columnas de texto y nulos integrando el backend de Apache Arrow.",
     "card_number": 27
   },
   {
@@ -147,10 +147,10 @@
     "grupo_nombre": "Cómputo, IA y Datos",
     "categoria": "D1",
     "categoria_nombre": "Cómputo Científico y Stack Analítico",
-    "hito": "Consolidación de **JAX** como el marco predilecto de Google para cálculo de gradientes automáticos y álgebra lineal compilada en hardware heterogéneo.",
+    "hito": "Consolidación de **JAX** en Google para cálculo de gradientes automáticos y álgebra lineal compilada con XLA.",
     "year": 2024,
-    "creador": "*Google Research* (*Roy Frostig*, *Matthew Johnson* et al.)",
-    "dato_curioso": "Permite transformar código de NumPy puro mediante compilación JIT sobre aceleradores GPU y TPU mediante *XLA*, convirtiéndose en el motor de la investigación avanzada de IA.",
+    "creador": "*Google Research* (*Roy Frostig* et al.)",
+    "dato_curioso": "Compila código NumPy puro vía JIT en GPUs y TPUs con *XLA*, motor clave en la investigación avanzada de IA.",
     "card_number": 283
   },
   {
@@ -161,7 +161,7 @@
     "hito": "Estandarización de tensores en formatos de coma flotante de precisión ultra reducida (**FP8** y **FP4**) en todo el stack analítico de Python.",
     "year": 2025,
     "creador": "*Consorcio Científico Abierto*",
-    "dato_curioso": "Permitió manipular conjuntos masivos de parámetros y matrices en computadoras portátiles ordinarias reduciendo a la mitad el consumo de memoria respecto a la precisión media.",
+    "dato_curioso": "Permite manipular matrices y pesos gigantes en laptops comunes, reduciendo a la mitad el uso de memoria RAM.",
     "card_number": 358
   }
 ]

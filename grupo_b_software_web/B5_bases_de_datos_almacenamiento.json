@@ -7,7 +7,7 @@
     "hito": "Publicación del paper fundacional sobre el modelo relacional de datos por parte de un investigador de IBM.",
     "year": 1970,
     "creador": "*Edgar F. Codd* (*IBM Research*)",
-    "dato_curioso": "Los directivos de IBM intentaron enterrar su investigación durante años porque amenazaba el lucrativo negocio de su sistema de bases de datos jerárquico *IMS*.",
+    "dato_curioso": "Directivos de IBM quisieron frenar el paper porque amenazaba el lucrativo negocio de sus bases de datos jerárquicas *IMS*.",
     "card_number": 280
   },
   {
@@ -18,7 +18,7 @@
     "hito": "Creación del lenguaje **SEQUEL** (posteriormente acortado a **SQL**) en el laboratorio de investigación de IBM en San José.",
     "year": 1974,
     "creador": "*Donald Chamberlin* y *Raymond Boyce*",
-    "dato_curioso": "Tuvieron que retirar las letras intermedias de *SEQUEL* debido a que era una marca registrada de una compañía de aviones británica, adoptando el acrónimo *SQL*.",
+    "dato_curioso": "Cambiaron *SEQUEL* a *SQL* porque la sigla original era una marca registrada de una fábrica de aviones británica.",
     "card_number": 476
   },
   {
@@ -28,8 +28,8 @@
     "categoria_nombre": "Bases de Datos y Almacenamiento",
     "hito": "Lanzamiento comercial de **Oracle Version 2**, convirtiéndose en el primer sistema de gestión de bases de datos relacional con SQL del mercado.",
     "year": 1979,
-    "creador": "*Larry Ellison*, *Bob Miner* y *Ed Oates* (*RSI*)",
-    "dato_curioso": "Le llamaron \"Versión 2\" intencionadamente porque Ellison sabía que ninguna gran corporación compraría una \"Versión 1.0\" de un software empresarial crítico.",
+    "creador": "*Larry Ellison*, *B. Miner* y *E. Oates*",
+    "dato_curioso": "La llamaron \"Versión 2\" porque Ellison sabía que ninguna gran empresa compraría la v1.0 de un gestor de base de datos.",
     "card_number": 483
   },
   {
@@ -40,7 +40,7 @@
     "hito": "Inicio del proyecto **Postgres** en la Universidad de California en Berkeley como el sucesor de nueva generación de Ingres.",
     "year": 1986,
     "creador": "*Michael Stonebraker* (*UC Berkeley*)",
-    "dato_curioso": "Su nombre original significaba literalmente *\"Post-Ingres\"*; Stonebraker introdujo tipos de datos complejos definibles por el usuario y herencia de tablas.",
+    "dato_curioso": "Significaba *\"Post-Ingres\"*; Stonebraker introdujo tipos complejos de usuario, disparadores y herencia de tablas.",
     "card_number": 218
   },
   {
@@ -50,8 +50,8 @@
     "categoria_nombre": "Bases de Datos y Almacenamiento",
     "hito": "Nacimiento de **MySQL**, concebido como un motor relacional extremadamente rápido y ligero para bases de datos de páginas web.",
     "year": 1995,
-    "creador": "*Michael \"Monty\" Widenius* y *David Axmark* (*MySQL AB*)",
-    "dato_curioso": "Bautizado con el nombre de la hija primogénita de Monty, llamada **My**; años más tarde, cuando vendieron MySQL a Sun y crearon un fork libre, lo llamaron **MariaDB** por su segunda hija.",
+    "creador": "*Michael Widenius* y *David Axmark*",
+    "dato_curioso": "Nombrado por la hija de Monty, **My**; años después, al crear el fork libre tras vender MySQL a Sun, lo llamó **MariaDB**.",
     "card_number": 244
   },
   {
@@ -62,7 +62,7 @@
     "hito": "Presentación de **PostgreSQL 6.0**, marcando la refundación del proyecto con soporte SQL nativo completo impulsado por la comunidad libre.",
     "year": 1997,
     "creador": "*PostgreSQL Global Development Group*",
-    "dato_curioso": "Los desarrolladores añadieron índices avanzados, claves foráneas y disparadores (*triggers*), convirtiéndolo con el tiempo en la base de datos de código abierto más respetada del mundo.",
+    "dato_curioso": "Sumó claves foráneas, índices GiST y disparadores, consagrándose como la base de datos relacional abierta más potente.",
     "card_number": 119
   },
   {
@@ -73,7 +73,7 @@
     "hito": "Creación de **SQLite**, un motor SQL embebido y contenido en una única librería en C sin necesidad de configuración ni procesos cliente-servidor.",
     "year": 2000,
     "creador": "*D. Richard Hipp*",
-    "dato_curioso": "Hipp lo diseñó a bordo de un destructor de misiles guiados de la Marina de EE.UU. tras la frustración de ver caer servidores de base de datos durante maniobras militares.",
+    "dato_curioso": "Hipp lo creó a bordo de un buque de guerra tras ver caer servidores de bases de datos durante maniobras navales.",
     "card_number": 49
   },
   {
@@ -84,7 +84,7 @@
     "hito": "Lanzamiento de **Memcached**, un sistema distribuido de caché en memoria RAM para acelerar la carga de sitios web dinámicos.",
     "year": 2003,
     "creador": "*Brad Fitzpatrick* (*Danga Interactive*)",
-    "dato_curioso": "Programado originalmente en Perl para salvar de la lentitud a la plataforma social de blogs *LiveJournal*, fue reescrito de inmediato en C para soportar cientos de miles de peticiones.",
+    "dato_curioso": "Creado para acelerar *LiveJournal* en Perl, fue reescrito en C para despachar cientos de miles de requests en RAM.",
     "card_number": 37
   },
   {
@@ -92,10 +92,10 @@
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B5",
     "categoria_nombre": "Bases de Datos y Almacenamiento",
-    "hito": "Publicación del influyente paper de **Bigtable**, describiendo la base de datos distribuida de Google para almacenar petabytes de datos no estructurados.",
+    "hito": "Paper de **Bigtable**, describiendo la base de datos distribuida de Google para almacenar petabytes no estructurados.",
     "year": 2006,
-    "creador": "*Google* (*Fay Chang*, *Jeff Dean*, *Sanjay Ghemawat* et al.)",
-    "dato_curioso": "Inspiró a toda una generación de ingenieros en Silicon Valley, dando lugar a implementaciones libres como *Apache Cassandra* y *HBase* dentro del stack de Big Data.",
+    "creador": "*Google* (*Jeff Dean*, *S. Ghemawat* et al.)",
+    "dato_curioso": "El paper de Google inspiró a Silicon Valley, dando origen a proyectos libres como *Cassandra* y *HBase* en Big Data.",
     "card_number": 265
   },
   {
@@ -103,10 +103,10 @@
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B5",
     "categoria_nombre": "Bases de Datos y Almacenamiento",
-    "hito": "Divulgación del paper de **Dynamo** por parte de Amazon, demostrando las ventajas de la consistencia eventual y el diseño NoSQL altamente disponible.",
+    "hito": "Paper de **Dynamo** de Amazon, demostrando las ventajas de la consistencia eventual y el diseño NoSQL distribuido.",
     "year": 2007,
     "creador": "*Amazon* (*Werner Vogels* et al.)",
-    "dato_curioso": "Nació tras una catástrofe en el *Black Friday* de 2004, donde el carrito de compras de Amazon colapsó bajo la lentitud de bases de datos relacionales tradicionales.",
+    "dato_curioso": "Nació tras caer el carrito de Amazon en el *Black Friday* de 2004, superando la rigidez de bases relacionales clásicas.",
     "card_number": 114
   },
   {
@@ -116,8 +116,8 @@
     "categoria_nombre": "Bases de Datos y Almacenamiento",
     "hito": "Lanzamiento de **Apache Cassandra** en código abierto por parte de ingenieros de Facebook para su función de búsqueda de mensajes.",
     "year": 2008,
-    "creador": "*Avinash Lakshman* y *Prashant Malik* (*Facebook*)",
-    "dato_curioso": "Combinó el modelo de datos tabular de Google Bigtable con la topología de nodos sin maestro central de Amazon Dynamo, logrando tolerancia a fallos total.",
+    "creador": "*Avinash Lakshman* y *P. Malik* (*Facebook*)",
+    "dato_curioso": "Unió el modelo tabular de Bigtable con nodos sin maestro central de Dynamo, logrando tolerancia a fallos total.",
     "card_number": 253
   },
   {
@@ -127,8 +127,8 @@
     "categoria_nombre": "Bases de Datos y Almacenamiento",
     "hito": "Nacimiento de **MongoDB**, apostando por el almacenamiento de documentos semiestructurados en formato binario **BSON** y esquemas dinámicos.",
     "year": 2009,
-    "creador": "*Eliot Horowitz*, *Dwight Merriman* y *Kevin Ryan* (*10gen*)",
-    "dato_curioso": "Su nombre proviene de la palabra *\"humongous\"* (descomunal); lideró la fiebre del movimiento NoSQL al permitir a desarrolladores guardar objetos JSON directamente sin migraciones.",
+    "creador": "*Eliot Horowitz* et al. (*10gen / MongoDB*)",
+    "dato_curioso": "Viene de *\"humongous\"*; lideró el auge NoSQL al permitir almacenar documentos JSON dinámicos sin migraciones de esquemas.",
     "card_number": 205
   },
   {
@@ -139,7 +139,7 @@
     "hito": "Creación de **Redis** (*REmote DIctionary Server*), revolucionando el almacenamiento en memoria con estructuras de datos complejas nativas.",
     "year": 2009,
     "creador": "*Salvatore Sanfilippo* (*antirez*)",
-    "dato_curioso": "Desarrollado en la pequeña localidad italiana de San Salvatore di Fitalia para escalar un servicio de analítica en tiempo real; destacó por su código C poético y ultracompacto.",
+    "dato_curioso": "Creado en Sicilia para analítica en tiempo real, deslumbró por su código C poético, eficiente y ultracompacto.",
     "card_number": 170
   },
   {
@@ -147,9 +147,9 @@
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B5",
     "categoria_nombre": "Bases de Datos y Almacenamiento",
-    "hito": "Liberación en código abierto de **Apache Kafka**, una plataforma distribuida de streaming de eventos basada en un registro de anexado continuo (*append-only commit log*).",
+    "hito": "Liberación de **Apache Kafka**, plataforma distribuida de streaming de eventos basada en un registro continuo (*commit log*).",
     "year": 2011,
-    "creador": "*Jay Kreps*, *Neha Narkhede* y *Jun Rao* (*LinkedIn*)",
+    "creador": "*Jay Kreps*, *N. Narkhede* y *J. Rao*",
     "dato_curioso": "Kreps eligió el nombre del autor literario **Franz Kafka** porque el software estaba obsesivamente optimizado para escribir datos a máxima velocidad.",
     "card_number": 404
   },
@@ -158,10 +158,10 @@
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B5",
     "categoria_nombre": "Bases de Datos y Almacenamiento",
-    "hito": "Publicación del paper de **Spanner** por ingenieros de Google, resolviendo el Santo Grial de las bases de datos distribuidas globales con consistencia estricta.",
+    "hito": "Publicación del paper de **Spanner** de Google, resolviendo bases de datos distribuidas globales con consistencia estricta.",
     "year": 2012,
     "creador": "*Google* (*James Corbett* et al.)",
-    "dato_curioso": "Sincroniza relojes entre centros de datos de todo el planeta utilizando receptores GPS dedicados y relojes atómicos de rubidio (*TrueTime API*) para ordenar transacciones.",
+    "dato_curioso": "Usa GPS y relojes atómicos de rubidio (*TrueTime API*) para ordenar transacciones globales con consistencia estricta.",
     "card_number": 11
   },
   {
@@ -169,10 +169,10 @@
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B5",
     "categoria_nombre": "Bases de Datos y Almacenamiento",
-    "hito": "Apertura pública de **ClickHouse**, un sistema de gestión de bases de datos relacional orientado a columnas para analítica en tiempo real masiva (*OLAP*).",
+    "hito": "Apertura pública de **ClickHouse**, base de datos relacional columnar para analítica masiva en tiempo real (*OLAP*).",
     "year": 2016,
     "creador": "*Yandex* (*Alexey Milovidov*)",
-    "dato_curioso": "Diseñado para analizar billones de eventos de clics de navegación por segundo, pulverizó los registros mundiales de velocidad en consultas agregadas masivas.",
+    "dato_curioso": "Diseñado para analizar billones de clics web por segundo, pulverizó récords en analítica columnar masiva (*OLAP*).",
     "card_number": 320
   },
   {
@@ -180,7 +180,7 @@
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B5",
     "categoria_nombre": "Bases de Datos y Almacenamiento",
-    "hito": "Nacimiento de **DuckDB**, concebido en el centro CWI de Ámsterdam como el equivalente de SQLite para analítica de datos en memoria y archivos Parquet.",
+    "hito": "Nacimiento de **DuckDB**, concebido como el equivalente a SQLite para analítica en memoria y archivos Parquet.",
     "year": 2019,
     "creador": "*Hannes Mühleisen* y *Mark Raasveldt* (*CWI*)",
     "dato_curioso": "Permite consultar gigabytes de archivos de datos locales directamente desde Python o R con consultas vectorizadas sin configurar clusters pesados.",
@@ -194,7 +194,7 @@
     "hito": "Presentación de **Neon**, introduciendo una arquitectura *Serverless* que desacopla el cómputo de la capa de almacenamiento en **PostgreSQL**.",
     "year": 2021,
     "creador": "*Heikki Linnakangas* y equipo Neon",
-    "dato_curioso": "Permitió crear ramas de bases de datos (*database branching*) en microsegundos de forma análoga a una rama de Git, revolucionando entornos de pruebas y staging.",
+    "dato_curioso": "Permitió crear copias y ramas de bases de datos en microsegundos como en Git, revolucionando entornos de staging.",
     "card_number": 446
   },
   {
@@ -202,10 +202,10 @@
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B5",
     "categoria_nombre": "Bases de Datos y Almacenamiento",
-    "hito": "Consagración fulminante de la extensión **pgvector**, transformando a PostgreSQL en una base de datos vectorial para sistemas de inteligencia artificial generativa (*RAG*).",
+    "hito": "Auge fulminante de **pgvector**, transformando a PostgreSQL en base de datos vectorial para IA generativa y pipelines *RAG*.",
     "year": 2023,
     "creador": "*Andrew Kane*",
-    "dato_curioso": "Permitió a miles de startups almacenar y comparar *embeddings* numéricos de OpenAI sin necesidad de contratar bases de datos vectoriales dedicadas de terceros.",
+    "dato_curioso": "Permitió almacenar y consultar *embeddings* de IA en Postgres con similitud coseno sin requerir bases vectoriales externas.",
     "card_number": 189
   },
   {

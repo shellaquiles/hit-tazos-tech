@@ -7,7 +7,7 @@
     "hito": "Infección masiva del **Gusano Morris**, paralizando el 10% de todas las computadoras conectadas a la incipiente red ARPANET.",
     "year": 1988,
     "creador": "*Robert Tappan Morris* (*Cornell University*)",
-    "dato_curioso": "Morris afirmó que solo quería medir el tamaño de Internet, pero un error de programación hizo que el gusano se reinstalara en bucle infinito hasta colapsar la memoria de los servidores Unix.",
+    "dato_curioso": "Morris solo quería medir Internet; un bug causó que su gusano se reinstalara en bucle infinito colapsando los servidores Unix.",
     "card_number": 35
   },
   {
@@ -18,7 +18,7 @@
     "hito": "Ataque del virus **Chernobyl** (**CIH**), capaz de destruir físicamente placas madre sobrescribiendo la memoria Flash BIOS.",
     "year": 1998,
     "creador": "*Chen Ing-hau* (*Taiwán*)",
-    "dato_curioso": "Diseñado para activarse anualmente cada 26 de abril (aniversario del desastre nuclear de Chernóbil); arruinó cientos de miles de PCs con Windows 95 y 98 en todo el planeta.",
+    "dato_curioso": "Se activaba cada 26 de abril (aniversario de Chernóbil), borrando la BIOS de miles de PCs con Windows 95 y 98 en el mundo.",
     "card_number": 316
   },
   {
@@ -29,7 +29,7 @@
     "hito": "Propagación del virus **ILOVEYOU** mediante un correo electrónico que fingía ser una carta de amor en un script adjunto `.vbs`.",
     "year": 2000,
     "creador": "*Onel de Guzman* (*Filipinas*)",
-    "dato_curioso": "Infectó más de 50 millones de computadoras en diez horas obligando al Pentágono y a la CIA a desconectar sus cables de red; su autor quedó en libertad porque Filipinas no tenía leyes contra delitos informáticos.",
+    "dato_curioso": "Infectó 50M de PCs en 10 horas forzando al Pentágono a desconectarse; su autor fue absuelto por falta de leyes en Filipinas.",
     "card_number": 9
   },
   {
@@ -40,7 +40,7 @@
     "hito": "Ataque del gusano **SQL Slammer**, colapsando la infraestructura de telecomunicaciones global en apenas diez minutos.",
     "year": 2003,
     "creador": "*Autor desconocido*",
-    "dato_curioso": "Con un diminuto tamaño de apenas **376 bytes**, el código se propagaba dentro de un único paquete UDP que explotaba una vulnerabilidad en Microsoft SQL Server, saturando routers continentales.",
+    "dato_curioso": "Con apenas **376 bytes** en un paquete UDP sobre SQL Server, saturó routers y paralizó cajeros y aeropuertos globales.",
     "card_number": 525
   },
   {
@@ -48,10 +48,10 @@
     "grupo_nombre": "Cultura Hacker y Leyendas",
     "categoria": "E2",
     "categoria_nombre": "Ciberseguridad, Virus y Vulnerabilidades",
-    "hito": "Descubrimiento de la vulnerabilidad crítica en el protocolo **DNS**, permitiendo suplantar cualquier dominio web mediante envenenamiento de caché.",
+    "hito": "Vulnerabilidad crítica en el protocolo **DNS**, permitiendo suplantar dominios mediante envenenamiento de caché.",
     "year": 2008,
     "creador": "*Dan Kaminsky*",
-    "dato_curioso": "Kaminsky coordinó en absoluto secreto un parche simultáneo con los mayores gigantes de la tecnología antes de revelar el fallo, salvando a Internet del caos.",
+    "dato_curioso": "Kaminsky coordinó en secreto un parche simultáneo con gigantes de la industria antes de revelar el fallo de DNS, salvando la web.",
     "card_number": 76
   },
   {
@@ -59,10 +59,10 @@
     "grupo_nombre": "Cultura Hacker y Leyendas",
     "categoria": "E2",
     "categoria_nombre": "Ciberseguridad, Virus y Vulnerabilidades",
-    "hito": "Detección del ciberarma militar **Stuxnet**, saboteando físicamente las centrifugadoras de enriquecimiento de uranio de la planta nuclear de Natanz en Irán.",
+    "hito": "Detección del ciberarma **Stuxnet**, saboteando físicamente centrifugadoras nucleares de enriquecimiento de uranio en Irán.",
     "year": 2010,
-    "creador": "*Gobiernos de EE.UU. e Israel* (*Operación Olympic Games*)",
-    "dato_curioso": "Utilizó cuatro vulnerabilidades de día cero (*0-days*) en Windows y se transmitió mediante memorias USB, alterando la velocidad de los rotores industriales hasta hacerlos estallar mecánicamente.",
+    "creador": "*EE.UU. e Israel* (*Olympic Games*)",
+    "dato_curioso": "Usó cuatro 0-days y memorias USB para alterar centrifugadoras nucleares en Irán hasta hacerlas estallar físicamente.",
     "card_number": 344
   },
   {
@@ -70,10 +70,10 @@
     "grupo_nombre": "Cultura Hacker y Leyendas",
     "categoria": "E2",
     "categoria_nombre": "Ciberseguridad, Virus y Vulnerabilidades",
-    "hito": "Descubrimiento del bug **Heartbleed** en la librería criptográfica **OpenSSL**, permitiendo extraer contraseñas y claves privadas de servidores HTTPS.",
+    "hito": "Descubrimiento del bug **Heartbleed** en **OpenSSL**, permitiendo extraer claves privadas de servidores HTTPS.",
     "year": 2014,
-    "creador": "*Neel Mehta* (*Google Security*) y *Codenomicon*",
-    "dato_curioso": "Provocado por una simple falta de verificación de longitud en un buffer de memoria en C; su icónico logo del corazón sangrante inauguró la era de las vulnerabilidades con marca y marketing.",
+    "creador": "*Neel Mehta* (*Google*) y *Codenomicon*",
+    "dato_curioso": "Fallo de lectura de buffer en C; su logo del corazón sangrante inició la era de las vulnerabilidades con marca comercial.",
     "card_number": 348
   },
   {
@@ -84,7 +84,7 @@
     "hito": "Alerta global por la vulnerabilidad **Shellshock** en el intérprete de comandos **GNU Bash**, latente de forma invisible durante más de 25 años.",
     "year": 2014,
     "creador": "*Stéphane Chazelas*",
-    "dato_curioso": "Permitía ejecutar comandos remotos arbitrarios inyectándolos dentro de variables de entorno estándar transmitidas por servidores web Apache a través de scripts CGI.",
+    "dato_curioso": "Permitía inyectar comandos de sistema arbitrarios dentro de variables de entorno transmitidas a scripts CGI en Apache.",
     "card_number": 22
   },
   {
@@ -95,7 +95,7 @@
     "hito": "Pandemia informática provocada por el ransomware **WannaCry**, bloqueando hospitales, bancos y redes ferroviarias en más de 150 países.",
     "year": 2017,
     "creador": "*The Shadow Brokers* y *Lazarus Group*",
-    "dato_curioso": "Utilizó el exploit de espionaje militar *EternalBlue*, robado a la agencia de inteligencia estadounidense NSA; un investigador británico de 22 años (*Marcus Hutchins*) lo frenó registrando un dominio oculto.",
+    "dato_curioso": "Usó el exploit militar *EternalBlue* de la NSA; Marcus Hutchins, de 22 años, lo frenó registrando un dominio en su código.",
     "card_number": 43
   },
   {
@@ -103,10 +103,10 @@
     "grupo_nombre": "Cultura Hacker y Leyendas",
     "categoria": "E2",
     "categoria_nombre": "Ciberseguridad, Virus y Vulnerabilidades",
-    "hito": "Brecha catastrófica de seguridad en la agencia crediticia **Equifax**, exponiendo datos financieros sensibles de más de 147 millones de ciudadanos.",
+    "hito": "Brecha de seguridad en **Equifax**, exponiendo datos financieros sensibles de más de 147 millones de personas.",
     "year": 2017,
-    "creador": "*Hackers estatales chinos* (según acusación judicial)",
-    "dato_curioso": "La invasión ocurrió a través de una vulnerabilidad pública en el framework Java *Apache Struts* que los administradores de la empresa olvidaron parchear durante meses.",
+    "creador": "*Hackers estatales* (acusación del DoJ)",
+    "dato_curioso": "Entraron por un bug público en *Apache Struts* que administradores de Equifax olvidaron parchar por meses, robando 147M de datos.",
     "card_number": 372
   },
   {
@@ -116,8 +116,8 @@
     "categoria_nombre": "Ciberseguridad, Virus y Vulnerabilidades",
     "hito": "Publicación de las vulnerabilidades de hardware **Spectre** y **Meltdown**, rompiendo el aislamiento de memoria en procesadores modernos.",
     "year": 2018,
-    "creador": "*Jann Horn* (*Google Project Zero*) y *TU Graz*",
-    "dato_curioso": "Demostraron que la optimización de ejecución especulativa presente en casi todos los chips de Intel, AMD y ARM permitía a programas ordinarios espiar secretos de memoria del kernel.",
+    "creador": "*Jann Horn* (*Project Zero*) y *TU Graz*",
+    "dato_curioso": "Demostraron que la ejecución especulativa de CPUs Intel/AMD permitía a apps comunes espiar secretos del kernel en memoria.",
     "card_number": 140
   },
   {
@@ -125,10 +125,10 @@
     "grupo_nombre": "Cultura Hacker y Leyendas",
     "categoria": "E2",
     "categoria_nombre": "Ciberseguridad, Virus y Vulnerabilidades",
-    "hito": "Descubrimiento del ataque a la cadena de suministros de **SolarWinds**, comprometiendo agencias del gobierno de EE.UU. a través de actualizaciones legítimas.",
+    "hito": "Descubrimiento del ciberataque masivo a **SolarWinds**, infectando agencias estatales mediante actualizaciones de software legítimas.",
     "year": 2020,
-    "creador": "*Servicio de Inteligencia Exterior de Rusia* (*SVR*)",
-    "dato_curioso": "Los atacantes inyectaron la puerta trasera *Sunburst* directamente en el pipeline de compilación de software de la empresa sin activar ninguna alarma antivirus durante nueve meses.",
+    "creador": "*Inteligencia Exterior Rusa* (*SVR*)",
+    "dato_curioso": "Inyectaron la puerta trasera *Sunburst* en el pipeline de compilación de SolarWinds, espiando al gobierno de EE.UU. por 9 meses.",
     "card_number": 82
   },
   {
@@ -136,10 +136,10 @@
     "grupo_nombre": "Cultura Hacker y Leyendas",
     "categoria": "E2",
     "categoria_nombre": "Ciberseguridad, Virus y Vulnerabilidades",
-    "hito": "Alerta máxima por **Log4Shell**, una vulnerabilidad crítica de ejecución remota de código en la popular biblioteca de logs en Java **Apache Log4j**.",
+    "hito": "Alerta por **Log4Shell**, vulnerabilidad crítica de ejecución remota en la biblioteca Java **Apache Log4j**.",
     "year": 2021,
     "creador": "*Chen Zhaojun* (*Alibaba Cloud Security*)",
-    "dato_curioso": "Calificada con una gravedad perfecta de 10/10 en la escala CVSS; bastaba con enviar una cadena de texto maliciosa en un chat de Minecraft para tomar el control total del servidor.",
+    "dato_curioso": "Gravedad máxima 10/10 en CVSS; bastaba enviar texto malicioso en un chat de Minecraft para tomar control total del servidor.",
     "card_number": 352
   },
   {
@@ -150,7 +150,7 @@
     "hito": "Detección milagrosa de una puerta trasera estatal (*backdoor*) infiltrada pacientemente durante años en el código fuente de **XZ Utils**.",
     "year": 2024,
     "creador": "*Andrés Freund* (*Microsoft*)",
-    "dato_curioso": "Freund descubrió la sofisticada conspiración por pura casualidad al investigar por qué los inicios de sesión en el servicio SSH consumían medio segundo más de CPU en su máquina personal.",
+    "dato_curioso": "Andres Freund cazó el backdoor en `xz` por casualidad al notar que SSH consumía 500ms más de CPU en su computadora personal.",
     "card_number": 64
   },
   {
@@ -161,7 +161,7 @@
     "hito": "Apagón informático mundial de **CrowdStrike**, provocando una pantalla azul de la muerte (**BSOD**) en bucle en 8.5 millones de máquinas Windows.",
     "year": 2024,
     "creador": "*CrowdStrike Inc.* (*George Kurtz*)",
-    "dato_curioso": "Un archivo de configuración de reglas corrupto de apenas unos kilobytes colapsó aerolíneas, hospitales, cajeros automáticos y canales de televisión en el peor desastre operativo de la historia de TI.",
+    "dato_curioso": "Un archivo corrupto de pocos KB en Windows colapsó aerolíneas, hospitales y cajeros en el mayor apagón informático mundial.",
     "card_number": 229
   },
   {
@@ -172,7 +172,7 @@
     "hito": "Oleada de incidentes de inyección de prompt indirecta y envenenamiento de memoria en flotas empresariales de agentes autónomos de IA.",
     "year": 2025,
     "creador": "*Investigadores de Ciberseguridad de IA*",
-    "dato_curioso": "Atacantes lograron que agentes corporativos filtraran bases de datos privadas ocultando instrucciones invisibles en texto blanco dentro de currículums y facturas PDF procesadas automáticamente.",
+    "dato_curioso": "Atacantes hackearon agentes de IA corporativos ocultando órdenes invisibles en texto blanco dentro de currículums y facturas.",
     "card_number": 505
   }
 ]

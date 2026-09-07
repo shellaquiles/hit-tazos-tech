@@ -4,10 +4,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A4",
     "categoria_nombre": "Ecosistema Web, APIs y Backend",
-    "hito": "Liberación de **Zope 2**, el servidor de aplicaciones pionero que introdujo la base de datos orientada a objetos *ZODB* y publicación web transparente.",
+    "hito": "Liberación de **Zope 2**, servidor de aplicaciones pionero que introdujo la base de datos orientada a objetos *ZODB*.",
     "year": 2000,
     "creador": "*Jim Fulton* (*Digital Creations*)",
-    "dato_curioso": "Permitió almacenar objetos Python directamente en disco sin escribir una sola línea de SQL, impulsando las primeras arquitecturas web corporativas en el lenguaje.",
+    "dato_curioso": "Guardaba objetos Python en disco sin usar SQL, impulsando las primeras aplicaciones web corporativas del lenguaje.",
     "card_number": 233
   },
   {
@@ -15,10 +15,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A4",
     "categoria_nombre": "Ecosistema Web, APIs y Backend",
-    "hito": "Nacimiento de **Twisted**, el framework asíncrono conducido por eventos (*event-driven networking*) antes de que existieran corrutinas nativas en Python.",
+    "hito": "Nacimiento de **Twisted**, framework asíncrono por eventos antes de existir corrutinas nativas en Python.",
     "year": 2001,
     "creador": "*Glyph Lefkowitz*",
-    "dato_curioso": "Glyph lo programó originalmente para dar vida a un videojuego online multijugador; su arquitectura basada en objetos *Deferred* inspiró las promesas modernas en JavaScript.",
+    "dato_curioso": "Creado para un videojuego online, sus objetos *Deferred* inspiraron las promesas asíncronas modernas en JavaScript.",
     "card_number": 178
   },
   {
@@ -28,8 +28,8 @@
     "categoria_nombre": "Ecosistema Web, APIs y Backend",
     "hito": "Lanzamiento de **Plone**, el sistema de gestión de contenidos (*CMS*) de código abierto construido sobre Zope y centrado en la accesibilidad.",
     "year": 2001,
-    "creador": "*Alan Runyan*, *Alexander Limi* y *Vidar Andersen*",
-    "dato_curioso": "Fue adoptado por organismos de máxima seguridad como la **CIA**, la **NASA** y gobiernos de todo el mundo debido a su implacable arquitectura de permisos.",
+    "creador": "*Alan Runyan*, *Alexander Limi* y *Andersen*",
+    "dato_curioso": "Adoptado por la CIA, la NASA y gobiernos del mundo debido a su implacable arquitectura de permisos y seguridad.",
     "card_number": 469
   },
   {
@@ -37,10 +37,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A4",
     "categoria_nombre": "Ecosistema Web, APIs y Backend",
-    "hito": "Aprobación del **PEP 333**, definiendo la especificación estándar **WSGI** (*Web Server Gateway Interface*) para desacoplar servidores de frameworks.",
+    "hito": "Aprobación del **PEP 333** (**WSGI**), desacoplando servidores web de frameworks y aplicaciones Python.",
     "year": 2003,
     "creador": "*Phillip J. Eby*",
-    "dato_curioso": "Terminó con la anarquía donde cada framework web requería su propio módulo para Apache, permitiendo que cualquier app corriera sobre cualquier servidor web.",
+    "dato_curioso": "Terminó con la anarquía de módulos Apache, permitiendo que cualquier app corriera en cualquier servidor web.",
     "card_number": 421
   },
   {
@@ -48,10 +48,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A4",
     "categoria_nombre": "Ecosistema Web, APIs y Backend",
-    "hito": "Publicación en código abierto de **Django**, el framework con \"baterías incluidas\" que incorporó un ORM relacional y panel de administración autogenerado.",
+    "hito": "Liberación de **Django**, framework con \"baterías incluidas\" que sumó un ORM relacional y panel de administración.",
     "year": 2005,
     "creador": "*Adrian Holovaty* y *Simon Willison*",
-    "dato_curioso": "Desarrollado contra reloj en la redacción del diario *Lawrence Journal-World*, fue bautizado en tributo al legendario guitarrista de jazz manouche **Django Reinhardt**.",
+    "dato_curioso": "Creado en la redacción del *Lawrence Journal-World*, fue bautizado en honor al guitarrista de jazz **Django Reinhardt**.",
     "card_number": 439
   },
   {
@@ -59,10 +59,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A4",
     "categoria_nombre": "Ecosistema Web, APIs y Backend",
-    "hito": "Debut de **TurboGears**, un megaframework que articuló las mejores piezas existentes (*CherryPy*, *SQLObject*, *Kid* y *Mochikit*) en una solución unificada.",
+    "hito": "Debut de **TurboGears**, megaframework que unificó las mejores piezas del ecosistema (*CherryPy*, *SQLObject* y *Kid*).",
     "year": 2005,
     "creador": "*Kevin Dangoor*",
-    "dato_curioso": "Demostró el poder de ensamblar librerías de la comunidad en lugar de reinventar la rueda, marcando la era de oro de los frameworks modulares en Python 2.",
+    "dato_curioso": "Demostró el poder de ensamblar librerías abiertas en vez de reinventar la rueda, marcando la era dorada de Python 2.",
     "card_number": 371
   },
   {
@@ -73,7 +73,7 @@
     "hito": "Creación de **SQLAlchemy**, el sofisticado kit de herramientas SQL y mapeador relacional de objetos (*ORM*) para bases de datos empresariales.",
     "year": 2006,
     "creador": "*Mike Bayer*",
-    "dato_curioso": "Adoptó el patrón *Data Mapper* en lugar del popular *Active Record*, otorgando a los desarrolladores control milimétrico sobre consultas y transacciones complejas.",
+    "dato_curioso": "Adoptó el patrón *Data Mapper* frente a *Active Record*, dando control milimétrico sobre consultas complejas.",
     "card_number": 275
   },
   {
@@ -84,7 +84,7 @@
     "hito": "Aparición de **Werkzeug**, una completa biblioteca de utilidades WSGI para gestionar enrutamiento HTTP, cookies y depuración interactiva.",
     "year": 2007,
     "creador": "*Armin Ronacher* (*Pocoo Team*)",
-    "dato_curioso": "Su consola de depuración en el navegador con capacidad de ejecutar código en vivo dentro de la traza de error causó fascinación mundial en conferencias técnicas.",
+    "dato_curioso": "Su consola en el navegador para ejecutar código en vivo dentro de la traza de error fascinó a la industria técnica.",
     "card_number": 276
   },
   {
@@ -95,7 +95,7 @@
     "hito": "Lanzamiento del motor de plantillas **Jinja2**, optimizado para compilar código HTML directamente a código Python en memoria.",
     "year": 2008,
     "creador": "*Armin Ronacher*",
-    "dato_curioso": "Tomó prestada la elegante sintaxis de llaves `{{ variable }}` y `{% tag %}` de Django, perfeccionando su velocidad y seguridad con auto-escape automático.",
+    "dato_curioso": "Tomó la sintaxis `{{ variable }}` de Django, perfeccionando su velocidad y seguridad con auto-escape automático nativo.",
     "card_number": 95
   },
   {
@@ -106,7 +106,7 @@
     "hito": "Liberación en código abierto del servidor web y framework asíncrono **Tornado** tras la adquisición de *FriendFeed* por parte de Facebook.",
     "year": 2009,
     "creador": "*Bret Taylor* (*FriendFeed / Facebook*)",
-    "dato_curioso": "Capaz de sostener decenas de miles de conexiones HTTP abiertas en tiempo real mediante sondeo *epoll*, popularizó las aplicaciones web de actualización instantánea.",
+    "dato_curioso": "Soportaba miles de conexiones HTTP abiertas en tiempo real con *epoll*, popularizando webs de datos en vivo.",
     "card_number": 437
   },
   {
@@ -114,10 +114,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A4",
     "categoria_nombre": "Ecosistema Web, APIs y Backend",
-    "hito": "Nacimiento de **Celery**, el sistema distribuido de colas de tareas asíncronas para procesamiento en segundo plano con brokers como RabbitMQ y Redis.",
+    "hito": "Nacimiento de **Celery**, sistema distribuido de colas asíncronas para segundo plano con RabbitMQ y Redis.",
     "year": 2009,
     "creador": "*Ask Solem*",
-    "dato_curioso": "Se convirtió en el estándar indiscutible de la industria para descargar tareas pesadas de emails, reportes y machine learning fuera del ciclo de respuesta HTTP.",
+    "dato_curioso": "Es el estándar para descargar tareas pesadas de emails, reportes y modelos fuera del ciclo de respuesta HTTP.",
     "card_number": 232
   },
   {
@@ -128,7 +128,7 @@
     "hito": "Presentación de **Flask**, el microframework minimalista que inició como una broma del día de los inocentes (*April Fools' Joke*).",
     "year": 2010,
     "creador": "*Armin Ronacher*",
-    "dato_curioso": "Empaquetó *Werkzeug* y *Jinja* dentro de un archivo `.zip` ejecutable como sátira contra los frameworks monolíticos; la acogida fue tan entusiasta que se transformó en un proyecto real.",
+    "dato_curioso": "Nació como una broma de April Fools en un zip ejecutable; fue tan popular que se convirtió en un framework real.",
     "card_number": 288
   },
   {
@@ -150,7 +150,7 @@
     "hito": "Introducción de **Gevent**, una librería de concurrencia de alto rendimiento basada en *greenlets* y el bucle de eventos *libev*.",
     "year": 2010,
     "creador": "*Denis Bilenko*",
-    "dato_curioso": "Permitía convertir mágicamente código bloqueante síncrono en asíncrono sin reescribir funciones, aplicando parches en caliente (*monkey patching*) al socket estándar.",
+    "dato_curioso": "Convertía código síncrono en asíncrono sin reescribir funciones, aplicando *monkey patching* a sockets nativos.",
     "card_number": 464
   },
   {
@@ -161,7 +161,7 @@
     "hito": "Publicación de **Bottle**, un microframework web completo contenido enteramente dentro de un único archivo fuente `bottle.py` sin dependencias.",
     "year": 2010,
     "creador": "*Marcel Hellkamp*",
-    "dato_curioso": "Se convirtió en la herramienta favorita para microservicios ligeros, prototipos de hardware embebido y utilitarios donde desplegar dependencias era inviable.",
+    "dato_curioso": "Favorito para microservicios y hardware embebido donde instalar dependencias externas era inviable.",
     "card_number": 361
   },
   {
@@ -172,7 +172,7 @@
     "hito": "Consagración de **Requests** bajo el lema *\"HTTP for Humans\"*, redefiniendo para siempre la ergonomía de las librerías cliente en Python.",
     "year": 2011,
     "creador": "*Kenneth Reitz*",
-    "dato_curioso": "Desterró la tortuosa e ininteligible API estándar de `urllib2`, permitiendo realizar peticiones con sintaxis cristalina como `requests.get(url, auth=...)`.",
+    "dato_curioso": "Desterró la tortuosa API de `urllib2`, permitiendo hacer peticiones con sintaxis cristalina (`requests.get(...)`).",
     "card_number": 504
   },
   {
@@ -183,7 +183,7 @@
     "hito": "Debut de **Django REST Framework** (**DRF**), brindando serializadores avanzados y vistas navegables para construir APIs RESTful profesionales.",
     "year": 2011,
     "creador": "*Tom Christie*",
-    "dato_curioso": "Su interfaz HTML interactiva para explorar endpoints y enviar payloads directamente desde el navegador transformó el desarrollo y testeo de APIs backend.",
+    "dato_curioso": "Su interfaz web interactiva para explorar endpoints y enviar payloads al vuelo transformó el desarrollo de APIs backend.",
     "card_number": 161
   },
   {
@@ -194,7 +194,7 @@
     "hito": "Presentación de **Pyramid**, el framework modular nacido de la fusión de *repoze.bfg* y el proyecto *Pylons*.",
     "year": 2011,
     "creador": "*Chris McDonough*",
-    "dato_curioso": "Destacó por su filosofía de configuración flexible, seguridad basada en listas de control de acceso (*ACLs*) y capacidad para crecer desde microapps hasta portales gigantes.",
+    "dato_curioso": "Destacó por su configuración flexible, listas de control de acceso (*ACLs*) y escalabilidad de micro a mega apps.",
     "card_number": 445
   },
   {
@@ -205,7 +205,7 @@
     "hito": "Lanzamiento de **Falcon**, un microframework WSGI enfocado obsesivamente en la baja latencia y el rendimiento extremo para APIs de nube.",
     "year": 2013,
     "creador": "*Kurt Griffiths*",
-    "dato_curioso": "Evitó intencionadamente abstracciones pesadas para responder peticiones JSON a máxima velocidad, procesando hasta 30 veces más requests por segundo que los frameworks tradicionales.",
+    "dato_curioso": "Evitó abstracciones pesadas para responder JSON al vuelo, rindiendo hasta 30x más que frameworks tradicionales.",
     "card_number": 390
   },
   {
@@ -227,7 +227,7 @@
     "hito": "Debut de **Sanic**, un framework web asíncrono diseñado para volar sobre el bucle ultrarrápido *uvloop* emulando la sintaxis accesible de Flask.",
     "year": 2016,
     "creador": "*Yun Xu*",
-    "dato_curioso": "Su lema *\"Build fast. Run even faster.\"* cautivó a desarrolladores que querían el rendimiento de Node.js o Go sin renunciar a la expresividad de Python.",
+    "dato_curioso": "Su lema cautivó a desarrolladores que buscaban el rendimiento de Node.js o Go sin perder la expresividad de Python.",
     "card_number": 514
   },
   {
@@ -238,7 +238,7 @@
     "hito": "Lanzamiento de **uvloop**, una reimplementación del bucle de eventos de `asyncio` programada en Cython sobre la biblioteca en C **libuv**.",
     "year": 2016,
     "creador": "*Yury Selivanov* (*MagicStack*)",
-    "dato_curioso": "Demostró que un bucle de eventos en Python podía ser entre 2 y 4 veces más rápido que el de Node.js, superando los 100,000 requests por segundo en benchmarks.",
+    "dato_curioso": "Demostró que un bucle en Python podía ser de 2 a 4 veces más rápido que Node.js, superando 100k requests/seg.",
     "card_number": 223
   },
   {
@@ -260,7 +260,7 @@
     "hito": "Publicación de la especificación **ASGI** (*Asynchronous Server Gateway Interface*), superando los límites unidireccionales de WSGI.",
     "year": 2018,
     "creador": "*Andrew Godwin*",
-    "dato_curioso": "Diseñada para soportar protocolos bidireccionales continuos como WebSockets y HTTP/2 sobre bucles asíncronos nativos, marcando el estándar del backend moderno.",
+    "dato_curioso": "Diseñada para WebSockets y HTTP/2 sobre bucles asíncronos nativos, marcando el estándar del backend moderno.",
     "card_number": 396
   },
   {
@@ -293,7 +293,7 @@
     "hito": "Nacimiento de **FastAPI**, articulando *Starlette*, *Pydantic* y tipado estático con generación automática de esquemas **OpenAPI**.",
     "year": 2018,
     "creador": "*Sebastián Ramírez* (*tiangolo*)",
-    "dato_curioso": "Revolucionó el ecosistema mundial de APIs; su documentación interactiva autogenerada en Swagger UI y su validación estricta lo catapultaron al top de popularidad global.",
+    "dato_curioso": "Revolucionó las APIs; su documentación interactiva autogenerada en Swagger UI lo catapultó al estrellato global.",
     "card_number": 230
   },
   {
@@ -301,7 +301,7 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A4",
     "categoria_nombre": "Ecosistema Web, APIs y Backend",
-    "hito": "Presentación de **HTTPX**, el cliente HTTP de última generación con soporte unificado síncrono y asíncrono, y compatibilidad nativa con **HTTP/2**.",
+    "hito": "Presentación de **HTTPX**, cliente HTTP con soporte síncrono y asíncrono, y compatibilidad nativa con **HTTP/2**.",
     "year": 2019,
     "creador": "*Tom Christie* (*Encode*)",
     "dato_curioso": "Diseñado como el sucesor espiritual de *Requests*, resolvió la falta de soporte HTTP/2 y de llamadas con `await` en clientes HTTP para Python.",
@@ -312,10 +312,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A4",
     "categoria_nombre": "Ecosistema Web, APIs y Backend",
-    "hito": "Lanzamiento de **Pydantic v1**, popularizando la validación de esquemas de datos y serialización basada exclusivamente en pistas de tipado estándar.",
+    "hito": "Lanzamiento de **Pydantic v1**, popularizando la validación de esquemas basada en pistas de tipado estándar.",
     "year": 2020,
     "creador": "*Samuel Colvin*",
-    "dato_curioso": "Transformó el parsing de payloads JSON al convertir anotaciones ordinarias de Python (`name: str`, `age: int`) en validadores rigurosos en tiempo de ejecución.",
+    "dato_curioso": "Convierte anotaciones simples (`name: str`, `age: int`) en validadores rigurosos en tiempo de ejecución.",
     "card_number": 494
   },
   {
@@ -323,10 +323,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A4",
     "categoria_nombre": "Ecosistema Web, APIs y Backend",
-    "hito": "Creación de **Litestar** (originalmente *Starlite*), un framework ASGI altamente configurable con inyección de dependencias y validación estricta de tipos.",
+    "hito": "Creación de **Litestar** (*Starlite*), framework ASGI con inyección de dependencias y validación estricta de tipos.",
     "year": 2021,
     "creador": "*Cody Fincher* y *Peter Schutt*",
-    "dato_curioso": "Ofreció una arquitectura orientada a la mantenibilidad en equipos corporativos, implementando controladores basados en clases y serialización multiproveedor.",
+    "dato_curioso": "Diseñado para equipos corporativos, sumando controladores basados en clases y serialización multiproveedor.",
     "card_number": 32
   },
   {
@@ -337,7 +337,7 @@
     "hito": "Incorporación de interfaz asíncrona nativa en el ORM de **Django 4.2**, permitiendo realizar consultas con `await` sin bloquear hilos.",
     "year": 2023,
     "creador": "*Carlton Gibson* y *Mariusz Felisiak*",
-    "dato_curioso": "Marcó el culmen de una década de trabajo para modernizar las tripas de Django, permitiendo mezclar vistas asíncronas con transacciones de base de datos directas.",
+    "dato_curioso": "Modernizó las tripas de Django, permitiendo mezclar vistas asíncronas con transacciones directas a la base de datos.",
     "card_number": 477
   },
   {
@@ -348,7 +348,7 @@
     "hito": "Reescritura integral del motor de **Pydantic v2** en lenguaje **Rust** a través de la librería interna `pydantic-core`.",
     "year": 2023,
     "creador": "*Samuel Colvin* (*Pydantic Inc.*)",
-    "dato_curioso": "Multiplicó la velocidad de validación y serialización de JSON entre 5x y 50x, demostrando la viabilidad de acelerar Python delegando cuellos de botella en Rust.",
+    "dato_curioso": "Multiplicó la velocidad de serialización entre 5x y 50x delegando cuellos de botella del validador en Rust.",
     "card_number": 431
   },
   {
@@ -359,7 +359,7 @@
     "hito": "Presentación de **Granian**, un servidor HTTP para Python escrito enteramente en **Rust** que implementa interfaces WSGI, ASGI y RSGI.",
     "year": 2023,
     "creador": "*Sebastiano Ferraris*",
-    "dato_curioso": "Empleó el runtime asíncrono *Tokio* y el parser *Hyper*, registrando tasas de procesamiento superiores a cualquier servidor Python puro en la historia.",
+    "dato_curioso": "Usando el runtime *Tokio* y *Hyper* de Rust, logró tasas de requests récord para servidores web del ecosistema Python.",
     "card_number": 302
   },
   {
@@ -370,7 +370,7 @@
     "hito": "Debut de **Robyn**, un framework web asíncrono escrito en Python y propulsado internamente por un motor multihilo en Rust.",
     "year": 2024,
     "creador": "*Sanskar Jethi*",
-    "dato_curioso": "Permitió omitir las complejidades del GIL en el manejo de conexiones entrantes al despachar las llamadas de red directamente en los hilos nativos del runtime de Rust.",
+    "dato_curioso": "Maneja conexiones entrantes directamente en hilos nativos de Rust, esquivando el impacto del GIL en red.",
     "card_number": 527
   },
   {
@@ -378,10 +378,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A4",
     "categoria_nombre": "Ecosistema Web, APIs y Backend",
-    "hito": "Despliegue de la suite oficial **FastAPI CLI**, aportando comandos integrados para desarrollo local y despliegue a producción con un solo comando.",
+    "hito": "Despliegue de **FastAPI CLI**, aportando comandos integrados para desarrollo local y despliegue productivo.",
     "year": 2024,
     "creador": "*Sebastián Ramírez*",
-    "dato_curioso": "Simplificó el flujo de trabajo de millones de desarrolladores, desterrando configuraciones complejas de servidores en entornos de testing e integración continua.",
+    "dato_curioso": "Simplificó el desarrollo de APIs, eliminando configuraciones complejas de servidores en testing y CI/CD.",
     "card_number": 507
   },
   {
@@ -389,10 +389,10 @@
     "grupo_nombre": "Universo Python",
     "categoria": "A4",
     "categoria_nombre": "Ecosistema Web, APIs y Backend",
-    "hito": "Liberación de **Litestar 3.0**, introduciendo soporte integral para streaming de eventos de IA (*Server-Sent Events*) y especificación **OpenAPI 3.1**.",
+    "hito": "Lanzamiento de **Litestar 3.0**, sumando soporte para streaming de eventos de IA (*SSE*) y especificación **OpenAPI 3.1**.",
     "year": 2025,
     "creador": "*Litestar Organization*",
-    "dato_curioso": "Optimizó la canalización de tokens de LLMs hacia clientes frontend, consolidándose como la plataforma preferida para backend de agentes inteligentes en Python.",
+    "dato_curioso": "Optimizó el streaming de tokens de LLMs hacia frontends, afianzándose como backend predilecto para agentes de IA.",
     "card_number": 432
   }
 ]

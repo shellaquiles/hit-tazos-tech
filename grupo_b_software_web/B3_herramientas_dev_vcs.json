@@ -7,7 +7,7 @@
     "hito": "Creación de **SCCS** (*Source Code Control System*), el primer sistema automatizado de control de versiones de código de la historia.",
     "year": 1972,
     "creador": "*Marc Rochkind* (*Bell Labs*)",
-    "dato_curioso": "Diseñado para computadoras IBM sobre tarjetas perforadas; almacenaba el historial mediante *deltas* entrelazados para ahorrar espacio en discos magnéticos de escasos megabytes.",
+    "dato_curioso": "Creado para IBM sobre tarjetas perforadas; guardaba deltas entrelazados para ahorrar espacio en discos magnéticos chicos.",
     "card_number": 324
   },
   {
@@ -17,8 +17,8 @@
     "categoria_nombre": "Herramientas Dev y Control de Versiones",
     "hito": "Nacimiento del editor de texto extensible **Emacs** en el laboratorio de inteligencia artificial del MIT.",
     "year": 1976,
-    "creador": "*Richard Stallman* y *Guy L. Steele Jr.* (*MIT AI Lab*)",
-    "dato_curioso": "Stallman lo concibió como un conjunto de macros de edición (*Editing MACroS*) sobre el editor TECO; su capacidad de ser reprogramado en dialectos Lisp lo convirtió en un sistema operativo en sí mismo.",
+    "creador": "*Richard Stallman* y *Guy Steele* (*MIT*)",
+    "dato_curioso": "Concebido por Stallman sobre macros TECO; extensible en Lisp, se convirtió en un entorno operativo en sí mismo.",
     "card_number": 307
   },
   {
@@ -29,7 +29,7 @@
     "hito": "Desarrollo de **Vi**, el editor modal de pantalla completa incluido en la primera distribución BSD de Unix.",
     "year": 1976,
     "creador": "*Bill Joy* (*UC Berkeley*)",
-    "dato_curioso": "Diseñado para terminales lentas de 300 baudios; Joy asignó los comandos de navegación `h`, `j`, `k`, `l` porque el teclado del terminal *Lear Siegler ADM-3A* tenía flechas impresas sobre esas teclas.",
+    "dato_curioso": "Joy usó `h`,`j`,`k`,`l` porque el terminal *Lear Siegler ADM-3A* tenía flechas impresas en esas teclas físicas.",
     "card_number": 430
   },
   {
@@ -40,7 +40,7 @@
     "hito": "Aparición de **RCS** (*Revision Control System*), popularizando el bloqueo estricto de archivos por usuario en entornos Unix.",
     "year": 1982,
     "creador": "*Walter F. Tichy* (*Purdue University*)",
-    "dato_curioso": "Almacenaba las revisiones como deltas inversos para que consultar la última versión fuera casi instantáneo, convirtiéndose en el motor estándar de los primeros servidores compartidos.",
+    "dato_curioso": "Guardaba deltas inversos para que ver la última versión fuera instantáneo, motor estándar de servidores compartidos.",
     "card_number": 87
   },
   {
@@ -51,7 +51,7 @@
     "hito": "Creación de **CVS** (*Concurrent Versions System*), permitiendo a múltiples programadores modificar un mismo archivo en paralelo.",
     "year": 1986,
     "creador": "*Dick Grune*",
-    "dato_curioso": "Nació como una serie de scripts de shell que envolvían a RCS; su modelo de fusión optimista sustituyó para siempre la pesadilla de bloquear archivos completos durante días.",
+    "dato_curioso": "Scripts sobre RCS con fusiones optimistas, eliminando el bloqueo manual de archivos que paralizaba a los equipos.",
     "card_number": 387
   },
   {
@@ -62,7 +62,7 @@
     "hito": "Publicación de **Vim** (*Vi IMproved*) para computadoras Commodore Amiga bajo un modelo de software benéfico (*charityware*).",
     "year": 1991,
     "creador": "*Bram Moolenaar*",
-    "dato_curioso": "En lugar de pedir donaciones para sí mismo, Bram solicitaba a los usuarios enviar dinero a orfanatos de niños en Uganda, manteniendo esta causa humanitaria activa durante más de tres décadas.",
+    "dato_curioso": "Bram pedía a los usuarios donar a orfanatos en Uganda, manteniendo esta causa humanitaria activa por más de 30 años.",
     "card_number": 478
   },
   {
@@ -73,7 +73,7 @@
     "hito": "Nacimiento de **Subversion** (**SVN**), diseñado para corregir las graves deficiencias estructurales de CVS.",
     "year": 2000,
     "creador": "*CollabNet* (*Jim Blandy* y *Karl Fogel*)",
-    "dato_curioso": "Introdujo confirmaciones de cambios atómicas (*atomic commits*) y soporte para renombrar carpetas y versionar archivos binarios sin corromper el historial del repositorio.",
+    "dato_curioso": "Sumó commits atómicos y renombrado limpio de carpetas y archivos binarios sin romper el historial del repositorio.",
     "card_number": 290
   },
   {
@@ -83,8 +83,8 @@
     "categoria_nombre": "Herramientas Dev y Control de Versiones",
     "hito": "Lanzamiento de **IntelliJ IDEA**, revolucionando los entornos de desarrollo integrados con autocompletado y refactorización semántica avanzada.",
     "year": 2001,
-    "creador": "*JetBrains* (*Sergey Dmitriev* y *Valentin Kipiatkov*)",
-    "dato_curioso": "Fue el primer IDE en entender el árbol sintáctico del código en memoria para proponer refactorizaciones seguras en Java, cobrando una licencia comercial en una época de IDEs gratuitos.",
+    "creador": "*JetBrains* (*S. Dmitriev* y *V. Kipiatkov*)",
+    "dato_curioso": "Primer IDE en procesar el árbol sintáctico en RAM para refactorizar Java de forma segura, triunfando con cobro de licencias.",
     "card_number": 326
   },
   {
@@ -95,7 +95,7 @@
     "hito": "Debut de **TextMate** para Mac OS X, redefiniendo la estética y ergonomía de los editores con snippets dinámicos y navegación difusa.",
     "year": 2004,
     "creador": "*Allan Odgaard* (*MacroMates*)",
-    "dato_curioso": "Su sistema de coloreado de sintaxis basado en expresiones regulares de *Oniguruma* y su comando `Cmd+T` para abrir archivos rápidamente inspiraron directamente a editores posteriores.",
+    "dato_curioso": "Su coloreado de sintaxis y el atajo `Cmd+T` para abrir archivos al instante inspiraron a todos los editores modernos.",
     "card_number": 219
   },
   {
@@ -106,7 +106,7 @@
     "hito": "Creación urgente de **Git** como sistema de control de versiones distribuido tras la crisis con el software propietario *BitKeeper*.",
     "year": 2005,
     "creador": "*Linus Torvalds*",
-    "dato_curioso": "Linus programó el núcleo funcional basado en un grafo acíclico dirigido (*DAG*) en solo dos semanas, asombrando a la industria por su velocidad de cálculo de ramas y fusiones.",
+    "dato_curioso": "Linus programó el grafo DAG de Git en dos semanas, asombrando por su velocidad para ramificar y fusionar repositorios.",
     "card_number": 329
   },
   {
@@ -117,7 +117,7 @@
     "hito": "Lanzamiento de **Mercurial** (**hg**), concebido la misma semana que Git como alternativa distribuida escrita en Python y C.",
     "year": 2005,
     "creador": "*Matt Mackall*",
-    "dato_curioso": "Se disputó con Git el control del kernel Linux; aunque Linus eligió su propia creación, gigantes como *Facebook* y *Google* operaron monorepositorios colosales sobre Mercurial.",
+    "dato_curioso": "Compitió con Git por Linux; aunque Linus usó Git, firmas como Facebook y Google operaron monorepos colosales con Mercurial.",
     "card_number": 411
   },
   {
@@ -128,7 +128,7 @@
     "hito": "Aparición de **Sublime Text**, conquistando a los desarrolladores por su velocidad instantánea y su minimapa lateral de código.",
     "year": 2008,
     "creador": "*Jon Skinner*",
-    "dato_curioso": "Programado en C++ y Python para ofrecer una interfaz ligera y sin lag; popularizó la función de selección con múltiples cursores simultáneos (`Ctrl+D`).",
+    "dato_curioso": "Programado en C++ y Python sin lag; popularizó la selección con múltiples cursores simultáneos (`Ctrl+D`).",
     "card_number": 63
   },
   {
@@ -139,7 +139,7 @@
     "hito": "Lanzamiento del editor **Atom** por parte de GitHub bajo el lema *\"A hackable text editor for the 21st Century\"*.",
     "year": 2014,
     "creador": "*GitHub* (*Chris Wanstrath*)",
-    "dato_curioso": "Para construirlo crearon internamente la plataforma *Electron* (combinando Chromium y Node.js), tecnología que más tarde impulsaría aplicaciones como Slack, Discord y VS Code.",
+    "dato_curioso": "Para crearlo inventaron *Electron* (Chromium + Node.js), base que luego impulsaría apps como Slack, Discord y VS Code.",
     "card_number": 262
   },
   {
@@ -147,10 +147,10 @@
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B3",
     "categoria_nombre": "Herramientas Dev y Control de Versiones",
-    "hito": "Creación del proyecto **Neovim**, una bifurcación agresiva de Vim enfocada en limpiar la base de código en C y añadir soporte para scripting en **Lua**.",
+    "hito": "Creación de **Neovim**, bifurcación de Vim enfocada en refactorizar el código en C y añadir scripting nativo en **Lua**.",
     "year": 2014,
     "creador": "*Thiago de Arruda*",
-    "dato_curioso": "Nació tras el rechazo de Bram Moolenaar a aceptar parches para refactorizar la arquitectura interna; Neovim revivió el entusiasmo por los editores de terminal entre las nuevas generaciones.",
+    "dato_curioso": "Nació tras el rechazo de parches de refactorización en Vim; Neovim revivió el fervor por editores de terminal modernos.",
     "card_number": 374
   },
   {
@@ -161,7 +161,7 @@
     "hito": "Presentación de **Visual Studio Code** (**VS Code**), convirtiéndose en el editor de código más adoptado del planeta.",
     "year": 2015,
     "creador": "*Microsoft* (*Erich Gamma*)",
-    "dato_curioso": "Creado por uno de los autores del libro de *Design Patterns*, sorprendió al mundo al ser gratuito, de código abierto y compatible con Linux, macOS y Windows desde el día uno.",
+    "dato_curioso": "Creado por Erich Gamma, sorprendió por ser libre, extensible, ágil y multiplataforma desde su primer día de lanzamiento.",
     "card_number": 346
   },
   {
@@ -172,7 +172,7 @@
     "hito": "Estandarización del protocolo **LSP** (*Language Server Protocol*), desacoplando la inteligencia de compiladores de la interfaz del editor.",
     "year": 2016,
     "creador": "*Microsoft*, *Red Hat* y *Codenvy*",
-    "dato_curioso": "Permitió que un único servidor de lenguaje (como *pyright* o *gopls*) proveyera autocompletado, diagnósticos y salto a definiciones para cualquier editor de texto compatible.",
+    "dato_curioso": "Permite que un único servidor (*pyright*, *gopls*) dé autocompletado y diagnósticos a cualquier editor de texto compatible.",
     "card_number": 304
   },
   {
@@ -180,10 +180,10 @@
     "grupo_nombre": "Software, Web y Datos",
     "categoria": "B3",
     "categoria_nombre": "Herramientas Dev y Control de Versiones",
-    "hito": "Apertura de la vista previa de **GitHub Copilot**, inaugurando la era de la programación asistida por modelos de inteligencia artificial generativa.",
+    "hito": "Apertura de **GitHub Copilot**, inaugurando la programación asistida por modelos de IA generativa.",
     "year": 2021,
     "creador": "*GitHub* y *OpenAI* (*Nat Friedman*)",
-    "dato_curioso": "Entrenado sobre miles de millones de líneas de código público con el modelo *Codex*, introdujo la autocompletación predictiva de funciones completas en tiempo real.",
+    "dato_curioso": "Entrenado con código público mediante *Codex*, introdujo la generación predictiva de funciones completas al escribir.",
     "card_number": 368
   },
   {
@@ -194,7 +194,7 @@
     "hito": "Presentación pública de **Zed**, un editor de código colaborativo de latencia ultra baja programado íntegramente en lenguaje **Rust**.",
     "year": 2023,
     "creador": "*Nathan Sobo* (*Zed Industries*)",
-    "dato_curioso": "Creado por los diseñadores originales de Atom, abandonó Electron para renderizar texto directamente mediante la tarjeta gráfica (GPU), alcanzando 120 fotogramas por segundo fluidos.",
+    "dato_curioso": "Creado por los autores de Atom, abandonó Electron para renderizar con la GPU a 120 FPS fluidos en lenguaje Rust.",
     "card_number": 460
   },
   {
@@ -205,7 +205,7 @@
     "hito": "Fallecimiento de **Bram Moolenaar**, conmocionando a la comunidad global de desarrollo tras 32 años de custodia ininterrumpida de Vim.",
     "year": 2023,
     "creador": "*Comunidad Mundial de Software Libre*",
-    "dato_curioso": "Millones de programadores le rindieron homenaje en redes y terminales; en su testamento legó los derechos y fondos del proyecto para continuar su obra caritativa en África.",
+    "dato_curioso": "Comunidades del mundo le rindieron tributo; en su testamento legó fondos para continuar su causa caritativa en Uganda.",
     "card_number": 450
   },
   {
@@ -216,7 +216,7 @@
     "hito": "Lanzamiento y explosión de adopción del editor **Cursor**, integrando capacidades agénticas de IA con indexación semántica del repositorio.",
     "year": 2024,
     "creador": "*Anysphere*",
-    "dato_curioso": "Construido como una bifurcación de VS Code, introdujo la edición de múltiples archivos coordinados y la predicción multi-línea mediante modelos de lenguaje locales y en la nube.",
+    "dato_curioso": "Bifurcación de VS Code con IA nativa para editar múltiples archivos en conjunto y predecir cambios en tiempo real.",
     "card_number": 187
   }
 ]
