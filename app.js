@@ -13,6 +13,9 @@ class HitTazosEngine {
     this.activeGroup = 'ALL';
     this.soundEnabled = true;
     this.audioCtx = null;
+    this.attemptCount = 0;   // intentos en la tarjeta actual
+    this.maxAttempts = 3;    // máximo de intentos antes de revelar
+    this.cardSolved = false; // si ya se acertó/resolvió la carta actual
 
     this.initAudio();
     this.initDOM();
@@ -112,6 +115,9 @@ class HitTazosEngine {
     this.shelfCounter = document.getElementById('shelf-counter');
     this.shelfProgressFill = document.getElementById('shelf-progress-fill');
     this.counterTotal = document.getElementById('counter-total');
+    this.attemptTracker = document.getElementById('attempt-tracker');
+    this.attemptDots    = document.getElementById('attempt-dots');
+    this.attemptLabel   = document.getElementById('attempt-label');
 
     // Decade quick picker
     this.decadeChips = document.querySelectorAll('.decade-chip');
@@ -894,6 +900,12 @@ class HitTazosEngine {
     this.guessResultPill.textContent = '';
     this.updateRevealButtonState(false);
 
+    // Reset estado de intentos para la nueva carta
+    this.attemptCount = 0;
+    this.cardSolved   = false;
+    this.renderAttemptTracker(false);
+    this.btnSubmitGuess.disabled = false;
+
     // Update Ambient Aura glow with Card Pop Color
     if (this.ambientAura) {
       const theme = this.getCardTheme(card);
@@ -1078,48 +1090,110 @@ class HitTazosEngine {
     }
   }
 
-  evaluateGuess() {
-    const card = this.activeDeck[this.currentIndex];
-    const val = parseInt(this.inputYear.value, 10);
-    if (isNaN(val)) return;
+  /** Renderiza los puntos de intento y la etiqueta de contador */
+  renderAttemptTracker(visible) {
+    if (!this.attemptTracker) return;
+    if (!visible) { this.attemptTracker.style.display = 'none'; return; }
+    this.attemptTracker.style.display = 'flex';
+    // Puntos: ● usado, ○ disponible
+    const dots = Array.from({ length: this.maxAttempts }, (_, i) =>
+      `<span class="attempt-dot ${i < this.attemptCount ? 'used' : ''}"></span>`
+    ).join('');
+    this.attemptDots.innerHTML = dots;
+    this.attemptLabel.textContent = `Intento ${Math.min(this.attemptCount + 1, this.maxAttempts)} / ${this.maxAttempts}`;
+  }
 
+  /** Devuelve mensaje de pista según diferencia y dirección */
+  buildHint(diff, val, correctYear) {
+    const direction = val < correctYear ? '↑ más reciente' : '↓ más antiguo';
+    const dirColor  = val < correctYear ? '#60a5fa' : '#f97316';
+    let temp, tempColor;
+    if (diff <= 5)  { temp = '🔥 ¡Caliente!';  tempColor = '#f97316'; }
+    else if (diff <= 15) { temp = '🌡️ Tibio';   tempColor = '#facc15'; }
+    else            { temp = '❄️ Frío';    tempColor = '#93c5fd'; }
+    return `<span style="display:inline-flex;align-items:center;gap:0.5rem;flex-wrap:wrap">
+      <span style="color:${dirColor};font-weight:700">${direction}</span>
+      <span style="color:${tempColor}">${temp}</span>
+      <span style="color:rgba(255,255,255,0.55);font-size:0.82em">(${diff} año${diff !== 1 ? 's' : ''} de diferencia)</span>
+    </span>`;
+  }
+
+  evaluateGuess() {
+    if (this.cardSolved) return; // ya resuelta, no procesar
+    const card = this.activeDeck[this.currentIndex];
+    const val  = parseInt(this.inputYear.value, 10);
+    if (isNaN(val)) {
+      this.guessResultPill.innerHTML = `<span style="color:#f87171">Ingresa un año válido (ej. 1995)</span>`;
+      return;
+    }
+
+    // Voltear la carta si aún está en el frente
     const cardEl = document.getElementById('active-card-3d');
-    if (!cardEl.classList.contains('is-flipped') && !cardEl.classList.contains('is-unflipping')) {
+    if (cardEl && !cardEl.classList.contains('is-flipped')) {
       this.flipCard(cardEl);
       this.reset3DTilt();
     }
-    this.revealActiveCardYear();
 
-    const theme = this.getCardTheme(card);
-    const cardColor = theme.bg;
+    this.attemptCount++;
+    this.renderAttemptTracker(true);
 
     const diff = Math.abs(val - card.year);
+    const theme = this.getCardTheme(card);
+
+    // ─ Resultado ─────────────────────────────────────────────────────────────
     if (diff === 0) {
-      this.guessResultPill.innerHTML = `<span style="color: #4ade80; display: inline-flex; align-items: center; gap: 0.35rem;"><i data-lucide="check-circle-2"></i> ¡Exacto! ${card.year} (+3 Puntos)</span>`;
-      this.score += 3;
-      this.streak += 1;
+      // ✅ Exacto
+      this.guessResultPill.innerHTML = `<span style="color:#4ade80;display:inline-flex;align-items:center;gap:0.4rem">
+        <i data-lucide="check-circle-2"></i> ¡Exacto! Era ${card.year} &mdash; +3 Puntos
+      </span>`;
+      this.score += 3; this.streak += 1;
+      this.cardSolved = true;
       this.playAudioFeedback('hit');
-      this.triggerCyberConfetti(cardColor);
+      this.triggerCyberConfetti(theme.bg);
       this.addToShelf(card);
+      this.revealActiveCardYear();
+      this.btnSubmitGuess.disabled = true;
+
     } else if (diff <= 2) {
-      this.guessResultPill.innerHTML = `<span style="color: #facc15; display: inline-flex; align-items: center; gap: 0.35rem;"><i data-lucide="sparkles"></i> Muy cerca: ${card.year} (+1 Punto)</span>`;
-      this.score += 1;
-      this.streak += 1;
+      // 🟡 Muy cerca (±2 años)
+      this.guessResultPill.innerHTML = `<span style="color:#facc15;display:inline-flex;align-items:center;gap:0.4rem">
+        <i data-lucide="sparkles"></i> ¡Muy cerca! Era ${card.year} &mdash; +1 Punto
+      </span>`;
+      this.score += 1; this.streak += 1;
+      this.cardSolved = true;
       this.playAudioFeedback('hit');
       this.addToShelf(card);
-    } else {
-      this.guessResultPill.innerHTML = `<span style="color: #f87171; display: inline-flex; align-items: center; gap: 0.35rem;"><i data-lucide="x-circle"></i> Ocurrió en ${card.year}</span>`;
+      this.revealActiveCardYear();
+      this.btnSubmitGuess.disabled = true;
+
+    } else if (this.attemptCount < this.maxAttempts) {
+      // 🔁 Incorrecto pero quedan intentos — mostrar pista
+      this.guessResultPill.innerHTML = this.buildHint(diff, val, card.year);
       this.streak = 0;
       this.playAudioFeedback('miss');
+      // Actualizar el label al siguiente intento
+      this.attemptLabel.textContent = `Intento ${this.attemptCount + 1} / ${this.maxAttempts}`;
+
+    } else {
+      // ❌ Agotados los intentos — revelar sin puntos
+      this.guessResultPill.innerHTML = `<span style="color:#f87171;display:inline-flex;align-items:center;gap:0.4rem">
+        <i data-lucide="x-circle"></i> Ocurrió en <strong style="color:#fff;margin:0 0.2rem">${card.year}</strong> &mdash; sin puntos
+      </span>`;
+      this.streak = 0;
+      this.cardSolved = true;
+      this.playAudioFeedback('miss');
+      this.revealActiveCardYear();
+      this.btnSubmitGuess.disabled = true;
     }
 
+    // Actualizar dots con estado final del intento
+    this.renderAttemptTracker(true);
     this.hudScore.textContent = this.score;
     if (this.hudStreak) this.hudStreak.textContent = this.streak;
     if (this.hudStreakBox) {
       if (this.streak >= 2) this.hudStreakBox.classList.add('streak-hot');
       else this.hudStreakBox.classList.remove('streak-hot');
     }
-
     this.refreshIcons();
   }
 
