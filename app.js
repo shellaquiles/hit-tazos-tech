@@ -444,42 +444,56 @@ class HitsterEngine {
         </div>
       `;
     } else if (grp === 'B') {
-      // 2. FLOPPY DISK 3.5" - Accurate, iconic proportions, beveled corners, metal shutter & circular hub
+      // 2. FLOPPY DISK 3.5" - Iconic form factor, stepped beveled corner, metal shutter, hub & label
       return `
         <div class="tech-artifact-hero">
           <div class="tech-artifact-svg-wrap" title="Disquete de 3.5 pulgadas (1.44 MB)">
-            <svg class="artifact-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Disk body with cut corner at top-right -->
-              <path d="M12 4H84L94 14V92C94 94.2091 92.2091 96 90 96H10C7.79086 96 6 94.2091 6 92V10C6 6.68629 8.68629 4 12 4Z" fill="#181e29" stroke="#22d3ee" stroke-width="2" stroke-linejoin="round"/>
+            <svg class="artifact-svg" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Disk Shadow -->
+              <rect x="7" y="7" width="96" height="96" rx="5" fill="#000000" opacity="0.4"/>
               
-              <!-- Metal sliding shutter -->
-              <rect x="26" y="4" width="46" height="38" rx="2" fill="url(#shutter-grad)" stroke="#475569" stroke-width="1.2"/>
-              <!-- Shutter read-window slot (showing magnetic media inside) -->
-              <rect x="42" y="10" width="14" height="24" rx="2" fill="#090d16" stroke="#334155" stroke-width="1"/>
-              <circle cx="49" cy="22" r="3.5" fill="#1e293b"/>
+              <!-- Outer Plastic Disk Body (Black/Dark Navy) with stepped top-right corner -->
+              <path d="M12 6H86L98 18V98C98 100.2 96.2 102 94 102H12C9.8 102 8 100.2 8 98V10C8 7.8 9.8 6 12 6Z" fill="#141a24" stroke="#06b6d4" stroke-width="2.2" stroke-linejoin="round"/>
               
-              <!-- Shutter embossed arrow -->
-              <path d="M34 14L38 9L42 14H34Z" fill="#64748b"/>
+              <!-- Inset label / write indent area -->
+              <rect x="18" y="44" width="74" height="52" rx="3" fill="#0b0f17" stroke="#1e293b" stroke-width="1.2"/>
               
-              <!-- Paper label area -->
-              <rect x="15" y="48" width="70" height="42" rx="3" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
-              <!-- Colored category stripe on label -->
-              <path d="M15 51C15 49.3431 16.3431 48 18 48H82C83.6569 48 85 49.3431 85 51V56H15V51Z" fill="#0891b2"/>
-              <!-- Label typography and ruled lines -->
-              <text x="50" y="66" fill="#0f172a" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold" text-anchor="middle">SOURCE DISK 1</text>
-              <line x1="22" y1="73" x2="78" y2="73" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2 2"/>
-              <text x="50" y="82" fill="#475569" font-family="'JetBrains Mono', monospace" font-size="6" text-anchor="middle">1.44 MB • HD</text>
+              <!-- Classic Paper Adhesive Label -->
+              <rect x="22" y="48" width="66" height="44" rx="2" fill="#ffffff"/>
+              <!-- Colored header band on label -->
+              <path d="M22 50C22 48.9 22.9 48 24 48H86C87.1 48 88 48.9 88 50V56H22V50Z" fill="#0284c7"/>
+              <!-- Brand text on header -->
+              <text x="55" y="54" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="5.5" font-weight="bold" text-anchor="middle" letter-spacing="1">HITSTER 2HD</text>
+              <!-- Handwritten / Typed style title -->
+              <text x="55" y="68" fill="#0f172a" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="900" text-anchor="middle">SOURCE CODE</text>
+              <!-- Ruled line on label -->
+              <line x1="28" y1="74" x2="82" y2="74" stroke="#94a3b8" stroke-width="1.2"/>
+              <!-- Capacity and format text -->
+              <text x="55" y="84" fill="#64748b" font-family="'JetBrains Mono', monospace" font-size="6.5" font-weight="bold" text-anchor="middle">1.44 MB • DISK 01</text>
               
-              <!-- Write-protect notch window bottom-left -->
-              <rect x="10" y="86" width="6" height="6" rx="1" fill="#000" stroke="#334155" stroke-width="0.8"/>
-              <!-- High-density sensor notch bottom-right -->
-              <rect x="84" y="86" width="6" height="6" rx="1" fill="#000" stroke="#334155" stroke-width="0.8"/>
+              <!-- Metal Sliding Shutter (Top) -->
+              <rect x="30" y="6" width="50" height="34" rx="2" fill="url(#metal-shutter)" stroke="#64748b" stroke-width="1.4"/>
+              
+              <!-- Shutter Read/Write Oval Slot -->
+              <rect x="47" y="10" width="16" height="24" rx="3" fill="#070a0f" stroke="#334155" stroke-width="1"/>
+              <!-- Exposed Magnetic Media inside slot -->
+              <circle cx="55" cy="22" r="5" fill="#1e293b" stroke="#0f172a" stroke-width="1"/>
+              
+              <!-- Embossed Drive Insertion Arrow on Shutter -->
+              <path d="M37 18L41 12L45 18H37Z" fill="#475569"/>
+              
+              <!-- Bottom-Left Write-Protect Tab Notch with slider -->
+              <rect x="12" y="90" width="8" height="8" rx="1" fill="#070a0f" stroke="#334155" stroke-width="1"/>
+              <rect x="14" y="93" width="4" height="4" fill="#000000"/>
+              
+              <!-- Bottom-Right High Density Hole (HD Indicator) -->
+              <rect x="88" y="90" width="8" height="8" rx="1" fill="#070a0f" stroke="#334155" stroke-width="1"/>
               
               <defs>
-                <linearGradient id="shutter-grad" x1="26" y1="4" x2="72" y2="42" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="#cbd5e1"/>
-                  <stop offset="40%" stop-color="#94a3b8"/>
-                  <stop offset="70%" stop-color="#e2e8f0"/>
+                <linearGradient id="metal-shutter" x1="30" y1="6" x2="80" y2="40" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#e2e8f0"/>
+                  <stop offset="35%" stop-color="#94a3b8"/>
+                  <stop offset="65%" stop-color="#cbd5e1"/>
                   <stop offset="100%" stop-color="#64748b"/>
                 </linearGradient>
               </defs>
@@ -538,46 +552,60 @@ class HitsterEngine {
         </div>
       `;
     } else if (grp === 'D') {
-      // 4. SILICON MICROCHIP - Realistic QFP/BGA integrated circuit with gold pins and PCB traces
+      // 4. MODERN CPU PROCESSOR - Metallic Heat Spreader (IHS), substrate PCB and gold capacitor array
       return `
         <div class="tech-artifact-hero">
-          <div class="tech-artifact-svg-wrap" title="Procesador de silicio e IA (Microchip)">
-            <svg class="artifact-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Golden perimeter contact pins -->
-              <!-- Top pins -->
-              <g stroke="#facc15" stroke-width="1.8" stroke-linecap="round">
-                <line x1="20" y1="4" x2="20" y2="12"/><line x1="28" y1="4" x2="28" y2="12"/><line x1="36" y1="4" x2="36" y2="12"/>
-                <line x1="44" y1="4" x2="44" y2="12"/><line x1="52" y1="4" x2="52" y2="12"/><line x1="60" y1="4" x2="60" y2="12"/>
-                <line x1="68" y1="4" x2="68" y2="12"/><line x1="76" y1="4" x2="76" y2="12"/>
-              <!-- Bottom pins -->
-                <line x1="20" y1="88" x2="20" y2="96"/><line x1="28" y1="88" x2="28" y2="96"/><line x1="36" y1="88" x2="36" y2="96"/>
-                <line x1="44" y1="88" x2="44" y2="96"/><line x1="52" y1="88" x2="52" y2="96"/><line x1="60" y1="88" x2="60" y2="96"/>
-                <line x1="68" y1="88" x2="68" y2="96"/><line x1="76" y1="88" x2="76" y2="96"/>
-              <!-- Left pins -->
-                <line x1="4" y1="20" x2="12" y2="20"/><line x1="4" y1="28" x2="12" y2="28"/><line x1="4" y1="36" x2="12" y2="36"/>
-                <line x1="4" y1="44" x2="12" y2="44"/><line x1="4" y1="52" x2="12" y2="52"/><line x1="4" y1="60" x2="12" y2="60"/>
-                <line x1="4" y1="68" x2="12" y2="68"/><line x1="4" y1="76" x2="12" y2="76"/>
-              <!-- Right pins -->
-                <line x1="88" y1="20" x2="96" y2="20"/><line x1="88" y1="28" x2="96" y2="28"/><line x1="88" y1="36" x2="96" y2="36"/>
-                <line x1="88" y1="44" x2="96" y2="44"/><line x1="88" y1="52" x2="96" y2="52"/><line x1="88" y1="60" x2="96" y2="60"/>
-                <line x1="88" y1="68" x2="96" y2="68"/><line x1="88" y1="76" x2="96" y2="76"/>
-              </g>
+          <div class="tech-artifact-svg-wrap" title="Procesador / CPU & Acelerador de IA">
+            <svg class="artifact-svg" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Shadow -->
+              <rect x="7" y="7" width="96" height="96" rx="6" fill="#000000" opacity="0.45"/>
               
-              <!-- Ceramic / epoxy package body -->
-              <rect x="12" y="12" width="76" height="76" rx="5" fill="#180e22" stroke="#f472b6" stroke-width="2"/>
-              <!-- Pin 1 index notch -->
-              <circle cx="20" cy="20" r="3" fill="#f472b6" opacity="0.6"/>
+              <!-- Green / Dark Teal Substrate PCB Base -->
+              <rect x="10" y="10" width="90" height="90" rx="6" fill="#064e3b" stroke="#34d399" stroke-width="1.8"/>
+              <!-- PCB Alignment notch at top-left corner -->
+              <polygon points="10,18 18,10 10,10" fill="#facc15"/>
               
-              <!-- Central silicon die -->
-              <rect x="25" y="25" width="50" height="50" rx="4" fill="#2d123d" stroke="#f472b6" stroke-width="1.2"/>
+              <!-- Gold Contact Pads on PCB corners -->
+              <rect x="14" y="14" width="4" height="4" rx="1" fill="#facc15"/>
+              <rect x="92" y="14" width="4" height="4" rx="1" fill="#facc15"/>
+              <rect x="14" y="92" width="4" height="4" rx="1" fill="#facc15"/>
+              <rect x="92" y="92" width="4" height="4" rx="1" fill="#facc15"/>
               
-              <!-- Integrated circuit micro-traces -->
-              <path d="M25 35H35V25M65 25V35H75M25 65H35V75M75 65H65V75" stroke="#f472b6" stroke-width="1" stroke-opacity="0.4"/>
+              <!-- Stepped Nickel-Plated Integrated Heat Spreader (IHS) -->
+              <!-- Outer IHS base step -->
+              <rect x="18" y="18" width="74" height="74" rx="4" fill="#334155" stroke="#64748b" stroke-width="1.2"/>
+              <!-- Main raised metallic lid -->
+              <rect x="22" y="22" width="66" height="66" rx="3" fill="url(#ihs-metal)" stroke="#94a3b8" stroke-width="1.5"/>
               
-              <!-- Center core emblem -->
-              <circle cx="50" cy="50" r="14" fill="#3b0764" stroke="#c084fc" stroke-width="1.5"/>
-              <text x="50" y="49" fill="#f472b6" font-family="'JetBrains Mono', monospace" font-size="6" font-weight="bold" text-anchor="middle">TENSOR</text>
-              <text x="50" y="56" fill="#fdf4ff" font-family="'JetBrains Mono', monospace" font-size="5" text-anchor="middle">NPU-V4</text>
+              <!-- Laser-etched laser specular line -->
+              <line x1="24" y1="28" x2="86" y2="28" stroke="#ffffff" stroke-width="1" stroke-opacity="0.4"/>
+              
+              <!-- Processor Brand & Architectural Markings -->
+              <text x="55" y="42" fill="#0f172a" font-family="'Space Grotesk', sans-serif" font-size="9" font-weight="900" text-anchor="middle" letter-spacing="1">NEURAL CPU</text>
+              <text x="55" y="52" fill="#334155" font-family="'JetBrains Mono', monospace" font-size="6.5" font-weight="bold" text-anchor="middle">HITSTER TENSOR-9</text>
+              
+              <!-- Center Laser-Etched Hologram Chip Logo -->
+              <rect x="43" y="58" width="24" height="18" rx="2" fill="#0f172a" stroke="#0284c7" stroke-width="1"/>
+              <!-- 2D matrix data code / core die icon -->
+              <rect x="47" y="62" width="4" height="4" fill="#38bdf8"/>
+              <rect x="53" y="62" width="4" height="4" fill="#facc15"/>
+              <rect x="59" y="62" width="4" height="4" fill="#34d399"/>
+              <rect x="47" y="68" width="4" height="4" fill="#f472b6"/>
+              <rect x="53" y="68" width="4" height="4" fill="#818cf8"/>
+              <rect x="59" y="68" width="4" height="4" fill="#38bdf8"/>
+              
+              <!-- Serial / Frequency laser etching -->
+              <text x="55" y="83" fill="#475569" font-family="'JetBrains Mono', monospace" font-size="5.5" font-weight="600" text-anchor="middle">5.80 GHz • 128-CORE</text>
+              
+              <defs>
+                <linearGradient id="ihs-metal" x1="22" y1="22" x2="88" y2="88" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#f1f5f9"/>
+                  <stop offset="30%" stop-color="#cbd5e1"/>
+                  <stop offset="60%" stop-color="#94a3b8"/>
+                  <stop offset="90%" stop-color="#e2e8f0"/>
+                  <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+              </defs>
             </svg>
           </div>
         </div>
