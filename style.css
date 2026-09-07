@@ -449,20 +449,7 @@ main {
 }
 
 .id-badge {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--text-secondary);
-  background: rgba(0, 0, 0, 0.45);
-  padding: 0.28rem 0.6rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-glow);
-  white-space: nowrap;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  letter-spacing: 0.05em;
+  display: none;
 }
 
 /* Tech Artifact Hero Centerpiece (Dynamic Artifacts per Group) */
@@ -1002,8 +989,8 @@ main {
 
 .card-footbar {
   margin-top: auto;
-  border-top: 1px solid var(--border-subtle);
-  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-top: 0.65rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1011,26 +998,44 @@ main {
   z-index: 2;
 }
 
-.brand-stamp {
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.back-footbar {
+  margin-top: 0.5rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.edition-tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
   color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.card-id-corner {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  opacity: 0.75;
 }
 
 .flip-cue {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: var(--text-secondary);
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   font-weight: 600;
   background: rgba(255, 255, 255, 0.05);
-  padding: 0.25rem 0.6rem;
+  padding: 0.2rem 0.55rem;
   border-radius: 999px;
   border: 1px solid var(--border-subtle);
+  cursor: pointer;
 }
+
 
 /* BACK FACE */
 .sheet-back {
@@ -1044,7 +1049,7 @@ main {
 
 .year-revelation {
   text-align: center;
-  margin: 0.3rem 0 0.6rem 0;
+  margin: 0.6rem 0 0.8rem 0;
   position: relative;
   z-index: 2;
   display: flex;

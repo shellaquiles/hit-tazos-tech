@@ -12,7 +12,7 @@ class HitsterEngine {
     this.activeGroup = 'ALL';
     this.soundEnabled = true;
     this.audioCtx = null;
-    
+
     this.initAudio();
     this.initDOM();
     this.initFX();
@@ -34,7 +34,7 @@ class HitsterEngine {
     if (this.audioCtx.state === 'suspended') {
       this.audioCtx.resume();
     }
-    
+
     const now = this.audioCtx.currentTime;
 
     if (type === 'flip') {
@@ -87,10 +87,10 @@ class HitsterEngine {
     this.btnTabGallery = document.getElementById('btn-tab-gallery');
     this.btnSound = document.getElementById('btn-sound-toggle');
     this.btnPrint = document.getElementById('btn-print');
-    
+
     // Ribbon
     this.groupRibbon = document.getElementById('group-ribbon');
-    
+
     // Arena elements
     this.cardStage = document.getElementById('card-stage');
     this.ambientAura = document.getElementById('ambient-card-aura');
@@ -110,7 +110,7 @@ class HitsterEngine {
     this.shelfCounter = document.getElementById('shelf-counter');
     this.shelfProgressFill = document.getElementById('shelf-progress-fill');
     this.counterTotal = document.getElementById('counter-total');
-    
+
     // Decade quick picker
     this.decadeChips = document.querySelectorAll('.decade-chip');
 
@@ -119,7 +119,7 @@ class HitsterEngine {
     this.btnNudgeMinus1 = document.getElementById('btn-nudge-minus1');
     this.btnNudgePlus1 = document.getElementById('btn-nudge-plus1');
     this.btnNudgePlus5 = document.getElementById('btn-nudge-plus5');
-    
+
     // Catalog elements
     this.galleryQuery = document.getElementById('gallery-query');
     this.selectFilterGroup = document.getElementById('select-filter-group');
@@ -132,7 +132,7 @@ class HitsterEngine {
     if (!this.fxCanvas) return;
     this.fxCtx = this.fxCanvas.getContext('2d');
     this.particles = [];
-    
+
     const resizeCanvas = () => {
       this.fxCanvas.width = window.innerWidth;
       this.fxCanvas.height = window.innerHeight;
@@ -150,7 +150,7 @@ class HitsterEngine {
           p.vy += 0.18; // gravity
           p.rot += p.vRot;
           p.alpha -= 0.015;
-          
+
           if (p.alpha <= 0) {
             this.particles.splice(i, 1);
             continue;
@@ -208,7 +208,7 @@ class HitsterEngine {
       this.activeDeck = [...this.cards];
       this.filteredCatalog = [...this.cards];
       this.counterTotal.textContent = this.cards.length;
-      
+
       this.renderActiveArenaCard();
       this.renderCatalog();
       this.refreshIcons();
@@ -221,7 +221,7 @@ class HitsterEngine {
     // Tab toggle
     this.btnTabPlay.addEventListener('click', () => this.switchView('play'));
     this.btnTabGallery.addEventListener('click', () => this.switchView('gallery'));
-    
+
     // Sound
     this.btnSound.addEventListener('click', () => {
       this.soundEnabled = !this.soundEnabled;
@@ -254,7 +254,7 @@ class HitsterEngine {
     this.btnNext.addEventListener('click', () => this.nextCard());
     this.btnPrev.addEventListener('click', () => this.prevCard());
     this.btnShuffle.addEventListener('click', () => this.shuffleCurrentDeck());
-    
+
     // Keyboard Space & Arrow support
     window.addEventListener('keydown', (e) => {
       if (document.activeElement === this.inputYear || document.activeElement === this.galleryQuery) {
@@ -305,20 +305,20 @@ class HitsterEngine {
   handle3DTilt(e) {
     const card = document.getElementById('active-card-3d');
     if (!card) return;
-    
+
     const rect = this.cardStage.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    
+
     const rotateX = ((y - centerY) / centerY) * -12;
     const rotateY = ((x - centerX) / centerX) * 12;
-    
+
     const isFlipped = card.classList.contains('is-flipped');
     const baseFlip = isFlipped ? 180 : 0;
-    
+
     card.style.transform = `rotateY(${baseFlip + rotateY}deg) rotateX(${rotateX}deg)`;
 
     const glareX = (x / rect.width) * 100;
@@ -451,13 +451,13 @@ class HitsterEngine {
             <svg class="artifact-svg" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- Disk Shadow -->
               <rect x="7" y="7" width="96" height="96" rx="5" fill="#000000" opacity="0.4"/>
-              
+
               <!-- Outer Plastic Disk Body (Black/Dark Navy) with stepped top-right corner -->
               <path d="M12 6H86L98 18V98C98 100.2 96.2 102 94 102H12C9.8 102 8 100.2 8 98V10C8 7.8 9.8 6 12 6Z" fill="#141a24" stroke="#06b6d4" stroke-width="2.2" stroke-linejoin="round"/>
-              
+
               <!-- Inset label / write indent area -->
               <rect x="18" y="44" width="74" height="52" rx="3" fill="#0b0f17" stroke="#1e293b" stroke-width="1.2"/>
-              
+
               <!-- Classic Paper Adhesive Label -->
               <rect x="22" y="48" width="66" height="44" rx="2" fill="#ffffff"/>
               <!-- Colored header band on label -->
@@ -470,25 +470,25 @@ class HitsterEngine {
               <line x1="28" y1="74" x2="82" y2="74" stroke="#94a3b8" stroke-width="1.2"/>
               <!-- Capacity and format text -->
               <text x="55" y="84" fill="#64748b" font-family="'JetBrains Mono', monospace" font-size="6.5" font-weight="bold" text-anchor="middle">1.44 MB • DISK 01</text>
-              
+
               <!-- Metal Sliding Shutter (Top) -->
               <rect x="30" y="6" width="50" height="34" rx="2" fill="url(#metal-shutter)" stroke="#64748b" stroke-width="1.4"/>
-              
+
               <!-- Shutter Read/Write Oval Slot -->
               <rect x="47" y="10" width="16" height="24" rx="3" fill="#070a0f" stroke="#334155" stroke-width="1"/>
               <!-- Exposed Magnetic Media inside slot -->
               <circle cx="55" cy="22" r="5" fill="#1e293b" stroke="#0f172a" stroke-width="1"/>
-              
+
               <!-- Embossed Drive Insertion Arrow on Shutter -->
               <path d="M37 18L41 12L45 18H37Z" fill="#475569"/>
-              
+
               <!-- Bottom-Left Write-Protect Tab Notch with slider -->
               <rect x="12" y="90" width="8" height="8" rx="1" fill="#070a0f" stroke="#334155" stroke-width="1"/>
               <rect x="14" y="93" width="4" height="4" fill="#000000"/>
-              
+
               <!-- Bottom-Right High Density Hole (HD Indicator) -->
               <rect x="88" y="90" width="8" height="8" rx="1" fill="#070a0f" stroke="#334155" stroke-width="1"/>
-              
+
               <defs>
                 <linearGradient id="metal-shutter" x1="30" y1="6" x2="80" y2="40" gradientUnits="userSpaceOnUse">
                   <stop offset="0%" stop-color="#e2e8f0"/>
@@ -509,11 +509,11 @@ class HitsterEngine {
             <svg class="artifact-svg" viewBox="0 0 150 90" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- Server Chassis Box -->
               <rect x="3" y="6" width="144" height="78" rx="6" fill="#080e18" stroke="#34d399" stroke-width="1.8"/>
-              
+
               <!-- Tape reel unit left side -->
               <circle cx="42" cy="45" r="28" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
               <circle cx="42" cy="45" r="23" fill="#022c22" stroke="#047857" stroke-dasharray="3 3"/>
-              
+
               <!-- Rotating reel spokes -->
               <g class="svg-spin-slow" style="transform-origin: 42px 45px;">
                 <circle cx="42" cy="30" r="4.5" fill="#34d399"/>
@@ -522,26 +522,26 @@ class HitsterEngine {
                 <circle cx="42" cy="45" r="9" fill="#064e3b" stroke="#34d399" stroke-width="1.5"/>
                 <circle cx="42" cy="45" r="3" fill="#ecfdf5"/>
               </g>
-              
+
               <!-- Tape path ribbon -->
               <path d="M42 18H75V72" stroke="#34d399" stroke-width="2" stroke-opacity="0.6"/>
-              
+
               <!-- Right side: Drive bays & Activity LED array -->
               <!-- Hot-swap drive bay 1 -->
               <rect x="80" y="16" width="58" height="14" rx="2" fill="#132030" stroke="#334155" stroke-width="1"/>
               <line x1="84" y1="23" x2="114" y2="23" stroke="#475569" stroke-width="1.5"/>
               <circle class="svg-led-green" cx="128" cy="23" r="2.5" fill="#34d399"/>
-              
+
               <!-- Hot-swap drive bay 2 -->
               <rect x="80" y="34" width="58" height="14" rx="2" fill="#132030" stroke="#334155" stroke-width="1"/>
               <line x1="84" y1="41" x2="114" y2="41" stroke="#475569" stroke-width="1.5"/>
               <circle class="svg-led-amber" cx="128" cy="41" r="2.5" fill="#fbbf24"/>
-              
+
               <!-- Hot-swap drive bay 3 -->
               <rect x="80" y="52" width="58" height="14" rx="2" fill="#132030" stroke="#334155" stroke-width="1"/>
               <line x1="84" y1="59" x2="114" y2="59" stroke="#475569" stroke-width="1.5"/>
               <circle class="svg-led-green" cx="128" cy="59" r="2.5" fill="#34d399"/>
-              
+
               <!-- Server rack ears with mounting screws -->
               <circle cx="7" cy="14" r="2" fill="#64748b"/>
               <circle cx="7" cy="76" r="2" fill="#64748b"/>
@@ -559,31 +559,31 @@ class HitsterEngine {
             <svg class="artifact-svg" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- Shadow -->
               <rect x="7" y="7" width="96" height="96" rx="6" fill="#000000" opacity="0.45"/>
-              
+
               <!-- Green / Dark Teal Substrate PCB Base -->
               <rect x="10" y="10" width="90" height="90" rx="6" fill="#064e3b" stroke="#34d399" stroke-width="1.8"/>
               <!-- PCB Alignment notch at top-left corner -->
               <polygon points="10,18 18,10 10,10" fill="#facc15"/>
-              
+
               <!-- Gold Contact Pads on PCB corners -->
               <rect x="14" y="14" width="4" height="4" rx="1" fill="#facc15"/>
               <rect x="92" y="14" width="4" height="4" rx="1" fill="#facc15"/>
               <rect x="14" y="92" width="4" height="4" rx="1" fill="#facc15"/>
               <rect x="92" y="92" width="4" height="4" rx="1" fill="#facc15"/>
-              
+
               <!-- Stepped Nickel-Plated Integrated Heat Spreader (IHS) -->
               <!-- Outer IHS base step -->
               <rect x="18" y="18" width="74" height="74" rx="4" fill="#334155" stroke="#64748b" stroke-width="1.2"/>
               <!-- Main raised metallic lid -->
               <rect x="22" y="22" width="66" height="66" rx="3" fill="url(#ihs-metal)" stroke="#94a3b8" stroke-width="1.5"/>
-              
+
               <!-- Laser-etched laser specular line -->
               <line x1="24" y1="28" x2="86" y2="28" stroke="#ffffff" stroke-width="1" stroke-opacity="0.4"/>
-              
+
               <!-- Processor Brand & Architectural Markings -->
               <text x="55" y="42" fill="#0f172a" font-family="'Space Grotesk', sans-serif" font-size="9" font-weight="900" text-anchor="middle" letter-spacing="1">NEURAL CPU</text>
               <text x="55" y="52" fill="#334155" font-family="'JetBrains Mono', monospace" font-size="6.5" font-weight="bold" text-anchor="middle">HITSTER TENSOR-9</text>
-              
+
               <!-- Center Laser-Etched Hologram Chip Logo -->
               <rect x="43" y="58" width="24" height="18" rx="2" fill="#0f172a" stroke="#0284c7" stroke-width="1"/>
               <!-- 2D matrix data code / core die icon -->
@@ -593,10 +593,10 @@ class HitsterEngine {
               <rect x="47" y="68" width="4" height="4" fill="#f472b6"/>
               <rect x="53" y="68" width="4" height="4" fill="#818cf8"/>
               <rect x="59" y="68" width="4" height="4" fill="#38bdf8"/>
-              
+
               <!-- Serial / Frequency laser etching -->
               <text x="55" y="83" fill="#475569" font-family="'JetBrains Mono', monospace" font-size="5.5" font-weight="600" text-anchor="middle">5.80 GHz • 128-CORE</text>
-              
+
               <defs>
                 <linearGradient id="ihs-metal" x1="22" y1="22" x2="88" y2="88" gradientUnits="userSpaceOnUse">
                   <stop offset="0%" stop-color="#f1f5f9"/>
@@ -618,25 +618,25 @@ class HitsterEngine {
             <svg class="artifact-svg" viewBox="0 0 150 90" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- Smartcard body with rounded corners -->
               <rect x="3" y="5" width="144" height="80" rx="8" fill="url(#card-bg-grad)" stroke="#fbbf24" stroke-width="1.8"/>
-              
+
               <!-- Holographic security ribbon -->
               <path d="M3 26H147V34H3V26Z" fill="url(#holo-ribbon)" opacity="0.8"/>
-              
+
               <!-- Golden EMV Contact Chip -->
               <rect x="20" y="44" width="28" height="22" rx="3" fill="#facc15" stroke="#78350f" stroke-width="1"/>
               <!-- EMV contact grid lines -->
               <line x1="20" y1="55" x2="48" y2="55" stroke="#78350f" stroke-width="1"/>
               <line x1="34" y1="44" x2="34" y2="66" stroke="#78350f" stroke-width="1"/>
               <path d="M28 44V55M40 44V55M28 55V66M40 55V66" stroke="#78350f" stroke-width="0.8"/>
-              
+
               <!-- Root security shield badge right side -->
               <path d="M124 45L112 50V62C112 70 124 75 124 75C124 75 136 70 136 62V50L124 45Z" fill="#2d1c02" stroke="#fbbf24" stroke-width="1.5"/>
               <circle cx="124" cy="58" r="4" fill="#fbbf24"/>
-              
+
               <!-- Chip label text -->
               <text x="60" y="54" fill="#fef08a" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">ROOT_ACCESS</text>
               <text x="60" y="64" fill="#ca8a04" font-family="'JetBrains Mono', monospace" font-size="6.5">AUTH: ED25519</text>
-              
+
               <defs>
                 <linearGradient id="card-bg-grad" x1="3" y1="5" x2="147" y2="85" gradientUnits="userSpaceOnUse">
                   <stop offset="0%" stop-color="#1c1204"/>
@@ -673,6 +673,10 @@ class HitsterEngine {
     const eraName = this.getEraLabel(card.year);
     const centerArtifactHTML = this.renderCenterArtifact(card);
 
+    // Consecutivo limpio (ej. '#A1-003' -> '003')
+    const matchConsecutivo = card.id.match(/(\d+)$/);
+    const consecutiveId = matchConsecutivo ? matchConsecutivo[1] : card.id;
+
     return `
       <!-- FRONT -->
       <div class="card-sheet sheet-front">
@@ -685,9 +689,8 @@ class HitsterEngine {
         <div class="card-topbar">
           <div class="category-chip">
             <i data-lucide="${groupIcon}"></i>
-            <span>${card.categoria} • ${card.categoria_nombre}</span>
+            <span>${card.grupo_nombre} • ${card.categoria_nombre}</span>
           </div>
-          <div class="id-badge">${card.id}</div>
         </div>
 
         ${centerArtifactHTML}
@@ -697,8 +700,9 @@ class HitsterEngine {
         </div>
 
         <div class="card-footbar">
-          <span class="brand-stamp">HITSTER TECH</span>
+          <span class="edition-tag">${card.categoria}</span>
           <span class="flip-cue"><i data-lucide="rotate-cw"></i> Voltear</span>
+          <span class="card-id-corner">${consecutiveId}</span>
         </div>
       </div>
 
@@ -713,16 +717,11 @@ class HitsterEngine {
         <div class="card-topbar">
           <div class="category-chip">
             <i data-lucide="${groupIcon}"></i>
-            <span>${card.categoria} • ${card.categoria_nombre}</span>
+            <span>${card.grupo_nombre} • ${card.categoria_nombre}</span>
           </div>
-          <div class="id-badge">${card.id}</div>
         </div>
 
         <div class="year-revelation">
-          <div class="era-badge">
-            <i data-lucide="sparkles"></i>
-            <span>${eraName}</span>
-          </div>
           <div class="year-digits">${card.year}</div>
         </div>
 
@@ -756,6 +755,11 @@ class HitsterEngine {
           </div>
           <div class="lore-body">${triviaFormatted}</div>
         </div>
+
+        <div class="card-footbar back-footbar">
+          <span class="edition-tag">${card.categoria}</span>
+          <span class="card-id-corner">${consecutiveId}</span>
+        </div>
       </div>
     `;
   }
@@ -763,13 +767,13 @@ class HitsterEngine {
   renderActiveArenaCard() {
     if (!this.activeDeck.length) return;
     const card = this.activeDeck[this.currentIndex];
-    
+
     this.cardStage.innerHTML = '';
     const cardEl = document.createElement('div');
     cardEl.id = 'active-card-3d';
     cardEl.className = `hitster-card-3d theme-${card.grupo}`;
     cardEl.innerHTML = this.buildCardHTML(card);
-    
+
     this.cardStage.appendChild(cardEl);
     this.hudCardCounter.textContent = `${this.currentIndex + 1} / ${this.activeDeck.length}`;
     this.inputYear.value = '';
@@ -875,7 +879,7 @@ class HitsterEngine {
     if (this.playerShelf.some(c => c.id === card.id)) return;
     this.playerShelf.push(card);
     this.playerShelf.sort((a, b) => a.year - b.year);
-    
+
     this.shelfCardsContainer.innerHTML = '';
     this.playerShelf.forEach(c => {
       const chip = document.createElement('div');
@@ -933,7 +937,7 @@ class HitsterEngine {
 
     this.filteredCatalog = this.cards.filter(c => {
       const matchGrp = grp === 'ALL' || c.grupo === grp;
-      const matchQ = !q || 
+      const matchQ = !q ||
         c.hito.toLowerCase().includes(q) ||
         c.creador.toLowerCase().includes(q) ||
         c.dato_curioso.toLowerCase().includes(q) ||
@@ -955,15 +959,15 @@ class HitsterEngine {
   renderCatalog() {
     this.catalogGrid.innerHTML = '';
     const slice = this.filteredCatalog.slice(0, 60);
-    
+
     slice.forEach(card => {
       const cell = document.createElement('div');
       cell.className = 'catalog-card-cell';
-      
+
       const cardEl = document.createElement('div');
       cardEl.className = `hitster-card-3d theme-${card.grupo}`;
       cardEl.innerHTML = this.buildCardHTML(card);
-      
+
       cardEl.addEventListener('click', () => {
         cardEl.classList.toggle('is-flipped');
         this.playAudioFeedback('flip');
