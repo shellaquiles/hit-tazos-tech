@@ -1,5 +1,9 @@
 {
   "scripts": {
-    "build": "node build_cards.js"
+    "build": "node build_cards.js",
+    "colors:generate": "node generate_card_colors.js",
+    "print": "node render_print_tabloid.js",
+    "print:test": "node render_print_tabloid.js --range=18",
+    "print:chrome": "node render_print_tabloid.js --pdf"
   }
 }
