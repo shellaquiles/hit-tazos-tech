@@ -713,7 +713,7 @@ class HitsterEngine {
         <div class="card-topbar">
           <div class="category-chip">
             <i data-lucide="${groupIcon}"></i>
-            <span>${card.grupo_nombre}</span>
+            <span>${card.categoria} • ${card.categoria_nombre}</span>
           </div>
           <div class="id-badge">${card.id}</div>
         </div>
@@ -743,7 +743,7 @@ class HitsterEngine {
         <div class="creator-dossier">
           <div class="dossier-icon"><i data-lucide="user"></i></div>
           <div class="dossier-meta">
-            <div class="dossier-label">Creador / Autor / Bonus</div>
+            <div class="dossier-label">Autoría</div>
             <div class="dossier-name">${creadorFormatted}</div>
           </div>
         </div>
@@ -752,7 +752,7 @@ class HitsterEngine {
         <div class="lore-container">
           <div class="lore-heading">
             <i data-lucide="lightbulb"></i>
-            <span>Dato Curioso / Lore</span>
+            <span>Curiosidad</span>
           </div>
           <div class="lore-body">${triviaFormatted}</div>
         </div>
