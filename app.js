@@ -400,6 +400,236 @@ class HitsterEngine {
     return 'Era LLMs & IA Generativa';
   }
 
+  renderCenterArtifact(card) {
+    const grp = card.grupo;
+    if (grp === 'A') {
+      // 1. TERMINAL SHELL - Clean, razor-sharp Unix / Python interactive console
+      return `
+        <div class="tech-artifact-hero">
+          <div class="tech-artifact-svg-wrap" title="Terminal interactiva Python (REPL)">
+            <svg class="artifact-svg" viewBox="0 0 160 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Window base -->
+              <rect x="2" y="2" width="156" height="86" rx="8" fill="#090d16" stroke="#38bdf8" stroke-width="1.8" stroke-opacity="0.8"/>
+              <rect x="2" y="2" width="156" height="86" rx="8" fill="url(#term-glow)" opacity="0.15"/>
+              <!-- Titlebar -->
+              <path d="M2 10C2 5.58172 5.58172 2 10 2H150C154.418 2 158 5.58172 158 10V22H2V10Z" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+              <!-- Window controls -->
+              <circle cx="12" cy="12" r="3.5" fill="#ef4444"/>
+              <circle cx="22" cy="12" r="3.5" fill="#eab308"/>
+              <circle cx="32" cy="12" r="3.5" fill="#22c55e"/>
+              <!-- Title text -->
+              <text x="80" y="15" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="600" text-anchor="middle" letter-spacing="0.5">python3 -i (repl)</text>
+              <!-- Terminal content area -->
+              <!-- Prompt line 1 -->
+              <text x="12" y="38" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold">&gt;&gt;&gt;</text>
+              <text x="36" y="38" fill="#f8fafc" font-family="'JetBrains Mono', monospace" font-size="8.5">import</text>
+              <text x="74" y="38" fill="#facc15" font-family="'JetBrains Mono', monospace" font-size="8.5">history</text>
+              <!-- Prompt line 2 -->
+              <text x="12" y="54" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold">&gt;&gt;&gt;</text>
+              <text x="36" y="54" fill="#818cf8" font-family="'JetBrains Mono', monospace" font-size="8.5">reveal</text>
+              <text x="70" y="54" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="8.5">()</text>
+              <!-- Cursor -->
+              <rect class="svg-cursor-blink" x="84" y="44" width="5.5" height="11" fill="#38bdf8" rx="1"/>
+              <!-- Bottom status bar -->
+              <line x1="2" y1="72" x2="158" y2="72" stroke="#1e293b" stroke-width="1"/>
+              <text x="12" y="82" fill="#64748b" font-family="'JetBrains Mono', monospace" font-size="6.5">UTF-8 • PYTHON 3 • HITSTER</text>
+              <defs>
+                <radialGradient id="term-glow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#38bdf8"/>
+                  <stop offset="100%" stop-color="#090d16"/>
+                </radialGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      `;
+    } else if (grp === 'B') {
+      // 2. FLOPPY DISK 3.5" - Accurate, iconic proportions, beveled corners, metal shutter & circular hub
+      return `
+        <div class="tech-artifact-hero">
+          <div class="tech-artifact-svg-wrap" title="Disquete de 3.5 pulgadas (1.44 MB)">
+            <svg class="artifact-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Disk body with cut corner at top-right -->
+              <path d="M12 4H84L94 14V92C94 94.2091 92.2091 96 90 96H10C7.79086 96 6 94.2091 6 92V10C6 6.68629 8.68629 4 12 4Z" fill="#181e29" stroke="#22d3ee" stroke-width="2" stroke-linejoin="round"/>
+              
+              <!-- Metal sliding shutter -->
+              <rect x="26" y="4" width="46" height="38" rx="2" fill="url(#shutter-grad)" stroke="#475569" stroke-width="1.2"/>
+              <!-- Shutter read-window slot (showing magnetic media inside) -->
+              <rect x="42" y="10" width="14" height="24" rx="2" fill="#090d16" stroke="#334155" stroke-width="1"/>
+              <circle cx="49" cy="22" r="3.5" fill="#1e293b"/>
+              
+              <!-- Shutter embossed arrow -->
+              <path d="M34 14L38 9L42 14H34Z" fill="#64748b"/>
+              
+              <!-- Paper label area -->
+              <rect x="15" y="48" width="70" height="42" rx="3" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+              <!-- Colored category stripe on label -->
+              <path d="M15 51C15 49.3431 16.3431 48 18 48H82C83.6569 48 85 49.3431 85 51V56H15V51Z" fill="#0891b2"/>
+              <!-- Label typography and ruled lines -->
+              <text x="50" y="66" fill="#0f172a" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold" text-anchor="middle">SOURCE DISK 1</text>
+              <line x1="22" y1="73" x2="78" y2="73" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2 2"/>
+              <text x="50" y="82" fill="#475569" font-family="'JetBrains Mono', monospace" font-size="6" text-anchor="middle">1.44 MB • HD</text>
+              
+              <!-- Write-protect notch window bottom-left -->
+              <rect x="10" y="86" width="6" height="6" rx="1" fill="#000" stroke="#334155" stroke-width="0.8"/>
+              <!-- High-density sensor notch bottom-right -->
+              <rect x="84" y="86" width="6" height="6" rx="1" fill="#000" stroke="#334155" stroke-width="0.8"/>
+              
+              <defs>
+                <linearGradient id="shutter-grad" x1="26" y1="4" x2="72" y2="42" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#cbd5e1"/>
+                  <stop offset="40%" stop-color="#94a3b8"/>
+                  <stop offset="70%" stop-color="#e2e8f0"/>
+                  <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      `;
+    } else if (grp === 'C') {
+      // 3. SERVER RACK & MAGNETIC TAPE REEL - Data center mainframe unit
+      return `
+        <div class="tech-artifact-hero">
+          <div class="tech-artifact-svg-wrap" title="Servidor de centro de datos y bobina de cinta">
+            <svg class="artifact-svg" viewBox="0 0 150 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Server Chassis Box -->
+              <rect x="3" y="6" width="144" height="78" rx="6" fill="#080e18" stroke="#34d399" stroke-width="1.8"/>
+              
+              <!-- Tape reel unit left side -->
+              <circle cx="42" cy="45" r="28" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+              <circle cx="42" cy="45" r="23" fill="#022c22" stroke="#047857" stroke-dasharray="3 3"/>
+              
+              <!-- Rotating reel spokes -->
+              <g class="svg-spin-slow" style="transform-origin: 42px 45px;">
+                <circle cx="42" cy="30" r="4.5" fill="#34d399"/>
+                <circle cx="55" cy="52" r="4.5" fill="#34d399"/>
+                <circle cx="29" cy="52" r="4.5" fill="#34d399"/>
+                <circle cx="42" cy="45" r="9" fill="#064e3b" stroke="#34d399" stroke-width="1.5"/>
+                <circle cx="42" cy="45" r="3" fill="#ecfdf5"/>
+              </g>
+              
+              <!-- Tape path ribbon -->
+              <path d="M42 18H75V72" stroke="#34d399" stroke-width="2" stroke-opacity="0.6"/>
+              
+              <!-- Right side: Drive bays & Activity LED array -->
+              <!-- Hot-swap drive bay 1 -->
+              <rect x="80" y="16" width="58" height="14" rx="2" fill="#132030" stroke="#334155" stroke-width="1"/>
+              <line x1="84" y1="23" x2="114" y2="23" stroke="#475569" stroke-width="1.5"/>
+              <circle class="svg-led-green" cx="128" cy="23" r="2.5" fill="#34d399"/>
+              
+              <!-- Hot-swap drive bay 2 -->
+              <rect x="80" y="34" width="58" height="14" rx="2" fill="#132030" stroke="#334155" stroke-width="1"/>
+              <line x1="84" y1="41" x2="114" y2="41" stroke="#475569" stroke-width="1.5"/>
+              <circle class="svg-led-amber" cx="128" cy="41" r="2.5" fill="#fbbf24"/>
+              
+              <!-- Hot-swap drive bay 3 -->
+              <rect x="80" y="52" width="58" height="14" rx="2" fill="#132030" stroke="#334155" stroke-width="1"/>
+              <line x1="84" y1="59" x2="114" y2="59" stroke="#475569" stroke-width="1.5"/>
+              <circle class="svg-led-green" cx="128" cy="59" r="2.5" fill="#34d399"/>
+              
+              <!-- Server rack ears with mounting screws -->
+              <circle cx="7" cy="14" r="2" fill="#64748b"/>
+              <circle cx="7" cy="76" r="2" fill="#64748b"/>
+              <circle cx="143" cy="14" r="2" fill="#64748b"/>
+              <circle cx="143" cy="76" r="2" fill="#64748b"/>
+            </svg>
+          </div>
+        </div>
+      `;
+    } else if (grp === 'D') {
+      // 4. SILICON MICROCHIP - Realistic QFP/BGA integrated circuit with gold pins and PCB traces
+      return `
+        <div class="tech-artifact-hero">
+          <div class="tech-artifact-svg-wrap" title="Procesador de silicio e IA (Microchip)">
+            <svg class="artifact-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Golden perimeter contact pins -->
+              <!-- Top pins -->
+              <g stroke="#facc15" stroke-width="1.8" stroke-linecap="round">
+                <line x1="20" y1="4" x2="20" y2="12"/><line x1="28" y1="4" x2="28" y2="12"/><line x1="36" y1="4" x2="36" y2="12"/>
+                <line x1="44" y1="4" x2="44" y2="12"/><line x1="52" y1="4" x2="52" y2="12"/><line x1="60" y1="4" x2="60" y2="12"/>
+                <line x1="68" y1="4" x2="68" y2="12"/><line x1="76" y1="4" x2="76" y2="12"/>
+              <!-- Bottom pins -->
+                <line x1="20" y1="88" x2="20" y2="96"/><line x1="28" y1="88" x2="28" y2="96"/><line x1="36" y1="88" x2="36" y2="96"/>
+                <line x1="44" y1="88" x2="44" y2="96"/><line x1="52" y1="88" x2="52" y2="96"/><line x1="60" y1="88" x2="60" y2="96"/>
+                <line x1="68" y1="88" x2="68" y2="96"/><line x1="76" y1="88" x2="76" y2="96"/>
+              <!-- Left pins -->
+                <line x1="4" y1="20" x2="12" y2="20"/><line x1="4" y1="28" x2="12" y2="28"/><line x1="4" y1="36" x2="12" y2="36"/>
+                <line x1="4" y1="44" x2="12" y2="44"/><line x1="4" y1="52" x2="12" y2="52"/><line x1="4" y1="60" x2="12" y2="60"/>
+                <line x1="4" y1="68" x2="12" y2="68"/><line x1="4" y1="76" x2="12" y2="76"/>
+              <!-- Right pins -->
+                <line x1="88" y1="20" x2="96" y2="20"/><line x1="88" y1="28" x2="96" y2="28"/><line x1="88" y1="36" x2="96" y2="36"/>
+                <line x1="88" y1="44" x2="96" y2="44"/><line x1="88" y1="52" x2="96" y2="52"/><line x1="88" y1="60" x2="96" y2="60"/>
+                <line x1="88" y1="68" x2="96" y2="68"/><line x1="88" y1="76" x2="96" y2="76"/>
+              </g>
+              
+              <!-- Ceramic / epoxy package body -->
+              <rect x="12" y="12" width="76" height="76" rx="5" fill="#180e22" stroke="#f472b6" stroke-width="2"/>
+              <!-- Pin 1 index notch -->
+              <circle cx="20" cy="20" r="3" fill="#f472b6" opacity="0.6"/>
+              
+              <!-- Central silicon die -->
+              <rect x="25" y="25" width="50" height="50" rx="4" fill="#2d123d" stroke="#f472b6" stroke-width="1.2"/>
+              
+              <!-- Integrated circuit micro-traces -->
+              <path d="M25 35H35V25M65 25V35H75M25 65H35V75M75 65H65V75" stroke="#f472b6" stroke-width="1" stroke-opacity="0.4"/>
+              
+              <!-- Center core emblem -->
+              <circle cx="50" cy="50" r="14" fill="#3b0764" stroke="#c084fc" stroke-width="1.5"/>
+              <text x="50" y="49" fill="#f472b6" font-family="'JetBrains Mono', monospace" font-size="6" font-weight="bold" text-anchor="middle">TENSOR</text>
+              <text x="50" y="56" fill="#fdf4ff" font-family="'JetBrains Mono', monospace" font-size="5" text-anchor="middle">NPU-V4</text>
+            </svg>
+          </div>
+        </div>
+      `;
+    } else {
+      // 5. CYBER KEYCARD / CRYPTO TOKEN - Smart card with EMV contact chip and holographic crest
+      return `
+        <div class="tech-artifact-hero">
+          <div class="tech-artifact-svg-wrap" title="Tarjeta de acceso criptográfico / Hardware Token">
+            <svg class="artifact-svg" viewBox="0 0 150 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Smartcard body with rounded corners -->
+              <rect x="3" y="5" width="144" height="80" rx="8" fill="url(#card-bg-grad)" stroke="#fbbf24" stroke-width="1.8"/>
+              
+              <!-- Holographic security ribbon -->
+              <path d="M3 26H147V34H3V26Z" fill="url(#holo-ribbon)" opacity="0.8"/>
+              
+              <!-- Golden EMV Contact Chip -->
+              <rect x="20" y="44" width="28" height="22" rx="3" fill="#facc15" stroke="#78350f" stroke-width="1"/>
+              <!-- EMV contact grid lines -->
+              <line x1="20" y1="55" x2="48" y2="55" stroke="#78350f" stroke-width="1"/>
+              <line x1="34" y1="44" x2="34" y2="66" stroke="#78350f" stroke-width="1"/>
+              <path d="M28 44V55M40 44V55M28 55V66M40 55V66" stroke="#78350f" stroke-width="0.8"/>
+              
+              <!-- Root security shield badge right side -->
+              <path d="M124 45L112 50V62C112 70 124 75 124 75C124 75 136 70 136 62V50L124 45Z" fill="#2d1c02" stroke="#fbbf24" stroke-width="1.5"/>
+              <circle cx="124" cy="58" r="4" fill="#fbbf24"/>
+              
+              <!-- Chip label text -->
+              <text x="60" y="54" fill="#fef08a" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="bold">ROOT_ACCESS</text>
+              <text x="60" y="64" fill="#ca8a04" font-family="'JetBrains Mono', monospace" font-size="6.5">AUTH: ED25519</text>
+              
+              <defs>
+                <linearGradient id="card-bg-grad" x1="3" y1="5" x2="147" y2="85" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#1c1204"/>
+                  <stop offset="50%" stop-color="#2a1b05"/>
+                  <stop offset="100%" stop-color="#0e0902"/>
+                </linearGradient>
+                <linearGradient id="holo-ribbon" x1="3" y1="30" x2="147" y2="30" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.3"/>
+                  <stop offset="25%" stop-color="#38bdf8" stop-opacity="0.8"/>
+                  <stop offset="50%" stop-color="#f472b6" stop-opacity="0.8"/>
+                  <stop offset="75%" stop-color="#34d399" stop-opacity="0.8"/>
+                  <stop offset="100%" stop-color="#fbbf24" stop-opacity="0.3"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      `;
+    }
+  }
+
   buildCardHTML(card) {
     const hitoFormatted = this.formatMarkdown(card.hito);
     const creadorFormatted = this.formatMarkdown(card.creador);
@@ -413,6 +643,7 @@ class HitsterEngine {
 
     const groupIcon = this.getGroupIconName(card.grupo);
     const eraName = this.getEraLabel(card.year);
+    const centerArtifactHTML = this.renderCenterArtifact(card);
 
     return `
       <!-- FRONT -->
@@ -431,13 +662,7 @@ class HitsterEngine {
           <div class="id-badge">${card.id}</div>
         </div>
 
-        <div class="vinyl-hero">
-          <div class="vinyl-platter">
-            <div class="vinyl-spindle-label">
-              <i data-lucide="${groupIcon}"></i>
-            </div>
-          </div>
-        </div>
+        ${centerArtifactHTML}
 
         <div class="clue-stage">
           <p class="clue-statement">${hitoFormatted}</p>
@@ -534,8 +759,29 @@ class HitsterEngine {
       const glow = glowColors[card.grupo] || 'rgba(56, 189, 248, 0.45)';
       this.ambientAura.style.background = `radial-gradient(circle, ${glow} 0%, transparent 70%)`;
     }
-    
+
+    this.attachArtifactCycler(cardEl, card);
     this.refreshIcons();
+  }
+
+  attachArtifactCycler(cardEl, card) {
+    const heroEl = cardEl.querySelector('.tech-artifact-hero');
+    if (!heroEl) return;
+    const artifacts = ['A', 'B', 'C', 'D', 'E'];
+    let currentGrp = card.grupo;
+
+    heroEl.style.cursor = 'pointer';
+    heroEl.title = 'Haz clic para alternar de artefacto (Terminal, Disquete, Servidor, Chip, Keycard)';
+    heroEl.addEventListener('click', (e) => {
+      e.stopPropagation(); // don't flip the card when clicking the artifact
+      const curIdx = artifacts.indexOf(currentGrp);
+      currentGrp = artifacts[(curIdx + 1) % artifacts.length];
+      const dummy = { ...card, grupo: currentGrp };
+      heroEl.outerHTML = this.renderCenterArtifact(dummy);
+      this.refreshIcons();
+      this.playAudioFeedback('flip');
+      this.attachArtifactCycler(cardEl, { ...card, grupo: currentGrp });
+    });
   }
 
   flipCurrentCard() {
