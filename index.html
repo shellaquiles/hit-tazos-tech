@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HITSTER Tech Edition 🕹️ | Trivia Cronológica</title>
+  <meta name="description" content="Juego de cartas de trivia cronológica estilo HITSTER para Tecnología, Python, DevOps, Inteligencia Artificial y Cultura Hacker.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <div class="brand-icon">⚡</div>
+      <div>
+        <div class="brand-title">HITSTER <span class="brand-badge">Tech Edition</span></div>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <button class="tab-btn active" id="btn-tab-play" data-view="play">
+        <span>🎮</span> Modo Juego
+      </button>
+      <button class="tab-btn" id="btn-tab-gallery" data-view="gallery">
+        <span>🗂️</span> Explorador (<span id="counter-total">531</span>)
+      </button>
+      <button class="icon-btn" id="btn-sound-toggle" title="Sonido activado/desactivado">
+        🔊
+      </button>
+      <button class="icon-btn" id="btn-print" title="Imprimir cartas">
+        🖨️
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- VISTA 1: MODO JUEGO / CARTA 3D INTERACTIVA -->
+    <section id="view-play" class="view-section active">
+      <div class="interactive-arena">
+        
+        <div class="game-controls-top">
+          <div class="stat-pill">Mazo: <strong id="deck-filter-name">Todos los Grupos</strong></div>
+          <div class="stat-pill">Carta: <strong id="game-card-counter">1 / 531</strong></div>
+          <div class="stat-pill">Aciertos: <strong id="game-score">0</strong></div>
+        </div>
+
+        <!-- Contenedor 3D de la carta -->
+        <div class="card-perspective-container" id="arena-card-container">
+          <!-- Renderizado dinámico de la carta -->
+        </div>
+
+        <!-- Opciones de Juego / Adivinar año -->
+        <div class="guess-year-drawer" id="guess-drawer">
+          <span style="font-size: 0.85rem; color: var(--text-secondary);">¿Año del hito?</span>
+          <input type="number" id="input-guess-year" class="year-input" placeholder="YYYY" min="1950" max="2030">
+          <button class="primary-btn" id="btn-check-guess" style="padding: 0.55rem 1rem;">Comprobar</button>
+          <div id="guess-feedback" style="font-weight: 700; font-size: 0.9rem; margin-left: 0.5rem;"></div>
+        </div>
+
+        <!-- Barra de acciones inferiores -->
+        <div class="arena-actions">
+          <button class="secondary-btn" id="btn-prev-card" title="Carta anterior">
+            ⬅️ Anterior
+          </button>
+          <button class="primary-btn" id="btn-flip-card">
+            🔄 Girar Carta (Espacio)
+          </button>
+          <button class="secondary-btn" id="btn-next-card" title="Siguiente carta">
+            Siguiente ➡️
+          </button>
+          <button class="secondary-btn" id="btn-shuffle-deck" title="Barajar mazo">
+            🔀 Barajar
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- VISTA 2: EXPLORADOR / GALERÍA DE CARTAS -->
+    <section id="view-gallery" class="view-section">
+      <div class="filter-bar">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="gallery-search" class="search-input" placeholder="Buscar tecnología, autor, síntaxis o curiosidad...">
+        </div>
+
+        <div class="filter-selects">
+          <select id="select-group" class="custom-select">
+            <option value="ALL">Todos los Grupos (A - E)</option>
+            <option value="A">Grupo A: Universo Python</option>
+            <option value="B">Grupo B: Software, Web y Datos</option>
+            <option value="C">Grupo C: DevOps e Infraestructura</option>
+            <option value="D">Grupo D: Cómputo, IA y Datos</option>
+            <option value="E">Grupo E: Cultura Hacker y Leyendas</option>
+          </select>
+
+          <select id="select-sort" class="custom-select">
+            <option value="ID_ASC">Orden por Código (#)</option>
+            <option value="YEAR_ASC">Año: Antiguo ➡️ Reciente</option>
+            <option value="YEAR_DESC">Año: Reciente ➡️ Antiguo</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="cards-grid" id="cards-grid-container">
+        <!-- Renderizado dinámico de cuadrícula -->
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

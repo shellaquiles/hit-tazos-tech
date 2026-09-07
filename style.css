@@ -1,0 +1,759 @@
+:root {
+  --bg-primary: #0a0d14;
+  --bg-surface: #111726;
+  --bg-card-front: #161f33;
+  --bg-card-back: #0f1524;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(255, 255, 255, 0.15);
+  
+  /* Group Color Tokens */
+  --group-a-color: #3b82f6;
+  --group-a-accent: #facc15;
+  --group-a-gradient: linear-gradient(135deg, #1e3a8a, #3b82f6);
+  
+  --group-b-color: #06b6d4;
+  --group-b-accent: #8b5cf6;
+  --group-b-gradient: linear-gradient(135deg, #0e7490, #06b6d4);
+  
+  --group-c-color: #10b981;
+  --group-c-accent: #34d399;
+  --group-c-gradient: linear-gradient(135deg, #065f46, #10b981);
+  
+  --group-d-color: #ec4899;
+  --group-d-accent: #a855f7;
+  --group-d-gradient: linear-gradient(135deg, #831843, #ec4899);
+  
+  --group-e-color: #f59e0b;
+  --group-e-accent: #ef4444;
+  --group-e-gradient: linear-gradient(135deg, #9a3412, #f59e0b);
+  
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Space Grotesk', var(--font-sans);
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  --card-width: 320px;
+  --card-height: 480px;
+  --card-radius: 20px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.1) 0px, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Header & Nav */
+header {
+  padding: 1.25rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(10, 13, 20, 0.75);
+  backdrop-filter: blur(16px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.brand-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #38bdf8, #ec4899);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.35);
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(90deg, #f8fafc, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-badge {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-glow);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tab-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+  padding: 0.55rem 1.1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn.active {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--border-glow);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.icon-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--border-glow);
+}
+
+/* Main Container */
+main {
+  flex: 1;
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* View Sections */
+.view-section {
+  display: none;
+}
+
+.view-section.active {
+  display: block;
+}
+
+/* Interactive Card Showcase Mode */
+.interactive-arena {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 65vh;
+  gap: 2rem;
+}
+
+.game-controls-top {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: rgba(17, 23, 38, 0.6);
+  padding: 0.6rem 1.25rem;
+  border-radius: 14px;
+  border: 1px solid var(--border-subtle);
+}
+
+.stat-pill {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.stat-pill strong {
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+/* 3D Card Architecture */
+.card-perspective-container {
+  perspective: 1200px;
+  width: var(--card-width);
+  height: var(--card-height);
+  cursor: pointer;
+  user-select: none;
+}
+
+.hitster-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.23, 1, 0.32, 1);
+  border-radius: var(--card-radius);
+  box-shadow: 
+    0 15px 35px -5px rgba(0, 0, 0, 0.6),
+    0 0 0 1px var(--border-subtle);
+}
+
+.hitster-card:hover {
+  box-shadow: 
+    0 25px 45px -5px rgba(0, 0, 0, 0.75),
+    0 0 30px var(--active-glow, rgba(59, 130, 246, 0.25));
+}
+
+.hitster-card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+/* Card Faces */
+.card-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--card-radius);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 1.5rem;
+}
+
+/* Foil Border Effect */
+.card-face::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--card-radius);
+  padding: 2px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent 40%, rgba(255, 255, 255, 0.1));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Card Front */
+.card-front {
+  background: var(--bg-card-front);
+  background-image: 
+    radial-gradient(circle at top right, var(--active-accent-bg, rgba(59, 130, 246, 0.15)), transparent 60%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
+}
+
+.card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.category-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.65rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--active-color, #38bdf8);
+}
+
+.card-id-tag {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+/* Vinyl / Soundwave Decorative Centerpiece */
+.vinyl-emblem-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.vinyl-disc {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #1e293b 20%, #0f172a 40%, #020617 85%);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.vinyl-center {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--active-color, #38bdf8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  box-shadow: 0 0 12px var(--active-color, #38bdf8);
+}
+
+/* Clue Text */
+.clue-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5rem 0.25rem;
+}
+
+.clue-text {
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: #f8fafc;
+  font-weight: 450;
+}
+
+.clue-text strong {
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+}
+
+.clue-text em {
+  font-style: italic;
+  color: var(--active-color, #7dd3fc);
+}
+
+.clue-text code {
+  font-family: var(--font-mono);
+  background: rgba(0, 0, 0, 0.45);
+  padding: 0.15rem 0.4rem;
+  border-radius: 5px;
+  font-size: 0.85em;
+  color: #fef08a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-footer-row {
+  margin-top: auto;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timeline-callout {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.flip-prompt {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Card Back (Reveal) */
+.card-back {
+  background: var(--bg-card-back);
+  transform: rotateY(180deg);
+  background-image: 
+    radial-gradient(circle at top center, var(--active-accent-bg, rgba(236, 72, 153, 0.18)), transparent 70%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+}
+
+.year-hero {
+  text-align: center;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.year-number {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  background: linear-gradient(180deg, #ffffff 30%, var(--active-color, #38bdf8) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+}
+
+.year-subtitle {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-top: 0.35rem;
+}
+
+/* Creator Pill */
+.creator-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 0.6rem 0.85rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.creator-icon {
+  font-size: 1.1rem;
+}
+
+.creator-meta {
+  flex: 1;
+  overflow: hidden;
+}
+
+.creator-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.creator-name {
+  font-size: 0.85rem;
+  color: #fff;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Trivia Container */
+.trivia-box {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.trivia-header {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #fbbf24;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.trivia-text {
+  font-size: 0.83rem;
+  line-height: 1.45;
+  color: #cbd5e1;
+}
+
+.trivia-text strong {
+  color: #fff;
+}
+
+.trivia-text em {
+  color: #7dd3fc;
+  font-style: italic;
+}
+
+/* Card Interactive Control Bar */
+.arena-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  border: none;
+  font-weight: 700;
+  padding: 0.85rem 1.65rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+}
+
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  font-weight: 600;
+  padding: 0.85rem 1.35rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--border-glow);
+}
+
+/* Gallery / Explorer Mode */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  background: var(--bg-surface);
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--border-subtle);
+}
+
+.search-box {
+  flex: 1;
+  min-width: 260px;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 0.65rem 1rem 0.65rem 2.5rem;
+  color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus {
+  border-color: var(--group-a-color);
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+
+.filter-selects {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.custom-select {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.custom-select option {
+  background: #111726;
+  color: #fff;
+}
+
+/* Card Grid */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.grid-card-item {
+  height: 420px;
+}
+
+.grid-card-item .hitster-card {
+  --card-radius: 16px;
+}
+
+/* Category Color Customizations */
+.theme-A {
+  --active-color: var(--group-a-color);
+  --active-accent-bg: rgba(59, 130, 246, 0.2);
+  --active-glow: rgba(59, 130, 246, 0.35);
+}
+
+.theme-B {
+  --active-color: var(--group-b-color);
+  --active-accent-bg: rgba(6, 182, 212, 0.2);
+  --active-glow: rgba(6, 182, 212, 0.35);
+}
+
+.theme-C {
+  --active-color: var(--group-c-color);
+  --active-accent-bg: rgba(16, 185, 129, 0.2);
+  --active-glow: rgba(16, 185, 129, 0.35);
+}
+
+.theme-D {
+  --active-color: var(--group-d-color);
+  --active-accent-bg: rgba(236, 72, 153, 0.2);
+  --active-glow: rgba(236, 72, 153, 0.35);
+}
+
+.theme-E {
+  --active-color: var(--group-e-color);
+  --active-accent-bg: rgba(245, 158, 11, 0.2);
+  --active-glow: rgba(245, 158, 11, 0.35);
+}
+
+/* Timeline Guessing Interactive Drawer */
+.guess-year-drawer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(17, 23, 38, 0.7);
+  padding: 0.5rem 1rem;
+  border-radius: 14px;
+  border: 1px solid var(--border-subtle);
+}
+
+.year-input {
+  width: 100px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 0.55rem;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+  outline: none;
+}
+
+.year-input:focus {
+  border-color: var(--group-a-color);
+}
+
+/* Print Stylesheet */
+@media print {
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  
+  header, .filter-bar, .arena-actions, .game-controls-top, .guess-year-drawer {
+    display: none !important;
+  }
+  
+  .cards-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 15px !important;
+  }
+  
+  .grid-card-item {
+    height: 380px !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  
+  .hitster-card {
+    box-shadow: none !important;
+    border: 2px dashed #999 !important;
+  }
+  
+  .card-face {
+    border: 1px solid #ccc !important;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  :root {
+    --card-width: 290px;
+    --card-height: 440px;
+  }
+  
+  header {
+    padding: 1rem;
+  }
+  
+  .brand-title {
+    font-size: 1.15rem;
+  }
+  
+  .tab-btn span {
+    display: none;
+  }
+}
