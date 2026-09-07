@@ -1,0 +1,222 @@
+[
+  {
+    "id": "#B3-001",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Creación de **SCCS** (*Source Code Control System*), el primer sistema automatizado de control de versiones de código de la historia.",
+    "year": 1972,
+    "creador": "*Marc Rochkind* (*Bell Labs*)",
+    "dato_curioso": "Diseñado para computadoras IBM sobre tarjetas perforadas; almacenaba el historial mediante *deltas* entrelazados para ahorrar espacio en discos magnéticos de escasos megabytes."
+  },
+  {
+    "id": "#B3-002",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Nacimiento del editor de texto extensible **Emacs** en el laboratorio de inteligencia artificial del MIT.",
+    "year": 1976,
+    "creador": "*Richard Stallman* y *Guy L. Steele Jr.* (*MIT AI Lab*)",
+    "dato_curioso": "Stallman lo concibió como un conjunto de macros de edición (*Editing MACroS*) sobre el editor TECO; su capacidad de ser reprogramado en dialectos Lisp lo convirtió en un sistema operativo en sí mismo."
+  },
+  {
+    "id": "#B3-003",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Desarrollo de **Vi**, el editor modal de pantalla completa incluido en la primera distribución BSD de Unix.",
+    "year": 1976,
+    "creador": "*Bill Joy* (*UC Berkeley*)",
+    "dato_curioso": "Diseñado para terminales lentas de 300 baudios; Joy asignó los comandos de navegación `h`, `j`, `k`, `l` porque el teclado del terminal *Lear Siegler ADM-3A* tenía flechas impresas sobre esas teclas."
+  },
+  {
+    "id": "#B3-004",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Aparición de **RCS** (*Revision Control System*), popularizando el bloqueo estricto de archivos por usuario en entornos Unix.",
+    "year": 1982,
+    "creador": "*Walter F. Tichy* (*Purdue University*)",
+    "dato_curioso": "Almacenaba las revisiones como deltas inversos para que consultar la última versión fuera casi instantáneo, convirtiéndose en el motor estándar de los primeros servidores compartidos."
+  },
+  {
+    "id": "#B3-005",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Creación de **CVS** (*Concurrent Versions System*), permitiendo a múltiples programadores modificar un mismo archivo en paralelo.",
+    "year": 1986,
+    "creador": "*Dick Grune*",
+    "dato_curioso": "Nació como una serie de scripts de shell que envolvían a RCS; su modelo de fusión optimista sustituyó para siempre la pesadilla de bloquear archivos completos durante días."
+  },
+  {
+    "id": "#B3-006",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Publicación de **Vim** (*Vi IMproved*) para computadoras Commodore Amiga bajo un modelo de software benéfico (*charityware*).",
+    "year": 1991,
+    "creador": "*Bram Moolenaar*",
+    "dato_curioso": "En lugar de pedir donaciones para sí mismo, Bram solicitaba a los usuarios enviar dinero a orfanatos de niños en Uganda, manteniendo esta causa humanitaria activa durante más de tres décadas."
+  },
+  {
+    "id": "#B3-007",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Nacimiento de **Subversion** (**SVN**), diseñado para corregir las graves deficiencias estructurales de CVS.",
+    "year": 2000,
+    "creador": "*CollabNet* (*Jim Blandy* y *Karl Fogel*)",
+    "dato_curioso": "Introdujo confirmaciones de cambios atómicas (*atomic commits*) y soporte para renombrar carpetas y versionar archivos binarios sin corromper el historial del repositorio."
+  },
+  {
+    "id": "#B3-008",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Lanzamiento de **IntelliJ IDEA**, revolucionando los entornos de desarrollo integrados con autocompletado y refactorización semántica avanzada.",
+    "year": 2001,
+    "creador": "*JetBrains* (*Sergey Dmitriev* y *Valentin Kipiatkov*)",
+    "dato_curioso": "Fue el primer IDE en entender el árbol sintáctico del código en memoria para proponer refactorizaciones seguras en Java, cobrando una licencia comercial en una época de IDEs gratuitos."
+  },
+  {
+    "id": "#B3-009",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Debut de **TextMate** para Mac OS X, redefiniendo la estética y ergonomía de los editores con snippets dinámicos y navegación difusa.",
+    "year": 2004,
+    "creador": "*Allan Odgaard* (*MacroMates*)",
+    "dato_curioso": "Su sistema de coloreado de sintaxis basado en expresiones regulares de *Oniguruma* y su comando `Cmd+T` para abrir archivos rápidamente inspiraron directamente a editores posteriores."
+  },
+  {
+    "id": "#B3-010",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Creación urgente de **Git** como sistema de control de versiones distribuido tras la crisis con el software propietario *BitKeeper*.",
+    "year": 2005,
+    "creador": "*Linus Torvalds*",
+    "dato_curioso": "Linus programó el núcleo funcional basado en un grafo acíclico dirigido (*DAG*) en solo dos semanas, asombrando a la industria por su velocidad de cálculo de ramas y fusiones."
+  },
+  {
+    "id": "#B3-011",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Lanzamiento de **Mercurial** (**hg**), concebido la misma semana que Git como alternativa distribuida escrita en Python y C.",
+    "year": 2005,
+    "creador": "*Matt Mackall*",
+    "dato_curioso": "Se disputó con Git el control del kernel Linux; aunque Linus eligió su propia creación, gigantes como *Facebook* y *Google* operaron monorepositorios colosales sobre Mercurial."
+  },
+  {
+    "id": "#B3-012",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Aparición de **Sublime Text**, conquistando a los desarrolladores por su velocidad instantánea y su minimapa lateral de código.",
+    "year": 2008,
+    "creador": "*Jon Skinner*",
+    "dato_curioso": "Programado en C++ y Python para ofrecer una interfaz ligera y sin lag; popularizó la función de selección con múltiples cursores simultáneos (`Ctrl+D`)."
+  },
+  {
+    "id": "#B3-013",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Lanzamiento del editor **Atom** por parte de GitHub bajo el lema *\"A hackable text editor for the 21st Century\"*.",
+    "year": 2014,
+    "creador": "*GitHub* (*Chris Wanstrath*)",
+    "dato_curioso": "Para construirlo crearon internamente la plataforma *Electron* (combinando Chromium y Node.js), tecnología que más tarde impulsaría aplicaciones como Slack, Discord y VS Code."
+  },
+  {
+    "id": "#B3-014",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Creación del proyecto **Neovim**, una bifurcación agresiva de Vim enfocada en limpiar la base de código en C y añadir soporte para scripting en **Lua**.",
+    "year": 2014,
+    "creador": "*Thiago de Arruda*",
+    "dato_curioso": "Nació tras el rechazo de Bram Moolenaar a aceptar parches para refactorizar la arquitectura interna; Neovim revivió el entusiasmo por los editores de terminal entre las nuevas generaciones."
+  },
+  {
+    "id": "#B3-015",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Presentación de **Visual Studio Code** (**VS Code**), convirtiéndose en el editor de código más adoptado del planeta.",
+    "year": 2015,
+    "creador": "*Microsoft* (*Erich Gamma*)",
+    "dato_curioso": "Creado por uno de los autores del libro de *Design Patterns*, sorprendió al mundo al ser gratuito, de código abierto y compatible con Linux, macOS y Windows desde el día uno."
+  },
+  {
+    "id": "#B3-016",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Estandarización del protocolo **LSP** (*Language Server Protocol*), desacoplando la inteligencia de compiladores de la interfaz del editor.",
+    "year": 2016,
+    "creador": "*Microsoft*, *Red Hat* y *Codenvy*",
+    "dato_curioso": "Permitió que un único servidor de lenguaje (como *pyright* o *gopls*) proveyera autocompletado, diagnósticos y salto a definiciones para cualquier editor de texto compatible."
+  },
+  {
+    "id": "#B3-017",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Apertura de la vista previa de **GitHub Copilot**, inaugurando la era de la programación asistida por modelos de inteligencia artificial generativa.",
+    "year": 2021,
+    "creador": "*GitHub* y *OpenAI* (*Nat Friedman*)",
+    "dato_curioso": "Entrenado sobre miles de millones de líneas de código público con el modelo *Codex*, introdujo la autocompletación predictiva de funciones completas en tiempo real."
+  },
+  {
+    "id": "#B3-018",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Presentación pública de **Zed**, un editor de código colaborativo de latencia ultra baja programado íntegramente en lenguaje **Rust**.",
+    "year": 2023,
+    "creador": "*Nathan Sobo* (*Zed Industries*)",
+    "dato_curioso": "Creado por los diseñadores originales de Atom, abandonó Electron para renderizar texto directamente mediante la tarjeta gráfica (GPU), alcanzando 120 fotogramas por segundo fluidos."
+  },
+  {
+    "id": "#B3-019",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Fallecimiento de **Bram Moolenaar**, conmocionando a la comunidad global de desarrollo tras 32 años de custodia ininterrumpida de Vim.",
+    "year": 2023,
+    "creador": "*Comunidad Mundial de Software Libre*",
+    "dato_curioso": "Millones de programadores le rindieron homenaje en redes y terminales; en su testamento legó los derechos y fondos del proyecto para continuar su obra caritativa en África."
+  },
+  {
+    "id": "#B3-020",
+    "grupo": "B",
+    "grupo_nombre": "Software, Web y Datos",
+    "categoria": "B3",
+    "categoria_nombre": "Herramientas Dev y Control de Versiones",
+    "hito": "Lanzamiento y explosión de adopción del editor **Cursor**, integrando capacidades agénticas de IA con indexación semántica del repositorio.",
+    "year": 2024,
+    "creador": "*Anysphere*",
+    "dato_curioso": "Construido como una bifurcación de VS Code, introdujo la edición de múltiples archivos coordinados y la predicción multi-línea mediante modelos de lenguaje locales y en la nube."
+  }
+]

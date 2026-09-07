@@ -1,0 +1,211 @@
+[
+  {
+    "id": "#C2-001",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C2",
+    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
+    "hito": "Introducción de la llamada al sistema `chroot` en **Unix Versión 7**, permitiendo enjaular la raíz del sistema de archivos para un proceso.",
+    "year": 1979,
+    "creador": "*Bill Joy* (*Bell Labs*)",
+    "dato_curioso": "Concebida originalmente para probar instaladores de software sin comprometer los archivos maestros del sistema operativo anfitrión."
+  },
+  {
+    "id": "#C2-002",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C2",
+    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
+    "hito": "Lanzamiento de **VMware Workstation 1.0**, logrando virtualizar sistemas operativos completos sobre procesadores Intel x86.",
+    "year": 1999,
+    "creador": "*Diane Greene* y *Mendel Rosenblum* (*VMware*)",
+    "dato_curioso": "Tuvieron que inventar técnicas pioneras de traducción binaria en tiempo real para sortear las instrucciones x86 que no permitían ser virtualizadas por hardware de forma segura."
+  },
+  {
+    "id": "#C2-003",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C2",
+    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
+    "hito": "Creación de **FreeBSD Jails**, ampliando el concepto de jaula para aislar procesos, interfaces de red y cuentas de usuario completas.",
+    "year": 2000,
+    "creador": "*Poul-Henning Kamp*",
+    "dato_curioso": "Diseñado expresamente para un proveedor de hosting compartido (*R&D Associates*) que necesitaba evitar que clientes maliciosos espiaran los procesos de sus vecinos."
+  },
+  {
+    "id": "#C2-004",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C2",
+    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
+    "hito": "Presentación de **Solaris Zones** (Contenedores de Solaris) en el sistema operativo Solaris 10 de Sun Microsystems.",
+    "year": 2004,
+    "creador": "*Sun Microsystems*",
+    "dato_curioso": "Permitía crear hasta 8,191 entornos virtuales aislados dentro de un único kernel sin incurrir en el pesado consumo de memoria de emular hardware completo."
+  },
+  {
+    "id": "#C2-005",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C2",
+    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
+    "hito": "Incorporación de los grupos de control (**cgroups**) en el kernel de Linux tras la contribución de parches de ingenieros de Google.",
+    "year": 2007,
+    "creador": "*Paul Menage* y *Rohit Seth* (*Google*)",
+    "dato_curioso": "Bautizados inicialmente como *Process Containers*, permitieron fijar techos estrictos de uso de memoria RAM, cuotas de CPU e I/O de disco por grupo de procesos."
+  },
+  {
+    "id": "#C2-006",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C2",
+    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
+    "hito": "Debut de **KVM** (*Kernel-based Virtual Machine*), convirtiendo al propio kernel de Linux en un hipervisor de tipo 1 de alto rendimiento.",
+    "year": 2007,
+    "creador": "*Avi Kivity* (*Qumranet*)",
+    "dato_curioso": "Integrado de inmediato en el árbol oficial del kernel de Linux; Qumranet fue adquirida por Red Hat al año siguiente por más de 100 millones de dólares."
+  },
+  {
+    "id": "#C2-007",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C2",
+    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
+    "hito": "Lanzamiento de **LXC** (*Linux Containers*), combinando los namespaces de Linux y cgroups en una interfaz coherente en espacio de usuario.",
+    "year": 2008,
+    "creador": "*Daniel Lezcano* y *Serge Hallyn*",
+    "dato_curioso": "Fue la primera implementación de contenedores integral y madura en Linux sin requerir parches experimentales fuera del kernel estándar."
+  },
+  {
+    "id": "#C2-008",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C2",
+    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
+    "hito": "Demostración sorpresa de **Docker** en una charla relámpago de la conferencia *PyCon 2013*, desatando la locura por los contenedores.",
+    "year": 2013,
+    "creador": "*Solomon Hykes* (*dotCloud*)",
+    "dato_curioso": "La presentación en vivo de solo 5 minutos causó tal terremoto en la industria que dotCloud abandonó su negocio original para rebautizarse como **Docker Inc.**"
+  },
+  {
+    "id": "#C2-009",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C2",
+    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
+    "hito": "Lanzamiento de **Rocket** (**rkt**) por parte de CoreOS, desafiando el crecimiento descontrolado del daemon monolítico de Docker.",
+    "year": 2014,
+    "creador": "*CoreOS* (*Alex Polvi*)",
+    "dato_curioso": "Su manifiesto acusó a Docker de haber traicionado su estándar modular inicial; esta disputa forzó a la industria a crear la especificación neutral de la OCI."
+  },
+  {
+    "id": "#C2-010",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C2",
+    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
+    "hito": "Presentación pública de **Kubernetes** (**K8s**) como proyecto de código abierto inspirado en los sistemas internos **Borg** y **Omega**.",
+    "year": 2014,
+    "creador": "*Google* (*Joe Beda*, *Brendan Burns* y *Craig McLuckie*)",
+    "dato_curioso": "Su nombre proviene de la palabra griega para \"timonel\" o \"capitán\"; su icónico logo tiene siete radios en honor al personaje de Star Trek *Seven of Nine* (en alusión al proyecto Borg)."
+  },
+  {
+    "id": "#C2-011",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C2",
+    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
+    "hito": "Fundación de la **CNCF** (*Cloud Native Computing Foundation*) y la **OCI** (*Open Container Initiative*) para proteger los estándares de contenedores.",
+    "year": 2015,
+    "creador": "*Linux Foundation* y gigantes tecnológicos",
+    "dato_curioso": "Docker donó la especificación de imágenes y su motor central de ejecución de bajo nivel `runc` para evitar la fragmentación propietaria del sector."
+  },
+  {
+    "id": "#C2-012",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C2",
+    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
+    "hito": "Donación oficial y graduación de **Kubernetes 1.0** bajo la tutela de la nueva fundación CNCF.",
+    "year": 2015,
+    "creador": "*Google* y *Linux Foundation*",
+    "dato_curioso": "Selló la victoria definitiva de Kubernetes frente a orquestadores rivales como *Docker Swarm* y *Apache Mesos*, erigiéndose en el sistema operativo indiscutible de la nube."
+  },
+  {
+    "id": "#C2-013",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C2",
+    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
+    "hito": "Extracción y publicación de **containerd** como un daemon de ejecución de contenedores desacoplado e independiente por parte de Docker.",
+    "year": 2017,
+    "creador": "*Docker Inc.*",
+    "dato_curioso": "Diseñado para gestionar la descarga de imágenes, almacenamiento y supervisión de procesos sin arrastrar la lógica comercial ni la interfaz de usuario de Docker."
+  },
+  {
+    "id": "#C2-014",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C2",
+    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
+    "hito": "Lanzamiento de **Podman** por parte de Red Hat, permitiendo ejecutar contenedores sin demonio central y en modo rootless sin privilegios de superusuario.",
+    "year": 2018,
+    "creador": "*Dan Walsh* (*Red Hat*)",
+    "dato_curioso": "Implementó el alias `alias docker=podman`, logrando que comandos existentes funcionaran idénticamente pero eliminando la superficie de ataque de un daemon con permisos de root."
+  },
+  {
+    "id": "#C2-015",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C2",
+    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
+    "hito": "Nacimiento de **k3s**, empaquetando una distribución completa y certificada de Kubernetes dentro de un único archivo binario liviano.",
+    "year": 2019,
+    "creador": "*Darren Shepherd* (*Rancher Labs*)",
+    "dato_curioso": "Eliminó dependencias complejas y drivers heredados para que Kubernetes pudiera correr en dispositivos IoT y Raspberry Pis con menos de 512 MB de memoria RAM."
+  },
+  {
+    "id": "#C2-016",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C2",
+    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
+    "hito": "Anuncio de la deprecación y eliminación definitiva de **Dockershim** dentro de Kubernetes en la versión 1.20.",
+    "year": 2020,
+    "creador": "*Kubernetes Maintainers*",
+    "dato_curioso": "Sembró el pánico entre desarrolladores que temían que sus imágenes `.dockerfile` dejaran de funcionar, cuando en realidad solo afectaba al runtime interno de los nodos del cluster."
+  },
+  {
+    "id": "#C2-017",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C2",
+    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
+    "hito": "Modificación de los términos de servicio de **Docker Desktop**, imponiendo suscripciones de pago para empresas de más de 250 empleados.",
+    "year": 2021,
+    "creador": "*Docker Inc.*",
+    "dato_curioso": "Desencadenó una ola masiva de adopción de alternativas libres para desarrolladores en Mac y Windows como *Rancher Desktop*, *Colima* y *OrbStack*."
+  },
+  {
+    "id": "#C2-018",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C2",
+    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
+    "hito": "Integración nativa de microcontenedores basados en **WebAssembly** en clusters de producción mediante el proyecto **SpinKube**.",
+    "year": 2024,
+    "creador": "*Deislabs* (*Fermin Galan* et al.)",
+    "dato_curioso": "Permitió arrancar cargas de trabajo en Kubernetes en menos de un milisegundo con un consumo de recursos diez veces menor al de un contenedor Linux tradicional."
+  },
+  {
+    "id": "#C2-019",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C2",
+    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
+    "hito": "Adopción industrial de la computación confidencial en contenedores utilizando enclaves criptográficos seguros por hardware (*AMD SEV* / *Intel TDX*).",
+    "year": 2025,
+    "creador": "*CNCF Confidential Containers Project*",
+    "dato_curioso": "Garantizó que ni siquiera los administradores del hipervisor o el proveedor de la nube pudieran espiar la memoria RAM ni los datos en tránsito de un contenedor en ejecución."
+  }
+]

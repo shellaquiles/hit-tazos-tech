@@ -1,0 +1,200 @@
+[
+  {
+    "id": "#C3-001",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C3",
+    "categoria_nombre": "Nube Pública y Paradigmas de Cómputo",
+    "hito": "Apertura de las primeras interfaces web gratuitas de **Amazon.com** para programadores externos mediante llamadas XML y SOAP.",
+    "year": 2002,
+    "creador": "*Amazon* (*Colin Bryar*)",
+    "dato_curioso": "Nació tras una orden ejecutiva interna de Jeff Bezos que exigió que todos los equipos desacoplaran sus datos y los expusieran mediante APIs bajo amenaza de despido."
+  },
+  {
+    "id": "#C3-002",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C3",
+    "categoria_nombre": "Nube Pública y Paradigmas de Cómputo",
+    "hito": "Lanzamiento oficial de **Amazon S3** (*Simple Storage Service*), inaugurando formalmente la era moderna de la infraestructura como servicio.",
+    "year": 2006,
+    "creador": "*Amazon Web Services* (*Andy Jassy*)",
+    "dato_curioso": "Ofrecía almacenamiento virtual ilimitado facturando apenas **15 centavos de dólar** por gigabyte al mes, convirtiéndose en el almacén de datos por excelencia de la web."
+  },
+  {
+    "id": "#C3-003",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C3",
+    "categoria_nombre": "Nube Pública y Paradigmas de Cómputo",
+    "hito": "Apertura de la beta limitada de **Amazon EC2** (*Elastic Compute Cloud*), permitiendo alquilar máquinas virtuales por horas.",
+    "year": 2006,
+    "creador": "*Amazon Web Services* (*Chris Pinkham*)",
+    "dato_curioso": "Las primeras instancias (`m1.small`) contaban con 1.7 GB de RAM y corrían sobre hipervisores Xen; Pinkham lideró el desarrollo en secreto desde un laboratorio en Sudáfrica."
+  },
+  {
+    "id": "#C3-004",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C3",
+    "categoria_nombre": "Nube Pública y Paradigmas de Cómputo",
+    "hito": "Divulgación pública del concepto **Cloud Computing** por parte de Eric Schmidt en una conferencia de ejecutivos en San José.",
+    "year": 2006,
+    "creador": "*Eric Schmidt* (*Google*)",
+    "dato_curioso": "Schmidt describió la computación en la nube como un paradigma emergente donde los servicios y datos residen en centros de datos remotos accesibles desde cualquier navegador."
+  },
+  {
+    "id": "#C3-005",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C3",
+    "categoria_nombre": "Nube Pública y Paradigmas de Cómputo",
+    "hito": "Nacimiento de **Heroku**, inventando el paradigma de plataforma como servicio (**PaaS**) con el comando mágico `git push heroku master`.",
+    "year": 2007,
+    "creador": "*James Lindenbaum*, *Adam Wiggins* y *Orion Henry*",
+    "dato_curioso": "Permitía a los programadores de Ruby on Rails poner una aplicación en producción en diez segundos sin configurar servidores Linux ni servidores web."
+  },
+  {
+    "id": "#C3-006",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C3",
+    "categoria_nombre": "Nube Pública y Paradigmas de Cómputo",
+    "hito": "Presentación de **Google App Engine** (**GAE**), permitiendo ejecutar aplicaciones en Python 2.5 dentro de un sandbox seguro de Google.",
+    "year": 2008,
+    "creador": "*Google* (*Paul McDonald*)",
+    "dato_curioso": "Fue el primer producto en la nube de Google; su arquitectura serverless pionera escalaba automáticamente de cero a millones de peticiones sin intervención humana."
+  },
+  {
+    "id": "#C3-007",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C3",
+    "categoria_nombre": "Nube Pública y Paradigmas de Cómputo",
+    "hito": "Creación de **OpenStack** como iniciativa de código abierto en Python impulsada conjuntamente por la NASA y Rackspace Hosting.",
+    "year": 2010,
+    "creador": "*NASA* y *Rackspace*",
+    "dato_curioso": "La NASA aportó su software de computación *Nebula* y Rackspace su plataforma de almacenamiento *Cloud Files*, soñando con crear el Linux de la nube pública."
+  },
+  {
+    "id": "#C3-008",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C3",
+    "categoria_nombre": "Nube Pública y Paradigmas de Cómputo",
+    "hito": "Lanzamiento comercial de **Windows Azure**, marcando la entrada de Microsoft en el mercado del cómputo en la nube empresarial.",
+    "year": 2010,
+    "creador": "*Microsoft* (*Ray Ozzie*)",
+    "dato_curioso": "Ozzie concibió Azure para salvar a Microsoft de la irrelevancia en Internet; años más tarde, Satya Nadella refundó toda la estrategia corporativa en torno a ella."
+  },
+  {
+    "id": "#C3-009",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C3",
+    "categoria_nombre": "Nube Pública y Paradigmas de Cómputo",
+    "hito": "Publicación del conjunto de herramientas de resiliencia **Simian Army** y **Chaos Monkey** por parte de ingenieros de Netflix.",
+    "year": 2011,
+    "creador": "*Netflix* (*Greg Orzell*)",
+    "dato_curioso": "El software mataba servidores de producción en AWS de forma totalmente aleatoria durante el día para obligar a los ingenieros a diseñar sistemas inmunes a caídas."
+  },
+  {
+    "id": "#C3-010",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C3",
+    "categoria_nombre": "Nube Pública y Paradigmas de Cómputo",
+    "hito": "Presentación de **AWS Lambda** en la conferencia re:Invent, inaugurando la era de la computación **Serverless** (*FaaS*).",
+    "year": 2014,
+    "creador": "*Amazon Web Services* (*Andy Jassy* y *Tim Wagner*)",
+    "dato_curioso": "Permitió ejecutar funciones de código disparadas por eventos cobrando únicamente por los milisegundos exactos de procesamiento consumidos."
+  },
+  {
+    "id": "#C3-011",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C3",
+    "categoria_nombre": "Nube Pública y Paradigmas de Cómputo",
+    "hito": "Lanzamiento de **Cloudflare Workers**, permitiendo ejecutar lógica de backend en el borde (*Edge*) de la red mediante aislamientos de V8.",
+    "year": 2017,
+    "creador": "*Cloudflare* (*Kenton Varda*)",
+    "dato_curioso": "Descartó contenedores y máquinas virtuales para arrancar código en menos de **5 milisegundos** en cientos de centros de datos repartidos por todo el globo."
+  },
+  {
+    "id": "#C3-012",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C3",
+    "categoria_nombre": "Nube Pública y Paradigmas de Cómputo",
+    "hito": "Popularización de los despliegues web instantáneos con enlaces de vista previa por rama mediante la plataforma **Vercel**.",
+    "year": 2018,
+    "creador": "*Guillermo Rauch* (*Vercel*)",
+    "dato_curioso": "Creador de *Socket.io* y *Next.js*, Rauch transformó la experiencia de desarrollo frontend conectando cada confirmación de cambio en Git con despliegues globales inmediatos."
+  },
+  {
+    "id": "#C3-013",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C3",
+    "categoria_nombre": "Nube Pública y Paradigmas de Cómputo",
+    "hito": "Despliegue de los procesadores personalizados con arquitectura ARM **AWS Graviton2** en centros de datos a gran escala.",
+    "year": 2020,
+    "creador": "*Amazon Web Services* (*Annapurna Labs*)",
+    "dato_curioso": "Demostró una relación de rendimiento por vatio hasta un 40% superior a los procesadores tradicionales de Intel y AMD, acelerando la transición de la nube hacia ARM."
+  },
+  {
+    "id": "#C3-014",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C3",
+    "categoria_nombre": "Nube Pública y Paradigmas de Cómputo",
+    "hito": "Caída catastrófica de la región **US-East-1** (Norte de Virginia) de AWS, tumbando servicios de bancos, aerolíneas y streaming mundiales.",
+    "year": 2021,
+    "creador": "*Amazon Web Services*",
+    "dato_curioso": "Evidenció la extrema e inquietante centralización de Internet en una única zona geográfica, desatando debates sobre la fragilidad del modelo de nube pública monopolística."
+  },
+  {
+    "id": "#C3-015",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C3",
+    "categoria_nombre": "Nube Pública y Paradigmas de Cómputo",
+    "hito": "Inicio del movimiento de salida de la nube (**Cloud Exit**) liderado por la empresa 37signals tras repatriar sus servidores al metal propio.",
+    "year": 2023,
+    "creador": "*David Heinemeier Hansson* (*DHH*)",
+    "dato_curioso": "DHH documentó públicamente cómo abandonar AWS para comprar servidores físicos propios ahorró a su compañía más de **$3.2 millones de dólares** en cinco años."
+  },
+  {
+    "id": "#C3-016",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C3",
+    "categoria_nombre": "Nube Pública y Paradigmas de Cómputo",
+    "hito": "Despliegue de superclusters de entrenamiento de inteligencia artificial con cientos de miles de GPUs interconectadas por redes InfiniBand.",
+    "year": 2024,
+    "creador": "*NVIDIA*, *Microsoft Azure* y *AWS*",
+    "dato_curioso": "Los proveedores de nube pasaron de comercializar simples máquinas virtuales a alquilar reactores computacionales masivos para sostener la carrera de los LLMs."
+  },
+  {
+    "id": "#C3-017",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C3",
+    "categoria_nombre": "Nube Pública y Paradigmas de Cómputo",
+    "hito": "Promulgación de estándares de soberanía de datos y computación en la nube blindada con cifrado cuántico en la Unión Europea.",
+    "year": 2025,
+    "creador": "*Comisión Europea* y proveedores cloud",
+    "dato_curioso": "Forzó a los gigantes tecnológicos estadounidenses a crear filiales con infraestructura aislada y llaves de cifrado bajo control legal europeo exclusivo."
+  },
+  {
+    "id": "#C3-018",
+    "grupo": "C",
+    "grupo_nombre": "DevOps e Infraestructura",
+    "categoria": "C3",
+    "categoria_nombre": "Nube Pública y Paradigmas de Cómputo",
+    "hito": "Pruebas de campo de los primeros microcentros de datos orbitales alimentados por energía solar directa para inferencia en órbita terrestre baja.",
+    "year": 2026,
+    "creador": "*Axiom Space* y consorcios espaciales",
+    "dato_curioso": "Diseñados para procesar imágenes satelitales en el espacio sin consumir agua dulce de refrigeración ni saturar el ancho de banda hacia estaciones terrestres."
+  }
+]
