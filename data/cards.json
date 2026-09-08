@@ -5,10 +5,10 @@
     "index": 0,
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
-    "hito": "Inclusión obligatoria del instalador `ensurepip` en el core de Python para empaquetar `pip` por defecto vía **PEP 453**.",
+    "hito": "Aprobación del **PEP 453**, incorporando el módulo `ensurepip` en Python para inicializar el gestor de paquetes de forma estándar.",
     "year": 2014,
     "autor": "Donald Stufft y Nick Coghlan",
-    "trivia": "Erradicó el tedioso ritual de descargar manualmente scripts flotantes como `get-pip.py` para configurar entornos de desarrollo nuevos."
+    "trivia": "Permitió disponer de pip por defecto en Python 3.4 sin requerir la descarga manual de scripts de arranque externos como `get-pip.py`."
   },
   {
     "id": "vol0-0x01",
@@ -38,10 +38,10 @@
     "index": 3,
     "domain": "languages-runtimes",
     "tag": "web-frameworks",
-    "hito": "Nacimiento de **FastAPI**, articulando *Starlette*, *Pydantic* y tipado estático con generación automática de esquemas **OpenAPI**.",
+    "hito": "Nacimiento de **FastAPI**, integrando *Starlette*, *Pydantic* y tipado estático con generación automática de esquemas **OpenAPI**.",
     "year": 2018,
     "autor": "Sebastián Ramírez (tiangolo)",
-    "trivia": "Revolucionó las APIs; su documentación interactiva autogenerada en Swagger UI lo catapultó al estrellato global."
+    "trivia": "Su interfaz de documentación interactiva basada en Swagger UI y OpenAPI aceleró significativamente el desarrollo y testeo de APIs."
   },
   {
     "id": "vol0-0x04",
@@ -49,10 +49,10 @@
     "index": 4,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Debut del intérprete de comandos **GNU Bash** (*Bourne-Again SHell*), diseñado como el reemplazo libre del clásico shell de Stephen Bourne.",
+    "hito": "Debut del intérprete de comandos **GNU Bash** (*Bourne-Again SHell*), diseñado como el reemplazo libre del shell de Stephen Bourne.",
     "year": 1989,
     "autor": "Brian Fox (Free Software Foundation)",
-    "trivia": "Su nombre jugaba con *Born Again*; se convirtió en el shell interactivo por defecto indiscutible de casi todo Linux."
+    "trivia": "Su nombre alude con ironía a *Bourne Again*; con el tiempo se convirtió en el shell interactivo por defecto en la mayoría de distros Linux."
   },
   {
     "id": "vol0-0x05",
@@ -159,10 +159,10 @@
     "index": 14,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Detección milagrosa de una puerta trasera estatal (*backdoor*) infiltrada pacientemente durante años en el código fuente de **XZ Utils**.",
+    "hito": "Detección de una sofisticada puerta trasera (*backdoor*) infiltrada en el código fuente de la utilidad de compresión **XZ Utils**.",
     "year": 2024,
-    "autor": "Andrés Freund (Microsoft)",
-    "trivia": "Andres Freund cazó el backdoor en `xz` por casualidad al notar que SSH consumía 500ms más de CPU en su computadora personal."
+    "autor": "Andrés Freund (CVE-2024-3094)",
+    "trivia": "Freund descubrió la intrusión al investigar anomalías de consumo de CPU y latencia en `sshd` provocadas por `liblzma` infectada."
   },
   {
     "id": "vol0-0x0F",
@@ -170,10 +170,10 @@
     "index": 15,
     "domain": "security-exploits",
     "tag": "software-disasters",
-    "hito": "Histeria y gasto financiero global de más de 300,000 millones de dólares ante la llegada del temido **Bug del Milenio (Y2K)**.",
+    "hito": "Gasto operativo y movilización técnica internacional para mitigar los posibles fallos informáticos del **Efecto 2000 (Y2K)**.",
     "year": 2000,
     "autor": "Industria Tecnológica Global",
-    "trivia": "Guardar años con 2 dígitos (`99` en vez de `1999`) amenazaba colapsar sistemas; una colosal inversión global evitó el caos."
+    "trivia": "Almacenar años con dos dígitos (`99` en vez de `1999`) requirió auditar millones de líneas de código COBOL y bases de datos heredadas."
   },
   {
     "id": "vol0-0x10",
@@ -258,10 +258,10 @@
     "index": 23,
     "domain": "ai-data-science",
     "tag": "llms-generative",
-    "hito": "Lanzamiento de **Ollama**, facilitando la descarga y ejecución de LLMs en la terminal local con un sencillo comando de una sola línea.",
+    "hito": "Lanzamiento de **Ollama**, facilitando la ejecución y orquestación de modelos de lenguaje abiertos en local desde la terminal.",
     "year": 2023,
     "autor": "Jeffrey Morgan (Ollama)",
-    "trivia": "Empaquetó inferencia nativa en un CLI simple, volviéndose el estándar de facto para correr modelos y agentes locales."
+    "trivia": "Empaquetó modelos de pesos abiertos sobre llama.cpp en un flujo de trabajo sencillo y unificado de CLI y servidor API local."
   },
   {
     "id": "vol0-0x18",
@@ -368,10 +368,10 @@
     "index": 33,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Presentación de **Visual Studio Code** (**VS Code**), convirtiéndose en el editor de código más adoptado del planeta.",
+    "hito": "Presentación de **Visual Studio Code** (**VS Code**), un editor de código abierto, ligero, multiplataforma y extensible.",
     "year": 2015,
     "autor": "Microsoft (Erich Gamma)",
-    "trivia": "Creado por Erich Gamma, sorprendió por ser libre, extensible, ágil y multiplataforma desde su primer día de lanzamiento."
+    "trivia": "Liderado por Erich Gamma, incorporó el protocolo Language Server Protocol (LSP) y depuración integrada con rápido rendimiento."
   },
   {
     "id": "vol0-0x22",
@@ -412,10 +412,10 @@
     "index": 37,
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
-    "hito": "Formalización del sistema de pistas de tipado estático (*type hints*) mediante la aprobación del **PEP 484**.",
+    "hito": "Formalización del sistema canónico de sugerencias de tipos estáticos (*type hints*) mediante la aprobación del **PEP 484**.",
     "year": 2015,
     "autor": "Guido van Rossum, J. Lehtosalo y Langa",
-    "trivia": "Inspirado en *mypy*, revolucionó el análisis estático en grandes empresas sin alterar la ejecución dinámica de Python."
+    "trivia": "Inspirado en el verificador *mypy*, habilitó el análisis estático riguroso en herramientas y CI sin alterar la ejecución dinámica."
   },
   {
     "id": "vol0-0x26",
@@ -511,10 +511,10 @@
     "index": 46,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Fundación de la lista de correo de los **Cypherpunks** en la bahía de San Francisco bajo el lema *\"La privacidad a través de la criptografía\"*.",
+    "hito": "Fundación de la lista de correo de los **Cypherpunks** en la bahía de San Francisco para promover la criptografía defensiva.",
     "year": 1992,
     "autor": "E. Hughes, T. C. May y J. Gilmore",
-    "trivia": "Postularon que la criptografía fuerte es la única garantía de privacidad y libertad frente a corporaciones y estados."
+    "trivia": "Sostuvieron que la criptografía asimétrica y el código abierto eran herramientas esenciales para proteger la privacidad individual."
   },
   {
     "id": "vol0-0x2F",
@@ -522,10 +522,10 @@
     "index": 47,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Presentación de **CUDA**, transformando tarjetas gráficas en supercomputadoras de cálculo paralelo masivo.",
+    "hito": "Presentación de **CUDA**, arquitectura que habilitó el uso de GPUs de NVIDIA para computación de propósito general en paralelo.",
     "year": 2006,
     "autor": "NVIDIA (Ian Buck)",
-    "trivia": "Permitió programar GPUs en C/C++; fue el catalizador que permitió entrenar todas las grandes redes neuronales modernas."
+    "trivia": "Permitió programar chips gráficos directamente en C/C++, sirviendo de acelerador de hardware clave para el posterior auge del Deep Learning."
   },
   {
     "id": "vol0-0x30",
@@ -555,10 +555,10 @@
     "index": 50,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Presentación de **Android**, el sistema operativo móvil de Google basado en una versión personalizada del kernel de Linux.",
+    "hito": "Presentación comercial de **Android**, sistema operativo móvil promovido por Google sobre el kernel de Linux y pila de software abierta.",
     "year": 2008,
     "autor": "Google (Andy Rubin)",
-    "trivia": "Llevó a Linux a miles de millones de teléfonos móviles, convirtiéndose en el SO con mayor base instalada del planeta."
+    "trivia": "Adaptó Linux al hardware móvil de consumo mediante la Open Handset Alliance, expandiendo el uso del kernel a escala global."
   },
   {
     "id": "vol0-0x33",
@@ -577,10 +577,10 @@
     "index": 52,
     "domain": "ai-data-science",
     "tag": "competitive-ai",
-    "hito": "Demostración de refuerzo profundo (**DQN**) dominando juegos de **Atari 2600** aprendiendo directo de los píxeles en pantalla.",
+    "hito": "Publicación del algoritmo **DQN**, demostrando aprendizaje por refuerzo profundo en juegos de **Atari 2600** directamente desde píxeles.",
     "year": 2013,
     "autor": "DeepMind (Volodymyr Mnih et al.)",
-    "trivia": "En *Breakout*, aprendió por sí solo a perforar un túnel lateral para atrapar la bola arriba y sumar puntos sin parar."
+    "trivia": "En *Breakout*, la red convolucional aprendió de forma autónoma la táctica de abrir un canal lateral para hacer rebotar la bola en el techo."
   },
   {
     "id": "vol0-0x35",
@@ -852,10 +852,10 @@
     "index": 77,
     "domain": "hacker-culture-web",
     "tag": "collaboration-platforms",
-    "hito": "Lanzamiento oficial de **GitHub** bajo la bandera del *\"Social Coding\"*, transformando los repositorios de Git en una red social interactiva.",
+    "hito": "Lanzamiento de **GitHub**, plataforma web que articuló el alojamiento de repositorios Git con herramientas sociales y flujos de trabajo.",
     "year": 2008,
     "autor": "Chris Wanstrath et al. (GitHub)",
-    "trivia": "Proyecto de fin de semana en Rails; crearon el *Pull Request* visual, transformando la colaboración de software para siempre."
+    "trivia": "Popularizó el concepto visual de *Pull Request* e incidencias integradas, facilitando la colaboración masiva en software de código abierto."
   },
   {
     "id": "vol0-0x4E",
@@ -885,10 +885,10 @@
     "index": 80,
     "domain": "ai-data-science",
     "tag": "llms-generative",
-    "hito": "Presentación de **GPT-2**, reteniendo el modelo de 1.5B bajo el polémico argumento de ser *\"demasiado peligroso para liberarse\"*.",
+    "hito": "Anuncio de **GPT-2**, implementando una política de liberación escalonada de pesos por preocupaciones de seguridad y desinformación.",
     "year": 2019,
     "autor": "OpenAI (Alec Radford y Ilya Sutskever)",
-    "trivia": "Retenerlo por 'muy peligroso' causó acusaciones de marketing; meses después liberaron los pesos sin que ocurriera el apocalipsis."
+    "trivia": "OpenAI restringió inicialmente el modelo completo de 1.5B de parámetros para estudiar riesgos, liberándolo por etapas meses después."
   },
   {
     "id": "vol0-0x51",
@@ -896,10 +896,10 @@
     "index": 81,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Culminación y recomendación formal del estándar **HTML5** por el W3C, integrando video nativo `<video>`, `<audio>` y gráficos `<canvas>`.",
+    "hito": "Publicación de **HTML5** como Recomendación formal del W3C, integrando soporte nativo para multimedia `<video>`, `<audio>` y `<canvas>`.",
     "year": 2014,
     "autor": "W3C y WHATWG (Ian Hickson)",
-    "trivia": "Materializó la visión de una plataforma de aplicaciones rica e independiente de plugins propietarios como Adobe Flash o Microsoft Silverlight."
+    "trivia": "Consolidó la interoperabilidad multimedia en la web; el estándar evolucionó luego al modelo continuo *Living Standard* mantenido por WHATWG."
   },
   {
     "id": "vol0-0x52",
@@ -918,10 +918,10 @@
     "index": 83,
     "domain": "security-exploits",
     "tag": "software-disasters",
-    "hito": "Destrucción de la sonda **Mariner 1** rumbo a Venus por un guion omitido en una fórmula manuscrita de Fortran.",
+    "hito": "Pérdida de la sonda espacial **Mariner 1** tras desviarse de su trayectoria por una omisión en la especificación de guiado.",
     "year": 1962,
     "autor": "NASA",
-    "trivia": "Un guion faltante en una fórmula matemática desvió al cohete espacial hacia Venus, costando 18.5 millones de dólares."
+    "trivia": "La falta de una barra de promedio (sobrerraya) en las ecuaciones manuscritas transmitió señales de corrección erróneas al cohete."
   },
   {
     "id": "vol0-0x54",
@@ -929,10 +929,10 @@
     "index": 84,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Lanzamiento y explosión de adopción del editor **Cursor**, integrando capacidades agénticas de IA con indexación semántica del repositorio.",
+    "hito": "Lanzamiento de **Cursor**, editor derivado de VS Code diseñado para programación asistida por modelos de lenguaje en múltiples archivos.",
     "year": 2024,
     "autor": "Anysphere",
-    "trivia": "Bifurcación de VS Code con IA nativa para editar múltiples archivos en conjunto y predecir cambios en tiempo real."
+    "trivia": "Implementó indexación semántica del árbol de código y transformaciones contextuales coordinadas en varios archivos simultáneamente."
   },
   {
     "id": "vol0-0x55",
@@ -1028,10 +1028,10 @@
     "index": 93,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Lanzamiento de la primera versión de **Ubuntu** (*Ubuntu 4.10 Warty Warthog*), financiada por el millonario sudafricano Mark Shuttleworth.",
+    "hito": "Publicación de la versión inaugural de **Ubuntu** (*4.10 Warty Warthog*), distribución Linux enfocada en facilidad de uso para escritorio.",
     "year": 2004,
     "autor": "Canonical (Mark Shuttleworth)",
-    "trivia": "Shuttleworth invirtió millones en enviar CDs de instalación gratis por correo a cualquier rincón del mundo."
+    "trivia": "A través del programa *ShipIt*, Canonical financió y envió discos compactos de instalación por correo a usuarios de todo el mundo."
   },
   {
     "id": "vol0-0x5E",
@@ -1050,10 +1050,10 @@
     "index": 95,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Vulnerabilidad crítica en el protocolo **DNS**, permitiendo suplantar dominios mediante envenenamiento de caché.",
+    "hito": "Divulgación de la vulnerabilidad crítica en **DNS** descubierta por Dan Kaminsky, que permitía envenenamiento de caché a gran escala.",
     "year": 2008,
     "autor": "Dan Kaminsky",
-    "trivia": "Kaminsky coordinó en secreto un parche simultáneo con gigantes de la industria antes de revelar el fallo de DNS, salvando la web."
+    "trivia": "Kaminsky coordinó en secreto con fabricantes y operadores un parche masivo conjunto que implementó aleatorización de puertos origen UDP."
   },
   {
     "id": "vol0-0x60",
@@ -1171,10 +1171,10 @@
     "index": 106,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Debut de **TextMate** para Mac OS X, redefiniendo la estética y ergonomía de los editores con snippets dinámicos y navegación difusa.",
+    "hito": "Debut del editor **TextMate** en macOS, influyendo en la ergonomía visual con resaltado declarativo y navegación difusa.",
     "year": 2004,
     "autor": "Allan Odgaard (MacroMates)",
-    "trivia": "Su coloreado de sintaxis y el atajo `Cmd+T` para abrir archivos al instante inspiraron a todos los editores modernos."
+    "trivia": "Su esquema de gramáticas tipográficas y atajos como `Cmd+T` influyeron en el diseño de editores posteriores como Sublime Text y Atom."
   },
   {
     "id": "vol0-0x6B",
@@ -1204,10 +1204,10 @@
     "index": 109,
     "domain": "ai-data-science",
     "tag": "scientific-stack",
-    "hito": "Lanzamiento de **Polars**, motor de DataFrames ultrarrápido escrito en **Rust** sobre memoria Apache Arrow.",
+    "hito": "Lanzamiento de **Polars**, motor de DataFrames multihilo escrito en **Rust** sobre el modelo de memoria tabular de Apache Arrow.",
     "year": 2020,
     "autor": "Ritchie Vink",
-    "trivia": "Con evaluación perezosa y paralelismo nativo en Rust, pulverizó los tiempos de procesamiento de Pandas."
+    "trivia": "Incorporó un optimizador de consultas lógicas con evaluación perezosa (*lazy evaluation*), acelerando el procesamiento analítico."
   },
   {
     "id": "vol0-0x6E",
@@ -1259,10 +1259,10 @@
     "index": 114,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Debut de **C++** (*\"C with Classes\"*), sumando orientación a objetos y sobrecarga sin perder rendimiento de C.",
+    "hito": "Debut del lenguaje **C++** (*\"C with Classes\"*), integrando orientación a objetos y comprobación de tipos sin sacrificar la eficiencia de C.",
     "year": 1983,
     "autor": "Bjarne Stroustrup (Bell Labs)",
-    "trivia": "Stroustrup usó `++` para sugerir evolución de C; hoy es el estándar indiscutible de videojuegos y software de sistemas."
+    "trivia": "Stroustrup empleó el operador `++` para denotar incremento sobre C; se convirtió en pilar de motores gráficos, navegadores y sistemas."
   },
   {
     "id": "vol0-0x73",
@@ -1292,10 +1292,10 @@
     "index": 117,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Presentación de la biblioteca **jQuery** bajo el célebre lema publicitario *\"Write Less, Do More\"*.",
+    "hito": "Presentación de la biblioteca **jQuery**, simplificando la manipulación del DOM, eventos y peticiones Ajax con sintaxis unificada.",
     "year": 2006,
     "autor": "John Resig",
-    "trivia": "Ocultó las inconsistencias de navegadores con `$(\"selector\")`, dominando más del 70% de la web durante una década."
+    "trivia": "Aisló las incompatibilidades entre navegadores de la época con la API `$()`, alcanzando una adopción masiva en el desarrollo web frontend."
   },
   {
     "id": "vol0-0x76",

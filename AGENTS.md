@@ -20,7 +20,7 @@ hit-tazos-tech/
 ├── CODE_OF_CONDUCT.md                   # Código de conducta de la comunidad Shellaquiles
 ├── SECURITY.md                          # Política de seguridad y reporte responsable
 ├── LICENSE                              # Licencia de código abierto MIT (Shellaquiles Org)
-├── VERSION                              # Archivo de versión semántica (1.0.0-rc2)
+├── VERSION                              # Archivo de versión semántica (1.0.0-rc3)
 ├── package.json                         # Manifiesto y scripts npm (test, validate, build, print)
 ├── server.js                            # Servidor local de desarrollo (sirve web/ y data/)
 ├── data/                                # Contenido editorial y datos de trivia
@@ -100,14 +100,33 @@ Cada elemento de tarjeta en `data/cards.json` debe coincidir estrictamente con e
 
 ---
 
-## 🎲 5. Desvinculación de IDs vs. Años (Barajeo Obligatorio)
+## 🔬 5. Protocolo de Auditoría Rigurosa en 4 Niveles y Calidad Editorial
+
+Para garantizar que el juego enseñe hechos precisos y verificables sin sesgos novelescos ni simplificaciones falsas, toda tarjeta debe someterse y aprobar una auditoría en 4 niveles registrada en `data/audit.json`:
+
+| Nivel | Qué se audita y valida | Criterio de Aprobación |
+| :--- | :--- | :--- |
+| **1. Factual** | Fecha, autoría, evento, software/hardware, causalidad y cifras. | Sin datos anacrónicos, atribuciones erróneas o relaciones de causa-efecto inventadas. |
+| **2. Fuente** | Existencia de fuente primaria (RFC, PEP, paper, repo oficial, comunicado de vendor) o secundaria de alta reputación. | URL o referencia verificable registrada en `sources`. |
+| **3. Pedagógico** | Fidelidad técnica del concepto explicado. | **Regla de oro: Una carta = una sola idea principal.** Explicación limpia sin sobrecarga ni atajos conceptuales engañosos. |
+| **4. Editorial** | Tono sobrio, objetivo y profesional. | **Cero sensacionalismo:** Prohibidos términos como *"revolucionó para siempre"*, *"estándar indiscutible"*, *"el más adoptado del planeta"*, *"milagrosa"*, etc. Distinguir estrictamente entre **hecho histórico** (anverso) y **trivia/contexto** (reverso). |
+
+### Estados Oficiales de Auditoría (`status`):
+- `🟢 VERIFIED`: Factualmente impecable, redacción sobria y fuente primaria verificada.
+- `🟡 VERIFIED_REWRITE`: Hecho histórico válido, pero requirió reescritura para eliminar hipérboles, sobrecarga o simplificación engañosa.
+- `🟠 NEEDS_SOURCE`: Hecho plausible que requiere confirmación documental de cifras o atribuciones.
+- `🔴 INCORRECT`: Error fáctico manifiesto que fue corregido en fecha, autor o contenido.
+
+---
+
+## 🎲 6. Desvinculación de IDs vs. Años (Barajeo Obligatorio)
 
 1. **Impredecibilidad:** Los IDs dentro de cada volumen (`volX-0x00` a `volX-0xNN`) **deben estar barajeados aleatoriamente (shuffle)** y nunca correlacionados con el año histórico (`year`).
 2. **Orden en archivo:** El archivo JSON del volumen se almacena ordenado por `index` / `id`, manteniendo los años cronológicamente dispersos para que sea imposible deducir el año a partir del identificador de la tarjeta durante la partida.
 
 ---
 
-## 🎨 6. Sistema Cromático Desacoplado y Configuración por Millar
+## 🎨 7. Sistema Cromático Desacoplado y Configuración por Millar
 
 1. Los colores de las tarjetas residen desacoplados en `data/card_colors.json`, asignando paletas tonales HSL continuas (bloques de 10 en 10 con gradientes de luminosidad y saturación) y coordenadas CMYK para imprenta.
 2. Cada tarjeta recibe un `globalIndex` (1 a 576) en tiempo de compilación/ejecución para vincular su identidad cromática.
@@ -115,7 +134,7 @@ Cada elemento de tarjeta en `data/cards.json` debe coincidir estrictamente con e
 
 ---
 
-## 🖨️ 7. Reglas de Imposición y Maquetación para Imprenta
+## 🖨️ 8. Reglas de Imposición y Maquetación para Imprenta
 
 1. **Formatos Oficiales:**
    - **`11x17` (Tabloide):** Rejilla de $3 \times 5$ cartas por pliego (15 cartas/pliego, 78 páginas dúplex para 576 cartas).
@@ -136,7 +155,7 @@ Cada elemento de tarjeta en `data/cards.json` debe coincidir estrictamente con e
 
 ---
 
-## 🔄 8. Flujo Canónico de Trabajo y Compilación (3 Pasos Obligatorios)
+## 🔄 9. Flujo Canónico de Trabajo y Compilación (3 Pasos Obligatorios)
 
 Cada vez que un agente o desarrollador modifique datos editoriales en `data/volumes/*.json` o código de renderizado, **debe ejecutar en orden estricto**:
 
@@ -153,7 +172,7 @@ npm run print
 
 ---
 
-## ⚠️ 9. Restricciones del Entorno y Políticas de Git
+## ⚠️ 10. Restricciones del Entorno y Políticas de Git
 
 1. **Entorno local sin dependencias pesadas:** La web debe funcionar con Vanilla JS + CSS nativo + HTML5 sin bundlers obligatorios.
 2. **Sin acceso a red para pip externo:** Usar únicamente la biblioteca estándar de Python 3 y utilidades CLI instaladas (`rsvg-convert`, `pdfunite`).
