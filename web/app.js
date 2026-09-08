@@ -1488,7 +1488,7 @@ class HitTazosEngine {
       targetCards = targetCards.slice(0, 36);
     } else if (rangeOption === 'CURRENT_GROUP') {
       const currentActivePill = this.groupRibbon.querySelector('.ribbon-pill.active');
-      const activeGrp = currentActivePill ? currentActivePill.getAttribute('data-group') : 'ALL';
+      const activeGrp = currentActivePill ? (currentActivePill.getAttribute('data-volumen') || currentActivePill.getAttribute('data-group')) : 'ALL';
       if (activeGrp && activeGrp !== 'ALL') {
         targetCards = targetCards.filter(c => c.volumen === activeGrp);
       }
