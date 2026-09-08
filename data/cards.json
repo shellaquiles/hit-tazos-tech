@@ -1446,10 +1446,10 @@
     "index": 3,
     "domain": "hacker-culture-web",
     "tag": "flame-wars",
-    "hito": "Rebelión y choque ideológico por la invasión de **systemd** en las principales distribuciones de Linux.",
+    "hito": "Debate y controversia comunitaria por la adopción acelerada de **systemd** en las principales distribuciones de Linux.",
     "year": 2014,
     "autor": "Lennart Poettering y comunidad Linux",
-    "trivia": "Detractores acusaron a systemd de romper la regla Unix de hacer una sola cosa bien, desatando feroces disputas en listas de correo."
+    "trivia": "Críticos señalaron que systemd se alejaba del principio de modularidad Unix al centralizar servicios, montaje y registros del sistema."
   },
   {
     "id": "vol1-0x04",
@@ -1457,10 +1457,10 @@
     "index": 4,
     "domain": "hacker-culture-web",
     "tag": "p2p-culture",
-    "hito": "Creación de **Gnutella**, primera red P2P de intercambio de archivos totalmente descentralizada sin servidores centrales.",
+    "hito": "Creación de **Gnutella**, arquitectura de intercambio de archivos P2P totalmente distribuida sin servidores centrales de indexación.",
     "year": 2000,
     "autor": "Justin Frankel y Tom Pepper (Nullsoft)",
-    "trivia": "Lanzado a espaldas de AOL en Nullsoft; la empresa borró la descarga horas después, pero la red P2P ya era imparable e inmortal."
+    "trivia": "Desarrollado en Nullsoft; aunque AOL retiró la descarga a las pocas horas, el protocolo fue analizado e implementado en clientes libres."
   },
   {
     "id": "vol1-0x05",
@@ -1512,10 +1512,10 @@
     "index": 9,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Presentación de la propuesta del **Clipper Chip** por el gobierno de EE.UU., intentando imponer un chip de cifrado con puerta trasera estatal.",
+    "hito": "Propuesta gubernamental del chip criptográfico **Clipper Chip**, diseñada con un mecanismo de depósito de claves bajo custodia estatal.",
     "year": 1993,
     "autor": "NSA / Gobierno de EE.UU.",
-    "trivia": "Matt Blaze descubrió una debilidad crítica en el protocolo que permitía eludir la custodia de claves del gobierno."
+    "trivia": "Matt Blaze demostró que era posible eludir el campo de custodia unitaria (EES), invalidando técnicamente el despliegue del sistema."
   },
   {
     "id": "vol1-0x0A",
@@ -1710,10 +1710,10 @@
     "index": 27,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Redacción de la primera versión de la **GNU General Public License** (**GPL v1**), inventando el concepto legal de **Copyleft**.",
+    "hito": "Publicación de la **GNU General Public License** (**GPL v1**), formalizando el mecanismo legal del **Copyleft**.",
     "year": 1989,
     "autor": "Richard Stallman",
-    "trivia": "Usó el copyright al revés (*copyleft*) para garantizar que cualquier trabajo derivado mantenga el código libre para siempre."
+    "trivia": "Utilizó el derecho de autor para exigir que cualquier redistribución u obra derivada preserve las libertades del código fuente."
   },
   {
     "id": "vol1-0x1C",
@@ -2128,10 +2128,10 @@
     "index": 1,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento del microprocesador de 8 bits **Zilog Z80**, dominando la era del cómputo doméstico y salas arcade.",
+    "hito": "Lanzamiento del microprocesador de 8 bits **Zilog Z80**, referente fundamental del cómputo doméstico y máquinas recreativas.",
     "year": 1976,
     "autor": "Federico Faggin y Masatoshi Shima",
-    "trivia": "Faggin dejó Intel para fundar Zilog tras haber codiseñado el 4004 y 8080."
+    "trivia": "Faggin codiseñó el Intel 4004 y 8080 antes de fundar Zilog; el Z80 mantuvo compatibilidad con el software de 8080 a menor coste."
   },
   {
     "id": "vol2-0x02",
@@ -3008,10 +3008,10 @@
     "index": 17,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Lanzamiento de **IntelliJ IDEA**, revolucionando los entornos de desarrollo integrados con autocompletado y refactorización semántica avanzada.",
+    "hito": "Lanzamiento de **IntelliJ IDEA**, destacando por su análisis sintáctico en tiempo real y refactorizaciones semánticas automatizadas.",
     "year": 2001,
     "autor": "JetBrains (S. Dmitriev y V. Kipiatkov)",
-    "trivia": "Primer IDE en procesar el árbol sintáctico en RAM para refactorizar Java de forma segura, triunfando con cobro de licencias."
+    "trivia": "Procesaba el árbol de sintaxis abstracta (AST) en memoria, permitiendo renombrar clases y extraer métodos con seguridad."
   },
   {
     "id": "vol3-0x12",
@@ -3085,10 +3085,10 @@
     "index": 24,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Lanzamiento de la herramienta de sincronización incremental de archivos remotos **Rsync**, minimizando el ancho de banda transferido.",
+    "hito": "Presentación de la utilidad **Rsync**, optimizando la transferencia remota de datos mediante un algoritmo de diferencias rotatorias.",
     "year": 1996,
     "autor": "Andrew Tridgell y Paul Mackerras",
-    "trivia": "Su algoritmo de suma de verificación rotatoria revolucionó los respaldos en redes lentas."
+    "trivia": "Calcula sumas de verificación en bloques de datos para enviar únicamente los bytes modificados a través de la red."
   },
   {
     "id": "vol3-0x19",
@@ -3118,10 +3118,10 @@
     "index": 27,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Presentación de **Safari 1.0** para Mac OS X por parte de Steve Jobs, impulsado por el motor de código abierto **WebKit**.",
+    "hito": "Lanzamiento de **Safari 1.0** para macOS, adoptando el motor de renderizado de código abierto **WebKit**.",
     "year": 2003,
     "autor": "Apple (Don Melton)",
-    "trivia": "Apple bifurcó *KHTML* de KDE para crear WebKit, desterrando para siempre a Internet Explorer de las computadoras Mac."
+    "trivia": "Apple derivó WebKit a partir de la biblioteca KHTML del proyecto KDE, sustituyendo a Internet Explorer como navegador predeterminado."
   },
   {
     "id": "vol3-0x1C",
@@ -3580,10 +3580,10 @@
     "index": 5,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Apertura pública de **ClickHouse**, base de datos relacional columnar para analítica masiva en tiempo real (*OLAP*).",
+    "hito": "Apertura pública de **ClickHouse**, sistema gestor de bases de datos relacional columnar para procesamiento analítico en tiempo real.",
     "year": 2016,
     "autor": "Yandex (Alexey Milovidov)",
-    "trivia": "Diseñado para analizar billones de clics web por segundo, pulverizó récords en analítica columnar masiva (*OLAP*)."
+    "trivia": "Diseñado en Yandex para procesar registros de telemetría y clics web a escala de terabytes con vectorización SIMD nativa."
   },
   {
     "id": "vol4-0x06",
@@ -3998,10 +3998,10 @@
     "index": 43,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Publicación de la versión 1.0 del servidor web **Apache HTTP Server**, dominando la infraestructura de la emergente World Wide Web.",
+    "hito": "Publicación de la versión 1.0 del servidor **Apache HTTP Server**, pieza fundamental de la arquitectura de la emergente World Wide Web.",
     "year": 1995,
     "autor": "Robert McCool y Apache Group",
-    "trivia": "Nació como un conjunto de parches ('a patchy server') sobre el demonio de servidor web NCSA HTTPd."
+    "trivia": "Nació a partir de una serie de parches colaborativos ('a patchy server') sobre el código base del servidor NCSA HTTPd."
   },
   {
     "id": "vol4-0x2C",
@@ -5318,10 +5318,10 @@
     "index": 35,
     "domain": "hacker-culture-web",
     "tag": "python-community",
-    "hito": "Celebración del funeral técnico oficial y apagado definitivo (*Sunset*) de **Python 2.7** el 1 de enero.",
+    "hito": "Fin de ciclo de soporte oficial y apagado (*Sunset*) de la rama **Python 2.7** por el equipo de desarrollo de CPython.",
     "year": 2020,
     "autor": "Python Software Foundation",
-    "trivia": "La PSF celebró un funeral simbólico con pastel y confeti, conminando al mundo a apagar Python 2 para siempre."
+    "trivia": "Formalizado en el PEP 373; marcó la última versión 2.7.18 y culminó una transición hacia Python 3 que se extendió por más de una década."
   },
   {
     "id": "vol6-0x24",
