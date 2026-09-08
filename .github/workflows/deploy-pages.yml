@@ -1,0 +1,63 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar herramientas de imprenta (librsvg, poppler, ghostscript)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y librsvg2-bin poppler-utils ghostscript
+
+      - name: Validar baraja y datos (Audit Deck)
+        run: npm run validate
+
+      - name: Generar PDFs por volumen en tamaño Carta para distribución web
+        run: npm run print:carta:volumes
+
+      - name: Preparar directorio de distribución (dist)
+        run: |
+          mkdir -p dist
+          # Copiar web interactiva
+          cp -r web/* dist/
+          # Copiar datos JSON necesarios para el cliente web
+          mkdir -p dist/data
+          cp -r data/*.json dist/data/
+          # Copiar PDFs generados desde print/v*/carta/ hacia dist/assets/print/ para URLs SEO canónicas
+          mkdir -p dist/assets/print
+          cp -r print/v*/carta/*.pdf dist/assets/print/
+
+      - name: Desplegar en rama gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          force_orphan: true

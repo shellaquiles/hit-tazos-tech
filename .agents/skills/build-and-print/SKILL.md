@@ -30,7 +30,8 @@ Este skill describe el flujo de compilación maestro del mazo y renderizado de p
    ```
 
 3. **Verificación de Entregables:**
-   Confirmar que los archivos PDF oficiales se hayan generado en `print/`:
-   - `print/hit-tazos-tech-v{VERSION}-tabloide.pdf`
-   - `print/hit-tazos-tech-v{VERSION}-carta.pdf`
-   - `print/hit-tazos-tech-v{VERSION}-super-tabloide.pdf`
+   Confirmar que los archivos PDF oficiales se hayan generado en `print/v{VERSION}/`:
+   - `print/v{VERSION}/hit-tazos-tech-v{VERSION}-tabloide.pdf`
+   - `print/v{VERSION}/hit-tazos-tech-v{VERSION}-carta.pdf`
+   - `print/v{VERSION}/hit-tazos-tech-v{VERSION}-super-tabloide.pdf`
+   - Pliegos SVG individuales en `print/v{VERSION}/svg/{tabloide|carta|super_tabloide}/`

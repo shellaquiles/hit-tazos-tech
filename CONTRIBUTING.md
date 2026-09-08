@@ -15,13 +15,15 @@ Este proyecto es parte del ecosistema de herramientas y aplicaciones de **Shella
    # o bien:
    git checkout -b fix/correccion-dato-historico
    ```
-3. Realiza tus cambios en los **archivos fuente originales** (los 24 JSON en `grupo_*/*.json`).
-   > **Nota clave:** Nunca edites `cards.json` a mano; este se autogenera mediante compilación.
+3. Realiza tus cambios en los **archivos fuente originales** (los 8 JSON en `data/volumes/vol*.json`).
+   > **Nota clave:** Nunca edites `data/cards.json` a mano; este se autogenera mediante compilación (`npm run build`).
 
-4. **Auditoría obligatoria de caracteres:**
-   Verifica que ningún texto exceda los presupuestos físicos de corte ($65 \times 65\text{ mm}$):
+4. **Auditoría obligatoria en 4 niveles y presupuestos:**
+   Verifica que ningún texto exceda los presupuestos físicos ($65 \times 65\text{ mm}$), que no haya spoilers temporales, que se cumpla la sobriedad editorial y que todo cambio esté respaldado en `data/audit.json`:
    ```bash
-   python3 scratch_audit.py
+   npm run audit
+   # o bien:
+   python3 scripts/audit_deck.py
    # El resultado de violaciones debe ser estrictamente 0
    ```
 

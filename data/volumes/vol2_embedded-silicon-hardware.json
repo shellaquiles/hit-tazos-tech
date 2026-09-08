@@ -5,10 +5,10 @@
     "index": 0,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Creación del lenguaje **Lua** en la universidad PUC-Río de Brasil como un motor de scripting embebido ultra liviano en C ANSI.",
+    "hito": "Creación del lenguaje **Lua** en la PUC-Río de Brasil, diseñado como motor de extensión embebido ligero y portátil en C ANSI.",
     "year": 1993,
     "autor": "Roberto Ierusalimschy et al. (PUC-Rio)",
-    "trivia": "Creado en Brasil, Lua se convirtió en el motor de scripting preferido de gigantes como *World of Warcraft* y *Roblox*."
+    "trivia": "Diseñado en Brasil para configuración de software de ingeniería, se convirtió en el motor de scripting predilecto de la industria del videojuego."
   },
   {
     "id": "vol2-0x01",
@@ -16,10 +16,10 @@
     "index": 1,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento del microprocesador de 8 bits **Zilog Z80**, dominando la era del cómputo doméstico y salas arcade.",
+    "hito": "Lanzamiento del microprocesador de 8 bits **Zilog Z80**, expandiendo el conjunto de instrucciones del Intel 8080.",
     "year": 1976,
     "autor": "Federico Faggin y Masatoshi Shima",
-    "trivia": "Faggin dejó Intel para fundar Zilog tras haber codiseñado el 4004 y 8080."
+    "trivia": "Mantuvo compatibilidad binaria con el software de 8080 a menor coste, siendo el núcleo de máquinas como Sinclair ZX Spectrum y Game Boy."
   },
   {
     "id": "vol2-0x02",
@@ -27,10 +27,10 @@
     "index": 2,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Debut de **KVM** (*Kernel-based Virtual Machine*), convirtiendo al propio kernel de Linux en un hipervisor de tipo 1 de alto rendimiento.",
+    "hito": "Aparición de **KVM** (*Kernel-based Virtual Machine*), integrando capacidades de hipervisor de tipo 1 directamente en Linux.",
     "year": 2007,
     "autor": "Avi Kivity (Qumranet)",
-    "trivia": "Integrado de inmediato en el kernel Linux; Qumranet fue comprada por Red Hat por más de 100 millones de dólares."
+    "trivia": "Aprovechó las extensiones de virtualización por hardware Intel VT-x y AMD-V, fusionándose en la rama principal del kernel 2.6.20."
   },
   {
     "id": "vol2-0x03",
@@ -38,10 +38,10 @@
     "index": 3,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Introducción de la llamada al sistema `chroot` en **Unix Versión 7**, permitiendo enjaular la raíz del sistema de archivos para un proceso.",
+    "hito": "Introducción de la llamada al sistema `chroot` en **Unix Versión 7**, permitiendo cambiar el directorio raíz para un proceso.",
     "year": 1979,
-    "autor": "Bill Joy (Bell Labs)",
-    "trivia": "Concebida originalmente para probar instaladores de software sin comprometer los archivos maestros del sistema operativo anfitrión."
+    "autor": "Dennis Ritchie (Bell Labs)",
+    "trivia": "Desarrollada por Dennis Ritchie en Bell Labs durante la preparación de la Versión 7 para aislar compilaciones y pruebas del sistema."
   },
   {
     "id": "vol2-0x04",
@@ -49,10 +49,10 @@
     "index": 4,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Creación de **Perl** como una herramienta de extracción y generación de informes (*Practical Extraction and Report Language*).",
+    "hito": "Lanzamiento de **Perl** (*Practical Extraction and Report Language*), optimizado para manipulación avanzada de texto y ficheros.",
     "year": 1987,
     "autor": "Larry Wall",
-    "trivia": "Acuñó el lema *TMTOWTDI*; dominó los scripts web CGI en los 90 antes del auge de Python y PHP."
+    "trivia": "Publicado en el grupo comp.sources.misc, unió la sintaxis de C con la potencia de sed y awk, impulsando los primeros scripts CGI."
   },
   {
     "id": "vol2-0x05",
@@ -60,10 +60,10 @@
     "index": 5,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento del procesador **MOS Technology 6502** a una fracción del costo de sus rivales, encendiendo la revolución de la PC.",
+    "hito": "Lanzamiento del microprocesador **MOS Technology 6502**, reduciendo drásticamente los costes del cómputo personal.",
     "year": 1975,
     "autor": "Chuck Peddle y Bill Mensch",
-    "trivia": "Costaba solo 25 dólares cuando los chips de Motorola e Intel se vendían por cientos."
+    "trivia": "Introducido a 25 dólares cuando los chips rivales superaban los 150, se convirtió en el motor del Apple II, NES y Commodore PET."
   },
   {
     "id": "vol2-0x06",
@@ -71,10 +71,10 @@
     "index": 6,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Fundación de la **CNCF** y la **OCI** para salvaguardar la interoperabilidad y estándares abiertos de contenedores.",
+    "hito": "Creación de la **CNCF** y la **OCI** para estandarizar formatos de imagen y runtimes abiertos de contenedores.",
     "year": 2015,
-    "autor": "Linux Foundation y gigantes tecnológicos",
-    "trivia": "Docker donó la especificación de imágenes y su motor central de ejecución de bajo nivel `runc` para evitar la fragmentación propietaria del sector."
+    "autor": "Linux Foundation y consorcio cloud",
+    "trivia": "Docker contribuyó su especificación de imágenes y runc a la OCI, mientras CNCF acogió Kubernetes para evitar silos propietarios."
   },
   {
     "id": "vol2-0x07",
@@ -82,10 +82,10 @@
     "index": 7,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Especificación de **COBOL**, diseñado con sintaxis cercana al inglés para aplicaciones y finanzas empresariales.",
+    "hito": "Especificación de **COBOL**, primer lenguaje estándar enfocado en el procesamiento de datos administrativos y comerciales.",
     "year": 1959,
     "autor": "Grace Hopper y Comité CODASYL",
-    "trivia": "Grace Hopper defendió que el código debía escribirse en palabras legibles en inglés, venciendo burlas de teóricos militares."
+    "trivia": "Inspirado en el trabajo pionero de Grace Hopper en FLOW-MATIC, adoptó sintaxis en prosa inglesa para facilitar auditorías empresariales."
   },
   {
     "id": "vol2-0x08",
@@ -93,10 +93,10 @@
     "index": 8,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Estándar **HTTP/1.1** (**RFC 2068**), incorporando conexiones persistentes (*keep-alive*) y cabecera `Host`.",
+    "hito": "Publicación de la especificación inicial de **HTTP/1.1**, introduciendo conexiones persistentes, pipeline y la cabecera Host.",
     "year": 1997,
-    "autor": "IETF (Roy Fielding et al.)",
-    "trivia": "La cabecera `Host` habilitó el hosting virtual, permitiendo que millones de webs distintas compartieran una misma IP."
+    "autor": "IETF (Roy Fielding, Tim Berners-Lee et al.)",
+    "trivia": "La cabecera obligatoria `Host` permitió alojar múltiples dominios web en una misma dirección IP pública mediante virtual hosting."
   },
   {
     "id": "vol2-0x09",
@@ -104,10 +104,10 @@
     "index": 9,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Presentación de **Julia**, diseñado para resolver el problema de los dos lenguajes en cómputo científico.",
+    "hito": "Presentación del lenguaje **Julia**, abordando el problema de los dos lenguajes en computación científica de alto rendimiento.",
     "year": 2012,
-    "autor": "Jeff Bezanson, S. Karpinski et al.",
-    "trivia": "Une la expresividad de Python con la velocidad de C y Fortran mediante despacho múltiple y compilación JIT."
+    "autor": "Jeff Bezanson, Stefan Karpinski et al.",
+    "trivia": "Combina la sintaxis dinámica de Python con la velocidad de ejecución de C mediante compilación JIT y despacho múltiple."
   },
   {
     "id": "vol2-0x0A",
@@ -115,10 +115,10 @@
     "index": 10,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Presentación de **Ada**, un lenguaje militar de tipado estricto diseñado para sistemas embebidos de misión crítica y armamento militar.",
+    "hito": "Publicación del lenguaje **Ada**, diseñado bajo encargo militar con tipado estricto y verificación formal para sistemas embebidos.",
     "year": 1980,
-    "autor": "Jean Ichbiah (DoD)",
-    "trivia": "Nombrado por **Ada Lovelace**; se volvió estándar para controlar aviónica, reactores nucleares y trenes de alta velocidad."
+    "autor": "Jean Ichbiah et al. (Honeywell Bull / DoD)",
+    "trivia": "Nombrado en honor a Ada Lovelace, se convirtió en estándar estricto para software de aviónica, defensa y transporte ferroviario."
   },
   {
     "id": "vol2-0x0B",
@@ -126,10 +126,10 @@
     "index": 11,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Lanzamiento de **Scala**, integrando la orientación a objetos pura con la programación funcional sobre la máquina virtual de Java.",
+    "hito": "Lanzamiento del lenguaje **Scala**, unificando la programación orientada a objetos y funcional sobre la plataforma Java VM.",
     "year": 2003,
     "autor": "Martin Odersky (EPFL)",
-    "trivia": "Unió tipado funcional avanzado con la JVM, siendo la base sobre la que se levantaron gigantes como Apache Spark y Twitter."
+    "trivia": "Desarrollado en la EPFL de Suiza, su expresivo sistema de tipos sirvió de cimiento para motores de datos masivos como Apache Spark."
   },
   {
     "id": "vol2-0x0C",
@@ -137,10 +137,10 @@
     "index": 12,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Presentación de **Kotlin**, un lenguaje pragmático para la JVM totalmente interoperable con Java y con comprobación estricta de nulos.",
+    "hito": "Presentación del lenguaje **Kotlin**, diseñado para la máquina virtual de Java con interoperabilidad total y seguridad frente a nulos.",
     "year": 2011,
-    "autor": "JetBrains (Andrey Breslav)",
-    "trivia": "Creado por JetBrains, vivió un éxito arrollador tras ser elegido por Google como lenguaje oficial para Android."
+    "autor": "JetBrains (Andrey Breslav et al.)",
+    "trivia": "Concebido para acelerar el desarrollo en JetBrains, Google lo adoptó en 2017 como lenguaje de desarrollo preferente para Android."
   },
   {
     "id": "vol2-0x0D",
@@ -148,10 +148,10 @@
     "index": 13,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Publicación de **Pascal**, concebido como un lenguaje estructurado estricto orientado a la enseñanza de buenas prácticas algorítmicas.",
+    "hito": "Publicación del lenguaje **Pascal**, diseñado para promover la programación estructurada y la claridad algorítmica.",
     "year": 1970,
-    "autor": "Niklaus Wirth",
-    "trivia": "Nombrado por Blaise Pascal, generaba *p-code*, precursor conceptual del bytecode moderno de Java y C#."
+    "autor": "Niklaus Wirth (ETH Zürich)",
+    "trivia": "Compilaba a un código intermedio denominado *p-code*, concepto precursor de las máquinas virtuales de bytecode contemporáneas."
   },
   {
     "id": "vol2-0x0E",
@@ -159,10 +159,10 @@
     "index": 14,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Integración nativa de microcontenedores basados en **WebAssembly** en clusters de producción mediante el proyecto **SpinKube**.",
+    "hito": "Despliegue de **SpinKube**, integrando microservicios basados en **WebAssembly** como cargas de trabajo nativas en Kubernetes.",
     "year": 2024,
-    "autor": "Deislabs (Fermin Galan et al.)",
-    "trivia": "Arranca cargas en Kubernetes en microsegundos consumiendo una fracción de los recursos de un contenedor Linux."
+    "autor": "Fermin Galan, Deislabs et al.",
+    "trivia": "Al prescindir del kernel de Linux emulado, arranca módulos Wasm en milisegundos con menor huella de memoria que contenedores OCI."
   },
   {
     "id": "vol2-0x0F",
@@ -170,10 +170,10 @@
     "index": 15,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Nacimiento de la venerable arquitectura **x86** con la introducción al mercado del microprocesador de 16 bits **Intel 8086**.",
+    "hito": "Lanzamiento del procesador de 16 bits **Intel 8086**, estableciendo el repertorio de instrucciones de la arquitectura **x86**.",
     "year": 1978,
-    "autor": "Stephen Morse (Intel)",
-    "trivia": "IBM eligió su variante económica (8088) para la primera PC, otorgándole a la arquitectura x86 un reinado que perdura."
+    "autor": "Stephen Morse et al. (Intel)",
+    "trivia": "La adopción de su derivado de bus estrecho (8088) en la IBM PC de 1981 cimentó la dominancia de x86 en la computación personal."
   },
   {
     "id": "vol2-0x10",
@@ -181,10 +181,10 @@
     "index": 16,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Aparición de **PHP** (*Personal Home Page Tools*), facilitando la incrustación de lógica dinámica directamente dentro de documentos HTML.",
+    "hito": "Publicación de **PHP** (*Personal Home Page Tools*), facilitando la generación de páginas dinámicas insertadas en código HTML.",
     "year": 1995,
     "autor": "Rasmus Lerdorf",
-    "trivia": "Lerdorf solo quería una colección de binarios C para rastrear visitas a su currículum online, sin buscar crear un lenguaje."
+    "trivia": "Comenzó como un conjunto de scripts en C para consultar bases de datos mSQL desde la web antes de convertirse en lenguaje interpretado."
   },
   {
     "id": "vol2-0x11",
@@ -192,10 +192,10 @@
     "index": 17,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Presentación de **BASIC** en la universidad de Dartmouth, democratizando el acceso a la computación para estudiantes no científicos.",
+    "hito": "Primera ejecución del lenguaje **BASIC** en Dartmouth College, democratizando la programación para estudiantes no técnicos.",
     "year": 1964,
     "autor": "John G. Kemeny y Thomas E. Kurtz",
-    "trivia": "Encendió la era de las microcomputadoras; la versión de Bill Gates y Paul Allen fue el primer producto de Microsoft."
+    "trivia": "Diseñado junto al sistema de tiempo compartido DTSS, sentó el estándar de entrada al software en los primeros microcomputadores."
   },
   {
     "id": "vol2-0x12",
@@ -203,10 +203,10 @@
     "index": 18,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Nacimiento de **Ruby**, fusionando la elegancia de Smalltalk, la potencia funcional de Lisp y la ergonomía textual de Perl.",
+    "hito": "Presentación del lenguaje **Ruby**, combinando la orientación a objetos de Smalltalk con la ergonomía de texto de Perl.",
     "year": 1993,
     "autor": "Yukihiro Matsumoto (Matz)",
-    "trivia": "Diseñado priorizando la felicidad humana sobre la máquina, detonó una revolución mundial con Ruby on Rails."
+    "trivia": "Diseñado con el principio de minimizar la sorpresa y maximizar la satisfacción del desarrollador, cobró auge global con Rails."
   },
   {
     "id": "vol2-0x13",
@@ -214,10 +214,10 @@
     "index": 19,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Presentación pública de **Kubernetes** (**K8s**) como proyecto de código abierto inspirado en los sistemas internos **Borg** y **Omega**.",
+    "hito": "Publicación de **Kubernetes** (**K8s**) como proyecto de código abierto para la orquestación declarativa de contenedores.",
     "year": 2014,
-    "autor": "Google (Joe Beda, B. Burns et al.)",
-    "trivia": "Del griego \"timonel\"; su logo de 7 radios homenajea a *Seven of Nine* de Star Trek, en alusión al proyecto Borg de Google."
+    "autor": "Google (J. Beda, B. Burns, C. McLuckie)",
+    "trivia": "Su arquitectura asimiló más de una década de experiencia interna en los sistemas de gestión de clústeres Borg y Omega de Google."
   },
   {
     "id": "vol2-0x14",
@@ -225,10 +225,10 @@
     "index": 20,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento del microprocesador de 16/32 bits **Motorola 68000**, motor del Apple Macintosh, Amiga y Atari ST.",
+    "hito": "Lanzamiento del microprocesador **Motorola 68000**, integrando registros de 32 bits y un bus de datos externo de 16 bits.",
     "year": 1979,
     "autor": "Motorola Semiconductor",
-    "trivia": "Tenía registros de 32 bits y 68,000 transistores, de donde tomó su emblemático nombre."
+    "trivia": "Su arquitectura lineal de memoria facilitó entornos multitarea y potenció estaciones Unix tempranas, el Apple Macintosh y Amiga."
   },
   {
     "id": "vol2-0x15",
@@ -236,10 +236,10 @@
     "index": 21,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Aparición de **Zig**, lenguaje de sistemas para reemplazar a C sin costos ocultos y con evaluación en compilación (`comptime`).",
+    "hito": "Aparición del lenguaje **Zig**, enfocado en la programación de sistemas sin flujo de control oculto ni asignaciones implícitas.",
     "year": 2016,
     "autor": "Andrew Kelley",
-    "trivia": "Su comando `zig cc` incluye un compilador cruzado de C/C++, permitiendo compilar en cualquier SO sin dolores de cabeza."
+    "trivia": "Introduce ejecución en tiempo de compilación con `comptime` y funciona como un compilador cruzado C/C++ listo para usar."
   },
   {
     "id": "vol2-0x16",
@@ -247,10 +247,10 @@
     "index": 22,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Desarrollo del procesador **ARM1**, el primer diseño comercial de arquitectura RISC de Acorn Computers.",
+    "hito": "Desarrollo del procesador **ARM1** en Acorn Computers, pionero en microarquitectura RISC con mínimo consumo energético.",
     "year": 1985,
-    "autor": "Sophie Wilson y Steve Furber",
-    "trivia": "Funcionaba con tan poca energía que seguía operando solo con la corriente residual de prueba."
+    "autor": "Sophie Wilson y Steve Furber (Acorn)",
+    "trivia": "Wilson diseñó el repertorio de instrucciones en Cambridge; su bajo consumo permitió que funcionara sin disipador térmico."
   },
   {
     "id": "vol2-0x17",
@@ -258,10 +258,10 @@
     "index": 23,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Creación de **FreeBSD Jails**, ampliando el concepto de jaula para aislar procesos, interfaces de red y cuentas de usuario completas.",
+    "hito": "Publicación de **FreeBSD Jails**, ampliando el aislamiento de procesos mediante jerarquías de red y credenciales independientes.",
     "year": 2000,
     "autor": "Poul-Henning Kamp",
-    "trivia": "Diseñado en FreeBSD para evitar que usuarios de hosting compartido espiaran procesos de otras cuentas vecinas."
+    "trivia": "Desarrollado para un proveedor de hosting de FreeBSD, permitió albergar múltiples clientes aislados sobre un único kernel del sistema."
   },
   {
     "id": "vol2-0x18",
@@ -269,10 +269,10 @@
     "index": 24,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Nacimiento de **Lisp**, introduciendo la notación de listas con paréntesis, recursión y recolección de basura.",
+    "hito": "Formulación de **Lisp**, introduciendo la estructura de listas con expresiones S, funciones recursivas y recolección de basura.",
     "year": 1958,
     "autor": "John McCarthy (MIT)",
-    "trivia": "McCarthy concibió Lisp como un modelo teórico; su alumno Steve Russell sorprendió a todos al implementarlo en una IBM 704."
+    "trivia": "Publicado como un modelo matemático formal; Steve Russell sorprendió al traducir la función `eval` a código máquina para la IBM 704."
   },
   {
     "id": "vol2-0x19",
@@ -282,8 +282,8 @@
     "tag": "containers-virt",
     "hito": "Lanzamiento de **VMware Workstation 1.0**, logrando virtualizar sistemas operativos completos sobre procesadores Intel x86.",
     "year": 1999,
-    "autor": "D. Greene y M. Rosenblum (VMware)",
-    "trivia": "Inventaron traducción binaria al vuelo para sortear limitaciones x86 que no permitían virtualizar por hardware."
+    "autor": "Diane Greene, Mendel Rosenblum et al.",
+    "trivia": "Desarrollaron técnicas de traducción binaria dinámica al vuelo para sortear instrucciones de x86 que impedían virtualizar en CPU."
   },
   {
     "id": "vol2-0x1A",
@@ -291,10 +291,10 @@
     "index": 26,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento del procesador gráfico **Sony PlayStation GPU**, popularizando el renderizado de polígonos 3D en consolas domésticas.",
+    "hito": "Lanzamiento del procesador de geometría y gráficos de **Sony PlayStation**, masificando los entornos poligonales 3D domésticos.",
     "year": 1994,
-    "autor": "Sony y Toshiba",
-    "trivia": "Diseñado por Ken Kutaragi, era capaz de procesar hasta 360,000 polígonos planos por segundo."
+    "autor": "Ken Kutaragi et al. (Sony / LSI Logic)",
+    "trivia": "Combinaba un procesador de transformación geométrica (GTE) con una GPU dedicada para procesar cientos de miles de polígonos texturizados."
   },
   {
     "id": "vol2-0x1B",
@@ -302,10 +302,10 @@
     "index": 27,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Introducción de la arquitectura de microprocesador **MIPS R2000**, pionera en computación RISC comercial para estaciones de trabajo.",
+    "hito": "Lanzamiento de la arquitectura de microprocesador **MIPS R2000**, pionera en computación RISC comercial con pipeline segmentado.",
     "year": 1986,
-    "autor": "John L. Hennessy (Stanford / MIPS)",
-    "trivia": "La arquitectura MIPS potenció la consola Nintendo 64 y la estación espacial de Silicon Graphics."
+    "autor": "John L. Hennessy et al. (MIPS Systems)",
+    "trivia": "Eliminó bloqueos de pipeline en hardware delegando la sincronización de saltos al compilador, potenciando estaciones Silicon Graphics."
   },
   {
     "id": "vol2-0x1C",
@@ -313,10 +313,10 @@
     "index": 28,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Presentación de **Solaris Zones** (Contenedores de Solaris) en el sistema operativo Solaris 10 de Sun Microsystems.",
+    "hito": "Presentación de **Solaris Zones** en Solaris 10, introduciendo virtualización a nivel de sistema operativo para entornos empresariales.",
     "year": 2004,
     "autor": "Sun Microsystems",
-    "trivia": "Permitía crear miles de entornos virtuales aislados en un solo kernel sin el pesado costo de emular hardware completo."
+    "trivia": "Permitió aislar aplicaciones en múltiples zonas virtuales ligeras compartiendo un único kernel, prefigurando el modelo de contenedores."
   },
   {
     "id": "vol2-0x1D",
@@ -324,10 +324,10 @@
     "index": 29,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Lanzamiento de **Visual Basic 1.0**, permitiendo arrastrar controles para programar ventanas en Windows.",
+    "hito": "Lanzamiento de **Visual Basic 1.0** para Windows, combinando diseño visual de interfaces gráficas por componentes con código guiado por eventos.",
     "year": 1991,
-    "autor": "Microsoft (Alan Cooper)",
-    "trivia": "Ideado por Alan Cooper bajo el proyecto *Ruby*, Bill Gates compró el prototipo de inmediato para Windows 3.0."
+    "autor": "Alan Cooper y Microsoft",
+    "trivia": "Basado en el prototipo 'Ruby' creado por Alan Cooper, Bill Gates adquirió la herramienta para simplificar el desarrollo sobre Windows 3.0."
   },
   {
     "id": "vol2-0x1E",
@@ -335,10 +335,10 @@
     "index": 30,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Estandarización y despliegue masivo de la API de **WebGPU** para aceleración de gráficos y cómputo de modelos de IA en el navegador.",
+    "hito": "Estandarización de la API **WebGPU**, proporcionando acceso directo de bajo nivel a las capacidades de cómputo y renderizado de la GPU.",
     "year": 2024,
     "autor": "W3C GPU for the Web Community Group",
-    "trivia": "Da acceso directo a GPUs con Vulkan/Metal, permitiendo ejecutar inferencia de LLMs locales directo en la pestaña web."
+    "trivia": "Sustituye el modelo de canalización de WebGL por interfaces modernas alineadas con Vulkan, Metal y DirectX 12 para inferencia en cliente."
   },
   {
     "id": "vol2-0x1F",
@@ -346,10 +346,10 @@
     "index": 31,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Implementación de **JavaScript** en apenas diez días para dotar de dinamismo y scripts al navegador *Netscape Navigator*.",
+    "hito": "Creación del lenguaje **JavaScript** en Netscape para dotar de programación dinámica e interactiva al navegador web.",
     "year": 1995,
-    "autor": "Brendan Eich (Netscape)",
-    "trivia": "Pese a sus prisas de diseño, se convirtió en el único lenguaje ejecutado nativamente por todos los navegadores de la Tierra."
+    "autor": "Brendan Eich (Netscape Communications)",
+    "trivia": "Desarrollado originalmente bajo el nombre en clave *Mocha* y lanzado como *LiveScript*, se consolidó como el lenguaje ubicuo de la web."
   },
   {
     "id": "vol2-0x20",
@@ -357,10 +357,10 @@
     "index": 32,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Publicación del sistema operativo educativo **MINIX** y su correspondiente libro de arquitectura de sistemas por Prentice Hall.",
+    "hito": "Publicación del sistema operativo **MINIX** y su arquitectura de microkernel modular para la enseñanza universitaria de sistemas.",
     "year": 1987,
     "autor": "Andrew S. Tanenbaum",
-    "trivia": "Diseñado con un microkernel limpio para enseñar a alumnos cómo funciona un SO sin violar el copyright de AT&T."
+    "trivia": "Diseñado para explicar conceptos de sistemas operativos sin infringir licencias propietarias de AT&T; inspiró directamente a Linus Torvalds."
   },
   {
     "id": "vol2-0x21",
@@ -368,10 +368,10 @@
     "index": 33,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento del procesador **MOS 6510**, corazón del **Commodore 64**, la computadora personal más vendida de la historia.",
+    "hito": "Lanzamiento del microprocesador **MOS 6510**, incorporando un puerto de E/S de 8 bits para conmutación de bancos de memoria.",
     "year": 1982,
     "autor": "MOS Technology / Commodore",
-    "trivia": "Incluía un puerto de E/S de 8 bits integrado que permitía intercambiar el mapa de memoria mediante 'bank switching'."
+    "trivia": "Fue el núcleo del Commodore 64; el puerto interno permitía alternar entre la RAM y las ROMs de BASIC mediante conmutación de bancos."
   },
   {
     "id": "vol2-0x22",
@@ -379,10 +379,10 @@
     "index": 34,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Lanzamiento de **Erlang** en Ericsson, implementando el modelo de actores para telecomunicaciones tolerantes a fallos.",
+    "hito": "Desarrollo del lenguaje **Erlang** en los laboratorios de Ericsson, implementando concurrencia masiva mediante el modelo de actores.",
     "year": 1986,
-    "autor": "Joe Armstrong, R. Virding y Williams",
-    "trivia": "Bajo el lema *\"Let it crash\"*, sus centrales telefónicas lograron disponibilidad de **nueve nueves** (99.9999999%)."
+    "autor": "Joe Armstrong, Robert Virding, Mike Williams",
+    "trivia": "Diseñado para conmutadores telefónicos sin paradas por fallo, introdujo procesos ultraligeros aislados y supervisión jerárquica."
   },
   {
     "id": "vol2-0x23",
@@ -390,10 +390,10 @@
     "index": 35,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento del supercomputador de procesamiento vectorial **Cray-1**, con su característica forma de 'C' acolchada.",
+    "hito": "Instalación del supercomputador vectorial **Cray-1**, integrando registros vectoriales y arquitectura física en forma de herradura.",
     "year": 1976,
-    "autor": "Seymour Cray",
-    "trivia": "La forma en herradura fue diseñada para mantener los cables extremadamente cortos y reducir latencias."
+    "autor": "Seymour Cray (Cray Research)",
+    "trivia": "Su característico chasis curvado se concibió para acortar las líneas de interconexión eléctrica a menos de un metro y reducir latencias."
   },
   {
     "id": "vol2-0x24",
@@ -401,10 +401,10 @@
     "index": 36,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Donación oficial y graduación de **Kubernetes 1.0** bajo la tutela de la nueva fundación CNCF.",
+    "hito": "Publicación de **Kubernetes 1.0** y constitución formal de la Cloud Native Computing Foundation (**CNCF**) para su gobernanza abierta.",
     "year": 2015,
     "autor": "Google y Linux Foundation",
-    "trivia": "Consagró a Kubernetes frente a *Swarm* y *Mesos*, convirtiéndose en el sistema operativo indiscutible de la nube."
+    "trivia": "La donación de Google a una fundación neutral consolidó el proyecto frente a plataformas rivales como Apache Mesos y Docker Swarm."
   },
   {
     "id": "vol2-0x25",
@@ -412,10 +412,10 @@
     "index": 37,
     "domain": "ai-data-science",
     "tag": "neural-networks-papers",
-    "hito": "Aplicación pionera de una red neuronal convolucional (**CNN**) entrenada por retropropagación para reconocer códigos postales manuscritos.",
+    "hito": "Publicación de **LeNet**, primera red neuronal convolucional entrenada con retropropagación aplicada a reconocimiento de dígitos manuscritos.",
     "year": 1989,
-    "autor": "Yann LeCun (Bell Labs)",
-    "trivia": "Adoptado por el correo de EE.UU., procesó hasta el 20% de cheques bancarios manuscritos de Norteamérica en los años 90."
+    "autor": "Yann LeCun et al. (Bell Labs)",
+    "trivia": "Desplegada en el servicio postal de EE.UU. y cajeros automáticos, procesó millones de cheques bancarios manuscritos en la década de 1990."
   },
   {
     "id": "vol2-0x26",
@@ -423,10 +423,10 @@
     "index": 38,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Presentación de la arquitectura de aceleradores de inteligencia artificial **NVIDIA Blackwell B200** con **208,000 millones de transistores**.",
+    "hito": "Presentación de la arquitectura **NVIDIA Blackwell**, uniendo dos dados de silicio con enlaces de 10 TB/s para cómputo masivo de IA.",
     "year": 2024,
-    "autor": "NVIDIA (Jensen Huang)",
-    "trivia": "Unió dos dados de silicio al límite físico de la litografía ultravioleta, catapultando a NVIDIA a la cima del valor de mercado global."
+    "autor": "NVIDIA",
+    "trivia": "El chip B200 reúne 208,000 millones de transistores en un único encapsulado con enlace NV-HBI a diez terabytes por segundo."
   },
   {
     "id": "vol2-0x27",
@@ -434,10 +434,10 @@
     "index": 39,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Creación del **Intel 4004**, el primer microprocesador comercial del mundo integrado en un único chip de silicio.",
+    "hito": "Comercialización del **Intel 4004**, primer microprocesador monolítico de 4 bits integrado enteramente en una pastilla de silicio.",
     "year": 1971,
-    "autor": "Federico Faggin et al. (Intel)",
-    "trivia": "Creado para una calculadora japonesa; Federico Faggin grabó sus iniciales (\"F.F.\") en una esquina del silicio de cada oblea producida."
+    "autor": "Federico Faggin, Ted Hoff, Masatoshi Shima",
+    "trivia": "Desarrollado para la calculadora Busicom 141-PF; Faggin grabó sus iniciales 'F.F.' en una esquina de la oblea de silicio."
   },
   {
     "id": "vol2-0x28",
@@ -445,10 +445,10 @@
     "index": 40,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Nacimiento de **Scheme**, elegante variante de Lisp con alcance léxico estático y llamadas de cola optimizadas.",
+    "hito": "Publicación del lenguaje **Scheme**, dialecto de Lisp con reglas estrictas de ámbito léxico y optimización obligatoria de llamadas de cola.",
     "year": 1975,
-    "autor": "Guy L. Steele y G. J. Sussman (MIT)",
-    "trivia": "Fue el vehículo didáctico del célebre libro *SICP*, formando a generaciones de científicos computacionales en el MIT."
+    "autor": "Guy L. Steele y Gerald Jay Sussman (MIT)",
+    "trivia": "Sus conceptos de evaluación limpia y clausuras léxicas se popularizaron mediante el célebre texto universitario *SICP* en el MIT."
   },
   {
     "id": "vol2-0x29",
@@ -456,10 +456,10 @@
     "index": 41,
     "domain": "ai-data-science",
     "tag": "scientific-stack",
-    "hito": "Estandarización de tensores en formatos de coma flotante de precisión ultra reducida (**FP8** y **FP4**) en todo el stack analítico de Python.",
+    "hito": "Adopción de formatos de punto flotante microscópicos (**FP8** y **FP4**) para inferencia y entrenamiento eficiente de redes neuronales.",
     "year": 2025,
-    "autor": "Consorcio Científico Abierto",
-    "trivia": "Permite manipular matrices y pesos gigantes en laptops comunes, reduciendo a la mitad el uso de memoria RAM."
+    "autor": "Consorcio de Aceleración (NVIDIA, ARM)",
+    "trivia": "Permite empaquetar parámetros de modelos de lenguaje en formatos E4M3 y E5M2, duplicando la densidad de cálculo en memoria sin pérdida crítica."
   },
   {
     "id": "vol2-0x2A",
@@ -467,10 +467,10 @@
     "index": 42,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Incorporación de los grupos de control (**cgroups**) en el kernel de Linux tras la contribución de parches de ingenieros de Google.",
+    "hito": "Fusión de los grupos de control (**cgroups**) en el kernel de Linux 2.6.24, limitando consumo de CPU, memoria y E/S por jerarquías de procesos.",
     "year": 2007,
     "autor": "Paul Menage y Rohit Seth (Google)",
-    "trivia": "Creados en Google como *Process Containers*, fijaron límites estrictos de RAM, CPU e I/O por grupo de procesos."
+    "trivia": "Desarrollados bajo el nombre *Process Containers* en Google, proveyeron la base fundamental de aislamiento que posibilitó Docker y LXC."
   },
   {
     "id": "vol2-0x2B",
@@ -478,10 +478,10 @@
     "index": 43,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Estallido del escándalo del **Pentium FDIV bug**, provocando pérdidas de más de **$475 millones de dólares** a Intel en reposiciones de chips.",
+    "hito": "Descubrimiento del defecto de hardware **Pentium FDIV**, originado por entradas omitidas en la tabla de división SRT del coprocesador matemático.",
     "year": 1994,
     "autor": "Thomas Nicely (descubridor) e Intel",
-    "trivia": "Un profesor descubrió una tabla de división defectuosa en el coprocesador; la soberbia de Intel costó 475 millones en reemplazos."
+    "trivia": "El matemático Thomas Nicely descubrió la anomalía calculando primos gemelos; la sustitución de chips costó a Intel 475 millones de dólares."
   },
   {
     "id": "vol2-0x2C",
@@ -489,10 +489,10 @@
     "index": 44,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Creación de **Smalltalk**, sentando las bases puras de la programación orientada a objetos basada en el paso dinámico de mensajes.",
+    "hito": "Creación del entorno y lenguaje **Smalltalk**, fundando la programación orientada a objetos basada en objetos reflexivos y paso de mensajes.",
     "year": 1972,
-    "autor": "Alan Kay, Dan Ingalls et al. (Xerox)",
-    "trivia": "Pionero de ventanas e iconos; Steve Jobs visitó Xerox PARC en 1979 y quedó maravillado por su interfaz y orientación a objetos."
+    "autor": "Alan Kay, Dan Ingalls, A. Goldberg (Xerox)",
+    "trivia": "Integraba entorno de ventanas gráficas, tipado dinámico absoluto e introspección en tiempo real que asombraron a Steve Jobs en su visita a PARC."
   },
   {
     "id": "vol2-0x2D",
@@ -500,10 +500,10 @@
     "index": 45,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Lanzamiento de **Rocket** (**rkt**) por parte de CoreOS, desafiando el crecimiento descontrolado del daemon monolítico de Docker.",
+    "hito": "Lanzamiento de **Rocket** (**rkt**) por CoreOS, promoviendo runtimes de contenedores seguros, componibles y desacoplados de demonios.",
     "year": 2014,
-    "autor": "CoreOS (Alex Polvi)",
-    "trivia": "Acusó a Docker de abandonar su estándar modular; el conflicto forzó a la industria a crear la especificación de la OCI."
+    "autor": "CoreOS (Alex Polvi et al.)",
+    "trivia": "Cuestionó la centralización del daemon de Docker, impulsando el diálogo industrial que concluyó en la creación de la Open Container Initiative."
   },
   {
     "id": "vol2-0x2E",
@@ -511,10 +511,10 @@
     "index": 46,
     "domain": "languages-runtimes",
     "tag": "cpython-runtime",
-    "hito": "Creación de **CircuitPython**, una derivación educativa y amigable de MicroPython impulsada para placas de desarrollo *Adafruit*.",
+    "hito": "Lanzamiento de **CircuitPython**, adaptación educativa de MicroPython diseñada para programación de placas de hardware sin herramientas externas.",
     "year": 2017,
     "autor": "Adafruit Industries (Scott Shawcroft)",
-    "trivia": "El microcontrolador se monta como memoria USB, permitiendo programar editando directo el archivo `code.py`."
+    "trivia": "Presenta el almacenamiento de la placa como una unidad USB estándar, ejecutando el código automáticamente al guardar el archivo `code.py`."
   },
   {
     "id": "vol2-0x2F",
@@ -522,10 +522,10 @@
     "index": 47,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento del procesador digital de señales **Texas Instruments TMS32010**, pionero en procesamiento de señales en tiempo real.",
+    "hito": "Lanzamiento del procesador **Texas Instruments TMS32010**, pionero en procesadores de señal digital (DSP) monomicroplaqueta de alta velocidad.",
     "year": 1983,
     "autor": "Texas Instruments",
-    "trivia": "Tenía arquitectura Harvard modificada que permitía multiplicar enteros de 16 bits en un solo ciclo de reloj."
+    "trivia": "Adoptó una arquitectura Harvard modificada que permitía multiplicar enteros de 16 bits y acumular en 32 bits en 200 nanosegundos."
   },
   {
     "id": "vol2-0x30",
@@ -533,10 +533,10 @@
     "index": 48,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Construcción del computador **Apollo Guidance Computer (AGC)** para guiar las misiones lunares Apolo de la NASA.",
+    "hito": "Desarrollo del **Apollo Guidance Computer (AGC)**, computador de navegación en tiempo real para las misiones Apolo con circuitos integrados.",
     "year": 1966,
-    "autor": "MIT Instrumentation Lab",
-    "trivia": "Usaba memoria de núcleos trenzados a mano por trabajadoras textiles, apodada 'memoria LOL' (Little Old Ladies)."
+    "autor": "MIT Instrumentation Lab (Hal Laning et al.)",
+    "trivia": "Fue uno de los primeros clientes masivos de chips de silicio integrados y empleaba memoria de núcleos magnéticos cosida a mano."
   },
   {
     "id": "vol2-0x31",
@@ -544,10 +544,10 @@
     "index": 49,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Creación de **Elixir**, llevando la robustez tolerante a fallos de la máquina virtual BEAM de Erlang a una sintaxis moderna inspirada en Ruby.",
+    "hito": "Presentación de **Elixir**, aportando sintaxis moderna, polimorfismo por protocolos y metaprogramación sobre la máquina BEAM de Erlang.",
     "year": 2012,
     "autor": "José Valim",
-    "trivia": "Valim, del núcleo de Rails, descubrió la potencia de Erlang y creó Elixir para dominar la concurrencia web moderna."
+    "trivia": "Permitió aprovechar la alta concurrencia de telecomunicaciones de la BEAM con herramientas de desarrollo y frameworks modernos como Phoenix."
   },
   {
     "id": "vol2-0x32",
@@ -555,10 +555,10 @@
     "index": 50,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento del microcontrolador de bajo costo con Wi-Fi integrado **ESP8266**, revolucionando los proyectos de IoT en todo el mundo.",
+    "hito": "Lanzamiento del microcontrolador **ESP8266**, integrando pila TCP/IP completa y conectividad Wi-Fi a un precio accesible.",
     "year": 2014,
     "autor": "Espressif Systems",
-    "trivia": "Comenzó con documentación filtrada en foros chinos y pronto acumuló millones de firmwares comunitarios."
+    "trivia": "Conectado inicialmente por comandos AT a través de puerto serie, pronto se reprogramó con el IDE de Arduino y firmwares libres para domótica."
   },
   {
     "id": "vol2-0x33",
@@ -566,10 +566,10 @@
     "index": 51,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Presentación pública de **Java** bajo el lema promocional *\"Write Once, Run Anywhere\"* gracias a la máquina virtual **JVM**.",
+    "hito": "Presentación pública del lenguaje **Java** y su máquina virtual (**JVM**), materializando la portabilidad de código mediante bytecode.",
     "year": 1995,
-    "autor": "James Gosling (Sun Microsystems)",
-    "trivia": "Nació como *Oak* para TV interactiva; el auge de Internet llevó a Sun a convertirlo en el motor del software empresarial."
+    "autor": "James Gosling et al. (Sun Microsystems)",
+    "trivia": "Nacido bajo el proyecto secreto *Oak* para electrodomésticos, su lema «Write Once, Run Anywhere» lo transformó en estándar corporativo en la web."
   },
   {
     "id": "vol2-0x34",
@@ -577,10 +577,10 @@
     "index": 52,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento del microcontrolador de 8 bits con memoria Flash **AVR (ATmega)**, base del futuro ecosistema Arduino.",
+    "hito": "Lanzamiento de la familia de microcontroladores **Atmel AVR**, integrando memoria Flash en el chip y optimización para el compilador de C.",
     "year": 1997,
     "autor": "Alf-Egil Bogen y Vegard Wollan (Atmel)",
-    "trivia": "Los dos estudiantes noruegos de NTH concibieron una arquitectura RISC optimizada para código en lenguaje C."
+    "trivia": "Su arquitectura Harvard monomicroplaqueta permitió programar chips mediante interfaces SPI sencillas, convirtiéndose en el núcleo de Arduino."
   },
   {
     "id": "vol2-0x35",
@@ -588,10 +588,10 @@
     "index": 53,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Debut de **Swift**, el moderno lenguaje compilado creado por Apple para reemplazar progresivamente a Objective-C en iOS y macOS.",
+    "hito": "Presentación del lenguaje **Swift** en la conferencia WWDC, modernizando el desarrollo de software para el ecosistema iOS y macOS.",
     "year": 2014,
-    "autor": "Chris Lattner (Apple)",
-    "trivia": "Diseñado en secreto por Chris Lattner, sorprendió en WWDC al erradicar la arcaica sintaxis de corchetes de Objective-C."
+    "autor": "Chris Lattner y equipo de Apple",
+    "trivia": "Sustituyó la sintaxis de paso de mensajes de Objective-C por inferencia de tipos, genéricos y seguridad de memoria basada en ARC."
   },
   {
     "id": "vol2-0x36",
@@ -599,10 +599,10 @@
     "index": 54,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento del chip microcontrolador dual-core **RP2040** y la placa **Raspberry Pi Pico**, el primer silicio propio de la fundación.",
+    "hito": "Lanzamiento del microcontrolador **RP2040**, primer silicio diseñado internamente por la fundación junto a la placa Raspberry Pi Pico.",
     "year": 2021,
     "autor": "Raspberry Pi Foundation",
-    "trivia": "Introdujo bloques PIO (Programmable I/O) capaces de sintetizar protocolos de hardware a medida."
+    "trivia": "Integró bloques de E/S programables (PIO) con pequeñas máquinas de estados capaces de emular protocolos de comunicación sin recargar la CPU."
   },
   {
     "id": "vol2-0x37",
@@ -610,10 +610,10 @@
     "index": 55,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Aparición de **Prolog** (*Programmation en Logique*), fundando el paradigma de la programación lógica declarativa basada en cláusulas de Horn.",
+    "hito": "Aparición de **Prolog** (*Programmation en Logique*), estableciendo el paradigma de programación lógica declarativa basado en cláusulas de Horn.",
     "year": 1972,
     "autor": "Alain Colmerauer y Robert Kowalski",
-    "trivia": "En vez de pasos imperativos, declara hechos lógicos para que el motor de inferencia deduzca respuestas automáticamente."
+    "trivia": "En lugar de algoritmos secuenciales, el programador define axiomas y relaciones lógicas que el motor resuelve mediante unificación y retroceso."
   },
   {
     "id": "vol2-0x38",
@@ -621,10 +621,10 @@
     "index": 56,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Publicación de la especificación abierta y libre de regalías para la arquitectura de procesadores **RISC-V**.",
+    "hito": "Publicación de la especificación de la arquitectura de conjunto de instrucciones abierta y libre de regalías **RISC-V**.",
     "year": 2010,
-    "autor": "Krste Asanović y David Patterson",
-    "trivia": "Nació en UC Berkeley como un proyecto académico de verano para evitar pagar costosas licencias x86/ARM."
+    "autor": "Krste Asanović y D. Patterson (Berkeley)",
+    "trivia": "Iniciada como un proyecto de investigación en Berkeley, proveyó un repertorio base congelado y extensiones modulares libres de patentes."
   },
   {
     "id": "vol2-0x39",
@@ -632,10 +632,10 @@
     "index": 57,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Publicación de **Vim** (*Vi IMproved*) para computadoras Commodore Amiga bajo un modelo de software benéfico (*charityware*).",
+    "hito": "Publicación del editor de texto **Vim** (*Vi IMproved*) para Amiga, expandiendo el editor modal vi con soporte de scripts y resaltado.",
     "year": 1991,
     "autor": "Bram Moolenaar",
-    "trivia": "Bram pedía a los usuarios donar a orfanatos en Uganda, manteniendo esta causa humanitaria activa por más de 30 años."
+    "trivia": "Distribuido bajo un modelo pionero de caridad (*charityware*), Moolenaar promovió activamente donaciones humanitarias para proyectos en Uganda."
   },
   {
     "id": "vol2-0x3A",
@@ -643,10 +643,10 @@
     "index": 58,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Presentación de la arquitectura **SPARC** (*Scalable Processor Architecture*), llevando cómputo RISC a estaciones Sun Microsystems.",
+    "hito": "Presentación de la arquitectura de procesadores **SPARC**, llevando la microarquitectura RISC a estaciones de trabajo y servidores Unix.",
     "year": 1987,
-    "autor": "Sun Microsystems",
-    "trivia": "Implementó una innovadora ventana de registros circulares para agilizar llamadas a funciones."
+    "autor": "Sun Microsystems (David Patterson et al.)",
+    "trivia": "Implementó una ventana de registros solapados que agilizaba el paso de parámetros en llamadas a funciones minimizando accesos a la memoria."
   },
   {
     "id": "vol2-0x3B",
@@ -654,10 +654,10 @@
     "index": 59,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento de la plataforma de desarrollo de código abierto **Arduino** (placa USB) en el Interaction Design Institute Ivrea.",
+    "hito": "Lanzamiento de la plataforma de hardware abierto **Arduino**, acercando el prototipado electrónico a estudiantes y diseñadores.",
     "year": 2005,
-    "autor": "Massimo Banzi, David Cuartielles",
-    "trivia": "Su nombre proviene de un bar en Ivrea, Italia, donde solían reunirse los fundadores del proyecto."
+    "autor": "Massimo Banzi, David Cuartielles et al.",
+    "trivia": "Desarrollada en el Interaction Design Institute Ivrea sobre el proyecto Wiring, empleaba microcontroladores Atmel con un entorno de desarrollo libre."
   },
   {
     "id": "vol2-0x3C",
@@ -665,10 +665,10 @@
     "index": 60,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento del microcontrolador **PIC16C84**, el primer chip embebido popular con memoria EEPROM reprogramable.",
+    "hito": "Lanzamiento del microcontrolador **PIC16C84**, integrando memoria de programa EEPROM eléctricamente borrable y reprogramable.",
     "year": 1993,
     "autor": "Microchip Technology",
-    "trivia": "Permitió a los ingenieros borrar y reescribir código en segundos sin usar lámparas de luz ultravioleta."
+    "trivia": "Permitió reescribir programas en segundos en bancos de pruebas sin requerir ventanas de cuarzo expuestas a luz ultravioleta."
   },
   {
     "id": "vol2-0x3D",
@@ -676,10 +676,10 @@
     "index": 61,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Lanzamiento público de **TypeScript**, introduciendo tipado estático opcional y capacidades de compilación a JavaScript estándar.",
+    "hito": "Lanzamiento público de **TypeScript**, incorporando un sistema de tipado estático opcional que compila a JavaScript estándar.",
     "year": 2012,
-    "autor": "Anders Hejlsberg (Microsoft)",
-    "trivia": "Pese al escepticismo inicial, se consagró como el estándar global de facto para desarrollo a gran escala en TypeScript."
+    "autor": "Anders Hejlsberg y Microsoft",
+    "trivia": "Facilitó el desarrollo y refactorización de grandes bases de código web mediante comprobación de tipos en compilación y autocompletado."
   },
   {
     "id": "vol2-0x3E",
@@ -687,10 +687,10 @@
     "index": 62,
     "domain": "languages-runtimes",
     "tag": "cpython-runtime",
-    "hito": "Financiación y estreno de **MicroPython**, reimplementación de Python 3 optimizada para microcontroladores y chips embebidos.",
+    "hito": "Publicación de **MicroPython**, reimplementando el intérprete de Python 3 optimizado para operar en microcontroladores con recursos reducidos.",
     "year": 2013,
     "autor": "Damien George",
-    "trivia": "Empaquetó compilador, runtime y REPL de Python en chips con apenas **16 KB de RAM**, abriendo la electrónica embebida."
+    "trivia": "Financiado en Kickstarter, condensó el compilador, recolector de basura y consola REPL en plataformas con apenas decenas de kilobytes de RAM."
   },
   {
     "id": "vol2-0x3F",
@@ -698,9 +698,9 @@
     "index": 63,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Estandarización de **WebAssembly** (**Wasm**) como el cuarto lenguaje oficial de la web junto a HTML, CSS y JavaScript.",
+    "hito": "Publicación de **WebAssembly** (**Wasm**) como estándar formal de recomendación del W3C para ejecución binaria de alto rendimiento en la web.",
     "year": 2019,
     "autor": "W3C (World Wide Web Consortium)",
-    "trivia": "Permitió ejecutar binarios de C, C++, Rust y Go en el navegador a velocidades casi nativas dentro de una máquina virtual segura y aislada en sandbox."
+    "trivia": "Permite ejecutar código compilado desde C, C++, Rust y Go en navegadores con velocidad casi nativa dentro de un entorno seguro y aislado."
   }
 ]

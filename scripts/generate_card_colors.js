@@ -91,7 +91,7 @@ function generateMillar(millarIndex = 1, startNum = 1, endNum = 1000) {
     };
   }
 
-  let version = '1.0.0-rc.1';
+  let version = '1.0.0-rc3';
   try {
     version = fs.readFileSync(path.join(__dirname, '..', 'VERSION'), 'utf8').trim();
   } catch (_) {}

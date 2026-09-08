@@ -25,7 +25,7 @@ const PRINT_DIR = path.resolve(__dirname);
 const ROOT_DIR = path.resolve(__dirname, '..');
 const CARDS_JSON_PATH = path.join(ROOT_DIR, 'data', 'cards.json');
 
-let APP_VERSION = '1.0.0-rc.1';
+let APP_VERSION = '1.0.0-rc3';
 try {
   APP_VERSION = fs.readFileSync(path.join(ROOT_DIR, 'VERSION'), 'utf8').trim();
 } catch (e) {
@@ -204,6 +204,8 @@ function generateCropMarksSvg(cutX, cutY, cutW, cutH) {
       </g>\n`;
 }
 
+const VERSION_PRINT_DIR = path.join(PRINT_DIR, `v${APP_VERSION}`);
+
 const FORMAT_CONFIGS = {
   '11x17': {
     id: '11x17',
@@ -215,8 +217,8 @@ const FORMAT_CONFIGS = {
     cols: 3,
     rows: 5,
     cardsPerSheet: 15,
-    svgDir: path.join(PRINT_DIR, `svg/tabloide/v${APP_VERSION}`),
-    pdfPath: path.join(PRINT_DIR, `hit-tazos-tech-v${APP_VERSION}-tabloide.pdf`)
+    svgDir: path.join(VERSION_PRINT_DIR, 'tabloide', 'svg'),
+    pdfPath: path.join(VERSION_PRINT_DIR, 'tabloide', 'hit-tazos-tech-tabloide.pdf')
   },
   '8x11': {
     id: '8x11',
@@ -228,8 +230,8 @@ const FORMAT_CONFIGS = {
     cols: 2,
     rows: 3,
     cardsPerSheet: 6,
-    svgDir: path.join(PRINT_DIR, `svg/carta/v${APP_VERSION}`),
-    pdfPath: path.join(PRINT_DIR, `hit-tazos-tech-v${APP_VERSION}-carta.pdf`)
+    svgDir: path.join(VERSION_PRINT_DIR, 'carta', 'svg'),
+    pdfPath: path.join(VERSION_PRINT_DIR, 'carta', 'hit-tazos-tech-carta.pdf')
   },
   '12x18': {
     id: '12x18',
@@ -241,8 +243,8 @@ const FORMAT_CONFIGS = {
     cols: 3,
     rows: 6,
     cardsPerSheet: 18,
-    svgDir: path.join(PRINT_DIR, `svg/super_tabloide/v${APP_VERSION}`),
-    pdfPath: path.join(PRINT_DIR, `hit-tazos-tech-v${APP_VERSION}-super-tabloide.pdf`)
+    svgDir: path.join(VERSION_PRINT_DIR, 'super_tabloide', 'svg'),
+    pdfPath: path.join(VERSION_PRINT_DIR, 'super_tabloide', 'hit-tazos-tech-super-tabloide.pdf')
   }
 };
 
@@ -261,6 +263,7 @@ function parseArgs() {
     range: 'ALL',        // 'ALL', 'sample', '15', '6', etc.
     crop: 'marks',       // 'marks' (cruces pro), 'guides' (guías punteadas), 'clean'
     format: 'all',       // 'all' (Tabloide, Carta y Super Tabloide), '11x17' (Tabloide), 'carta' (Carta), '12x18' (Super Tabloide)
+    volume: null,        // null (todos juntos), 'all-volumes' (cada volumen por separado), o slug específico (ej. 'python-track')
     svg: false,          // Exportar hojas SVG
     pdfEditable: false   // Exportar PDF vectorial editable con rsvg-convert y Cairo
   };
@@ -274,6 +277,7 @@ function parseArgs() {
     if (arg.startsWith('--range=')) options.range = arg.split('=')[1];
     if (arg.startsWith('--crop=')) options.crop = arg.split('=')[1];
     if (arg.startsWith('--format=')) options.format = resolveFormat(arg.split('=')[1]);
+    if (arg.startsWith('--volume=') || arg.startsWith('--vol=')) options.volume = arg.split('=')[1];
   });
 
   // Si no se especifica nada, generar SVG + PDF editable por defecto
@@ -564,52 +568,51 @@ ${backCardsSvg}  </g>
 }
 
 // -------------------------------------------------------------
-// Inyección de Metadatos Oficiales en PDF con PyPDF2
+// Inyección de Metadatos Oficiales en PDF con Ghostscript (gs)
 // -------------------------------------------------------------
-function attachPdfMetadata(pdfPath, formatConfig, version) {
-  const pyScript = `
-import PyPDF2
+function attachPdfMetadata(pdfPath, formatConfig, version, volumeInfo = null) {
+  const volTitle = volumeInfo ? ` - ${volumeInfo.title}` : '';
+  const title = `Hit-Tazos Tech${volTitle} - Mazo Imprimible (${formatConfig.name})`;
+  const subject = `Juego de cartas y trivia cronologica tecnica - Universo Python, Software, DevOps, IA y Cultura Hacker`;
+  const author = `${ORG_NAME} (${ORG_URL})`;
+  const creator = `Hit-Tazos Tech Imposition Engine - ${ORG_NAME}`;
+  const keywords = `hit-tazos, hit-tazos-tech, shellaquiles, shellaquiles.org, trivia, python, linux, devops, ai, open-source, board-game, print-and-play, v${version}`;
 
-pdf_path = ${JSON.stringify(pdfPath)}
-try:
-    reader = PyPDF2.PdfReader(pdf_path)
-    writer = PyPDF2.PdfWriter()
-    for page in reader.pages:
-        writer.add_page(page)
-
-    metadata = {
-        '/Title': 'Hit-Tazos Tech v${version} — Mazo Imprimible (${formatConfig.name})',
-        '/Author': '${ORG_NAME} (${ORG_URL})',
-        '/Subject': 'Juego de cartas y trivia cronológica técnica — Universo Python, Software, DevOps, IA y Cultura Hacker',
-        '/Creator': 'Hit-Tazos Tech Imposition Engine — ${ORG_NAME}',
-        '/Producer': '${ORG_NAME} (${ORG_URL})',
-        '/Keywords': 'hit-tazos, hit-tazos-tech, shellaquiles, shellaquiles.org, trivia, python, linux, devops, ai, open-source, board-game, print-and-play'
-    }
-    writer.add_metadata(metadata)
-
-    with open(pdf_path, 'wb') as f:
-        writer.write(f)
-except Exception as e:
-    import sys
-    sys.stderr.write(str(e))
-    sys.exit(1)
-`;
+  const tempOut = `${pdfPath}.meta.tmp`;
+  const pdfmark = `[ /Title (${title}) /Author (${author}) /Subject (${subject}) /Creator (${creator}) /Keywords (${keywords}) /DOCINFO pdfmark`;
 
   try {
-    const res = spawnSync('python3', ['-c', pyScript], { encoding: 'utf8' });
-    if (res.status !== 0) {
-      throw new Error(res.stderr || res.stdout);
+    const gsArgs = [
+      '-q',
+      '-dBATCH',
+      '-dNOPAUSE',
+      '-sDEVICE=pdfwrite',
+      `-sOutputFile=${tempOut}`,
+      '-f',
+      pdfPath,
+      '-c',
+      pdfmark
+    ];
+
+    const res = spawnSync('gs', gsArgs, { encoding: 'utf8' });
+    if (res.status === 0 && fs.existsSync(tempOut) && fs.statSync(tempOut).size > 1000) {
+      fs.renameSync(tempOut, pdfPath);
+      console.log(`   🏷️  Metadatos incrustados con Ghostscript: ${ORG_NAME} · v${version}`);
+    } else {
+      if (fs.existsSync(tempOut)) fs.unlinkSync(tempOut);
     }
-    console.log(`   🏷️  Metadatos incrustados: ${ORG_NAME} · v${version}`);
   } catch (err) {
-    console.warn(`   ⚠️ Advertencia al incrustar metadatos PDF: ${err.message}`);
+    if (fs.existsSync(tempOut)) {
+      try { fs.unlinkSync(tempOut); } catch (_) {}
+    }
+    console.warn(`   ⚠️ Advertencia al incrustar metadatos: ${err.message}`);
   }
 }
 
 // -------------------------------------------------------------
 // Conversión de SVGs a PDF Vectorial con rsvg-convert y Cairo
 // -------------------------------------------------------------
-function compileEditablePdf(svgFiles, outputPdfPath, formatConfig) {
+function compileEditablePdf(svgFiles, outputPdfPath, formatConfig, volumeInfo = null) {
   console.log(`🔄 Compilando PDF vectorial editable con rsvg-convert (Cairo TrueType)...`);
   const tempPdfDir = path.join(ROOT_DIR, `.temp_pdf_pages_${formatConfig.name.toLowerCase()}`);
   fs.mkdirSync(tempPdfDir, { recursive: true });
@@ -622,11 +625,12 @@ function compileEditablePdf(svgFiles, outputPdfPath, formatConfig) {
       tempPdfs.push(pagePdf);
     });
 
+    fs.mkdirSync(path.dirname(outputPdfPath), { recursive: true });
     execSync(`pdfunite ${tempPdfs.map(p => `"${p}"`).join(' ')} "${outputPdfPath}"`);
     console.log(`   📄 Archivo distribuible compilado: ${path.basename(outputPdfPath)}`);
 
     // Inyectar metadatos oficiales de Shellaquiles Org
-    attachPdfMetadata(outputPdfPath, formatConfig, APP_VERSION);
+    attachPdfMetadata(outputPdfPath, formatConfig, APP_VERSION, volumeInfo);
 
     console.log(`🎉 ¡PDF vectorial editable listo para distribución!\n   📂 ${outputPdfPath}`);
   } catch (err) {
@@ -639,14 +643,18 @@ function compileEditablePdf(svgFiles, outputPdfPath, formatConfig) {
   }
 }
 
-function processFormat(formatConfig, allCards, options) {
+function processFormat(formatConfig, allCards, options, volumeInfo = null) {
+  const volLabel = volumeInfo ? ` [Volumen: ${volumeInfo.title}]` : '';
   console.log(`\n======================================================`);
-  console.log(`📐 Procesando formato: ${formatConfig.name.toUpperCase()} (${formatConfig.label})`);
+  console.log(`📐 Procesando formato: ${formatConfig.name.toUpperCase()} (${formatConfig.label})${volLabel}`);
   console.log(`   Rejilla: ${formatConfig.cols} col x ${formatConfig.rows} filas (${formatConfig.cardsPerSheet} cartas por pliego)`);
   console.log(`======================================================`);
 
   let cards = allCards;
-  if (options.range === 'sample' || options.range === '1sheet') {
+  if (volumeInfo) {
+    cards = allCards.filter(c => c.volumen === volumeInfo.slug);
+    console.log(`📄 Volumen: ${volumeInfo.title} (${cards.length} cartas)`);
+  } else if (options.range === 'sample' || options.range === '1sheet') {
     cards = allCards.slice(0, formatConfig.cardsPerSheet);
     console.log(`📄 Rango: Muestra de 1 pliego (${cards.length} cartas)`);
   } else if (!isNaN(parseInt(options.range, 10)) && options.range !== 'ALL') {
@@ -657,22 +665,39 @@ function processFormat(formatConfig, allCards, options) {
     console.log(`📄 Rango: Baraja completa de ${cards.length} cartas`);
   }
 
+  // Si se genera un volumen específico, ajustar la ruta de salida del PDF y SVG
+  let targetPdfPath = formatConfig.pdfPath;
+  let targetSvgDir = formatConfig.svgDir;
+  if (volumeInfo) {
+    const volPrefix = volumeInfo.id ? `${volumeInfo.id}-` : (volumeInfo.idx !== undefined ? `vol${volumeInfo.idx}-` : '');
+    const fmtSuffix = formatConfig.id === '8x11' ? '' : `-${formatConfig.id === '11x17' ? 'tabloide' : 'super-tabloide'}`;
+    targetPdfPath = path.join(VERSION_PRINT_DIR, formatConfig.id === '8x11' ? 'carta' : (formatConfig.id === '11x17' ? 'tabloide' : 'super_tabloide'), `hit-tazos-tech-${volPrefix}${volumeInfo.slug}${fmtSuffix}.pdf`);
+    targetSvgDir = path.join(targetSvgDir, volumeInfo.slug);
+  }
+
+  const activeConfig = {
+    ...formatConfig,
+    svgDir: targetSvgDir,
+    pdfPath: targetPdfPath
+  };
+
   // 1. Generar SVGs
   let svgFiles = [];
   if (options.svg || options.pdfEditable) {
-    svgFiles = generateSvgSheets(cards, formatConfig, options);
+    svgFiles = generateSvgSheets(cards, activeConfig, options);
   }
 
   // 2. Generar PDF Editable (TrueType Cairo)
   if (options.pdfEditable && svgFiles.length > 0) {
-    compileEditablePdf(svgFiles, formatConfig.pdfPath, formatConfig);
+    compileEditablePdf(svgFiles, targetPdfPath, activeConfig, volumeInfo);
   }
 
   return {
     format: formatConfig.name,
+    volume: volumeInfo ? volumeInfo.title : 'Baraja Completa',
     svgCount: svgFiles.length,
-    svgDir: formatConfig.svgDir,
-    pdfPath: formatConfig.pdfPath
+    svgDir: targetSvgDir,
+    pdfPath: targetPdfPath
   };
 }
 
@@ -702,18 +727,48 @@ function main() {
     process.exit(1);
   }
 
+  // Determinar si procesar por volumen o baraja completa
+  const catalogFile = path.join(__dirname, '../data/catalog.json');
+  let volumeSlugs = [];
+  if (fs.existsSync(catalogFile)) {
+    const cat = JSON.parse(fs.readFileSync(catalogFile, 'utf8'));
+    volumeSlugs = Object.entries(cat.volumes || {}).map(([slug, title], idx) => ({
+      idx,
+      slug,
+      title
+    }));
+  }
+
   const results = [];
+
   for (const fmt of formatsToProcess) {
-    results.push(processFormat(fmt, cards, options));
+    if (options.volume === 'all-volumes' || options.volume === 'volumes') {
+      // Generar volumen por volumen
+      for (const vol of volumeSlugs) {
+        results.push(processFormat(fmt, cards, options, vol));
+      }
+    } else if (options.volume) {
+      // Buscar el volumen pedido
+      const cleanVol = options.volume.replace(/^vol\d*_?/, '').toLowerCase();
+      const matched = volumeSlugs.find(v => v.slug.includes(cleanVol) || `vol${v.idx}` === options.volume.toLowerCase());
+      if (matched) {
+        results.push(processFormat(fmt, cards, options, matched));
+      } else {
+        console.error(`❌ Volumen no encontrado: ${options.volume}`);
+      }
+    } else {
+      // Baraja completa ("todos" para uso de producción)
+      results.push(processFormat(fmt, cards, options, null));
+    }
   }
 
   console.log('\n======================================================');
   console.log(`✨ RESUMEN DE DISTRIBUCIÓN — HIT-TAZOS TECH v${APP_VERSION} (${ORG_URL})`);
   for (const res of results) {
-    console.log(`  📄 Formato [${res.format.toUpperCase()}]:`);
+    console.log(`  📄 [${res.format.toUpperCase()}] ${res.volume}:`);
     if (options.svg) console.log(`     📂 SVGs (${res.svgCount} pliegos): ${res.svgDir}/`);
     if (options.pdfEditable) {
-      console.log(`     📕 PDF Oficial de Distribución: ${path.basename(res.pdfPath)}`);
+      console.log(`     📕 PDF: ${path.basename(res.pdfPath)}`);
       console.log(`        └─ Ruta: ${res.pdfPath}`);
     }
   }

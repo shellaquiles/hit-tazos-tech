@@ -22,8 +22,8 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Validar presupuesto editorial (Scratch Audit)
-        run: python3 scripts/scratch_audit.py
+      - name: Validar presupuesto editorial y taxonomía (Audit Deck)
+        run: python3 scripts/audit_deck.py
 
       - name: Verificar sintaxis JS de scripts
         run: |

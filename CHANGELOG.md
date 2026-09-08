@@ -4,6 +4,12 @@ Todos los cambios notables en este proyecto se documentarán en este archivo.
 
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/) y este proyecto se adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0-rc3] - 2026-09-08
+
+### Cambiado
+- **Auditoría Editorial y Factual en 4 Niveles (Volumen 0)**: Corrección de afirmaciones hiperbólicas, mitigación de sesgos novelescos y verificación documental de precisión fáctica en las 128 cartas de `kernel-foundations`.
+- **Sincronización y consistencia de esquema**: Generación del registro canónico de auditoría (`data/audit.json`) y reporte de trazabilidad editorial (`data/audit_vol0_report.md`).
+
 ## [1.0.0-rc2] - 2026-09-08
 
 ### Añadido

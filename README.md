@@ -1,6 +1,6 @@
 # Hit-Tazos Tech 🕹️💻
 
-[![Version](https://img.shields.io/badge/version-1.0.1--rc.1-orange.svg?style=flat-square)](./CHANGELOG.md) [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](./LICENSE) [![Python](https://img.shields.io/badge/python-3.8%2B-3776AB.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/) [![Node](https://img.shields.io/badge/node-%3E%3D18-339933.svg?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/) [![Ecosystem](https://img.shields.io/badge/shellaquiles-ecosystem-9D2449.svg?style=flat-square)](https://github.com/shellaquiles)
+[![Version](https://img.shields.io/badge/version-1.0.0--rc3-orange.svg?style=flat-square)](./CHANGELOG.md) [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](./LICENSE) [![Python](https://img.shields.io/badge/python-3.8%2B-3776AB.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/) [![Node](https://img.shields.io/badge/node-%3E%3D18-339933.svg?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/) [![Ecosystem](https://img.shields.io/badge/shellaquiles-ecosystem-9D2449.svg?style=flat-square)](https://github.com/shellaquiles)
 
 Juego original e independiente de trivia cronológica técnica centrado en el ecosistema de **Tecnología, Desarrollo de Software, Infraestructura, Inteligencia Artificial y Cultura Hacker**, con un marcado énfasis en el **Universo Python**.
 
@@ -71,10 +71,10 @@ npm run print:test:8x11       # Muestra de 1 pliego Carta (6 cartas)
 ```
 
 ### Salidas y Archivos de Distribución Oficial:
-* **[`print/hit-tazos-tech-v1.0.0-rc2-tabloide.pdf`](./print/hit-tazos-tech-v1.0.0-rc2-tabloide.pdf)**: Documento vectorial de 78 páginas ($11 \times 17\text{ pulg}$) con fuentes TrueType (`Noto Sans`, `WinAnsi`), sin rasterizado. Rejilla de $3 \times 5$ cartas por pliego con reversos espejados `[2, 1, 0]`, pie de autoría oficial de **Shellaquiles Org** y metadatos PDF completos.
-* **[`print/hit-tazos-tech-v1.0.0-rc2-carta.pdf`](./print/hit-tazos-tech-v1.0.0-rc2-carta.pdf)**: Documento vectorial de 192 páginas ($8.5 \times 11\text{ pulg}$) con fuentes TrueType (`Noto Sans`, `WinAnsi`). Rejilla de $2 \times 3$ cartas por pliego con reversos espejados `[1, 0]` para coincidencia milimétrica en cualquier impresora doméstica o de oficina.
-* **[`print/hit-tazos-tech-v1.0.0-rc2-super-tabloide.pdf`](./print/hit-tazos-tech-v1.0.0-rc2-super-tabloide.pdf)**: Documento vectorial de 64 páginas ($12 \times 18\text{ pulg}$) con rejilla de $3 \times 6$ cartas por pliego para prensas digitales de gran formato.
-* **[`print/svg/`](./print/svg/)**: Pliegos SVG individuales vectoriales organizados por formato y versión (`tabloide/`, `carta/`, `super_tabloide/`) con capas editables y metadatos Dublin Core (`dc:creator = Shellaquiles Org`, `dc:relation = https://shellaquiles.org`).
+* **[`print/v1.0.0-rc3/hit-tazos-tech-v1.0.0-rc3-tabloide.pdf`](./print/v1.0.0-rc3/hit-tazos-tech-v1.0.0-rc3-tabloide.pdf)**: Documento vectorial de 78 páginas ($11 \times 17\text{ pulg}$) con fuentes TrueType (`Noto Sans`, `WinAnsi`), sin rasterizado. Rejilla de $3 \times 5$ cartas por pliego con reversos espejados `[2, 1, 0]`, pie de autoría oficial de **Shellaquiles Org** y metadatos PDF completos.
+* **[`print/v1.0.0-rc3/hit-tazos-tech-v1.0.0-rc3-carta.pdf`](./print/v1.0.0-rc3/hit-tazos-tech-v1.0.0-rc3-carta.pdf)**: Documento vectorial de 192 páginas ($8.5 \times 11\text{ pulg}$) con fuentes TrueType (`Noto Sans`, `WinAnsi`). Rejilla de $2 \times 3$ cartas por pliego con reversos espejados `[1, 0]` para coincidencia milimétrica en cualquier impresora doméstica o de oficina.
+* **[`print/v1.0.0-rc3/hit-tazos-tech-v1.0.0-rc3-super-tabloide.pdf`](./print/v1.0.0-rc3/hit-tazos-tech-v1.0.0-rc3-super-tabloide.pdf)**: Documento vectorial de 64 páginas ($12 \times 18\text{ pulg}$) con rejilla de $3 \times 6$ cartas por pliego para prensas digitales de gran formato.
+* **[`print/v1.0.0-rc3/svg/`](./print/v1.0.0-rc3/svg/)**: Pliegos SVG individuales vectoriales organizados por formato (`tabloide/`, `carta/`, `super_tabloide/`) con capas editables y metadatos Dublin Core (`dc:creator = Shellaquiles Org`, `dc:relation = https://shellaquiles.org`).
 * **[`data/manifest.json`](./data/manifest.json):** Manifiesto JSON canónico del mazo con versión, autoría, rangos cronológicos y sumarios editoriales.
 
 ---
@@ -100,6 +100,27 @@ La baraja completa consta de **576 cartas** rigurosamente investigadas y estruct
 
 Para desarrolladores, diseñadores y agentes de inteligencia artificial:
 * Consulta [**`AGENTS.md`**](./AGENTS.md) para la **especificación técnica maestra**, incluyendo el contrato JSON de datos, presupuestos estrictos de caracteres ($\le 45$ autor, $\le 145$ hito, $\le 150$ trivia), matemáticas del sistema cromático HSL, fórmulas de imposición y flujo obligatorio de compilación.
+
+### 🔤 Soporte Offline y Tipografías Locales
+La aplicación web utiliza por defecto las familias tipográficas modernas **Outfit** y **Space Grotesk**. Para garantizar una experiencia óptima y totalmente funcional en entornos desconectados (sin acceso a internet / air-gapped):
+1. **Directivas `@font-face` locales:** El repositorio incluye los 6 archivos TrueType (`.ttf`) oficiales en [`web/assets/fonts/`](./web/assets/fonts/), configurados en [`web/style.css`](./web/style.css) como respaldo local automático en caso de que Google Fonts no esté disponible.
+2. **Instalación en el sistema operativo (opcional para imprenta):** Para desarrolladores que generen pliegos de imprenta mediante Cairo (`rsvg-convert`) sin dependencias de red, estas fuentes pueden instalarse directamente en el sistema:
+   ```bash
+   # En distribuciones Linux:
+   mkdir -p ~/.local/share/fonts
+   cp web/assets/fonts/*.ttf ~/.local/share/fonts/
+   fc-cache -f -v
+   ```
+
+### 🏷️ Gobernanza y Sincronización de Versión
+La versión canónica del proyecto reside exclusivamente en el archivo [`VERSION`](./VERSION). Para evitar inconsistencias entre metadatos (`package.json`, `data/manifest.json`, `README.md`, `index.html`, `og-cover.svg`), se incluye un verificador automático:
+```bash
+# Validar paridad de versión:
+npm run version:check
+
+# Sincronizar automáticamente todos los archivos con VERSION:
+npm run version:sync
+```
 
 ---
 

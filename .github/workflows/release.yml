@@ -1,0 +1,47 @@
+name: Release PDFs (Carta por Volumen)
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "release-${{ github.ref }}"
+  cancel-in-progress: false
+
+jobs:
+  build-and-attach-release-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar herramientas de imprenta (librsvg, poppler, ghostscript)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y librsvg2-bin poppler-utils ghostscript
+
+      - name: Validar baraja y datos (Audit Deck)
+        run: npm run validate
+
+      - name: Generar PDFs por volumen en tamaño Carta (nombres canónicos)
+        run: npm run print:carta:volumes
+
+      - name: Adjuntar PDFs a la Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            print/v*/carta/hit-tazos-tech-vol*.pdf

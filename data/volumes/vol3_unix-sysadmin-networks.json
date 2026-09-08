@@ -5,10 +5,10 @@
     "index": 0,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Publicación del **RFC 882**, introduciendo el **Domain Name System (DNS)** para reemplazar el archivo estático HOSTS.TXT de ARPANET.",
+    "hito": "Publicación del **RFC 882**, introduciendo el sistema jerárquico de nombres de dominio (**DNS**) para reemplazar a HOSTS.TXT.",
     "year": 1983,
     "autor": "Paul Mockapetris (USC-ISI)",
-    "trivia": "Antes del DNS, Elizabeth Feinler en el NIC actualizaba manualmente el archivo HOSTS.TXT por teléfono."
+    "trivia": "Antes del DNS, Elizabeth Feinler en el NIC coordinaba manualmente por teléfono las actualizaciones del fichero HOSTS.TXT de ARPANET."
   },
   {
     "id": "vol3-0x01",
@@ -16,10 +16,10 @@
     "index": 1,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Nacimiento de **Alpine Linux**, una distribución orientada a routers embebidos construida sobre la librería de C *musl* y *BusyBox*.",
+    "hito": "Lanzamiento de **Alpine Linux**, distribución ultraligera basada en la biblioteca *musl libc* y las utilidades de *BusyBox*.",
     "year": 2005,
     "autor": "Natanael Copa",
-    "trivia": "Se convirtió en la imagen base favorita de millones de contenedores Docker por su diminuto tamaño de apenas **5 MB**."
+    "trivia": "Diseñada inicialmente para enrutadores y cortafuegos embebidos, se convirtió en la base predilecta de imágenes reducidas de Docker."
   },
   {
     "id": "vol3-0x02",
@@ -27,10 +27,10 @@
     "index": 2,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Lanzamiento de **Mercurial** (**hg**), concebido la misma semana que Git como alternativa distribuida escrita en Python y C.",
+    "hito": "Publicación de **Mercurial** (**hg**), sistema distribuido de control de versiones diseñado con rendimiento escrito en Python y C.",
     "year": 2005,
     "autor": "Matt Mackall",
-    "trivia": "Compitió con Git por Linux; aunque Linus usó Git, firmas como Facebook y Google operaron monorepos colosales con Mercurial."
+    "trivia": "Anunciado días después de la crisis de BitKeeper en 2005, fue adoptado por Mozilla, OpenJDK y empresas con grandes monorrepositorios."
   },
   {
     "id": "vol3-0x03",
@@ -38,10 +38,10 @@
     "index": 3,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Publicación del **RFC 1105** definiendo el **Border Gateway Protocol (BGP)**, el pegamento de enrutamiento que une Internet.",
+    "hito": "Publicación del **RFC 1105** definiendo el **Border Gateway Protocol (BGP)** para el enrutamiento interdominio en Internet.",
     "year": 1989,
     "autor": "Kirk Lougheed y Yakov Rekhter",
-    "trivia": "El borrador inicial fue bosquejado en tres servilletas manchadas de kétchup durante una reunión de IETF."
+    "trivia": "El borrador inicial fue bosquejado por los autores en tres servilletas durante una reunión del IETF en 1989 para sustituir a EGP."
   },
   {
     "id": "vol3-0x04",
@@ -49,10 +49,10 @@
     "index": 4,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Lanzamiento de **Open vSwitch (OVS)**, el conmutador virtual multicapa de producción para redes definidas por software (SDN).",
+    "hito": "Lanzamiento de **Open vSwitch (OVS)**, conmutador virtual multicapa de código abierto para redes definidas por software (SDN).",
     "year": 2009,
     "autor": "Ben Pfaff, Justin Pettit (Nicira)",
-    "trivia": "Permitió a los hipervisores conmutar tráfico de máquinas virtuales a velocidad de línea mediante OpenFlow."
+    "trivia": "Permitió a hipervisores conmutar tráfico entre máquinas virtuales con inspección profunda y control programable mediante OpenFlow."
   },
   {
     "id": "vol3-0x05",
@@ -60,10 +60,10 @@
     "index": 5,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Presentación de la legendaria conferencia *\"10+ Deploys Per Day: Dev and Ops Cooperation at Flickr\"*, alumbrando el movimiento **DevOps**.",
+    "hito": "Presentación de la conferencia «10+ Deploys Per Day» en Velocity, impulsando las bases de la metodología **DevOps**.",
     "year": 2009,
     "autor": "John Allspaw y Paul Hammond (Flickr)",
-    "trivia": "Mostraron que desarrollo y operaciones podían colaborar en armonía, desterrando los despliegues traumáticos de antaño."
+    "trivia": "Demostró la viabilidad de desplegar cambios continuos en producción mediante integración automatizada y confianza entre desarrollo y operaciones."
   },
   {
     "id": "vol3-0x06",
@@ -71,10 +71,10 @@
     "index": 6,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Publicación del **RFC 5321** actualizando la especificación formal del protocolo de transporte de correo **SMTP**.",
+    "hito": "Publicación del **RFC 5321**, consolidando la especificación formal y moderna del protocolo de transporte de correo **SMTP**.",
     "year": 2008,
     "autor": "John Klensin",
-    "trivia": "Consolidó tres décadas de extensiones de correo sobre el diseño original de Jon Postel de 1982."
+    "trivia": "Unificó extensiones acumuladas durante décadas de evolución sobre el protocolo original diseñado por Jon Postel en 1982."
   },
   {
     "id": "vol3-0x07",
@@ -82,10 +82,10 @@
     "index": 7,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Lanzamiento de **Network Time Protocol (NTP)** (*RFC 958*), sincronizando relojes informáticos a través de redes de paquetes con latencia.",
+    "hito": "Publicación del **Network Time Protocol (NTP)** (*RFC 958*), sincronizando relojes computacionales en redes con latencia variable.",
     "year": 1985,
     "autor": "David L. Mills (Univ. de Delaware)",
-    "trivia": "Mills operaba satélites y antenas de radio en su propio patio trasero para calibrar señales horarias."
+    "trivia": "Mills implementó filtros estadísticos y sincronizó servidores mediante receptores de radio WWV y satélites desde su propio laboratorio."
   },
   {
     "id": "vol3-0x08",
@@ -93,10 +93,10 @@
     "index": 8,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Creación de **Slackware Linux**, la distribución comercial más veterana que aún se mantiene en desarrollo activo continuo.",
+    "hito": "Lanzamiento de **Slackware Linux**, la distribución de Linux más veterana mantenida de forma continua bajo la filosofía tradicional Unix.",
     "year": 1993,
     "autor": "Patrick Volkerding",
-    "trivia": "Mantuvo una adhesión estricta a la filosofía Unix tipo BSD, con scripts de inicio limpios y sin herramientas opacas."
+    "trivia": "Priorizó scripts de arranque transparentes y paquetes simples en archivos tar sin resolución opaca ni dependencias forzadas."
   },
   {
     "id": "vol3-0x09",
@@ -104,10 +104,10 @@
     "index": 9,
     "domain": "hacker-culture-web",
     "tag": "collaboration-platforms",
-    "hito": "Lanzamiento de **SourceForge**, el primer portal centralizado gratuito para hospedar proyectos de código abierto con CVS, foros y descargas.",
+    "hito": "Lanzamiento de **SourceForge**, primer portal centralizado gratuito para el alojamiento de proyectos de software libre con CVS y foros.",
     "year": 1999,
     "autor": "VA Linux Systems (Tim Perdue)",
-    "trivia": "Alojaba casi todo el software libre del mundo, hasta que inyectar adware en instaladores arruinó su reputación."
+    "trivia": "Alojó los proyectos abiertos más destacados a inicios de siglo antes de que el auge de Subversion y Git transformara el ecosistema."
   },
   {
     "id": "vol3-0x0A",
@@ -115,10 +115,10 @@
     "index": 10,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Publicación del **RFC 2616** definiendo la especificación estándar de **HTTP/1.1**, introduciendo conexiones persistentes *Keep-Alive*.",
+    "hito": "Publicación del **RFC 2616**, consolidando la norma formal y definitiva del estándar de transporte web **HTTP/1.1**.",
     "year": 1999,
     "autor": "IETF (Roy Fielding, Jim Gettys et al.)",
-    "trivia": "Solucionó la ineficiencia de abrir una conexión TCP distinta para cada imagen o recurso de una página web."
+    "trivia": "Estandarizó la compresión de contenido, el control estricto de caché con cabeceras ETag y la gestión de conexiones compartidas persistentes."
   },
   {
     "id": "vol3-0x0B",
@@ -126,10 +126,10 @@
     "index": 11,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Creación del grupo rebelde de estandarización **WHATWG** por ingenieros de Apple, Mozilla y Opera para rescatar el HTML.",
+    "hito": "Fundación del grupo de trabajo **WHATWG**, impulsando la evolución pragmática y continua del estándar **HTML5** en navegadores.",
     "year": 2004,
     "autor": "Ian Hickson, David Hyatt et al.",
-    "trivia": "Se rebelaron contra los planes del W3C de abandonar HTML para imponer el complejo e intolerante estándar *XHTML 2.0*, fundando las bases de HTML5."
+    "trivia": "Creado por ingenieros de Mozilla, Opera y Apple tras discrepar de los planes del W3C de reemplazar HTML por la sintaxis estricta de XHTML 2.0."
   },
   {
     "id": "vol3-0x0C",
@@ -137,10 +137,10 @@
     "index": 12,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Creación de la utilidad de diagnóstico **Traceroute**, rastreando los saltos de enrutamiento en redes IP usando el campo TTL.",
+    "hito": "Desarrollo de la herramienta de diagnóstico **Traceroute**, rastreando saltos de red mediante la manipulación del campo TTL de paquetes IP.",
     "year": 1988,
     "autor": "Van Jacobson (LBL)",
-    "trivia": "Se le ocurrió la idea tras el gran colapso por congestión de Internet ocurrido a finales de los 80."
+    "trivia": "Envía paquetes incrementando el TTL de uno en uno para forzar respuestas ICMP Time Exceeded de cada enrutador intermedio."
   },
   {
     "id": "vol3-0x0D",
@@ -148,10 +148,10 @@
     "index": 13,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Desarrollo de **Vi**, el editor modal de pantalla completa incluido en la primera distribución BSD de Unix.",
+    "hito": "Desarrollo del editor de texto modal **Vi** para la distribución BSD, permitiendo edición visual en pantalla completa sobre terminales.",
     "year": 1976,
     "autor": "Bill Joy (UC Berkeley)",
-    "trivia": "Joy usó `h`,`j`,`k`,`l` porque el terminal *Lear Siegler ADM-3A* tenía flechas impresas en esas teclas físicas."
+    "trivia": "Joy asignó las teclas de navegación a `h`,`j`,`k`,`l` porque el terminal físico Lear Siegler ADM-3A carecía de teclas de cursor dedicadas."
   },
   {
     "id": "vol3-0x0E",
@@ -159,10 +159,10 @@
     "index": 14,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Publicación del **RFC 3031** formalizando la arquitectura **MPLS** (*Multiprotocol Label Switching*) para redes troncales.",
+    "hito": "Publicación del **RFC 3031** formalizando la arquitectura **MPLS** (*Multiprotocol Label Switching*) para redes troncales de alta velocidad.",
     "year": 2001,
     "autor": "Eric Rosen, Arun Viswanathan",
-    "trivia": "Aceleró el enrutamiento de paquetes en proveedores de Internet sustituyendo búsquedas IP por etiquetas fijas."
+    "trivia": "Aceleró la conmutación de tráfico en proveedores troncales al reemplazar la costosa búsqueda en tablas IP por conmutación de etiquetas cortas."
   },
   {
     "id": "vol3-0x0F",
@@ -170,10 +170,10 @@
     "index": 15,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Nacimiento de **Red Hat Linux**, apostando por el empaquetado binario corporativo mediante el formato `.rpm`.",
+    "hito": "Lanzamiento de **Red Hat Linux**, introduciendo el gestor de paquetes binarios **RPM** para despliegues estables en servidores corporativos.",
     "year": 1994,
     "autor": "Marc Ewing y Bob Young",
-    "trivia": "Nombrado por la gorra roja de Cornell que Ewing usaba en el laboratorio para que la gente le pidiera ayuda técnica."
+    "trivia": "El nombre hace honor a la gorra roja que Ewing utilizaba en la universidad; la empresa fue pionera en monetizar soporte profesional de código abierto."
   },
   {
     "id": "vol3-0x10",
@@ -181,10 +181,10 @@
     "index": 16,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Firma del pacto histórico entre W3C y WHATWG, acordando que **HTML** se regirá únicamente como un estándar vivo (*Living Standard*).",
+    "hito": "Acuerdo institucional formal entre W3C y WHATWG, adoptando **HTML** como un estándar vivo único (*Living Standard*) sin versiones rígidas.",
     "year": 2019,
-    "autor": "W3C y WHATWG",
-    "trivia": "Puso fin a quince años de disputas burocráticas entre organismos, unificando la documentación canónica de la web bajo un único consorcio."
+    "autor": "Consorcio W3C y WHATWG",
+    "trivia": "Puso fin a quince años de discrepancias entre ambos organismos, unificando la especificación canónica y el desarrollo de APIs de la web."
   },
   {
     "id": "vol3-0x11",
@@ -192,10 +192,10 @@
     "index": 17,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Lanzamiento de **IntelliJ IDEA**, revolucionando los entornos de desarrollo integrados con autocompletado y refactorización semántica avanzada.",
+    "hito": "Lanzamiento de **IntelliJ IDEA**, destacando por su análisis sintáctico en tiempo real y refactorizaciones semánticas automatizadas.",
     "year": 2001,
     "autor": "JetBrains (S. Dmitriev y V. Kipiatkov)",
-    "trivia": "Primer IDE en procesar el árbol sintáctico en RAM para refactorizar Java de forma segura, triunfando con cobro de licencias."
+    "trivia": "Procesaba el árbol de sintaxis abstracta (AST) en memoria, permitiendo renombrar clases y extraer métodos con seguridad."
   },
   {
     "id": "vol3-0x12",
@@ -203,10 +203,10 @@
     "index": 18,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Creación de **SCCS** (*Source Code Control System*), el primer sistema automatizado de control de versiones de código de la historia.",
+    "hito": "Creación de **SCCS** (*Source Code Control System*), primer software automatizado de control de versiones para código fuente.",
     "year": 1972,
     "autor": "Marc Rochkind (Bell Labs)",
-    "trivia": "Creado para IBM sobre tarjetas perforadas; guardaba deltas entrelazados para ahorrar espacio en discos magnéticos chicos."
+    "trivia": "Desarrollado en Bell Labs sobre Unix temprano, introdujo el almacenamiento de diferencias (*interleaved deltas*) para optimizar el espacio."
   },
   {
     "id": "vol3-0x13",
@@ -214,10 +214,10 @@
     "index": 19,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Integración de un kernel de Linux real completo dentro del sistema operativo Windows con la llegada de **WSL2**.",
+    "hito": "Lanzamiento de **WSL2** en Windows 10, integrando un kernel Linux completo ejecutado sobre un hipervisor liviano con acceso nativo a GPU.",
     "year": 2019,
     "autor": "Microsoft",
-    "trivia": "Simbolizó la reconciliación de Microsoft con Linux, permitiendo correr binarios y herramientas ELF nativas en Windows."
+    "trivia": "Sustituyó la emulación de llamadas al sistema de WSL1 por un kernel real compilado por Microsoft, optimizando el rendimiento de E/S."
   },
   {
     "id": "vol3-0x14",
@@ -225,10 +225,10 @@
     "index": 20,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Creación del programa **Sudo** (*Superuser Do*), permitiendo a administradores delegar comandos privilegiados con auditoría.",
+    "hito": "Creación del programa **Sudo** (*Superuser Do*) en la Universidad de Buffalo, permitiendo delegar comandos privilegiados con auditoría.",
     "year": 1980,
     "autor": "Bob Coggeshall y Cliff Spencer",
-    "trivia": "Nació en SUNY Buffalo porque los operadores necesitaban reiniciar colas de impresión sin ser root."
+    "trivia": "Nació para permitir que operadores universitarios reiniciaran colas de impresión de forma controlada sin conocer la contraseña del usuario root."
   },
   {
     "id": "vol3-0x15",
@@ -236,10 +236,10 @@
     "index": 21,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Conquista del umbral histórico del **4% de cuota de mercado en computadoras de escritorio** por parte de Linux a nivel mundial.",
+    "hito": "Superación del umbral del **4% de cuota de mercado de escritorio** por parte de Linux, reflejando avances en compatibilidad de videojuegos.",
     "year": 2024,
     "autor": "Comunidad Linux y Valve Software",
-    "trivia": "Impulsado por la consola *Steam Deck* de Valve y Proton, demostró la madurez de Linux en el gaming de alta gama."
+    "trivia": "La adopción de la consola Steam Deck y la capa de compatibilidad Proton aceleraron la madurez gráfica y de controladores en distribuciones libres."
   },
   {
     "id": "vol3-0x16",
@@ -247,10 +247,10 @@
     "index": 22,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Lanzamiento del protocolo de enrutamiento criptográfico seguro y anónimo de baja latencia **I2P (Invisible Internet Project)**.",
+    "hito": "Publicación del protocolo de red anónima **I2P** (*Invisible Internet Project*), implementando enrutamiento criptográfico de ajo.",
     "year": 2003,
-    "autor": "jrandom",
-    "trivia": "Implementa enrutamiento de ajo (garlic routing) agrupando múltiples mensajes para dificultar el análisis de tráfico."
+    "autor": "Proyecto I2P (jrandom et al.)",
+    "trivia": "Agrupa múltiples mensajes cifrados en un único paquete (*garlic routing*) a través de túneles unidireccionales de entrada y salida."
   },
   {
     "id": "vol3-0x17",
@@ -258,10 +258,10 @@
     "index": 23,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Primer lanzamiento de la shell **Bash (Bourne Again SHell)** como parte del Proyecto GNU, reemplazando la Bourne Shell original.",
+    "hito": "Creación del lenguaje **AWK** en Bell Labs, formalizando el procesamiento orientado a patrones y registros de texto en entornos Unix.",
     "year": 1989,
-    "autor": "Brian Fox (Free Software Foundation)",
-    "trivia": "Su nombre es un juego de palabras homenajeando a Steve Bourne y al concepto de 'renacimiento'."
+    "autor": "Alfred Aho, P. Weinberger y B. Kernighan",
+    "trivia": "Toma su nombre de las iniciales de sus tres autores; su estructura de bloques basada en patrones influyó directamente en el diseño de Perl."
   },
   {
     "id": "vol3-0x18",
@@ -269,10 +269,10 @@
     "index": 24,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Lanzamiento de la herramienta de sincronización incremental de archivos remotos **Rsync**, minimizando el ancho de banda transferido.",
+    "hito": "Presentación de la utilidad **Rsync**, optimizando la transferencia remota de datos mediante un algoritmo de diferencias rotatorias.",
     "year": 1996,
     "autor": "Andrew Tridgell y Paul Mackerras",
-    "trivia": "Su algoritmo de suma de verificación rotatoria revolucionó los respaldos en redes lentas."
+    "trivia": "Calcula sumas de verificación en bloques de datos para enviar únicamente los bytes modificados a través de la red."
   },
   {
     "id": "vol3-0x19",
@@ -280,10 +280,10 @@
     "index": 25,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Lanzamiento de la primera versión del protocolo y suite de cifrado remoto **SSH-1 (Secure Shell)** para sustituir a telnet y rsh.",
+    "hito": "Lanzamiento del protocolo y software **SSH-1** (*Secure Shell*), reemplazando comandos inseguros como telnet y rsh con cifrado de sesión.",
     "year": 1995,
     "autor": "Tatu Ylönen (HUT)",
-    "trivia": "Lo programó en pocas semanas después de que un ataque de sniffing comprometiera su red universitaria."
+    "trivia": "Diseñado en la Universidad Tecnológica de Helsinki tras sufrir un ataque de captura de contraseñas por sniffing en la red del campus."
   },
   {
     "id": "vol3-0x1A",
@@ -291,10 +291,10 @@
     "index": 26,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Debut del navegador gráfico **NCSA Mosaic**, introduciendo por primera vez la etiqueta `<img>` para visualizar imágenes intercaladas con texto.",
+    "hito": "Lanzamiento del navegador gráfico **NCSA Mosaic**, incorporando la etiqueta `<img>` para visualizar imágenes intercaladas con el texto.",
     "year": 1993,
-    "autor": "Marc Andreessen y Eric Bina",
-    "trivia": "Desató la fiebre web; antes de Mosaic, las fotos debían descargarse como archivos y verse en ventanas externas separadas."
+    "autor": "Marc Andreessen y Eric Bina (NCSA)",
+    "trivia": "Desarrollado en la Universidad de Illinois, transformó la web académica en un fenómeno multimedia accesible al público no técnico."
   },
   {
     "id": "vol3-0x1B",
@@ -302,10 +302,10 @@
     "index": 27,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Presentación de **Safari 1.0** para Mac OS X por parte de Steve Jobs, impulsado por el motor de código abierto **WebKit**.",
+    "hito": "Lanzamiento de **Safari 1.0** para Mac, adoptando el motor de renderizado de código abierto **WebKit** derivado de KHTML.",
     "year": 2003,
-    "autor": "Apple (Don Melton)",
-    "trivia": "Apple bifurcó *KHTML* de KDE para crear WebKit, desterrando para siempre a Internet Explorer de las computadoras Mac."
+    "autor": "Apple (Don Melton y equipo WebKit)",
+    "trivia": "Apple bifurcó KHTML del proyecto libre KDE; la alta eficiencia de WebKit sirvió más tarde como cimiento inicial para Google Chrome."
   },
   {
     "id": "vol3-0x1C",
@@ -313,10 +313,10 @@
     "index": 28,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Creación del proyecto **OpenSSH** como bifurcación abierta y libre de la suite SSH original dentro de OpenBSD.",
+    "hito": "Creación del proyecto **OpenSSH**, bifurcando la base libre de SSH para garantizar una suite de administración remota libre y auditada.",
     "year": 1999,
-    "autor": "Theo de Raadt y Markus Friedl",
-    "trivia": "Hoy protege los accesos administrativos de prácticamente todos los servidores Linux del planeta."
+    "autor": "Theo de Raadt y Markus Friedl (OpenBSD)",
+    "trivia": "Desarrollado dentro de OpenBSD tras restricciones de licencia de Ylönen, se convirtió en el estándar seguro para administrar servidores en red."
   },
   {
     "id": "vol3-0x1D",
@@ -324,10 +324,10 @@
     "index": 29,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Presentación de **Internet Explorer 1.0** por parte de Microsoft, incluido como un paquete complementario en *Microsoft Plus! for Windows 95*.",
+    "hito": "Lanzamiento de **Internet Explorer 1.0** incluido en el paquete complementario *Microsoft Plus! for Windows 95*.",
     "year": 1995,
-    "autor": "Microsoft (Thomas Reardon)",
-    "trivia": "Microsoft licenció el código de *Spyglass Mosaic*, desatando la Primera Guerra de los Navegadores contra Netscape."
+    "autor": "Microsoft (Thomas Reardon et al.)",
+    "trivia": "Microsoft licenció el motor de código de *Spyglass Mosaic*, iniciando la Primera Guerra de los Navegadores contra Netscape Navigator."
   },
   {
     "id": "vol3-0x1E",
@@ -335,10 +335,10 @@
     "index": 30,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Nacimiento de **Subversion** (**SVN**), diseñado para corregir las graves deficiencias estructurales de CVS.",
+    "hito": "Publicación del sistema de control de versiones **Subversion** (**SVN**), remediando limitaciones de diseño fundamentales de CVS.",
     "year": 2000,
     "autor": "CollabNet (Jim Blandy y Karl Fogel)",
-    "trivia": "Sumó commits atómicos y renombrado limpio de carpetas y archivos binarios sin romper el historial del repositorio."
+    "trivia": "Introdujo confirmaciones atómicas, soporte nativo de metadatos y renombrado consistente de directorios sin romper el historial del proyecto."
   },
   {
     "id": "vol3-0x1F",
@@ -346,10 +346,10 @@
     "index": 31,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Lanzamiento del multiplexor de terminales en modo texto **GNU Screen**, permitiendo sesiones persistentes en consolas Unix.",
+    "hito": "Publicación de **GNU Screen**, multiplexor de terminales en modo texto que permitió sesiones de consola persistentes y desconectables.",
     "year": 1987,
     "autor": "Oliver Laumann y Carsten Bormann",
-    "trivia": "Permitió que una sesión no se cerrara si la conexión por módem telefónico se cortaba repentinamente."
+    "trivia": "Permitió que procesos interactivos continuaran ejecutándose en segundo plano aunque se interrumpiera la conexión telefónica por módem."
   },
   {
     "id": "vol3-0x20",
@@ -357,10 +357,10 @@
     "index": 32,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Presentación pública de **Zed**, un editor de código colaborativo de latencia ultra baja programado íntegramente en lenguaje **Rust**.",
+    "hito": "Presentación de **Zed**, editor de código colaborativo de latencia reducida programado en Rust con renderizado acelerado por GPU.",
     "year": 2023,
     "autor": "Nathan Sobo (Zed Industries)",
-    "trivia": "Creado por los autores de Atom, abandonó Electron para renderizar con la GPU a 120 FPS fluidos en lenguaje Rust."
+    "trivia": "Desarrollado por los creadores originales de Atom, reemplazó el entorno de Electron por una arquitectura nativa a 120 fotogramas por segundo."
   },
   {
     "id": "vol3-0x21",
@@ -368,10 +368,10 @@
     "index": 33,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Publicación del **RFC 2131** estandarizando **DHCP (Dynamic Host Configuration Protocol)** para asignación automática de IPs.",
+    "hito": "Publicación del **RFC 2131** estandarizando el protocolo **DHCP** para la asignación y renovación dinámica de direcciones IP.",
     "year": 1997,
     "autor": "Ralph Droms (Bucknell University)",
-    "trivia": "Evolucionó a partir del protocolo BOOTP para satisfacer la demanda de clientes móviles en redes LAN."
+    "trivia": "Evolucionó a partir de BOOTP para gestionar el arrendamiento temporal de parámetros de red ante la creciente movilidad de clientes."
   },
   {
     "id": "vol3-0x22",
@@ -379,10 +379,10 @@
     "index": 34,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Apagado definitivo y bloqueo de ejecución de **Adobe Flash Player** en todo el ecosistema global de navegadores web.",
+    "hito": "Retirada formal y bloqueo de ejecución de **Adobe Flash Player** en los principales navegadores web a nivel internacional.",
     "year": 2020,
-    "autor": "Adobe Systems y gigantes web",
-    "trivia": "Cumplió la profecía de la carta de Steve Jobs de 2010, enterrando 25 años de Flash por seguridad y rendimiento."
+    "autor": "Adobe Systems y consorcio de navegadores",
+    "trivia": "La transición hacia estándares abiertos de HTML5, audio y WebGL materializó la postura crítica expuesta por Steve Jobs en 2010."
   },
   {
     "id": "vol3-0x23",
@@ -390,10 +390,10 @@
     "index": 35,
     "domain": "hacker-culture-web",
     "tag": "collaboration-platforms",
-    "hito": "Apagón masivo de comunidades (*Reddit Blackout*) en protesta por las abusivas tarifas impuestas por la directiva al acceso a su API.",
+    "hito": "Cierre coordinado de miles de foros en Reddit (**Reddit Blackout**) en protesta por las nuevas tarifas comerciales impuestas a su API.",
     "year": 2023,
-    "autor": "Comunidades y Moderadores de Reddit",
-    "trivia": "Miles de subreddits cerraron en protesta por cobros de APIs, quebrando apps populares como *Apollo* y avivando redes libres."
+    "autor": "Comunidades y moderadores de Reddit",
+    "trivia": "Las tarifas obligaron al cierre de clientes móviles independientes como Apollo y avivaron el interés por redes federadas como Lemmy."
   },
   {
     "id": "vol3-0x24",
@@ -401,10 +401,10 @@
     "index": 36,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Publicación de la especificación de **HTTP/3** en el **RFC 9114**, reemplazando el protocolo TCP por conexiones sobre **QUIC** (UDP).",
+    "hito": "Publicación del **RFC 9114** estableciendo el estándar **HTTP/3**, reemplazando el transporte TCP subyacente por flujos sobre **QUIC** (UDP).",
     "year": 2022,
-    "autor": "IETF (Robin Marx et al.)",
-    "trivia": "Reduce la latencia móvil y erradica el bloqueo de cabeza de línea de TCP usando canales UDP cifrados."
+    "autor": "IETF (Mike Bishop et al.)",
+    "trivia": "Mitiga el bloqueo de cabeza de línea entre secuencias independientes y acelera el establecimiento de sesiones TLS 1.3 sobre UDP."
   },
   {
     "id": "vol3-0x25",
@@ -412,10 +412,10 @@
     "index": 37,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Lanzamiento del sistema de inicio orientado a eventos **Upstart** en Ubuntu, diseñado para reemplazar SysV init asíncronamente.",
+    "hito": "Lanzamiento de **Upstart** en Ubuntu, introduciendo un sistema de inicio guiado por eventos para reemplazar los scripts secuenciales SysV.",
     "year": 2006,
     "autor": "Scott James Remnant (Canonical)",
-    "trivia": "Gestionaba de manera nativa la conexión y desconexión de dispositivos USB en caliente antes de la llegada de systemd."
+    "trivia": "Gestionaba de forma asíncrona la inserción de dispositivos USB y montajes dinámicos antes de la adopción generalizada de systemd."
   },
   {
     "id": "vol3-0x26",
@@ -423,10 +423,10 @@
     "index": 38,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Presentación del sistema de archivos distribuido de red **NFS (Network File System)** permitiendo montar discos transparentemente.",
+    "hito": "Presentación del sistema de archivos distribuido **NFS** (*Network File System*), permitiendo montar directorios remotos transparentemente.",
     "year": 1984,
-    "autor": "Sun Microsystems (Russ Sandberg)",
-    "trivia": "Operaba sobre RPC y XDR, convirtiendo a las estaciones de trabajo en clientes sin disco local."
+    "autor": "Russ Sandberg et al. (Sun Microsystems)",
+    "trivia": "Basado en llamadas a procedimientos remotos (RPC) y XDR, posibilitó estaciones de trabajo Unix que operaban como clientes sin disco local."
   },
   {
     "id": "vol3-0x27",
@@ -434,10 +434,10 @@
     "index": 39,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Lanzamiento del multiplexor de terminales moderno **Tmux**, optimizado con soporte cliente-servidor nativo y BSD-friendly.",
+    "hito": "Publicación del multiplexor de terminales **Tmux**, ofreciendo gestión cliente-servidor de ventanas y paneles para consolas Unix.",
     "year": 2007,
     "autor": "Nicholas Marriott",
-    "trivia": "Diseñado como alternativa ligera a Screen con una arquitectura limpia de cliente-servidor."
+    "trivia": "Diseñado bajo licencia BSD como una alternativa modular a GNU Screen, permite dividir paneles interactivos y preservar sesiones activas."
   },
   {
     "id": "vol3-0x28",
@@ -445,10 +445,10 @@
     "index": 40,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Estandarización de JavaScript como **ECMAScript 1st Edition** (**ES1**) formalizada en la norma **ECMA-262**.",
+    "hito": "Publicación del estándar **ECMAScript 1st Edition** (**ES1**) formalizado en la norma **ECMA-262** para la interoperabilidad web.",
     "year": 1997,
     "autor": "Ecma International",
-    "trivia": "Netscape cedió el lenguaje a Ecma en Suiza para protegerlo ante los intentos de Microsoft de fragmentarlo con *JScript*."
+    "trivia": "Netscape transfirió las especificaciones a Ecma en Suiza para fijar un estándar neutro frente a la implementación JScript de Microsoft."
   },
   {
     "id": "vol3-0x29",
@@ -456,10 +456,10 @@
     "index": 41,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Creación del protocolo de bitácora remota **Syslog** para el proyecto Sendmail en entornos BSD Unix.",
+    "hito": "Creación del protocolo y servicio **Syslog** para el agente Sendmail, centralizando el registro de eventos en sistemas BSD Unix.",
     "year": 1980,
     "autor": "Eric Allman (UC Berkeley)",
-    "trivia": "Operó como estándar 'de facto' durante más de dos décadas antes de ser formalizado en el RFC 3164."
+    "trivia": "Funcionó como estándar de facto en telecomunicaciones y servidores durante dos décadas antes de su formalización en el RFC 3164."
   },
   {
     "id": "vol3-0x2A",
@@ -467,10 +467,10 @@
     "index": 42,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Lanzamiento del programador cron moderno **Vixie Cron**, introduciendo sintaxis avanzada de temporizado para SysAdmins.",
+    "hito": "Lanzamiento de **Vixie Cron**, reescribiendo el demonio de tareas programadas de Unix con compatibilidad de variables y crontabs por usuario.",
     "year": 1987,
     "autor": "Paul Vixie",
-    "trivia": "Vixie lo escribió cansado de las limitaciones del comando cron tradicional de AT&T Unix."
+    "trivia": "Sustituyó la versión monolítica original de AT&T, convirtiéndose en el programador de tareas estándar en BSD y distribuciones de Linux."
   },
   {
     "id": "vol3-0x2B",
@@ -478,10 +478,10 @@
     "index": 43,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Publicación del analizador de tráfico de paquetes **Tcpdump** y la biblioteca portátil **libpcap**.",
+    "hito": "Desarrollo del analizador **Tcpdump** y la biblioteca **libpcap**, integrando el filtro de paquetes de Berkeley (**BPF**).",
     "year": 1988,
-    "autor": "Van Jacobson, Craig Leres (LBL)",
-    "trivia": "Introdujo el filtro de paquetes BPF (Berkeley Packet Filter), ancestro directo de eBPF."
+    "autor": "Van Jacobson, Craig Leres, S. McCanne (LBL)",
+    "trivia": "La máquina virtual BPF ejecutaba filtros de paquetes en el propio espacio de kernel, concepto precursor del moderno eBPF en Linux."
   },
   {
     "id": "vol3-0x2C",
@@ -489,10 +489,10 @@
     "index": 44,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Lanzamiento de **Internet Explorer 6.0**, alcanzando un monopolio del 95% de la navegación web mundial.",
+    "hito": "Lanzamiento de **Internet Explorer 6.0** con Windows XP, consolidando un monopolio de más del 90% del mercado de navegación web.",
     "year": 2001,
     "autor": "Microsoft",
-    "trivia": "Al derrotar a Netscape, Microsoft desarmó el equipo de IE; sus bugs de renderizado congelaron la web por un lustro."
+    "trivia": "Tras el declive de Netscape, la falta de actualizaciones prolongada y sus discrepancias con estándares del W3C frenaron la evolución web."
   },
   {
     "id": "vol3-0x2D",
@@ -500,10 +500,10 @@
     "index": 45,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Lanzamiento del gestor de paquetes alternativo de Linux **Nix**, implementando despliegues puramente funcionales y atómicos.",
+    "hito": "Publicación del gestor de paquetes **Nix**, implementando despliegues declarativos, reproducibles y actualizaciones atómicas.",
     "year": 2004,
-    "autor": "Eelco Dolstra (Univ. de Utrecht)",
-    "trivia": "Almacena paquetes bajo hashes criptográficos únicos en `/nix/store`, erradicando el infierno de dependencias."
+    "autor": "Eelco Dolstra (Universidad de Utrecht)",
+    "trivia": "Almacena cada versión bajo un hash criptográfico único en `/nix/store`, posibilitando rollbacks instantáneos sin conflictos de librerías."
   },
   {
     "id": "vol3-0x2E",
@@ -511,10 +511,10 @@
     "index": 46,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Creación de **CFEngine** en la Universidad de Oslo, formulando la teoría del mantenimiento del estado deseado y la **idempotencia**.",
+    "hito": "Creación de **CFEngine**, formulando la teoría del mantenimiento automatizado del estado deseado y la **idempotencia** en sistemas.",
     "year": 1993,
-    "autor": "Mark Burgess",
-    "trivia": "Físico teórico, aplicó teoría de control para que un script pudiera ejecutarse mil veces dando siempre el mismo estado."
+    "autor": "Mark Burgess (Universidad de Oslo)",
+    "trivia": "Inspirado en principios de física teórica, estableció que una receta de configuración debe converger al estado correcto sin efectos no deseados."
   },
   {
     "id": "vol3-0x2F",
@@ -522,10 +522,10 @@
     "index": 47,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Fundación del consorcio **W3C** (*World Wide Web Consortium*) en el MIT para coordinar la evolución de los estándares abiertos de la red.",
+    "hito": "Fundación del **World Wide Web Consortium** (**W3C**) en el MIT, coordinando el desarrollo de recomendaciones y estándares abiertos.",
     "year": 1994,
-    "autor": "Tim Berners-Lee",
-    "trivia": "Berners-Lee rechazó patentar la web o cobrar regalías, garantizando que fuera un bien común libre y universal."
+    "autor": "Tim Berners-Lee (MIT / CERN)",
+    "trivia": "Berners-Lee promovió que las especificaciones nucleares de la web permanecieran libres de regalías y patentes propietarias."
   },
   {
     "id": "vol3-0x30",
@@ -533,10 +533,10 @@
     "index": 48,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Divulgación pública del concepto **Cloud Computing** por parte de Eric Schmidt en una conferencia de ejecutivos en San José.",
+    "hito": "Popularización pública del término **Cloud Computing** por Eric Schmidt en la conferencia Search Engine Strategies de San José.",
     "year": 2006,
     "autor": "Eric Schmidt (Google)",
-    "trivia": "Eric Schmidt definió la nube como un nuevo paradigma donde datos y cómputo residen en servidores accesibles vía web."
+    "trivia": "Describió una arquitectura emergente donde los servicios de datos y la capacidad computacional residen en servidores remotos accesibles vía web."
   },
   {
     "id": "vol3-0x31",
@@ -544,10 +544,10 @@
     "index": 49,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Creación de **CVS** (*Concurrent Versions System*), permitiendo a múltiples programadores modificar un mismo archivo en paralelo.",
+    "hito": "Publicación de **CVS** (*Concurrent Versions System*), permitiendo la edición concurrente de ficheros mediante fusiones automáticas.",
     "year": 1986,
     "autor": "Dick Grune",
-    "trivia": "Scripts sobre RCS con fusiones optimistas, eliminando el bloqueo manual de archivos que paralizaba a los equipos."
+    "trivia": "Sustituyó el bloqueo exclusivo de archivos de RCS por un modelo optimista en el que varios autores editan y sincronizan copias locales."
   },
   {
     "id": "vol3-0x32",
@@ -555,10 +555,10 @@
     "index": 50,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Lanzamiento de **Wireshark** (originalmente bautizado como *Ethereal*), el analizador de protocolos de red con interfaz gráfica.",
+    "hito": "Lanzamiento de **Ethereal** (posteriormente **Wireshark**), analizador interactivo de protocolos de red con decodificación de paquetes.",
     "year": 1998,
     "autor": "Gerald Combs",
-    "trivia": "Combs lo programó para resolver problemas de red en su empleo en un proveedor de Internet."
+    "trivia": "Desarrollado para diagnosticar redes de área local, incorporó desensambladores para cientos de protocolos de comunicación."
   },
   {
     "id": "vol3-0x33",
@@ -566,10 +566,10 @@
     "index": 51,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Presentación de **Argo CD**, un controlador declarativo de despliegue continuo para Kubernetes guiado por principios GitOps.",
+    "hito": "Lanzamiento de **Argo CD**, controlador declarativo para Kubernetes fundamentado en el patrón operacional **GitOps**.",
     "year": 2018,
     "autor": "Applatix / Intuit",
-    "trivia": "Su consola visual compara en tiempo real el árbol deseado de Git con el estado vivo del cluster de Kubernetes."
+    "trivia": "Sincroniza de forma continua el estado real de un clúster con la configuración declarativa versionada en repositorios Git."
   },
   {
     "id": "vol3-0x34",
@@ -577,10 +577,10 @@
     "index": 52,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Aprobación de la recomendación de **CSS1** (*Cascading Style Sheets*) por parte del W3C para separar la estructura visual del diseño.",
+    "hito": "Aprobación de la recomendación **CSS1** (*Cascading Style Sheets*) por el W3C, separando el diseño visual de la estructura del documento.",
     "year": 1996,
     "autor": "Håkon Wium Lie y Bert Bos",
-    "trivia": "Eliminó las monstruosas tablas anidadas y gifs transparentes que los diseñadores usaban para alinear cajas."
+    "trivia": "Reemplazó el uso de tablas HTML anidadas e imágenes invisibles por propiedades formales de tipografía, colores y márgenes."
   },
   {
     "id": "vol3-0x35",
@@ -588,10 +588,10 @@
     "index": 53,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Adopción generalizada de la extensión de seguridad **Encrypted Client Hello** (**ECH**) en conexiones TLS para blindar la privacidad web.",
+    "hito": "Despliegue del mecanismo **Encrypted Client Hello** (**ECH**) en TLS 1.3, blindando la privacidad del nombre del servidor en conexiones web.",
     "year": 2025,
-    "autor": "IETF y proveedores CDN",
-    "trivia": "Cifra el campo SNI, impidiendo que proveedores de internet y censores estatales vean qué sitios específicos visitas."
+    "autor": "IETF y consorcio de infraestructura web",
+    "trivia": "Cifra la cabecera Server Name Indication (SNI), impidiendo que operadores de red y observadores intermedios deduzcan el dominio visitado."
   },
   {
     "id": "vol3-0x36",
@@ -599,10 +599,10 @@
     "index": 54,
     "domain": "hacker-culture-web",
     "tag": "collaboration-platforms",
-    "hito": "Lanzamiento del programa **GitHub Sponsors**, permitiendo a individuos y empresas financiar económicamente a mantenedores de código abierto.",
+    "hito": "Lanzamiento del programa **GitHub Sponsors**, facilitando la financiación recurrente de desarrolladores y proyectos de código abierto.",
     "year": 2019,
-    "autor": "Nat Friedman (GitHub)",
-    "trivia": "GitHub igualó donaciones hasta $5,000 por usuario sin cobrar comisiones, impulsando la sostenibilidad del software libre."
+    "autor": "GitHub (Nat Friedman)",
+    "trivia": "GitHub incentivó la sostenibilidad del software libre igualando donaciones iniciales sin aplicar comisiones de procesamiento financiero."
   },
   {
     "id": "vol3-0x37",
@@ -610,10 +610,10 @@
     "index": 55,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Lanzamiento sorpresa del navegador **Google Chrome** y su motor de ejecución de JavaScript **V8** con compilación a código máquina en memoria.",
+    "hito": "Lanzamiento de **Google Chrome** y del motor **V8**, introduciendo compilación directa de JavaScript a código máquina en memoria.",
     "year": 2008,
-    "autor": "Google (Lars Bak)",
-    "trivia": "Anunciado con un cómic dibujado por Scott McCloud; su motor V8 obligó a la competencia a reinventar sus navegadores."
+    "autor": "Google (Lars Bak y equipo de Chrome)",
+    "trivia": "El motor V8 eliminó la interpretación por bytecode intermedio de la época, elevando radicalmente la velocidad del software web."
   },
   {
     "id": "vol3-0x38",
@@ -621,10 +621,10 @@
     "index": 56,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Estándar **ECMAScript 5** (**ES5**), sumando el modo estricto \"use strict\", getters/setters y JSON.parse().",
+    "hito": "Publicación del estándar **ECMAScript 5** (**ES5**), incorporando el modo estricto, métodos funcionales de matrices y soporte nativo de JSON.",
     "year": 2009,
     "autor": "TC39 (Ecma International)",
-    "trivia": "Desbloqueó una década de estancamiento político en el comité TC39 tras el abandono definitivo del megalómano y divisivo proyecto *ECMAScript 4*."
+    "trivia": "Superó el prolongado estancamiento político del comité TC39 tras la cancelación del controvertido proyecto ECMAScript 4."
   },
   {
     "id": "vol3-0x39",
@@ -632,10 +632,10 @@
     "index": 57,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Creación de **Neovim**, bifurcación de Vim enfocada en refactorizar el código en C y añadir scripting nativo en **Lua**.",
+    "hito": "Lanzamiento de **Neovim**, refactorización abierta de Vim enfocada en arquitectura cliente-servidor asíncrona y scripting en **Lua**.",
     "year": 2014,
-    "autor": "Thiago de Arruda",
-    "trivia": "Nació tras el rechazo de parches de refactorización en Vim; Neovim revivió el fervor por editores de terminal modernos."
+    "autor": "Thiago de Arruda et al.",
+    "trivia": "Facilitó la integración con el protocolo Language Server Protocol (LSP) y democratizó la extensión del editor mediante scripts en Lua."
   },
   {
     "id": "vol3-0x3A",
@@ -643,10 +643,10 @@
     "index": 58,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Fallecimiento de **Bram Moolenaar**, conmocionando a la comunidad global de desarrollo tras 32 años de custodia ininterrumpida de Vim.",
+    "hito": "Fallecimiento de **Bram Moolenaar**, creador y mantenedor durante más de tres décadas del editor de texto **Vim**.",
     "year": 2023,
-    "autor": "Comunidad Mundial de Software Libre",
-    "trivia": "Comunidades del mundo le rindieron tributo; en su testamento legó fondos para continuar su causa caritativa en Uganda."
+    "autor": "Comunidad internacional de software libre",
+    "trivia": "En su testamento legó recursos para dar continuidad a la fundación caritativa ICCF Holland que financiaba un orfanato en Uganda."
   },
   {
     "id": "vol3-0x3B",
@@ -654,10 +654,10 @@
     "index": 59,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Acuñación del concepto **AJAX** (*Asynchronous JavaScript and XML*) en un influyente ensayo de diseño web interactivo.",
+    "hito": "Publicación del ensayo sobre **AJAX**, definiendo la arquitectura para aplicaciones web interactivas y asíncronas sin recarga de página.",
     "year": 2005,
     "autor": "Jesse James Garrett (Adaptive Path)",
-    "trivia": "Articuló cómo XHR, DOM y JS lograban experiencias fluidas de escritorio en la web, impulsado por *Google Maps*."
+    "trivia": "Articuló el uso coordinado del objeto XMLHttpRequest, el DOM y JavaScript, impulsado por experiencias como Google Suggest y Maps."
   },
   {
     "id": "vol3-0x3C",
@@ -665,10 +665,10 @@
     "index": 60,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Publicación de la especificación oficial de **HTTP/1.0** bajo el documento de estándares **RFC 1945**.",
+    "hito": "Publicación del documento informativo inicial documentando la práctica del protocolo **HTTP/1.0** en la web.",
     "year": 1996,
-    "autor": "Tim Berners-Lee, R. Fielding y Frystyk",
-    "trivia": "Introdujo cabeceras HTTP, códigos de estado como `200 OK` y `404 Not Found`, y soporte de tipos MIME multimedia."
+    "autor": "Tim Berners-Lee, Roy Fielding, Henrik Frystyk",
+    "trivia": "Formalizó el envío de cabeceras de metadatos, códigos numéricos de estado (como 200 y 404) y el soporte para tipos multimedia MIME."
   },
   {
     "id": "vol3-0x3D",
@@ -676,10 +676,10 @@
     "index": 61,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Lanzamiento del emulador de terminal moderno y acelerado por GPU **Alacritty**, priorizando simplicidad y velocidad extrema.",
+    "hito": "Lanzamiento de **Alacritty**, emulador de terminal multiplataforma en lenguaje Rust con renderizado acelerado por GPU vía OpenGL.",
     "year": 2017,
     "autor": "Joe Wilm",
-    "trivia": "Escrito en Rust, aprovecha OpenGL para descargar el renderizado tipográfico directamente en la tarjeta gráfica."
+    "trivia": "Delegó el dibujado de glifos a la tarjeta gráfica para eliminar latencias de entrada en consolas interactivas de sistemas Unix."
   },
   {
     "id": "vol3-0x3E",
@@ -687,10 +687,10 @@
     "index": 62,
     "domain": "hacker-culture-web",
     "tag": "collaboration-platforms",
-    "hito": "Creación de **GitLab** en Ucrania como una alternativa de código abierto autohospedable a GitHub.",
+    "hito": "Creación de **GitLab** en Ucrania, proporcionando una plataforma integral y libre para alojamiento de repositorios Git y flujos de CI/CD.",
     "year": 2011,
     "autor": "Dmitriy Zaporozhets y Valery Sizov",
-    "trivia": "Creado en Ucrania porque su autor no tenía presupuesto para costear licencias de GitHub en su empleo de entonces."
+    "trivia": "Desarrollada inicialmente en lenguaje Ruby sobre una base abierta para permitir a organizaciones hospedar su propio entorno de código."
   },
   {
     "id": "vol3-0x3F",
@@ -698,9 +698,9 @@
     "index": 63,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Salida triunfal de **Red Hat** a la bolsa de Wall Street en pleno apogeo de la euforia financiera de la era puntocom.",
+    "hito": "Oferta pública inicial (**IPO**) de **Red Hat** en el mercado NASDAQ, validando la viabilidad comercial de modelos de negocio de código abierto.",
     "year": 1999,
     "autor": "Red Hat Inc.",
-    "trivia": "Primera firma de software libre en NASDAQ, logrando la octava mayor ganancia de debut en la historia de Wall Street."
+    "trivia": "Fue la primera empresa sustentada puramente en software libre en cotizar en bolsa, alcanzando una valoración millonaria en su primer día."
   }
 ]
