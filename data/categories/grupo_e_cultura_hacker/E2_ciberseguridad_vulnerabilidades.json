@@ -8,7 +8,10 @@
     "year": 1988,
     "creador": "*Robert Tappan Morris* (*Cornell University*)",
     "dato_curioso": "Morris solo quería medir Internet; un bug causó que su gusano se reinstalara en bucle infinito colapsando los servidores Unix.",
-    "card_number": 35
+    "volumen": 0,
+    "card_number": 166,
+    "legacy_card_number": 35,
+    "card_number_hex": "0xA6"
   },
   {
     "grupo": "E",
@@ -19,7 +22,10 @@
     "year": 1998,
     "creador": "*Chen Ing-hau* (*Taiwán*)",
     "dato_curioso": "Se activaba cada 26 de abril (aniversario de Chernóbil), borrando la BIOS de miles de PCs con Windows 95 y 98 en el mundo.",
-    "card_number": 316
+    "volumen": 3,
+    "card_number": 38,
+    "legacy_card_number": 316,
+    "card_number_hex": "0x26"
   },
   {
     "grupo": "E",
@@ -30,7 +36,10 @@
     "year": 2000,
     "creador": "*Onel de Guzman* (*Filipinas*)",
     "dato_curioso": "Infectó 50M de PCs en 10 horas forzando al Pentágono a desconectarse; su autor fue absuelto por falta de leyes en Filipinas.",
-    "card_number": 9
+    "volumen": 0,
+    "card_number": 161,
+    "legacy_card_number": 9,
+    "card_number_hex": "0xA1"
   },
   {
     "grupo": "E",
@@ -41,7 +50,10 @@
     "year": 2003,
     "creador": "*Autor desconocido*",
     "dato_curioso": "Con apenas **376 bytes** en un paquete UDP sobre SQL Server, saturó routers y paralizó cajeros y aeropuertos globales.",
-    "card_number": 525
+    "volumen": 3,
+    "card_number": 71,
+    "legacy_card_number": 525,
+    "card_number_hex": "0x47"
   },
   {
     "grupo": "E",
@@ -52,7 +64,10 @@
     "year": 2008,
     "creador": "*Dan Kaminsky*",
     "dato_curioso": "Kaminsky coordinó en secreto un parche simultáneo con gigantes de la industria antes de revelar el fallo de DNS, salvando la web.",
-    "card_number": 76
+    "volumen": 3,
+    "card_number": 79,
+    "legacy_card_number": 76,
+    "card_number_hex": "0x4F"
   },
   {
     "grupo": "E",
@@ -63,7 +78,10 @@
     "year": 2010,
     "creador": "*EE.UU. e Israel* (*Olympic Games*)",
     "dato_curioso": "Usó cuatro 0-days y memorias USB para alterar centrifugadoras nucleares en Irán hasta hacerlas estallar físicamente.",
-    "card_number": 344
+    "volumen": 0,
+    "card_number": 51,
+    "legacy_card_number": 344,
+    "card_number_hex": "0x33"
   },
   {
     "grupo": "E",
@@ -74,7 +92,10 @@
     "year": 2014,
     "creador": "*Neel Mehta* (*Google*) y *Codenomicon*",
     "dato_curioso": "Fallo de lectura de buffer en C; su logo del corazón sangrante inició la era de las vulnerabilidades con marca comercial.",
-    "card_number": 348
+    "volumen": 0,
+    "card_number": 139,
+    "legacy_card_number": 348,
+    "card_number_hex": "0x8B"
   },
   {
     "grupo": "E",
@@ -85,7 +106,10 @@
     "year": 2014,
     "creador": "*Stéphane Chazelas*",
     "dato_curioso": "Permitía inyectar comandos de sistema arbitrarios dentro de variables de entorno transmitidas a scripts CGI en Apache.",
-    "card_number": 22
+    "volumen": 3,
+    "card_number": 6,
+    "legacy_card_number": 22,
+    "card_number_hex": "0x06"
   },
   {
     "grupo": "E",
@@ -96,7 +120,10 @@
     "year": 2017,
     "creador": "*The Shadow Brokers* y *Lazarus Group*",
     "dato_curioso": "Usó el exploit militar *EternalBlue* de la NSA; Marcus Hutchins, de 22 años, lo frenó registrando un dominio en su código.",
-    "card_number": 43
+    "volumen": 3,
+    "card_number": 89,
+    "legacy_card_number": 43,
+    "card_number_hex": "0x59"
   },
   {
     "grupo": "E",
@@ -107,7 +134,10 @@
     "year": 2017,
     "creador": "*Hackers estatales* (acusación del DoJ)",
     "dato_curioso": "Entraron por un bug público en *Apache Struts* que administradores de Equifax olvidaron parchar por meses, robando 147M de datos.",
-    "card_number": 372
+    "volumen": 3,
+    "card_number": 44,
+    "legacy_card_number": 372,
+    "card_number_hex": "0x2C"
   },
   {
     "grupo": "E",
@@ -118,7 +148,10 @@
     "year": 2018,
     "creador": "*Jann Horn* (*Project Zero*) y *TU Graz*",
     "dato_curioso": "Demostraron que la ejecución especulativa de CPUs Intel/AMD permitía a apps comunes espiar secretos del kernel en memoria.",
-    "card_number": 140
+    "volumen": 3,
+    "card_number": 78,
+    "legacy_card_number": 140,
+    "card_number_hex": "0x4E"
   },
   {
     "grupo": "E",
@@ -129,7 +162,10 @@
     "year": 2020,
     "creador": "*Inteligencia Exterior Rusa* (*SVR*)",
     "dato_curioso": "Inyectaron la puerta trasera *Sunburst* en el pipeline de compilación de SolarWinds, espiando al gobierno de EE.UU. por 9 meses.",
-    "card_number": 82
+    "volumen": 3,
+    "card_number": 2,
+    "legacy_card_number": 82,
+    "card_number_hex": "0x02"
   },
   {
     "grupo": "E",
@@ -140,7 +176,10 @@
     "year": 2021,
     "creador": "*Chen Zhaojun* (*Alibaba Cloud Security*)",
     "dato_curioso": "Gravedad máxima 10/10 en CVSS; bastaba enviar texto malicioso en un chat de Minecraft para tomar control total del servidor.",
-    "card_number": 352
+    "volumen": 3,
+    "card_number": 7,
+    "legacy_card_number": 352,
+    "card_number_hex": "0x07"
   },
   {
     "grupo": "E",
@@ -151,7 +190,10 @@
     "year": 2024,
     "creador": "*Andrés Freund* (*Microsoft*)",
     "dato_curioso": "Andres Freund cazó el backdoor en `xz` por casualidad al notar que SSH consumía 500ms más de CPU en su computadora personal.",
-    "card_number": 64
+    "volumen": 0,
+    "card_number": 27,
+    "legacy_card_number": 64,
+    "card_number_hex": "0x1B"
   },
   {
     "grupo": "E",
@@ -162,17 +204,9 @@
     "year": 2024,
     "creador": "*CrowdStrike Inc.* (*George Kurtz*)",
     "dato_curioso": "Un archivo corrupto de pocos KB en Windows colapsó aerolíneas, hospitales y cajeros en el mayor apagón informático mundial.",
-    "card_number": 229
-  },
-  {
-    "grupo": "E",
-    "grupo_nombre": "Cultura Hacker y Leyendas",
-    "categoria": "E2",
-    "categoria_nombre": "Ciberseguridad, Virus y Vulnerabilidades",
-    "hito": "Oleada de incidentes de inyección de prompt indirecta y envenenamiento de memoria en flotas empresariales de agentes autónomos de IA.",
-    "year": 2025,
-    "creador": "*Investigadores de Ciberseguridad de IA*",
-    "dato_curioso": "Atacantes hackearon agentes de IA corporativos ocultando órdenes invisibles en texto blanco dentro de currículums y facturas.",
-    "card_number": 505
+    "volumen": 0,
+    "card_number": 19,
+    "legacy_card_number": 229,
+    "card_number_hex": "0x13"
   }
 ]

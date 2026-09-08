@@ -8,7 +8,10 @@
     "year": 1979,
     "creador": "*Bill Joy* (*Bell Labs*)",
     "dato_curioso": "Concebida originalmente para probar instaladores de software sin comprometer los archivos maestros del sistema operativo anfitrión.",
-    "card_number": 416
+    "volumen": 2,
+    "card_number": 37,
+    "legacy_card_number": 416,
+    "card_number_hex": "0x25"
   },
   {
     "grupo": "C",
@@ -19,7 +22,10 @@
     "year": 1999,
     "creador": "*D. Greene* y *M. Rosenblum* (*VMware*)",
     "dato_curioso": "Inventaron traducción binaria al vuelo para sortear limitaciones x86 que no permitían virtualizar por hardware.",
-    "card_number": 524
+    "volumen": 2,
+    "card_number": 73,
+    "legacy_card_number": 524,
+    "card_number_hex": "0x49"
   },
   {
     "grupo": "C",
@@ -30,7 +36,10 @@
     "year": 2000,
     "creador": "*Poul-Henning Kamp*",
     "dato_curioso": "Diseñado en FreeBSD para evitar que usuarios de hosting compartido espiaran procesos de otras cuentas vecinas.",
-    "card_number": 289
+    "volumen": 2,
+    "card_number": 46,
+    "legacy_card_number": 289,
+    "card_number_hex": "0x2E"
   },
   {
     "grupo": "C",
@@ -41,7 +50,10 @@
     "year": 2004,
     "creador": "*Sun Microsystems*",
     "dato_curioso": "Permitía crear miles de entornos virtuales aislados en un solo kernel sin el pesado costo de emular hardware completo.",
-    "card_number": 14
+    "volumen": 2,
+    "card_number": 56,
+    "legacy_card_number": 14,
+    "card_number_hex": "0x38"
   },
   {
     "grupo": "C",
@@ -52,7 +64,10 @@
     "year": 2007,
     "creador": "*Paul Menage* y *Rohit Seth* (*Google*)",
     "dato_curioso": "Creados en Google como *Process Containers*, fijaron límites estrictos de RAM, CPU e I/O por grupo de procesos.",
-    "card_number": 99
+    "volumen": 2,
+    "card_number": 15,
+    "legacy_card_number": 99,
+    "card_number_hex": "0x0F"
   },
   {
     "grupo": "C",
@@ -63,7 +78,10 @@
     "year": 2007,
     "creador": "*Avi Kivity* (*Qumranet*)",
     "dato_curioso": "Integrado de inmediato en el kernel Linux; Qumranet fue comprada por Red Hat por más de 100 millones de dólares.",
-    "card_number": 338
+    "volumen": 2,
+    "card_number": 112,
+    "legacy_card_number": 338,
+    "card_number_hex": "0x70"
   },
   {
     "grupo": "C",
@@ -74,7 +92,10 @@
     "year": 2008,
     "creador": "*Daniel Lezcano* y *Serge Hallyn*",
     "dato_curioso": "Fue la primera implementación de contenedores integral y madura en Linux sin requerir parches experimentales fuera del kernel estándar.",
-    "card_number": 277
+    "volumen": 2,
+    "card_number": 75,
+    "legacy_card_number": 277,
+    "card_number_hex": "0x4B"
   },
   {
     "grupo": "C",
@@ -85,7 +106,10 @@
     "year": 2013,
     "creador": "*Solomon Hykes* (*dotCloud*)",
     "dato_curioso": "La demo en vivo de 5 minutos causó tal impacto que dotCloud abandonó su negocio PaaS para renacer como **Docker Inc.**",
-    "card_number": 163
+    "volumen": 0,
+    "card_number": 17,
+    "legacy_card_number": 163,
+    "card_number_hex": "0x11"
   },
   {
     "grupo": "C",
@@ -96,7 +120,10 @@
     "year": 2014,
     "creador": "*CoreOS* (*Alex Polvi*)",
     "dato_curioso": "Acusó a Docker de abandonar su estándar modular; el conflicto forzó a la industria a crear la especificación de la OCI.",
-    "card_number": 100
+    "volumen": 2,
+    "card_number": 78,
+    "legacy_card_number": 100,
+    "card_number_hex": "0x4E"
   },
   {
     "grupo": "C",
@@ -107,7 +134,10 @@
     "year": 2014,
     "creador": "*Google* (*Joe Beda*, *B. Burns* et al.)",
     "dato_curioso": "Del griego \"timonel\"; su logo de 7 radios homenajea a *Seven of Nine* de Star Trek, en alusión al proyecto Borg de Google.",
-    "card_number": 441
+    "volumen": 0,
+    "card_number": 132,
+    "legacy_card_number": 441,
+    "card_number_hex": "0x84"
   },
   {
     "grupo": "C",
@@ -118,7 +148,10 @@
     "year": 2015,
     "creador": "*Linux Foundation* y gigantes tecnológicos",
     "dato_curioso": "Docker donó la especificación de imágenes y su motor central de ejecución de bajo nivel `runc` para evitar la fragmentación propietaria del sector.",
-    "card_number": 452
+    "volumen": 2,
+    "card_number": 28,
+    "legacy_card_number": 452,
+    "card_number_hex": "0x1C"
   },
   {
     "grupo": "C",
@@ -129,7 +162,10 @@
     "year": 2015,
     "creador": "*Google* y *Linux Foundation*",
     "dato_curioso": "Consagró a Kubernetes frente a *Swarm* y *Mesos*, convirtiéndose en el sistema operativo indiscutible de la nube.",
-    "card_number": 425
+    "volumen": 0,
+    "card_number": 34,
+    "legacy_card_number": 425,
+    "card_number_hex": "0x22"
   },
   {
     "grupo": "C",
@@ -140,7 +176,10 @@
     "year": 2017,
     "creador": "*Docker Inc.*",
     "dato_curioso": "Gestiona imágenes y supervisión de procesos en bajo nivel sin la sobrecarga comercial ni la interfaz CLI de Docker.",
-    "card_number": 260
+    "volumen": 2,
+    "card_number": 106,
+    "legacy_card_number": 260,
+    "card_number_hex": "0x6A"
   },
   {
     "grupo": "C",
@@ -151,7 +190,10 @@
     "year": 2018,
     "creador": "*Dan Walsh* (*Red Hat*)",
     "dato_curioso": "Logró compatibilidad total con Docker eliminando el demonio central con privilegios de root (`alias docker=podman`).",
-    "card_number": 15
+    "volumen": 2,
+    "card_number": 33,
+    "legacy_card_number": 15,
+    "card_number_hex": "0x21"
   },
   {
     "grupo": "C",
@@ -162,29 +204,10 @@
     "year": 2019,
     "creador": "*Darren Shepherd* (*Rancher Labs*)",
     "dato_curioso": "Eliminó componentes pesados para correr Kubernetes en Raspberry Pi y dispositivos IoT con menos de 512 MB de RAM.",
-    "card_number": 480
-  },
-  {
-    "grupo": "C",
-    "grupo_nombre": "DevOps e Infraestructura",
-    "categoria": "C2",
-    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
-    "hito": "Anuncio de la deprecación y eliminación definitiva de **Dockershim** dentro de Kubernetes en la versión 1.20.",
-    "year": 2020,
-    "creador": "*Kubernetes Maintainers*",
-    "dato_curioso": "Sembró alarma por error: los Dockerfiles siguieron funcionando igual y solo cambió el runtime interno de los nodos.",
-    "card_number": 269
-  },
-  {
-    "grupo": "C",
-    "grupo_nombre": "DevOps e Infraestructura",
-    "categoria": "C2",
-    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
-    "hito": "Modificación de los términos de servicio de **Docker Desktop**, imponiendo suscripciones de pago para empresas de más de 250 empleados.",
-    "year": 2021,
-    "creador": "*Docker Inc.*",
-    "dato_curioso": "Desencadenó una ola masiva de adopción de alternativas libres para desarrolladores en Mac y Windows como *Rancher Desktop*, *Colima* y *OrbStack*.",
-    "card_number": 39
+    "volumen": 2,
+    "card_number": 6,
+    "legacy_card_number": 480,
+    "card_number_hex": "0x06"
   },
   {
     "grupo": "C",
@@ -195,17 +218,9 @@
     "year": 2024,
     "creador": "*Deislabs* (*Fermin Galan* et al.)",
     "dato_curioso": "Arranca cargas en Kubernetes en microsegundos consumiendo una fracción de los recursos de un contenedor Linux.",
-    "card_number": 341
-  },
-  {
-    "grupo": "C",
-    "grupo_nombre": "DevOps e Infraestructura",
-    "categoria": "C2",
-    "categoria_nombre": "Contenedores, Aislamiento y Virtualización",
-    "hito": "Computación confidencial en contenedores usando enclaves de hardware seguro (*AMD SEV* / *Intel TDX*).",
-    "year": 2025,
-    "creador": "*CNCF Confidential Containers Project*",
-    "dato_curioso": "Garantiza que ni administradores del hipervisor ni el proveedor de nube puedan espiar la RAM de contenedores activos.",
-    "card_number": 208
+    "volumen": 2,
+    "card_number": 3,
+    "legacy_card_number": 341,
+    "card_number_hex": "0x03"
   }
 ]

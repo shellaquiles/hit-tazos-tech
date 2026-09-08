@@ -8,7 +8,10 @@
     "year": 1972,
     "creador": "*Marc Rochkind* (*Bell Labs*)",
     "dato_curioso": "Creado para IBM sobre tarjetas perforadas; guardaba deltas entrelazados para ahorrar espacio en discos magnéticos chicos.",
-    "card_number": 324
+    "volumen": 2,
+    "card_number": 26,
+    "legacy_card_number": 324,
+    "card_number_hex": "0x1A"
   },
   {
     "grupo": "B",
@@ -19,7 +22,10 @@
     "year": 1976,
     "creador": "*Richard Stallman* y *Guy Steele* (*MIT*)",
     "dato_curioso": "Concebido por Stallman sobre macros TECO; extensible en Lisp, se convirtió en un entorno operativo en sí mismo.",
-    "card_number": 307
+    "volumen": 2,
+    "card_number": 36,
+    "legacy_card_number": 307,
+    "card_number_hex": "0x24"
   },
   {
     "grupo": "B",
@@ -30,7 +36,10 @@
     "year": 1976,
     "creador": "*Bill Joy* (*UC Berkeley*)",
     "dato_curioso": "Joy usó `h`,`j`,`k`,`l` porque el terminal *Lear Siegler ADM-3A* tenía flechas impresas en esas teclas físicas.",
-    "card_number": 430
+    "volumen": 0,
+    "card_number": 68,
+    "legacy_card_number": 430,
+    "card_number_hex": "0x44"
   },
   {
     "grupo": "B",
@@ -41,7 +50,10 @@
     "year": 1982,
     "creador": "*Walter F. Tichy* (*Purdue University*)",
     "dato_curioso": "Guardaba deltas inversos para que ver la última versión fuera instantáneo, motor estándar de servidores compartidos.",
-    "card_number": 87
+    "volumen": 2,
+    "card_number": 23,
+    "legacy_card_number": 87,
+    "card_number_hex": "0x17"
   },
   {
     "grupo": "B",
@@ -52,7 +64,10 @@
     "year": 1986,
     "creador": "*Dick Grune*",
     "dato_curioso": "Scripts sobre RCS con fusiones optimistas, eliminando el bloqueo manual de archivos que paralizaba a los equipos.",
-    "card_number": 387
+    "volumen": 2,
+    "card_number": 100,
+    "legacy_card_number": 387,
+    "card_number_hex": "0x64"
   },
   {
     "grupo": "B",
@@ -63,7 +78,10 @@
     "year": 1991,
     "creador": "*Bram Moolenaar*",
     "dato_curioso": "Bram pedía a los usuarios donar a orfanatos en Uganda, manteniendo esta causa humanitaria activa por más de 30 años.",
-    "card_number": 478
+    "volumen": 0,
+    "card_number": 49,
+    "legacy_card_number": 478,
+    "card_number_hex": "0x31"
   },
   {
     "grupo": "B",
@@ -74,7 +92,10 @@
     "year": 2000,
     "creador": "*CollabNet* (*Jim Blandy* y *Karl Fogel*)",
     "dato_curioso": "Sumó commits atómicos y renombrado limpio de carpetas y archivos binarios sin romper el historial del repositorio.",
-    "card_number": 290
+    "volumen": 2,
+    "card_number": 84,
+    "legacy_card_number": 290,
+    "card_number_hex": "0x54"
   },
   {
     "grupo": "B",
@@ -85,7 +106,10 @@
     "year": 2001,
     "creador": "*JetBrains* (*S. Dmitriev* y *V. Kipiatkov*)",
     "dato_curioso": "Primer IDE en procesar el árbol sintáctico en RAM para refactorizar Java de forma segura, triunfando con cobro de licencias.",
-    "card_number": 326
+    "volumen": 2,
+    "card_number": 58,
+    "legacy_card_number": 326,
+    "card_number_hex": "0x3A"
   },
   {
     "grupo": "B",
@@ -96,7 +120,10 @@
     "year": 2004,
     "creador": "*Allan Odgaard* (*MacroMates*)",
     "dato_curioso": "Su coloreado de sintaxis y el atajo `Cmd+T` para abrir archivos al instante inspiraron a todos los editores modernos.",
-    "card_number": 219
+    "volumen": 2,
+    "card_number": 30,
+    "legacy_card_number": 219,
+    "card_number_hex": "0x1E"
   },
   {
     "grupo": "B",
@@ -107,7 +134,10 @@
     "year": 2005,
     "creador": "*Linus Torvalds*",
     "dato_curioso": "Linus programó el grafo DAG de Git en dos semanas, asombrando por su velocidad para ramificar y fusionar repositorios.",
-    "card_number": 329
+    "volumen": 0,
+    "card_number": 80,
+    "legacy_card_number": 329,
+    "card_number_hex": "0x50"
   },
   {
     "grupo": "B",
@@ -118,7 +148,10 @@
     "year": 2005,
     "creador": "*Matt Mackall*",
     "dato_curioso": "Compitió con Git por Linux; aunque Linus usó Git, firmas como Facebook y Google operaron monorepos colosales con Mercurial.",
-    "card_number": 411
+    "volumen": 2,
+    "card_number": 57,
+    "legacy_card_number": 411,
+    "card_number_hex": "0x39"
   },
   {
     "grupo": "B",
@@ -129,7 +162,10 @@
     "year": 2008,
     "creador": "*Jon Skinner*",
     "dato_curioso": "Programado en C++ y Python sin lag; popularizó la selección con múltiples cursores simultáneos (`Ctrl+D`).",
-    "card_number": 63
+    "volumen": 0,
+    "card_number": 66,
+    "legacy_card_number": 63,
+    "card_number_hex": "0x42"
   },
   {
     "grupo": "B",
@@ -140,7 +176,10 @@
     "year": 2014,
     "creador": "*GitHub* (*Chris Wanstrath*)",
     "dato_curioso": "Para crearlo inventaron *Electron* (Chromium + Node.js), base que luego impulsaría apps como Slack, Discord y VS Code.",
-    "card_number": 262
+    "volumen": 2,
+    "card_number": 10,
+    "legacy_card_number": 262,
+    "card_number_hex": "0x0A"
   },
   {
     "grupo": "B",
@@ -151,7 +190,10 @@
     "year": 2014,
     "creador": "*Thiago de Arruda*",
     "dato_curioso": "Nació tras el rechazo de parches de refactorización en Vim; Neovim revivió el fervor por editores de terminal modernos.",
-    "card_number": 374
+    "volumen": 2,
+    "card_number": 87,
+    "legacy_card_number": 374,
+    "card_number_hex": "0x57"
   },
   {
     "grupo": "B",
@@ -162,7 +204,10 @@
     "year": 2015,
     "creador": "*Microsoft* (*Erich Gamma*)",
     "dato_curioso": "Creado por Erich Gamma, sorprendió por ser libre, extensible, ágil y multiplataforma desde su primer día de lanzamiento.",
-    "card_number": 346
+    "volumen": 0,
+    "card_number": 126,
+    "legacy_card_number": 346,
+    "card_number_hex": "0x7E"
   },
   {
     "grupo": "B",
@@ -173,7 +218,10 @@
     "year": 2016,
     "creador": "*Microsoft*, *Red Hat* y *Codenvy*",
     "dato_curioso": "Permite que un único servidor (*pyright*, *gopls*) dé autocompletado y diagnósticos a cualquier editor de texto compatible.",
-    "card_number": 304
+    "volumen": 2,
+    "card_number": 88,
+    "legacy_card_number": 304,
+    "card_number_hex": "0x58"
   },
   {
     "grupo": "B",
@@ -184,7 +232,10 @@
     "year": 2021,
     "creador": "*GitHub* y *OpenAI* (*Nat Friedman*)",
     "dato_curioso": "Entrenado con código público mediante *Codex*, introdujo la generación predictiva de funciones completas al escribir.",
-    "card_number": 368
+    "volumen": 3,
+    "card_number": 49,
+    "legacy_card_number": 368,
+    "card_number_hex": "0x31"
   },
   {
     "grupo": "B",
@@ -195,7 +246,10 @@
     "year": 2023,
     "creador": "*Nathan Sobo* (*Zed Industries*)",
     "dato_curioso": "Creado por los autores de Atom, abandonó Electron para renderizar con la GPU a 120 FPS fluidos en lenguaje Rust.",
-    "card_number": 460
+    "volumen": 2,
+    "card_number": 60,
+    "legacy_card_number": 460,
+    "card_number_hex": "0x3C"
   },
   {
     "grupo": "B",
@@ -206,7 +260,10 @@
     "year": 2023,
     "creador": "*Comunidad Mundial de Software Libre*",
     "dato_curioso": "Comunidades del mundo le rindieron tributo; en su testamento legó fondos para continuar su causa caritativa en Uganda.",
-    "card_number": 450
+    "volumen": 2,
+    "card_number": 71,
+    "legacy_card_number": 450,
+    "card_number_hex": "0x47"
   },
   {
     "grupo": "B",
@@ -217,6 +274,9 @@
     "year": 2024,
     "creador": "*Anysphere*",
     "dato_curioso": "Bifurcación de VS Code con IA nativa para editar múltiples archivos en conjunto y predecir cambios en tiempo real.",
-    "card_number": 187
+    "volumen": 0,
+    "card_number": 50,
+    "legacy_card_number": 187,
+    "card_number_hex": "0x32"
   }
 ]

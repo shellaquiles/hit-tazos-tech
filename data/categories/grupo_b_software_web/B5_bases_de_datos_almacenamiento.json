@@ -8,7 +8,10 @@
     "year": 1970,
     "creador": "*Edgar F. Codd* (*IBM Research*)",
     "dato_curioso": "Directivos de IBM quisieron frenar el paper porque amenazaba el lucrativo negocio de sus bases de datos jerárquicas *IMS*.",
-    "card_number": 280
+    "volumen": 0,
+    "card_number": 32,
+    "legacy_card_number": 280,
+    "card_number_hex": "0x20"
   },
   {
     "grupo": "B",
@@ -19,7 +22,10 @@
     "year": 1974,
     "creador": "*Donald Chamberlin* y *Raymond Boyce*",
     "dato_curioso": "Cambiaron *SEQUEL* a *SQL* porque la sigla original era una marca registrada de una fábrica de aviones británica.",
-    "card_number": 476
+    "volumen": 0,
+    "card_number": 67,
+    "legacy_card_number": 476,
+    "card_number_hex": "0x43"
   },
   {
     "grupo": "B",
@@ -30,7 +36,10 @@
     "year": 1979,
     "creador": "*Larry Ellison*, *B. Miner* y *E. Oates*",
     "dato_curioso": "La llamaron \"Versión 2\" porque Ellison sabía que ninguna gran empresa compraría la v1.0 de un gestor de base de datos.",
-    "card_number": 483
+    "volumen": 0,
+    "card_number": 149,
+    "legacy_card_number": 483,
+    "card_number_hex": "0x95"
   },
   {
     "grupo": "B",
@@ -41,7 +50,10 @@
     "year": 1986,
     "creador": "*Michael Stonebraker* (*UC Berkeley*)",
     "dato_curioso": "Significaba *\"Post-Ingres\"*; Stonebraker introdujo tipos complejos de usuario, disparadores y herencia de tablas.",
-    "card_number": 218
+    "volumen": 2,
+    "card_number": 50,
+    "legacy_card_number": 218,
+    "card_number_hex": "0x32"
   },
   {
     "grupo": "B",
@@ -52,7 +64,10 @@
     "year": 1995,
     "creador": "*Michael Widenius* y *David Axmark*",
     "dato_curioso": "Nombrado por la hija de Monty, **My**; años después, al crear el fork libre tras vender MySQL a Sun, lo llamó **MariaDB**.",
-    "card_number": 244
+    "volumen": 0,
+    "card_number": 117,
+    "legacy_card_number": 244,
+    "card_number_hex": "0x75"
   },
   {
     "grupo": "B",
@@ -63,7 +78,10 @@
     "year": 1997,
     "creador": "*PostgreSQL Global Development Group*",
     "dato_curioso": "Sumó claves foráneas, índices GiST y disparadores, consagrándose como la base de datos relacional abierta más potente.",
-    "card_number": 119
+    "volumen": 0,
+    "card_number": 82,
+    "legacy_card_number": 119,
+    "card_number_hex": "0x52"
   },
   {
     "grupo": "B",
@@ -74,7 +92,10 @@
     "year": 2000,
     "creador": "*D. Richard Hipp*",
     "dato_curioso": "Hipp lo creó a bordo de un buque de guerra tras ver caer servidores de bases de datos durante maniobras navales.",
-    "card_number": 49
+    "volumen": 0,
+    "card_number": 95,
+    "legacy_card_number": 49,
+    "card_number_hex": "0x5F"
   },
   {
     "grupo": "B",
@@ -85,7 +106,10 @@
     "year": 2003,
     "creador": "*Brad Fitzpatrick* (*Danga Interactive*)",
     "dato_curioso": "Creado para acelerar *LiveJournal* en Perl, fue reescrito en C para despachar cientos de miles de requests en RAM.",
-    "card_number": 37
+    "volumen": 2,
+    "card_number": 83,
+    "legacy_card_number": 37,
+    "card_number_hex": "0x53"
   },
   {
     "grupo": "B",
@@ -96,7 +120,10 @@
     "year": 2006,
     "creador": "*Google* (*Jeff Dean*, *S. Ghemawat* et al.)",
     "dato_curioso": "El paper de Google inspiró a Silicon Valley, dando origen a proyectos libres como *Cassandra* y *HBase* en Big Data.",
-    "card_number": 265
+    "volumen": 2,
+    "card_number": 116,
+    "legacy_card_number": 265,
+    "card_number_hex": "0x74"
   },
   {
     "grupo": "B",
@@ -107,7 +134,10 @@
     "year": 2007,
     "creador": "*Amazon* (*Werner Vogels* et al.)",
     "dato_curioso": "Nació tras caer el carrito de Amazon en el *Black Friday* de 2004, superando la rigidez de bases relacionales clásicas.",
-    "card_number": 114
+    "volumen": 2,
+    "card_number": 45,
+    "legacy_card_number": 114,
+    "card_number_hex": "0x2D"
   },
   {
     "grupo": "B",
@@ -118,7 +148,10 @@
     "year": 2008,
     "creador": "*Avinash Lakshman* y *P. Malik* (*Facebook*)",
     "dato_curioso": "Unió el modelo tabular de Bigtable con nodos sin maestro central de Dynamo, logrando tolerancia a fallos total.",
-    "card_number": 253
+    "volumen": 2,
+    "card_number": 5,
+    "legacy_card_number": 253,
+    "card_number_hex": "0x05"
   },
   {
     "grupo": "B",
@@ -129,7 +162,10 @@
     "year": 2009,
     "creador": "*Eliot Horowitz* et al. (*10gen / MongoDB*)",
     "dato_curioso": "Viene de *\"humongous\"*; lideró el auge NoSQL al permitir almacenar documentos JSON dinámicos sin migraciones de esquemas.",
-    "card_number": 205
+    "volumen": 0,
+    "card_number": 22,
+    "legacy_card_number": 205,
+    "card_number_hex": "0x16"
   },
   {
     "grupo": "B",
@@ -140,7 +176,10 @@
     "year": 2009,
     "creador": "*Salvatore Sanfilippo* (*antirez*)",
     "dato_curioso": "Creado en Sicilia para analítica en tiempo real, deslumbró por su código C poético, eficiente y ultracompacto.",
-    "card_number": 170
+    "volumen": 0,
+    "card_number": 23,
+    "legacy_card_number": 170,
+    "card_number_hex": "0x17"
   },
   {
     "grupo": "B",
@@ -151,7 +190,10 @@
     "year": 2011,
     "creador": "*Jay Kreps*, *N. Narkhede* y *J. Rao*",
     "dato_curioso": "Kreps eligió el nombre del autor literario **Franz Kafka** porque el software estaba obsesivamente optimizado para escribir datos a máxima velocidad.",
-    "card_number": 404
+    "volumen": 2,
+    "card_number": 14,
+    "legacy_card_number": 404,
+    "card_number_hex": "0x0E"
   },
   {
     "grupo": "B",
@@ -162,7 +204,10 @@
     "year": 2012,
     "creador": "*Google* (*James Corbett* et al.)",
     "dato_curioso": "Usa GPS y relojes atómicos de rubidio (*TrueTime API*) para ordenar transacciones globales con consistencia estricta.",
-    "card_number": 11
+    "volumen": 2,
+    "card_number": 22,
+    "legacy_card_number": 11,
+    "card_number_hex": "0x16"
   },
   {
     "grupo": "B",
@@ -173,7 +218,10 @@
     "year": 2016,
     "creador": "*Yandex* (*Alexey Milovidov*)",
     "dato_curioso": "Diseñado para analizar billones de clics web por segundo, pulverizó récords en analítica columnar masiva (*OLAP*).",
-    "card_number": 320
+    "volumen": 2,
+    "card_number": 114,
+    "legacy_card_number": 320,
+    "card_number_hex": "0x72"
   },
   {
     "grupo": "B",
@@ -184,7 +232,10 @@
     "year": 2019,
     "creador": "*Hannes Mühleisen* y *Mark Raasveldt* (*CWI*)",
     "dato_curioso": "Permite consultar gigabytes de archivos de datos locales directamente desde Python o R con consultas vectorizadas sin configurar clusters pesados.",
-    "card_number": 256
+    "volumen": 2,
+    "card_number": 1,
+    "legacy_card_number": 256,
+    "card_number_hex": "0x01"
   },
   {
     "grupo": "B",
@@ -195,7 +246,10 @@
     "year": 2021,
     "creador": "*Heikki Linnakangas* y equipo Neon",
     "dato_curioso": "Permitió crear copias y ramas de bases de datos en microsegundos como en Git, revolucionando entornos de staging.",
-    "card_number": 446
+    "volumen": 2,
+    "card_number": 61,
+    "legacy_card_number": 446,
+    "card_number_hex": "0x3D"
   },
   {
     "grupo": "B",
@@ -206,7 +260,10 @@
     "year": 2023,
     "creador": "*Andrew Kane*",
     "dato_curioso": "Permitió almacenar y consultar *embeddings* de IA en Postgres con similitud coseno sin requerir bases vectoriales externas.",
-    "card_number": 189
+    "volumen": 2,
+    "card_number": 110,
+    "legacy_card_number": 189,
+    "card_number_hex": "0x6E"
   },
   {
     "grupo": "B",
@@ -217,6 +274,9 @@
     "year": 2024,
     "creador": "*Redis Ltd.* y *Linux Foundation*",
     "dato_curioso": "La comunidad y grandes empresas de nube respondieron de inmediato fundando la bifurcación **Valkey** bajo la tutela neutral de la *Linux Foundation*.",
-    "card_number": 130
+    "volumen": 2,
+    "card_number": 108,
+    "legacy_card_number": 130,
+    "card_number_hex": "0x6C"
   }
 ]

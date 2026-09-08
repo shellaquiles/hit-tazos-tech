@@ -73,18 +73,33 @@ function build() {
 
   const rng = createPRNG(1337);
 
-  // Barajado Fisher-Yates
-  const shuffled = [...allCards];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(rng() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-
-  // Asignar numeración consecutiva 1..N oficial de Hit-Tazos Tech (sin campo 'id')
-  shuffled.forEach((card, idx) => {
-    card.card_number = idx + 1;
-    delete card.id;
+  // Agrupar por volumen
+  const volumes = { 0: [], 1: [], 2: [], 3: [] };
+  allCards.forEach(card => {
+    const v = card.volumen !== undefined ? card.volumen : 0;
+    if (!volumes[v]) volumes[v] = [];
+    volumes[v].push(card);
   });
+
+  const shuffled = [];
+  
+  // Barajar cada volumen de forma independiente
+  for (let v = 0; v <= 3; v++) {
+    const volCards = volumes[v] || [];
+    for (let i = volCards.length - 1; i > 0; i--) {
+      const j = Math.floor(rng() * (i + 1));
+      [volCards[i], volCards[j]] = [volCards[j], volCards[i]];
+    }
+    
+    // Asignar numeración local (1..N) dentro del volumen
+    volCards.forEach((card, idx) => {
+      card.card_number = idx + 1;
+      card.card_number_hex = "0x" + card.card_number.toString(16).toUpperCase().padStart(2, '0');
+      delete card.id;
+    });
+    
+    shuffled.push(...volCards);
+  }
 
   // Guardar cards.json compilado
   const outputPath = path.join(ROOT_DIR, 'data', 'cards.json');

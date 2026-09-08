@@ -8,7 +8,10 @@
     "year": 1993,
     "creador": "*Mark Burgess*",
     "dato_curioso": "Físico teórico, aplicó teoría de control para que un script pudiera ejecutarse mil veces dando siempre el mismo estado.",
-    "card_number": 224
+    "volumen": 2,
+    "card_number": 43,
+    "legacy_card_number": 224,
+    "card_number_hex": "0x2B"
   },
   {
     "grupo": "C",
@@ -19,7 +22,10 @@
     "year": 2005,
     "creador": "*Luke Kanies* (*Puppet Labs*)",
     "dato_curioso": "Creado en Ruby tras frustrarse con CFEngine, se volvió el estándar corporativo para gestionar miles de servidores.",
-    "card_number": 380
+    "volumen": 2,
+    "card_number": 27,
+    "legacy_card_number": 380,
+    "card_number_hex": "0x1B"
   },
   {
     "grupo": "C",
@@ -30,7 +36,10 @@
     "year": 2009,
     "creador": "*Adam Jacob* (*Opscode*)",
     "dato_curioso": "Permitía usar Ruby imperativo frente a la sintaxis de Puppet, desatando una fuerte rivalidad entre sysadmins.",
-    "card_number": 80
+    "volumen": 2,
+    "card_number": 17,
+    "legacy_card_number": 80,
+    "card_number_hex": "0x11"
   },
   {
     "grupo": "C",
@@ -41,7 +50,10 @@
     "year": 2009,
     "creador": "*John Allspaw* y *Paul Hammond* (*Flickr*)",
     "dato_curioso": "Mostraron que desarrollo y operaciones podían colaborar en armonía, desterrando los despliegues traumáticos de antaño.",
-    "card_number": 45
+    "volumen": 2,
+    "card_number": 18,
+    "legacy_card_number": 45,
+    "card_number_hex": "0x12"
   },
   {
     "grupo": "C",
@@ -52,7 +64,10 @@
     "year": 2010,
     "creador": "*Mitchell Hashimoto* y *John Bender*",
     "dato_curioso": "Nació en un apartamento universitario; resolvió de un plumazo la excusa eterna del programador: *\"En mi máquina sí funcionaba\"*.",
-    "card_number": 28
+    "volumen": 2,
+    "card_number": 38,
+    "legacy_card_number": 28,
+    "card_number_hex": "0x26"
   },
   {
     "grupo": "C",
@@ -63,7 +78,10 @@
     "year": 2012,
     "creador": "*Michael DeHaan*",
     "dato_curioso": "Usaba *playbooks* en **YAML** y conexión por SSH sin agentes cliente, arrasando en adopción frente a Puppet y Chef.",
-    "card_number": 188
+    "volumen": 0,
+    "card_number": 101,
+    "legacy_card_number": 188,
+    "card_number_hex": "0x65"
   },
   {
     "grupo": "C",
@@ -74,7 +92,10 @@
     "year": 2011,
     "creador": "*Thomas Hatch*",
     "dato_curioso": "Diseñado sobre el bus de mensajería asíncrono *ZeroMQ*, era capaz de disparar comandos simultáneos a más de 10,000 servidores en menos de un segundo.",
-    "card_number": 447
+    "volumen": 2,
+    "card_number": 117,
+    "legacy_card_number": 447,
+    "card_number_hex": "0x75"
   },
   {
     "grupo": "C",
@@ -85,7 +106,10 @@
     "year": 2014,
     "creador": "*Mitchell Hashimoto* y *A. Dadgar*",
     "dato_curioso": "Con **HCL** y el archivo `terraform.tfstate`, permitió versionar redes, discos y clusters en la nube como código puro.",
-    "card_number": 407
+    "volumen": 2,
+    "card_number": 32,
+    "legacy_card_number": 407,
+    "card_number_hex": "0x20"
   },
   {
     "grupo": "C",
@@ -96,7 +120,10 @@
     "year": 2014,
     "creador": "*HashiCorp*",
     "dato_curioso": "Permitió a microservicios efímeros en la nube encontrarse dinámicamente entre sí y balancear tráfico sin depender de configuraciones estáticas de DNS.",
-    "card_number": 375
+    "volumen": 2,
+    "card_number": 20,
+    "legacy_card_number": 375,
+    "card_number_hex": "0x14"
   },
   {
     "grupo": "C",
@@ -107,7 +134,10 @@
     "year": 2015,
     "creador": "*Red Hat*",
     "dato_curioso": "Red Hat pagó más de **$100 millones** por una startup chica, consagrando la madurez comercial de Ansible y Python.",
-    "card_number": 391
+    "volumen": 2,
+    "card_number": 92,
+    "legacy_card_number": 391,
+    "card_number_hex": "0x5C"
   },
   {
     "grupo": "C",
@@ -118,7 +148,10 @@
     "year": 2015,
     "creador": "*Deis* (*Matt Butcher* et al.)",
     "dato_curioso": "Nacido en un hackatón de Deis, se volvió el gestor oficial de paquetes de la CNCF para aplicaciones en Kubernetes.",
-    "card_number": 418
+    "volumen": 2,
+    "card_number": 35,
+    "legacy_card_number": 418,
+    "card_number_hex": "0x23"
   },
   {
     "grupo": "C",
@@ -129,7 +162,10 @@
     "year": 2018,
     "creador": "*Joe Duffy* (*Pulumi*)",
     "dato_curioso": "Permitió definir infraestructura con TypeScript o Python con bucles reales y tipos fuertes sin lidiar con HCL.",
-    "card_number": 196
+    "volumen": 2,
+    "card_number": 49,
+    "legacy_card_number": 196,
+    "card_number_hex": "0x31"
   },
   {
     "grupo": "C",
@@ -140,7 +176,10 @@
     "year": 2018,
     "creador": "*Alexis Richardson* (*Weaveworks*)",
     "dato_curioso": "Sincroniza el cluster continuamente contra Git, erradicando la necesidad de dar acceso manual por SSH a producción.",
-    "card_number": 181
+    "volumen": 2,
+    "card_number": 41,
+    "legacy_card_number": 181,
+    "card_number_hex": "0x29"
   },
   {
     "grupo": "C",
@@ -151,7 +190,10 @@
     "year": 2018,
     "creador": "*Applatix / Intuit*",
     "dato_curioso": "Su consola visual compara en tiempo real el árbol deseado de Git con el estado vivo del cluster de Kubernetes.",
-    "card_number": 66
+    "volumen": 2,
+    "card_number": 21,
+    "legacy_card_number": 66,
+    "card_number_hex": "0x15"
   },
   {
     "grupo": "C",
@@ -162,7 +204,10 @@
     "year": 2019,
     "creador": "*GitHub* (*Nat Friedman*)",
     "dato_curioso": "Reemplazó viejos servidores *Jenkins*, permitiendo probar y desplegar software con workflows en YAML en el repo.",
-    "card_number": 521
+    "volumen": 2,
+    "card_number": 86,
+    "legacy_card_number": 521,
+    "card_number_hex": "0x56"
   },
   {
     "grupo": "C",
@@ -173,7 +218,10 @@
     "year": 2023,
     "creador": "*HashiCorp*",
     "dato_curioso": "Desató una rebelión en la industria y el nacimiento del fork libre **OpenTofu** bajo la *Linux Foundation*.",
-    "card_number": 298
+    "volumen": 2,
+    "card_number": 64,
+    "legacy_card_number": 298,
+    "card_number_hex": "0x40"
   },
   {
     "grupo": "C",
@@ -184,6 +232,9 @@
     "year": 2024,
     "creador": "*IBM* (*Arvind Krishna*)",
     "dato_curioso": "Reflejó la necesidad de IBM de controlar la plataforma líder de infraestructura como código en centros de datos.",
-    "card_number": 465
+    "volumen": 2,
+    "card_number": 63,
+    "legacy_card_number": 465,
+    "card_number_hex": "0x3F"
   }
 ]

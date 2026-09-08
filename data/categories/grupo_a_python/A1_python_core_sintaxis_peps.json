@@ -8,7 +8,10 @@
     "year": 1991,
     "creador": "*Guido van Rossum*",
     "dato_curioso": "Creado en el **CWI** en la navidad de 1989 como sucesor de *ABC*, bautizado en honor al grupo cómico británico *Monty Python*.",
-    "card_number": 519
+    "volumen": 0,
+    "card_number": 155,
+    "legacy_card_number": 519,
+    "card_number_hex": "0x9B"
   },
   {
     "grupo": "A",
@@ -19,7 +22,10 @@
     "year": 1994,
     "creador": "*Steven Majewski*",
     "dato_curioso": "Guido confesó que no era devoto de la programación funcional; aceptó el parche porque un fan de Lisp lo envió listo.",
-    "card_number": 429
+    "volumen": 0,
+    "card_number": 167,
+    "legacy_card_number": 429,
+    "card_number_hex": "0xA7"
   },
   {
     "grupo": "A",
@@ -30,7 +36,10 @@
     "year": 1994,
     "creador": "*Guido van Rossum*",
     "dato_curioso": "Esta característica eliminó de raíz los errores por confusión posicional en funciones con listas largas de parámetros opcionales.",
-    "card_number": 222
+    "volumen": 0,
+    "card_number": 129,
+    "legacy_card_number": 222,
+    "card_number_hex": "0x81"
   },
   {
     "grupo": "A",
@@ -41,7 +50,10 @@
     "year": 1996,
     "creador": "*Guido van Rossum*",
     "dato_curioso": "Facilitó la adopción inmediata de Python en laboratorios científicos, sentando las bases del futuro ecosistema numérico del lenguaje.",
-    "card_number": 71
+    "volumen": 0,
+    "card_number": 12,
+    "legacy_card_number": 71,
+    "card_number_hex": "0x0C"
   },
   {
     "grupo": "A",
@@ -52,7 +64,10 @@
     "year": 1997,
     "creador": "*Fredrik Lundh*",
     "dato_curioso": "Reemplazó al antiguo y limitado módulo `regex`, ganándose el apodo comunitario de *\"Secret Labs engine\"* por la rapidez de su motor en C.",
-    "card_number": 409
+    "volumen": 1,
+    "card_number": 27,
+    "legacy_card_number": 409,
+    "card_number_hex": "0x1B"
   },
   {
     "grupo": "A",
@@ -63,7 +78,10 @@
     "year": 2000,
     "creador": "*Marc-André Lemburg*",
     "dato_curioso": "Marcó el último release bajo la égida del *CNRI* antes de que el equipo central migrara a BeOpen para fundar PythonLabs.",
-    "card_number": 531
+    "volumen": 0,
+    "card_number": 31,
+    "legacy_card_number": 531,
+    "card_number_hex": "0x1F"
   },
   {
     "grupo": "A",
@@ -74,7 +92,10 @@
     "year": 2000,
     "creador": "*BeOpen PythonLabs* (*Guido van Rossum*)",
     "dato_curioso": "La sintaxis `[x for x in s]` fue importada directamente del lenguaje funcional *Haskell*, transformando la manera idiomática de procesar colecciones.",
-    "card_number": 117
+    "volumen": 0,
+    "card_number": 72,
+    "legacy_card_number": 117,
+    "card_number_hex": "0x48"
   },
   {
     "grupo": "A",
@@ -85,7 +106,10 @@
     "year": 2001,
     "creador": "*Guido van Rossum* y *Barry Warsaw*",
     "dato_curioso": "Fijó la sangría de **4 espacios por nivel** y el límite de 79 caracteres por línea, generando eternos debates de estilo.",
-    "card_number": 336
+    "volumen": 0,
+    "card_number": 70,
+    "legacy_card_number": 336,
+    "card_number_hex": "0x46"
   },
   {
     "grupo": "A",
@@ -96,7 +120,10 @@
     "year": 2001,
     "creador": "*Tim Peters*",
     "dato_curioso": "El texto del Zen de Python está cifrado con *ROT13* en el código fuente para evitar leerlo a simple vista.",
-    "card_number": 493
+    "volumen": 0,
+    "card_number": 136,
+    "legacy_card_number": 493,
+    "card_number_hex": "0x88"
   },
   {
     "grupo": "A",
@@ -107,7 +134,10 @@
     "year": 2001,
     "creador": "*Ka-Ping Yee* y *Guido van Rossum*",
     "dato_curioso": "Permitió iterar diccionarios directamente por clave (`for k in d:`) y recorrer archivos línea por línea sin cargarlos completos en memoria.",
-    "card_number": 442
+    "volumen": 1,
+    "card_number": 130,
+    "legacy_card_number": 442,
+    "card_number_hex": "0x82"
   },
   {
     "grupo": "A",
@@ -118,7 +148,10 @@
     "year": 2001,
     "creador": "*Guido van Rossum*",
     "dato_curioso": "Resolvió la anomalía donde tipos nativos y clases de usuario diferían, unificando tipos y clases bajo el mismo modelo.",
-    "card_number": 1
+    "volumen": 0,
+    "card_number": 91,
+    "legacy_card_number": 1,
+    "card_number_hex": "0x5B"
   },
   {
     "grupo": "A",
@@ -129,7 +162,10 @@
     "year": 2001,
     "creador": "*Neil Schemenauer* y *Tim Peters*",
     "dato_curioso": "Introdujo evaluación perezosa en CPython, reduciendo drásticamente el consumo de RAM en procesamiento de flujos masivos de datos.",
-    "card_number": 406
+    "volumen": 0,
+    "card_number": 123,
+    "legacy_card_number": 406,
+    "card_number_hex": "0x7B"
   },
   {
     "grupo": "A",
@@ -140,7 +176,10 @@
     "year": 2001,
     "creador": "*Jeremy Hylton*",
     "dato_curioso": "Requirió inicialmente `from __future__ import nested_scopes`, desatando debates entre partidarios del esquema plano anterior.",
-    "card_number": 42
+    "volumen": 1,
+    "card_number": 109,
+    "legacy_card_number": 42,
+    "card_number_hex": "0x6D"
   },
   {
     "grupo": "A",
@@ -151,7 +190,10 @@
     "year": 2002,
     "creador": "*Guido van Rossum*",
     "dato_curioso": "Por razones de compatibilidad hacia atrás estricta con código añejo, `bool` se definió como una subclase de `int`, haciendo que `True + True == 2`.",
-    "card_number": 176
+    "volumen": 0,
+    "card_number": 13,
+    "legacy_card_number": 176,
+    "card_number_hex": "0x0D"
   },
   {
     "grupo": "A",
@@ -162,7 +204,10 @@
     "year": 2003,
     "creador": "*Marc-André Lemburg* y *Martin von Löwis*",
     "dato_curioso": "Evitó que el intérprete fallara con excepciones de sintaxis al encontrar acentos, tildes o caracteres asiáticos en comentarios y strings.",
-    "card_number": 201
+    "volumen": 1,
+    "card_number": 55,
+    "legacy_card_number": 201,
+    "card_number_hex": "0x37"
   },
   {
     "grupo": "A",
@@ -173,7 +218,10 @@
     "year": 2003,
     "creador": "*Michele Simionato*",
     "dato_curioso": "Eliminó ambigüedades insolubles en herencia múltiple compleja, adaptando una técnica demostrada matemáticamente en el lenguaje *Dylan*.",
-    "card_number": 51
+    "volumen": 1,
+    "card_number": 7,
+    "legacy_card_number": 51,
+    "card_number_hex": "0x07"
   },
   {
     "grupo": "A",
@@ -184,7 +232,10 @@
     "year": 2003,
     "creador": "*Raymond Hettinger*",
     "dato_curioso": "Desterró el antipatrón omnipresente de usar variables contadoras manuales `i = 0` seguidas de `i += 1` dentro de bucles `for`.",
-    "card_number": 77
+    "volumen": 0,
+    "card_number": 60,
+    "legacy_card_number": 77,
+    "card_number_hex": "0x3C"
   },
   {
     "grupo": "A",
@@ -195,7 +246,10 @@
     "year": 2004,
     "creador": "*Anthony Baxter*",
     "dato_curioso": "La elección de `@` desató meses de debate en *python-dev*, barajándose alternativas extravagantes como `[decorate]`.",
-    "card_number": 328
+    "volumen": 0,
+    "card_number": 89,
+    "legacy_card_number": 328,
+    "card_number_hex": "0x59"
   },
   {
     "grupo": "A",
@@ -206,7 +260,10 @@
     "year": 2004,
     "creador": "*Raymond Hettinger*",
     "dato_curioso": "Permitieron alimentar funciones reductoras como `sum()` o `max()` sin crear listas intermedias en memoria, optimizando algoritmos iterativos.",
-    "card_number": 150
+    "volumen": 0,
+    "card_number": 137,
+    "legacy_card_number": 150,
+    "card_number_hex": "0x89"
   },
   {
     "grupo": "A",
@@ -217,7 +274,10 @@
     "year": 2004,
     "creador": "*Raymond Hettinger*",
     "dato_curioso": "Sustituyó el costoso truco de clonar e invertir listas en memoria mediante la notación de rebanado inverso `seq[::-1]`.",
-    "card_number": 129
+    "volumen": 1,
+    "card_number": 101,
+    "legacy_card_number": 129,
+    "card_number_hex": "0x65"
   },
   {
     "grupo": "A",
@@ -228,7 +288,10 @@
     "year": 2004,
     "creador": "*Facundo Batista*",
     "dato_curioso": "Resolvió los clásicos y embarazosos errores de redondeo de punto flotante en cálculos contables bancarios donde `0.1 + 0.2 != 0.3`.",
-    "card_number": 96
+    "volumen": 0,
+    "card_number": 103,
+    "legacy_card_number": 96,
+    "card_number_hex": "0x67"
   },
   {
     "grupo": "A",
@@ -239,7 +302,10 @@
     "year": 2005,
     "creador": "*Guido van Rossum* y *Raymond Hettinger*",
     "dato_curioso": "Guido lo rechazó por años temiendo código feo, hasta ver que se abusaba del truco inseguro `(cond and [x] or [y])[0]`.",
-    "card_number": 73
+    "volumen": 0,
+    "card_number": 99,
+    "legacy_card_number": 73,
+    "card_number_hex": "0x63"
   },
   {
     "grupo": "A",
@@ -250,7 +316,10 @@
     "year": 2005,
     "creador": "*Guido van Rossum* y *Nick Coghlan*",
     "dato_curioso": "Transformó el manejo seguro de recursos y archivos, garantizando cierres limpios sin depender de engorrosos bloques `try...finally`.",
-    "card_number": 321
+    "volumen": 0,
+    "card_number": 5,
+    "legacy_card_number": 321,
+    "card_number_hex": "0x05"
   },
   {
     "grupo": "A",
@@ -261,7 +330,10 @@
     "year": 2005,
     "creador": "*Guido van Rossum* y *Phillip Eby*",
     "dato_curioso": "Permitió inyectar valores directamente en generadores en ejecución, sentando los cimientos teóricos para los futuros frameworks asíncronos.",
-    "card_number": 94
+    "volumen": 1,
+    "card_number": 94,
+    "legacy_card_number": 94,
+    "card_number_hex": "0x5E"
   },
   {
     "grupo": "A",
@@ -272,7 +344,10 @@
     "year": 2006,
     "creador": "*Jeffrey Yasskin*",
     "dato_curioso": "Empleó clases base abstractas (*ABCs*) para permitir que librerías externas como *NumPy* interactuaran armoniosamente con los tipos nativos.",
-    "card_number": 190
+    "volumen": 1,
+    "card_number": 71,
+    "legacy_card_number": 190,
+    "card_number_hex": "0x47"
   },
   {
     "grupo": "A",
@@ -283,7 +358,10 @@
     "year": 2006,
     "creador": "*Talin*",
     "dato_curioso": "Diseñado para modernizar y eventualmente jubilar al venerable operador de interpolación heredado de C `%` (*printf-style*).",
-    "card_number": 212
+    "volumen": 1,
+    "card_number": 114,
+    "legacy_card_number": 212,
+    "card_number_hex": "0x72"
   },
   {
     "grupo": "A",
@@ -294,7 +372,10 @@
     "year": 2006,
     "creador": "*Collin Winter*",
     "dato_curioso": "Erradicó el bug donde novatos ponían `except ValueError, TypeError:` creyendo capturar dos errores y asignaban una variable.",
-    "card_number": 393
+    "volumen": 1,
+    "card_number": 126,
+    "legacy_card_number": 393,
+    "card_number_hex": "0x7E"
   },
   {
     "grupo": "A",
@@ -305,7 +386,10 @@
     "year": 2006,
     "creador": "*Georg Brandl*",
     "dato_curioso": "Desató gran controversia entre veteranos, pero habilitó pasar argumentos nombrados como `sep` y `end`, además de permitir sobrescribir la función.",
-    "card_number": 136
+    "volumen": 0,
+    "card_number": 7,
+    "legacy_card_number": 136,
+    "card_number_hex": "0x07"
   },
   {
     "grupo": "A",
@@ -316,7 +400,10 @@
     "year": 2007,
     "creador": "*Collin Winter* y *Tony Lownds*",
     "dato_curioso": "Dejó deliberadamente libre la semántica de las anotaciones, sin imaginar que años después se convertirían en el pilar del tipado estático moderno.",
-    "card_number": 378
+    "volumen": 1,
+    "card_number": 22,
+    "legacy_card_number": 378,
+    "card_number_hex": "0x16"
   },
   {
     "grupo": "A",
@@ -327,7 +414,10 @@
     "year": 2007,
     "creador": "*Martin von Löwis*",
     "dato_curioso": "Permitió variables con eñes, tildes o caracteres no latinos, provocando debates sobre legibilidad en equipos globales.",
-    "card_number": 500
+    "volumen": 1,
+    "card_number": 68,
+    "legacy_card_number": 500,
+    "card_number_hex": "0x44"
   },
   {
     "grupo": "A",
@@ -338,7 +428,10 @@
     "year": 2007,
     "creador": "*Georg Brandl*",
     "dato_curioso": "Aportó simetría con los parámetros `*args` de las funciones, simplificando la extracción de cabeza, cola o elementos centrales en colecciones.",
-    "card_number": 388
+    "volumen": 1,
+    "card_number": 60,
+    "legacy_card_number": 388,
+    "card_number_hex": "0x3C"
   },
   {
     "grupo": "A",
@@ -349,7 +442,10 @@
     "year": 2008,
     "creador": "*Guido van Rossum*",
     "dato_curioso": "La separación tajante entre texto `str` (Unicode) y datos binarios `bytes` provocó una traumática transición de casi una década en la industria.",
-    "card_number": 91
+    "volumen": 0,
+    "card_number": 133,
+    "legacy_card_number": 91,
+    "card_number_hex": "0x85"
   },
   {
     "grupo": "A",
@@ -360,7 +456,10 @@
     "year": 2008,
     "creador": "*Guido van Rossum*",
     "dato_curioso": "Brindó manipulación de buffers binarios en memoria sin incurrir en las continuas copias e inmutabilidad del tipo `bytes`.",
-    "card_number": 250
+    "volumen": 1,
+    "card_number": 81,
+    "legacy_card_number": 250,
+    "card_number_hex": "0x51"
   },
   {
     "grupo": "A",
@@ -371,7 +470,10 @@
     "year": 2008,
     "creador": "*Barry Warsaw*",
     "dato_curioso": "Aunque el PEP fue redactado originalmente en el 2000, tardó ocho años en materializarse formalmente en el núcleo del lenguaje para Python 2.7 y 3.0.",
-    "card_number": 436
+    "volumen": 1,
+    "card_number": 133,
+    "legacy_card_number": 436,
+    "card_number_hex": "0x85"
   },
   {
     "grupo": "A",
@@ -382,7 +484,10 @@
     "year": 2008,
     "creador": "*Raymond Hettinger*",
     "dato_curioso": "Mantuvo el orden de inserción de claves antes de que los diccionarios nativos implementaran esta propiedad de manera compacta por defecto.",
-    "card_number": 297
+    "volumen": 1,
+    "card_number": 9,
+    "legacy_card_number": 297,
+    "card_number_hex": "0x09"
   },
   {
     "grupo": "A",
@@ -393,7 +498,10 @@
     "year": 2009,
     "creador": "*Raymond Hettinger*",
     "dato_curioso": "Permitió formatear cifras financieras como `f\"{1000000:,}\"` produciendo directamente `'1,000,000'` sin requerir expresiones regulares.",
-    "card_number": 383
+    "volumen": 1,
+    "card_number": 5,
+    "legacy_card_number": 383,
+    "card_number_hex": "0x05"
   },
   {
     "grupo": "A",
@@ -404,7 +512,10 @@
     "year": 2009,
     "creador": "*Steven Bethard*",
     "dato_curioso": "Unificó la gestión de subcomandos, argumentos requeridos y mensajes de ayuda en la terminal, convirtiéndose en el estándar de utilitarios CLI.",
-    "card_number": 17
+    "volumen": 0,
+    "card_number": 8,
+    "legacy_card_number": 17,
+    "card_number_hex": "0x08"
   },
   {
     "grupo": "A",
@@ -415,7 +526,10 @@
     "year": 2010,
     "creador": "*Benjamin Peterson*",
     "dato_curioso": "Su fin de vida previsto para 2015 tuvo que postergarse al 1 de enero de 2020 por el inmenso código legacy sin migrar.",
-    "card_number": 214
+    "volumen": 0,
+    "card_number": 38,
+    "legacy_card_number": 214,
+    "card_number_hex": "0x26"
   },
   {
     "grupo": "A",
@@ -426,7 +540,10 @@
     "year": 2011,
     "creador": "*Barry Warsaw*",
     "dato_curioso": "Terminó con la molesta proliferación de archivos `.pyc` huérfanos mezclados entre los archivos de código fuente en los repositorios de trabajo.",
-    "card_number": 10
+    "volumen": 0,
+    "card_number": 79,
+    "legacy_card_number": 10,
+    "card_number_hex": "0x4F"
   },
   {
     "grupo": "A",
@@ -437,7 +554,10 @@
     "year": 2012,
     "creador": "*Greg Ewing*",
     "dato_curioso": "Permitió refactorizar generadores anidados y canalizar bidireccionalmente datos y excepciones, paso clave hacia la asincronía moderna.",
-    "card_number": 487
+    "volumen": 1,
+    "card_number": 104,
+    "legacy_card_number": 487,
+    "card_number_hex": "0x68"
   },
   {
     "grupo": "A",
@@ -448,7 +568,10 @@
     "year": 2012,
     "creador": "*Martin von Löwis*",
     "dato_curioso": "Adaptó el tamaño de caracteres a 1, 2 o 4 bytes, reduciendo a la mitad el consumo de RAM en cadenas ASCII en Python 3.3.",
-    "card_number": 360
+    "volumen": 1,
+    "card_number": 90,
+    "legacy_card_number": 360,
+    "card_number_hex": "0x5A"
   },
   {
     "grupo": "A",
@@ -459,7 +582,10 @@
     "year": 2012,
     "creador": "*Armin Ronacher*",
     "dato_curioso": "Alivió drásticamente el dolor de los mantenedores de librerías que buscaban escribir bases de código compatibles simultáneamente con Python 2 y 3.",
-    "card_number": 455
+    "volumen": 1,
+    "card_number": 4,
+    "legacy_card_number": 455,
+    "card_number_hex": "0x04"
   },
   {
     "grupo": "A",
@@ -470,7 +596,10 @@
     "year": 2013,
     "creador": "*Barry Warsaw* y *Eli Bendersky*",
     "dato_curioso": "Terminó con años de soluciones ad-hoc caseras basadas en clases con constantes enteras o tuplas dispersas.",
-    "card_number": 24
+    "volumen": 0,
+    "card_number": 122,
+    "legacy_card_number": 24,
+    "card_number_hex": "0x7A"
   },
   {
     "grupo": "A",
@@ -481,7 +610,10 @@
     "year": 2013,
     "creador": "*Steven D'Aprano*",
     "dato_curioso": "Introdujo funciones como `mean()`, `median()` y `stdev()` sin obligar a instalar dependencias pesadas de terceros para operaciones básicas.",
-    "card_number": 434
+    "volumen": 1,
+    "card_number": 46,
+    "legacy_card_number": 434,
+    "card_number_hex": "0x2E"
   },
   {
     "grupo": "A",
@@ -492,7 +624,10 @@
     "year": 2014,
     "creador": "*Antoine Pitrou*",
     "dato_curioso": "Permitió manipular rutas mediante sobrecarga del operador de barra `/` (`ruta / \"archivo.txt\"`), jubilando las llamadas anidadas a `os.path`.",
-    "card_number": 179
+    "volumen": 0,
+    "card_number": 75,
+    "legacy_card_number": 179,
+    "card_number_hex": "0x4B"
   },
   {
     "grupo": "A",
@@ -503,7 +638,10 @@
     "year": 2014,
     "creador": "*Donald Stufft* y *Nick Coghlan*",
     "dato_curioso": "Erradicó el tedioso ritual de descargar manualmente scripts flotantes como `get-pip.py` para configurar entornos de desarrollo nuevos.",
-    "card_number": 98
+    "volumen": 0,
+    "card_number": 125,
+    "legacy_card_number": 98,
+    "card_number_hex": "0x7D"
   },
   {
     "grupo": "A",
@@ -514,7 +652,10 @@
     "year": 2014,
     "creador": "*Nathaniel J. Smith*",
     "dato_curioso": "Diseñado expresamente para la comunidad científica y *NumPy*, eliminando la confusa colisión entre producto elemento a elemento y producto matricial.",
-    "card_number": 373
+    "volumen": 1,
+    "card_number": 57,
+    "legacy_card_number": 373,
+    "card_number_hex": "0x39"
   },
   {
     "grupo": "A",
@@ -525,7 +666,10 @@
     "year": 2015,
     "creador": "*Guido van Rossum*, *J. Lehtosalo* y *Langa*",
     "dato_curioso": "Inspirado en *mypy*, revolucionó el análisis estático en grandes empresas sin alterar la ejecución dinámica de Python.",
-    "card_number": 44
+    "volumen": 0,
+    "card_number": 93,
+    "legacy_card_number": 44,
+    "card_number_hex": "0x5D"
   },
   {
     "grupo": "A",
@@ -536,7 +680,10 @@
     "year": 2015,
     "creador": "*Yury Selivanov*",
     "dato_curioso": "Separó formalmente las corrutinas de los generadores clásicos, evitando que excepciones en iteradores ordinarios corrompieran bucles de eventos.",
-    "card_number": 327
+    "volumen": 1,
+    "card_number": 67,
+    "legacy_card_number": 327,
+    "card_number_hex": "0x43"
   },
   {
     "grupo": "A",
@@ -547,7 +694,10 @@
     "year": 2015,
     "creador": "*Thomas Wouters*",
     "dato_curioso": "Permitió concatenar listas y fusionar diccionarios limpiamente con expresiones como `[*a, *b]` y `{**d1, **d2}` sin recurrir a métodos mutables.",
-    "card_number": 501
+    "volumen": 1,
+    "card_number": 48,
+    "legacy_card_number": 501,
+    "card_number_hex": "0x30"
   },
   {
     "grupo": "A",
@@ -558,7 +708,10 @@
     "year": 2016,
     "creador": "*Eric V. Smith*",
     "dato_curioso": "Se volvieron la forma predilecta de formatear texto por su claridad y porque compilan directo a bytecode ultrarrápido.",
-    "card_number": 410
+    "volumen": 0,
+    "card_number": 147,
+    "legacy_card_number": 410,
+    "card_number_hex": "0x93"
   },
   {
     "grupo": "A",
@@ -569,7 +722,10 @@
     "year": 2016,
     "creador": "*Georg Brandl*",
     "dato_curioso": "Mejoró enormemente la legibilidad de máscaras binarias, direcciones hexadecimales y grandes números enteros sin alterar su valor en runtime.",
-    "card_number": 135
+    "volumen": 1,
+    "card_number": 49,
+    "legacy_card_number": 135,
+    "card_number_hex": "0x31"
   },
   {
     "grupo": "A",
@@ -580,7 +736,10 @@
     "year": 2016,
     "creador": "*Ryan Gonzalez* y *Guido van Rossum*",
     "dato_curioso": "Habilitó expresiones directas como `primer_nombre: str = \"Ada\"`, allanando el camino para modelos declarativos como *Pydantic*.",
-    "card_number": 34
+    "volumen": 1,
+    "card_number": 12,
+    "legacy_card_number": 34,
+    "card_number_hex": "0x0C"
   },
   {
     "grupo": "A",
@@ -591,7 +750,10 @@
     "year": 2017,
     "creador": "*Eric V. Smith*",
     "dato_curioso": "Inspirado en la popular librería comunitaria *attrs*, redujo toneladas de código repetitivo (*boilerplate*) en clases contenedoras de datos.",
-    "card_number": 197
+    "volumen": 0,
+    "card_number": 64,
+    "legacy_card_number": 197,
+    "card_number_hex": "0x40"
   },
   {
     "grupo": "A",
@@ -602,7 +764,10 @@
     "year": 2017,
     "creador": "*Łukasz Langa*",
     "dato_curioso": "Resolvió referencias circulares y llamadas reflexivas a clases no definidas aún en tiempo de lectura, acelerando los tiempos de arranque de módulos.",
-    "card_number": 382
+    "volumen": 1,
+    "card_number": 117,
+    "legacy_card_number": 382,
+    "card_number_hex": "0x75"
   },
   {
     "grupo": "A",
@@ -613,7 +778,10 @@
     "year": 2018,
     "creador": "*Chris Angelico*",
     "dato_curioso": "La toxicidad en los debates comunitarios sobre esta sintaxis llevó a Guido van Rossum a renunciar para siempre como *BDFL*.",
-    "card_number": 331
+    "volumen": 0,
+    "card_number": 36,
+    "legacy_card_number": 331,
+    "card_number_hex": "0x24"
   },
   {
     "grupo": "A",
@@ -624,7 +792,10 @@
     "year": 2018,
     "creador": "*Larry Hastings* y *Pablo Galindo Salgado*",
     "dato_curioso": "Permitió diseñar APIs seguras donde los nombres de los argumentos internos pueden cambiarse en el futuro sin romper el código de los consumidores.",
-    "card_number": 155
+    "volumen": 1,
+    "card_number": 96,
+    "legacy_card_number": 155,
+    "card_number_hex": "0x60"
   },
   {
     "grupo": "A",
@@ -635,7 +806,10 @@
     "year": 2019,
     "creador": "*Łukasz Langa*",
     "dato_curioso": "Eliminó la molesta duplicación entre tipos nativos y alias en mayúsculas como `typing.List` o `typing.Dict`, simplificando las anotaciones.",
-    "card_number": 29
+    "volumen": 1,
+    "card_number": 39,
+    "legacy_card_number": 29,
+    "card_number_hex": "0x27"
   },
   {
     "grupo": "A",
@@ -646,7 +820,10 @@
     "year": 2020,
     "creador": "*Philippe Prados* y *Maggie Moss*",
     "dato_curioso": "Reemplazó la pesada y verbose sintaxis `Union[int, str]` de `typing` por una notación mucho más limpia y cercana a otros lenguajes modernos.",
-    "card_number": 4
+    "volumen": 1,
+    "card_number": 61,
+    "legacy_card_number": 4,
+    "card_number_hex": "0x3D"
   },
   {
     "grupo": "A",
@@ -657,7 +834,10 @@
     "year": 2020,
     "creador": "*Brandt Bucher* y *Guido van Rossum*",
     "dato_curioso": "Aportó capacidades de descomposición de objetos complejas inspiradas en lenguajes como *Scala* y *Rust*, superando con creces a un simple `switch`.",
-    "card_number": 83
+    "volumen": 0,
+    "card_number": 124,
+    "legacy_card_number": 83,
+    "card_number_hex": "0x7C"
   },
   {
     "grupo": "A",
@@ -668,7 +848,10 @@
     "year": 2021,
     "creador": "*Irit Katriel*, *Y. Selivanov* y *van Rossum*",
     "dato_curioso": "Diseñado para manejar múltiples errores simultáneos emanados de tareas paralelas o viveros de corrutinas asíncronas sin perder ninguna traza.",
-    "card_number": 395
+    "volumen": 1,
+    "card_number": 120,
+    "legacy_card_number": 395,
+    "card_number_hex": "0x78"
   },
   {
     "grupo": "A",
@@ -679,7 +862,10 @@
     "year": 2022,
     "creador": "*Pablo Galindo Salgado* y *Batuhan Taşkaya*",
     "dato_curioso": "Las trazas comenzaron a imprimir flechas y subrayados `^^^^^` señalando exactamente qué subexpresión o llamada anidada provocó el error en la línea.",
-    "card_number": 252
+    "volumen": 1,
+    "card_number": 138,
+    "legacy_card_number": 252,
+    "card_number_hex": "0x8A"
   },
   {
     "grupo": "A",
@@ -690,7 +876,10 @@
     "year": 2023,
     "creador": "*Eric Traut*",
     "dato_curioso": "Habilitó expresiones directas como `type Punto[T] = tuple[T, T]`, eliminando la necesidad de instanciar manualmente objetos `TypeVar`.",
-    "card_number": 287
+    "volumen": 1,
+    "card_number": 26,
+    "legacy_card_number": 287,
+    "card_number_hex": "0x1A"
   },
   {
     "grupo": "A",
@@ -701,6 +890,9 @@
     "year": 2025,
     "creador": "*Jim Baker* y *Guido van Rossum*",
     "dato_curioso": "Previene inyecciones SQL y XSS al diferir la evaluación de strings formateados hasta que un parser seguro los valide.",
-    "card_number": 41
+    "volumen": 1,
+    "card_number": 1,
+    "legacy_card_number": 41,
+    "card_number_hex": "0x01"
   }
 ]

@@ -8,7 +8,10 @@
     "year": 1992,
     "creador": "*Guido van Rossum*",
     "dato_curioso": "Evitaba carreras de memoria en C, sin prever el dolor de cabeza que causaría para el cómputo multinúcleo décadas después.",
-    "card_number": 204
+    "volumen": 0,
+    "card_number": 100,
+    "legacy_card_number": 204,
+    "card_number_hex": "0x64"
   },
   {
     "grupo": "A",
@@ -19,7 +22,10 @@
     "year": 1997,
     "creador": "*Jim Hugunin*",
     "dato_curioso": "Permitió interactuar de forma transparente con clases Java y prescindir del GIL, ya que delegaba la concurrencia en los hilos nativos de la *JVM*.",
-    "card_number": 467
+    "volumen": 1,
+    "card_number": 38,
+    "legacy_card_number": 467,
+    "card_number_hex": "0x26"
   },
   {
     "grupo": "A",
@@ -30,7 +36,10 @@
     "year": 1998,
     "creador": "*Christian Tismer*",
     "dato_curioso": "Fue el motor de **EVE Online**, permitiendo a sus servidores coordinar miles de naves espaciales en un único proceso.",
-    "card_number": 193
+    "volumen": 1,
+    "card_number": 3,
+    "legacy_card_number": 193,
+    "card_number_hex": "0x03"
   },
   {
     "grupo": "A",
@@ -41,7 +50,10 @@
     "year": 1999,
     "creador": "*Greg Stein*",
     "dato_curioso": "Logró hilos paralelos, pero bloquear cada operación duplicó el tiempo de ejecución monohilo, forzando su descarte.",
-    "card_number": 40
+    "volumen": 1,
+    "card_number": 64,
+    "legacy_card_number": 40,
+    "card_number_hex": "0x40"
   },
   {
     "grupo": "A",
@@ -52,7 +64,10 @@
     "year": 2000,
     "creador": "*Neil Schemenauer*",
     "dato_curioso": "Añadió tres generaciones de recolección cíclica, evitando fugas de memoria sin degradar el conteo de referencias.",
-    "card_number": 86
+    "volumen": 1,
+    "card_number": 82,
+    "legacy_card_number": 86,
+    "card_number_hex": "0x52"
   },
   {
     "grupo": "A",
@@ -63,7 +78,10 @@
     "year": 2002,
     "creador": "*Greg Ewing*",
     "dato_curioso": "Permitió escribir extensiones rápidas sin manipular manualmente las complejas macros de la *Python C API*.",
-    "card_number": 139
+    "volumen": 1,
+    "card_number": 124,
+    "legacy_card_number": 139,
+    "card_number_hex": "0x7C"
   },
   {
     "grupo": "A",
@@ -74,7 +92,10 @@
     "year": 2003,
     "creador": "*Armin Rigo* y *Holger Krekel*",
     "dato_curioso": "Financiado por la UE, demostró superar a CPython en bucles numéricos intensivos por órdenes de magnitud gracias al JIT.",
-    "card_number": 497
+    "volumen": 1,
+    "card_number": 37,
+    "legacy_card_number": 497,
+    "card_number_hex": "0x25"
   },
   {
     "grupo": "A",
@@ -85,7 +106,10 @@
     "year": 2004,
     "creador": "*Jim Hugunin* (*Microsoft*)",
     "dato_curioso": "La demo en el CLR impresionó tanto a Microsoft que contrataron de inmediato a Hugunin para liderar el proyecto.",
-    "card_number": 21
+    "volumen": 1,
+    "card_number": 106,
+    "legacy_card_number": 21,
+    "card_number_hex": "0x6A"
   },
   {
     "grupo": "A",
@@ -96,7 +120,10 @@
     "year": 2005,
     "creador": "*Brett Cannon* y *Neil Schemenauer*",
     "dato_curioso": "Reemplazó el arcaico compilador de un solo paso por un diseño modular de dos fases que facilitó el análisis estático y la optimización de bytecode.",
-    "card_number": 111
+    "volumen": 1,
+    "card_number": 15,
+    "legacy_card_number": 111,
+    "card_number_hex": "0x0F"
   },
   {
     "grupo": "A",
@@ -107,7 +134,10 @@
     "year": 2005,
     "creador": "*Mark Dufour*",
     "dato_curioso": "Demostró aceleraciones de hasta 200x en matemáticas puras, anticipando el interés de la industria por dialectos compilados.",
-    "card_number": 159
+    "volumen": 1,
+    "card_number": 54,
+    "legacy_card_number": 159,
+    "card_number_hex": "0x36"
   },
   {
     "grupo": "A",
@@ -118,7 +148,10 @@
     "year": 2007,
     "creador": "*Robert Bradshaw* y *Stefan Behnel*",
     "dato_curioso": "Es el corazón de *SciPy* y *Pandas*, permitiendo declarar variables `cdef` que compilan directo a código C nativo.",
-    "card_number": 463
+    "volumen": 1,
+    "card_number": 128,
+    "legacy_card_number": 463,
+    "card_number_hex": "0x80"
   },
   {
     "grupo": "A",
@@ -129,7 +162,10 @@
     "year": 2009,
     "creador": "*David Beazley*",
     "dato_curioso": "Mostró que en multinúcleo los hilos pesados libraban batallas por el GIL que rendían peor que en un solo núcleo.",
-    "card_number": 268
+    "volumen": 1,
+    "card_number": 85,
+    "legacy_card_number": 268,
+    "card_number_hex": "0x55"
   },
   {
     "grupo": "A",
@@ -140,7 +176,10 @@
     "year": 2010,
     "creador": "*Antoine Pitrou*",
     "dato_curioso": "Reemplazó los 100 bytecodes por un temporizador (`switch_interval`), erradicando batallas destructivas entre hilos.",
-    "card_number": 237
+    "volumen": 1,
+    "card_number": 6,
+    "legacy_card_number": 237,
+    "card_number_hex": "0x06"
   },
   {
     "grupo": "A",
@@ -151,7 +190,10 @@
     "year": 2010,
     "creador": "*Kay Hayen*",
     "dato_curioso": "A diferencia de otros transpiladores, buscó 100% de compatibilidad con todas las librerías sin alterar sintaxis.",
-    "card_number": 299
+    "volumen": 1,
+    "card_number": 43,
+    "legacy_card_number": 299,
+    "card_number_hex": "0x2B"
   },
   {
     "grupo": "A",
@@ -162,7 +204,10 @@
     "year": 2013,
     "creador": "*Damien George*",
     "dato_curioso": "Empaquetó compilador, runtime y REPL de Python en chips con apenas **16 KB de RAM**, abriendo la electrónica embebida.",
-    "card_number": 474
+    "volumen": 0,
+    "card_number": 152,
+    "legacy_card_number": 474,
+    "card_number_hex": "0x98"
   },
   {
     "grupo": "A",
@@ -173,29 +218,10 @@
     "year": 2014,
     "creador": "*Dropbox* (*Kevin Modzelewski*)",
     "dato_curioso": "Usaba *LLVM* y aceleraba un 25%, pero el alto consumo de memoria forzó al equipo a rediseñar su arquitectura años después.",
-    "card_number": 272
-  },
-  {
-    "grupo": "A",
-    "grupo_nombre": "Universo Python",
-    "categoria": "A2",
-    "categoria_nombre": "Runtimes, Intérpretes y GIL",
-    "hito": "Implementación de **Pyjion**, un proyecto experimental de runtime extensible con interfaz JIT conectable para CPython.",
-    "year": 2016,
-    "creador": "*Brett Cannon* y *D. Viehland* (*Microsoft*)",
-    "dato_curioso": "Diseñado para explorar si la máquina virtual de Python podía beneficiarse del motor de compilación en tiempo de ejecución del CLR de .NET.",
-    "card_number": 195
-  },
-  {
-    "grupo": "A",
-    "grupo_nombre": "Universo Python",
-    "categoria": "A2",
-    "categoria_nombre": "Runtimes, Intérpretes y GIL",
-    "hito": "Lanzamiento en Google de **Grumpy**, transpilador experimental que convertía código Python 2.7 a programas concurrentes en **Go**.",
-    "year": 2017,
-    "creador": "*Google* (*Dylan Trotter*)",
-    "dato_curioso": "Nació para escalar servicios web sin el lastre del GIL, aprovechando el planificador de *goroutines* de Go.",
-    "card_number": 424
+    "volumen": 1,
+    "card_number": 59,
+    "legacy_card_number": 272,
+    "card_number_hex": "0x3B"
   },
   {
     "grupo": "A",
@@ -206,7 +232,10 @@
     "year": 2017,
     "creador": "*Adafruit Industries* (*Scott Shawcroft*)",
     "dato_curioso": "El microcontrolador se monta como memoria USB, permitiendo programar editando directo el archivo `code.py`.",
-    "card_number": 365
+    "volumen": 1,
+    "card_number": 116,
+    "legacy_card_number": 365,
+    "card_number_hex": "0x74"
   },
   {
     "grupo": "A",
@@ -217,7 +246,10 @@
     "year": 2018,
     "creador": "*Michael Droettboom* (*Mozilla*)",
     "dato_curioso": "Permitió ejecutar *NumPy*, *Pandas* y *Matplotlib* íntegramente dentro del navegador del cliente sin depender de servidores backend de cómputo.",
-    "card_number": 251
+    "volumen": 1,
+    "card_number": 88,
+    "legacy_card_number": 251,
+    "card_number_hex": "0x58"
   },
   {
     "grupo": "A",
@@ -228,7 +260,10 @@
     "year": 2018,
     "creador": "*Windel Bouwman* y comunidad",
     "dato_curioso": "Enfocado en seguridad de memoria en Rust, con integración nativa en WebAssembly y entornos embebidos seguros.",
-    "card_number": 359
+    "volumen": 1,
+    "card_number": 74,
+    "legacy_card_number": 359,
+    "card_number_hex": "0x4A"
   },
   {
     "grupo": "A",
@@ -239,7 +274,10 @@
     "year": 2019,
     "creador": "*Mark Shannon* y *Jeroen Demeyer*",
     "dato_curioso": "Evitó la costosa creación de tuplas y diccionarios intermedios temporales cada vez que se invocaba una función con argumentos posicionales o de clave.",
-    "card_number": 52
+    "volumen": 1,
+    "card_number": 8,
+    "legacy_card_number": 52,
+    "card_number_hex": "0x08"
   },
   {
     "grupo": "A",
@@ -250,7 +288,10 @@
     "year": 2020,
     "creador": "*Guido van Rossum*, *P. Galindo* y *Nikolaou*",
     "dato_curioso": "Permitió sintaxis complejas con múltiples miradas adelante (*lookahead*), base del `match/case` de Python 3.10.",
-    "card_number": 23
+    "volumen": 1,
+    "card_number": 113,
+    "legacy_card_number": 23,
+    "card_number_hex": "0x71"
   },
   {
     "grupo": "A",
@@ -261,7 +302,10 @@
     "year": 2020,
     "creador": "*Mark Shannon* y *Guido van Rossum*",
     "dato_curioso": "Guido salió de su retiro para unirse a Microsoft, enfocándose en la aceleración del intérprete de CPython.",
-    "card_number": 486
+    "volumen": 1,
+    "card_number": 134,
+    "legacy_card_number": 486,
+    "card_number_hex": "0x86"
   },
   {
     "grupo": "A",
@@ -272,7 +316,10 @@
     "year": 2021,
     "creador": "*Oracle Labs*",
     "dato_curioso": "Logró interoperabilidad nativa sin costo (*zero-overhead*) entre Python, Java, JavaScript, Ruby y lenguajes compilados por LLVM.",
-    "card_number": 90
+    "volumen": 1,
+    "card_number": 10,
+    "legacy_card_number": 90,
+    "card_number_hex": "0x0A"
   },
   {
     "grupo": "A",
@@ -283,7 +330,10 @@
     "year": 2022,
     "creador": "*Mark Shannon*",
     "dato_curioso": "Reemplaza bytecodes en caliente por variantes monomórficas según tipos observados, acelerando CPython hasta un 60%.",
-    "card_number": 7
+    "volumen": 1,
+    "card_number": 87,
+    "legacy_card_number": 7,
+    "card_number_hex": "0x57"
   },
   {
     "grupo": "A",
@@ -294,7 +344,10 @@
     "year": 2023,
     "creador": "*Eric Snow* y *Eddie Elizondo* (*Meta*)",
     "dato_curioso": "Permitió a Instagram/Meta compartir gigabytes de memoria entre procesos sin activar *Copy-on-Write* accidentalmente.",
-    "card_number": 110
+    "volumen": 1,
+    "card_number": 79,
+    "legacy_card_number": 110,
+    "card_number_hex": "0x4F"
   },
   {
     "grupo": "A",
@@ -305,7 +358,10 @@
     "year": 2023,
     "creador": "*Eric Snow*",
     "dato_curioso": "Permitió por primera vez ejecutar código en paralelo real usando subintérpretes aislados con GIL individual.",
-    "card_number": 511
+    "volumen": 1,
+    "card_number": 86,
+    "legacy_card_number": 511,
+    "card_number_hex": "0x56"
   },
   {
     "grupo": "A",
@@ -316,7 +372,10 @@
     "year": 2023,
     "creador": "*Modular* (*Chris Lattner*)",
     "dato_curioso": "Creado por el autor de LLVM y Swift, promete acelerar código Python hasta 35,000x combinando tipado y GPUs.",
-    "card_number": 199
+    "volumen": 1,
+    "card_number": 58,
+    "legacy_card_number": 199,
+    "card_number_hex": "0x3A"
   },
   {
     "grupo": "A",
@@ -327,7 +386,10 @@
     "year": 2023,
     "creador": "*Sam Gross* (*Meta*)",
     "dato_curioso": "Tras décadas de resistencia, el Steering Council aceptó hacer del modo sin GIL el futuro oficial de CPython.",
-    "card_number": 220
+    "volumen": 0,
+    "card_number": 63,
+    "legacy_card_number": 220,
+    "card_number_hex": "0x3F"
   },
   {
     "grupo": "A",
@@ -338,7 +400,10 @@
     "year": 2024,
     "creador": "*Brandt Bucher*",
     "dato_curioso": "Aplica *Copy-and-Patch JIT*, convirtiendo bytecode optimizado en código máquina sin pesados compiladores externos.",
-    "card_number": 323
+    "volumen": 1,
+    "card_number": 129,
+    "legacy_card_number": 323,
+    "card_number_hex": "0x81"
   },
   {
     "grupo": "A",
@@ -349,7 +414,10 @@
     "year": 2024,
     "creador": "*CPython Core Team*",
     "dato_curioso": "Ejecuta CPython sin GIL, impulsando a *NumPy* y *PyTorch* a adaptar sus extensiones C a concurrencia real.",
-    "card_number": 48
+    "volumen": 1,
+    "card_number": 35,
+    "legacy_card_number": 48,
+    "card_number_hex": "0x23"
   },
   {
     "grupo": "A",
@@ -360,18 +428,10 @@
     "year": 2024,
     "creador": "*Daniele Nicolodi*",
     "dato_curioso": "Estableció tags de *wheels* (`cp313t`) para diferenciar módulos sin GIL y evitar fallos de segmentación.",
-    "card_number": 503
-  },
-  {
-    "grupo": "A",
-    "grupo_nombre": "Universo Python",
-    "categoria": "A2",
-    "categoria_nombre": "Runtimes, Intérpretes y GIL",
-    "hito": "Implementación del recolector de basura sin pausas globales (*mimalloc integration*) adaptado para el modelo *no-GIL* en CPython.",
-    "year": 2024,
-    "creador": "*Sam Gross*",
-    "dato_curioso": "Adoptó el gestor *mimalloc* de Microsoft, clave para escalar asignaciones concurrentes de memoria sin contención.",
-    "card_number": 294
+    "volumen": 1,
+    "card_number": 110,
+    "legacy_card_number": 503,
+    "card_number_hex": "0x6E"
   },
   {
     "grupo": "A",
@@ -382,7 +442,10 @@
     "year": 2025,
     "creador": "*Faster CPython Team*",
     "dato_curioso": "Traduce llamadas monomórficas en saltos directos de memoria sin consultar el diccionario de clase en tiempo real.",
-    "card_number": 61
+    "volumen": 1,
+    "card_number": 16,
+    "legacy_card_number": 61,
+    "card_number_hex": "0x10"
   },
   {
     "grupo": "A",
@@ -393,18 +456,10 @@
     "year": 2025,
     "creador": "*Eric Snow*",
     "dato_curioso": "Permite spawnear subintérpretes con canales seguros (*channels*), alternativa ligera a `multiprocessing`.",
-    "card_number": 394
-  },
-  {
-    "grupo": "A",
-    "grupo_nombre": "Universo Python",
-    "categoria": "A2",
-    "categoria_nombre": "Runtimes, Intérpretes y GIL",
-    "hito": "Biblioteca de compilación numérica para hardware heterogéneo basada en ejecución multi-hilo en Python 3.14.",
-    "year": 2025,
-    "creador": "*Comunidad Científica Python*",
-    "dato_curioso": "Permite a *SciPy* ejecutar álgebra lineal en hilos de CPU sin el costo de serialización entre procesos.",
-    "card_number": 146
+    "volumen": 1,
+    "card_number": 44,
+    "legacy_card_number": 394,
+    "card_number_hex": "0x2C"
   },
   {
     "grupo": "A",
@@ -415,6 +470,9 @@
     "year": 2026,
     "creador": "*Python Steering Council*",
     "dato_curioso": "Evaluó la estabilidad del ecosistema C para apagar el GIL por defecto y unificar la distribución del lenguaje.",
-    "card_number": 142
+    "volumen": 1,
+    "card_number": 25,
+    "legacy_card_number": 142,
+    "card_number_hex": "0x19"
   }
 ]

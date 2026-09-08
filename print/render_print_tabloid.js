@@ -326,8 +326,9 @@ function generateSvgSheets(cards, formatConfig, options) {
       }
 
       const theme = getCardTheme(c);
-      const cardNumPad = String(c.card_number).padStart(3, '0');
-      const numStr = `#${cardNumPad}`;
+      const volId = c.volumen !== undefined ? c.volumen : 0;
+      const hexPart = c.card_number_hex ? c.card_number_hex.substring(2) : c.card_number.toString(16).toUpperCase().padStart(2, '0');
+      const numStr = `${volId}x${hexPart}`;
       const grupoText = escapeXml(stripMarkdown(c.grupo_nombre).toUpperCase());
       const catText = escapeXml(stripMarkdown(c.categoria_nombre));
       const clueText = stripMarkdown(c.hito);
@@ -357,8 +358,8 @@ function generateSvgSheets(cards, formatConfig, options) {
         marksSvg = generateCropMarksSvg(cutX, cutY, CARD_SIZE_PT, CARD_SIZE_PT);
       }
 
-      frontCardsSvg += `    <!-- Tarjeta #${cardNumPad} Frente -->
-    <g id="carta_${cardNumPad}_frente">
+      frontCardsSvg += `    <!-- Tarjeta ${numStr} Frente -->
+    <g id="carta_${volId}_${hexPart}_frente">
       ${marksSvg}
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
       <rect x="${bleedX}" y="${bleedY}" width="${bleedW}" height="${bleedH}" fill="${theme.frontBgHex}" />
@@ -442,7 +443,8 @@ ${frontCardsSvg}  </g>
         }
 
         const theme = getCardTheme(c);
-        const cardNumPad = String(c.card_number).padStart(3, '0');
+        const volId = c.volumen !== undefined ? c.volumen : 0;
+        const hexPart = c.card_number_hex ? c.card_number_hex.substring(2) : c.card_number.toString(16).toUpperCase().padStart(2, '0');
         const colorMain = '#111111';
         const colorCorner = theme.cornerColor || 'rgba(255, 255, 255, 0.7)';
 
@@ -468,7 +470,7 @@ ${frontCardsSvg}  </g>
           triviaTspans += `<tspan x="${(CARD_SIZE_PT / 2).toFixed(2)}" y="${(triviaStartY + i * triviaLeading).toFixed(1)}">${escapeXml(line)}</tspan>`;
         });
 
-        const cleanCardNum = String(c.card_number).padStart(3, '0');
+        const cleanCardNum = `${volId}x${hexPart}`;
 
         // Dimensiones con rebase (+3mm / 8.5pt hacia cada lado)
         const bleedX = (cutX - BLEED_PT).toFixed(2);
@@ -481,8 +483,8 @@ ${frontCardsSvg}  </g>
           marksSvg = generateCropMarksSvg(cutX, cutY, CARD_SIZE_PT, CARD_SIZE_PT);
         }
 
-        backCardsSvg += `    <!-- Tarjeta #${cardNumPad} Reverso -->
-    <g id="carta_${cardNumPad}_reverso">
+        backCardsSvg += `    <!-- Tarjeta ${cleanCardNum} Reverso -->
+    <g id="carta_${volId}_${hexPart}_reverso">
       ${marksSvg}
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
       <rect x="${bleedX}" y="${bleedY}" width="${bleedW}" height="${bleedH}" fill="${theme.bgHex}" />
