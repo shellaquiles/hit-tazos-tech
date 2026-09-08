@@ -6,9 +6,9 @@
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
     "hito": "Delimitación de parámetros posicionales estrictos mediante el símbolo `/` con la especificación del **PEP 570**.",
-    "year": 2018,
-    "autor": "Larry Hastings y Pablo Galindo Salgado",
-    "trivia": "Permitió diseñar APIs seguras donde los nombres de los argumentos internos pueden cambiarse en el futuro sin romper el código de los consumidores."
+    "year": 2019,
+    "autor": "Larry Hastings y Pablo Galindo",
+    "trivia": "Permitió diseñar APIs seguras donde los nombres de argumentos internos pueden alterarse sin romper el código consumidor."
   },
   {
     "id": "vol6-0x01",
@@ -60,10 +60,10 @@
     "index": 5,
     "domain": "languages-runtimes",
     "tag": "cpython-runtime",
-    "hito": "Despliegue de optimizaciones de desvirtualización de llamadas y análisis de escape en el compilador JIT experimental de **Python 3.14**.",
-    "year": 2025,
-    "autor": "Faster CPython Team",
-    "trivia": "Traduce llamadas monomórficas en saltos directos de memoria sin consultar el diccionario de clase en tiempo real."
+    "hito": "Inclusión del compilador JIT experimental (*Tier 2 Copy-and-Patch*) en **Python 3.13** para acelerar el bytecode en caliente.",
+    "year": 2024,
+    "autor": "Brandt Bucher y Faster CPython Team",
+    "trivia": "Compila plantillas de código máquina nativo eliminando la sobrecarga del bucle central del evaluador de instrucciones."
   },
   {
     "id": "vol6-0x06",
@@ -71,7 +71,7 @@
     "index": 6,
     "domain": "hacker-culture-web",
     "tag": "python-community",
-    "hito": "Institucionalización de los *Development Sprints* presenciales de varios días tras finalizar las charlas principales de PyCon.",
+    "hito": "Institucionalización de los **Development Sprints** presenciales de varios días tras finalizar las conferencias de PyCon.",
     "year": 2005,
     "autor": "PyCon Committee",
     "trivia": "Sentar a novatos y veteranos codo a codo en sprints impulsó el cierre de bugs y forjó futuros *core developers*."
@@ -105,9 +105,9 @@
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
     "hito": "Establecimiento de la jerarquía numérica abstracta (`Number`, `Real`, `Integral`) en el módulo `numbers` vía **PEP 3141**.",
-    "year": 2006,
+    "year": 2007,
     "autor": "Jeffrey Yasskin",
-    "trivia": "Empleó clases base abstractas (*ABCs*) para permitir que librerías externas como *NumPy* interactuaran armoniosamente con los tipos nativos."
+    "trivia": "Empleó clases base abstractas (*ABCs*) para permitir que librerías externas como *NumPy* interactuaran con los tipos nativos."
   },
   {
     "id": "vol6-0x0A",
@@ -247,10 +247,10 @@
     "index": 22,
     "domain": "languages-runtimes",
     "tag": "cpython-runtime",
-    "hito": "Rediseño radical del mecanismo de paso de hilos en el núcleo con la llegada del *New GIL* a través del **PEP 399** en **Python 3.2**.",
+    "hito": "Rediseño radical del paso de hilos en el núcleo con la llegada del **New GIL** en el intérprete de CPython.",
     "year": 2010,
     "autor": "Antoine Pitrou",
-    "trivia": "Reemplazó los 100 bytecodes por un temporizador (`switch_interval`), erradicando batallas destructivas entre hilos."
+    "trivia": "Reemplazó el conteo de 100 bytecodes por un temporizador (`switch_interval`), erradicando batallas destructivas entre hilos."
   },
   {
     "id": "vol6-0x17",
@@ -347,9 +347,9 @@
     "domain": "languages-runtimes",
     "tag": "rust-tooling",
     "hito": "Eliminación definitiva del módulo histórico `distutils` de la biblioteca estándar de CPython en **Python 3.12**.",
-    "year": 2024,
+    "year": 2023,
     "autor": "Victor Stinner y CPython Core Team",
-    "trivia": "Tras una década de avisos, forzó a la comunidad a migrar de `setup.py` hacia estándares en `pyproject.toml`."
+    "trivia": "Tras una década de avisos con el PEP 632, forzó a la comunidad a migrar de `setup.py` hacia estándares en `pyproject.toml`."
   },
   {
     "id": "vol6-0x20",
@@ -368,7 +368,7 @@
     "index": 33,
     "domain": "hacker-culture-web",
     "tag": "python-community",
-    "hito": "Lanzamiento del programa de subvenciones comunitarias (*PSF Grants Program*) para financiar eventos y conferencias locales en todo el mundo.",
+    "hito": "Lanzamiento del **PSF Grants Program** para financiar eventos, conferencias comunitarias y sprints locales en todo el mundo.",
     "year": 2007,
     "autor": "Python Software Foundation",
     "trivia": "Ha repartido millones de dólares en becas para talleres, sprints de código y congresos en África, América Latina y Asia."
@@ -631,11 +631,11 @@
     "volumen": "python-track",
     "index": 57,
     "domain": "languages-runtimes",
-    "tag": "syntax-peps",
-    "hito": "Publicación de la propuesta de cadenas con plantilla etiquetada (*template strings*) `t\"...\"` para seguridad en el **PEP 750**.",
-    "year": 2025,
-    "autor": "Jim Baker y Guido van Rossum",
-    "trivia": "Previene inyecciones SQL y XSS al diferir la evaluación de strings formateados hasta que un parser seguro los valide."
+    "tag": "web-frameworks",
+    "hito": "Lanzamiento de **Requests**, la emblemática biblioteca cliente HTTP concebida bajo el lema *HTTP for Humans*.",
+    "year": 2011,
+    "autor": "Kenneth Reitz",
+    "trivia": "Reemplazó la farragosa y arcaica API de `urllib2`, convirtiéndose en el paquete de Python más descargado de la historia."
   },
   {
     "id": "vol6-0x3A",
@@ -696,11 +696,11 @@
     "id": "vol6-0x3F",
     "volumen": "python-track",
     "index": 63,
-    "domain": "languages-runtimes",
-    "tag": "cpython-runtime",
-    "hito": "Evaluación del modo libre de hilos para declarar el soporte *no-GIL* por defecto a partir de **Python 3.15**.",
-    "year": 2026,
-    "autor": "Python Steering Council",
-    "trivia": "Evaluó la estabilidad del ecosistema C para apagar el GIL por defecto y unificar la distribución del lenguaje."
+    "domain": "hacker-culture-web",
+    "tag": "python-community",
+    "hito": "Formalización de **The Zen of Python** en el **PEP 20**, recopilando los 19 principios rectores de la filosofía del lenguaje.",
+    "year": 2004,
+    "autor": "Tim Peters",
+    "trivia": "Incluido secretamente como huevo de pascua en el intérprete al ejecutar `import this`, compuesto como un poema de aforismos."
   }
 ]

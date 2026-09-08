@@ -170,7 +170,7 @@
     "index": 15,
     "domain": "security-exploits",
     "tag": "software-disasters",
-    "hito": "Gasto operativo y movilización técnica internacional para mitigar los posibles fallos informáticos del **Efecto 2000 (Y2K)**.",
+    "hito": "Gasto operativo y movilización técnica internacional para mitigar los posibles fallos del cambio de milenio conocidos como el **Efecto Y2K**.",
     "year": 2000,
     "autor": "Industria Tecnológica Global",
     "trivia": "Almacenar años con dos dígitos (`99` en vez de `1999`) requirió auditar millones de líneas de código COBOL y bases de datos heredadas."
@@ -1347,7 +1347,7 @@
     "index": 122,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Publicación del mensaje en *comp.os.minix* anunciando el desarrollo de un núcleo libre para arquitecturas 386 AT.",
+    "hito": "Publicación del mensaje en *comp.os.minix* anunciando el desarrollo del núcleo libre **Linux** para arquitecturas 386 AT.",
     "year": 1991,
     "autor": "Linus Torvalds",
     "trivia": "Torvalds lo describió como *'just a hobby, won't be big and professional like gnu'*, solicitando sugerencias de compatibilidad POSIX."
@@ -2106,7 +2106,7 @@
     "index": 63,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Publicación de *A Cypherpunk's Manifesto*, proclamando la necesidad de software criptográfico de libre acceso para defender la privacidad.",
+    "hito": "Publicación de **A Cypherpunk's Manifesto**, proclamando software criptográfico de libre acceso para defender la privacidad.",
     "year": 1993,
     "autor": "Eric Hughes",
     "trivia": "Consagró la máxima «los Cypherpunks escribimos código», postulando que la privacidad individual debe construirse activamente con criptografía."
@@ -2535,7 +2535,7 @@
     "index": 38,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Presentación de la microarquitectura de aceleradores **NVIDIA Blackwell**, integrando dos dados de silicio conectados por un enlace de alta velocidad.",
+    "hito": "Presentación de la arquitectura **NVIDIA Blackwell**, uniendo dos dados de silicio con enlaces de 10 TB/s para cómputo masivo de IA.",
     "year": 2024,
     "autor": "NVIDIA",
     "trivia": "El chip B200 reúne 208,000 millones de transistores en un único encapsulado con enlace NV-HBI a diez terabytes por segundo."
@@ -2568,7 +2568,7 @@
     "index": 41,
     "domain": "ai-data-science",
     "tag": "scientific-stack",
-    "hito": "Adopción de formatos numéricos de punto flotante microscópicos (**FP8** y **FP4**) para la inferencia y entrenamiento de tensores de redes neuronales.",
+    "hito": "Adopción de formatos de punto flotante microscópicos (**FP8** y **FP4**) para inferencia y entrenamiento eficiente de redes neuronales.",
     "year": 2025,
     "autor": "Consorcio de Aceleración (NVIDIA, ARM)",
     "trivia": "Permite empaquetar parámetros de modelos de lenguaje en formatos E4M3 y E5M2, duplicando la densidad de cálculo en memoria sin pérdida crítica."
@@ -2612,7 +2612,7 @@
     "index": 45,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Lanzamiento de **Rocket** (**rkt**) y la especificación App Container (appc) por CoreOS, promoviendo runtimes de contenedores seguros y desacoplados.",
+    "hito": "Lanzamiento de **Rocket** (**rkt**) por CoreOS, promoviendo runtimes de contenedores seguros, componibles y desacoplados de demonios.",
     "year": 2014,
     "autor": "CoreOS (Alex Polvi et al.)",
     "trivia": "Cuestionó la centralización del daemon de Docker, impulsando el diálogo industrial que concluyó en la creación de la Open Container Initiative."
@@ -2656,7 +2656,7 @@
     "index": 49,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Presentación del lenguaje **Elixir**, aportando sintaxis expresiva, polimorfismo por protocolos y metaprogramación sobre la máquina BEAM de Erlang.",
+    "hito": "Presentación de **Elixir**, aportando sintaxis moderna, polimorfismo por protocolos y metaprogramación sobre la máquina BEAM de Erlang.",
     "year": 2012,
     "autor": "José Valim",
     "trivia": "Permitió aprovechar la alta concurrencia de telecomunicaciones de la BEAM con herramientas de desarrollo y frameworks modernos como Phoenix."
@@ -2821,10 +2821,10 @@
     "index": 0,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Publicación del **RFC 882**, introduciendo el **Domain Name System (DNS)** para reemplazar el archivo estático HOSTS.TXT de ARPANET.",
+    "hito": "Publicación del **RFC 882**, introduciendo el sistema jerárquico de nombres de dominio (**DNS**) para reemplazar a HOSTS.TXT.",
     "year": 1983,
     "autor": "Paul Mockapetris (USC-ISI)",
-    "trivia": "Antes del DNS, Elizabeth Feinler en el NIC actualizaba manualmente el archivo HOSTS.TXT por teléfono."
+    "trivia": "Antes del DNS, Elizabeth Feinler en el NIC coordinaba manualmente por teléfono las actualizaciones del fichero HOSTS.TXT de ARPANET."
   },
   {
     "id": "vol3-0x01",
@@ -2832,10 +2832,10 @@
     "index": 1,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Nacimiento de **Alpine Linux**, una distribución orientada a routers embebidos construida sobre la librería de C *musl* y *BusyBox*.",
+    "hito": "Lanzamiento de **Alpine Linux**, distribución ultraligera basada en la biblioteca *musl libc* y las utilidades de *BusyBox*.",
     "year": 2005,
     "autor": "Natanael Copa",
-    "trivia": "Se convirtió en la imagen base favorita de millones de contenedores Docker por su diminuto tamaño de apenas **5 MB**."
+    "trivia": "Diseñada inicialmente para enrutadores y cortafuegos embebidos, se convirtió en la base predilecta de imágenes reducidas de Docker."
   },
   {
     "id": "vol3-0x02",
@@ -2843,10 +2843,10 @@
     "index": 2,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Lanzamiento de **Mercurial** (**hg**), concebido la misma semana que Git como alternativa distribuida escrita en Python y C.",
+    "hito": "Publicación de **Mercurial** (**hg**), sistema distribuido de control de versiones diseñado con rendimiento escrito en Python y C.",
     "year": 2005,
     "autor": "Matt Mackall",
-    "trivia": "Compitió con Git por Linux; aunque Linus usó Git, firmas como Facebook y Google operaron monorepos colosales con Mercurial."
+    "trivia": "Anunciado días después de la crisis de BitKeeper en 2005, fue adoptado por Mozilla, OpenJDK y empresas con grandes monorrepositorios."
   },
   {
     "id": "vol3-0x03",
@@ -2854,10 +2854,10 @@
     "index": 3,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Publicación del **RFC 1105** definiendo el **Border Gateway Protocol (BGP)**, el pegamento de enrutamiento que une Internet.",
+    "hito": "Publicación del **RFC 1105** definiendo el **Border Gateway Protocol (BGP)** para el enrutamiento interdominio en Internet.",
     "year": 1989,
     "autor": "Kirk Lougheed y Yakov Rekhter",
-    "trivia": "El borrador inicial fue bosquejado en tres servilletas manchadas de kétchup durante una reunión de IETF."
+    "trivia": "El borrador inicial fue bosquejado por los autores en tres servilletas durante una reunión del IETF en 1989 para sustituir a EGP."
   },
   {
     "id": "vol3-0x04",
@@ -2865,10 +2865,10 @@
     "index": 4,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Lanzamiento de **Open vSwitch (OVS)**, el conmutador virtual multicapa de producción para redes definidas por software (SDN).",
+    "hito": "Lanzamiento de **Open vSwitch (OVS)**, conmutador virtual multicapa de código abierto para redes definidas por software (SDN).",
     "year": 2009,
     "autor": "Ben Pfaff, Justin Pettit (Nicira)",
-    "trivia": "Permitió a los hipervisores conmutar tráfico de máquinas virtuales a velocidad de línea mediante OpenFlow."
+    "trivia": "Permitió a hipervisores conmutar tráfico entre máquinas virtuales con inspección profunda y control programable mediante OpenFlow."
   },
   {
     "id": "vol3-0x05",
@@ -2876,10 +2876,10 @@
     "index": 5,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Presentación de la legendaria conferencia *\"10+ Deploys Per Day: Dev and Ops Cooperation at Flickr\"*, alumbrando el movimiento **DevOps**.",
+    "hito": "Presentación de la conferencia «10+ Deploys Per Day» en Velocity, impulsando las bases de la metodología **DevOps**.",
     "year": 2009,
     "autor": "John Allspaw y Paul Hammond (Flickr)",
-    "trivia": "Mostraron que desarrollo y operaciones podían colaborar en armonía, desterrando los despliegues traumáticos de antaño."
+    "trivia": "Demostró la viabilidad de desplegar cambios continuos en producción mediante integración automatizada y confianza entre desarrollo y operaciones."
   },
   {
     "id": "vol3-0x06",
@@ -2887,10 +2887,10 @@
     "index": 6,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Publicación del **RFC 5321** actualizando la especificación formal del protocolo de transporte de correo **SMTP**.",
+    "hito": "Publicación del **RFC 5321**, consolidando la especificación formal y moderna del protocolo de transporte de correo **SMTP**.",
     "year": 2008,
     "autor": "John Klensin",
-    "trivia": "Consolidó tres décadas de extensiones de correo sobre el diseño original de Jon Postel de 1982."
+    "trivia": "Unificó extensiones acumuladas durante décadas de evolución sobre el protocolo original diseñado por Jon Postel en 1982."
   },
   {
     "id": "vol3-0x07",
@@ -2898,10 +2898,10 @@
     "index": 7,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Lanzamiento de **Network Time Protocol (NTP)** (*RFC 958*), sincronizando relojes informáticos a través de redes de paquetes con latencia.",
+    "hito": "Publicación del **Network Time Protocol (NTP)** (*RFC 958*), sincronizando relojes computacionales en redes con latencia variable.",
     "year": 1985,
     "autor": "David L. Mills (Univ. de Delaware)",
-    "trivia": "Mills operaba satélites y antenas de radio en su propio patio trasero para calibrar señales horarias."
+    "trivia": "Mills implementó filtros estadísticos y sincronizó servidores mediante receptores de radio WWV y satélites desde su propio laboratorio."
   },
   {
     "id": "vol3-0x08",
@@ -2909,10 +2909,10 @@
     "index": 8,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Creación de **Slackware Linux**, la distribución comercial más veterana que aún se mantiene en desarrollo activo continuo.",
+    "hito": "Lanzamiento de **Slackware Linux**, la distribución de Linux más veterana mantenida de forma continua bajo la filosofía tradicional Unix.",
     "year": 1993,
     "autor": "Patrick Volkerding",
-    "trivia": "Mantuvo una adhesión estricta a la filosofía Unix tipo BSD, con scripts de inicio limpios y sin herramientas opacas."
+    "trivia": "Priorizó scripts de arranque transparentes y paquetes simples en archivos tar sin resolución opaca ni dependencias forzadas."
   },
   {
     "id": "vol3-0x09",
@@ -2920,10 +2920,10 @@
     "index": 9,
     "domain": "hacker-culture-web",
     "tag": "collaboration-platforms",
-    "hito": "Lanzamiento de **SourceForge**, el primer portal centralizado gratuito para hospedar proyectos de código abierto con CVS, foros y descargas.",
+    "hito": "Lanzamiento de **SourceForge**, primer portal centralizado gratuito para el alojamiento de proyectos de software libre con CVS y foros.",
     "year": 1999,
     "autor": "VA Linux Systems (Tim Perdue)",
-    "trivia": "Alojaba casi todo el software libre del mundo, hasta que inyectar adware en instaladores arruinó su reputación."
+    "trivia": "Alojó los proyectos abiertos más destacados a inicios de siglo antes de que el auge de Subversion y Git transformara el ecosistema."
   },
   {
     "id": "vol3-0x0A",
@@ -2931,10 +2931,10 @@
     "index": 10,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Publicación del **RFC 2616** definiendo la especificación estándar de **HTTP/1.1**, introduciendo conexiones persistentes *Keep-Alive*.",
+    "hito": "Publicación del **RFC 2616**, consolidando la norma formal y definitiva del estándar de transporte web **HTTP/1.1**.",
     "year": 1999,
     "autor": "IETF (Roy Fielding, Jim Gettys et al.)",
-    "trivia": "Solucionó la ineficiencia de abrir una conexión TCP distinta para cada imagen o recurso de una página web."
+    "trivia": "Estandarizó la compresión de contenido, el control estricto de caché con cabeceras ETag y la gestión de conexiones compartidas persistentes."
   },
   {
     "id": "vol3-0x0B",
@@ -2942,10 +2942,10 @@
     "index": 11,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Creación del grupo rebelde de estandarización **WHATWG** por ingenieros de Apple, Mozilla y Opera para rescatar el HTML.",
+    "hito": "Fundación del grupo de trabajo **WHATWG**, impulsando la evolución pragmática y continua del estándar **HTML5** en navegadores.",
     "year": 2004,
     "autor": "Ian Hickson, David Hyatt et al.",
-    "trivia": "Se rebelaron contra los planes del W3C de abandonar HTML para imponer el complejo e intolerante estándar *XHTML 2.0*, fundando las bases de HTML5."
+    "trivia": "Creado por ingenieros de Mozilla, Opera y Apple tras discrepar de los planes del W3C de reemplazar HTML por la sintaxis estricta de XHTML 2.0."
   },
   {
     "id": "vol3-0x0C",
@@ -2953,10 +2953,10 @@
     "index": 12,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Creación de la utilidad de diagnóstico **Traceroute**, rastreando los saltos de enrutamiento en redes IP usando el campo TTL.",
+    "hito": "Desarrollo de la herramienta de diagnóstico **Traceroute**, rastreando saltos de red mediante la manipulación del campo TTL de paquetes IP.",
     "year": 1988,
     "autor": "Van Jacobson (LBL)",
-    "trivia": "Se le ocurrió la idea tras el gran colapso por congestión de Internet ocurrido a finales de los 80."
+    "trivia": "Envía paquetes incrementando el TTL de uno en uno para forzar respuestas ICMP Time Exceeded de cada enrutador intermedio."
   },
   {
     "id": "vol3-0x0D",
@@ -2964,10 +2964,10 @@
     "index": 13,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Desarrollo de **Vi**, el editor modal de pantalla completa incluido en la primera distribución BSD de Unix.",
+    "hito": "Desarrollo del editor de texto modal **Vi** para la distribución BSD, permitiendo edición visual en pantalla completa sobre terminales.",
     "year": 1976,
     "autor": "Bill Joy (UC Berkeley)",
-    "trivia": "Joy usó `h`,`j`,`k`,`l` porque el terminal *Lear Siegler ADM-3A* tenía flechas impresas en esas teclas físicas."
+    "trivia": "Joy asignó las teclas de navegación a `h`,`j`,`k`,`l` porque el terminal físico Lear Siegler ADM-3A carecía de teclas de cursor dedicadas."
   },
   {
     "id": "vol3-0x0E",
@@ -2975,10 +2975,10 @@
     "index": 14,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Publicación del **RFC 3031** formalizando la arquitectura **MPLS** (*Multiprotocol Label Switching*) para redes troncales.",
+    "hito": "Publicación del **RFC 3031** formalizando la arquitectura **MPLS** (*Multiprotocol Label Switching*) para redes troncales de alta velocidad.",
     "year": 2001,
     "autor": "Eric Rosen, Arun Viswanathan",
-    "trivia": "Aceleró el enrutamiento de paquetes en proveedores de Internet sustituyendo búsquedas IP por etiquetas fijas."
+    "trivia": "Aceleró la conmutación de tráfico en proveedores troncales al reemplazar la costosa búsqueda en tablas IP por conmutación de etiquetas cortas."
   },
   {
     "id": "vol3-0x0F",
@@ -2986,10 +2986,10 @@
     "index": 15,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Nacimiento de **Red Hat Linux**, apostando por el empaquetado binario corporativo mediante el formato `.rpm`.",
+    "hito": "Lanzamiento de **Red Hat Linux**, introduciendo el gestor de paquetes binarios **RPM** para despliegues estables en servidores corporativos.",
     "year": 1994,
     "autor": "Marc Ewing y Bob Young",
-    "trivia": "Nombrado por la gorra roja de Cornell que Ewing usaba en el laboratorio para que la gente le pidiera ayuda técnica."
+    "trivia": "El nombre hace honor a la gorra roja que Ewing utilizaba en la universidad; la empresa fue pionera en monetizar soporte profesional de código abierto."
   },
   {
     "id": "vol3-0x10",
@@ -2997,10 +2997,10 @@
     "index": 16,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Firma del pacto histórico entre W3C y WHATWG, acordando que **HTML** se regirá únicamente como un estándar vivo (*Living Standard*).",
+    "hito": "Acuerdo institucional formal entre W3C y WHATWG, adoptando **HTML** como un estándar vivo único (*Living Standard*) sin versiones rígidas.",
     "year": 2019,
-    "autor": "W3C y WHATWG",
-    "trivia": "Puso fin a quince años de disputas burocráticas entre organismos, unificando la documentación canónica de la web bajo un único consorcio."
+    "autor": "Consorcio W3C y WHATWG",
+    "trivia": "Puso fin a quince años de discrepancias entre ambos organismos, unificando la especificación canónica y el desarrollo de APIs de la web."
   },
   {
     "id": "vol3-0x11",
@@ -3019,10 +3019,10 @@
     "index": 18,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Creación de **SCCS** (*Source Code Control System*), el primer sistema automatizado de control de versiones de código de la historia.",
+    "hito": "Creación de **SCCS** (*Source Code Control System*), primer software automatizado de control de versiones para código fuente.",
     "year": 1972,
     "autor": "Marc Rochkind (Bell Labs)",
-    "trivia": "Creado para IBM sobre tarjetas perforadas; guardaba deltas entrelazados para ahorrar espacio en discos magnéticos chicos."
+    "trivia": "Desarrollado en Bell Labs sobre Unix temprano, introdujo el almacenamiento de diferencias (*interleaved deltas*) para optimizar el espacio."
   },
   {
     "id": "vol3-0x13",
@@ -3030,10 +3030,10 @@
     "index": 19,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Integración de un kernel de Linux real completo dentro del sistema operativo Windows con la llegada de **WSL2**.",
+    "hito": "Lanzamiento de **WSL2** en Windows 10, integrando un kernel Linux completo ejecutado sobre un hipervisor liviano con acceso nativo a GPU.",
     "year": 2019,
     "autor": "Microsoft",
-    "trivia": "Simbolizó la reconciliación de Microsoft con Linux, permitiendo correr binarios y herramientas ELF nativas en Windows."
+    "trivia": "Sustituyó la emulación de llamadas al sistema de WSL1 por un kernel real compilado por Microsoft, optimizando el rendimiento de E/S."
   },
   {
     "id": "vol3-0x14",
@@ -3041,10 +3041,10 @@
     "index": 20,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Creación del programa **Sudo** (*Superuser Do*), permitiendo a administradores delegar comandos privilegiados con auditoría.",
+    "hito": "Creación del programa **Sudo** (*Superuser Do*) en la Universidad de Buffalo, permitiendo delegar comandos privilegiados con auditoría.",
     "year": 1980,
     "autor": "Bob Coggeshall y Cliff Spencer",
-    "trivia": "Nació en SUNY Buffalo porque los operadores necesitaban reiniciar colas de impresión sin ser root."
+    "trivia": "Nació para permitir que operadores universitarios reiniciaran colas de impresión de forma controlada sin conocer la contraseña del usuario root."
   },
   {
     "id": "vol3-0x15",
@@ -3052,10 +3052,10 @@
     "index": 21,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Conquista del umbral histórico del **4% de cuota de mercado en computadoras de escritorio** por parte de Linux a nivel mundial.",
+    "hito": "Superación del umbral del **4% de cuota de mercado de escritorio** por parte de Linux, reflejando avances en compatibilidad de videojuegos.",
     "year": 2024,
     "autor": "Comunidad Linux y Valve Software",
-    "trivia": "Impulsado por la consola *Steam Deck* de Valve y Proton, demostró la madurez de Linux en el gaming de alta gama."
+    "trivia": "La adopción de la consola Steam Deck y la capa de compatibilidad Proton aceleraron la madurez gráfica y de controladores en distribuciones libres."
   },
   {
     "id": "vol3-0x16",
@@ -3063,10 +3063,10 @@
     "index": 22,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Lanzamiento del protocolo de enrutamiento criptográfico seguro y anónimo de baja latencia **I2P (Invisible Internet Project)**.",
+    "hito": "Publicación del protocolo de red anónima **I2P** (*Invisible Internet Project*), implementando enrutamiento criptográfico de ajo.",
     "year": 2003,
-    "autor": "jrandom",
-    "trivia": "Implementa enrutamiento de ajo (garlic routing) agrupando múltiples mensajes para dificultar el análisis de tráfico."
+    "autor": "Proyecto I2P (jrandom et al.)",
+    "trivia": "Agrupa múltiples mensajes cifrados en un único paquete (*garlic routing*) a través de túneles unidireccionales de entrada y salida."
   },
   {
     "id": "vol3-0x17",
@@ -3074,10 +3074,10 @@
     "index": 23,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Primer lanzamiento de la shell **Bash (Bourne Again SHell)** como parte del Proyecto GNU, reemplazando la Bourne Shell original.",
+    "hito": "Creación del lenguaje **AWK** en Bell Labs, formalizando el procesamiento orientado a patrones y registros de texto en entornos Unix.",
     "year": 1989,
-    "autor": "Brian Fox (Free Software Foundation)",
-    "trivia": "Su nombre es un juego de palabras homenajeando a Steve Bourne y al concepto de 'renacimiento'."
+    "autor": "Alfred Aho, P. Weinberger y B. Kernighan",
+    "trivia": "Toma su nombre de las iniciales de sus tres autores; su estructura de bloques basada en patrones influyó directamente en el diseño de Perl."
   },
   {
     "id": "vol3-0x18",
@@ -3096,10 +3096,10 @@
     "index": 25,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Lanzamiento de la primera versión del protocolo y suite de cifrado remoto **SSH-1 (Secure Shell)** para sustituir a telnet y rsh.",
+    "hito": "Lanzamiento del protocolo y software **SSH-1** (*Secure Shell*), reemplazando comandos inseguros como telnet y rsh con cifrado de sesión.",
     "year": 1995,
     "autor": "Tatu Ylönen (HUT)",
-    "trivia": "Lo programó en pocas semanas después de que un ataque de sniffing comprometiera su red universitaria."
+    "trivia": "Diseñado en la Universidad Tecnológica de Helsinki tras sufrir un ataque de captura de contraseñas por sniffing en la red del campus."
   },
   {
     "id": "vol3-0x1A",
@@ -3107,10 +3107,10 @@
     "index": 26,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Debut del navegador gráfico **NCSA Mosaic**, introduciendo por primera vez la etiqueta `<img>` para visualizar imágenes intercaladas con texto.",
+    "hito": "Lanzamiento del navegador gráfico **NCSA Mosaic**, incorporando la etiqueta `<img>` para visualizar imágenes intercaladas con el texto.",
     "year": 1993,
-    "autor": "Marc Andreessen y Eric Bina",
-    "trivia": "Desató la fiebre web; antes de Mosaic, las fotos debían descargarse como archivos y verse en ventanas externas separadas."
+    "autor": "Marc Andreessen y Eric Bina (NCSA)",
+    "trivia": "Desarrollado en la Universidad de Illinois, transformó la web académica en un fenómeno multimedia accesible al público no técnico."
   },
   {
     "id": "vol3-0x1B",
@@ -3118,10 +3118,10 @@
     "index": 27,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Lanzamiento de **Safari 1.0** para macOS, adoptando el motor de renderizado de código abierto **WebKit**.",
+    "hito": "Lanzamiento de **Safari 1.0** para Mac, adoptando el motor de renderizado de código abierto **WebKit** derivado de KHTML.",
     "year": 2003,
-    "autor": "Apple (Don Melton)",
-    "trivia": "Apple derivó WebKit a partir de la biblioteca KHTML del proyecto KDE, sustituyendo a Internet Explorer como navegador predeterminado."
+    "autor": "Apple (Don Melton y equipo WebKit)",
+    "trivia": "Apple bifurcó KHTML del proyecto libre KDE; la alta eficiencia de WebKit sirvió más tarde como cimiento inicial para Google Chrome."
   },
   {
     "id": "vol3-0x1C",
@@ -3129,10 +3129,10 @@
     "index": 28,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Creación del proyecto **OpenSSH** como bifurcación abierta y libre de la suite SSH original dentro de OpenBSD.",
+    "hito": "Creación del proyecto **OpenSSH**, bifurcando la base libre de SSH para garantizar una suite de administración remota libre y auditada.",
     "year": 1999,
-    "autor": "Theo de Raadt y Markus Friedl",
-    "trivia": "Hoy protege los accesos administrativos de prácticamente todos los servidores Linux del planeta."
+    "autor": "Theo de Raadt y Markus Friedl (OpenBSD)",
+    "trivia": "Desarrollado dentro de OpenBSD tras restricciones de licencia de Ylönen, se convirtió en el estándar seguro para administrar servidores en red."
   },
   {
     "id": "vol3-0x1D",
@@ -3140,10 +3140,10 @@
     "index": 29,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Presentación de **Internet Explorer 1.0** por parte de Microsoft, incluido como un paquete complementario en *Microsoft Plus! for Windows 95*.",
+    "hito": "Lanzamiento de **Internet Explorer 1.0** incluido en el paquete complementario *Microsoft Plus! for Windows 95*.",
     "year": 1995,
-    "autor": "Microsoft (Thomas Reardon)",
-    "trivia": "Microsoft licenció el código de *Spyglass Mosaic*, desatando la Primera Guerra de los Navegadores contra Netscape."
+    "autor": "Microsoft (Thomas Reardon et al.)",
+    "trivia": "Microsoft licenció el motor de código de *Spyglass Mosaic*, iniciando la Primera Guerra de los Navegadores contra Netscape Navigator."
   },
   {
     "id": "vol3-0x1E",
@@ -3151,10 +3151,10 @@
     "index": 30,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Nacimiento de **Subversion** (**SVN**), diseñado para corregir las graves deficiencias estructurales de CVS.",
+    "hito": "Publicación del sistema de control de versiones **Subversion** (**SVN**), remediando limitaciones de diseño fundamentales de CVS.",
     "year": 2000,
     "autor": "CollabNet (Jim Blandy y Karl Fogel)",
-    "trivia": "Sumó commits atómicos y renombrado limpio de carpetas y archivos binarios sin romper el historial del repositorio."
+    "trivia": "Introdujo confirmaciones atómicas, soporte nativo de metadatos y renombrado consistente de directorios sin romper el historial del proyecto."
   },
   {
     "id": "vol3-0x1F",
@@ -3162,10 +3162,10 @@
     "index": 31,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Lanzamiento del multiplexor de terminales en modo texto **GNU Screen**, permitiendo sesiones persistentes en consolas Unix.",
+    "hito": "Publicación de **GNU Screen**, multiplexor de terminales en modo texto que permitió sesiones de consola persistentes y desconectables.",
     "year": 1987,
     "autor": "Oliver Laumann y Carsten Bormann",
-    "trivia": "Permitió que una sesión no se cerrara si la conexión por módem telefónico se cortaba repentinamente."
+    "trivia": "Permitió que procesos interactivos continuaran ejecutándose en segundo plano aunque se interrumpiera la conexión telefónica por módem."
   },
   {
     "id": "vol3-0x20",
@@ -3173,10 +3173,10 @@
     "index": 32,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Presentación pública de **Zed**, un editor de código colaborativo de latencia ultra baja programado íntegramente en lenguaje **Rust**.",
+    "hito": "Presentación de **Zed**, editor de código colaborativo de latencia reducida programado en Rust con renderizado acelerado por GPU.",
     "year": 2023,
     "autor": "Nathan Sobo (Zed Industries)",
-    "trivia": "Creado por los autores de Atom, abandonó Electron para renderizar con la GPU a 120 FPS fluidos en lenguaje Rust."
+    "trivia": "Desarrollado por los creadores originales de Atom, reemplazó el entorno de Electron por una arquitectura nativa a 120 fotogramas por segundo."
   },
   {
     "id": "vol3-0x21",
@@ -3184,10 +3184,10 @@
     "index": 33,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Publicación del **RFC 2131** estandarizando **DHCP (Dynamic Host Configuration Protocol)** para asignación automática de IPs.",
+    "hito": "Publicación del **RFC 2131** estandarizando el protocolo **DHCP** para la asignación y renovación dinámica de direcciones IP.",
     "year": 1997,
     "autor": "Ralph Droms (Bucknell University)",
-    "trivia": "Evolucionó a partir del protocolo BOOTP para satisfacer la demanda de clientes móviles en redes LAN."
+    "trivia": "Evolucionó a partir de BOOTP para gestionar el arrendamiento temporal de parámetros de red ante la creciente movilidad de clientes."
   },
   {
     "id": "vol3-0x22",
@@ -3195,10 +3195,10 @@
     "index": 34,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Apagado definitivo y bloqueo de ejecución de **Adobe Flash Player** en todo el ecosistema global de navegadores web.",
+    "hito": "Retirada formal y bloqueo de ejecución de **Adobe Flash Player** en los principales navegadores web a nivel internacional.",
     "year": 2020,
-    "autor": "Adobe Systems y gigantes web",
-    "trivia": "Cumplió la profecía de la carta de Steve Jobs de 2010, enterrando 25 años de Flash por seguridad y rendimiento."
+    "autor": "Adobe Systems y consorcio de navegadores",
+    "trivia": "La transición hacia estándares abiertos de HTML5, audio y WebGL materializó la postura crítica expuesta por Steve Jobs en 2010."
   },
   {
     "id": "vol3-0x23",
@@ -3206,10 +3206,10 @@
     "index": 35,
     "domain": "hacker-culture-web",
     "tag": "collaboration-platforms",
-    "hito": "Apagón masivo de comunidades (*Reddit Blackout*) en protesta por las abusivas tarifas impuestas por la directiva al acceso a su API.",
+    "hito": "Cierre coordinado de miles de foros en Reddit (**Reddit Blackout**) en protesta por las nuevas tarifas comerciales impuestas a su API.",
     "year": 2023,
-    "autor": "Comunidades y Moderadores de Reddit",
-    "trivia": "Miles de subreddits cerraron en protesta por cobros de APIs, quebrando apps populares como *Apollo* y avivando redes libres."
+    "autor": "Comunidades y moderadores de Reddit",
+    "trivia": "Las tarifas obligaron al cierre de clientes móviles independientes como Apollo y avivaron el interés por redes federadas como Lemmy."
   },
   {
     "id": "vol3-0x24",
@@ -3217,10 +3217,10 @@
     "index": 36,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Publicación de la especificación de **HTTP/3** en el **RFC 9114**, reemplazando el protocolo TCP por conexiones sobre **QUIC** (UDP).",
+    "hito": "Publicación del **RFC 9114** estableciendo el estándar **HTTP/3**, reemplazando el transporte TCP subyacente por flujos sobre **QUIC** (UDP).",
     "year": 2022,
-    "autor": "IETF (Robin Marx et al.)",
-    "trivia": "Reduce la latencia móvil y erradica el bloqueo de cabeza de línea de TCP usando canales UDP cifrados."
+    "autor": "IETF (Mike Bishop et al.)",
+    "trivia": "Mitiga el bloqueo de cabeza de línea entre secuencias independientes y acelera el establecimiento de sesiones TLS 1.3 sobre UDP."
   },
   {
     "id": "vol3-0x25",
@@ -3228,10 +3228,10 @@
     "index": 37,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Lanzamiento del sistema de inicio orientado a eventos **Upstart** en Ubuntu, diseñado para reemplazar SysV init asíncronamente.",
+    "hito": "Lanzamiento de **Upstart** en Ubuntu, introduciendo un sistema de inicio guiado por eventos para reemplazar los scripts secuenciales SysV.",
     "year": 2006,
     "autor": "Scott James Remnant (Canonical)",
-    "trivia": "Gestionaba de manera nativa la conexión y desconexión de dispositivos USB en caliente antes de la llegada de systemd."
+    "trivia": "Gestionaba de forma asíncrona la inserción de dispositivos USB y montajes dinámicos antes de la adopción generalizada de systemd."
   },
   {
     "id": "vol3-0x26",
@@ -3239,10 +3239,10 @@
     "index": 38,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Presentación del sistema de archivos distribuido de red **NFS (Network File System)** permitiendo montar discos transparentemente.",
+    "hito": "Presentación del sistema de archivos distribuido **NFS** (*Network File System*), permitiendo montar directorios remotos transparentemente.",
     "year": 1984,
-    "autor": "Sun Microsystems (Russ Sandberg)",
-    "trivia": "Operaba sobre RPC y XDR, convirtiendo a las estaciones de trabajo en clientes sin disco local."
+    "autor": "Russ Sandberg et al. (Sun Microsystems)",
+    "trivia": "Basado en llamadas a procedimientos remotos (RPC) y XDR, posibilitó estaciones de trabajo Unix que operaban como clientes sin disco local."
   },
   {
     "id": "vol3-0x27",
@@ -3250,10 +3250,10 @@
     "index": 39,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Lanzamiento del multiplexor de terminales moderno **Tmux**, optimizado con soporte cliente-servidor nativo y BSD-friendly.",
+    "hito": "Publicación del multiplexor de terminales **Tmux**, ofreciendo gestión cliente-servidor de ventanas y paneles para consolas Unix.",
     "year": 2007,
     "autor": "Nicholas Marriott",
-    "trivia": "Diseñado como alternativa ligera a Screen con una arquitectura limpia de cliente-servidor."
+    "trivia": "Diseñado bajo licencia BSD como una alternativa modular a GNU Screen, permite dividir paneles interactivos y preservar sesiones activas."
   },
   {
     "id": "vol3-0x28",
@@ -3261,10 +3261,10 @@
     "index": 40,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Estandarización de JavaScript como **ECMAScript 1st Edition** (**ES1**) formalizada en la norma **ECMA-262**.",
+    "hito": "Publicación del estándar **ECMAScript 1st Edition** (**ES1**) formalizado en la norma **ECMA-262** para la interoperabilidad web.",
     "year": 1997,
     "autor": "Ecma International",
-    "trivia": "Netscape cedió el lenguaje a Ecma en Suiza para protegerlo ante los intentos de Microsoft de fragmentarlo con *JScript*."
+    "trivia": "Netscape transfirió las especificaciones a Ecma en Suiza para fijar un estándar neutro frente a la implementación JScript de Microsoft."
   },
   {
     "id": "vol3-0x29",
@@ -3272,10 +3272,10 @@
     "index": 41,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Creación del protocolo de bitácora remota **Syslog** para el proyecto Sendmail en entornos BSD Unix.",
+    "hito": "Creación del protocolo y servicio **Syslog** para el agente Sendmail, centralizando el registro de eventos en sistemas BSD Unix.",
     "year": 1980,
     "autor": "Eric Allman (UC Berkeley)",
-    "trivia": "Operó como estándar 'de facto' durante más de dos décadas antes de ser formalizado en el RFC 3164."
+    "trivia": "Funcionó como estándar de facto en telecomunicaciones y servidores durante dos décadas antes de su formalización en el RFC 3164."
   },
   {
     "id": "vol3-0x2A",
@@ -3283,10 +3283,10 @@
     "index": 42,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Lanzamiento del programador cron moderno **Vixie Cron**, introduciendo sintaxis avanzada de temporizado para SysAdmins.",
+    "hito": "Lanzamiento de **Vixie Cron**, reescribiendo el demonio de tareas programadas de Unix con compatibilidad de variables y crontabs por usuario.",
     "year": 1987,
     "autor": "Paul Vixie",
-    "trivia": "Vixie lo escribió cansado de las limitaciones del comando cron tradicional de AT&T Unix."
+    "trivia": "Sustituyó la versión monolítica original de AT&T, convirtiéndose en el programador de tareas estándar en BSD y distribuciones de Linux."
   },
   {
     "id": "vol3-0x2B",
@@ -3294,10 +3294,10 @@
     "index": 43,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Publicación del analizador de tráfico de paquetes **Tcpdump** y la biblioteca portátil **libpcap**.",
+    "hito": "Desarrollo del analizador **Tcpdump** y la biblioteca **libpcap**, integrando el filtro de paquetes de Berkeley (**BPF**).",
     "year": 1988,
-    "autor": "Van Jacobson, Craig Leres (LBL)",
-    "trivia": "Introdujo el filtro de paquetes BPF (Berkeley Packet Filter), ancestro directo de eBPF."
+    "autor": "Van Jacobson, Craig Leres, S. McCanne (LBL)",
+    "trivia": "La máquina virtual BPF ejecutaba filtros de paquetes en el propio espacio de kernel, concepto precursor del moderno eBPF en Linux."
   },
   {
     "id": "vol3-0x2C",
@@ -3305,10 +3305,10 @@
     "index": 44,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Lanzamiento de **Internet Explorer 6.0**, alcanzando un monopolio del 95% de la navegación web mundial.",
+    "hito": "Lanzamiento de **Internet Explorer 6.0** con Windows XP, consolidando un monopolio de más del 90% del mercado de navegación web.",
     "year": 2001,
     "autor": "Microsoft",
-    "trivia": "Al derrotar a Netscape, Microsoft desarmó el equipo de IE; sus bugs de renderizado congelaron la web por un lustro."
+    "trivia": "Tras el declive de Netscape, la falta de actualizaciones prolongada y sus discrepancias con estándares del W3C frenaron la evolución web."
   },
   {
     "id": "vol3-0x2D",
@@ -3316,10 +3316,10 @@
     "index": 45,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Lanzamiento del gestor de paquetes alternativo de Linux **Nix**, implementando despliegues puramente funcionales y atómicos.",
+    "hito": "Publicación del gestor de paquetes **Nix**, implementando despliegues declarativos, reproducibles y actualizaciones atómicas.",
     "year": 2004,
-    "autor": "Eelco Dolstra (Univ. de Utrecht)",
-    "trivia": "Almacena paquetes bajo hashes criptográficos únicos en `/nix/store`, erradicando el infierno de dependencias."
+    "autor": "Eelco Dolstra (Universidad de Utrecht)",
+    "trivia": "Almacena cada versión bajo un hash criptográfico único en `/nix/store`, posibilitando rollbacks instantáneos sin conflictos de librerías."
   },
   {
     "id": "vol3-0x2E",
@@ -3327,10 +3327,10 @@
     "index": 46,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Creación de **CFEngine** en la Universidad de Oslo, formulando la teoría del mantenimiento del estado deseado y la **idempotencia**.",
+    "hito": "Creación de **CFEngine**, formulando la teoría del mantenimiento automatizado del estado deseado y la **idempotencia** en sistemas.",
     "year": 1993,
-    "autor": "Mark Burgess",
-    "trivia": "Físico teórico, aplicó teoría de control para que un script pudiera ejecutarse mil veces dando siempre el mismo estado."
+    "autor": "Mark Burgess (Universidad de Oslo)",
+    "trivia": "Inspirado en principios de física teórica, estableció que una receta de configuración debe converger al estado correcto sin efectos no deseados."
   },
   {
     "id": "vol3-0x2F",
@@ -3338,10 +3338,10 @@
     "index": 47,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Fundación del consorcio **W3C** (*World Wide Web Consortium*) en el MIT para coordinar la evolución de los estándares abiertos de la red.",
+    "hito": "Fundación del **World Wide Web Consortium** (**W3C**) en el MIT, coordinando el desarrollo de recomendaciones y estándares abiertos.",
     "year": 1994,
-    "autor": "Tim Berners-Lee",
-    "trivia": "Berners-Lee rechazó patentar la web o cobrar regalías, garantizando que fuera un bien común libre y universal."
+    "autor": "Tim Berners-Lee (MIT / CERN)",
+    "trivia": "Berners-Lee promovió que las especificaciones nucleares de la web permanecieran libres de regalías y patentes propietarias."
   },
   {
     "id": "vol3-0x30",
@@ -3349,10 +3349,10 @@
     "index": 48,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Divulgación pública del concepto **Cloud Computing** por parte de Eric Schmidt en una conferencia de ejecutivos en San José.",
+    "hito": "Popularización pública del término **Cloud Computing** por Eric Schmidt en la conferencia Search Engine Strategies de San José.",
     "year": 2006,
     "autor": "Eric Schmidt (Google)",
-    "trivia": "Eric Schmidt definió la nube como un nuevo paradigma donde datos y cómputo residen en servidores accesibles vía web."
+    "trivia": "Describió una arquitectura emergente donde los servicios de datos y la capacidad computacional residen en servidores remotos accesibles vía web."
   },
   {
     "id": "vol3-0x31",
@@ -3360,10 +3360,10 @@
     "index": 49,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Creación de **CVS** (*Concurrent Versions System*), permitiendo a múltiples programadores modificar un mismo archivo en paralelo.",
+    "hito": "Publicación de **CVS** (*Concurrent Versions System*), permitiendo la edición concurrente de ficheros mediante fusiones automáticas.",
     "year": 1986,
     "autor": "Dick Grune",
-    "trivia": "Scripts sobre RCS con fusiones optimistas, eliminando el bloqueo manual de archivos que paralizaba a los equipos."
+    "trivia": "Sustituyó el bloqueo exclusivo de archivos de RCS por un modelo optimista en el que varios autores editan y sincronizan copias locales."
   },
   {
     "id": "vol3-0x32",
@@ -3371,10 +3371,10 @@
     "index": 50,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Lanzamiento de **Wireshark** (originalmente bautizado como *Ethereal*), el analizador de protocolos de red con interfaz gráfica.",
+    "hito": "Lanzamiento de **Ethereal** (posteriormente **Wireshark**), analizador interactivo de protocolos de red con decodificación de paquetes.",
     "year": 1998,
     "autor": "Gerald Combs",
-    "trivia": "Combs lo programó para resolver problemas de red en su empleo en un proveedor de Internet."
+    "trivia": "Desarrollado para diagnosticar redes de área local, incorporó desensambladores para cientos de protocolos de comunicación."
   },
   {
     "id": "vol3-0x33",
@@ -3382,10 +3382,10 @@
     "index": 51,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Presentación de **Argo CD**, un controlador declarativo de despliegue continuo para Kubernetes guiado por principios GitOps.",
+    "hito": "Lanzamiento de **Argo CD**, controlador declarativo para Kubernetes fundamentado en el patrón operacional **GitOps**.",
     "year": 2018,
     "autor": "Applatix / Intuit",
-    "trivia": "Su consola visual compara en tiempo real el árbol deseado de Git con el estado vivo del cluster de Kubernetes."
+    "trivia": "Sincroniza de forma continua el estado real de un clúster con la configuración declarativa versionada en repositorios Git."
   },
   {
     "id": "vol3-0x34",
@@ -3393,10 +3393,10 @@
     "index": 52,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Aprobación de la recomendación de **CSS1** (*Cascading Style Sheets*) por parte del W3C para separar la estructura visual del diseño.",
+    "hito": "Aprobación de la recomendación **CSS1** (*Cascading Style Sheets*) por el W3C, separando el diseño visual de la estructura del documento.",
     "year": 1996,
     "autor": "Håkon Wium Lie y Bert Bos",
-    "trivia": "Eliminó las monstruosas tablas anidadas y gifs transparentes que los diseñadores usaban para alinear cajas."
+    "trivia": "Reemplazó el uso de tablas HTML anidadas e imágenes invisibles por propiedades formales de tipografía, colores y márgenes."
   },
   {
     "id": "vol3-0x35",
@@ -3404,10 +3404,10 @@
     "index": 53,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Adopción generalizada de la extensión de seguridad **Encrypted Client Hello** (**ECH**) en conexiones TLS para blindar la privacidad web.",
+    "hito": "Despliegue del mecanismo **Encrypted Client Hello** (**ECH**) en TLS 1.3, blindando la privacidad del nombre del servidor en conexiones web.",
     "year": 2025,
-    "autor": "IETF y proveedores CDN",
-    "trivia": "Cifra el campo SNI, impidiendo que proveedores de internet y censores estatales vean qué sitios específicos visitas."
+    "autor": "IETF y consorcio de infraestructura web",
+    "trivia": "Cifra la cabecera Server Name Indication (SNI), impidiendo que operadores de red y observadores intermedios deduzcan el dominio visitado."
   },
   {
     "id": "vol3-0x36",
@@ -3415,10 +3415,10 @@
     "index": 54,
     "domain": "hacker-culture-web",
     "tag": "collaboration-platforms",
-    "hito": "Lanzamiento del programa **GitHub Sponsors**, permitiendo a individuos y empresas financiar económicamente a mantenedores de código abierto.",
+    "hito": "Lanzamiento del programa **GitHub Sponsors**, facilitando la financiación recurrente de desarrolladores y proyectos de código abierto.",
     "year": 2019,
-    "autor": "Nat Friedman (GitHub)",
-    "trivia": "GitHub igualó donaciones hasta $5,000 por usuario sin cobrar comisiones, impulsando la sostenibilidad del software libre."
+    "autor": "GitHub (Nat Friedman)",
+    "trivia": "GitHub incentivó la sostenibilidad del software libre igualando donaciones iniciales sin aplicar comisiones de procesamiento financiero."
   },
   {
     "id": "vol3-0x37",
@@ -3426,10 +3426,10 @@
     "index": 55,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Lanzamiento sorpresa del navegador **Google Chrome** y su motor de ejecución de JavaScript **V8** con compilación a código máquina en memoria.",
+    "hito": "Lanzamiento de **Google Chrome** y del motor **V8**, introduciendo compilación directa de JavaScript a código máquina en memoria.",
     "year": 2008,
-    "autor": "Google (Lars Bak)",
-    "trivia": "Anunciado con un cómic dibujado por Scott McCloud; su motor V8 obligó a la competencia a reinventar sus navegadores."
+    "autor": "Google (Lars Bak y equipo de Chrome)",
+    "trivia": "El motor V8 eliminó la interpretación por bytecode intermedio de la época, elevando radicalmente la velocidad del software web."
   },
   {
     "id": "vol3-0x38",
@@ -3437,10 +3437,10 @@
     "index": 56,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Estándar **ECMAScript 5** (**ES5**), sumando el modo estricto \"use strict\", getters/setters y JSON.parse().",
+    "hito": "Publicación del estándar **ECMAScript 5** (**ES5**), incorporando el modo estricto, métodos funcionales de matrices y soporte nativo de JSON.",
     "year": 2009,
     "autor": "TC39 (Ecma International)",
-    "trivia": "Desbloqueó una década de estancamiento político en el comité TC39 tras el abandono definitivo del megalómano y divisivo proyecto *ECMAScript 4*."
+    "trivia": "Superó el prolongado estancamiento político del comité TC39 tras la cancelación del controvertido proyecto ECMAScript 4."
   },
   {
     "id": "vol3-0x39",
@@ -3448,10 +3448,10 @@
     "index": 57,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Creación de **Neovim**, bifurcación de Vim enfocada en refactorizar el código en C y añadir scripting nativo en **Lua**.",
+    "hito": "Lanzamiento de **Neovim**, refactorización abierta de Vim enfocada en arquitectura cliente-servidor asíncrona y scripting en **Lua**.",
     "year": 2014,
-    "autor": "Thiago de Arruda",
-    "trivia": "Nació tras el rechazo de parches de refactorización en Vim; Neovim revivió el fervor por editores de terminal modernos."
+    "autor": "Thiago de Arruda et al.",
+    "trivia": "Facilitó la integración con el protocolo Language Server Protocol (LSP) y democratizó la extensión del editor mediante scripts en Lua."
   },
   {
     "id": "vol3-0x3A",
@@ -3459,10 +3459,10 @@
     "index": 58,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Fallecimiento de **Bram Moolenaar**, conmocionando a la comunidad global de desarrollo tras 32 años de custodia ininterrumpida de Vim.",
+    "hito": "Fallecimiento de **Bram Moolenaar**, creador y mantenedor durante más de tres décadas del editor de texto **Vim**.",
     "year": 2023,
-    "autor": "Comunidad Mundial de Software Libre",
-    "trivia": "Comunidades del mundo le rindieron tributo; en su testamento legó fondos para continuar su causa caritativa en Uganda."
+    "autor": "Comunidad internacional de software libre",
+    "trivia": "En su testamento legó recursos para dar continuidad a la fundación caritativa ICCF Holland que financiaba un orfanato en Uganda."
   },
   {
     "id": "vol3-0x3B",
@@ -3470,10 +3470,10 @@
     "index": 59,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Acuñación del concepto **AJAX** (*Asynchronous JavaScript and XML*) en un influyente ensayo de diseño web interactivo.",
+    "hito": "Publicación del ensayo sobre **AJAX**, definiendo la arquitectura para aplicaciones web interactivas y asíncronas sin recarga de página.",
     "year": 2005,
     "autor": "Jesse James Garrett (Adaptive Path)",
-    "trivia": "Articuló cómo XHR, DOM y JS lograban experiencias fluidas de escritorio en la web, impulsado por *Google Maps*."
+    "trivia": "Articuló el uso coordinado del objeto XMLHttpRequest, el DOM y JavaScript, impulsado por experiencias como Google Suggest y Maps."
   },
   {
     "id": "vol3-0x3C",
@@ -3481,10 +3481,10 @@
     "index": 60,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Publicación de la especificación oficial de **HTTP/1.0** bajo el documento de estándares **RFC 1945**.",
+    "hito": "Publicación del documento informativo inicial documentando la práctica del protocolo **HTTP/1.0** en la web.",
     "year": 1996,
-    "autor": "Tim Berners-Lee, R. Fielding y Frystyk",
-    "trivia": "Introdujo cabeceras HTTP, códigos de estado como `200 OK` y `404 Not Found`, y soporte de tipos MIME multimedia."
+    "autor": "Tim Berners-Lee, Roy Fielding, Henrik Frystyk",
+    "trivia": "Formalizó el envío de cabeceras de metadatos, códigos numéricos de estado (como 200 y 404) y el soporte para tipos multimedia MIME."
   },
   {
     "id": "vol3-0x3D",
@@ -3492,10 +3492,10 @@
     "index": 61,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Lanzamiento del emulador de terminal moderno y acelerado por GPU **Alacritty**, priorizando simplicidad y velocidad extrema.",
+    "hito": "Lanzamiento de **Alacritty**, emulador de terminal multiplataforma en lenguaje Rust con renderizado acelerado por GPU vía OpenGL.",
     "year": 2017,
     "autor": "Joe Wilm",
-    "trivia": "Escrito en Rust, aprovecha OpenGL para descargar el renderizado tipográfico directamente en la tarjeta gráfica."
+    "trivia": "Delegó el dibujado de glifos a la tarjeta gráfica para eliminar latencias de entrada en consolas interactivas de sistemas Unix."
   },
   {
     "id": "vol3-0x3E",
@@ -3503,10 +3503,10 @@
     "index": 62,
     "domain": "hacker-culture-web",
     "tag": "collaboration-platforms",
-    "hito": "Creación de **GitLab** en Ucrania como una alternativa de código abierto autohospedable a GitHub.",
+    "hito": "Creación de **GitLab** en Ucrania, proporcionando una plataforma integral y libre para alojamiento de repositorios Git y flujos de CI/CD.",
     "year": 2011,
     "autor": "Dmitriy Zaporozhets y Valery Sizov",
-    "trivia": "Creado en Ucrania porque su autor no tenía presupuesto para costear licencias de GitHub en su empleo de entonces."
+    "trivia": "Desarrollada inicialmente en lenguaje Ruby sobre una base abierta para permitir a organizaciones hospedar su propio entorno de código."
   },
   {
     "id": "vol3-0x3F",
@@ -3514,10 +3514,10 @@
     "index": 63,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Salida triunfal de **Red Hat** a la bolsa de Wall Street en pleno apogeo de la euforia financiera de la era puntocom.",
+    "hito": "Oferta pública inicial (**IPO**) de **Red Hat** en el mercado NASDAQ, validando la viabilidad comercial de modelos de negocio de código abierto.",
     "year": 1999,
     "autor": "Red Hat Inc.",
-    "trivia": "Primera firma de software libre en NASDAQ, logrando la octava mayor ganancia de debut en la historia de Wall Street."
+    "trivia": "Fue la primera empresa sustentada puramente en software libre en cotizar en bolsa, alcanzando una valoración millonaria en su primer día."
   },
   {
     "id": "vol4-0x00",
@@ -3525,10 +3525,10 @@
     "index": 0,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Lanzamiento comercial de **Oracle Version 2**, convirtiéndose en el primer sistema de gestión de bases de datos relacional con SQL del mercado.",
+    "hito": "Comercialización de **Oracle Version 2**, primer sistema de gestión de bases de datos relacional compatible con SQL en el mercado.",
     "year": 1979,
-    "autor": "Larry Ellison, B. Miner y E. Oates",
-    "trivia": "La llamaron \"Versión 2\" porque Ellison sabía que ninguna gran empresa compraría la v1.0 de un gestor de base de datos."
+    "autor": "Larry Ellison, Bob Miner, Ed Oates",
+    "trivia": "La empresa Relational Software la bautizó versión 2 para inspirar confianza comercial; operaba sobre minicomputadoras PDP-11 y VAX."
   },
   {
     "id": "vol4-0x01",
@@ -3536,10 +3536,10 @@
     "index": 1,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Lanzamiento de la base de datos clave-valor distribuida en memoria **Aerospike**, optimizada para flash y latencia submilisegundo.",
+    "hito": "Lanzamiento de **Aerospike**, base de datos NoSQL clave-valor distribuida optimizada para acceso directo a memoria Flash y SSD.",
     "year": 2012,
     "autor": "Srini Srinivasan y Brian Bulkowski",
-    "trivia": "Originalmente llamada Citrusleaf, fue programada para saltarse el sistema de archivos tradicional y hablar directo al SSD."
+    "trivia": "Diseñada originalmente como Citrusleaf para publicidad en tiempo real, implementa un motor híbrido que prescinde del sistema de archivos."
   },
   {
     "id": "vol4-0x02",
@@ -3547,10 +3547,10 @@
     "index": 2,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de **Terraform 0.1**, consolidando el paradigma de Infraestructura como Código (**IaC**) agnóstico a cualquier proveedor de nube.",
+    "hito": "Lanzamiento de **Terraform 0.1**, formalizando el aprovisionamiento declarativo de infraestructura como código (**IaC**) multicloud.",
     "year": 2014,
-    "autor": "Mitchell Hashimoto y A. Dadgar",
-    "trivia": "Con **HCL** y el archivo `terraform.tfstate`, permitió versionar redes, discos y clusters en la nube como código puro."
+    "autor": "Mitchell Hashimoto y Armon Dadgar",
+    "trivia": "Introdujo el lenguaje HCL y la reconciliación del archivo de estado (`tfstate`) para orquestar recursos en diversos proveedores de nube."
   },
   {
     "id": "vol4-0x03",
@@ -3558,10 +3558,10 @@
     "index": 3,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Adquisición millonaria de **Ansible** por parte de **Red Hat** para integrarlo como el cerebro de automatización de sus soluciones empresariales.",
+    "hito": "Adquisición corporativa de **Ansible** por parte de **Red Hat**, consolidando la automatización de sistemas basada en SSH sin agentes.",
     "year": 2015,
-    "autor": "Red Hat",
-    "trivia": "Red Hat pagó más de **$100 millones** por una startup chica, consagrando la madurez comercial de Ansible y Python."
+    "autor": "Red Hat Inc.",
+    "trivia": "Creado por Michael DeHaan, Ansible destacó por emplear YAML y módulos de ejecución remota efímeros sin requerir demonios residentes."
   },
   {
     "id": "vol4-0x04",
@@ -3569,10 +3569,10 @@
     "index": 4,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Publicación de la base de datos relacional columnar en memoria **DuckDB**, orientada al procesamiento analítico embebido (OLAP).",
+    "hito": "Publicación del modelo **Log-Structured Merge-tree** (**LSM-tree**), optimizando escrituras secuenciales en almacenamiento persistente.",
     "year": 2019,
-    "autor": "Hannes Mühleisen y Mark Raasveldt",
-    "trivia": "Bautizada 'Duck' porque los patos son animales resistentes y sencillos, y un profesor del autor tenía un pato como mascota."
+    "autor": "Patrick O'Neil, Edward O'Neil, G. Weikum",
+    "trivia": "Su diseño de capas inmutables fusionadas en cascada se convirtió en la base arquitectónica de motores como Bigtable, RocksDB y Cassandra."
   },
   {
     "id": "vol4-0x05",
@@ -3580,10 +3580,10 @@
     "index": 5,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Apertura pública de **ClickHouse**, sistema gestor de bases de datos relacional columnar para procesamiento analítico en tiempo real.",
+    "hito": "Liberación en código abierto de **ClickHouse**, gestor de bases de datos columnar enfocado en procesamiento analítico en tiempo real (OLAP).",
     "year": 2016,
-    "autor": "Yandex (Alexey Milovidov)",
-    "trivia": "Diseñado en Yandex para procesar registros de telemetría y clics web a escala de terabytes con vectorización SIMD nativa."
+    "autor": "Alexey Milovidov y equipo de ClickHouse",
+    "trivia": "Diseñado para telemetría a gran escala, aplica ejecución vectorizada con instrucciones SIMD y procesamiento paralelo masivo en memoria."
   },
   {
     "id": "vol4-0x06",
@@ -3591,10 +3591,10 @@
     "index": 6,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Publicación del paper del algoritmo de consenso distribuido **Raft**, diseñado explícitamente para ser comprensible frente a Paxos.",
+    "hito": "Presentación del algoritmo de consenso distribuido **Raft**, diseñado con una estructura modular para facilitar su comprensión e implementación.",
     "year": 2014,
-    "autor": "Diego Ongaro y John Ousterhout",
-    "trivia": "Fue presentado en USENIX ATC bajo el título 'In Search of an Understandable Consensus Algorithm'."
+    "autor": "Diego Ongaro y John Ousterhout (Stanford)",
+    "trivia": "Descompone el consenso en elección de líder, replicación de registros y seguridad, sirviendo como núcleo de coordinación en etcd y Consul."
   },
   {
     "id": "vol4-0x07",
@@ -3602,10 +3602,10 @@
     "index": 7,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Publicación de **Paxos Made Simple**, desglosando el clásico algoritmo de consenso distribuido en prosa matemática directa.",
+    "hito": "Publicación del artículo **Paxos Made Simple**, reescribiendo el protocolo de consenso distribuido en prosa matemática directa.",
     "year": 2001,
     "autor": "Leslie Lamport",
-    "trivia": "Lamport escribió este artículo tras quejarse de que casi nadie había entendido su publicación original de 1998."
+    "trivia": "Lamport redactó esta versión pedagógica tras advertir que la alegoría de legisladores griegos de su publicación original causó confusión."
   },
   {
     "id": "vol4-0x08",
@@ -3613,10 +3613,10 @@
     "index": 8,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Lanzamiento de **Apache Cassandra** en código abierto por parte de ingenieros de Facebook para su función de búsqueda de mensajes.",
+    "hito": "Liberación en código abierto de **Apache Cassandra**, combinando el modelo tabular de Bigtable con la topología distribuida de Dynamo.",
     "year": 2008,
-    "autor": "Avinash Lakshman y P. Malik (Facebook)",
-    "trivia": "Unió el modelo tabular de Bigtable con nodos sin maestro central de Dynamo, logrando tolerancia a fallos total."
+    "autor": "Avinash Lakshman y Prashant Malik (Facebook)",
+    "trivia": "Diseñada para la búsqueda en bandejas de entrada de Facebook, adoptó replicación sin maestro central para evitar puntos únicos de fallo."
   },
   {
     "id": "vol4-0x09",
@@ -3624,10 +3624,10 @@
     "index": 9,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Liberación de **Apache Kafka**, plataforma distribuida de streaming de eventos basada en un registro continuo (*commit log*).",
+    "hito": "Liberación de **Apache Kafka** en LinkedIn, plataforma distribuida de transmisión de eventos construida sobre un registro inmutable append-only.",
     "year": 2011,
-    "autor": "Jay Kreps, N. Narkhede y J. Rao",
-    "trivia": "Kreps eligió el nombre del autor literario **Franz Kafka** porque el software estaba obsesivamente optimizado para escribir datos a máxima velocidad."
+    "autor": "Jay Kreps, Neha Narkhede, Jun Rao",
+    "trivia": "Desacopló productores y consumidores mediante particiones de registros distribuidos con almacenamiento directo en caché de páginas de disco."
   },
   {
     "id": "vol4-0x0A",
@@ -3635,10 +3635,10 @@
     "index": 10,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Formulación formal de la conjetura del **Teorema CAP** sobre consistencia, disponibilidad y tolerancia a particiones de red.",
+    "hito": "Presentación de la conjetura del **Teorema CAP**, formalizando el compromiso entre consistencia, disponibilidad y tolerancia a particiones.",
     "year": 2000,
     "autor": "Eric Brewer (UC Berkeley)",
-    "trivia": "Fue probado formalmente como teorema matemático en 2002 por Seth Gilbert y Nancy Lynch del MIT."
+    "trivia": "Planteada en el simposio ACM PODC 2000, fue demostrada formalmente como teorema matemático en 2002 por Seth Gilbert y Nancy Lynch del MIT."
   },
   {
     "id": "vol4-0x0B",
@@ -3646,10 +3646,10 @@
     "index": 11,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Publicación del paper sobre **Hadoop Distributed File System (HDFS)**, democratizando el almacenamiento de big data en clústeres.",
+    "hito": "Desarrollo del **Hadoop Distributed File System (HDFS)**, democratizando el almacenamiento y cómputo de datos masivos en clústeres.",
     "year": 2010,
     "autor": "Doug Cutting y Mike Cafarella",
-    "trivia": "Inspirado en el Google File System (GFS), fue bautizado con el nombre del elefante de juguete del hijo de Cutting."
+    "trivia": "Basado en el diseño del Google File System (GFS), fue bautizado por Cutting en honor al elefante de juguete de su hijo."
   },
   {
     "id": "vol4-0x0C",
@@ -3657,10 +3657,10 @@
     "index": 12,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Publicación del paper de **Spanner**, la primera base de datos distribuida a escala global con consistencia externa y TrueTime.",
+    "hito": "Publicación del paper de **Spanner**, base de datos distribuida a escala planetaria con consistencia externa estricta y transacciones ACID.",
     "year": 2012,
     "autor": "James C. Corbett et al. (Google)",
-    "trivia": "Utilizaba receptores GPS y relojes atómicos dentro de los datacenters para acotar la incertidumbre temporal."
+    "trivia": "Sincroniza clústeres globales mediante la API TrueTime, apoyándose en receptores GPS y relojes atómicos dentro de los centros de datos."
   },
   {
     "id": "vol4-0x0D",
@@ -3668,10 +3668,10 @@
     "index": 13,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Auge fulminante de **pgvector**, transformando a PostgreSQL en base de datos vectorial para IA generativa y pipelines *RAG*.",
+    "hito": "Adopción generalizada de **pgvector**, dotando a **PostgreSQL** de capacidades de búsqueda vectorial y cálculo de similitud para IA.",
     "year": 2023,
     "autor": "Andrew Kane",
-    "trivia": "Permitió almacenar y consultar *embeddings* de IA en Postgres con similitud coseno sin requerir bases vectoriales externas."
+    "trivia": "Permite indexar y consultar incrustaciones (*embeddings*) con algoritmos HNSW e IVFFlat sin requerir bases vectoriales propietarias separadas."
   },
   {
     "id": "vol4-0x0E",
@@ -3679,10 +3679,10 @@
     "index": 14,
     "domain": "ai-data-science",
     "tag": "scientific-stack",
-    "hito": "Lanzamiento del motor de procesamiento masivo en memoria **Apache Spark**, superando los cuellos de botella de MapReduce.",
+    "hito": "Lanzamiento del motor distribuido **Apache Spark**, superando los cuellos de botella de escritura en disco del modelo MapReduce.",
     "year": 2014,
-    "autor": "Matei Zaharia (UC Berkeley AMPLab)",
-    "trivia": "Introdujo los RDD (Resilient Distributed Datasets) para ejecutar algoritmos iterativos hasta 100x más rápido."
+    "autor": "Matei Zaharia et al. (UC Berkeley AMPLab)",
+    "trivia": "Introdujo los conjuntos de datos distribuidos resistentes (**RDD**), manteniendo el estado intermedio en memoria RAM para acelerar cálculos."
   },
   {
     "id": "vol4-0x0F",
@@ -3690,10 +3690,10 @@
     "index": 15,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Publicación del lenguaje de consulta para APIs **GraphQL**, ofreciendo una alternativa declarativa y tipada a las APIs REST.",
+    "hito": "Publicación de la especificación de **GraphQL**, introduciendo un lenguaje de consulta fuertemente tipado para el consumo de APIs web.",
     "year": 2015,
     "autor": "Lee Byron, Nick Schrock (Facebook)",
-    "trivia": "Había sido desarrollado internamente desde 2012 para alimentar la aplicación móvil de noticias de Facebook."
+    "trivia": "Creado para optimizar la carga de la aplicación móvil de noticias de Facebook, permite a los clientes solicitar únicamente los campos necesarios."
   },
   {
     "id": "vol4-0x10",
@@ -3701,10 +3701,10 @@
     "index": 16,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Lanzamiento del servidor web asíncrono y reverse proxy **Nginx**, diseñado para resolver el problema de las 10,000 conexiones (*C10k*).",
+    "hito": "Lanzamiento del servidor web y proxy inverso **Nginx**, diseñado con arquitectura asíncrona no bloqueante para resolver el problema *C10k*.",
     "year": 2004,
     "autor": "Igor Sysoev",
-    "trivia": "Sysoev lo programó para atender el gigantesco tráfico del portal ruso Rambler.ru."
+    "trivia": "Emplea un bucle de eventos multiplexado por hilos de trabajo livianos, reduciendo drásticamente el consumo de RAM frente a hilos concurrentes."
   },
   {
     "id": "vol4-0x11",
@@ -3712,10 +3712,10 @@
     "index": 17,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Controversia por el cambio de licencia de **Terraform** en HashiCorp, sustituyendo el código abierto por la licencia **BSL**.",
+    "hito": "Adopción de la licencia de código disponible **BSL** en **Terraform**, provocando la creación del fork neutral **OpenTofu**.",
     "year": 2023,
-    "autor": "HashiCorp",
-    "trivia": "Desató una rebelión en la industria y el nacimiento del fork libre **OpenTofu** bajo la *Linux Foundation*."
+    "autor": "HashiCorp / Fundación Linux",
+    "trivia": "El rechazo comunitario a las restricciones comerciales derivó en la constitución de OpenTofu bajo el paraguas de la Linux Foundation."
   },
   {
     "id": "vol4-0x12",
@@ -3723,10 +3723,10 @@
     "index": 18,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Creación de **Helm**, el gestor de paquetes de aplicaciones para orquestar despliegues repetibles de Kubernetes mediante plantillas (*charts*).",
+    "hito": "Creación de **Helm**, gestor de paquetes para Kubernetes basado en plantillas parametrizadas de manifiestos denominadas *charts*.",
     "year": 2015,
     "autor": "Deis (Matt Butcher et al.)",
-    "trivia": "Nacido en un hackatón de Deis, se volvió el gestor oficial de paquetes de la CNCF para aplicaciones en Kubernetes."
+    "trivia": "Surgido en un hackatón de la empresa Deis, fue donado a la CNCF convirtiéndose en la herramienta estándar de distribución de aplicaciones."
   },
   {
     "id": "vol4-0x13",
@@ -3734,10 +3734,10 @@
     "index": 19,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Presentación de **Node.js** en la conferencia JSConf EU, introduciendo un runtime de JavaScript asíncrono basado en V8.",
+    "hito": "Presentación de **Node.js** en la conferencia JSConf EU, introduciendo un runtime de JavaScript en servidor con E/S asíncrona y no bloqueante.",
     "year": 2009,
     "autor": "Ryan Dahl",
-    "trivia": "Dahl se inspiró para crearlo tras frustrarse viendo una barra de carga lenta de subida de fotos en Flickr."
+    "trivia": "Combinó el motor V8 de Google con un bucle de eventos sobre libuv, permitiendo atender miles de conexiones web sin crear hilos pesados."
   },
   {
     "id": "vol4-0x14",
@@ -3745,10 +3745,10 @@
     "index": 20,
     "domain": "languages-runtimes",
     "tag": "web-frameworks",
-    "hito": "Lanzamiento del framework web **Ruby on Rails**, popularizando la filosofía de *Convention over Configuration* y la arquitectura MVC.",
+    "hito": "Lanzamiento del framework **Ruby on Rails**, popularizando los principios de *Convention over Configuration* y la arquitectura MVC.",
     "year": 2004,
     "autor": "David Heinemeier Hansson (DHH)",
-    "trivia": "Fue extraído de la base de código que DHH programó para la herramienta de gestión de proyectos Basecamp."
+    "trivia": "Extraído de la base de código que DHH programó para la aplicación Basecamp, aceleró drásticamente la creación de prototipos web modernos."
   },
   {
     "id": "vol4-0x15",
@@ -3756,10 +3756,10 @@
     "index": 21,
     "domain": "languages-runtimes",
     "tag": "web-frameworks",
-    "hito": "Liberación del framework web **Django**, diseñado para construir aplicaciones de noticias rápidas bajo plazos de redacción exigentes.",
+    "hito": "Liberación del framework web **Django** para Python, diseñado con un panel administrativo automático bajo el principio *DRY*.",
     "year": 2005,
     "autor": "Adrian Holovaty y Simon Willison",
-    "trivia": "Fue bautizado en homenaje al legendario virtuoso de la guitarra de jazz gitano Django Reinhardt."
+    "trivia": "Desarrollado en la redacción del periódico Lawrence Journal-World, fue nombrado en homenaje al guitarrista de jazz Django Reinhardt."
   },
   {
     "id": "vol4-0x16",
@@ -3767,10 +3767,10 @@
     "index": 22,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Publicación del conjunto de herramientas de resiliencia **Simian Army** y **Chaos Monkey** por parte de ingenieros de Netflix.",
+    "hito": "Publicación del servicio **Chaos Monkey**, originando la disciplina de la **Ingeniería del Caos** para probar resiliencia en la nube.",
     "year": 2011,
-    "autor": "Netflix (Greg Orzell)",
-    "trivia": "Mataba servidores en producción aleatoriamente para forzar a ingenieros a diseñar arquitecturas inmunes a fallos."
+    "autor": "Netflix Engineering (Greg Orzell et al.)",
+    "trivia": "Terminaba instancias de producción de forma aleatoria durante horario laboral para verificar que la arquitectura sobreviviera a caídas reales."
   },
   {
     "id": "vol4-0x17",
@@ -3778,10 +3778,10 @@
     "index": 23,
     "domain": "languages-runtimes",
     "tag": "web-frameworks",
-    "hito": "Lanzamiento del microframework web en Python **Flask**, surgido originalmente como una broma del día de los inocentes (April Fools).",
+    "hito": "Lanzamiento del microframework **Flask**, ofreciendo un núcleo mínimo para desarrollo web en Python extensible mediante módulos.",
     "year": 2010,
     "autor": "Armin Ronacher (Pocoo)",
-    "trivia": "Ronacher empaquetó Werkzeug y Jinja en un solo archivo `.zip` para demostrar que se podía crear un framework en una tarde."
+    "trivia": "Surgió como una broma del día de los inocentes (April Fools) uniendo las bibliotecas Werkzeug y Jinja2 en un archivo empaquetado."
   },
   {
     "id": "vol4-0x18",
@@ -3789,10 +3789,10 @@
     "index": 24,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Inicio del proyecto **Postgres** en la Universidad de California en Berkeley como el sucesor de nueva generación de Ingres.",
+    "hito": "Inicio del proyecto **Postgres** en UC Berkeley, diseñando un sistema de base de datos objeto-relacional sucesor de Ingres.",
     "year": 1986,
     "autor": "Michael Stonebraker (UC Berkeley)",
-    "trivia": "Significaba *\"Post-Ingres\"*; Stonebraker introdujo tipos complejos de usuario, disparadores y herencia de tablas."
+    "trivia": "Stonebraker introdujo tipos de datos abstractos definidos por usuario, operadores personalizados y reglas activas de auditoría."
   },
   {
     "id": "vol4-0x19",
@@ -3800,10 +3800,10 @@
     "index": 25,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de **Alibaba Cloud (Aliyun)**, iniciando la infraestructura de nube a hiperescala del sudeste asiático.",
+    "hito": "Fundación de **Alibaba Cloud** y despliegue del sistema operativo distribuido **Apsara**, iniciando la infraestructura cloud asiática.",
     "year": 2009,
-    "autor": "Alibaba Group (Jack Ma)",
-    "trivia": "Su plataforma 'Apsara' fue diseñada desde cero para soportar el masivo tráfico del 'Día de los Solteros' (11.11)."
+    "autor": "Alibaba Group (Wang Jian y equipo Apsara)",
+    "trivia": "Desarrollado bajo la dirección de Wang Jian, se concibió para soportar las masivas oleadas de transacciones del Día de los Solteros."
   },
   {
     "id": "vol4-0x1A",
@@ -3811,10 +3811,10 @@
     "index": 26,
     "domain": "languages-runtimes",
     "tag": "web-frameworks",
-    "hito": "Lanzamiento del framework web **Phoenix** sobre Elixir, aprovechando la máquina virtual BEAM para soportar millones de WebSockets.",
+    "hito": "Lanzamiento del framework web **Phoenix** en Elixir, alcanzando alta densidad de conexiones bidireccionales concurrentes.",
     "year": 2014,
     "autor": "Chris McCord",
-    "trivia": "Demostró en un famoso benchmark soportar 2 millones de conexiones de sockets simultáneas en un solo servidor."
+    "trivia": "Aprovechó los procesos ultraligeros de la máquina BEAM para mantener millones de canales WebSocket abiertos en un único nodo de servidor."
   },
   {
     "id": "vol4-0x1B",
@@ -3822,10 +3822,10 @@
     "index": 27,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Liberación del proxy de red de alto rendimiento **Envoy Proxy**, optimizado para arquitecturas de microservicios y service mesh.",
+    "hito": "Publicación de **Envoy Proxy**, proxy de servicio y red de alto rendimiento diseñado como plano de datos para arquitecturas microservicios.",
     "year": 2016,
-    "autor": "Matt Klein (Lyft)",
-    "trivia": "Fue creado en Lyft para erradicar las fallas transitorias de red entre sus cientos de microservicios."
+    "autor": "Matt Klein y equipo de Lyft",
+    "trivia": "Escrito en C++ con bajo consumo de memoria, se integró como el componente central de comunicación en mallas de servicios como Istio."
   },
   {
     "id": "vol4-0x1C",
@@ -3833,10 +3833,10 @@
     "index": 28,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento del motor de base de datos distribuida NewSQL **TiDB**, compatible con el protocolo MySQL y arquitectura Raft.",
+    "hito": "Lanzamiento de **TiDB**, base de datos NewSQL distribuida híbrida (HTAP) compatible con MySQL y respaldada por consenso Raft.",
     "year": 2015,
-    "autor": "PingCAP (Max Liu, Ed Huang)",
-    "trivia": "Inspirado en el paper Spanner/F1 de Google, separa la capa de cómputo stateless de la capa de almacenamiento distribuido."
+    "autor": "PingCAP (Max Liu, Ed Huang, Dongxu Huang)",
+    "trivia": "Inspirada en Spanner/F1 de Google, separa la capa de procesamiento SQL sin estado de la capa de almacenamiento distribuido TiKV."
   },
   {
     "id": "vol4-0x1D",
@@ -3844,10 +3844,10 @@
     "index": 29,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Lanzamiento del balanceador de carga y acelerador de tráfico TCP/HTTP **HAProxy** de ultra-alta velocidad y estabilidad.",
+    "hito": "Publicación del balanceador de carga y proxy inverso **HAProxy**, optimizado para gestión de tráfico TCP y HTTP de alta disponibilidad.",
     "year": 2001,
     "autor": "Willy Tarreau",
-    "trivia": "Es célebre por su confiabilidad legendaria, corriendo meses o años sin consumir apenas CPU ni memoria."
+    "trivia": "Su arquitectura basada en un bucle de eventos reactivo monohilo en C ofrecía rendimientos récord con mínimo consumo de procesador."
   },
   {
     "id": "vol4-0x1E",
@@ -3855,10 +3855,10 @@
     "index": 30,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Lanzamiento de **Meilisearch**, motor de búsqueda ultrarrápido y de código abierto diseñado para búsqueda incremental al escribir.",
+    "hito": "Lanzamiento de **Meilisearch**, motor de búsqueda ultrarrápido de código abierto programado en Rust con tolerancia a erratas tipográficas.",
     "year": 2018,
     "autor": "Quentin de Quelen y Clément Renault",
-    "trivia": "Escrito en Rust, ofrece búsqueda predictiva instantánea de errores tipográficos en menos de 50 milisegundos."
+    "trivia": "Optimizado para ofrecer respuestas predictivas en menos de 50 milisegundos a medida que el usuario escribe en cuadros de búsqueda web."
   },
   {
     "id": "vol4-0x1F",
@@ -3866,10 +3866,10 @@
     "index": 31,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Lanzamiento del motor de búsqueda y analítica distribuido **Elasticsearch**, desarrollado sobre la biblioteca Apache Lucene.",
+    "hito": "Lanzamiento de **Elasticsearch**, motor de búsqueda y analítica distribuido multinquilino con interfaz REST sobre Apache Lucene.",
     "year": 2010,
     "autor": "Shay Banon",
-    "trivia": "El creador comenzó el proyecto previo (Compass) para ayudar a su esposa a buscar recetas de cocina."
+    "trivia": "Banon concibió el software para indexar recetas de cocina para su esposa antes de convertirlo en el estándar de observabilidad y logs."
   },
   {
     "id": "vol4-0x20",
@@ -3877,10 +3877,10 @@
     "index": 32,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Presentación de **CockroachDB**, base de datos SQL distribuida transaccional resistente a caídas de servidores y regiones enteras.",
+    "hito": "Presentación de **CockroachDB**, base de datos SQL distribuida con consistencia serializable y resistencia a caídas de nodos y regiones.",
     "year": 2014,
-    "autor": "Spencer Kimball, Peter Mattis",
-    "trivia": "Sus creadores, ex ingenieros de Google, eligieron el nombre 'cucaracha' por su extrema capacidad de supervivencia."
+    "autor": "Spencer Kimball, Peter Mattis, Ben Darnell",
+    "trivia": "Desarrollada por exempleados de Google, adoptó el motor RocksDB y el protocolo Raft inspirándose en la arquitectura de Google Spanner."
   },
   {
     "id": "vol4-0x21",
@@ -3888,10 +3888,10 @@
     "index": 33,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Presentación de **Neon**, introduciendo una arquitectura *Serverless* que desacopla el cómputo de la capa de almacenamiento en **PostgreSQL**.",
+    "hito": "Presentación de **Neon**, desacoplando la capa de computación sin estado de una capa de almacenamiento distribuida en **PostgreSQL**.",
     "year": 2021,
-    "autor": "Heikki Linnakangas y equipo Neon",
-    "trivia": "Permitió crear copias y ramas de bases de datos en microsegundos como en Git, revolucionando entornos de staging."
+    "autor": "Heikki Linnakangas y equipo de Neon",
+    "trivia": "Permite crear bifurcaciones de bases de datos completas al instante mediante registros WAL compartidos, optimizando flujos de staging."
   },
   {
     "id": "vol4-0x22",
@@ -3899,10 +3899,10 @@
     "index": 34,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Publicación del framework de llamadas a procedimiento remoto de alto rendimiento **gRPC** sobre HTTP/2 y Protocol Buffers.",
+    "hito": "Publicación del framework de llamadas a procedimientos remotos **gRPC**, empleando HTTP/2 para transporte y serialización con Protocol Buffers.",
     "year": 2015,
     "autor": "Google",
-    "trivia": "Evolucionó a partir de 'Stubby', el sistema interno de RPC con el que Google conectaba sus microservicios."
+    "trivia": "Evolucionó a partir de 'Stubby', el sistema interno de RPC con el que Google intercomunicaba servicios dentro de sus centros de datos."
   },
   {
     "id": "vol4-0x23",
@@ -3910,10 +3910,10 @@
     "index": 35,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Fractura en el ecosistema de Redis tras el cambio de licencia de código abierto a licencias restrictivas de código disponible (*RSALv2*).",
+    "hito": "Transición de **Redis** hacia licencias de código disponible (**RSALv2** / **SSPL**), detonando la bifurcación abierta comunitaria **Valkey**.",
     "year": 2024,
-    "autor": "Redis Ltd. y Linux Foundation",
-    "trivia": "La comunidad y grandes empresas de nube respondieron de inmediato fundando la bifurcación **Valkey** bajo la tutela neutral de la *Linux Foundation*."
+    "autor": "Redis Ltd. / Linux Foundation",
+    "trivia": "Proveedores tecnológicos y mantenedores originales crearon Valkey bajo la Linux Foundation para preservar el motor clave-valor 100% abierto."
   },
   {
     "id": "vol4-0x24",
@@ -3921,10 +3921,10 @@
     "index": 36,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Liberación de la biblioteca de almacenamiento embebido clave-valor de alto rendimiento **RocksDB**, derivada de LevelDB.",
+    "hito": "Liberación de **RocksDB**, motor de almacenamiento embebido clave-valor optimizado para memoria rápida y unidades de estado sólido SSD.",
     "year": 2013,
-    "autor": "Facebook",
-    "trivia": "Optimizada para unidades SSD y memoria rápida, sirve como motor de almacenamiento en Kafka, MySQL y CockroachDB."
+    "autor": "Facebook (Dhruba Borthakur et al.)",
+    "trivia": "Derivado de LevelDB de Google, adaptó su estructura de árbol LSM para aprovechar múltiples núcleos de CPU y almacenamiento Flash paralelo."
   },
   {
     "id": "vol4-0x25",
@@ -3932,10 +3932,10 @@
     "index": 37,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento del intermediario de mensajes y colas distribuidas **RabbitMQ**, implementando el estándar abierto AMQP.",
+    "hito": "Lanzamiento del intermediario de mensajería asíncrona **RabbitMQ**, implementando el estándar abierto de colas **AMQP** en Erlang.",
     "year": 2007,
     "autor": "Rabbit Technologies (Alexis Richardson)",
-    "trivia": "Escrito en Erlang para garantizar alta disponibilidad y tolerancia a fallos en el ruteo de eventos empresariales."
+    "trivia": "Aprovechó los procesos concurrentes de la máquina virtual BEAM para ofrecer enrutamiento de mensajes distribuido y tolerante a fallos."
   },
   {
     "id": "vol4-0x26",
@@ -3943,10 +3943,10 @@
     "index": 38,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Presentación de la biblioteca de mensajería asíncrona sin broker **ZeroMQ (ØMQ)** para computación distribuida ultrarrápida.",
+    "hito": "Presentación de la biblioteca de mensajería sin intermediario central **ZeroMQ (ØMQ)** para computación concurrente de baja latencia.",
     "year": 2007,
     "autor": "Pieter Hintjens y Martin Sustrik",
-    "trivia": "El 'cero' en el nombre representa cero latencia, cero costo de administración y cero necesidad de intermediarios."
+    "trivia": "Encapsula patrones de red como publicación-suscripción y push-pull directamente sobre sockets inteligentes sin configurar un broker."
   },
   {
     "id": "vol4-0x27",
@@ -3954,10 +3954,10 @@
     "index": 39,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Publicación del algoritmo de consenso distribuido **Epaxos** (*Egalitarian Paxos*), eliminando el cuello de botella del líder.",
+    "hito": "Presentación del algoritmo **EPaxos** (*Egalitarian Paxos*), eliminando el cuello de botella del líder central en sistemas distribuidos.",
     "year": 2013,
-    "autor": "Iulian Moraru, David Andersen (CMU)",
-    "trivia": "Permite que cualquier réplica proponga comandos concurrentemente logrando consenso en 1 RTT sin pasar por un nodo maestro."
+    "autor": "Iulian Moraru, D. Andersen, M. Kaminsky",
+    "trivia": "Permite que cualquier réplica proponga comandos concurrentemente alcanzando consenso en un único RTT si no hay interferencia de claves."
   },
   {
     "id": "vol4-0x28",
@@ -3965,10 +3965,10 @@
     "index": 40,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Lanzamiento de **etcd**, el almacén distribuido de clave-valor fuertemente consistente que actúa como cerebro de Kubernetes.",
+    "hito": "Lanzamiento de **etcd**, almacén clave-valor distribuido fuertemente consistente basado en Raft para configuración de clústeres.",
     "year": 2013,
-    "autor": "CoreOS (Brandon Philips)",
-    "trivia": "Su nombre proviene de configurar la carpeta Unix '/etc' como un servicio 'distribuido' (d)."
+    "autor": "CoreOS (Brandon Philips, Xiang Li et al.)",
+    "trivia": "Adoptado por Kubernetes para guardar todo el estado del clúster, garantiza escrituras lineales y notificaciones de cambios continuas."
   },
   {
     "id": "vol4-0x29",
@@ -3976,10 +3976,10 @@
     "index": 41,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Lanzamiento de **RethinkDB**, la base de datos distribuida JSON diseñada para empujar cambios en tiempo real a las aplicaciones.",
+    "hito": "Lanzamiento de **RethinkDB**, base de datos distribuida para documentos JSON diseñada para emitir cambios en tiempo real vía *Changefeeds*.",
     "year": 2012,
     "autor": "Slava Akhmechet y Michael Glukhovsky",
-    "trivia": "Introdujo la innovadora arquitectura Changefeeds para evitar que los clientes hicieran sondeo de datos continuamente."
+    "trivia": "Permitió a las aplicaciones suscribirse a consultas reactivas y recibir actualizaciones inmediatas sin recurrir al sondeo continuo."
   },
   {
     "id": "vol4-0x2A",
@@ -3987,10 +3987,10 @@
     "index": 42,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Presentación de la base de datos orientada a columnas distribuida para analítica en tiempo real **Apache Druid**.",
+    "hito": "Presentación de **Apache Druid**, almacén columnar distribuido para ingesta masiva y consultas analíticas en tiempo real (OLAP).",
     "year": 2012,
-    "autor": "Eric Tschetter, Fangjin Yang (Metamarkets)",
-    "trivia": "Nació para solucionar la lentitud al agregar billones de impresiones de subastas de publicidad online en tiempo real."
+    "autor": "Eric Tschetter, Fangjin Yang et al.",
+    "trivia": "Diseñado en Metamarkets para procesar flujos de telemetría y subastas publicitarias, combina indexación de mapas de bits con almacenamiento columnar."
   },
   {
     "id": "vol4-0x2B",
@@ -3998,10 +3998,10 @@
     "index": 43,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Publicación de la versión 1.0 del servidor **Apache HTTP Server**, pieza fundamental de la arquitectura de la emergente World Wide Web.",
+    "hito": "Publicación de **Apache HTTP Server 1.0**, consolidando la arquitectura modular de servidores web en la emergente Internet.",
     "year": 1995,
-    "autor": "Robert McCool y Apache Group",
-    "trivia": "Nació a partir de una serie de parches colaborativos ('a patchy server') sobre el código base del servidor NCSA HTTPd."
+    "autor": "Robert McCool y The Apache Group",
+    "trivia": "Nacido a partir de parches colaborativos enviados sobre el servidor NCSA HTTPd, dominó la cuota de servidores web durante dos décadas."
   },
   {
     "id": "vol4-0x2C",
@@ -4009,10 +4009,10 @@
     "index": 44,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Publicación de la biblioteca de serialización eficiente de datos estructurados binarios **Protocol Buffers (protobuf)**.",
+    "hito": "Liberación en código abierto de **Protocol Buffers** (**protobuf**), mecanismo neutral y binario para serializar datos estructurados.",
     "year": 2008,
-    "autor": "Google (Kenton Varda)",
-    "trivia": "Reemplazó el tráfico XML redundante en las comunicaciones entre servidores de toda la infraestructura de Google."
+    "autor": "Google (Kenton Varda et al.)",
+    "trivia": "Reemplazó el intercambio de mensajes XML redundantes en la red interna de Google, sirviendo como formato base de intercambio para gRPC."
   },
   {
     "id": "vol4-0x2D",
@@ -4020,10 +4020,10 @@
     "index": 45,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de la plataforma de streaming y procesamiento de eventos continuos en tiempo real **Apache Flink**.",
+    "hito": "Presentación de **Apache Flink**, motor de procesamiento de flujos de datos continuos con estado tolerante a fallos y latencia reducida.",
     "year": 2014,
-    "autor": "Apache Software Foundation (TU Berlin)",
-    "trivia": "El proyecto original se llamaba Stratosphere y adoptó una ardilla marrón rojiza como su simpático logotipo."
+    "autor": "TU Berlin y Apache Software Foundation",
+    "trivia": "Originado en el proyecto de investigación europeo Stratosphere, adoptó una arquitectura guiada por eventos (*stream-first*) con checkpoints ligeros."
   },
   {
     "id": "vol4-0x2E",
@@ -4031,10 +4031,10 @@
     "index": 46,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Lanzamiento del servidor de almacenamiento de objetos distribuido compatible con S3 **MinIO**, diseñado para nubes privadas.",
+    "hito": "Lanzamiento de **MinIO**, servidor de almacenamiento de objetos distribuido y de alto rendimiento compatible con el protocolo Amazon S3.",
     "year": 2014,
-    "autor": "Anand Babu Periasamy (AB)",
-    "trivia": "El creador ya había cofundado previamente el popular sistema de archivos distribuido GlusterFS."
+    "autor": "Anand Babu Periasamy (AB) y Harshavardhana",
+    "trivia": "Escrito en Go y ensamblador SIMD, permitió desplegar infraestructura de objetos compatible con S3 en centros de datos locales y nubes privadas."
   },
   {
     "id": "vol4-0x2F",
@@ -4042,10 +4042,10 @@
     "index": 47,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Lanzamiento de la biblioteca de comunicación entre procesos y llamadas asíncronas **ZeroMQ** implementando sockets inteligentes.",
+    "hito": "Publicación del paper sobre **Chubby**, servicio distribuido de bloqueos y almacenamiento de archivos pequeños basado en Paxos.",
     "year": 2007,
-    "autor": "Pieter Hintjens y Martin Sustrik",
-    "trivia": "Permitió construir topologías distribuidas complejas (pub-sub, push-pull) sin necesidad de configurar un broker central."
+    "autor": "Mike Burrows (Google)",
+    "trivia": "Coordinaba el acceso exclusivo a recursos en GFS y Bigtable dentro de Google, inspirando el desarrollo de proyectos abiertos como ZooKeeper."
   },
   {
     "id": "vol4-0x30",
@@ -4053,10 +4053,10 @@
     "index": 48,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Publicación de la biblioteca de tolerancia a fallos y cortocircuito en llamadas remotas de microservicios **Hystrix**.",
+    "hito": "Publicación de la biblioteca **Hystrix**, popularizando el patrón de cortocircuito (*Circuit Breaker*) para aislar fallos en microservicios.",
     "year": 2012,
     "autor": "Netflix Engineering",
-    "trivia": "Introdujo el patrón 'Circuit Breaker' en la industria para prevenir fallos en cascada en horas pico de streaming."
+    "trivia": "Detenía peticiones hacia dependencias lentas o caídas para evitar el agotamiento de hilos y prevenir fallos en cascada en la plataforma."
   },
   {
     "id": "vol4-0x31",
@@ -4064,10 +4064,10 @@
     "index": 49,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Creación de **ZooKeeper**, el servicio centralizado para coordinar información de estado y bloqueos en clústeres distribuidos.",
+    "hito": "Publicación de **Apache ZooKeeper**, servicio centralizado para la sincronización, bloqueos distribuidos y configuración de clústeres.",
     "year": 2008,
-    "autor": "Yahoo! Research (Benjamin Reed)",
-    "trivia": "Se llamó 'cuidador del zoológico' porque coordinaba proyectos con nombres de animales como Hadoop, Pig y Chukwa."
+    "autor": "Yahoo! Research (B. Reed, F. Junqueira)",
+    "trivia": "Implementa el protocolo Zab (*ZooKeeper Atomic Broadcast*) y fue bautizado así por coordinar proyectos con nombres de animales como Hadoop y Pig."
   },
   {
     "id": "vol4-0x32",
@@ -4075,10 +4075,10 @@
     "index": 50,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Lanzamiento de la base de datos distribuida en grafos **Neo4j**, optimizando el almacenamiento y consultas de relaciones complejas.",
+    "hito": "Lanzamiento de **Neo4j**, base de datos orientada a grafos con almacenamiento nativo de nodos y relaciones complejas sin indexación externa.",
     "year": 2007,
-    "autor": "Emil Eifrem y Johan Svensson",
-    "trivia": "Popularizó las consultas de patrones con el lenguaje Cypher emulando cláusulas visuales de grafos."
+    "autor": "Emil Eifrem, Johan Svensson et al.",
+    "trivia": "Popularizó las consultas declarativas sobre grafos con el lenguaje Cypher, optimizando búsquedas de caminos y redes sociales."
   },
   {
     "id": "vol4-0x33",
@@ -4086,10 +4086,10 @@
     "index": 51,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Despliegue de los procesadores personalizados con arquitectura ARM **AWS Graviton2** en centros de datos a gran escala.",
+    "hito": "Despliegue comercial de procesadores **AWS Graviton2** con arquitectura ARM de 64 bits en centros de datos de cómputo en la nube.",
     "year": 2020,
     "autor": "Amazon Web Services (Annapurna Labs)",
-    "trivia": "Logró hasta 40% más rendimiento por vatio que chips Intel/AMD tradicionales, acelerando la nube hacia chips ARM."
+    "trivia": "Demostró que procesadores ARM Neoverse N1 podían superar en eficiencia por vatio y costo por cómputo a arquitecturas x86 tradicionales."
   },
   {
     "id": "vol4-0x34",
@@ -4097,10 +4097,10 @@
     "index": 52,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Paper de **Bigtable**, describiendo la base de datos distribuida de Google para almacenar petabytes no estructurados.",
+    "hito": "Publicación del paper sobre **Bigtable**, base de datos distribuida dispersa y multidimensional para almacenar petabytes de datos.",
     "year": 2006,
-    "autor": "Google (Jeff Dean, S. Ghemawat et al.)",
-    "trivia": "El paper de Google inspiró a Silicon Valley, dando origen a proyectos libres como *Cassandra* y *HBase* en Big Data."
+    "autor": "Fay Chang, Jeff Dean, Sanjay Ghemawat et al.",
+    "trivia": "Estructurada como un mapa ordenado indexado por fila, columna y marca de tiempo, inspiró directamente a Apache HBase y Cassandra."
   },
   {
     "id": "vol4-0x35",
@@ -4108,10 +4108,10 @@
     "index": 53,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Lanzamiento de **ScyllaDB**, una reimplementación en C++ de ultra-baja latencia compatible con Apache Cassandra.",
+    "hito": "Lanzamiento de **ScyllaDB**, reimplementación en C++ compatible con Cassandra basada en una arquitectura sin bloqueos orientada a núcleos.",
     "year": 2015,
     "autor": "Dor Laor y Avi Kivity",
-    "trivia": "Aprovechó el framework de hilos Seastar y la experiencia de sus creadores diseñando el hipervisor KVM."
+    "trivia": "Desarrollada sobre el framework reactivo Seastar por los creadores de KVM, eliminó pausas por recolección de basura de la máquina JVM."
   },
   {
     "id": "vol4-0x36",
@@ -4119,10 +4119,10 @@
     "index": 54,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Creación del lenguaje **SEQUEL** (posteriormente acortado a **SQL**) en el laboratorio de investigación de IBM en San José.",
+    "hito": "Presentación del lenguaje **SEQUEL** en IBM Research, estableciendo la sintaxis declarativa para consultar bases de datos relacionales.",
     "year": 1974,
-    "autor": "Donald Chamberlin y Raymond Boyce",
-    "trivia": "Cambiaron *SEQUEL* a *SQL* porque la sigla original era una marca registrada de una fábrica de aviones británica."
+    "autor": "Donald D. Chamberlin y Raymond F. Boyce",
+    "trivia": "El acrónimo original SEQUEL fue sustituido por SQL al existir un conflicto con una marca registrada de una firma de aviación británica."
   },
   {
     "id": "vol4-0x37",
@@ -4130,10 +4130,10 @@
     "index": 55,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Publicación del artículo que definió el modelo de ordenación mediante **Relojes Vectoriales** en sistemas distribuidos.",
+    "hito": "Formulación de los **Relojes Vectoriales**, permitiendo determinar la relación de orden causal parcial de eventos en sistemas distribuidos.",
     "year": 1988,
     "autor": "Colin Fidge y Friedemann Mattern",
-    "trivia": "Permitió rastrear la causalidad exacta de eventos concurrentes sin recurrir a un reloj físico sincronizado."
+    "trivia": "Superaron las limitaciones de los relojes de Lamport al permitir detectar si dos eventos concurrentes ocurrieron de forma independiente."
   },
   {
     "id": "vol4-0x38",
@@ -4141,10 +4141,10 @@
     "index": 56,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Creación del runtime seguro de JavaScript y TypeScript **Deno**, remediando las decisiones de diseño del creador en Node.js.",
+    "hito": "Lanzamiento de **Deno**, runtime seguro para JavaScript y TypeScript construido en lenguaje Rust con soporte nativo de módulos web.",
     "year": 2018,
     "autor": "Ryan Dahl",
-    "trivia": "Dahl presentó el proyecto durante su famosa conferencia '10 Things I Regret About Node.js'."
+    "trivia": "Dahl lo diseñó tras su célebre charla en JSConf 2018 reflexionando sobre decisiones arquitectónicas de las que se arrepentía en Node.js."
   },
   {
     "id": "vol4-0x39",
@@ -4152,10 +4152,10 @@
     "index": 57,
     "domain": "languages-runtimes",
     "tag": "web-frameworks",
-    "hito": "Publicación de la especificación de diseño arquitectónico **REST** (*Representational State Transfer*) en una tesis doctoral.",
+    "hito": "Definición del estilo arquitectónico **REST** (*Representational State Transfer*) en la tesis doctoral de Roy Fielding.",
     "year": 2000,
-    "autor": "Roy Fielding (UC Irvine)",
-    "trivia": "Fielding era también uno de los principales autores de las especificaciones de HTTP/1.0 y HTTP/1.1."
+    "autor": "Roy Thomas Fielding (UC Irvine)",
+    "trivia": "Formalizó principios de diseño para sistemas hipermedia distribuidos como la interfaz uniforme, el protocolo sin estado y la cacheabilidad."
   },
   {
     "id": "vol4-0x3A",
@@ -4163,10 +4163,10 @@
     "index": 58,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Inicio del movimiento de salida de la nube (**Cloud Exit**) liderado por la empresa 37signals tras repatriar sus servidores al metal propio.",
+    "hito": "Inicio del movimiento de repatriación de servidores (**Cloud Exit**) por 37signals, migrando sus aplicaciones a hardware propio.",
     "year": 2023,
-    "autor": "David Heinemeier Hansson (DHH)",
-    "trivia": "DHH mostró cómo salir de AWS y comprar servidores propios ahorró a Basecamp **$3.2 millones de dólares** en 5 años."
+    "autor": "37signals (David Heinemeier Hansson)",
+    "trivia": "DHH documentó el ahorro de millones de dólares anuales en costes de infraestructura tras abandonar servicios gestionados en la nube pública."
   },
   {
     "id": "vol4-0x3B",
@@ -4174,10 +4174,10 @@
     "index": 59,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Nacimiento de **DuckDB**, concebido como el equivalente a SQLite para analítica en memoria y archivos Parquet.",
+    "hito": "Presentación de **DuckDB**, gestor relacional columnar embebido diseñado para analítica eficiente en memoria y ficheros Parquet.",
     "year": 2019,
     "autor": "Hannes Mühleisen y Mark Raasveldt (CWI)",
-    "trivia": "Permite consultar gigabytes de archivos de datos locales directamente desde Python o R con consultas vectorizadas sin configurar clusters pesados."
+    "trivia": "Concebida como el análogo analítico a SQLite, permite ejecutar consultas SQL vectorizadas directamente en procesos locales de Python y R."
   },
   {
     "id": "vol4-0x3C",
@@ -4185,10 +4185,10 @@
     "index": 60,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Lanzamiento del acelerador y caché de contenido web HTTP **Varnish Cache**, optimizado para la memoria virtual del kernel.",
+    "hito": "Lanzamiento del acelerador HTTP **Varnish Cache**, optimizado para aprovechar la gestión de memoria virtual del kernel del sistema.",
     "year": 2006,
     "autor": "Poul-Henning Kamp",
-    "trivia": "Diseñado en Noruega, delegó la paginación al propio sistema operativo descartando gestionar cachés en espacio de usuario."
+    "trivia": "Delegó la paginación al propio sistema operativo descartando gestionar cachés en espacio de usuario, agilizando sitios con alto tráfico."
   },
   {
     "id": "vol4-0x3D",
@@ -4196,10 +4196,10 @@
     "index": 61,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Publicación del **RFC 6455** estandarizando el protocolo bidireccional en tiempo real **WebSocket** para navegadores y servidores.",
+    "hito": "Publicación del **RFC 6455** estandarizando el protocolo bidireccional en tiempo real **WebSocket** sobre conexiones TCP persistentes.",
     "year": 2011,
     "autor": "Ian Fette y Alexey Melnikov",
-    "trivia": "Permitió reemplazar las ineficientes técnicas de 'long-polling' por una única conexión TCP persistente."
+    "trivia": "Permitió comunicaciones full-duplex de baja latencia en navegadores web, sustituyendo técnicas ineficientes como el sondeo periódico."
   },
   {
     "id": "vol4-0x3E",
@@ -4207,10 +4207,10 @@
     "index": 62,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento del servidor de aplicaciones de mensajería asíncrona de alto rendimiento **NATS**, diseñado en Go para microservicios.",
+    "hito": "Lanzamiento del sistema de mensajería asíncrona de alto rendimiento **NATS**, diseñado en lenguaje Go para arquitecturas en la nube.",
     "year": 2011,
     "autor": "Derek Collison (Apcera)",
-    "trivia": "Collison, ex arquitecto de messaging en TIBCO, lo diseñó bajo la premisa de simplicidad extrema y latencias de microsegundos."
+    "trivia": "Creado bajo la premisa de sencillez operativa y latencias de microsegundos, fue donado a la Cloud Native Computing Foundation."
   },
   {
     "id": "vol4-0x3F",
@@ -4218,10 +4218,10 @@
     "index": 63,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Lanzamiento de **BadgerDB**, motor de base de datos embebida clave-valor en Go optimizado para unidades de estado sólido SSD.",
+    "hito": "Lanzamiento de **BadgerDB**, motor clave-valor embebido en Go optimizado para memorias SSD mediante separación de claves y valores (WiscKey).",
     "year": 2017,
-    "autor": "Manish Jain (Dgraph)",
-    "trivia": "Implementó la arquitectura WiscKey separando las claves del árbol LSM de los valores guardados en el disco."
+    "autor": "Manish Jain (Dgraph Labs)",
+    "trivia": "Basado en el diseño académico WiscKey, separa las claves ordenadas en el árbol LSM de los valores guardados secuencialmente en ficheros de log."
   },
   {
     "id": "vol5-0x00",
@@ -4229,10 +4229,10 @@
     "index": 0,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Lanzamiento comercial de **Amazon S3** (*Simple Storage Service*), inaugurando la era de la computación en la nube moderna de AWS.",
+    "hito": "Lanzamiento comercial de **Amazon S3** (*Simple Storage Service*), inaugurando la infraestructura de almacenamiento cloud escalable de AWS.",
     "year": 2006,
     "autor": "Amazon Web Services (Andy Jassy)",
-    "trivia": "Ofrecía almacenamiento duradero por 15 centavos de dólar por gigabyte al mes mediante una simple API REST."
+    "trivia": "Ofrecía almacenamiento duradero por 15 centavos de dólar por gigabyte al mes mediante llamadas directas a una API REST y SOAP."
   },
   {
     "id": "vol5-0x01",
@@ -4240,10 +4240,10 @@
     "index": 1,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Anuncio formal de la adquisición de **HashiCorp** por parte de **IBM** en una operación valorada en **$6,400 millones de dólares**.",
+    "hito": "Acuerdo de adquisición de **HashiCorp** por parte de **IBM** por 6,400 millones de dólares para consolidar la automatización multicloud.",
     "year": 2024,
-    "autor": "IBM (Arvind Krishna)",
-    "trivia": "Reflejó la necesidad de IBM de controlar la plataforma líder de infraestructura como código en centros de datos."
+    "autor": "IBM y HashiCorp",
+    "trivia": "Permitió a IBM integrar herramientas clave del ecosistema cloud como Terraform, Vault y Consul dentro de su plataforma Red Hat."
   },
   {
     "id": "vol5-0x02",
@@ -4251,10 +4251,10 @@
     "index": 2,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Creación de **OpenStack** como iniciativa de código abierto en Python impulsada conjuntamente por la NASA y Rackspace Hosting.",
+    "hito": "Lanzamiento de **OpenStack**, iniciativa comunitaria en Python para crear una plataforma de computación y almacenamiento cloud abierta.",
     "year": 2010,
-    "autor": "NASA y Rackspace",
-    "trivia": "NASA y Rackspace unieron sus tecnologías soñando con forjar el estándar abierto de la nube pública con OpenStack."
+    "autor": "NASA y Rackspace Hosting",
+    "trivia": "Combinó el código del proyecto Nebula de la NASA con la infraestructura de almacenamiento Cloud Files desarrollada por Rackspace."
   },
   {
     "id": "vol5-0x03",
@@ -4262,10 +4262,10 @@
     "index": 3,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Lanzamiento comercial de **Google Compute Engine (GCE)**, permitiendo ejecutar máquinas virtuales a escala global en la nube de Google.",
+    "hito": "Disponibilidad general de **Google Compute Engine (GCE)**, permitiendo ejecutar máquinas virtuales IaaS sobre la infraestructura de Google.",
     "year": 2013,
-    "autor": "Google Cloud",
-    "trivia": "Presentado por Urs Hölzle, destacó por la rapidez de arranque de sus VMs y facturación por minutos."
+    "autor": "Google Cloud (Urs Hölzle)",
+    "trivia": "Destacó por el aprovisionamiento de instancias en menos de un minuto y facturación por bloques de minutos con redes de fibra privada."
   },
   {
     "id": "vol5-0x04",
@@ -4273,10 +4273,10 @@
     "index": 4,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Lanzamiento de **Azure Functions**, la plataforma de computación sin servidor (Serverless) orientada a eventos de Microsoft.",
+    "hito": "Lanzamiento de **Azure Functions**, proporcionando computación sin servidor (*Serverless*) guiada por eventos sobre el entorno de Azure.",
     "year": 2016,
     "autor": "Microsoft Azure",
-    "trivia": "Permitió integrar funciones serverless directamente con el ecosistema empresarial de Office 365 y Active Directory."
+    "trivia": "Permitió enlazar disparadores declarativos con servicios de datos, colas de mensajes y APIs empresariales sin gestionar servidores dedicados."
   },
   {
     "id": "vol5-0x05",
@@ -4284,10 +4284,10 @@
     "index": 5,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Extracción y publicación de **containerd** como un daemon de ejecución de contenedores desacoplado e independiente por parte de Docker.",
+    "hito": "Donación y escisión de **containerd** como motor de ejecución de contenedores independiente y de bajo nivel bajo la tutela de la CNCF.",
     "year": 2017,
-    "autor": "Docker Inc.",
-    "trivia": "Gestiona imágenes y supervisión de procesos en bajo nivel sin la sobrecarga comercial ni la interfaz CLI de Docker."
+    "autor": "Docker Inc. y Linux Foundation",
+    "trivia": "Gestiona la transferencia de imágenes, almacenamiento y supervisión de procesos con runc sin requerir la interfaz de usuario de Docker."
   },
   {
     "id": "vol5-0x06",
@@ -4295,10 +4295,10 @@
     "index": 6,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Lanzamiento de **Google App Engine**, la primera oferta comercial de Google Cloud que permitía desplegar apps Python en su nube.",
+    "hito": "Lanzamiento de **Google App Engine**, pionero en plataformas como servicio (**PaaS**) para desplegar código Python con autoescalado.",
     "year": 2008,
-    "autor": "Google",
-    "trivia": "Fue el pionero de los modelos PaaS modernos, mucho antes del surgimiento de Docker y Kubernetes."
+    "autor": "Google (Paul McDonald et al.)",
+    "trivia": "Ofreció un entorno de pruebas cerrado (sandbox) con base de datos Bigtable integrada, mucho antes del auge de Docker y Kubernetes."
   },
   {
     "id": "vol5-0x07",
@@ -4306,10 +4306,10 @@
     "index": 7,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Anuncio formal de **Windows Azure** (luego Microsoft Azure) durante la conferencia PDC en Los Ángeles.",
+    "hito": "Presentación de **Windows Azure** (posteriormente **Microsoft Azure**) en la conferencia PDC, iniciando la plataforma cloud de Microsoft.",
     "year": 2008,
     "autor": "Microsoft (Ray Ozzie)",
-    "trivia": "El proyecto fue desarrollado bajo el nombre en clave secreto 'Project Red Dog'."
+    "trivia": "Desarrollado internamente bajo el nombre clave 'Project Red Dog', se enfocó inicialmente en servicios PaaS antes de incorporar máquinas IaaS."
   },
   {
     "id": "vol5-0x08",
@@ -4317,10 +4317,10 @@
     "index": 8,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Lanzamiento de la plataforma en la nube orientada a frontend y funciones serverless edge **Vercel** (originalmente *Zeit Now*).",
+    "hito": "Lanzamiento de **Zeit Now** (posteriormente **Vercel**), popularizando el despliegue instantáneo de aplicaciones web y funciones serverless.",
     "year": 2016,
-    "autor": "Guillermo Rauch",
-    "trivia": "Permitió desplegar aplicaciones web globales con certificado SSL en segundos usando un único comando `now` en terminal."
+    "autor": "Guillermo Rauch y equipo de Vercel",
+    "trivia": "Permitió desplegar proyectos frontend globales mediante un único comando CLI `now`, asignando certificados HTTPS automáticos por dominio."
   },
   {
     "id": "vol5-0x09",
@@ -4328,10 +4328,10 @@
     "index": 9,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Lanzamiento de la plataforma en la nube **Fly.io**, permitiendo correr contenedores Docker completos pegados al usuario en el Edge.",
+    "hito": "Lanzamiento de la plataforma **Fly.io**, ejecutando contenedores OCI distribuidos cerca de los usuarios convertidos en microVMs en el borde.",
     "year": 2020,
     "autor": "Kurt Mackey y Jerome Leclanche",
-    "trivia": "Convierte automáticamente contenedores Docker estándar en microVMs de Firecracker distribuidas en todo el mundo."
+    "trivia": "Transforma imágenes estándar de contenedores en máquinas virtuales aisladas de Firecracker con redes de malla privada WireGuard."
   },
   {
     "id": "vol5-0x0A",
@@ -4339,10 +4339,10 @@
     "index": 10,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Lanzamiento de **LXC (Linux Containers)** 1.0, la primera versión estable de contenedores a nivel de sistema operativo para Linux.",
+    "hito": "Lanzamiento de **LXC 1.0**, alcanzando la primera versión con soporte de estabilidad a largo plazo para contenedores a nivel de sistema en Linux.",
     "year": 2014,
     "autor": "Stéphane Graber y Serge Hallyn",
-    "trivia": "Sirvió como el motor de ejecución inicial sobre el cual Solomon Hykes construyó las primeras versiones de Docker."
+    "trivia": "Proveyó una API de C estable y herramientas de consola para gestionar contenedores de sistema completos compartiendo el kernel del anfitrión."
   },
   {
     "id": "vol5-0x0B",
@@ -4350,10 +4350,10 @@
     "index": 11,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de **GitHub Actions**, integrando CI/CD y flujos de trabajo automatizados directo en los repositorios.",
+    "hito": "Lanzamiento de **GitHub Actions**, incorporando flujos de trabajo declarativos de integración y despliegue continuo (**CI/CD**) en repositorios.",
     "year": 2019,
     "autor": "GitHub (Nat Friedman)",
-    "trivia": "Reemplazó viejos servidores *Jenkins*, permitiendo probar y desplegar software con workflows en YAML en el repo."
+    "trivia": "Permitió automatizar compilaciones, pruebas y despliegues con ejecutores efímeros basados en contenedores gobernados por archivos YAML."
   },
   {
     "id": "vol5-0x0C",
@@ -4361,10 +4361,10 @@
     "index": 12,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Publicación del artículo académico sobre **Borg**, el sistema secreto de gestión de clústeres a gran escala de Google.",
+    "hito": "Publicación del artículo de investigación sobre **Borg**, el sistema a gran escala de Google para la orquestación y gestión de clústeres.",
     "year": 2015,
-    "autor": "Abhishek Verma, John Wilkes et al.",
-    "trivia": "Durante más de una década gestionó millones de tareas de Gmail, Search y YouTube antes de inspirar Kubernetes."
+    "autor": "Abhishek Verma, John Wilkes et al. (Google)",
+    "trivia": "Describió el modelo de asignación de cuotas, paquetes de contenedores y tolerancia a fallos que inspiró la arquitectura de Kubernetes."
   },
   {
     "id": "vol5-0x0D",
@@ -4372,10 +4372,10 @@
     "index": 13,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Lanzamiento de **CoreOS**, un sistema operativo Linux mínimo diseñado específicamente para hospedar contenedores en clúster.",
+    "hito": "Lanzamiento de **CoreOS Linux**, distribución minimalista con particiones raíz de lectura dual para actualizaciones inmutables en clúster.",
     "year": 2013,
     "autor": "Alex Polvi y Brandon Philips",
-    "trivia": "Implementó actualizaciones automáticas particionadas activas/inactivas inspiradas en el esquema de ChromeOS."
+    "trivia": "Adoptó un esquema de actualización sin interrupciones con particiones alternas (activo/pasivo) similar al mecanismo del sistema operativo ChromeOS."
   },
   {
     "id": "vol5-0x0E",
@@ -4383,10 +4383,10 @@
     "index": 14,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Creación de la **Open Container Initiative (OCI)** por Docker, CoreOS y gigantes de la industria para estandarizar formatos de imagen.",
+    "hito": "Publicación del paper sobre **Dapper**, sistema de rastreo distribuido a gran escala para monitorizar transacciones en microservicios.",
     "year": 2015,
-    "autor": "The Linux Foundation",
-    "trivia": "Evitó una fragmentación irreversible en la industria tras la guerra comercial entre Docker y el motor rkt de CoreOS."
+    "autor": "Benjamin H. Sigelman et al. (Google)",
+    "trivia": "Introdujo los conceptos de spans, identificadores de traza y propagación de contexto en llamadas RPC, sirviendo de base a Zipkin y Jaeger."
   },
   {
     "id": "vol5-0x0F",
@@ -4394,10 +4394,10 @@
     "index": 15,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Lanzamiento de **Kata Containers**, integrando la velocidad de los contenedores con el aislamiento de seguridad de máquinas virtuales.",
+    "hito": "Lanzamiento de **Kata Containers**, integrando el aislamiento de seguridad de máquinas virtuales ligeras con la velocidad de los contenedores.",
     "year": 2017,
-    "autor": "OpenStack Foundation / Intel",
-    "trivia": "Fusionó las tecnologías Clear Containers de Intel y RunV de Hyper.sh para ejecutar cada pod en un hipervisor ultraligero."
+    "autor": "OpenStack Foundation / Intel y Hyper.sh",
+    "trivia": "Fusionó Clear Containers de Intel y runV de Hyper.sh para ejecutar cada pod de Kubernetes dentro de un hipervisor dedicado con su propio kernel."
   },
   {
     "id": "vol5-0x10",
@@ -4405,10 +4405,10 @@
     "index": 16,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Lanzamiento de **Podman 1.0**, permitiendo gestionar pods y contenedores OCI compatibles con Docker sin proceso daemon ni privilegios root.",
+    "hito": "Lanzamiento de **Podman 1.0**, permitiendo gestionar contenedores y pods OCI sin demonio en segundo plano ni privilegios root.",
     "year": 2019,
-    "autor": "Red Hat (Dan Walsh)",
-    "trivia": "Popularizó el alias `alias docker=podman` gracias a su compatibilidad directa comando a comando."
+    "autor": "Red Hat (Dan Walsh et al.)",
+    "trivia": "Aprovechó los espacios de nombres de usuario para ejecutar pods sin root e integró compatibilidad directa de comandos con Docker CLI."
   },
   {
     "id": "vol5-0x11",
@@ -4416,10 +4416,10 @@
     "index": 17,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Incorporación de **Control Groups (cgroups)** en el kernel de Linux 2.6.24, la base para aislar recursos en contenedores.",
+    "hito": "Declaración oficial de madurez de **cgroups v2** en el kernel de Linux 4.5, unificando el control de recursos en una única jerarquía estricta.",
     "year": 2008,
-    "autor": "Paul Menage y Rohit Seth (Google)",
-    "trivia": "Originalmente se llamaba 'Process Containers', pero cambiaron el nombre para evitar confusiones semánticas."
+    "autor": "Tejun Heo (Facebook / Red Hat)",
+    "trivia": "Reemplazó las múltiples jerarquías independientes y caóticas de cgroups v1 por un árbol único con soporte integrado para gestión de memoria y E/S."
   },
   {
     "id": "vol5-0x12",
@@ -4427,10 +4427,10 @@
     "index": 18,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Lanzamiento de **rkt (Rocket)** por CoreOS como alternativa orientada a seguridad frente al modelo monolítico de Docker.",
+    "hito": "Liberación del proyecto **OpenVZ**, solución de virtualización basada en contenedores para Linux pionera en proveedores de hosting compartido.",
     "year": 2014,
-    "autor": "CoreOS (Alex Polvi)",
-    "trivia": "Prescindía de un proceso demonio central con privilegios de root, impulsando la creación del estándar OCI."
+    "autor": "SWsoft (Virtuozzo)",
+    "trivia": "Introdujo entornos virtuales aislados sobre un kernel modificado, demostrando la eficiencia de particionar un solo sistema operativo."
   },
   {
     "id": "vol5-0x13",
@@ -4438,10 +4438,10 @@
     "index": 19,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Publicación del hipervisor de código abierto **Xen** en el simposio ACM SOSP, popularizando la paravirtualización.",
+    "hito": "Publicación del hipervisor **Xen** en el simposio ACM SOSP, popularizando la técnica de **paravirtualización** en procesadores x86.",
     "year": 2003,
-    "autor": "Universidad de Cambridge (Ian Pratt)",
-    "trivia": "Fue el motor principal que impulsó la nube pública de Amazon EC2 en sus primeros diez años de vida."
+    "autor": "Ian Pratt et al. (Universidad de Cambridge)",
+    "trivia": "Modificaba los sistemas operativos invitados para comunicarse con el hipervisor, siendo la tecnología base que impulsó Amazon EC2 en sus inicios."
   },
   {
     "id": "vol5-0x14",
@@ -4449,10 +4449,10 @@
     "index": 20,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de **Vagrant**, simplificando la creación y gestión de entornos de desarrollo virtualizados reproducibles.",
+    "hito": "Lanzamiento de **Vagrant**, simplificando la automatización y gestión reproducible de entornos de desarrollo virtualizados locales.",
     "year": 2010,
     "autor": "Mitchell Hashimoto",
-    "trivia": "Comenzó como un proyecto de fines de semana mientras Mitchell trabajaba como consultor de software."
+    "trivia": "Permitió a los programadores levantar máquinas de prueba con dependencias idénticas a producción mediante un simple archivo `Vagrantfile`."
   },
   {
     "id": "vol5-0x15",
@@ -4460,10 +4460,10 @@
     "index": 21,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Popularización de los despliegues web instantáneos con enlaces de vista previa por rama mediante la plataforma **Vercel**.",
+    "hito": "Fundación de **Netlify** y formalización del concepto **JAMstack**, desacoplando sitios estáticos generados previamente de APIs en la nube.",
     "year": 2018,
-    "autor": "Guillermo Rauch (Vercel)",
-    "trivia": "Creador de *Socket.io* y *Next.js*, Rauch unió cada commit en Git con despliegues edge globales instantáneos."
+    "autor": "Mathias Biilmann y Christian Bach",
+    "trivia": "Popularizó la publicación de aplicaciones web precompiladas servidas desde redes CDN globales con despliegues atómicos en cada confirmación Git."
   },
   {
     "id": "vol5-0x16",
@@ -4471,10 +4471,10 @@
     "index": 22,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de **Packer**, una herramienta de código abierto para crear imágenes idénticas de máquinas virtuales multi-plataforma.",
+    "hito": "Lanzamiento de **Packer**, herramienta de código abierto para automatizar la construcción de imágenes idénticas para múltiples plataformas.",
     "year": 2013,
-    "autor": "HashiCorp",
-    "trivia": "Permitió generar AMIs de AWS, imágenes de Docker y discos de VirtualBox a partir de una única plantilla JSON."
+    "autor": "Mitchell Hashimoto y HashiCorp",
+    "trivia": "Permitió compilar imágenes AMI para AWS, discos para VirtualBox y plantillas de contenedores a partir de una única especificación declarativa."
   },
   {
     "id": "vol5-0x17",
@@ -4482,10 +4482,10 @@
     "index": 23,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Debut de **Ansible**, un sistema de automatización en Python sin agentes (*agentless*) que orquesta servidores mediante conexiones seguras SSH.",
+    "hito": "Presentación de **Ansible**, sistema de automatización y gestión de configuraciones sin agentes clientes (*agentless*) mediante SSH.",
     "year": 2012,
     "autor": "Michael DeHaan",
-    "trivia": "Usaba *playbooks* en **YAML** y conexión por SSH sin agentes cliente, arrasando en adopción frente a Puppet y Chef."
+    "trivia": "Adoptó libros de jugadas (*playbooks*) en formato YAML, simplificando la orquestación de flujos frente a la complejidad de Puppet y Chef."
   },
   {
     "id": "vol5-0x18",
@@ -4493,10 +4493,10 @@
     "index": 24,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de **Consul**, plataforma de descubrimiento de servicios, mallas de servicios y configuración distribuida.",
+    "hito": "Lanzamiento de **Consul**, solución distribuida para el descubrimiento de servicios, segmentación de red y configuración en centros de datos.",
     "year": 2014,
-    "autor": "HashiCorp (Armon Dadgar)",
-    "trivia": "Combina el protocolo de chismes Serf con el consenso Raft para ofrecer alta disponibilidad en datacenters."
+    "autor": "Armon Dadgar y Mitchell Hashimoto",
+    "trivia": "Combina el protocolo de difusión epidémica Serf con el consenso Raft para mantener registros de salud y configuración consistentes."
   },
   {
     "id": "vol5-0x19",
@@ -4504,10 +4504,10 @@
     "index": 25,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento del orquestador de cargas de trabajo flexible **Nomad**, capaz de programar contenedores y binarios tradicionales.",
+    "hito": "Lanzamiento de **Nomad**, orquestador flexible de cargas de trabajo capaz de planificar contenedores y aplicaciones binarias tradicionales.",
     "year": 2015,
-    "autor": "HashiCorp",
-    "trivia": "Diseñado como un único ejecutable sin dependencias externas, capaz de desplegar 1 millón de contenedores en 2 minutos."
+    "autor": "HashiCorp (Mitchell Hashimoto et al.)",
+    "trivia": "Diseñado como un binario único ligero sin dependencias externas, demostró programar 1 millón de contenedores en apenas dos minutos."
   },
   {
     "id": "vol5-0x1A",
@@ -4515,10 +4515,10 @@
     "index": 26,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de **Bicep**, el lenguaje declarativo específico de dominio (DSL) para desplegar infraestructura en Azure de forma limpia.",
+    "hito": "Lanzamiento del lenguaje específico de dominio **Bicep**, simplificando la sintaxis declarativa para el despliegue de recursos en Azure.",
     "year": 2020,
-    "autor": "Microsoft",
-    "trivia": "Se diseñó para librar a los ingenieros de Azure de la tediosa y verbosa sintaxis de las plantillas ARM en formato JSON."
+    "autor": "Microsoft Azure",
+    "trivia": "Sustituyó la verbosidad de las plantillas JSON de Azure Resource Manager (ARM) por una gramática limpia con validación de tipos."
   },
   {
     "id": "vol5-0x1B",
@@ -4526,10 +4526,10 @@
     "index": 27,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de **Puppet**, herramienta pionera de gestión de configuración declarativa para administradores de sistemas.",
+    "hito": "Lanzamiento de **Puppet**, herramienta pionera de gestión de configuraciones declarativa orientada a la administración de sistemas Unix.",
     "year": 2005,
-    "autor": "Luke Kanies",
-    "trivia": "Kanies lo escribió motivado por la rigidez y falta de mantenimiento que sufría al administrar entornos con CFEngine."
+    "autor": "Luke Kanies (Puppet Labs)",
+    "trivia": "Introdujo un lenguaje de modelado declarativo propio para asegurar el estado de paquetes, servicios y ficheros en flujos cliente-servidor."
   },
   {
     "id": "vol5-0x1C",
@@ -4537,10 +4537,10 @@
     "index": 28,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento del gestor de configuración en Ruby **Chef**, tratando a la infraestructura enteramente como código en recetas.",
+    "hito": "Lanzamiento del motor de gestión de configuraciones **Chef**, formalizando el paradigma de infraestructura como código programable en Ruby.",
     "year": 2009,
-    "autor": "Adam Jacob y Jesse Robbins",
-    "trivia": "Adoptó metáforas culinarias en todo su diseño: recetas, libros de cocina (cookbooks) y cuchillos (knife)."
+    "autor": "Adam Jacob y Jesse Robbins (Opscode)",
+    "trivia": "Adoptó metáforas gastronómicas en su arquitectura técnica: recetas (*recipes*), libros de cocina (*cookbooks*) y herramientas de corte (*knife*)."
   },
   {
     "id": "vol5-0x1D",
@@ -4548,10 +4548,10 @@
     "index": 29,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de **SaltStack (Salt)**, sistema de ejecución remota de alta velocidad basado en colas ZeroMQ y Python.",
+    "hito": "Lanzamiento de **SaltStack (Salt)**, sistema de ejecución remota y automatización de alta velocidad basado en colas ZeroMQ y Python.",
     "year": 2011,
     "autor": "Thomas Hatch",
-    "trivia": "Se diseñó para comunicarse con decenas de miles de servidores en milisegundos usando un bus de eventos persistente."
+    "trivia": "Diseñado para emitir comandos a decenas de miles de servidores concurrentes en milisegundos mediante un bus asíncrono de eventos."
   },
   {
     "id": "vol5-0x1E",
@@ -4559,10 +4559,10 @@
     "index": 30,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Publicación del proyecto **Apache Mesos** para abstracción y reparto fino de recursos en datacenters a gran escala.",
+    "hito": "Publicación del proyecto **Apache Mesos**, introduciendo la asignación fina de recursos y programación en dos niveles para centros de datos.",
     "year": 2011,
-    "autor": "Benjamin Hindman et al. (UC Berkeley)",
-    "trivia": "Twitter adoptó Mesos para abandonar su infame pantalla de ballena caída ('Fail Whale') y estabilizar su plataforma."
+    "autor": "Benjamin Hindman et al. (UC Berkeley AMPLab)",
+    "trivia": "Desarrollado en Berkeley, permitió a empresas como Twitter orquestar miles de nodos compartiendo recursos entre Hadoop, Spark y microservicios."
   },
   {
     "id": "vol5-0x1F",
@@ -4570,10 +4570,10 @@
     "index": 31,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de **Helm v3**, eliminando por completo el controversial componente servidor *Tiller* por seguridad en Kubernetes.",
+    "hito": "Lanzamiento de **Helm v3**, suprimiendo el componente de servidor con privilegios *Tiller* para alinearse con la seguridad nativa de Kubernetes.",
     "year": 2019,
-    "autor": "Helm Community / CNCF",
-    "trivia": "La eliminación de Tiller simplificó el modelo de seguridad apoyándose directamente en el RBAC nativo del clúster."
+    "autor": "Comunidad Helm y CNCF",
+    "trivia": "La eliminación de Tiller delegó la autorización directamente al modelo RBAC del clúster, reduciendo la superficie de ataque en despliegues."
   },
   {
     "id": "vol5-0x20",
@@ -4581,10 +4581,10 @@
     "index": 32,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Anuncio de la malla de servicios **Istio**, facilitando balanceo inteligente, telemetría y cifrado mTLS entre microservicios.",
+    "hito": "Anuncio conjunto de la malla de servicios **Istio**, facilitando telemetría, balanceo inteligente y cifrado mTLS entre microservicios.",
     "year": 2017,
     "autor": "Google, IBM y Lyft",
-    "trivia": "Aprovechó el proxy Envoy como plano de datos colocándolo como contenedor 'sidecar' junto a cada aplicación."
+    "trivia": "Aprovechó el proxy Envoy como plano de datos desplegado como contenedor adjunto (*sidecar*) junto a cada pod de aplicación."
   },
   {
     "id": "vol5-0x21",
@@ -4592,10 +4592,10 @@
     "index": 33,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de **Linkerd**, la primera malla de servicios (service mesh) de la industria, acuñando formalmente el término.",
+    "hito": "Lanzamiento de **Linkerd**, acuñando formalmente el concepto de malla de servicios (**Service Mesh**) para microservicios.",
     "year": 2016,
     "autor": "William Morgan y Oliver Gould (Buoyant)",
-    "trivia": "Inspirado en la biblioteca interna Finagle que ambos ingenieros ayudaron a construir en Twitter."
+    "trivia": "Inspirado en la biblioteca interna Finagle de Twitter, introdujo proxies transparentes para enrutar llamadas y manejar reintentos."
   },
   {
     "id": "vol5-0x22",
@@ -4603,10 +4603,10 @@
     "index": 34,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Creación del proyecto de observabilidad **OpenTelemetry (OTel)**, fusionando los proyectos OpenTracing y OpenCensus.",
+    "hito": "Creación del proyecto **OpenTelemetry** (**OTel**), fusionando los proyectos OpenTracing y OpenCensus en un estándar único de observabilidad.",
     "year": 2019,
-    "autor": "CNCF",
-    "trivia": "Se convirtió rápidamente en el segundo proyecto más activo de toda la fundación CNCF, sólo detrás de Kubernetes."
+    "autor": "Cloud Native Computing Foundation (CNCF)",
+    "trivia": "Estandarizó la instrumentación de trazas, métricas y registros (*logs*) neutral frente a proveedores comerciales de análisis."
   },
   {
     "id": "vol5-0x23",
@@ -4614,10 +4614,10 @@
     "index": 35,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Nacimiento de **Heroku**, inventando el paradigma de plataforma como servicio (**PaaS**) con el comando mágico `git push heroku master`.",
+    "hito": "Nacimiento de **Heroku**, inventando el paradigma de plataforma como servicio (**PaaS**) con despliegues directos desde repositorios Git.",
     "year": 2007,
-    "autor": "James Lindenbaum et al. (Heroku)",
-    "trivia": "Permitía a los programadores de Ruby on Rails poner una aplicación en producción en diez segundos sin configurar servidores Linux ni servidores web."
+    "autor": "James Lindenbaum, Adam Wiggins, Orion Henry",
+    "trivia": "Popularizó el flujo `git push heroku master`, empaquetando aplicaciones web en contenedores ligeros denominados *dynos*."
   },
   {
     "id": "vol5-0x24",
@@ -4625,10 +4625,10 @@
     "index": 36,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Presentación de **AWS Lambda** en la conferencia re:Invent, inaugurando la era de la computación **Serverless** (*FaaS*).",
+    "hito": "Presentación de **AWS Lambda** en la conferencia re:Invent, inaugurando la era de la computación sin servidor (*FaaS* / *Serverless*).",
     "year": 2014,
     "autor": "AWS (Andy Jassy y Tim Wagner)",
-    "trivia": "Permitió ejecutar funciones de código disparadas por eventos cobrando únicamente por los milisegundos exactos de procesamiento consumidos."
+    "trivia": "Permitió ejecutar código disparado por eventos cobrando únicamente por los milisegundos de procesamiento consumidos sin servidores fijos."
   },
   {
     "id": "vol5-0x25",
@@ -4636,10 +4636,10 @@
     "index": 37,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Liberación de **Jaeger**, plataforma de rastreo distribuido de transacciones entre microservicios inspirada en Dapper de Google.",
+    "hito": "Publicación de **Jaeger**, plataforma de rastreo distribuido de transacciones entre microservicios inspirada en el paper Dapper de Google.",
     "year": 2015,
-    "autor": "Yuri Shkuro (Uber Technologies)",
-    "trivia": "Uber lo desarrolló internamente cuando pasaron de un monolito en Python a miles de microservicios distribuidos."
+    "autor": "Yuri Shkuro y equipo de Uber",
+    "trivia": "Desarrollada en Uber para diagnosticar latencias y cuellos de botella en cascada al migrar de un monolito a miles de microservicios."
   },
   {
     "id": "vol5-0x26",
@@ -4647,10 +4647,10 @@
     "index": 38,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Despliegue de superclusters de entrenamiento de inteligencia artificial con cientos de miles de GPUs interconectadas por redes InfiniBand.",
+    "hito": "Despliegue masivo de superclústeres de **aceleradores GPU** interconectados por redes InfiniBand para el entrenamiento de grandes modelos de IA.",
     "year": 2024,
-    "autor": "NVIDIA, Microsoft Azure y AWS",
-    "trivia": "Las nubes pasaron de alquilar CPUs a despachar clusters masivos de miles de GPUs para entrenar modelos de IA."
+    "autor": "Consorcio de proveedores cloud y aceleradores",
+    "trivia": "Transformó los centros de datos en computadores gigantescos donde miles de tarjetas gráficas sincronizan gradientes a terabits por segundo."
   },
   {
     "id": "vol5-0x27",
@@ -4658,10 +4658,10 @@
     "index": 39,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de la plataforma de tableros y analítica visual de métricas en series temporales **Grafana**.",
+    "hito": "Lanzamiento de **Grafana**, plataforma abierta de visualización y análisis de métricas en series temporales para monitorización de sistemas.",
     "year": 2014,
     "autor": "Torkel Ödegaard",
-    "trivia": "Nació originalmente como una bifurcación de la interfaz Kibana enfocada específicamente en métricas numéricas."
+    "trivia": "Diseñada originalmente como una extensión especializada sobre Kibana, se consolidó como el estándar visual para cuadros de mando en DevOps."
   },
   {
     "id": "vol5-0x28",
@@ -4669,10 +4669,10 @@
     "index": 40,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de **LitmusChaos**, marco nativo de ingeniería de caos para inyectar fallos de red y pod en clústeres de Kubernetes.",
+    "hito": "Lanzamiento de **LitmusChaos**, marco nativo de ingeniería del caos para inyectar fallos de red y recursos en clústeres de Kubernetes.",
     "year": 2018,
-    "autor": "MayaData / CNCF",
-    "trivia": "Permite definir experimentos de caos directamente como recursos personalizados CRD de Kubernetes."
+    "autor": "MayaData y comunidad CNCF",
+    "trivia": "Permite definir y ejecutar escenarios de caos como recursos declarativos personalizados (CRD) en los flujos de integración continua."
   },
   {
     "id": "vol5-0x29",
@@ -4680,10 +4680,10 @@
     "index": 41,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Publicación del libro canónico **Site Reliability Engineering (SRE)**, revelando cómo gestiona Google sus sistemas de producción.",
+    "hito": "Publicación del libro canónico **Site Reliability Engineering (SRE)**, formalizando las prácticas de Google para operar sistemas en producción.",
     "year": 2016,
-    "autor": "Betsy Beyer, Chris Jones et al. (Google)",
-    "trivia": "Popularizó principios revolucionarios como Error Budgets, eliminación de 'toil' y la doctrina 'Hope is not a strategy'."
+    "autor": "Betsy Beyer, C. Jones, N. Murphy (Google)",
+    "trivia": "Popularizó conceptos de gobernanza operativa como presupuestos de error (*Error Budgets*), eliminación de trabajo rutinario y acuerdos SLO."
   },
   {
     "id": "vol5-0x2A",
@@ -4691,10 +4691,10 @@
     "index": 42,
     "domain": "hacker-culture-web",
     "tag": "collaboration-platforms",
-    "hito": "Publicación de la influyente novela de gestión técnica **The Phoenix Project**, popularizando la cultura y metodologías DevOps.",
+    "hito": "Publicación de la novela de gestión técnica **The Phoenix Project**, popularizando la cultura y prácticas de colaboración en DevOps.",
     "year": 2013,
     "autor": "Gene Kim, Kevin Behr y George Spafford",
-    "trivia": "Adaptó la teoría de restricciones de la manufactura industrial ('The Goal') al caos de los departamentos de TI."
+    "trivia": "Adaptó los principios de manufactura ágil y teoría de restricciones de Goldratt al flujo de trabajo de departamentos de software corporativo."
   },
   {
     "id": "vol5-0x2B",
@@ -4702,10 +4702,10 @@
     "index": 43,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Acuñación del término y paradigma **GitOps**, usando Git como única fuente de verdad para la infraestructura declarativa.",
+    "hito": "Acuñación del paradigma **GitOps**, utilizando repositorios Git como única fuente de verdad para la infraestructura declarativa en la nube.",
     "year": 2017,
     "autor": "Alexis Richardson (Weaveworks)",
-    "trivia": "El concepto demostró que la convergencia continua de software es más segura que lanzar scripts desde pipelines CI."
+    "trivia": "Estableció que agentes de sincronización dentro del clúster deben converger activamente hacia el estado deseado descrito en Git."
   },
   {
     "id": "vol5-0x2C",
@@ -4713,10 +4713,10 @@
     "index": 44,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de la plataforma de infraestructura como código **Pulumi**, permitiendo usar TypeScript, Python o Go en vez de YAML.",
+    "hito": "Lanzamiento de **Pulumi**, plataforma de infraestructura como código que permite emplear lenguajes de programación estándar en vez de YAML.",
     "year": 2018,
     "autor": "Joe Duffy y Eric Rudder",
-    "trivia": "Permite usar bucles, clases y pruebas unitarias de software reales para instanciar recursos de nube."
+    "trivia": "Permitió definir redes y contenedores en TypeScript, Python y Go aprovechando bucles, clases y pruebas unitarias de software comunes."
   },
   {
     "id": "vol5-0x2D",
@@ -4724,10 +4724,10 @@
     "index": 45,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Lanzamiento de **Cloudflare Workers**, ejecutando funciones serverless en el borde (*Edge Computing*) mediante V8 Isolates.",
+    "hito": "Lanzamiento de **Cloudflare Workers**, ejecutando código serverless en nodos de red distribuidos mediante aislamiento de memoria en V8.",
     "year": 2017,
-    "autor": "Kenton Varda (Cloudflare)",
-    "trivia": "Eliminó el arranque en frío (cold start) al prescindir de contenedores y usar aislamiento nativo de memoria en V8."
+    "autor": "Kenton Varda y equipo de Cloudflare",
+    "trivia": "Eliminó los tiempos de arranque en frío (*cold starts*) al sustituir contenedores por miles de aisladores (*Isolates*) de V8 sobre un único proceso."
   },
   {
     "id": "vol5-0x2E",
@@ -4735,10 +4735,10 @@
     "index": 46,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Lanzamiento de **Tailscale**, red privada virtual en malla basada en WireGuard que no requiere abrir puertos ni configurar firewalls.",
+    "hito": "Lanzamiento de **Tailscale**, red privada virtual en malla (*mesh VPN*) basada en el protocolo WireGuard sin configuración manual de puertos.",
     "year": 2020,
     "autor": "Avery Pennarun, Brad Fitzpatrick et al.",
-    "trivia": "Aprovechó técnicas avanzadas de NAT traversal y el protocolo DERP para conectar máquinas directamente punto a punto."
+    "trivia": "Aplica técnicas avanzadas de atravesamiento de NAT y servidores de retransmisión DERP para interconectar dispositivos punto a punto de forma segura."
   },
   {
     "id": "vol5-0x2F",
@@ -4746,10 +4746,10 @@
     "index": 47,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento del framework de computación sin servidor en Kubernetes **Knative**, unificando el ecosistema cloud-native.",
+    "hito": "Lanzamiento de **Knative**, componentes modulares para ejecutar cargas de trabajo sin servidor sobre clústeres de Kubernetes.",
     "year": 2018,
-    "autor": "Google, Pivotal, Red Hat",
-    "trivia": "Se dividió en dos componentes centrales: Knative Serving (escalado a cero) y Knative Eventing."
+    "autor": "Google, Pivotal, Red Hat e IBM",
+    "trivia": "Estandarizó el escalado automático hasta cero réplicas (*Knative Serving*) y el enrutamiento declarativo de eventos (*Knative Eventing*)."
   },
   {
     "id": "vol5-0x30",
@@ -4757,10 +4757,10 @@
     "index": 48,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Caída catastrófica de la región **US-East-1** (Norte de Virginia) de AWS, tumbando servicios de bancos, aerolíneas y streaming mundiales.",
+    "hito": "Interrupción de servicio masiva en la región **US-East-1** de AWS, paralizando plataformas globales y abriendo debates sobre resiliencia cloud.",
     "year": 2021,
     "autor": "Amazon Web Services",
-    "trivia": "Evidenció la enorme centralización de la web en el norte de Virginia (us-east-1), reabriendo el debate antimonopolio."
+    "trivia": "Una congestión imprevista en la red interna bloqueó la comunicación entre microservicios de monitoreo, afectando bancos y aerolíneas mundiales."
   },
   {
     "id": "vol5-0x31",
@@ -4768,10 +4768,10 @@
     "index": 49,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Lanzamiento de **LXC** (*Linux Containers*), combinando los namespaces de Linux y cgroups en una interfaz coherente en espacio de usuario.",
+    "hito": "Publicación del proyecto **Linux-VServer**, pionero en aislamiento de entornos virtuales a nivel de sistema operativo sobre Linux.",
     "year": 2008,
-    "autor": "Daniel Lezcano y Serge Hallyn",
-    "trivia": "Fue la primera implementación de contenedores integral y madura en Linux sin requerir parches experimentales fuera del kernel estándar."
+    "autor": "Jacques Gélinas",
+    "trivia": "Introdujo contextos de seguridad en el kernel para separar procesos y redes sin sobrecarga de emulación, sentando las bases de los contenedores."
   },
   {
     "id": "vol5-0x32",
@@ -4779,10 +4779,10 @@
     "index": 50,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Lanzamiento de **K3s**, una distribución ligera de Kubernetes en un solo binario optimizada para IoT y entornos Edge.",
+    "hito": "Lanzamiento de **K3s**, distribución certificada y ligera de Kubernetes empaquetada en un binario único de menos de 100 megabytes.",
     "year": 2019,
     "autor": "Rancher Labs (Darren Shepherd)",
-    "trivia": "Reemplazó el pesado almacén etcd por SQLite embebido y redujo el consumo de RAM a menos de 512 MB."
+    "trivia": "Reemplazó el almacén etcd por SQLite embebido y suprimió controladores de almacenamiento obsoletos para operar en entornos IoT con poca RAM."
   },
   {
     "id": "vol5-0x33",
@@ -4790,10 +4790,10 @@
     "index": 51,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Lanzamiento del runtime de microVM ultrarrápidas y seguras **Firecracker**, optimizado para cargas Serverless y contenedores.",
+    "hito": "Liberación en código abierto de **Firecracker**, monitor de máquinas virtuales mínimas (*microVMs*) escrito en Rust para cargas Serverless.",
     "year": 2018,
     "autor": "Amazon Web Services",
-    "trivia": "Escrito en Rust sobre KVM, es la tecnología subyacente que arranca funciones en AWS Lambda en milisegundos."
+    "trivia": "Arranca máquinas virtuales aisladas sobre KVM en cinco milisegundos con cinco megabytes de RAM, potenciando AWS Lambda y Fargate."
   },
   {
     "id": "vol5-0x34",
@@ -4801,10 +4801,10 @@
     "index": 52,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de **Crossplane**, permitiendo orquestar infraestructura de nube multi-proveedor utilizando directamente APIs de Kubernetes.",
+    "hito": "Lanzamiento de **Crossplane**, plano de control para orquestar servicios de infraestructura multicloud mediante la API declarativa de Kubernetes.",
     "year": 2018,
-    "autor": "Upbound (Bassam Tabbara)",
-    "trivia": "Convierte al plano de control de Kubernetes en un orquestador universal de bases de datos y redes de AWS y GCP."
+    "autor": "Upbound (Bassam Tabbara et al.)",
+    "trivia": "Permite definir y componer recursos como bases de datos y redes cloud utilizando directamente el modelo de controladores declarativos de Kubernetes."
   },
   {
     "id": "vol5-0x35",
@@ -4812,10 +4812,10 @@
     "index": 53,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Apertura de la beta limitada de **Amazon EC2** (*Elastic Compute Cloud*), permitiendo alquilar máquinas virtuales por horas.",
+    "hito": "Lanzamiento en fase preliminar de **Amazon EC2** (*Elastic Compute Cloud*), permitiendo aprovisionar máquinas virtuales bajo demanda por horas.",
     "year": 2006,
-    "autor": "Amazon Web Services (Chris Pinkham)",
-    "trivia": "Sus primeras máquinas virtuales (`m1.small`) fueron desarrolladas en secreto en Sudáfrica sobre hipervisores Xen."
+    "autor": "Amazon Web Services (Chris Pinkham et al.)",
+    "trivia": "Desarrollado en un laboratorio de Amazon en Ciudad del Cabo, Sudáfrica, empleaba hipervisores Xen y la instancia inicial básica `m1.small`."
   },
   {
     "id": "vol5-0x36",
@@ -4823,10 +4823,10 @@
     "index": 54,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Lanzamiento de **Kind** (*Kubernetes in Docker*), herramienta para ejecutar clústeres locales de Kubernetes usando nodos en contenedores.",
+    "hito": "Lanzamiento de **Kind** (*Kubernetes in Docker*), herramienta para ejecutar clústeres locales usando contenedores como nodos del sistema.",
     "year": 2018,
     "autor": "Ben Moss y James Munnelly (Kubernetes SIGs)",
-    "trivia": "Se convirtió en la herramienta fundamental para pruebas automatizadas e integración continua del propio Kubernetes."
+    "trivia": "Diseñada por los grupos especiales de Kubernetes, se convirtió en la base fundamental para pruebas automatizadas continuas del plano de control."
   },
   {
     "id": "vol5-0x37",
@@ -4834,10 +4834,10 @@
     "index": 55,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Creación del proyecto de agregación de registros ligero **Grafana Loki**, optimizado para indexar solo metadatos y etiquetas.",
+    "hito": "Lanzamiento de **Grafana Loki**, sistema de agregación de registros de bajo coste que indexa exclusivamente etiquetas y metadatos.",
     "year": 2018,
     "autor": "Grafana Labs",
-    "trivia": "Diseñado bajo la filosofía 'como Prometheus pero para logs', prescindiendo de los pesados índices de texto completo."
+    "trivia": "Inspirado en el modelo de indexación de Prometheus, omite la indexación de texto completo para reducir drásticamente el coste de almacenamiento."
   },
   {
     "id": "vol5-0x38",
@@ -4845,10 +4845,10 @@
     "index": 56,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de **Cilium**, proporcionando redes, seguridad y observabilidad de alto rendimiento en Kubernetes utilizando eBPF.",
+    "hito": "Lanzamiento de **Cilium**, plataforma de red, seguridad y observabilidad para Kubernetes gobernada mediante programas **eBPF** en el kernel.",
     "year": 2016,
     "autor": "Thomas Graf y Dan Wendlandt (Isovalent)",
-    "trivia": "Reemplazó las complejas tablas de iptables por programas BPF inyectados dinámicamente en el kernel de Linux."
+    "trivia": "Reemplazó el procesado secuencial en tablas de iptables por programas BPF de alta velocidad compilados dinámicamente en el espacio de kernel."
   },
   {
     "id": "vol5-0x39",
@@ -4856,10 +4856,10 @@
     "index": 57,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Lanzamiento de **gVisor**, un sandbox de seguridad a nivel de usuario que intercepta llamadas al sistema para aislar contenedores.",
+    "hito": "Liberación de **gVisor**, entorno de aislamiento seguro (*sandbox*) para contenedores que intercepta llamadas al sistema en espacio de usuario.",
     "year": 2018,
     "autor": "Google",
-    "trivia": "Implementa un kernel sustituto escrito en Go ('Sentry') para evitar que un contenedor comprometido toque el host."
+    "trivia": "Implementa un núcleo emulado en Go denominado Sentry que gestiona recursos evitando que un proceso malicioso interactúe con el host."
   },
   {
     "id": "vol5-0x3A",
@@ -4867,10 +4867,10 @@
     "index": 58,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de **KEDA** (*Kubernetes Event-driven Autoscaling*), permitiendo escalar pods a cero y hasta miles según colas de eventos.",
+    "hito": "Lanzamiento de **KEDA** (*Kubernetes Event-driven Autoscaling*), permitiendo el autoescalado de pods guiado por eventos y colas externas.",
     "year": 2019,
     "autor": "Microsoft y Red Hat",
-    "trivia": "Añadió escalado reactivo basado en métricas externas como colas de RabbitMQ, Kafka o Azure Service Bus."
+    "trivia": "Permite escalar réplicas desde cero según el volumen de mensajes en colas como RabbitMQ, Kafka o AWS SQS sin sobrecargar el clúster."
   },
   {
     "id": "vol5-0x3B",
@@ -4878,10 +4878,10 @@
     "index": 59,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de **Thanos**, añadiendo almacenamiento de largo plazo de alta disponibilidad y consultas globales a Prometheus.",
+    "hito": "Lanzamiento de **Thanos**, añadiendo almacenamiento de series temporales de largo plazo y consultas federadas a Prometheus.",
     "year": 2018,
     "autor": "Bartek Plotka y Fabian Reinartz (Improbable)",
-    "trivia": "Permitió retener métricas de monitoreo durante años almacenando bloques comprimidos en cubos de Amazon S3."
+    "trivia": "Descarga bloques de métricas compactados a almacenamiento de objetos compatible con S3, ofreciendo visión global de múltiples clústeres."
   },
   {
     "id": "vol5-0x3C",
@@ -4889,10 +4889,10 @@
     "index": 60,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de la plataforma de observabilidad de infraestructura y aplicaciones SaaS basada en la nube **Datadog**.",
+    "hito": "Lanzamiento de la plataforma SaaS **Datadog**, unificando la monitorización de infraestructura cloud, trazas y rendimiento de aplicaciones.",
     "year": 2010,
     "autor": "Olivier Pomel y Alexis Lê-Quôc",
-    "trivia": "Nació de la frustración entre los equipos de desarrollo y operaciones para acordar métricas comunes de salud."
+    "trivia": "Nació para tender un puente de datos y métricas compartidas entre desarrolladores y administradores de sistemas en arquitecturas dinámicas."
   },
   {
     "id": "vol5-0x3D",
@@ -4900,10 +4900,10 @@
     "index": 61,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento del motor de políticas declarativas para la nube nativa **Open Policy Agent (OPA)**.",
+    "hito": "Lanzamiento de **Open Policy Agent (OPA)**, motor de políticas declarativas desacoplado para aplicar controles de seguridad en entornos cloud.",
     "year": 2016,
     "autor": "Styra (Tim Hinrichs y Torin Sandall)",
-    "trivia": "Utiliza el lenguaje declarativo Rego para unificar la aplicación de políticas de seguridad en toda la pila tecnológica."
+    "trivia": "Emplea el lenguaje declarativo Rego para unificar reglas de autorización y cumplimiento en Kubernetes, microservicios y despliegues CI/CD."
   },
   {
     "id": "vol5-0x3E",
@@ -4911,10 +4911,10 @@
     "index": 62,
     "domain": "cloud-infrastructure",
     "tag": "cloud-serverless",
-    "hito": "Apertura de las primeras interfaces web gratuitas de **Amazon.com** para programadores externos mediante llamadas XML y SOAP.",
+    "hito": "Apertura de las primeras interfaces web públicas de **Amazon.com** vía XML y SOAP, antecedente cultural del desacoplamiento de servicios en AWS.",
     "year": 2002,
-    "autor": "Amazon (Colin Bryar)",
-    "trivia": "Surgió tras el mandato de Bezos exigiendo a cada equipo exponer sus datos vía APIs desacopladas bajo pena de despido."
+    "autor": "Amazon (Colin Bryar et al.)",
+    "trivia": "Materializó el mandato de Jeff Bezos de 2002 que ordenaba que todos los sistemas internos se comunicaran exclusivamente mediante interfaces API."
   },
   {
     "id": "vol5-0x3F",
@@ -4922,10 +4922,10 @@
     "index": 63,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Publicación del primer informe **State of DevOps Report** de DORA, estableciendo métricas científicas de rendimiento en ingeniería.",
+    "hito": "Publicación del primer informe **State of DevOps Report** por DORA, fijando métricas empíricas para evaluar el rendimiento del software.",
     "year": 2014,
     "autor": "Nicole Forsgren, Gene Kim, Jez Humble",
-    "trivia": "Definió las cuatro métricas clave (lead time, frecuencia de despliegue, MTTR y tasa de fallo de cambios)."
+    "trivia": "Estableció los cuatro indicadores clave: tiempo de entrega de cambios, frecuencia de despliegue, tiempo medio de recuperación y tasa de fallos."
   },
   {
     "id": "vol6-0x00",
@@ -4934,9 +4934,9 @@
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
     "hito": "Delimitación de parámetros posicionales estrictos mediante el símbolo `/` con la especificación del **PEP 570**.",
-    "year": 2018,
-    "autor": "Larry Hastings y Pablo Galindo Salgado",
-    "trivia": "Permitió diseñar APIs seguras donde los nombres de los argumentos internos pueden cambiarse en el futuro sin romper el código de los consumidores."
+    "year": 2019,
+    "autor": "Larry Hastings y Pablo Galindo",
+    "trivia": "Permitió diseñar APIs seguras donde los nombres de argumentos internos pueden alterarse sin romper el código consumidor."
   },
   {
     "id": "vol6-0x01",
@@ -4988,10 +4988,10 @@
     "index": 5,
     "domain": "languages-runtimes",
     "tag": "cpython-runtime",
-    "hito": "Despliegue de optimizaciones de desvirtualización de llamadas y análisis de escape en el compilador JIT experimental de **Python 3.14**.",
-    "year": 2025,
-    "autor": "Faster CPython Team",
-    "trivia": "Traduce llamadas monomórficas en saltos directos de memoria sin consultar el diccionario de clase en tiempo real."
+    "hito": "Inclusión del compilador JIT experimental (*Tier 2 Copy-and-Patch*) en **Python 3.13** para acelerar el bytecode en caliente.",
+    "year": 2024,
+    "autor": "Brandt Bucher y Faster CPython Team",
+    "trivia": "Compila plantillas de código máquina nativo eliminando la sobrecarga del bucle central del evaluador de instrucciones."
   },
   {
     "id": "vol6-0x06",
@@ -4999,7 +4999,7 @@
     "index": 6,
     "domain": "hacker-culture-web",
     "tag": "python-community",
-    "hito": "Institucionalización de los *Development Sprints* presenciales de varios días tras finalizar las charlas principales de PyCon.",
+    "hito": "Institucionalización de los **Development Sprints** presenciales de varios días tras finalizar las conferencias de PyCon.",
     "year": 2005,
     "autor": "PyCon Committee",
     "trivia": "Sentar a novatos y veteranos codo a codo en sprints impulsó el cierre de bugs y forjó futuros *core developers*."
@@ -5033,9 +5033,9 @@
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
     "hito": "Establecimiento de la jerarquía numérica abstracta (`Number`, `Real`, `Integral`) en el módulo `numbers` vía **PEP 3141**.",
-    "year": 2006,
+    "year": 2007,
     "autor": "Jeffrey Yasskin",
-    "trivia": "Empleó clases base abstractas (*ABCs*) para permitir que librerías externas como *NumPy* interactuaran armoniosamente con los tipos nativos."
+    "trivia": "Empleó clases base abstractas (*ABCs*) para permitir que librerías externas como *NumPy* interactuaran con los tipos nativos."
   },
   {
     "id": "vol6-0x0A",
@@ -5175,10 +5175,10 @@
     "index": 22,
     "domain": "languages-runtimes",
     "tag": "cpython-runtime",
-    "hito": "Rediseño radical del mecanismo de paso de hilos en el núcleo con la llegada del *New GIL* a través del **PEP 399** en **Python 3.2**.",
+    "hito": "Rediseño radical del paso de hilos en el núcleo con la llegada del **New GIL** en el intérprete de CPython.",
     "year": 2010,
     "autor": "Antoine Pitrou",
-    "trivia": "Reemplazó los 100 bytecodes por un temporizador (`switch_interval`), erradicando batallas destructivas entre hilos."
+    "trivia": "Reemplazó el conteo de 100 bytecodes por un temporizador (`switch_interval`), erradicando batallas destructivas entre hilos."
   },
   {
     "id": "vol6-0x17",
@@ -5275,9 +5275,9 @@
     "domain": "languages-runtimes",
     "tag": "rust-tooling",
     "hito": "Eliminación definitiva del módulo histórico `distutils` de la biblioteca estándar de CPython en **Python 3.12**.",
-    "year": 2024,
+    "year": 2023,
     "autor": "Victor Stinner y CPython Core Team",
-    "trivia": "Tras una década de avisos, forzó a la comunidad a migrar de `setup.py` hacia estándares en `pyproject.toml`."
+    "trivia": "Tras una década de avisos con el PEP 632, forzó a la comunidad a migrar de `setup.py` hacia estándares en `pyproject.toml`."
   },
   {
     "id": "vol6-0x20",
@@ -5296,7 +5296,7 @@
     "index": 33,
     "domain": "hacker-culture-web",
     "tag": "python-community",
-    "hito": "Lanzamiento del programa de subvenciones comunitarias (*PSF Grants Program*) para financiar eventos y conferencias locales en todo el mundo.",
+    "hito": "Lanzamiento del **PSF Grants Program** para financiar eventos, conferencias comunitarias y sprints locales en todo el mundo.",
     "year": 2007,
     "autor": "Python Software Foundation",
     "trivia": "Ha repartido millones de dólares en becas para talleres, sprints de código y congresos en África, América Latina y Asia."
@@ -5559,11 +5559,11 @@
     "volumen": "python-track",
     "index": 57,
     "domain": "languages-runtimes",
-    "tag": "syntax-peps",
-    "hito": "Publicación de la propuesta de cadenas con plantilla etiquetada (*template strings*) `t\"...\"` para seguridad en el **PEP 750**.",
-    "year": 2025,
-    "autor": "Jim Baker y Guido van Rossum",
-    "trivia": "Previene inyecciones SQL y XSS al diferir la evaluación de strings formateados hasta que un parser seguro los valide."
+    "tag": "web-frameworks",
+    "hito": "Lanzamiento de **Requests**, la emblemática biblioteca cliente HTTP concebida bajo el lema *HTTP for Humans*.",
+    "year": 2011,
+    "autor": "Kenneth Reitz",
+    "trivia": "Reemplazó la farragosa y arcaica API de `urllib2`, convirtiéndose en el paquete de Python más descargado de la historia."
   },
   {
     "id": "vol6-0x3A",
@@ -5624,12 +5624,12 @@
     "id": "vol6-0x3F",
     "volumen": "python-track",
     "index": 63,
-    "domain": "languages-runtimes",
-    "tag": "cpython-runtime",
-    "hito": "Evaluación del modo libre de hilos para declarar el soporte *no-GIL* por defecto a partir de **Python 3.15**.",
-    "year": 2026,
-    "autor": "Python Steering Council",
-    "trivia": "Evaluó la estabilidad del ecosistema C para apagar el GIL por defecto y unificar la distribución del lenguaje."
+    "domain": "hacker-culture-web",
+    "tag": "python-community",
+    "hito": "Formalización de **The Zen of Python** en el **PEP 20**, recopilando los 19 principios rectores de la filosofía del lenguaje.",
+    "year": 2004,
+    "autor": "Tim Peters",
+    "trivia": "Incluido secretamente como huevo de pascua en el intérprete al ejecutar `import this`, compuesto como un poema de aforismos."
   },
   {
     "id": "vol7-0x00",
@@ -5648,10 +5648,10 @@
     "index": 1,
     "domain": "ai-data-science",
     "tag": "cinema-cgi-vfx",
-    "hito": "Estreno de **Blade Runner 2049**, explorando el amor y la conciencia sintética mediante la IA holográfica de compañía **Joi**.",
+    "hito": "Estreno de la secuela cinematográfica de **Blade Runner**, explorando la autoconciencia sintética mediante la IA holográfica **Joi**.",
     "year": 2017,
     "autor": "Denis Villeneuve",
-    "trivia": "Roger Deakins ganó su primer premio Óscar a mejor fotografía tras catorce nominaciones por su iluminación geométrica."
+    "trivia": "Roger Deakins ganó su primer premio Óscar a mejor fotografía tras catorce nominaciones por su innovadora iluminación geométrica."
   },
   {
     "id": "vol7-0x02",
