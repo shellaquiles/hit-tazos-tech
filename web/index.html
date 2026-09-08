@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HIT-TAZOS Tech v1.0.0-rc.1 | Trivia Cronológica Técnica — Shellaquiles Org</title>
+  
+  <!-- Indexación y Robots -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large">
+
+  <!-- Metadatos de Autoría y Distribución -->
+  <meta name="description" content="Juego de cartas y trivia cronológica técnica de hitos rigurosamente verificados (1957–2026): Universo Python, Software, DevOps, IA y Cultura Hacker. Creado por Shellaquiles Org.">
+  <meta name="author" content="Shellaquiles Org (https://shellaquiles.org)">
+  <meta name="publisher" content="Shellaquiles Org">
+  <meta name="keywords" content="hit-tazos, trivia, python, linux, devops, ai, machine learning, hacking, shellaquiles, shellaquiles.org, timeline, open-source, board-game, juego de cartas, print-and-play">
+  <link rel="canonical" href="https://shellaquiles.org/hit-tazos-tech/">
+
+  <!-- Tema e Identidad Móvil -->
+  <meta name="theme-color" content="#0d0f17">
+  <meta name="color-scheme" content="light dark">
+  <meta name="application-name" content="Hit-Tazos Tech">
+  <meta name="apple-mobile-web-app-title" content="Hit-Tazos">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- OpenGraph / Facebook / WhatsApp / LinkedIn / Discord -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shellaquiles.org/hit-tazos-tech/">
+  <meta property="og:site_name" content="Shellaquiles Org">
+  <meta property="og:title" content="HIT-TAZOS Tech v1.0.0-rc.1 | Trivia Cronológica Técnica">
+  <meta property="og:description" content="Hitos cronológicos de tecnología, Python, DevOps, IA y Cultura Hacker. Juega en línea o imprime tus propias cartas con Shellaquiles Org.">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:image" content="https://shellaquiles.org/hit-tazos-tech/assets/og-cover.png">
+  <meta property="og:image:secure_url" content="https://shellaquiles.org/hit-tazos-tech/assets/og-cover.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="HIT-TAZOS Tech — Cartas de Trivia Cronológica Técnica por Shellaquiles Org">
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@shellaquiles">
+  <meta name="twitter:creator" content="@shellaquiles">
+  <meta name="twitter:title" content="HIT-TAZOS Tech v1.0.0-rc.1 — Trivia Cronológica Técnica">
+  <meta name="twitter:description" content="Hitos cronológicos de tecnología, Python, DevOps, IA y Cultura Hacker. Creado por Shellaquiles Org.">
+  <meta name="twitter:image" content="https://shellaquiles.org/hit-tazos-tech/assets/og-cover.png">
+  <meta name="twitter:image:alt" content="HIT-TAZOS Tech — Trivia Cronológica Técnica por Shellaquiles Org">
+
+  <!-- Datos Estructurados JSON-LD (Schema.org: WebApplication, Game & FAQPage) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["WebApplication", "Game"],
+        "@id": "https://shellaquiles.org/hit-tazos-tech/#game",
+        "name": "HIT-TAZOS Tech",
+        "alternateName": ["Hit-Tazos", "HitTazos Tech"],
+        "url": "https://shellaquiles.org/hit-tazos-tech/",
+        "description": "Juego libre de cartas y trivia cronológica técnica centrado en el ecosistema de software, Python, DevOps, IA y cultura hacker con hitos rigurosamente verificados.",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "All",
+        "version": "1.0.0-rc.1",
+        "inLanguage": "es",
+        "license": "https://opensource.org/licenses/MIT",
+        "image": "https://shellaquiles.org/hit-tazos-tech/assets/og-cover.png",
+        "author": {
+          "@type": "Organization",
+          "name": "Shellaquiles Org",
+          "url": "https://shellaquiles.org"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Shellaquiles Org",
+          "url": "https://shellaquiles.org"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        },
+        "numberOfPlayers": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 10
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://shellaquiles.org/hit-tazos-tech/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué es Hit-Tazos Tech?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hit-Tazos Tech es un juego libre de trivia cronológica técnica compuesto por tarjetas de trivia rigurosamente verificadas que abarcan hitos históricos entre 1957 y 2026 en cinco grandes áreas: Universo Python, Software y Web, DevOps e Infraestructura, IA y Cómputo, y Cultura Hacker."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo se juega a Hit-Tazos Tech?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Los jugadores reciben una tarjeta que muestra un hito técnico y su autor (sin revelar el año). El objetivo es adivinar el año o colocarla en el orden cronológico exacto en la línea de tiempo. El primer participante en colocar 10 tarjetas en secuencia temporal correcta gana."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo puedo imprimir mi propia baraja física?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Desde el sitio oficial o el repositorio de Shellaquiles Org puedes descargar los archivos PDF vectoriales pre-impuestos en formato Carta (178 páginas dúplex) o Tabloide (72 páginas dúplex) con marcas de corte milimétricas y reversos espejados listos para imprenta."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Curated Icon Library: Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon">
+        <i data-lucide="zap"></i>
+      </div>
+      <div>
+        <h1 class="brand-title">
+          HIT-TAZOS 
+          <span class="brand-badge">Tech</span>
+          <span class="brand-version-tag">v1.0.0-rc.1</span>
+        </h1>
+        <div class="brand-subline">
+          por <a href="https://shellaquiles.org" target="_blank" rel="noopener noreferrer" class="brand-org-link">shellaquiles.org</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <button class="tab-btn active" id="btn-tab-play" data-view="play">
+        <i data-lucide="gamepad-2"></i> Modo Juego
+      </button>
+      <button class="tab-btn" id="btn-tab-gallery" data-view="gallery">
+        <i data-lucide="layout-grid"></i> Explorador
+      </button>
+      <button class="icon-btn" id="btn-sound-toggle" title="Sonido activado / desactivado">
+        <i data-lucide="volume-2" id="icon-sound-state"></i>
+      </button>
+      <button class="icon-btn" id="btn-print" title="Imprimir cartas para recortar">
+        <i data-lucide="printer"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Group Category Ribbon -->
+  <nav class="category-ribbon" id="group-ribbon">
+    <button class="ribbon-pill active" data-group="ALL">
+      <i data-lucide="layers"></i>
+      <span>Todos los Grupos</span>
+    </button>
+    <button class="ribbon-pill theme-A" data-group="A">
+      <i data-lucide="terminal"></i>
+      <span>Universo Python</span>
+    </button>
+    <button class="ribbon-pill theme-B" data-group="B">
+      <i data-lucide="code-2"></i>
+      <span>Software & Web</span>
+    </button>
+    <button class="ribbon-pill theme-C" data-group="C">
+      <i data-lucide="server"></i>
+      <span>DevOps & Infra</span>
+    </button>
+    <button class="ribbon-pill theme-D" data-group="D">
+      <i data-lucide="cpu"></i>
+      <span>Cómputo & IA</span>
+    </button>
+    <button class="ribbon-pill theme-E" data-group="E">
+      <i data-lucide="shield-alert"></i>
+      <span>Cultura Hacker</span>
+    </button>
+  </nav>
+
+  <!-- Full-screen FX Canvas for Cyber Confetti / Sparks -->
+  <canvas id="fx-canvas"></canvas>
+
+  <main>
+    <!-- VISTA 1: MODO JUEGO INTERACTIVO -->
+    <section id="view-play" class="view-section active" aria-labelledby="heading-view-play">
+      <h2 id="heading-view-play" class="sr-only">Modo Juego de Trivia Cronológica Interactiva</h2>
+      <div class="arena-wrapper">
+        
+        <!-- HUD Superior -->
+        <div class="hud-bar">
+          <div class="hud-item">
+            <i data-lucide="disc"></i>
+            <span id="hud-group-label">Todos los Grupos</span>
+          </div>
+          <div class="hud-item">
+            <i data-lucide="calendar"></i>
+            Carta: <strong id="hud-card-counter">1</strong>
+          </div>
+          <div class="hud-item">
+            <i data-lucide="target"></i>
+            Puntos: <strong id="hud-score">0</strong>
+          </div>
+          <div class="hud-item hud-streak-item" id="hud-streak-box">
+            <i data-lucide="flame"></i>
+            Racha: <strong id="hud-streak">0</strong>
+          </div>
+        </div>
+
+        <!-- Escenario 3D de la Carta con Aura Ambiental -->
+        <div class="arena-stage-container">
+          <div class="ambient-card-aura" id="ambient-card-aura"></div>
+          <div class="card-perspective-stage" id="card-stage" title="Haz clic o presiona Espacio para voltear la carta">
+            <!-- Tarjeta inyectada dinámicamente -->
+          </div>
+        </div>
+
+        <!-- Consola Cronológica / Deck DJ Sintetizador -->
+        <div class="chronological-console-wrapper">
+          <!-- Salto Rápido por Décadas -->
+          <div class="decade-quick-picker" id="decade-quick-picker">
+            <span class="decade-label">Saltar:</span>
+            <button class="decade-chip" data-decade="1960">'60s</button>
+            <button class="decade-chip" data-decade="1970">'70s</button>
+            <button class="decade-chip" data-decade="1980">'80s</button>
+            <button class="decade-chip" data-decade="1990">'90s</button>
+            <button class="decade-chip" data-decade="2000">'00s</button>
+            <button class="decade-chip" data-decade="2010">'10s</button>
+            <button class="decade-chip" data-decade="2020">'20s</button>
+          </div>
+
+          <div class="chronological-console">
+            <button class="nudge-btn" id="btn-nudge-minus5" title="Retroceder 5 años">-5</button>
+            <button class="nudge-btn" id="btn-nudge-minus1" title="Retroceder 1 año">-1</button>
+            <div class="console-input-wrap">
+              <input type="number" id="input-year" class="console-input" placeholder="AÑO" min="1950" max="2030">
+            </div>
+            <button class="nudge-btn" id="btn-nudge-plus1" title="Avanzar 1 año">+1</button>
+            <button class="nudge-btn" id="btn-nudge-plus5" title="Avanzar 5 años">+5</button>
+            <button class="btn-primary btn-submit-guess" id="btn-submit-guess">
+              <i data-lucide="check"></i>
+              <span>Comprobar</span>
+            </button>
+          </div>
+
+          <div class="guess-feedback-row">
+            <div id="guess-result-pill" class="guess-result-pill"></div>
+            <div id="attempt-tracker" class="attempt-tracker" style="display:none">
+              <span id="attempt-dots"></span>
+              <span id="attempt-label">Intento 1 / 3</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controles de Navegación -->
+        <div class="action-cluster">
+          <button class="btn-secondary" id="btn-prev">
+            <i data-lucide="arrow-left"></i> Anterior
+          </button>
+          <button class="btn-primary btn-flip-cta" id="btn-flip">
+            <i data-lucide="rotate-cw"></i> Girar Carta [Espacio]
+          </button>
+          <button class="btn-secondary" id="btn-reveal" title="Revelar el año sin adivinar [R]">
+            <i data-lucide="eye"></i> <span>Revelar Año</span>
+          </button>
+          <button class="btn-secondary" id="btn-next">
+            Siguiente <i data-lucide="arrow-right"></i>
+          </button>
+          <button class="btn-secondary" id="btn-shuffle" title="Barajar el mazo activo">
+            <i data-lucide="shuffle"></i> Barajar
+          </button>
+        </div>
+
+        <!-- Bandeja de Línea de Tiempo del Jugador (Rack Coleccionable) -->
+        <div class="timeline-shelf">
+          <div class="shelf-header">
+            <h3 class="shelf-title-wrap">
+              <i data-lucide="trophy"></i>
+              <span>Tu Línea de Tiempo Personal</span>
+            </h3>
+            <span id="shelf-counter">0 / 10 cartas para ganar</span>
+          </div>
+          <div class="shelf-progress-track">
+            <div class="shelf-progress-fill" id="shelf-progress-fill"></div>
+          </div>
+          <div class="shelf-cards-row" id="shelf-cards-container">
+            <div class="shelf-empty-prompt">
+              Adivina el año exacto o cercano (±2) para coleccionar cartas y completar tu línea de tiempo.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- VISTA 2: EXPLORADOR / CATÁLOGO COMPLETO -->
+    <section id="view-gallery" class="view-section" aria-labelledby="heading-view-gallery">
+      <h2 id="heading-view-gallery" class="sr-only">Explorador y Catálogo Completo de Hitos Tecnológicos</h2>
+      <div class="gallery-toolbar">
+        <div class="search-field-wrap">
+          <span class="search-icon-slot">
+            <i data-lucide="search"></i>
+          </span>
+          <input type="text" id="gallery-query" class="search-field" placeholder="Buscar tecnología, autor, paper, sintaxis o anécdota...">
+        </div>
+
+        <div class="dropdown-cluster">
+          <select id="select-filter-group" class="select-control">
+            <option value="ALL">Todos los Grupos (A - E)</option>
+            <option value="A">Grupo A: Universo Python</option>
+            <option value="B">Grupo B: Software, Web y Datos</option>
+            <option value="C">Grupo C: DevOps e Infraestructura</option>
+            <option value="D">Grupo D: Cómputo, IA y Datos</option>
+            <option value="E">Grupo E: Cultura Hacker y Leyendas</option>
+          </select>
+
+          <select id="select-sort-order" class="select-control">
+            <option value="DECK_ORDER" selected>Orden del Mazo (Bloques de Color)</option>
+            <option value="YEAR_ASC">Año: Cronológico (1957 - 2026)</option>
+            <option value="YEAR_DESC">Año: Reciente (2026 - 1957)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="cards-catalog-grid" id="catalog-grid">
+        <!-- Tarjetas del catálogo -->
+      </div>
+    </section>
+
+    <!-- VISTA 3: HOJAS DE IMPRESIÓN DÚPLEX (FRENTE Y REVERSO EN ESPEJO) -->
+    <div id="print-sheets-container" class="print-sheets-container"></div>
+  </main>
+
+  <!-- Modal de Configuración de Impresión Milimétrica a 2 Caras -->
+  <dialog id="print-dialog" class="print-modal">
+    <div class="print-modal-content">
+      <div class="print-modal-header">
+        <h2 class="print-modal-title">
+          <i data-lucide="printer"></i>
+          <span>Impresión Dúplex (2 Caras Milimétricas)</span>
+        </h2>
+        <button class="print-modal-close" id="btn-close-print-modal">&times;</button>
+      </div>
+      <div class="print-modal-body">
+        <div class="official-pdf-section">
+          <div class="official-pdf-heading">
+            <i data-lucide="download-cloud"></i>
+            <div>
+              <h3 class="official-pdf-title">PDFs Oficiales Vectoriales para Imprenta (Shellaquiles Org)</h3>
+              <span>Listos para corte profesional, dúplex milimétrico con marcas de corte y metadatos incrustados.</span>
+            </div>
+          </div>
+          <div class="official-pdf-grid">
+            <a href="/print/hit-tazos-tech-v1.0.0-rc.1-carta.pdf" download="hit-tazos-tech-v1.0.0-rc.1-carta.pdf" class="pdf-dl-card">
+              <div class="pdf-dl-header">
+                <span class="pdf-tag format-carta">Carta (8.5 &times; 11 pulg)</span>
+                <span class="pdf-ver">v1.0.0-rc.1</span>
+              </div>
+              <div class="pdf-dl-title">hit-tazos-tech-v1.0.0-rc.1-carta.pdf</div>
+              <div class="pdf-dl-specs">178 páginas dúplex &bull; 6 cartas/pliego &bull; Impresoras domésticas / oficina</div>
+              <div class="pdf-dl-btn">
+                <i data-lucide="file-down"></i> Descargar PDF Carta
+              </div>
+            </a>
+            <a href="/print/hit-tazos-tech-v1.0.0-rc.1-tabloide.pdf" download="hit-tazos-tech-v1.0.0-rc.1-tabloide.pdf" class="pdf-dl-card">
+              <div class="pdf-dl-header">
+                <span class="pdf-tag format-tabloid">Tabloide (11 &times; 17 pulg)</span>
+                <span class="pdf-ver">v1.0.0-rc.1</span>
+              </div>
+              <div class="pdf-dl-title">hit-tazos-tech-v1.0.0-rc.1-tabloide.pdf</div>
+              <div class="pdf-dl-specs">72 páginas dúplex &bull; 15 cartas/pliego &bull; Prensa digital / imprenta</div>
+              <div class="pdf-dl-btn">
+                <i data-lucide="file-down"></i> Descargar PDF Tabloide
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="print-divider">
+          <span>o bien, genera e imprime una selección desde el navegador</span>
+        </div>
+
+        <div class="print-form-group">
+          <label for="print-select-range">Seleccionar grupo o rango de cartas:</label>
+          <select id="print-select-range" class="select-control" style="width: 100%;">
+            <option value="SAMPLE_18">Muestra de prueba: 1 Pliego Tabloide (18 Cartas: #001 - #018)</option>
+            <option value="SAMPLE_36">Muestra de prueba: 2 Pliegos Tabloide (36 Cartas: #001 - #036)</option>
+            <option value="CURRENT_GROUP">Cartas del Grupo seleccionado en el filtro</option>
+            <option value="ALL">Baraja completa (Todos los pliegos)</option>
+          </select>
+        </div>
+
+        <div class="print-form-group">
+          <label for="print-crop-marks">Marcas de corte y guías:</label>
+          <select id="print-crop-marks" class="select-control" style="width: 100%;">
+            <option value="GUIDES" selected>Con líneas de corte finas (Recomendado para guillotina)</option>
+            <option value="CLEAN">Borde limpio sin líneas de corte</option>
+          </select>
+        </div>
+
+        <div class="print-instructions-box">
+          <strong>💡 Instrucciones de Impresión en tu impresora / centro de copiado:</strong>
+          <ul>
+            <li>Tamaño de papel: <strong>Tabloide / 11 &times; 17 pulg / Doble Carta</strong>.</li>
+            <li>Orientación: <strong>Vertical (Portrait)</strong>.</li>
+            <li>Escala: <strong>100% / Tamaño Real</strong> (desactiva "Ajustar a la página").</li>
+            <li>Márgenes: <strong>Ninguno / Mínimo</strong>.</li>
+            <li>Impresión a 2 caras: <strong>Doble cara automática volteando por el borde largo</strong>.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="print-modal-footer">
+        <button class="btn-secondary" id="btn-cancel-print">Cancelar</button>
+        <button class="btn-primary" id="btn-execute-print">
+          <i data-lucide="printer"></i>
+          Preparar e Imprimir
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Application Footer -->
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <span>Hit-Tazos Tech <strong class="footer-version">v1.0.0-rc.1</strong></span>
+      <span class="footer-sep">•</span>
+      <span>Un proyecto libre de <a href="https://shellaquiles.org" target="_blank" rel="noopener noreferrer" class="footer-link">Shellaquiles Org</a> (<a href="https://shellaquiles.org" target="_blank" rel="noopener noreferrer" class="footer-link">shellaquiles.org</a>)</span>
+      <span class="footer-sep">•</span>
+      <span>Cartas de Trivia Cronológica (1957–2026)</span>
+      <span class="footer-sep">•</span>
+      <span>Licencia MIT</span>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
