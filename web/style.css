@@ -619,14 +619,21 @@ main {
   perspective: 1400px;
 }
 
+/* Escenario y Contenedor de Mesa */
 .tazo-stage,
+.tazo-container,
 .card-perspective-stage {
-  width: min(340px, 82vw);
-  height: min(340px, 82vw);
+  width: min(360px, 88vw);
+  height: min(360px, 88vw);
+  aspect-ratio: 1 / 1;
   perspective: 1200px;
-  user-select: none;
-  cursor: grab;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.2rem auto 0.8rem auto;
+  user-select: none;
+  cursor: pointer;
   z-index: 2;
   touch-action: pan-y;
   -webkit-user-select: none;
@@ -644,249 +651,298 @@ main {
   transform: translateY(-4px);
 }
 
-/* El disco tridimensional */
+/* El disco tridimensional de inyección plástica */
+.tazo-physical,
 .tazo-disc,
+#active-card-3d,
 .hittazos-card-3d {
   width: 100%;
   height: 100%;
+  aspect-ratio: 1 / 1;
   position: relative;
   border-radius: 50%;
   transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   box-shadow: 
-    0 20px 45px rgba(0, 0, 0, 0.7),
-    0 6px 16px rgba(0, 0, 0, 0.5),
-    inset 0 0 0 6px rgba(255, 255, 255, 0.2); /* Bisel plástico */
+    0 24px 48px -15px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
-/* Caras circulares del tazo */
+.tazo-physical.is-flipped,
+.tazo-disc.is-flipped {
+  transform: rotateY(180deg);
+}
+
+/* Caras circulares del tazo: relieve de plástico prensado de 4mm */
 .tazo-face {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  box-sizing: border-box;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
-  text-align: center;
-  box-sizing: border-box;
   overflow: hidden;
-  border: 10px solid rgba(0, 0, 0, 0.22);
+  box-shadow: 
+    inset 0 2px 5px rgba(255, 255, 255, 0.35),
+    inset 0 -5px 8px rgba(0, 0, 0, 0.75),
+    0 0 0 6px #1e222d,
+    0 0 0 9px #101218;
 }
 
-/* Cara Frontal (Anverso) */
+/* Frente Metálico Oscuro */
+.tazo-front,
 .tazo-face-front {
-  background: radial-gradient(circle at 35% 30%, #252b3b 0%, #11141d 85%);
-  color: #ffffff;
-  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.85);
+  background: radial-gradient(circle at 40% 35%, #2a2f3d 0%, #12141a 75%);
+  border: 4px solid var(--tazo-color, #38bdf8);
   transform: rotateY(0deg);
 }
 
-/* Cara Trasera (Reverso con el Año y la Trivia) */
+/* Reverso Holográfico Tecnológico */
+.tazo-back,
 .tazo-face-back {
-  background: radial-gradient(circle at 35% 30%, var(--tazo-color, #38bdf8) 0%, #0369a1 85%);
-  color: #0f172a;
+  background: radial-gradient(circle at 50% 40%, #1e1b4b 0%, #09090b 80%);
+  border: 4px solid var(--tazo-accent, #a855f7);
   transform: rotateY(180deg);
-  box-shadow: inset 0 0 28px rgba(0, 0, 0, 0.4);
 }
 
-/* Muescas / Ranuras perimetrales clásicas del tazo para ensamble */
-.tazo-rim-notches {
+/* Muescas / Ranuras reales de plástico en 4 cuadrantes */
+.tazo-notches {
   position: absolute;
-  inset: 3px;
-  border-radius: 50%;
-  border: 4px dashed rgba(255, 255, 255, 0.25);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.tazo-notches span {
+  position: absolute;
+  background: #0d0f17;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.85);
+  z-index: 10;
+}
+.tazo-notches span:nth-child(1) { top: -4px; left: calc(50% - 6px); width: 12px; height: 16px; border-radius: 4px; }
+.tazo-notches span:nth-child(2) { bottom: -4px; left: calc(50% - 6px); width: 12px; height: 16px; border-radius: 4px; }
+.tazo-notches span:nth-child(3) { left: -4px; top: calc(50% - 6px); width: 16px; height: 12px; border-radius: 4px; }
+.tazo-notches span:nth-child(4) { right: -4px; top: calc(50% - 6px); width: 16px; height: 12px; border-radius: 4px; }
+
+/* Texto Curvado Perimetral (SVG textPath) */
+.tazo-ring-text {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   z-index: 5;
 }
 
-.tazo-face-back .tazo-rim-notches {
-  border-color: rgba(0, 0, 0, 0.25);
+.ring-label, .ring-sub {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
 }
 
-/* Reflejo especular plástico (Glare) */
-.tazo-glare {
+.tazo-front .ring-label {
+  fill: var(--tazo-color, #38bdf8);
+}
+.tazo-front .ring-sub {
+  fill: #cbd5e1;
+}
+
+.tazo-back .ring-label {
+  fill: var(--tazo-accent, #c084fc);
+}
+.tazo-back .ring-sub {
+  fill: #94a3b8;
+}
+
+/* Núcleo Central: Respira y da protagonismo visual */
+.tazo-core {
+  width: 72%;
+  height: 72%;
+  border-radius: 50%;
+  background: rgba(15, 18, 26, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.1rem 0.9rem;
+  box-sizing: border-box;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.65);
+  z-index: 6;
+  position: relative;
+}
+
+.tazo-core.back-layout {
+  padding: 0.95rem 0.85rem;
+  background: rgba(13, 15, 26, 0.86);
+}
+
+.tazo-icon-badge {
+  width: 42px;
+  height: 42px;
+  min-height: 42px;
+  border-radius: 50%;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1.5px solid var(--tazo-color, #38bdf8);
+  color: var(--tazo-color, #38bdf8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.35rem;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.25);
+}
+
+.tazo-icon-badge i,
+.tazo-icon-badge svg {
+  width: 20px;
+  height: 20px;
+}
+
+.tazo-title {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: clamp(0.95rem, 2.9vw, 1.15rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.3rem 0;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+.tazo-clue {
+  font-size: clamp(0.72rem, 2.3vw, 0.82rem);
+  color: #cbd5e1;
+  line-height: 1.35;
+  margin: 0;
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Tipografía de Año Hero y Metadatos del Reverso */
+.author-capsule {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #c084fc;
+  letter-spacing: 0.8px;
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  margin-bottom: 0.35rem;
+  max-width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+}
+
+.year-hero-display {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.8rem;
+  user-select: none;
+}
+
+.year-digits {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: clamp(3.4rem, 10vw, 4.4rem);
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 0.85;
+  letter-spacing: -2px;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.85);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.year-hero-display.is-hidden .year-digits {
+  display: none !important;
+}
+
+.year-cover-tape {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #000000;
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 0.35rem 0.95rem;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.year-cover-tape:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.45);
+}
+
+.year-hero-display.is-hidden .year-cover-tape {
+  display: inline-flex !important;
+}
+
+.year-hero-display.is-revealed .year-cover-tape {
+  display: none !important;
+}
+
+.year-hero-display.is-revealed .year-digits {
+  display: block !important;
+  animation: revealPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.lore-text {
+  font-size: clamp(0.68rem, 2.1vw, 0.76rem);
+  color: #94a3b8;
+  font-style: italic;
+  margin: 0.35rem 0 0 0;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Brillo Plástico Especular al Rotar (Foil Reflection) */
+.tazo-foil-reflection {
   position: absolute;
   inset: 0;
   border-radius: 50%;
   background: linear-gradient(
-    135deg, 
-    rgba(255, 255, 255, 0.38) 0%, 
-    rgba(255, 255, 255, 0.05) 45%, 
-    transparent 60%
+    115deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.22) 48%,
+    rgba(255, 255, 255, 0.05) 55%,
+    transparent 70%
   );
   pointer-events: none;
-  z-index: 6;
+  z-index: 8;
 }
 
-/* Anillo concéntrico interior */
-.tazo-inner-ring {
-  position: relative;
-  z-index: 4;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.1rem 0.8rem;
-  box-sizing: border-box;
-}
-
-.tazo-face-back .tazo-inner-ring {
-  border-color: rgba(0, 0, 0, 0.2);
-}
-
-/* Textos y tags del Tazo */
-.tazo-category-tag {
-  font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--tazo-color, #38bdf8);
-  background: rgba(0, 0, 0, 0.45);
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  max-width: 88%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.tazo-clue-stage {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.25rem 0.4rem;
-}
-
-.tazo-clue-text {
-  font-size: clamp(0.78rem, 2.7vw, 0.88rem);
-  line-height: 1.35;
-  color: #f1f5f9;
-  margin: 0;
-  font-weight: 500;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.tazo-clue-text strong {
-  color: var(--tazo-color, #38bdf8);
-  font-weight: 700;
-}
-
-.tazo-footer-tag {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 88%;
-  font-size: 0.68rem;
-  color: rgba(255, 255, 255, 0.6);
-  font-family: var(--font-mono, monospace);
-}
-
-.tazo-hint-action {
-  font-size: 0.64rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.7);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  background: rgba(255, 255, 255, 0.08);
-  padding: 0.15rem 0.45rem;
-  border-radius: 999px;
-}
-
-/* Reverso */
-.tazo-author {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #0f172a;
-  background: rgba(255, 255, 255, 0.35);
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
-  max-width: 88%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.tazo-year-hero {
-  font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: clamp(2.4rem, 8.5vw, 3.2rem);
-  font-weight: 900;
-  line-height: 1;
-  color: #0f172a;
-  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.4);
-  letter-spacing: -0.03em;
-}
-
-.tazo-trivia-lore {
-  font-size: clamp(0.72rem, 2.5vw, 0.8rem);
-  line-height: 1.3;
-  color: #1e293b;
-  font-weight: 600;
-  margin: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  padding: 0 0.4rem;
-}
-
-.tazo-back-meta {
-  font-size: 0.64rem;
-  color: rgba(15, 23, 42, 0.65);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-}
-
-/* Pila física de tazos debajo */
+/* Desactivar capas fantasma */
 .tazo-physical-stack {
-  position: absolute;
-  width: min(340px, 82vw);
-  height: min(340px, 82vw);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.tazo-stack-disc {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 8px solid rgba(0, 0, 0, 0.28);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
-  background: radial-gradient(circle at 40% 30%, #2d3345 0%, #151822 80%);
-}
-
-.tazo-stack-disc.layer-1 {
-  transform: translate3d(5px, 6px, -10px) rotate(4deg);
-  opacity: 0.85;
-}
-
-.tazo-stack-disc.layer-2 {
-  transform: translate3d(9px, 12px, -20px) rotate(-6deg);
-  opacity: 0.65;
-}
-
-.tazo-stack-disc.layer-3 {
-  transform: translate3d(14px, 18px, -30px) rotate(8deg);
-  opacity: 0.45;
+  display: none !important;
 }
 
 /* ==========================================================================

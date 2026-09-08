@@ -314,7 +314,7 @@ class HitTazosEngine {
     // 3D Card Click & Key Navigation
     this.cardStage.addEventListener('click', (e) => {
       if (this.justHandledTouch) return;
-      if (e.target.closest('.year-center-stage')) return;
+      if (e.target.closest('#year-target, .year-hero-display, .year-center-stage')) return;
       this.flipCurrentCard();
     });
     this.btnFlip.addEventListener('click', () => this.flipCurrentCard());
@@ -442,7 +442,7 @@ class HitTazosEngine {
       // Tap simple: Voltear la carta
       gesture.on('tap', (event) => {
         // Evita voltear si el usuario tocó el botón o área de revelado del año
-        if (event && event.target && event.target.closest('.year-center-stage')) return;
+        if (event && event.target && event.target.closest('#year-target, .year-hero-display, .year-center-stage')) return;
         this.justHandledTouch = true;
         setTimeout(() => { this.justHandledTouch = false; }, 350);
         if (navigator.vibrate) {
@@ -628,15 +628,43 @@ class HitTazosEngine {
     };
   }
 
+  getDomainIcon(domain) {
+    const map = {
+      'languages-runtimes': 'code',
+      'security-exploits': 'shield-alert',
+      'systems-kernels': 'cpu',
+      'distributed-databases': 'database',
+      'hardware-chips': 'microchip',
+      'networking-protocols': 'network',
+      'devops-containers': 'container',
+      'ai-data-science': 'brain',
+      'python-ecosystem': 'code-2',
+      'scifi-cinema': 'sparkles',
+      'hacker-lore': 'terminal'
+    };
+    return map[domain] || 'cpu';
+  }
+
+  parseHito(hito) {
+    const boldRegex = /\*\*(.*?)\*\*/;
+    const match = hito.match(boldRegex);
+    if (match) {
+      const title = match[1].trim();
+      const cleanHito = hito.replace(/\*\*/g, '').trim();
+      return { title, clue: cleanHito };
+    }
+    const parts = hito.split(/[,:.]/);
+    return { title: parts[0].trim(), clue: hito.replace(/\*\*/g, '').trim() };
+  }
+
   buildCardHTML(card, options = {}) {
     const isRevealed = options.isRevealed === true;
     const yearStateClass = isRevealed ? 'is-revealed' : 'is-hidden';
 
-    const hitoFormatted = this.formatMarkdown(card.hito);
-    const creadorFormatted = this.formatMarkdown(card.autor);
+    const { title, clue } = this.parseHito(card.hito);
     const triviaFormatted = this.formatMarkdown(card.trivia);
 
-    const groupIcon = 'disc';
+    const groupIcon = this.getDomainIcon(card.domain);
 
     // Número de tazo consecutivo
     const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
@@ -645,53 +673,88 @@ class HitTazosEngine {
 
     // Tema cromático Hit-Tazos Tech
     const theme = this.getCardTheme(card);
+    const discId = options.id !== undefined ? (options.id ? `id="${options.id}"` : '') : 'id="active-card-3d"';
+
+    const domainName = (this.catalog.domains[card.domain] || card.domain).toUpperCase();
+    const volName = (this.catalog.volumes[card.volumen] || card.volumen).toUpperCase();
+    const topLabel = `${domainName} • ${volName}`;
+    const bottomLabel = `SHELLAQUILES ORG • #${cardNumStr}`;
+
+    const topBackLabel = `HIT-TAZOS TECH • TORNEO CRONOLÓGICO`;
+    const bottomBackLabel = `${volName} • #${cardNumStr}`;
+
+    const uid = (card.id || 'tazo').replace(/[^a-zA-Z0-9]/g, '_') + '_' + Math.floor(Math.random() * 1000);
+    const topPathId = `curve-top-${uid}`;
+    const bottomPathId = `curve-bottom-${uid}`;
+    const topBackPathId = `curve-top-b-${uid}`;
+    const bottomBackPathId = `curve-bottom-b-${uid}`;
 
     return `
-      <!-- Tazo 3D Físico: Disco Circular Noventero con Muescas y Glare -->
-      <div class="tazo-disc ${isRevealed ? 'is-flipped' : ''}" id="active-tazo-disc" style="--tazo-color: ${theme.bg}; --tazo-accent: ${theme.accent};">
-        <!-- Cara Frontal (Anverso: Hito, Categoría, Muescas de Ensamble) -->
-        <div class="tazo-face tazo-face-front" style="--tazo-theme-bg: ${theme.bg};">
-          <div class="tazo-glare"></div>
-          <div class="tazo-rim-notches"></div>
-          <div class="tazo-inner-ring">
-            <div class="tazo-category-tag">
+      <!-- Tazo 3D Físico de Torneo: Disco Circular Coleccionable con Muescas y Relieve -->
+      <div class="tazo-physical tazo-disc ${isRevealed ? 'is-flipped' : ''}" ${discId} style="--tazo-color: ${theme.bg}; --tazo-accent: ${theme.accent};">
+        
+        <!-- CARA FRONTAL (ANVERSO) -->
+        <div class="tazo-face tazo-front tazo-face-front" style="--tazo-theme-bg: ${theme.bg};">
+          <!-- Bisel de 4 ranuras físicas de ensamble -->
+          <div class="tazo-notches" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
+
+          <!-- Anillo perimetral con texto curvado en SVG -->
+          <svg class="tazo-ring-text" viewBox="0 0 300 300" aria-hidden="true">
+            <path id="${topPathId}" d="M 30,150 A 120,120 0 0,1 270,150" fill="none" />
+            <path id="${bottomPathId}" d="M 30,150 A 120,120 0 0,0 270,150" fill="none" />
+            <text class="ring-label"><textPath href="#${topPathId}" startOffset="50%" text-anchor="middle">${topLabel}</textPath></text>
+            <text class="ring-sub"><textPath href="#${bottomPathId}" startOffset="50%" text-anchor="middle">${bottomLabel}</textPath></text>
+          </svg>
+
+          <!-- Núcleo Central: Ícono de relieve + Título Héroe + Pista Breve -->
+          <div class="tazo-core">
+            <div class="tazo-icon-badge">
               <i data-lucide="${groupIcon}"></i>
-              <span>${(this.catalog.domains[card.domain] || card.domain).toUpperCase()}</span>
             </div>
-
-            <div class="tazo-clue-stage">
-              <p class="tazo-clue-text">${hitoFormatted}</p>
-            </div>
-
-            <div class="tazo-footer-tag">
-              <span class="tazo-vol-id">${cardNumStr}</span>
-              <span class="tazo-hint-action"><i data-lucide="rotate-cw"></i> Voltear</span>
-            </div>
+            <h3 class="tazo-title">${title}</h3>
+            <p class="tazo-clue">${clue}</p>
           </div>
+
+          <!-- Brillo plástico especular al rotar -->
+          <div class="tazo-foil-reflection" aria-hidden="true"></div>
         </div>
 
-        <!-- Cara Trasera (Reverso: Año Hero, Creador, Trivia Lore) -->
-        <div class="tazo-face tazo-face-back" style="--tazo-color: ${theme.bg};">
-          <div class="tazo-glare"></div>
-          <div class="tazo-rim-notches"></div>
-          <div class="tazo-inner-ring tazo-back-ring">
-            <div class="tazo-author">${creadorFormatted}</div>
+        <!-- CARA TRASERA (REVERSO: EL AÑO HERO) -->
+        <div class="tazo-face tazo-back tazo-face-back" style="--tazo-color: ${theme.bg};">
+          <!-- Bisel de 4 ranuras físicas de ensamble -->
+          <div class="tazo-notches" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
 
-            <div class="year-center-stage ${yearStateClass}" title="Toca para revelar el año [R]">
-              <div class="year-mystery-box">
-                <div class="year-mystery-digits">????</div>
-                <div class="year-reveal-badge">
-                  <i data-lucide="eye"></i>
-                  <span>Revelar</span>
-                </div>
+          <!-- Anillo perimetral trasero SVG -->
+          <svg class="tazo-ring-text" viewBox="0 0 300 300" aria-hidden="true">
+            <path id="${topBackPathId}" d="M 30,150 A 120,120 0 0,1 270,150" fill="none" />
+            <path id="${bottomBackPathId}" d="M 30,150 A 120,120 0 0,0 270,150" fill="none" />
+            <text class="ring-label"><textPath href="#${topBackPathId}" startOffset="50%" text-anchor="middle">${topBackLabel}</textPath></text>
+            <text class="ring-sub"><textPath href="#${bottomBackPathId}" startOffset="50%" text-anchor="middle">${bottomBackLabel}</textPath></text>
+          </svg>
+
+          <!-- Núcleo Trasero: Autor + Año Hero Gigante + Lore -->
+          <div class="tazo-core back-layout">
+            <span class="author-capsule">${card.autor.toUpperCase()}</span>
+            
+            <div class="year-hero-display ${yearStateClass}" id="year-target" title="Toca para revelar el año [R]">
+              <span class="year-digits">${card.year}</span>
+              <div class="year-cover-tape">
+                <i data-lucide="eye"></i>
+                <span>???? REVELAR</span>
               </div>
-              <div class="tazo-year-hero">${card.year}</div>
             </div>
 
-            <div class="tazo-trivia-lore">${triviaFormatted}</div>
-            <div class="tazo-back-meta">${this.catalog.volumes[card.volumen] || card.volumen} &bull; ${cardNumStr}</div>
+            <p class="lore-text">${triviaFormatted}</p>
           </div>
+
+          <!-- Brillo plástico especular al rotar -->
+          <div class="tazo-foil-reflection" aria-hidden="true"></div>
         </div>
+
       </div>
     `;
   }
@@ -700,15 +763,7 @@ class HitTazosEngine {
     if (!this.activeDeck.length) return;
     const card = this.activeDeck[this.currentIndex];
 
-    this.cardStage.innerHTML = '';
-    const cardEl = document.createElement('div');
-    cardEl.id = 'active-card-3d';
-    cardEl.className = 'tazo-disc-container';
-    cardEl.innerHTML = this.buildCardHTML(card, { isRevealed: false });
-    cardEl.style.opacity = '1';
-    cardEl.style.transform = '';
-
-    this.cardStage.appendChild(cardEl);
+    this.cardStage.innerHTML = this.buildCardHTML(card, { isRevealed: false });
     this.hudCardCounter.textContent = `${this.currentIndex + 1} / ${this.activeDeck.length}`;
     this.guessResultPill.textContent = '';
     this.updateRevealButtonState(false);
@@ -728,9 +783,9 @@ class HitTazosEngine {
     }
 
     // Interacción de clic en la zona del año para revelar/ocultar
-    const yearStage = cardEl.querySelector('.year-center-stage');
-    if (yearStage) {
-      yearStage.addEventListener('click', (e) => {
+    const yearTarget = this.cardStage.querySelector('#year-target, .year-hero-display, .year-center-stage');
+    if (yearTarget) {
+      yearTarget.addEventListener('click', (e) => {
         e.stopPropagation(); // no voltear la tarjeta, solo revelar el año
         this.toggleActiveCardYear();
       });
@@ -752,9 +807,9 @@ class HitTazosEngine {
 
   revealActiveCardYear() {
     const stage = document.getElementById('card-stage');
-    const tazoDisc = stage?.querySelector('.tazo-disc') || stage;
+    const tazoDisc = stage?.querySelector('.tazo-physical, .tazo-disc') || stage;
     if (!tazoDisc) return;
-    const yearStage = tazoDisc.querySelector('.year-center-stage');
+    const yearStage = tazoDisc.querySelector('#year-target, .year-hero-display, .year-center-stage');
     if (yearStage && yearStage.classList.contains('is-hidden')) {
       yearStage.classList.remove('is-hidden');
       yearStage.classList.add('is-revealed');
@@ -765,7 +820,7 @@ class HitTazosEngine {
 
   toggleActiveCardYear() {
     const stage = document.getElementById('card-stage');
-    const tazoDisc = stage?.querySelector('.tazo-disc') || stage;
+    const tazoDisc = stage?.querySelector('.tazo-physical, .tazo-disc') || stage;
     if (!tazoDisc) return;
 
     // Si el tazo está de frente, voltearlo para ver el reverso
@@ -773,7 +828,7 @@ class HitTazosEngine {
       this.flipCard(stage);
     }
 
-    const yearStage = tazoDisc.querySelector('.year-center-stage');
+    const yearStage = tazoDisc.querySelector('#year-target, .year-hero-display, .year-center-stage');
     if (!yearStage) return;
 
     const isHidden = yearStage.classList.contains('is-hidden');
@@ -1140,35 +1195,34 @@ class HitTazosEngine {
     slice.forEach(card => {
       const cell = document.createElement('div');
       cell.className = 'catalog-card-cell';
+      cell.innerHTML = this.buildCardHTML(card, { isRevealed: false, id: '' });
 
-      const cardEl = document.createElement('div');
-      cardEl.className = `hittazos-card-3d theme-${this.catalog.domains[card.domain] || card.domain}`;
-      cardEl.innerHTML = this.buildCardHTML(card, { isRevealed: false });
+      const tazoDisc = cell.querySelector('.tazo-disc');
+      if (tazoDisc) {
+        const yearStage = tazoDisc.querySelector('.year-center-stage');
+        if (yearStage) {
+          yearStage.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isHidden = yearStage.classList.contains('is-hidden');
+            if (isHidden) {
+              yearStage.classList.remove('is-hidden');
+              yearStage.classList.add('is-revealed');
+              this.playAudioFeedback('hit');
+            } else {
+              yearStage.classList.remove('is-revealed');
+              yearStage.classList.add('is-hidden');
+              this.playAudioFeedback('flip');
+            }
+            this.refreshIcons();
+          });
+        }
 
-      const yearStage = cardEl.querySelector('.year-center-stage');
-      if (yearStage) {
-        yearStage.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const isHidden = yearStage.classList.contains('is-hidden');
-          if (isHidden) {
-            yearStage.classList.remove('is-hidden');
-            yearStage.classList.add('is-revealed');
-            this.playAudioFeedback('hit');
-          } else {
-            yearStage.classList.remove('is-revealed');
-            yearStage.classList.add('is-hidden');
-            this.playAudioFeedback('flip');
-          }
-          this.refreshIcons();
+        tazoDisc.addEventListener('click', () => {
+          this.flipCard(tazoDisc);
+          this.playAudioFeedback('flip');
         });
       }
 
-      cardEl.addEventListener('click', () => {
-        this.flipCard(cardEl);
-        this.playAudioFeedback('flip');
-      });
-
-      cell.appendChild(cardEl);
       this.catalogGrid.appendChild(cell);
     });
 
