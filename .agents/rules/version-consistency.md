@@ -8,7 +8,7 @@ globs: ["VERSION", "package.json", "data/manifest.json", "data/card_colors.json"
 Esta regla define el protocolo para evitar divergencias y obsolescencia en las referencias de versión a lo largo del repositorio.
 
 ## 1. Fuente Única de Verdad Canónica
-- El archivo `VERSION` en la raíz del repositorio es la **única y exclusiva fuente canónica de verdad** (ej. `1.0.0-rc3`).
+- El archivo `VERSION` en la raíz del repositorio es la **única y exclusiva fuente canónica de verdad** (ej. `1.0.0`).
 - **Prohibido:** Modificar manualmente versiones en `web/index.html`, `README.md`, `data/manifest.json` o scripts de forma aislada.
 
 ## 2. Archivos Vinculados a la Versión Canónica

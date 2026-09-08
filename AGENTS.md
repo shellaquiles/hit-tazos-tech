@@ -20,7 +20,7 @@ hit-tazos-tech/
 ├── CODE_OF_CONDUCT.md                   # Código de conducta de la comunidad Shellaquiles
 ├── SECURITY.md                          # Política de seguridad y reporte responsable
 ├── LICENSE                              # Licencia de código abierto MIT (Shellaquiles Org)
-├── VERSION                              # Archivo de versión semántica (1.0.0-rc3)
+├── VERSION                              # Archivo de versión semántica (1.0.0)
 ├── package.json                         # Manifiesto y scripts npm (test, validate, build, print)
 ├── server.js                            # Servidor local de desarrollo (sirve web/ y data/)
 ├── data/                                # Contenido editorial y datos de trivia
@@ -153,7 +153,7 @@ Para garantizar que el juego enseñe hechos precisos y verificables sin sesgos n
    - En Tabloide: cada fila $[A, B, C]$ en el anverso se espeja como $[C, B, A]$ en el reverso.
    - En Carta: cada fila $[A, B]$ en el anverso se espeja como $[B, A]$ en el reverso.
 4. **Nombres y Estructura Oficial de Salida:**
-   - **Organización interna de imprenta por versión:** Todo el material de imprenta se organiza localmente bajo su versión semántica: `print/v{VERSION}/{formato}/` (ej. `print/v1.0.0-rc3/carta/`, `print/v1.0.0-rc3/tabloide/`, `print/v1.0.0-rc3/super_tabloide/`).
+   - **Organización interna de imprenta por versión:** Todo el material de imprenta se organiza localmente bajo su versión semántica: `print/v{VERSION}/{formato}/` (ej. `print/v1.0.0/carta/`, `print/v1.0.0/tabloide/`, `print/v1.0.0/super_tabloide/`).
    - **Nombres canónicos permanentes para SEO:** Los PDFs no incluyen sufijo de versión en su nombre de archivo (ej. `hit-tazos-tech-vol0-kernel-foundations.pdf`, `hit-tazos-tech-carta.pdf`, `hit-tazos-tech-tabloide.pdf`). La versión semántica y autoría se preservan en los metadatos internos del documento (`DOCINFO` via Ghostscript).
    - **Distribución web en `assets/print/`:** En la web pública y en producción, los PDFs descargables por volumen se sirven de forma canónica desde `assets/print/hit-tazos-tech-vol{X}-{slug}.pdf`.
    - **Exclusión de Git en rama principal:** Los archivos binarios pesados (`print/**/*.pdf`, `print/**/svg/`, `web/assets/print/*.pdf`) están estrictamente ignorados en `.gitignore` para mantener limpio el historial del repositorio.
@@ -182,7 +182,7 @@ npm run print
 
 ## 🏷️ 10. Gobernanza y Sincronización de Versión Canónica
 
-1. **Fuente Única de Verdad:** El archivo `VERSION` en la raíz del repositorio es la única fuente autorizada de la versión semántica actual (ej. `1.0.0-rc3`).
+1. **Fuente Única de Verdad:** El archivo `VERSION` en la raíz del repositorio es la única fuente autorizada de la versión semántica actual (ej. `1.0.0`).
 2. **Validación Automática:** `npm test` incluye la verificación de coherencia (`python3 scripts/sync_version.py --check`) que asegura que `package.json`, `data/manifest.json`, `data/card_colors.json`, `README.md`, `web/index.html` y `web/assets/og-cover.svg` estén estrictamente alineados.
 3. **Propagación:** Para actualizar todos los metadatos tras cambiar `VERSION`, se ejecuta:
    ```bash

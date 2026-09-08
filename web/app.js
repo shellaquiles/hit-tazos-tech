@@ -271,7 +271,7 @@ class HitTazosEngine {
 
   updatePrintPdfLinks(manifest) {
     if (!manifest) return;
-    const version = manifest.version || '1.0.0-rc3';
+    const version = manifest.version || '1.0.0';
     const volumesGrid = document.getElementById('official-pdf-volumes-grid');
     if (!volumesGrid) return;
 
