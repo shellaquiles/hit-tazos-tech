@@ -17,17 +17,10 @@ env/
 venv/
 
 # Temporales de compilación e imprenta
-.temp_pdf_pages/
-print/.temp_pdf_pages/
-print/pliegos_svg/
-print/pliegos_carta_svg/
-print/*.svg
 print/*.pdf
-.temp_pdf_pages_carta/
-temp_*.svg
-temp_*.png
-print/temp_*.svg
-print/temp_*.png
+print/svg/
+print/**/svg/
+.temp_pdf_pages*/
 
 # Sistema operativo y editores
 .DS_Store

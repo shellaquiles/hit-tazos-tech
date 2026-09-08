@@ -1,10 +1,10 @@
 # Hit-Tazos Tech 🕹️💻
 
-[![Version](https://img.shields.io/badge/version-1.0.0--rc.1-orange.svg?style=flat-square)](./CHANGELOG.md) [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](./LICENSE) [![Python](https://img.shields.io/badge/python-3.8%2B-3776AB.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/) [![Node](https://img.shields.io/badge/node-%3E%3D18-339933.svg?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/) [![Ecosystem](https://img.shields.io/badge/shellaquiles-ecosystem-9D2449.svg?style=flat-square)](https://github.com/shellaquiles)
+[![Version](https://img.shields.io/badge/version-1.0.1--rc.1-orange.svg?style=flat-square)](./CHANGELOG.md) [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](./LICENSE) [![Python](https://img.shields.io/badge/python-3.8%2B-3776AB.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/) [![Node](https://img.shields.io/badge/node-%3E%3D18-339933.svg?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/) [![Ecosystem](https://img.shields.io/badge/shellaquiles-ecosystem-9D2449.svg?style=flat-square)](https://github.com/shellaquiles)
 
 Juego original e independiente de trivia cronológica técnica centrado en el ecosistema de **Tecnología, Desarrollo de Software, Infraestructura, Inteligencia Artificial y Cultura Hacker**, con un marcado énfasis en el **Universo Python**.
 
-El juego comprende un **mazo exhaustivo de tarjetas de trivia cronológica (1957 – 2026)** organizadas en 5 grandes grupos temáticos y 24 categorías, listas para jugar en mesa o explorar interactivamente en la web.
+El juego comprende un **mazo exhaustivo de tarjetas de trivia cronológica técnica** rigurosamente verificadas, listas para jugar en mesa o explorar interactivamente en la web.
 
 ---
 
@@ -70,10 +70,10 @@ npm run print:test:carta      # Muestra de 1 pliego Carta (6 cartas)
 ```
 
 ### Salidas y Archivos de Distribución Oficial:
-* **[`print/hit-tazos-tech-v1.0.0-rc.1-tabloide.pdf`](./print/hit-tazos-tech-v1.0.0-rc.1-tabloide.pdf)** *(alias `tabloide_editable.pdf`)*: Documento vectorial de 72 páginas ($11 \times 17\text{ pulg}$) con fuentes TrueType (`Noto Sans`, `WinAnsi`), sin rasterizado. Rejilla de $3 \times 5$ cartas por pliego con reversos espejados `[2, 1, 0]`, pie de autoría oficial de **Shellaquiles Org** y metadatos PDF completos.
-* **[`print/hit-tazos-tech-v1.0.0-rc.1-carta.pdf`](./print/hit-tazos-tech-v1.0.0-rc.1-carta.pdf)** *(alias `carta_editable.pdf`)*: Documento vectorial de 178 páginas ($8.5 \times 11\text{ pulg}$) con fuentes TrueType (`Noto Sans`, `WinAnsi`). Rejilla de $2 \times 3$ cartas por pliego con reversos espejados `[1, 0]` para coincidencia milimétrica en cualquier impresora doméstica o de oficina.
-* **[`print/pliegos_svg/`](./print/pliegos_svg/):** 72 pliegos SVG individuales tamaño Tabloide con capas vectoriales editables y metadatos Dublin Core (`dc:creator = Shellaquiles Org`, `dc:relation = https://shellaquiles.org`).
-* **[`print/pliegos_carta_svg/`](./print/pliegos_carta_svg/):** 178 pliegos SVG individuales tamaño Carta con capas vectoriales editables y metadatos Dublin Core.
+* **[`print/hit-tazos-tech-v1.0.1-rc.1-tabloide.pdf`](./print/hit-tazos-tech-v1.0.1-rc.1-tabloide.pdf)**: Documento vectorial de 78 páginas ($11 \times 17\text{ pulg}$) con fuentes TrueType (`Noto Sans`, `WinAnsi`), sin rasterizado. Rejilla de $3 \times 5$ cartas por pliego con reversos espejados `[2, 1, 0]`, pie de autoría oficial de **Shellaquiles Org** y metadatos PDF completos.
+* **[`print/hit-tazos-tech-v1.0.1-rc.1-carta.pdf`](./print/hit-tazos-tech-v1.0.1-rc.1-carta.pdf)**: Documento vectorial de 192 páginas ($8.5 \times 11\text{ pulg}$) con fuentes TrueType (`Noto Sans`, `WinAnsi`). Rejilla de $2 \times 3$ cartas por pliego con reversos espejados `[1, 0]` para coincidencia milimétrica en cualquier impresora doméstica o de oficina.
+* **[`print/pliegos_svg/`](./print/pliegos_svg/):** 78 pliegos SVG individuales tamaño Tabloide con capas vectoriales editables y metadatos Dublin Core (`dc:creator = Shellaquiles Org`, `dc:relation = https://shellaquiles.org`).
+* **[`print/pliegos_carta_svg/`](./print/pliegos_carta_svg/):** 192 pliegos SVG individuales tamaño Carta con capas vectoriales editables y metadatos Dublin Core.
 * **[`data/manifest.json`](./data/manifest.json):** Manifiesto JSON canónico del mazo con versión, autoría, rangos cronológicos y sumarios editoriales.
 
 ---

@@ -215,11 +215,11 @@ const FORMAT_CONFIGS = {
     cols: 3,
     rows: 5,
     cardsPerSheet: 15,
-    svgDir: path.join(PRINT_DIR, 'pliegos_svg'),
-    pdfPath: path.join(PRINT_DIR, 'tabloide_editable.pdf')
+    svgDir: path.join(PRINT_DIR, `svg/tabloide/v${APP_VERSION}`),
+    pdfPath: path.join(PRINT_DIR, `hit-tazos-tech-v${APP_VERSION}-tabloide.pdf`)
   },
-  'carta': {
-    id: 'carta',
+  '8x11': {
+    id: '8x11',
     name: 'Carta',
     label: '8.5 × 11 PULGADAS (215.9 × 279.4 mm) — CARTA',
     shortLabel: '8.5 × 11 PULGADAS — CARTA',
@@ -228,8 +228,8 @@ const FORMAT_CONFIGS = {
     cols: 2,
     rows: 3,
     cardsPerSheet: 6,
-    svgDir: path.join(PRINT_DIR, 'pliegos_carta_svg'),
-    pdfPath: path.join(PRINT_DIR, 'carta_editable.pdf')
+    svgDir: path.join(PRINT_DIR, `svg/carta/v${APP_VERSION}`),
+    pdfPath: path.join(PRINT_DIR, `hit-tazos-tech-v${APP_VERSION}-carta.pdf`)
   },
   '12x18': {
     id: '12x18',
@@ -241,15 +241,15 @@ const FORMAT_CONFIGS = {
     cols: 3,
     rows: 6,
     cardsPerSheet: 18,
-    svgDir: path.join(PRINT_DIR, 'pliegos_12x18_svg'),
-    pdfPath: path.join(PRINT_DIR, 'super_tabloide_editable.pdf')
+    svgDir: path.join(PRINT_DIR, `svg/super_tabloide/v${APP_VERSION}`),
+    pdfPath: path.join(PRINT_DIR, `hit-tazos-tech-v${APP_VERSION}-super-tabloide.pdf`)
   }
 };
 
 function resolveFormat(formatStr) {
   const f = (formatStr || '').toLowerCase().trim();
   if (f === 'all' || f === 'ambos' || f === 'both') return 'all';
-  if (f === 'carta' || f === 'letter' || f === '8.5x11' || f === '8.5*11') return 'carta';
+  if (f === '8x11' || f === '8.5x11' || f === '8.5*11' || f === 'carta' || f === 'letter') return '8x11';
   if (f === '11x17' || f === 'tabloide' || f === 'tabloid') return '11x17';
   if (f === '12x18' || f === 'supertabloide' || f === 'super-tabloide') return '12x18';
   return 'all';
@@ -260,7 +260,7 @@ function parseArgs() {
   const options = {
     range: 'ALL',        // 'ALL', 'sample', '15', '6', etc.
     crop: 'marks',       // 'marks' (cruces pro), 'guides' (guías punteadas), 'clean'
-    format: 'all',       // 'all' (Tabloide y Carta), '11x17' (Tabloide), 'carta' (Carta), '12x18'
+    format: 'all',       // 'all' (Tabloide, Carta y Super Tabloide), '11x17' (Tabloide), 'carta' (Carta), '12x18' (Super Tabloide)
     svg: false,          // Exportar hojas SVG
     pdfEditable: false   // Exportar PDF vectorial editable con rsvg-convert y Cairo
   };
@@ -609,7 +609,7 @@ except Exception as e:
 // -------------------------------------------------------------
 // Conversión de SVGs a PDF Vectorial con rsvg-convert y Cairo
 // -------------------------------------------------------------
-function compileEditablePdf(svgFiles, outputPdfPath, aliasPdfPath, formatConfig) {
+function compileEditablePdf(svgFiles, outputPdfPath, formatConfig) {
   console.log(`🔄 Compilando PDF vectorial editable con rsvg-convert (Cairo TrueType)...`);
   const tempPdfDir = path.join(ROOT_DIR, `.temp_pdf_pages_${formatConfig.name.toLowerCase()}`);
   fs.mkdirSync(tempPdfDir, { recursive: true });
@@ -665,7 +665,7 @@ function processFormat(formatConfig, allCards, options) {
 
   // 2. Generar PDF Editable (TrueType Cairo)
   if (options.pdfEditable && svgFiles.length > 0) {
-    compileEditablePdf(svgFiles, formatConfig.pdfPath, formatConfig.aliasPdfPath, formatConfig);
+    compileEditablePdf(svgFiles, formatConfig.pdfPath, formatConfig);
   }
 
   return {
@@ -693,11 +693,12 @@ function main() {
   const formatsToProcess = [];
   if (options.format === 'all') {
     formatsToProcess.push(FORMAT_CONFIGS['11x17']);
-    formatsToProcess.push(FORMAT_CONFIGS['carta']);
+    formatsToProcess.push(FORMAT_CONFIGS['8x11']);
+    formatsToProcess.push(FORMAT_CONFIGS['12x18']);
   } else if (FORMAT_CONFIGS[options.format]) {
     formatsToProcess.push(FORMAT_CONFIGS[options.format]);
   } else {
-    console.error(`❌ Formato desconocido: ${options.format}. Formatos disponibles: 11x17, carta, 12x18, all`);
+    console.error(`❌ Formato desconocido: ${options.format}. Formatos disponibles: 11x17, 8x11, 12x18, all`);
     process.exit(1);
   }
 

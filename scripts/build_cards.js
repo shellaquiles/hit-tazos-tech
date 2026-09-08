@@ -31,11 +31,16 @@ if (allCards.length !== 576) {
 // Generate compiled output
 fs.writeFileSync(CARDS_FILE, JSON.stringify(allCards, null, 2), 'utf8');
 
+let appVersion = '1.0.1-rc.1';
+try {
+  appVersion = fs.readFileSync(path.join(__dirname, '../VERSION'), 'utf8').trim();
+} catch (_) {}
+
 // Generate manifest
 const manifest = {
   compiledAt: new Date().toISOString(),
   totalCards: allCards.length,
-  version: '1.0.0-rc.1',
+  version: appVersion,
   volumes: files.length
 };
 
