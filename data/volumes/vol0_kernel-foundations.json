@@ -91,12 +91,12 @@
     "id": "vol0-0x08",
     "volumen": "kernel-foundations",
     "index": 8,
-    "domain": "data-storage",
-    "tag": "database-engines",
-    "hito": "Publicación del paper de **Spanner** de Google, resolviendo bases de datos distribuidas globales con consistencia estricta.",
-    "year": 2012,
-    "autor": "Google (James Corbett et al.)",
-    "trivia": "Usa GPS y relojes atómicos de rubidio (*TrueTime API*) para ordenar transacciones globales con consistencia estricta."
+    "domain": "cloud-infrastructure",
+    "tag": "iac-automation",
+    "hito": "Publicación del paper sobre **Chubby**, el servicio de bloqueo distribuido con Paxos que sostiene los clústeres de Google.",
+    "year": 2006,
+    "autor": "Mike Burrows (Google)",
+    "trivia": "Burrows diseñó Chubby enfatizando la facilidad de uso y la sincronización gruesa para miles de clientes."
   },
   {
     "id": "vol0-0x09",
@@ -170,7 +170,7 @@
     "index": 15,
     "domain": "security-exploits",
     "tag": "software-disasters",
-    "hito": "Histeria y gasto financiero global de más de 300,000 millones de dólares ante la llegada del temido **Efecto 2000** (**Bug del Milenio / Y2K**).",
+    "hito": "Histeria y gasto financiero global de más de 300,000 millones de dólares ante la llegada del temido **Bug del Milenio (Y2K)**.",
     "year": 2000,
     "autor": "Industria Tecnológica Global",
     "trivia": "Guardar años con 2 dígitos (`99` en vez de `1999`) amenazaba colapsar sistemas; una colosal inversión global evitó el caos."
@@ -335,10 +335,10 @@
     "index": 30,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento del microprocesador **MOS Technology 6502**, demoliendo los precios de la industria informática al costar apenas **$25 dólares**.",
-    "year": 1975,
-    "autor": "Chuck Peddle y Bill Mensch",
-    "trivia": "Costaba apenas 25 dólares; democratizó la computación hogareña motorizando la Apple II, Commodore 64, Atari 2600 y la NES."
+    "hito": "Lanzamiento del microprocesador **Intel 8080**, el cerebro que detonó la revolución de la informática personal en el Altair 8800.",
+    "year": 1974,
+    "autor": "Federico Faggin y Masatoshi Shima",
+    "trivia": "Requería tres voltajes distintos (+5V, -5V y +12V) y operaba a una vertiginosa frecuencia de 2 MHz."
   },
   {
     "id": "vol0-0x1F",
@@ -861,12 +861,12 @@
     "id": "vol0-0x4E",
     "volumen": "kernel-foundations",
     "index": 78,
-    "domain": "cloud-infrastructure",
-    "tag": "cloud-serverless",
-    "hito": "Lanzamiento oficial de **Amazon S3** (*Simple Storage Service*), inaugurando formalmente la era moderna de la infraestructura como servicio.",
-    "year": 2006,
-    "autor": "Amazon Web Services (Andy Jassy)",
-    "trivia": "Ofreció almacenamiento ilimitado a **15 centavos de dólar** por gigabyte al mes, revolucionando los costos de la web."
+    "domain": "data-storage",
+    "tag": "database-engines",
+    "hito": "Publicación del paper de **CouchDB**, pionera en almacenamiento de documentos JSON sin esquema con replicación multi-maestro.",
+    "year": 2005,
+    "autor": "Damien Katz (Apache)",
+    "trivia": "Katz financió el desarrollo inicial vendiendo la mayor parte de sus pertenencias personales."
   },
   {
     "id": "vol0-0x4F",
@@ -1358,7 +1358,7 @@
     "index": 123,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Demostración sorpresa de **Docker** en una charla relámpago de la conferencia *PyCon 2013*, desatando la locura por los contenedores.",
+    "hito": "Demostración sorpresa de **Docker** en una charla relámpago de la conferencia *PyCon*, desatando la locura por los contenedores.",
     "year": 2013,
     "autor": "Solomon Hykes (dotCloud)",
     "trivia": "La demo en vivo de 5 minutos causó tal impacto que dotCloud abandonó su negocio PaaS para renacer como **Docker Inc.**"

@@ -16,10 +16,10 @@
     "index": 1,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Presentación de **CUDA**, transformando tarjetas gráficas en supercomputadoras de cálculo paralelo masivo.",
-    "year": 2006,
-    "autor": "NVIDIA (Ian Buck)",
-    "trivia": "Permitió programar GPUs en C/C++; fue el catalizador que permitió entrenar todas las grandes redes neuronales modernas."
+    "hito": "Lanzamiento del microprocesador de 8 bits **Zilog Z80**, dominando la era del cómputo doméstico y salas arcade.",
+    "year": 1976,
+    "autor": "Federico Faggin y Masatoshi Shima",
+    "trivia": "Faggin dejó Intel para fundar Zilog tras haber codiseñado el 4004 y 8080."
   },
   {
     "id": "vol2-0x02",
@@ -60,10 +60,10 @@
     "index": 5,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento del microprocesador **MOS Technology 6502**, demoliendo los precios de la industria informática al costar apenas **$25 dólares**.",
+    "hito": "Lanzamiento del procesador **MOS Technology 6502** a una fracción del costo de sus rivales, encendiendo la revolución de la PC.",
     "year": 1975,
     "autor": "Chuck Peddle y Bill Mensch",
-    "trivia": "Costaba apenas 25 dólares; democratizó la computación hogareña motorizando la Apple II, Commodore 64, Atari 2600 y la NES."
+    "trivia": "Costaba solo 25 dólares cuando los chips de Motorola e Intel se vendían por cientos."
   },
   {
     "id": "vol2-0x06",
@@ -225,10 +225,10 @@
     "index": 20,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Presentación del procesador **Motorola 68000**, aportando arquitectura interna de 32 bits y direccionamiento lineal plano.",
+    "hito": "Lanzamiento del microprocesador de 16/32 bits **Motorola 68000**, motor del Apple Macintosh, Amiga y Atari ST.",
     "year": 1979,
-    "autor": "Motorola",
-    "trivia": "Impulsó la era gráfica multimedia de los 80, motorizando la Apple Macintosh original de 1984, Amiga 1000 y Sega Genesis."
+    "autor": "Motorola Semiconductor",
+    "trivia": "Tenía registros de 32 bits y 68,000 transistores, de donde tomó su emblemático nombre."
   },
   {
     "id": "vol2-0x15",
@@ -247,10 +247,10 @@
     "index": 22,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento de **Intel Pentium**, abandonando la numeración para poder registrar una marca comercial propia.",
-    "year": 1993,
-    "autor": "Intel (Vinod Dham)",
-    "trivia": "Como los números no podían patentarse como marcas registradas, Intel bautizó a la 5ª generación \"Pentium\" (del griego *pente*)."
+    "hito": "Desarrollo del procesador **ARM1**, el primer diseño comercial de arquitectura RISC de Acorn Computers.",
+    "year": 1985,
+    "autor": "Sophie Wilson y Steve Furber",
+    "trivia": "Funcionaba con tan poca energía que seguía operando solo con la corriente residual de prueba."
   },
   {
     "id": "vol2-0x17",
@@ -289,23 +289,23 @@
     "id": "vol2-0x1A",
     "volumen": "embedded-silicon-hardware",
     "index": 26,
-    "domain": "systems-networking",
-    "tag": "web-standards",
-    "hito": "Estandarización del protocolo **WebSocket** en el **RFC 6455** para transmisión de datos bidireccional y full-duplex en tiempo real.",
-    "year": 2011,
-    "autor": "IETF (Ian Fette y Alexey Melnikov)",
-    "trivia": "Eliminó la necesidad del costoso sondeo continuo (*long-polling*) para chats, videojuegos multijugador y paneles financieros en la web."
+    "domain": "hardware-embedded",
+    "tag": "retro-chips-gpus",
+    "hito": "Lanzamiento del procesador gráfico **Sony PlayStation GPU**, popularizando el renderizado de polígonos 3D en consolas domésticas.",
+    "year": 1994,
+    "autor": "Sony y Toshiba",
+    "trivia": "Diseñado por Ken Kutaragi, era capaz de procesar hasta 360,000 polígonos planos por segundo."
   },
   {
     "id": "vol2-0x1B",
     "volumen": "embedded-silicon-hardware",
     "index": 27,
-    "domain": "ai-data-science",
-    "tag": "scientific-stack",
-    "hito": "Creación de **Numeric** (precursor de NumPy), introduciendo el primer objeto de array multidimensional homogéneo en C para Python.",
-    "year": 1995,
-    "autor": "Jim Hugunin",
-    "trivia": "Creado con el laboratorio *LLNL*; demostró que Python podía rivalizar con MATLAB y Fortran en cálculo matricial."
+    "domain": "hardware-embedded",
+    "tag": "retro-chips-gpus",
+    "hito": "Introducción de la arquitectura de microprocesador **MIPS R2000**, pionera en computación RISC comercial para estaciones de trabajo.",
+    "year": 1986,
+    "autor": "John L. Hennessy (Stanford / MIPS)",
+    "trivia": "La arquitectura MIPS potenció la consola Nintendo 64 y la estación espacial de Silicon Graphics."
   },
   {
     "id": "vol2-0x1C",
@@ -368,10 +368,10 @@
     "index": 33,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento del procesador **Apple M1**, demostrando la superioridad del silicio ARM frente a x86 en laptops de consumo.",
-    "year": 2020,
-    "autor": "Apple (Johny Srouji)",
-    "trivia": "Unió CPU, GPU y memoria unificada en un silicio ultraeficiente, permitiendo a Apple romper su alianza histórica con Intel."
+    "hito": "Lanzamiento del procesador **MOS 6510**, corazón del **Commodore 64**, la computadora personal más vendida de la historia.",
+    "year": 1982,
+    "autor": "MOS Technology / Commodore",
+    "trivia": "Incluía un puerto de E/S de 8 bits integrado que permitía intercambiar el mapa de memoria mediante 'bank switching'."
   },
   {
     "id": "vol2-0x22",
@@ -388,12 +388,12 @@
     "id": "vol2-0x23",
     "volumen": "embedded-silicon-hardware",
     "index": 35,
-    "domain": "languages-runtimes",
-    "tag": "programming-languages",
-    "hito": "Desarrollo del lenguaje **C** en los laboratorios Bell para reescribir el sistema operativo Unix sobre máquinas PDP-11.",
-    "year": 1972,
-    "autor": "Dennis Ritchie (Bell Labs)",
-    "trivia": "Derivado del lenguaje *B*, su eficiencia implacable y punteros directos lo volvieron la lingua franca de la informática."
+    "domain": "hardware-embedded",
+    "tag": "retro-chips-gpus",
+    "hito": "Lanzamiento del supercomputador de procesamiento vectorial **Cray-1**, con su característica forma de 'C' acolchada.",
+    "year": 1976,
+    "autor": "Seymour Cray",
+    "trivia": "La forma en herradura fue diseñada para mantener los cables extremadamente cortos y reducir latencias."
   },
   {
     "id": "vol2-0x24",
@@ -520,12 +520,12 @@
     "id": "vol2-0x2F",
     "volumen": "embedded-silicon-hardware",
     "index": 47,
-    "domain": "languages-runtimes",
-    "tag": "programming-languages",
-    "hito": "Presentación de **Mojo**, uniendo la sintaxis de Python con optimización nativa para GPUs y aceleradores IA.",
-    "year": 2023,
-    "autor": "Chris Lattner (Modular)",
-    "trivia": "Permite programar aceleradores IA y memoria SIMD de bajo nivel manteniendo la sintaxis amigable de Python."
+    "domain": "hardware-embedded",
+    "tag": "retro-chips-gpus",
+    "hito": "Lanzamiento del procesador digital de señales **Texas Instruments TMS32010**, pionero en procesamiento de señales en tiempo real.",
+    "year": 1983,
+    "autor": "Texas Instruments",
+    "trivia": "Tenía arquitectura Harvard modificada que permitía multiplicar enteros de 16 bits en un solo ciclo de reloj."
   },
   {
     "id": "vol2-0x30",
@@ -533,10 +533,10 @@
     "index": 48,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Invención del concepto **GPU** (*Graphics Processing Unit*) por parte de NVIDIA con el lanzamiento de la tarjeta **GeForce 256**.",
-    "year": 1999,
-    "autor": "NVIDIA (Jensen Huang)",
-    "trivia": "Primer procesador gráfico dedicado en un chip con transformación geométrica e iluminación 3D integradas por hardware."
+    "hito": "Construcción del computador **Apollo Guidance Computer (AGC)** para guiar las misiones lunares Apolo de la NASA.",
+    "year": 1966,
+    "autor": "MIT Instrumentation Lab",
+    "trivia": "Usaba memoria de núcleos trenzados a mano por trabajadoras textiles, apodada 'memoria LOL' (Little Old Ladies)."
   },
   {
     "id": "vol2-0x31",
@@ -555,10 +555,10 @@
     "index": 50,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Nacimiento de la computadora monoplaca **Raspberry Pi**, ofreciendo una placa Linux completa para enseñanza de software por solo **$35 dólares**.",
-    "year": 2012,
-    "autor": "Eben Upton (Raspberry Pi Foundation)",
-    "trivia": "Esperaban vender mil placas a alumnos de Cambridge; la demanda superó los **60 millones de unidades** en todo el planeta."
+    "hito": "Lanzamiento del microcontrolador de bajo costo con Wi-Fi integrado **ESP8266**, revolucionando los proyectos de IoT en todo el mundo.",
+    "year": 2014,
+    "autor": "Espressif Systems",
+    "trivia": "Comenzó con documentación filtrada en foros chinos y pronto acumuló millones de firmwares comunitarios."
   },
   {
     "id": "vol2-0x33",
@@ -575,12 +575,12 @@
     "id": "vol2-0x34",
     "volumen": "embedded-silicon-hardware",
     "index": 52,
-    "domain": "cloud-infrastructure",
-    "tag": "containers-virt",
-    "hito": "Nacimiento de **k3s**, empaquetando una distribución completa y certificada de Kubernetes dentro de un único archivo binario liviano.",
-    "year": 2019,
-    "autor": "Darren Shepherd (Rancher Labs)",
-    "trivia": "Eliminó componentes pesados para correr Kubernetes en Raspberry Pi y dispositivos IoT con menos de 512 MB de RAM."
+    "domain": "hardware-embedded",
+    "tag": "retro-chips-gpus",
+    "hito": "Lanzamiento del microcontrolador de 8 bits con memoria Flash **AVR (ATmega)**, base del futuro ecosistema Arduino.",
+    "year": 1997,
+    "autor": "Alf-Egil Bogen y Vegard Wollan (Atmel)",
+    "trivia": "Los dos estudiantes noruegos de NTH concibieron una arquitectura RISC optimizada para código en lenguaje C."
   },
   {
     "id": "vol2-0x35",
@@ -597,12 +597,12 @@
     "id": "vol2-0x36",
     "volumen": "embedded-silicon-hardware",
     "index": 54,
-    "domain": "languages-runtimes",
-    "tag": "programming-languages",
-    "hito": "Anuncio de **Go** por Google, diseñado para compilar en segundos y simplificar concurrencia con *goroutines*.",
-    "year": 2009,
-    "autor": "Robert Griesemer, Rob Pike y Thompson",
-    "trivia": "Hartos de compilar horas en C++, ingenieros de Google crearon un lenguaje veloz con concurrencia basada en canales CSP."
+    "domain": "hardware-embedded",
+    "tag": "retro-chips-gpus",
+    "hito": "Lanzamiento del chip microcontrolador dual-core **RP2040** y la placa **Raspberry Pi Pico**, el primer silicio propio de la fundación.",
+    "year": 2021,
+    "autor": "Raspberry Pi Foundation",
+    "trivia": "Introdujo bloques PIO (Programmable I/O) capaces de sintetizar protocolos de hardware a medida."
   },
   {
     "id": "vol2-0x37",
@@ -621,10 +621,10 @@
     "index": 56,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento del procesador **AMD Opteron**, introduciendo la extensión de 64 bits **AMD64** y obligando a Intel a licenciarla.",
-    "year": 2003,
-    "autor": "AMD (Fred Weber)",
-    "trivia": "Intel intentó imponer *Itanium* sin compatibilidad; el triunfo de AMD obligó a Intel a licenciar el estándar x86-64 de su rival."
+    "hito": "Publicación de la especificación abierta y libre de regalías para la arquitectura de procesadores **RISC-V**.",
+    "year": 2010,
+    "autor": "Krste Asanović y David Patterson",
+    "trivia": "Nació en UC Berkeley como un proyecto académico de verano para evitar pagar costosas licencias x86/ARM."
   },
   {
     "id": "vol2-0x39",
@@ -643,21 +643,21 @@
     "index": 58,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Debut del chip **Zilog Z80**, convirtiéndose en el microprocesador de 8 bits más vendido y clonado de la era doméstica.",
-    "year": 1976,
-    "autor": "F. Faggin y R. Ungermann (Zilog)",
-    "trivia": "Compatible con el 8080 pero a 5V; impulsó al *ZX Spectrum*, *MSX*, arcades de *Pac-Man* y la *Game Boy* de Nintendo."
+    "hito": "Presentación de la arquitectura **SPARC** (*Scalable Processor Architecture*), llevando cómputo RISC a estaciones Sun Microsystems.",
+    "year": 1987,
+    "autor": "Sun Microsystems",
+    "trivia": "Implementó una innovadora ventana de registros circulares para agilizar llamadas a funciones."
   },
   {
     "id": "vol2-0x3B",
     "volumen": "embedded-silicon-hardware",
     "index": 59,
-    "domain": "languages-runtimes",
-    "tag": "programming-languages",
-    "hito": "Debut de **C++** (*\"C with Classes\"*), sumando orientación a objetos y sobrecarga sin perder rendimiento de C.",
-    "year": 1983,
-    "autor": "Bjarne Stroustrup (Bell Labs)",
-    "trivia": "Stroustrup usó `++` para sugerir evolución de C; hoy es el estándar indiscutible de videojuegos y software de sistemas."
+    "domain": "hardware-embedded",
+    "tag": "retro-chips-gpus",
+    "hito": "Lanzamiento de la plataforma de desarrollo de código abierto **Arduino** (placa USB) en el Interaction Design Institute Ivrea.",
+    "year": 2005,
+    "autor": "Massimo Banzi, David Cuartielles",
+    "trivia": "Su nombre proviene de un bar en Ivrea, Italia, donde solían reunirse los fundadores del proyecto."
   },
   {
     "id": "vol2-0x3C",
@@ -665,10 +665,10 @@
     "index": 60,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Debut del procesador **ARM1** (*Acorn RISC Machine*), pionero en la computación de conjunto reducido de instrucciones.",
-    "year": 1985,
-    "autor": "Sophie Wilson y Steve Furber (Acorn)",
-    "trivia": "Consumía tan poca energía que siguió funcionando por fuga eléctrica residual al desconectarle la fuente de alimentación."
+    "hito": "Lanzamiento del microcontrolador **PIC16C84**, el primer chip embebido popular con memoria EEPROM reprogramable.",
+    "year": 1993,
+    "autor": "Microchip Technology",
+    "trivia": "Permitió a los ingenieros borrar y reescribir código en segundos sin usar lámparas de luz ultravioleta."
   },
   {
     "id": "vol2-0x3D",

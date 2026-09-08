@@ -4,11 +4,11 @@
     "volumen": "cloud-containers-sre",
     "index": 0,
     "domain": "cloud-infrastructure",
-    "tag": "iac-automation",
-    "hito": "Lanzamiento de **Terraform 0.1**, consolidando el paradigma de Infraestructura como Código (**IaC**) agnóstico a cualquier proveedor de nube.",
-    "year": 2014,
-    "autor": "Mitchell Hashimoto y A. Dadgar",
-    "trivia": "Con **HCL** y el archivo `terraform.tfstate`, permitió versionar redes, discos y clusters en la nube como código puro."
+    "tag": "cloud-serverless",
+    "hito": "Lanzamiento comercial de **Amazon S3** (*Simple Storage Service*), inaugurando la era de la computación en la nube moderna de AWS.",
+    "year": 2006,
+    "autor": "Amazon Web Services (Andy Jassy)",
+    "trivia": "Ofrecía almacenamiento duradero por 15 centavos de dólar por gigabyte al mes mediante una simple API REST."
   },
   {
     "id": "vol5-0x01",
@@ -37,22 +37,22 @@
     "volumen": "cloud-containers-sre",
     "index": 3,
     "domain": "cloud-infrastructure",
-    "tag": "iac-automation",
-    "hito": "Creación de **Helm**, el gestor de paquetes de aplicaciones para orquestar despliegues repetibles de Kubernetes mediante plantillas (*charts*).",
-    "year": 2015,
-    "autor": "Deis (Matt Butcher et al.)",
-    "trivia": "Nacido en un hackatón de Deis, se volvió el gestor oficial de paquetes de la CNCF para aplicaciones en Kubernetes."
+    "tag": "cloud-serverless",
+    "hito": "Lanzamiento comercial de **Google Compute Engine (GCE)**, permitiendo ejecutar máquinas virtuales a escala global en la nube de Google.",
+    "year": 2013,
+    "autor": "Google Cloud",
+    "trivia": "Presentado por Urs Hölzle, destacó por la rapidez de arranque de sus VMs y facturación por minutos."
   },
   {
     "id": "vol5-0x04",
     "volumen": "cloud-containers-sre",
     "index": 4,
-    "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Integración de un kernel de Linux real completo dentro del sistema operativo Windows con la llegada de **WSL2**.",
-    "year": 2019,
-    "autor": "Microsoft",
-    "trivia": "Simbolizó la reconciliación de Microsoft con Linux, permitiendo correr binarios y herramientas ELF nativas en Windows."
+    "domain": "cloud-infrastructure",
+    "tag": "cloud-serverless",
+    "hito": "Lanzamiento de **Azure Functions**, la plataforma de computación sin servidor (Serverless) orientada a eventos de Microsoft.",
+    "year": 2016,
+    "autor": "Microsoft Azure",
+    "trivia": "Permitió integrar funciones serverless directamente con el ecosistema empresarial de Office 365 y Active Directory."
   },
   {
     "id": "vol5-0x05",
@@ -70,55 +70,55 @@
     "volumen": "cloud-containers-sre",
     "index": 6,
     "domain": "cloud-infrastructure",
-    "tag": "iac-automation",
-    "hito": "Presentación de **Argo CD**, un controlador declarativo de despliegue continuo para Kubernetes guiado por principios GitOps.",
-    "year": 2018,
-    "autor": "Applatix / Intuit",
-    "trivia": "Su consola visual compara en tiempo real el árbol deseado de Git con el estado vivo del cluster de Kubernetes."
+    "tag": "cloud-serverless",
+    "hito": "Lanzamiento de **Google App Engine**, la primera oferta comercial de Google Cloud que permitía desplegar apps Python en su nube.",
+    "year": 2008,
+    "autor": "Google",
+    "trivia": "Fue el pionero de los modelos PaaS modernos, mucho antes del surgimiento de Docker y Kubernetes."
   },
   {
     "id": "vol5-0x07",
     "volumen": "cloud-containers-sre",
     "index": 7,
-    "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Conquista del umbral histórico del **4% de cuota de mercado en computadoras de escritorio** por parte de Linux a nivel mundial.",
-    "year": 2024,
-    "autor": "Comunidad Linux y Valve Software",
-    "trivia": "Impulsado por la consola *Steam Deck* de Valve y Proton, demostró la madurez de Linux en el gaming de alta gama."
+    "domain": "cloud-infrastructure",
+    "tag": "cloud-serverless",
+    "hito": "Anuncio formal de **Windows Azure** (luego Microsoft Azure) durante la conferencia PDC en Los Ángeles.",
+    "year": 2008,
+    "autor": "Microsoft (Ray Ozzie)",
+    "trivia": "El proyecto fue desarrollado bajo el nombre en clave secreto 'Project Red Dog'."
   },
   {
     "id": "vol5-0x08",
     "volumen": "cloud-containers-sre",
     "index": 8,
     "domain": "cloud-infrastructure",
-    "tag": "containers-virt",
-    "hito": "Debut de **KVM** (*Kernel-based Virtual Machine*), convirtiendo al propio kernel de Linux en un hipervisor de tipo 1 de alto rendimiento.",
-    "year": 2007,
-    "autor": "Avi Kivity (Qumranet)",
-    "trivia": "Integrado de inmediato en el kernel Linux; Qumranet fue comprada por Red Hat por más de 100 millones de dólares."
+    "tag": "cloud-serverless",
+    "hito": "Lanzamiento de la plataforma en la nube orientada a frontend y funciones serverless edge **Vercel** (originalmente *Zeit Now*).",
+    "year": 2016,
+    "autor": "Guillermo Rauch",
+    "trivia": "Permitió desplegar aplicaciones web globales con certificado SSL en segundos usando un único comando `now` en terminal."
   },
   {
     "id": "vol5-0x09",
     "volumen": "cloud-containers-sre",
     "index": 9,
     "domain": "cloud-infrastructure",
-    "tag": "containers-virt",
-    "hito": "Presentación pública de **Kubernetes** (**K8s**) como proyecto de código abierto inspirado en los sistemas internos **Borg** y **Omega**.",
-    "year": 2014,
-    "autor": "Google (Joe Beda, B. Burns et al.)",
-    "trivia": "Del griego \"timonel\"; su logo de 7 radios homenajea a *Seven of Nine* de Star Trek, en alusión al proyecto Borg de Google."
+    "tag": "cloud-serverless",
+    "hito": "Lanzamiento de la plataforma en la nube **Fly.io**, permitiendo correr contenedores Docker completos pegados al usuario en el Edge.",
+    "year": 2020,
+    "autor": "Kurt Mackey y Jerome Leclanche",
+    "trivia": "Convierte automáticamente contenedores Docker estándar en microVMs de Firecracker distribuidas en todo el mundo."
   },
   {
     "id": "vol5-0x0A",
     "volumen": "cloud-containers-sre",
     "index": 10,
     "domain": "cloud-infrastructure",
-    "tag": "cloud-serverless",
-    "hito": "Divulgación pública del concepto **Cloud Computing** por parte de Eric Schmidt en una conferencia de ejecutivos en San José.",
-    "year": 2006,
-    "autor": "Eric Schmidt (Google)",
-    "trivia": "Eric Schmidt definió la nube como un nuevo paradigma donde datos y cómputo residen en servidores accesibles vía web."
+    "tag": "containers-virt",
+    "hito": "Lanzamiento de **LXC (Linux Containers)** 1.0, la primera versión estable de contenedores a nivel de sistema operativo para Linux.",
+    "year": 2014,
+    "autor": "Stéphane Graber y Serge Hallyn",
+    "trivia": "Sirvió como el motor de ejecución inicial sobre el cual Solomon Hykes construyó las primeras versiones de Docker."
   },
   {
     "id": "vol5-0x0B",
@@ -136,11 +136,11 @@
     "volumen": "cloud-containers-sre",
     "index": 12,
     "domain": "cloud-infrastructure",
-    "tag": "iac-automation",
-    "hito": "Nacimiento de **Puppet**, profesionalizando la gestión declarativa de flotas de servidores con un lenguaje específico de dominio (*DSL*).",
-    "year": 2005,
-    "autor": "Luke Kanies (Puppet Labs)",
-    "trivia": "Creado en Ruby tras frustrarse con CFEngine, se volvió el estándar corporativo para gestionar miles de servidores."
+    "tag": "containers-virt",
+    "hito": "Publicación del artículo académico sobre **Borg**, el sistema secreto de gestión de clústeres a gran escala de Google.",
+    "year": 2015,
+    "autor": "Abhishek Verma, John Wilkes et al.",
+    "trivia": "Durante más de una década gestionó millones de tareas de Gmail, Search y YouTube antes de inspirar Kubernetes."
   },
   {
     "id": "vol5-0x0D",
@@ -148,32 +148,32 @@
     "index": 13,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Fundación de la **CNCF** y la **OCI** para salvaguardar la interoperabilidad y estándares abiertos de contenedores.",
-    "year": 2015,
-    "autor": "Linux Foundation y gigantes tecnológicos",
-    "trivia": "Docker donó la especificación de imágenes y su motor central de ejecución de bajo nivel `runc` para evitar la fragmentación propietaria del sector."
+    "hito": "Lanzamiento de **CoreOS**, un sistema operativo Linux mínimo diseñado específicamente para hospedar contenedores en clúster.",
+    "year": 2013,
+    "autor": "Alex Polvi y Brandon Philips",
+    "trivia": "Implementó actualizaciones automáticas particionadas activas/inactivas inspiradas en el esquema de ChromeOS."
   },
   {
     "id": "vol5-0x0E",
     "volumen": "cloud-containers-sre",
     "index": 14,
     "domain": "cloud-infrastructure",
-    "tag": "iac-automation",
-    "hito": "Creación de **SaltStack** (**Salt**) en Python, priorizando la ejecución remota de comandos en tiempo real a velocidad de milisegundos.",
-    "year": 2011,
-    "autor": "Thomas Hatch",
-    "trivia": "Diseñado sobre el bus de mensajería asíncrono *ZeroMQ*, era capaz de disparar comandos simultáneos a más de 10,000 servidores en menos de un segundo."
+    "tag": "containers-virt",
+    "hito": "Creación de la **Open Container Initiative (OCI)** por Docker, CoreOS y gigantes de la industria para estandarizar formatos de imagen.",
+    "year": 2015,
+    "autor": "The Linux Foundation",
+    "trivia": "Evitó una fragmentación irreversible en la industria tras la guerra comercial entre Docker y el motor rkt de CoreOS."
   },
   {
     "id": "vol5-0x0F",
     "volumen": "cloud-containers-sre",
     "index": 15,
     "domain": "cloud-infrastructure",
-    "tag": "cloud-serverless",
-    "hito": "Lanzamiento oficial de **Amazon S3** (*Simple Storage Service*), inaugurando formalmente la era moderna de la infraestructura como servicio.",
-    "year": 2006,
-    "autor": "Amazon Web Services (Andy Jassy)",
-    "trivia": "Ofreció almacenamiento ilimitado a **15 centavos de dólar** por gigabyte al mes, revolucionando los costos de la web."
+    "tag": "containers-virt",
+    "hito": "Lanzamiento de **Kata Containers**, integrando la velocidad de los contenedores con el aislamiento de seguridad de máquinas virtuales.",
+    "year": 2017,
+    "autor": "OpenStack Foundation / Intel",
+    "trivia": "Fusionó las tecnologías Clear Containers de Intel y RunV de Hyper.sh para ejecutar cada pod en un hipervisor ultraligero."
   },
   {
     "id": "vol5-0x10",
@@ -181,10 +181,10 @@
     "index": 16,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Introducción de la llamada al sistema `chroot` en **Unix Versión 7**, permitiendo enjaular la raíz del sistema de archivos para un proceso.",
-    "year": 1979,
-    "autor": "Bill Joy (Bell Labs)",
-    "trivia": "Concebida originalmente para probar instaladores de software sin comprometer los archivos maestros del sistema operativo anfitrión."
+    "hito": "Lanzamiento de **Podman 1.0**, permitiendo gestionar pods y contenedores OCI compatibles con Docker sin proceso daemon ni privilegios root.",
+    "year": 2019,
+    "autor": "Red Hat (Dan Walsh)",
+    "trivia": "Popularizó el alias `alias docker=podman` gracias a su compatibilidad directa comando a comando."
   },
   {
     "id": "vol5-0x11",
@@ -192,43 +192,43 @@
     "index": 17,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Nacimiento de **Red Hat Linux**, apostando por el empaquetado binario corporativo mediante el formato `.rpm`.",
-    "year": 1994,
-    "autor": "Marc Ewing y Bob Young",
-    "trivia": "Nombrado por la gorra roja de Cornell que Ewing usaba en el laboratorio para que la gente le pidiera ayuda técnica."
+    "hito": "Incorporación de **Control Groups (cgroups)** en el kernel de Linux 2.6.24, la base para aislar recursos en contenedores.",
+    "year": 2008,
+    "autor": "Paul Menage y Rohit Seth (Google)",
+    "trivia": "Originalmente se llamaba 'Process Containers', pero cambiaron el nombre para evitar confusiones semánticas."
   },
   {
     "id": "vol5-0x12",
     "volumen": "cloud-containers-sre",
     "index": 18,
     "domain": "cloud-infrastructure",
-    "tag": "cloud-serverless",
-    "hito": "Inicio del movimiento de salida de la nube (**Cloud Exit**) liderado por la empresa 37signals tras repatriar sus servidores al metal propio.",
-    "year": 2023,
-    "autor": "David Heinemeier Hansson (DHH)",
-    "trivia": "DHH mostró cómo salir de AWS y comprar servidores propios ahorró a Basecamp **$3.2 millones de dólares** en 5 años."
+    "tag": "containers-virt",
+    "hito": "Lanzamiento de **rkt (Rocket)** por CoreOS como alternativa orientada a seguridad frente al modelo monolítico de Docker.",
+    "year": 2014,
+    "autor": "CoreOS (Alex Polvi)",
+    "trivia": "Prescindía de un proceso demonio central con privilegios de root, impulsando la creación del estándar OCI."
   },
   {
     "id": "vol5-0x13",
     "volumen": "cloud-containers-sre",
     "index": 19,
-    "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Nacimiento de **Alpine Linux**, una distribución orientada a routers embebidos construida sobre la librería de C *musl* y *BusyBox*.",
-    "year": 2005,
-    "autor": "Natanael Copa",
-    "trivia": "Se convirtió en la imagen base favorita de millones de contenedores Docker por su diminuto tamaño de apenas **5 MB**."
+    "domain": "cloud-infrastructure",
+    "tag": "containers-virt",
+    "hito": "Publicación del hipervisor de código abierto **Xen** en el simposio ACM SOSP, popularizando la paravirtualización.",
+    "year": 2003,
+    "autor": "Universidad de Cambridge (Ian Pratt)",
+    "trivia": "Fue el motor principal que impulsó la nube pública de Amazon EC2 en sus primeros diez años de vida."
   },
   {
     "id": "vol5-0x14",
     "volumen": "cloud-containers-sre",
     "index": 20,
     "domain": "cloud-infrastructure",
-    "tag": "containers-virt",
-    "hito": "Lanzamiento de **Rocket** (**rkt**) por parte de CoreOS, desafiando el crecimiento descontrolado del daemon monolítico de Docker.",
-    "year": 2014,
-    "autor": "CoreOS (Alex Polvi)",
-    "trivia": "Acusó a Docker de abandonar su estándar modular; el conflicto forzó a la industria a crear la especificación de la OCI."
+    "tag": "iac-automation",
+    "hito": "Lanzamiento de **Vagrant**, simplificando la creación y gestión de entornos de desarrollo virtualizados reproducibles.",
+    "year": 2010,
+    "autor": "Mitchell Hashimoto",
+    "trivia": "Comenzó como un proyecto de fines de semana mientras Mitchell trabajaba como consultor de software."
   },
   {
     "id": "vol5-0x15",
@@ -246,11 +246,11 @@
     "volumen": "cloud-containers-sre",
     "index": 22,
     "domain": "cloud-infrastructure",
-    "tag": "cloud-serverless",
-    "hito": "Lanzamiento de **Cloudflare Workers**, permitiendo ejecutar lógica de backend en el borde (*Edge*) de la red mediante aislamientos de V8.",
-    "year": 2017,
-    "autor": "Cloudflare (Kenton Varda)",
-    "trivia": "Ejecuta código en menos de 5 ms en el borde de cientos de centros de datos globales mediante aislados V8 ligeros."
+    "tag": "iac-automation",
+    "hito": "Lanzamiento de **Packer**, una herramienta de código abierto para crear imágenes idénticas de máquinas virtuales multi-plataforma.",
+    "year": 2013,
+    "autor": "HashiCorp",
+    "trivia": "Permitió generar AMIs de AWS, imágenes de Docker y discos de VirtualBox a partir de una única plantilla JSON."
   },
   {
     "id": "vol5-0x17",
@@ -267,23 +267,23 @@
     "id": "vol5-0x18",
     "volumen": "cloud-containers-sre",
     "index": 24,
-    "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Presentación de **Android**, el sistema operativo móvil de Google basado en una versión personalizada del kernel de Linux.",
-    "year": 2008,
-    "autor": "Google (Andy Rubin)",
-    "trivia": "Llevó a Linux a miles de millones de teléfonos móviles, convirtiéndose en el SO con mayor base instalada del planeta."
+    "domain": "cloud-infrastructure",
+    "tag": "iac-automation",
+    "hito": "Lanzamiento de **Consul**, plataforma de descubrimiento de servicios, mallas de servicios y configuración distribuida.",
+    "year": 2014,
+    "autor": "HashiCorp (Armon Dadgar)",
+    "trivia": "Combina el protocolo de chismes Serf con el consenso Raft para ofrecer alta disponibilidad en datacenters."
   },
   {
     "id": "vol5-0x19",
     "volumen": "cloud-containers-sre",
     "index": 25,
     "domain": "cloud-infrastructure",
-    "tag": "containers-virt",
-    "hito": "Lanzamiento de **VMware Workstation 1.0**, logrando virtualizar sistemas operativos completos sobre procesadores Intel x86.",
-    "year": 1999,
-    "autor": "D. Greene y M. Rosenblum (VMware)",
-    "trivia": "Inventaron traducción binaria al vuelo para sortear limitaciones x86 que no permitían virtualizar por hardware."
+    "tag": "iac-automation",
+    "hito": "Lanzamiento del orquestador de cargas de trabajo flexible **Nomad**, capaz de programar contenedores y binarios tradicionales.",
+    "year": 2015,
+    "autor": "HashiCorp",
+    "trivia": "Diseñado como un único ejecutable sin dependencias externas, capaz de desplegar 1 millón de contenedores en 2 minutos."
   },
   {
     "id": "vol5-0x1A",
@@ -291,21 +291,21 @@
     "index": 26,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Presentación de **Consul** (HashiCorp), resolviendo descubrimiento de servicios y configuración distribuida vía **Raft**.",
-    "year": 2014,
-    "autor": "HashiCorp",
-    "trivia": "Permitió a microservicios efímeros en la nube encontrarse dinámicamente entre sí y balancear tráfico sin depender de configuraciones estáticas de DNS."
+    "hito": "Lanzamiento de **Bicep**, el lenguaje declarativo específico de dominio (DSL) para desplegar infraestructura en Azure de forma limpia.",
+    "year": 2020,
+    "autor": "Microsoft",
+    "trivia": "Se diseñó para librar a los ingenieros de Azure de la tediosa y verbosa sintaxis de las plantillas ARM en formato JSON."
   },
   {
     "id": "vol5-0x1B",
     "volumen": "cloud-containers-sre",
     "index": 27,
     "domain": "cloud-infrastructure",
-    "tag": "cloud-serverless",
-    "hito": "Lanzamiento comercial de **Windows Azure**, marcando la entrada de Microsoft en el mercado del cómputo en la nube empresarial.",
-    "year": 2010,
-    "autor": "Microsoft (Ray Ozzie)",
-    "trivia": "Ray Ozzie concibió Azure para salvar a Microsoft; años más tarde Satya Nadella refundó la firma en torno a la nube."
+    "tag": "iac-automation",
+    "hito": "Lanzamiento de **Puppet**, herramienta pionera de gestión de configuración declarativa para administradores de sistemas.",
+    "year": 2005,
+    "autor": "Luke Kanies",
+    "trivia": "Kanies lo escribió motivado por la rigidez y falta de mantenimiento que sufría al administrar entornos con CFEngine."
   },
   {
     "id": "vol5-0x1C",
@@ -313,65 +313,65 @@
     "index": 28,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Acuñación del concepto **GitOps**, proponiendo que los repositorios de Git sean la única fuente de verdad para la infraestructura en Kubernetes.",
-    "year": 2018,
-    "autor": "Alexis Richardson (Weaveworks)",
-    "trivia": "Sincroniza el cluster continuamente contra Git, erradicando la necesidad de dar acceso manual por SSH a producción."
+    "hito": "Lanzamiento del gestor de configuración en Ruby **Chef**, tratando a la infraestructura enteramente como código en recetas.",
+    "year": 2009,
+    "autor": "Adam Jacob y Jesse Robbins",
+    "trivia": "Adoptó metáforas culinarias en todo su diseño: recetas, libros de cocina (cookbooks) y cuchillos (knife)."
   },
   {
     "id": "vol5-0x1D",
     "volumen": "cloud-containers-sre",
     "index": 29,
-    "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Creación de **Slackware Linux**, la distribución comercial más veterana que aún se mantiene en desarrollo activo continuo.",
-    "year": 1993,
-    "autor": "Patrick Volkerding",
-    "trivia": "Mantuvo una adhesión estricta a la filosofía Unix tipo BSD, con scripts de inicio limpios y sin herramientas opacas."
+    "domain": "cloud-infrastructure",
+    "tag": "iac-automation",
+    "hito": "Lanzamiento de **SaltStack (Salt)**, sistema de ejecución remota de alta velocidad basado en colas ZeroMQ y Python.",
+    "year": 2011,
+    "autor": "Thomas Hatch",
+    "trivia": "Se diseñó para comunicarse con decenas de miles de servidores en milisegundos usando un bus de eventos persistente."
   },
   {
     "id": "vol5-0x1E",
     "volumen": "cloud-containers-sre",
     "index": 30,
-    "domain": "systems-networking",
-    "tag": "web-standards",
-    "hito": "Publicación de la especificación de **HTTP/3** en el **RFC 9114**, reemplazando el protocolo TCP por conexiones sobre **QUIC** (UDP).",
-    "year": 2022,
-    "autor": "IETF (Robin Marx et al.)",
-    "trivia": "Reduce la latencia móvil y erradica el bloqueo de cabeza de línea de TCP usando canales UDP cifrados."
+    "domain": "cloud-infrastructure",
+    "tag": "containers-virt",
+    "hito": "Publicación del proyecto **Apache Mesos** para abstracción y reparto fino de recursos en datacenters a gran escala.",
+    "year": 2011,
+    "autor": "Benjamin Hindman et al. (UC Berkeley)",
+    "trivia": "Twitter adoptó Mesos para abandonar su infame pantalla de ballena caída ('Fail Whale') y estabilizar su plataforma."
   },
   {
     "id": "vol5-0x1F",
     "volumen": "cloud-containers-sre",
     "index": 31,
     "domain": "cloud-infrastructure",
-    "tag": "containers-virt",
-    "hito": "Presentación de **Solaris Zones** (Contenedores de Solaris) en el sistema operativo Solaris 10 de Sun Microsystems.",
-    "year": 2004,
-    "autor": "Sun Microsystems",
-    "trivia": "Permitía crear miles de entornos virtuales aislados en un solo kernel sin el pesado costo de emular hardware completo."
+    "tag": "iac-automation",
+    "hito": "Lanzamiento de **Helm v3**, eliminando por completo el controversial componente servidor *Tiller* por seguridad en Kubernetes.",
+    "year": 2019,
+    "autor": "Helm Community / CNCF",
+    "trivia": "La eliminación de Tiller simplificó el modelo de seguridad apoyándose directamente en el RBAC nativo del clúster."
   },
   {
     "id": "vol5-0x20",
     "volumen": "cloud-containers-sre",
     "index": 32,
-    "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Salida triunfal de **Red Hat** a la bolsa de Wall Street en pleno apogeo de la euforia financiera de la era puntocom.",
-    "year": 1999,
-    "autor": "Red Hat Inc.",
-    "trivia": "Primera firma de software libre en NASDAQ, logrando la octava mayor ganancia de debut en la historia de Wall Street."
+    "domain": "cloud-infrastructure",
+    "tag": "iac-automation",
+    "hito": "Anuncio de la malla de servicios **Istio**, facilitando balanceo inteligente, telemetría y cifrado mTLS entre microservicios.",
+    "year": 2017,
+    "autor": "Google, IBM y Lyft",
+    "trivia": "Aprovechó el proxy Envoy como plano de datos colocándolo como contenedor 'sidecar' junto a cada aplicación."
   },
   {
     "id": "vol5-0x21",
     "volumen": "cloud-containers-sre",
     "index": 33,
     "domain": "cloud-infrastructure",
-    "tag": "containers-virt",
-    "hito": "Incorporación de los grupos de control (**cgroups**) en el kernel de Linux tras la contribución de parches de ingenieros de Google.",
-    "year": 2007,
-    "autor": "Paul Menage y Rohit Seth (Google)",
-    "trivia": "Creados en Google como *Process Containers*, fijaron límites estrictos de RAM, CPU e I/O por grupo de procesos."
+    "tag": "iac-automation",
+    "hito": "Lanzamiento de **Linkerd**, la primera malla de servicios (service mesh) de la industria, acuñando formalmente el término.",
+    "year": 2016,
+    "autor": "William Morgan y Oliver Gould (Buoyant)",
+    "trivia": "Inspirado en la biblioteca interna Finagle que ambos ingenieros ayudaron a construir en Twitter."
   },
   {
     "id": "vol5-0x22",
@@ -379,10 +379,10 @@
     "index": 34,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Controversia por el cambio de licencia de **Terraform** en HashiCorp, sustituyendo el código abierto por la licencia **BSL**.",
-    "year": 2023,
-    "autor": "HashiCorp",
-    "trivia": "Desató una rebelión en la industria y el nacimiento del fork libre **OpenTofu** bajo la *Linux Foundation*."
+    "hito": "Creación del proyecto de observabilidad **OpenTelemetry (OTel)**, fusionando los proyectos OpenTracing y OpenCensus.",
+    "year": 2019,
+    "autor": "CNCF",
+    "trivia": "Se convirtió rápidamente en el segundo proyecto más activo de toda la fundación CNCF, sólo detrás de Kubernetes."
   },
   {
     "id": "vol5-0x23",
@@ -412,10 +412,10 @@
     "index": 37,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Adquisición millonaria de **Ansible** por parte de **Red Hat** para integrarlo como el cerebro de automatización de sus soluciones empresariales.",
+    "hito": "Liberación de **Jaeger**, plataforma de rastreo distribuido de transacciones entre microservicios inspirada en Dapper de Google.",
     "year": 2015,
-    "autor": "Red Hat",
-    "trivia": "Red Hat pagó más de **$100 millones** por una startup chica, consagrando la madurez comercial de Ansible y Python."
+    "autor": "Yuri Shkuro (Uber Technologies)",
+    "trivia": "Uber lo desarrolló internamente cuando pasaron de un monolito en Python a miles de microservicios distribuidos."
   },
   {
     "id": "vol5-0x26",
@@ -432,23 +432,23 @@
     "id": "vol5-0x27",
     "volumen": "cloud-containers-sre",
     "index": 39,
-    "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Votación histórica de **Debian** para adoptar **systemd** como sistema de init oficial tras meses de debate político.",
+    "domain": "cloud-infrastructure",
+    "tag": "iac-automation",
+    "hito": "Lanzamiento de la plataforma de tableros y analítica visual de métricas en series temporales **Grafana**.",
     "year": 2014,
-    "autor": "Debian Technical Committee",
-    "trivia": "La tensión fue tan brutal que provocó la dimisión de varios desarrolladores históricos de Debian y el nacimiento de la bifurcación disidente *Devuan*."
+    "autor": "Torkel Ödegaard",
+    "trivia": "Nació originalmente como una bifurcación de la interfaz Kibana enfocada específicamente en métricas numéricas."
   },
   {
     "id": "vol5-0x28",
     "volumen": "cloud-containers-sre",
     "index": 40,
     "domain": "cloud-infrastructure",
-    "tag": "containers-virt",
-    "hito": "Nacimiento de **k3s**, empaquetando una distribución completa y certificada de Kubernetes dentro de un único archivo binario liviano.",
-    "year": 2019,
-    "autor": "Darren Shepherd (Rancher Labs)",
-    "trivia": "Eliminó componentes pesados para correr Kubernetes en Raspberry Pi y dispositivos IoT con menos de 512 MB de RAM."
+    "tag": "iac-automation",
+    "hito": "Lanzamiento de **LitmusChaos**, marco nativo de ingeniería de caos para inyectar fallos de red y pod en clústeres de Kubernetes.",
+    "year": 2018,
+    "autor": "MayaData / CNCF",
+    "trivia": "Permite definir experimentos de caos directamente como recursos personalizados CRD de Kubernetes."
   },
   {
     "id": "vol5-0x29",
@@ -456,21 +456,21 @@
     "index": 41,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de **Chef**, popularizando la infraestructura como código mediante \"recetas\" y *cookbooks*.",
-    "year": 2009,
-    "autor": "Adam Jacob (Opscode)",
-    "trivia": "Permitía usar Ruby imperativo frente a la sintaxis de Puppet, desatando una fuerte rivalidad entre sysadmins."
+    "hito": "Publicación del libro canónico **Site Reliability Engineering (SRE)**, revelando cómo gestiona Google sus sistemas de producción.",
+    "year": 2016,
+    "autor": "Betsy Beyer, Chris Jones et al. (Google)",
+    "trivia": "Popularizó principios revolucionarios como Error Budgets, eliminación de 'toil' y la doctrina 'Hope is not a strategy'."
   },
   {
     "id": "vol5-0x2A",
     "volumen": "cloud-containers-sre",
     "index": 42,
-    "domain": "cloud-infrastructure",
-    "tag": "iac-automation",
-    "hito": "Creación de **Vagrant**, permitiendo a cualquier desarrollador levantar entornos de virtualización locales idénticos con un simple `vagrant up`.",
-    "year": 2010,
-    "autor": "Mitchell Hashimoto y John Bender",
-    "trivia": "Nació en un apartamento universitario; resolvió de un plumazo la excusa eterna del programador: *\"En mi máquina sí funcionaba\"*."
+    "domain": "hacker-culture-web",
+    "tag": "collaboration-platforms",
+    "hito": "Publicación de la influyente novela de gestión técnica **The Phoenix Project**, popularizando la cultura y metodologías DevOps.",
+    "year": 2013,
+    "autor": "Gene Kim, Kevin Behr y George Spafford",
+    "trivia": "Adaptó la teoría de restricciones de la manufactura industrial ('The Goal') al caos de los departamentos de TI."
   },
   {
     "id": "vol5-0x2B",
@@ -478,54 +478,54 @@
     "index": 43,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Presentación de la legendaria conferencia *\"10+ Deploys Per Day: Dev and Ops Cooperation at Flickr\"*, alumbrando el movimiento **DevOps**.",
-    "year": 2009,
-    "autor": "John Allspaw y Paul Hammond (Flickr)",
-    "trivia": "Mostraron que desarrollo y operaciones podían colaborar en armonía, desterrando los despliegues traumáticos de antaño."
+    "hito": "Acuñación del término y paradigma **GitOps**, usando Git como única fuente de verdad para la infraestructura declarativa.",
+    "year": 2017,
+    "autor": "Alexis Richardson (Weaveworks)",
+    "trivia": "El concepto demostró que la convergencia continua de software es más segura que lanzar scripts desde pipelines CI."
   },
   {
     "id": "vol5-0x2C",
     "volumen": "cloud-containers-sre",
     "index": 44,
     "domain": "cloud-infrastructure",
-    "tag": "containers-virt",
-    "hito": "Demostración sorpresa de **Docker** en una charla relámpago de la conferencia *PyCon 2013*, desatando la locura por los contenedores.",
-    "year": 2013,
-    "autor": "Solomon Hykes (dotCloud)",
-    "trivia": "La demo en vivo de 5 minutos causó tal impacto que dotCloud abandonó su negocio PaaS para renacer como **Docker Inc.**"
+    "tag": "iac-automation",
+    "hito": "Lanzamiento de la plataforma de infraestructura como código **Pulumi**, permitiendo usar TypeScript, Python o Go en vez de YAML.",
+    "year": 2018,
+    "autor": "Joe Duffy y Eric Rudder",
+    "trivia": "Permite usar bucles, clases y pruebas unitarias de software reales para instanciar recursos de nube."
   },
   {
     "id": "vol5-0x2D",
     "volumen": "cloud-containers-sre",
     "index": 45,
-    "domain": "systems-networking",
-    "tag": "web-standards",
-    "hito": "Creación del grupo rebelde de estandarización **WHATWG** por ingenieros de Apple, Mozilla y Opera para rescatar el HTML.",
-    "year": 2004,
-    "autor": "Ian Hickson, David Hyatt et al.",
-    "trivia": "Se rebelaron contra los planes del W3C de abandonar HTML para imponer el complejo e intolerante estándar *XHTML 2.0*, fundando las bases de HTML5."
+    "domain": "cloud-infrastructure",
+    "tag": "cloud-serverless",
+    "hito": "Lanzamiento de **Cloudflare Workers**, ejecutando funciones serverless en el borde (*Edge Computing*) mediante V8 Isolates.",
+    "year": 2017,
+    "autor": "Kenton Varda (Cloudflare)",
+    "trivia": "Eliminó el arranque en frío (cold start) al prescindir de contenedores y usar aislamiento nativo de memoria en V8."
   },
   {
     "id": "vol5-0x2E",
     "volumen": "cloud-containers-sre",
     "index": 46,
     "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Debut del intérprete de comandos **GNU Bash** (*Bourne-Again SHell*), diseñado como el reemplazo libre del clásico shell de Stephen Bourne.",
-    "year": 1989,
-    "autor": "Brian Fox (Free Software Foundation)",
-    "trivia": "Su nombre jugaba con *Born Again*; se convirtió en el shell interactivo por defecto indiscutible de casi todo Linux."
+    "tag": "web-standards",
+    "hito": "Lanzamiento de **Tailscale**, red privada virtual en malla basada en WireGuard que no requiere abrir puertos ni configurar firewalls.",
+    "year": 2020,
+    "autor": "Avery Pennarun, Brad Fitzpatrick et al.",
+    "trivia": "Aprovechó técnicas avanzadas de NAT traversal y el protocolo DERP para conectar máquinas directamente punto a punto."
   },
   {
     "id": "vol5-0x2F",
     "volumen": "cloud-containers-sre",
     "index": 47,
-    "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Cancelación unilateral del modelo tradicional de **CentOS Linux** por parte de Red Hat a favor de la variante experimental *CentOS Stream*.",
-    "year": 2020,
-    "autor": "Red Hat (IBM)",
-    "trivia": "Enfureció a miles de empresas de hosting, desatando el nacimiento inmediato de clones binarios como **Rocky** y **AlmaLinux**."
+    "domain": "cloud-infrastructure",
+    "tag": "iac-automation",
+    "hito": "Lanzamiento del framework de computación sin servidor en Kubernetes **Knative**, unificando el ecosistema cloud-native.",
+    "year": 2018,
+    "autor": "Google, Pivotal, Red Hat",
+    "trivia": "Se dividió en dos componentes centrales: Knative Serving (escalado a cero) y Knative Eventing."
   },
   {
     "id": "vol5-0x30",
@@ -555,10 +555,10 @@
     "index": 50,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Lanzamiento de **Podman** en Red Hat, ejecutando contenedores sin demonio central y en modo rootless sin root.",
-    "year": 2018,
-    "autor": "Dan Walsh (Red Hat)",
-    "trivia": "Logró compatibilidad total con Docker eliminando el demonio central con privilegios de root (`alias docker=podman`)."
+    "hito": "Lanzamiento de **K3s**, una distribución ligera de Kubernetes en un solo binario optimizada para IoT y entornos Edge.",
+    "year": 2019,
+    "autor": "Rancher Labs (Darren Shepherd)",
+    "trivia": "Reemplazó el pesado almacén etcd por SQLite embebido y redujo el consumo de RAM a menos de 512 MB."
   },
   {
     "id": "vol5-0x33",
@@ -566,21 +566,21 @@
     "index": 51,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Donación oficial y graduación de **Kubernetes 1.0** bajo la tutela de la nueva fundación CNCF.",
-    "year": 2015,
-    "autor": "Google y Linux Foundation",
-    "trivia": "Consagró a Kubernetes frente a *Swarm* y *Mesos*, convirtiéndose en el sistema operativo indiscutible de la nube."
+    "hito": "Lanzamiento del runtime de microVM ultrarrápidas y seguras **Firecracker**, optimizado para cargas Serverless y contenedores.",
+    "year": 2018,
+    "autor": "Amazon Web Services",
+    "trivia": "Escrito en Rust sobre KVM, es la tecnología subyacente que arranca funciones en AWS Lambda en milisegundos."
   },
   {
     "id": "vol5-0x34",
     "volumen": "cloud-containers-sre",
     "index": 52,
     "domain": "cloud-infrastructure",
-    "tag": "cloud-serverless",
-    "hito": "Publicación del conjunto de herramientas de resiliencia **Simian Army** y **Chaos Monkey** por parte de ingenieros de Netflix.",
-    "year": 2011,
-    "autor": "Netflix (Greg Orzell)",
-    "trivia": "Mataba servidores en producción aleatoriamente para forzar a ingenieros a diseñar arquitecturas inmunes a fallos."
+    "tag": "iac-automation",
+    "hito": "Lanzamiento de **Crossplane**, permitiendo orquestar infraestructura de nube multi-proveedor utilizando directamente APIs de Kubernetes.",
+    "year": 2018,
+    "autor": "Upbound (Bassam Tabbara)",
+    "trivia": "Convierte al plano de control de Kubernetes en un orquestador universal de bases de datos y redes de AWS y GCP."
   },
   {
     "id": "vol5-0x35",
@@ -599,32 +599,32 @@
     "index": 54,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Integración nativa de microcontenedores basados en **WebAssembly** en clusters de producción mediante el proyecto **SpinKube**.",
-    "year": 2024,
-    "autor": "Deislabs (Fermin Galan et al.)",
-    "trivia": "Arranca cargas en Kubernetes en microsegundos consumiendo una fracción de los recursos de un contenedor Linux."
+    "hito": "Lanzamiento de **Kind** (*Kubernetes in Docker*), herramienta para ejecutar clústeres locales de Kubernetes usando nodos en contenedores.",
+    "year": 2018,
+    "autor": "Ben Moss y James Munnelly (Kubernetes SIGs)",
+    "trivia": "Se convirtió en la herramienta fundamental para pruebas automatizadas e integración continua del propio Kubernetes."
   },
   {
     "id": "vol5-0x37",
     "volumen": "cloud-containers-sre",
     "index": 55,
-    "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Lanzamiento de **BSD** (*Berkeley Software Distribution*), transformando el Unix académico con soporte para memoria virtual y TCP/IP.",
-    "year": 1977,
-    "autor": "Bill Joy (UC Berkeley CSRG)",
-    "trivia": "Financiado por DARPA, su stack TCP/IP se convirtió en la base de las redes de telecomunicaciones de todo el planeta."
+    "domain": "cloud-infrastructure",
+    "tag": "iac-automation",
+    "hito": "Creación del proyecto de agregación de registros ligero **Grafana Loki**, optimizado para indexar solo metadatos y etiquetas.",
+    "year": 2018,
+    "autor": "Grafana Labs",
+    "trivia": "Diseñado bajo la filosofía 'como Prometheus pero para logs', prescindiendo de los pesados índices de texto completo."
   },
   {
     "id": "vol5-0x38",
     "volumen": "cloud-containers-sre",
     "index": 56,
     "domain": "cloud-infrastructure",
-    "tag": "cloud-serverless",
-    "hito": "Presentación de **Google App Engine** (**GAE**), permitiendo ejecutar aplicaciones en Python 2.5 dentro de un sandbox seguro de Google.",
-    "year": 2008,
-    "autor": "Google (Paul McDonald)",
-    "trivia": "Primer servicio cloud de Google; escalaba de cero a millones de peticiones en Python sin configurar servidores."
+    "tag": "iac-automation",
+    "hito": "Lanzamiento de **Cilium**, proporcionando redes, seguridad y observabilidad de alto rendimiento en Kubernetes utilizando eBPF.",
+    "year": 2016,
+    "autor": "Thomas Graf y Dan Wendlandt (Isovalent)",
+    "trivia": "Reemplazó las complejas tablas de iptables por programas BPF inyectados dinámicamente en el kernel de Linux."
   },
   {
     "id": "vol5-0x39",
@@ -632,10 +632,10 @@
     "index": 57,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Creación de **FreeBSD Jails**, ampliando el concepto de jaula para aislar procesos, interfaces de red y cuentas de usuario completas.",
-    "year": 2000,
-    "autor": "Poul-Henning Kamp",
-    "trivia": "Diseñado en FreeBSD para evitar que usuarios de hosting compartido espiaran procesos de otras cuentas vecinas."
+    "hito": "Lanzamiento de **gVisor**, un sandbox de seguridad a nivel de usuario que intercepta llamadas al sistema para aislar contenedores.",
+    "year": 2018,
+    "autor": "Google",
+    "trivia": "Implementa un kernel sustituto escrito en Go ('Sentry') para evitar que un contenedor comprometido toque el host."
   },
   {
     "id": "vol5-0x3A",
@@ -643,43 +643,43 @@
     "index": 58,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Lanzamiento de **Pulumi**, permitiendo definir infraestructura de nube utilizando lenguajes de programación reales como Python, TypeScript y Go.",
-    "year": 2018,
-    "autor": "Joe Duffy (Pulumi)",
-    "trivia": "Permitió definir infraestructura con TypeScript o Python con bucles reales y tipos fuertes sin lidiar con HCL."
+    "hito": "Lanzamiento de **KEDA** (*Kubernetes Event-driven Autoscaling*), permitiendo escalar pods a cero y hasta miles según colas de eventos.",
+    "year": 2019,
+    "autor": "Microsoft y Red Hat",
+    "trivia": "Añadió escalado reactivo basado en métricas externas como colas de RabbitMQ, Kafka o Azure Service Bus."
   },
   {
     "id": "vol5-0x3B",
     "volumen": "cloud-containers-sre",
     "index": 59,
-    "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Fundación del proyecto **Debian GNU/Linux** bajo el manifiesto de crear una distribución universal guiada por principios éticos comunitarios.",
-    "year": 1993,
-    "autor": "Ian Murdock",
-    "trivia": "Murdock unió el nombre de su prometida **Debra** con el suyo (**Ian**), creando el estándar de empaquetado `.deb` y `apt`."
+    "domain": "cloud-infrastructure",
+    "tag": "iac-automation",
+    "hito": "Lanzamiento de **Thanos**, añadiendo almacenamiento de largo plazo de alta disponibilidad y consultas globales a Prometheus.",
+    "year": 2018,
+    "autor": "Bartek Plotka y Fabian Reinartz (Improbable)",
+    "trivia": "Permitió retener métricas de monitoreo durante años almacenando bloques comprimidos en cubos de Amazon S3."
   },
   {
     "id": "vol5-0x3C",
     "volumen": "cloud-containers-sre",
     "index": 60,
-    "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Relanzamiento del kernel **Linux** bajo licencia **GNU GPL v2**, facilitando su desarrollo comunitario masivo.",
-    "year": 1992,
-    "autor": "Linus Torvalds",
-    "trivia": "Linus confesó que adoptar la licencia GPL v2 fue la mejor decisión estratégica de su vida para el éxito de Linux."
+    "domain": "cloud-infrastructure",
+    "tag": "iac-automation",
+    "hito": "Lanzamiento de la plataforma de observabilidad de infraestructura y aplicaciones SaaS basada en la nube **Datadog**.",
+    "year": 2010,
+    "autor": "Olivier Pomel y Alexis Lê-Quôc",
+    "trivia": "Nació de la frustración entre los equipos de desarrollo y operaciones para acordar métricas comunes de salud."
   },
   {
     "id": "vol5-0x3D",
     "volumen": "cloud-containers-sre",
     "index": 61,
     "domain": "cloud-infrastructure",
-    "tag": "cloud-serverless",
-    "hito": "Despliegue de los procesadores personalizados con arquitectura ARM **AWS Graviton2** en centros de datos a gran escala.",
-    "year": 2020,
-    "autor": "Amazon Web Services (Annapurna Labs)",
-    "trivia": "Logró hasta 40% más rendimiento por vatio que chips Intel/AMD tradicionales, acelerando la nube hacia chips ARM."
+    "tag": "iac-automation",
+    "hito": "Lanzamiento del motor de políticas declarativas para la nube nativa **Open Policy Agent (OPA)**.",
+    "year": 2016,
+    "autor": "Styra (Tim Hinrichs y Torin Sandall)",
+    "trivia": "Utiliza el lenguaje declarativo Rego para unificar la aplicación de políticas de seguridad en toda la pila tecnológica."
   },
   {
     "id": "vol5-0x3E",
@@ -698,9 +698,9 @@
     "index": 63,
     "domain": "cloud-infrastructure",
     "tag": "iac-automation",
-    "hito": "Creación de **CFEngine** en la Universidad de Oslo, formulando la teoría del mantenimiento del estado deseado y la **idempotencia**.",
-    "year": 1993,
-    "autor": "Mark Burgess",
-    "trivia": "Físico teórico, aplicó teoría de control para que un script pudiera ejecutarse mil veces dando siempre el mismo estado."
+    "hito": "Publicación del primer informe **State of DevOps Report** de DORA, estableciendo métricas científicas de rendimiento en ingeniería.",
+    "year": 2014,
+    "autor": "Nicole Forsgren, Gene Kim, Jez Humble",
+    "trivia": "Definió las cuatro métricas clave (lead time, frecuencia de despliegue, MTTR y tasa de fallo de cambios)."
   }
 ]

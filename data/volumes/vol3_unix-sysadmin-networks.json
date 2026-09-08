@@ -5,10 +5,10 @@
     "index": 0,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Estandarización y despliegue masivo de la API de **WebGPU** para aceleración de gráficos y cómputo de modelos de IA en el navegador.",
-    "year": 2024,
-    "autor": "W3C GPU for the Web Community Group",
-    "trivia": "Da acceso directo a GPUs con Vulkan/Metal, permitiendo ejecutar inferencia de LLMs locales directo en la pestaña web."
+    "hito": "Publicación del **RFC 882**, introduciendo el **Domain Name System (DNS)** para reemplazar el archivo estático HOSTS.TXT de ARPANET.",
+    "year": 1983,
+    "autor": "Paul Mockapetris (USC-ISI)",
+    "trivia": "Antes del DNS, Elizabeth Feinler en el NIC actualizaba manualmente el archivo HOSTS.TXT por teléfono."
   },
   {
     "id": "vol3-0x01",
@@ -37,22 +37,22 @@
     "volumen": "unix-sysadmin-networks",
     "index": 3,
     "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Presentación de **Android**, el sistema operativo móvil de Google basado en una versión personalizada del kernel de Linux.",
-    "year": 2008,
-    "autor": "Google (Andy Rubin)",
-    "trivia": "Llevó a Linux a miles de millones de teléfonos móviles, convirtiéndose en el SO con mayor base instalada del planeta."
+    "tag": "web-standards",
+    "hito": "Publicación del **RFC 1105** definiendo el **Border Gateway Protocol (BGP)**, el pegamento de enrutamiento que une Internet.",
+    "year": 1989,
+    "autor": "Kirk Lougheed y Yakov Rekhter",
+    "trivia": "El borrador inicial fue bosquejado en tres servilletas manchadas de kétchup durante una reunión de IETF."
   },
   {
     "id": "vol3-0x04",
     "volumen": "unix-sysadmin-networks",
     "index": 4,
-    "domain": "cloud-infrastructure",
-    "tag": "iac-automation",
-    "hito": "Lanzamiento de **Pulumi**, permitiendo definir infraestructura de nube utilizando lenguajes de programación reales como Python, TypeScript y Go.",
-    "year": 2018,
-    "autor": "Joe Duffy (Pulumi)",
-    "trivia": "Permitió definir infraestructura con TypeScript o Python con bucles reales y tipos fuertes sin lidiar con HCL."
+    "domain": "systems-networking",
+    "tag": "developer-tools",
+    "hito": "Lanzamiento de **Open vSwitch (OVS)**, el conmutador virtual multicapa de producción para redes definidas por software (SDN).",
+    "year": 2009,
+    "autor": "Ben Pfaff, Justin Pettit (Nicira)",
+    "trivia": "Permitió a los hipervisores conmutar tráfico de máquinas virtuales a velocidad de línea mediante OpenFlow."
   },
   {
     "id": "vol3-0x05",
@@ -69,12 +69,12 @@
     "id": "vol3-0x06",
     "volumen": "unix-sysadmin-networks",
     "index": 6,
-    "domain": "cloud-infrastructure",
-    "tag": "cloud-serverless",
-    "hito": "Presentación de **Google App Engine** (**GAE**), permitiendo ejecutar aplicaciones en Python 2.5 dentro de un sandbox seguro de Google.",
+    "domain": "systems-networking",
+    "tag": "web-standards",
+    "hito": "Publicación del **RFC 5321** actualizando la especificación formal del protocolo de transporte de correo **SMTP**.",
     "year": 2008,
-    "autor": "Google (Paul McDonald)",
-    "trivia": "Primer servicio cloud de Google; escalaba de cero a millones de peticiones en Python sin configurar servidores."
+    "autor": "John Klensin",
+    "trivia": "Consolidó tres décadas de extensiones de correo sobre el diseño original de Jon Postel de 1982."
   },
   {
     "id": "vol3-0x07",
@@ -82,10 +82,10 @@
     "index": 7,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Estándar **HTTP/1.1** (**RFC 2068**), incorporando conexiones persistentes (*keep-alive*) y cabecera `Host`.",
-    "year": 1997,
-    "autor": "IETF (Roy Fielding et al.)",
-    "trivia": "La cabecera `Host` habilitó el hosting virtual, permitiendo que millones de webs distintas compartieran una misma IP."
+    "hito": "Lanzamiento de **Network Time Protocol (NTP)** (*RFC 958*), sincronizando relojes informáticos a través de redes de paquetes con latencia.",
+    "year": 1985,
+    "autor": "David L. Mills (Univ. de Delaware)",
+    "trivia": "Mills operaba satélites y antenas de radio en su propio patio trasero para calibrar señales horarias."
   },
   {
     "id": "vol3-0x08",
@@ -113,12 +113,12 @@
     "id": "vol3-0x0A",
     "volumen": "unix-sysadmin-networks",
     "index": 10,
-    "domain": "cloud-infrastructure",
-    "tag": "cloud-serverless",
-    "hito": "Lanzamiento de **Cloudflare Workers**, permitiendo ejecutar lógica de backend en el borde (*Edge*) de la red mediante aislamientos de V8.",
-    "year": 2017,
-    "autor": "Cloudflare (Kenton Varda)",
-    "trivia": "Ejecuta código en menos de 5 ms en el borde de cientos de centros de datos globales mediante aislados V8 ligeros."
+    "domain": "systems-networking",
+    "tag": "web-standards",
+    "hito": "Publicación del **RFC 2616** definiendo la especificación estándar de **HTTP/1.1**, introduciendo conexiones persistentes *Keep-Alive*.",
+    "year": 1999,
+    "autor": "IETF (Roy Fielding, Jim Gettys et al.)",
+    "trivia": "Solucionó la ineficiencia de abrir una conexión TCP distinta para cada imagen o recurso de una página web."
   },
   {
     "id": "vol3-0x0B",
@@ -137,10 +137,10 @@
     "index": 12,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Publicación de **Vim** (*Vi IMproved*) para computadoras Commodore Amiga bajo un modelo de software benéfico (*charityware*).",
-    "year": 1991,
-    "autor": "Bram Moolenaar",
-    "trivia": "Bram pedía a los usuarios donar a orfanatos en Uganda, manteniendo esta causa humanitaria activa por más de 30 años."
+    "hito": "Creación de la utilidad de diagnóstico **Traceroute**, rastreando los saltos de enrutamiento en redes IP usando el campo TTL.",
+    "year": 1988,
+    "autor": "Van Jacobson (LBL)",
+    "trivia": "Se le ocurrió la idea tras el gran colapso por congestión de Internet ocurrido a finales de los 80."
   },
   {
     "id": "vol3-0x0D",
@@ -157,12 +157,12 @@
     "id": "vol3-0x0E",
     "volumen": "unix-sysadmin-networks",
     "index": 14,
-    "domain": "cloud-infrastructure",
-    "tag": "iac-automation",
-    "hito": "Acuñación del concepto **GitOps**, proponiendo que los repositorios de Git sean la única fuente de verdad para la infraestructura en Kubernetes.",
-    "year": 2018,
-    "autor": "Alexis Richardson (Weaveworks)",
-    "trivia": "Sincroniza el cluster continuamente contra Git, erradicando la necesidad de dar acceso manual por SSH a producción."
+    "domain": "systems-networking",
+    "tag": "web-standards",
+    "hito": "Publicación del **RFC 3031** formalizando la arquitectura **MPLS** (*Multiprotocol Label Switching*) para redes troncales.",
+    "year": 2001,
+    "autor": "Eric Rosen, Arun Viswanathan",
+    "trivia": "Aceleró el enrutamiento de paquetes en proveedores de Internet sustituyendo búsquedas IP por etiquetas fijas."
   },
   {
     "id": "vol3-0x0F",
@@ -225,10 +225,10 @@
     "index": 20,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Publicación del sistema operativo educativo **MINIX** y su correspondiente libro de arquitectura de sistemas por Prentice Hall.",
-    "year": 1987,
-    "autor": "Andrew S. Tanenbaum",
-    "trivia": "Diseñado con un microkernel limpio para enseñar a alumnos cómo funciona un SO sin violar el copyright de AT&T."
+    "hito": "Creación del programa **Sudo** (*Superuser Do*), permitiendo a administradores delegar comandos privilegiados con auditoría.",
+    "year": 1980,
+    "autor": "Bob Coggeshall y Cliff Spencer",
+    "trivia": "Nació en SUNY Buffalo porque los operadores necesitaban reiniciar colas de impresión sin ser root."
   },
   {
     "id": "vol3-0x15",
@@ -246,11 +246,11 @@
     "volumen": "unix-sysadmin-networks",
     "index": 22,
     "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Votación histórica de **Debian** para adoptar **systemd** como sistema de init oficial tras meses de debate político.",
-    "year": 2014,
-    "autor": "Debian Technical Committee",
-    "trivia": "La tensión fue tan brutal que provocó la dimisión de varios desarrolladores históricos de Debian y el nacimiento de la bifurcación disidente *Devuan*."
+    "tag": "web-standards",
+    "hito": "Lanzamiento del protocolo de enrutamiento criptográfico seguro y anónimo de baja latencia **I2P (Invisible Internet Project)**.",
+    "year": 2003,
+    "autor": "jrandom",
+    "trivia": "Implementa enrutamiento de ajo (garlic routing) agrupando múltiples mensajes para dificultar el análisis de tráfico."
   },
   {
     "id": "vol3-0x17",
@@ -258,32 +258,32 @@
     "index": 23,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Nacimiento del editor de texto extensible **Emacs** en el laboratorio de inteligencia artificial del MIT.",
-    "year": 1976,
-    "autor": "Richard Stallman y Guy Steele (MIT)",
-    "trivia": "Concebido por Stallman sobre macros TECO; extensible en Lisp, se convirtió en un entorno operativo en sí mismo."
+    "hito": "Primer lanzamiento de la shell **Bash (Bourne Again SHell)** como parte del Proyecto GNU, reemplazando la Bourne Shell original.",
+    "year": 1989,
+    "autor": "Brian Fox (Free Software Foundation)",
+    "trivia": "Su nombre es un juego de palabras homenajeando a Steve Bourne y al concepto de 'renacimiento'."
   },
   {
     "id": "vol3-0x18",
     "volumen": "unix-sysadmin-networks",
     "index": 24,
     "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Cancelación unilateral del modelo tradicional de **CentOS Linux** por parte de Red Hat a favor de la variante experimental *CentOS Stream*.",
-    "year": 2020,
-    "autor": "Red Hat (IBM)",
-    "trivia": "Enfureció a miles de empresas de hosting, desatando el nacimiento inmediato de clones binarios como **Rocky** y **AlmaLinux**."
+    "tag": "developer-tools",
+    "hito": "Lanzamiento de la herramienta de sincronización incremental de archivos remotos **Rsync**, minimizando el ancho de banda transferido.",
+    "year": 1996,
+    "autor": "Andrew Tridgell y Paul Mackerras",
+    "trivia": "Su algoritmo de suma de verificación rotatoria revolucionó los respaldos en redes lentas."
   },
   {
     "id": "vol3-0x19",
     "volumen": "unix-sysadmin-networks",
     "index": 25,
-    "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Elección oficial del pingüino **Tux** como la mascota y símbolo universal representativo del kernel **Linux**.",
-    "year": 1996,
-    "autor": "Linus Torvalds y Larry Ewing",
-    "trivia": "Linus eligió el pingüino Tux recordando con humor cómo uno lo mordió en el dedo en el zoológico de Canberra en Australia."
+    "domain": "hacker-culture-web",
+    "tag": "cypherpunks-foss",
+    "hito": "Lanzamiento de la primera versión del protocolo y suite de cifrado remoto **SSH-1 (Secure Shell)** para sustituir a telnet y rsh.",
+    "year": 1995,
+    "autor": "Tatu Ylönen (HUT)",
+    "trivia": "Lo programó en pocas semanas después de que un ataque de sniffing comprometiera su red universitaria."
   },
   {
     "id": "vol3-0x1A",
@@ -311,12 +311,12 @@
     "id": "vol3-0x1C",
     "volumen": "unix-sysadmin-networks",
     "index": 28,
-    "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Relanzamiento del kernel **Linux** bajo licencia **GNU GPL v2**, facilitando su desarrollo comunitario masivo.",
-    "year": 1992,
-    "autor": "Linus Torvalds",
-    "trivia": "Linus confesó que adoptar la licencia GPL v2 fue la mejor decisión estratégica de su vida para el éxito de Linux."
+    "domain": "hacker-culture-web",
+    "tag": "cypherpunks-foss",
+    "hito": "Creación del proyecto **OpenSSH** como bifurcación abierta y libre de la suite SSH original dentro de OpenBSD.",
+    "year": 1999,
+    "autor": "Theo de Raadt y Markus Friedl",
+    "trivia": "Hoy protege los accesos administrativos de prácticamente todos los servidores Linux del planeta."
   },
   {
     "id": "vol3-0x1D",
@@ -345,11 +345,11 @@
     "volumen": "unix-sysadmin-networks",
     "index": 31,
     "domain": "systems-networking",
-    "tag": "web-standards",
-    "hito": "Estandarización del protocolo **WebSocket** en el **RFC 6455** para transmisión de datos bidireccional y full-duplex en tiempo real.",
-    "year": 2011,
-    "autor": "IETF (Ian Fette y Alexey Melnikov)",
-    "trivia": "Eliminó la necesidad del costoso sondeo continuo (*long-polling*) para chats, videojuegos multijugador y paneles financieros en la web."
+    "tag": "developer-tools",
+    "hito": "Lanzamiento del multiplexor de terminales en modo texto **GNU Screen**, permitiendo sesiones persistentes en consolas Unix.",
+    "year": 1987,
+    "autor": "Oliver Laumann y Carsten Bormann",
+    "trivia": "Permitió que una sesión no se cerrara si la conexión por módem telefónico se cortaba repentinamente."
   },
   {
     "id": "vol3-0x20",
@@ -367,11 +367,11 @@
     "volumen": "unix-sysadmin-networks",
     "index": 33,
     "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Anuncio oficial del **Proyecto GNU** en el grupo de noticias *net.unix-wizards* para construir un sistema Unix completamente libre.",
-    "year": 1983,
-    "autor": "Richard Stallman (FSF)",
-    "trivia": "Su nombre es un acrónimo recursivo que significa *\"GNU's Not Unix\"*; sentó las bases legales, morales y filosóficas del movimiento del software libre."
+    "tag": "web-standards",
+    "hito": "Publicación del **RFC 2131** estandarizando **DHCP (Dynamic Host Configuration Protocol)** para asignación automática de IPs.",
+    "year": 1997,
+    "autor": "Ralph Droms (Bucknell University)",
+    "trivia": "Evolucionó a partir del protocolo BOOTP para satisfacer la demanda de clientes móviles en redes LAN."
   },
   {
     "id": "vol3-0x22",
@@ -412,32 +412,32 @@
     "index": 37,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Invención de las tuberías de procesamiento (**pipes**) en Unix, permitiendo encadenar la salida de un programa con la entrada de otro.",
-    "year": 1972,
-    "autor": "Doug McIlroy (Bell Labs)",
-    "trivia": "Thompson implementó las pipes en una noche; la filosofía Unix de *\"hacer una sola cosa y hacerla bien\"* quedó sellada."
+    "hito": "Lanzamiento del sistema de inicio orientado a eventos **Upstart** en Ubuntu, diseñado para reemplazar SysV init asíncronamente.",
+    "year": 2006,
+    "autor": "Scott James Remnant (Canonical)",
+    "trivia": "Gestionaba de manera nativa la conexión y desconexión de dispositivos USB en caliente antes de la llegada de systemd."
   },
   {
     "id": "vol3-0x26",
     "volumen": "unix-sysadmin-networks",
     "index": 38,
     "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Lanzamiento de **BSD** (*Berkeley Software Distribution*), transformando el Unix académico con soporte para memoria virtual y TCP/IP.",
-    "year": 1977,
-    "autor": "Bill Joy (UC Berkeley CSRG)",
-    "trivia": "Financiado por DARPA, su stack TCP/IP se convirtió en la base de las redes de telecomunicaciones de todo el planeta."
+    "tag": "web-standards",
+    "hito": "Presentación del sistema de archivos distribuido de red **NFS (Network File System)** permitiendo montar discos transparentemente.",
+    "year": 1984,
+    "autor": "Sun Microsystems (Russ Sandberg)",
+    "trivia": "Operaba sobre RPC y XDR, convirtiendo a las estaciones de trabajo en clientes sin disco local."
   },
   {
     "id": "vol3-0x27",
     "volumen": "unix-sysadmin-networks",
     "index": 39,
     "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Creación del sistema operativo **Unix** en los laboratorios Bell tras el fracaso y cancelación del mastodóntico proyecto Multics.",
-    "year": 1969,
-    "autor": "Ken Thompson y Dennis Ritchie (Bell)",
-    "trivia": "Thompson programó el primer Unix en un fin de semana en una PDP-7 de 8 KB para poder jugar a su videojuego *Space Travel*."
+    "tag": "developer-tools",
+    "hito": "Lanzamiento del multiplexor de terminales moderno **Tmux**, optimizado con soporte cliente-servidor nativo y BSD-friendly.",
+    "year": 2007,
+    "autor": "Nicholas Marriott",
+    "trivia": "Diseñado como alternativa ligera a Screen con una arquitectura limpia de cliente-servidor."
   },
   {
     "id": "vol3-0x28",
@@ -455,11 +455,11 @@
     "volumen": "unix-sysadmin-networks",
     "index": 41,
     "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Introducción de **systemd**, rediseñando la inicialización, servicios y logs en el espacio de usuario de Linux.",
-    "year": 2010,
-    "autor": "Lennart Poettering y Kay Sievers",
-    "trivia": "Desató feroces *flamewars* en el software libre entre partidarios de la modernización y puristas de la filosofía Unix."
+    "tag": "web-standards",
+    "hito": "Creación del protocolo de bitácora remota **Syslog** para el proyecto Sendmail en entornos BSD Unix.",
+    "year": 1980,
+    "autor": "Eric Allman (UC Berkeley)",
+    "trivia": "Operó como estándar 'de facto' durante más de dos décadas antes de ser formalizado en el RFC 3164."
   },
   {
     "id": "vol3-0x2A",
@@ -467,21 +467,21 @@
     "index": 42,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Fundación del proyecto **Debian GNU/Linux** bajo el manifiesto de crear una distribución universal guiada por principios éticos comunitarios.",
-    "year": 1993,
-    "autor": "Ian Murdock",
-    "trivia": "Murdock unió el nombre de su prometida **Debra** con el suyo (**Ian**), creando el estándar de empaquetado `.deb` y `apt`."
+    "hito": "Lanzamiento del programador cron moderno **Vixie Cron**, introduciendo sintaxis avanzada de temporizado para SysAdmins.",
+    "year": 1987,
+    "autor": "Paul Vixie",
+    "trivia": "Vixie lo escribió cansado de las limitaciones del comando cron tradicional de AT&T Unix."
   },
   {
     "id": "vol3-0x2B",
     "volumen": "unix-sysadmin-networks",
     "index": 43,
     "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Lanzamiento de la primera versión de **Ubuntu** (*Ubuntu 4.10 Warty Warthog*), financiada por el millonario sudafricano Mark Shuttleworth.",
-    "year": 2004,
-    "autor": "Canonical (Mark Shuttleworth)",
-    "trivia": "Shuttleworth invirtió millones en enviar CDs de instalación gratis por correo a cualquier rincón del mundo."
+    "tag": "developer-tools",
+    "hito": "Publicación del analizador de tráfico de paquetes **Tcpdump** y la biblioteca portátil **libpcap**.",
+    "year": 1988,
+    "autor": "Van Jacobson, Craig Leres (LBL)",
+    "trivia": "Introdujo el filtro de paquetes BPF (Berkeley Packet Filter), ancestro directo de eBPF."
   },
   {
     "id": "vol3-0x2C",
@@ -498,12 +498,12 @@
     "id": "vol3-0x2D",
     "volumen": "unix-sysadmin-networks",
     "index": 45,
-    "domain": "cloud-infrastructure",
-    "tag": "iac-automation",
-    "hito": "Creación de **Vagrant**, permitiendo a cualquier desarrollador levantar entornos de virtualización locales idénticos con un simple `vagrant up`.",
-    "year": 2010,
-    "autor": "Mitchell Hashimoto y John Bender",
-    "trivia": "Nació en un apartamento universitario; resolvió de un plumazo la excusa eterna del programador: *\"En mi máquina sí funcionaba\"*."
+    "domain": "systems-networking",
+    "tag": "developer-tools",
+    "hito": "Lanzamiento del gestor de paquetes alternativo de Linux **Nix**, implementando despliegues puramente funcionales y atómicos.",
+    "year": 2004,
+    "autor": "Eelco Dolstra (Univ. de Utrecht)",
+    "trivia": "Almacena paquetes bajo hashes criptográficos únicos en `/nix/store`, erradicando el infierno de dependencias."
   },
   {
     "id": "vol3-0x2E",
@@ -554,11 +554,11 @@
     "volumen": "unix-sysadmin-networks",
     "index": 50,
     "domain": "systems-networking",
-    "tag": "linux-unix-os",
-    "hito": "Debut del intérprete de comandos **GNU Bash** (*Bourne-Again SHell*), diseñado como el reemplazo libre del clásico shell de Stephen Bourne.",
-    "year": 1989,
-    "autor": "Brian Fox (Free Software Foundation)",
-    "trivia": "Su nombre jugaba con *Born Again*; se convirtió en el shell interactivo por defecto indiscutible de casi todo Linux."
+    "tag": "web-standards",
+    "hito": "Lanzamiento de **Wireshark** (originalmente bautizado como *Ethereal*), el analizador de protocolos de red con interfaz gráfica.",
+    "year": 1998,
+    "autor": "Gerald Combs",
+    "trivia": "Combs lo programó para resolver problemas de red en su empleo en un proveedor de Internet."
   },
   {
     "id": "vol3-0x33",
@@ -674,12 +674,12 @@
     "id": "vol3-0x3D",
     "volumen": "unix-sysadmin-networks",
     "index": 61,
-    "domain": "cloud-infrastructure",
-    "tag": "iac-automation",
-    "hito": "Lanzamiento de **Chef**, popularizando la infraestructura como código mediante \"recetas\" y *cookbooks*.",
-    "year": 2009,
-    "autor": "Adam Jacob (Opscode)",
-    "trivia": "Permitía usar Ruby imperativo frente a la sintaxis de Puppet, desatando una fuerte rivalidad entre sysadmins."
+    "domain": "systems-networking",
+    "tag": "developer-tools",
+    "hito": "Lanzamiento del emulador de terminal moderno y acelerado por GPU **Alacritty**, priorizando simplicidad y velocidad extrema.",
+    "year": 2017,
+    "autor": "Joe Wilm",
+    "trivia": "Escrito en Rust, aprovecha OpenGL para descargar el renderizado tipográfico directamente en la tarjeta gráfica."
   },
   {
     "id": "vol3-0x3E",
