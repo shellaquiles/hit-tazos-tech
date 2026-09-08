@@ -24,18 +24,20 @@ hit-tazos-tech/
 ├── package.json                         # Manifiesto y scripts npm (test, validate, build, print)
 ├── server.js                            # Servidor local de desarrollo (sirve web/ y data/)
 ├── data/                                # Contenido editorial y datos de trivia
+│   ├── audit.json                       # Registro canónico de auditoría en 4 niveles y fuentes primarias
 │   ├── cards.json                       # Fuente maestra compilada con la baraja (576 cartas)
 │   ├── card_colors.json                 # Configuración desacoplada de paletas cromáticas (#0001-#1000)
 │   ├── catalog.json                     # Catálogo taxonómico oficial de dominios, tags y volúmenes
-│   └── volumes/                         # 8 archivos JSON fuente de volúmenes
+│   ├── manifest.json                    # Manifiesto canónico de baraja con metadatos
+│   └── volumes/                         # 8 archivos JSON fuente de volúmenes (vol0 a vol7)
 ├── web/                                 # Aplicación web interactiva (juego y catálogo)
 │   ├── index.html                       # Interfaz HTML5 principal
 │   ├── app.js                           # Lógica del cliente, animaciones WAAPI y audio
 │   ├── style.css                        # Hoja de estilos moderna
 │   └── assets/                          # Recursos gráficos y multimedia
-├── scripts/                             # Herramientas y scripts CLI de compilación y auditoría
-│   ├── build_cards.js                   # Validador de la estructura maestra y generador de manifest
-│   ├── scratch_audit.py                 # Script de auditoría de caracteres y presupuestos
+├── scripts/                             # Herramientas y scripts CLI canónicos
+│   ├── audit_deck.py                    # Validador integral en 4 niveles, presupuestos y anti-spoilers
+│   ├── build_cards.js                   # Compilador de la baraja maestra y manifest
 │   └── generate_card_colors.js          # Generador CLI de configuración cromática por millar
 ├── print/                               # Motor de imposición y salidas para imprenta (Tabloide, Carta, Super Tabloide)
 │   ├── render_print_tabloid.js          # Generador maestro de imposición multi-formato (SVG, Cairo PDF)
