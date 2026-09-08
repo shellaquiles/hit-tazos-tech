@@ -8,10 +8,10 @@
     "year": 1998,
     "creador": "*Greg Ward*",
     "dato_curioso": "Estableció por primera vez la convención universal `python setup.py install`, aunque carecía de gestión de dependencias automáticas.",
-    "volumen": 1,
-    "card_number": 20,
+    "volumen": 2,
+    "card_number": 75,
     "legacy_card_number": 291,
-    "card_number_hex": "0x14"
+    "card_number_hex": "0x4B"
   },
   {
     "grupo": "A",
@@ -23,9 +23,9 @@
     "creador": "*Richard Jones*",
     "dato_curioso": "Su apodo rendía homenaje a un célebre sketch de los *Monty Python* sobre una tienda de quesos que, cómicamente, no tenía queso alguno a la venta.",
     "volumen": 0,
-    "card_number": 150,
+    "card_number": 48,
     "legacy_card_number": 79,
-    "card_number_hex": "0x96"
+    "card_number_hex": "0x30"
   },
   {
     "grupo": "A",
@@ -36,10 +36,10 @@
     "year": 2004,
     "creador": "*Phillip J. Eby*",
     "dato_curioso": "Fue el primer sistema capaz de descargar e instalar automáticamente librerías desde la red con todas sus dependencias en cascada.",
-    "volumen": 1,
-    "card_number": 2,
+    "volumen": 3,
+    "card_number": 69,
     "legacy_card_number": 515,
-    "card_number_hex": "0x02"
+    "card_number_hex": "0x45"
   },
   {
     "grupo": "A",
@@ -51,9 +51,9 @@
     "creador": "*Ian Bicking*",
     "dato_curioso": "Modificaba rutas copiando symlinks del binario de Python a carpetas locales, erradicando los temidos conflictos entre versiones de paquetes globales.",
     "volumen": 1,
-    "card_number": 89,
+    "card_number": 36,
     "legacy_card_number": 183,
-    "card_number_hex": "0x59"
+    "card_number_hex": "0x24"
   },
   {
     "grupo": "A",
@@ -64,10 +64,10 @@
     "year": 2008,
     "creador": "*Ian Bicking*",
     "dato_curioso": "Su nombre es un acrónimo recursivo de *\"Pip Installs Packages\"*; introdujo por primera vez el comando `pip uninstall` para limpiar librerías.",
-    "volumen": 0,
-    "card_number": 1,
+    "volumen": 1,
+    "card_number": 47,
     "legacy_card_number": 255,
-    "card_number_hex": "0x01"
+    "card_number_hex": "0x2F"
   },
   {
     "grupo": "A",
@@ -79,9 +79,9 @@
     "creador": "*Holger Krekel* (*PyPy Team*)",
     "dato_curioso": "Eliminó herencias pesadas de `unittest.TestCase`, haciendo las pruebas legibles y concisas con simples `assert`.",
     "volumen": 0,
-    "card_number": 102,
+    "card_number": 123,
     "legacy_card_number": 8,
-    "card_number_hex": "0x66"
+    "card_number_hex": "0x7B"
   },
   {
     "grupo": "A",
@@ -92,10 +92,10 @@
     "year": 2010,
     "creador": "*Holger Krekel*",
     "dato_curioso": "Se convirtió en el guardián indiscutible de la integración continua (*CI*) para asegurar que una librería funcionara idénticamente en Python 2 y 3.",
-    "volumen": 1,
-    "card_number": 65,
+    "volumen": 0,
+    "card_number": 35,
     "legacy_card_number": 128,
-    "card_number_hex": "0x41"
+    "card_number_hex": "0x23"
   },
   {
     "grupo": "A",
@@ -106,10 +106,10 @@
     "year": 2010,
     "creador": "*Tarek Ziadé*",
     "dato_curioso": "Fue el juez inflexible de estilo que cuidó millones de repositorios antes de los formateadores automáticos.",
-    "volumen": 1,
-    "card_number": 92,
+    "volumen": 0,
+    "card_number": 108,
     "legacy_card_number": 89,
-    "card_number_hex": "0x5C"
+    "card_number_hex": "0x6C"
   },
   {
     "grupo": "A",
@@ -120,10 +120,10 @@
     "year": 2012,
     "creador": "*Daniel Holth*",
     "dato_curioso": "Sustituyó a los viejos `.egg`, permitiendo instalar paquetes C precompilados sin compilar en la máquina destino.",
-    "volumen": 1,
-    "card_number": 137,
+    "volumen": 2,
+    "card_number": 38,
     "legacy_card_number": 325,
-    "card_number_hex": "0x89"
+    "card_number_hex": "0x26"
   },
   {
     "grupo": "A",
@@ -134,10 +134,10 @@
     "year": 2012,
     "creador": "*Travis Oliphant* y *Peter Wang*",
     "dato_curioso": "Resolvió instalar librerías científicas con dependencias en Fortran y C sin compilar en Windows, macOS o Linux.",
-    "volumen": 1,
-    "card_number": 56,
+    "volumen": 0,
+    "card_number": 74,
     "legacy_card_number": 112,
-    "card_number_hex": "0x38"
+    "card_number_hex": "0x4A"
   },
   {
     "grupo": "A",
@@ -148,10 +148,10 @@
     "year": 2014,
     "creador": "*Donald Stufft*",
     "dato_curioso": "Nació ante fallos en `setup.py upload`, que enviaba credenciales en texto plano sin verificar certificados SSL.",
-    "volumen": 1,
-    "card_number": 72,
+    "volumen": 3,
+    "card_number": 30,
     "legacy_card_number": 417,
-    "card_number_hex": "0x48"
+    "card_number_hex": "0x1E"
   },
   {
     "grupo": "A",
@@ -162,10 +162,10 @@
     "year": 2016,
     "creador": "*Brett Cannon*, *Donald Stufft* y *Coghlan*",
     "dato_curioso": "Inició la jubilación de la ejecución arbitraria de código imperativo en `setup.py`, sentando las bases del empaquetado moderno en Python.",
-    "volumen": 1,
-    "card_number": 33,
+    "volumen": 2,
+    "card_number": 71,
     "legacy_card_number": 315,
-    "card_number_hex": "0x21"
+    "card_number_hex": "0x47"
   },
   {
     "grupo": "A",
@@ -176,10 +176,10 @@
     "year": 2017,
     "creador": "*Kenneth Reitz*",
     "dato_curioso": "Respaldado por la PSF para emular la experiencia de *npm*, causó furor aunque luego sufrió lentitud en su resolver.",
-    "volumen": 1,
-    "card_number": 119,
+    "volumen": 0,
+    "card_number": 69,
     "legacy_card_number": 16,
-    "card_number_hex": "0x77"
+    "card_number_hex": "0x45"
   },
   {
     "grupo": "A",
@@ -190,10 +190,10 @@
     "year": 2018,
     "creador": "*Donald Stufft* y *Ernest W. Durbin III*",
     "dato_curioso": "Modernizó la seguridad, la búsqueda y el diseño visual del repositorio mundial tras años de operar sobre servidores legacy bajo constantes ataques.",
-    "volumen": 1,
-    "card_number": 53,
+    "volumen": 2,
+    "card_number": 30,
     "legacy_card_number": 322,
-    "card_number_hex": "0x35"
+    "card_number_hex": "0x1E"
   },
   {
     "grupo": "A",
@@ -205,9 +205,9 @@
     "creador": "*Sébastien Eustace*",
     "dato_curioso": "Su estricto resolver y su elegante CLI en Python lo convirtieron en el estándar predilecto de la comunidad.",
     "volumen": 1,
-    "card_number": 112,
+    "card_number": 19,
     "legacy_card_number": 165,
-    "card_number_hex": "0x70"
+    "card_number_hex": "0x13"
   },
   {
     "grupo": "A",
@@ -218,10 +218,10 @@
     "year": 2018,
     "creador": "*Łukasz Langa*",
     "dato_curioso": "Al reformatear código con un estilo estricto e inflexible, ahorró millones de horas de debate en pull requests.",
-    "volumen": 0,
-    "card_number": 143,
+    "volumen": 3,
+    "card_number": 31,
     "legacy_card_number": 428,
-    "card_number_hex": "0x8F"
+    "card_number_hex": "0x1F"
   },
   {
     "grupo": "A",
@@ -232,10 +232,10 @@
     "year": 2019,
     "creador": "*Thomas Kluyver*, *Brett Cannon* et al.",
     "dato_curioso": "Desacopló definitivamente a instaladores como `pip` de backends de compilación como `flit`, `hatch` o `poetry-core`.",
-    "volumen": 1,
-    "card_number": 28,
+    "volumen": 0,
+    "card_number": 94,
     "legacy_card_number": 85,
-    "card_number_hex": "0x1C"
+    "card_number_hex": "0x5E"
   },
   {
     "grupo": "A",
@@ -247,9 +247,9 @@
     "creador": "*Pradyun Gedam* y *Paul Moore*",
     "dato_curioso": "Eliminó el bug de `pip` que instalaba dependencias incompatibles si un paquete posterior pisaba al anterior.",
     "volumen": 1,
-    "card_number": 30,
+    "card_number": 72,
     "legacy_card_number": 184,
-    "card_number_hex": "0x1E"
+    "card_number_hex": "0x48"
   },
   {
     "grupo": "A",
@@ -261,9 +261,9 @@
     "creador": "*Konstantin Sitnikov* (*PyO3 Team*)",
     "dato_curioso": "Facilitó que cualquier programador de Rust publicara paquetes nativos en PyPI con la misma simplicidad que un paquete de Python puro.",
     "volumen": 1,
-    "card_number": 34,
+    "card_number": 98,
     "legacy_card_number": 226,
-    "card_number_hex": "0x22"
+    "card_number_hex": "0x62"
   },
   {
     "grupo": "A",
@@ -274,7 +274,7 @@
     "year": 2022,
     "creador": "*Python Software Foundation*",
     "dato_curioso": "La PSF regaló llaves de seguridad *YubiKeys* a miles de autores para frenar ataques a la cadena de suministro.",
-    "volumen": 1,
+    "volumen": 3,
     "card_number": 98,
     "legacy_card_number": 414,
     "card_number_hex": "0x62"
@@ -289,9 +289,9 @@
     "creador": "*Charlie Marsh* (*Astral*)",
     "dato_curioso": "Demostró ser entre **10 y 100 veces más rápido** que Flake8 y pylint, reemplazando docenas de plugins dispersos en una sola herramienta instantánea.",
     "volumen": 0,
-    "card_number": 14,
+    "card_number": 36,
     "legacy_card_number": 53,
-    "card_number_hex": "0x0E"
+    "card_number_hex": "0x24"
   },
   {
     "grupo": "A",
@@ -303,9 +303,9 @@
     "creador": "*Astral*",
     "dato_curioso": "Replica el formato de *Black* con 99% de fidelidad, formateando repositorios enteros en microsegundos.",
     "volumen": 1,
-    "card_number": 18,
+    "card_number": 104,
     "legacy_card_number": 213,
-    "card_number_hex": "0x12"
+    "card_number_hex": "0x68"
   },
   {
     "grupo": "A",
@@ -316,10 +316,10 @@
     "year": 2023,
     "creador": "*Dustin Ingram* y *William Woodruff*",
     "dato_curioso": "Permite publicar en PyPI desde *GitHub Actions* con tokens efímeros sin guardar contraseñas en repositorios.",
-    "volumen": 1,
-    "card_number": 100,
+    "volumen": 3,
+    "card_number": 96,
     "legacy_card_number": 512,
-    "card_number_hex": "0x64"
+    "card_number_hex": "0x60"
   },
   {
     "grupo": "A",
@@ -330,10 +330,10 @@
     "year": 2023,
     "creador": "*Pradyun Gedam*",
     "dato_curioso": "Bloqueó `pip install` en el Python base del SO para evitar que usuarios rompieran paquetes de su distribución Linux.",
-    "volumen": 1,
-    "card_number": 78,
+    "volumen": 2,
+    "card_number": 95,
     "legacy_card_number": 369,
-    "card_number_hex": "0x4E"
+    "card_number_hex": "0x5F"
   },
   {
     "grupo": "A",
@@ -344,10 +344,10 @@
     "year": 2024,
     "creador": "*Astral* (*Charlie Marsh*)",
     "dato_curioso": "Instala dependencias entre **10x y 100x más rápido que pip**, acelerando drásticamente pipelines de CI/CD.",
-    "volumen": 0,
-    "card_number": 33,
+    "volumen": 2,
+    "card_number": 113,
     "legacy_card_number": 379,
-    "card_number_hex": "0x21"
+    "card_number_hex": "0x71"
   },
   {
     "grupo": "A",
@@ -358,10 +358,10 @@
     "year": 2024,
     "creador": "*Astral*",
     "dato_curioso": "Permitió ejecutar scripts con dependencias embebidas directamente mediante `uv run` y descargar versiones de CPython a la carta en milisegundos.",
-    "volumen": 1,
-    "card_number": 41,
+    "volumen": 0,
+    "card_number": 72,
     "legacy_card_number": 126,
-    "card_number_hex": "0x29"
+    "card_number_hex": "0x48"
   },
   {
     "grupo": "A",
@@ -373,8 +373,8 @@
     "creador": "*Victor Stinner* y *CPython Core Team*",
     "dato_curioso": "Tras una década de avisos, forzó a la comunidad a migrar de `setup.py` hacia estándares en `pyproject.toml`.",
     "volumen": 1,
-    "card_number": 75,
+    "card_number": 113,
     "legacy_card_number": 138,
-    "card_number_hex": "0x4B"
+    "card_number_hex": "0x71"
   }
 ]

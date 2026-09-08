@@ -23,8 +23,8 @@
     <text x="498.76" y="90.61" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO (LONG EDGE)</text>
   </g>
   <g id="tarjetas_reverso">
-    <!-- Tarjeta 3x2A Reverso -->
-    <g id="carta_3_2A_reverso">
+    <!-- Tarjeta 3x4F Reverso -->
+    <g id="carta_3_4F_reverso">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -42,32 +42,32 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="104.74" y="94.11" width="201.26" height="201.26" fill="#f3ce72" />
+      <rect x="104.74" y="94.11" width="201.26" height="201.26" fill="#35cbe9" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 102.61)">
         <!-- Autor protegido (>= 8.5mm del borde superior) -->
         <text font-family="'Outfit', sans-serif" font-size="8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="24">DeepMind (John Jumper y D.</tspan><tspan x="92.13" y="34.4">Hassabis)</tspan>
+          <tspan x="92.13" y="24">Alex Krizhevsky et al.</tspan><tspan x="92.13" y="34.4">(UToronto)</tspan>
         </text>
 
         <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
-        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2020</text>
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2012</text>
 
         <!-- Trivia protegida -->
         <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="118.0">Resolvió un dilema de medio</tspan><tspan x="92.13" y="127.0">siglo prediciendo en 3D la</tspan><tspan x="92.13" y="136.0">estructura de más de 200</tspan><tspan x="92.13" y="145.0">millones de proteínas</tspan><tspan x="92.13" y="154.0">conocidas.</tspan>
+          <tspan x="92.13" y="118.0">Entrenada en dos GPUs</tspan><tspan x="92.13" y="127.0">domésticas GeForce GTX 580,</tspan><tspan x="92.13" y="136.0">redujo el error de</tspan><tspan x="92.13" y="145.0">clasificación del 26% al 15%,</tspan><tspan x="92.13" y="154.0">encendiendo la IA moderna.</tspan>
         </text>
 
         <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">D3</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">3x2A</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">D2</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">3x4F</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x29 Reverso -->
-    <g id="carta_3_29_reverso">
+    <!-- Tarjeta 3x4E Reverso -->
+    <g id="carta_3_4E_reverso">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -85,32 +85,32 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="306.00" y="94.11" width="201.26" height="201.26" fill="#f2cf7d" />
+      <rect x="306.00" y="94.11" width="201.26" height="201.26" fill="#40d2e7" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 102.61)">
         <!-- Autor protegido (>= 8.5mm del borde superior) -->
-        <text font-family="'Outfit', sans-serif" font-size="8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="24">Devs independientes vs.</tspan><tspan x="92.13" y="34.4">Gigantes de IA</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="29.5">Yukihiro Matsumoto (Matz)</tspan>
         </text>
 
         <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
-        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2024</text>
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">1993</text>
 
         <!-- Trivia protegida -->
-        <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="118.0">Demandas contra Copilot</tspan><tspan x="92.13" y="127.0">cuestionaron si entrenar IA</tspan><tspan x="92.13" y="136.0">con repositorios públicos de</tspan><tspan x="92.13" y="145.0">código abierto viola licencias</tspan><tspan x="92.13" y="154.0">libres o es uso legítimo.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="7.2" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="118.0">Diseñado priorizando la</tspan><tspan x="92.13" y="127.5">felicidad humana sobre la</tspan><tspan x="92.13" y="137.0">máquina, detonó una revolución</tspan><tspan x="92.13" y="146.5">mundial con Ruby on Rails.</tspan>
         </text>
 
         <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">E4</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">3x29</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">B1</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">3x4E</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x2C Reverso -->
-    <g id="carta_3_2C_reverso">
+    <!-- Tarjeta 3x51 Reverso -->
+    <g id="carta_3_51_reverso">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -128,32 +128,32 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="104.74" y="295.37" width="201.26" height="201.26" fill="#f4cd62" />
+      <rect x="104.74" y="295.37" width="201.26" height="201.26" fill="#e887b0" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 303.87)">
         <!-- Autor protegido (>= 8.5mm del borde superior) -->
         <text font-family="'Outfit', sans-serif" font-size="8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="24">Hackers estatales</tspan><tspan x="92.13" y="34.4">(acusación del DoJ)</tspan>
+          <tspan x="92.13" y="24">Grace Hopper y Comité</tspan><tspan x="92.13" y="34.4">CODASYL</tspan>
         </text>
 
         <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
-        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2017</text>
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">1959</text>
 
         <!-- Trivia protegida -->
         <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="118.0">Entraron por un bug público en</tspan><tspan x="92.13" y="127.0">Apache Struts que</tspan><tspan x="92.13" y="136.0">administradores de Equifax</tspan><tspan x="92.13" y="145.0">olvidaron parchar por meses,</tspan><tspan x="92.13" y="154.0">robando 147M de datos.</tspan>
+          <tspan x="92.13" y="118.0">Grace Hopper defendió que el</tspan><tspan x="92.13" y="127.0">código debía escribirse en</tspan><tspan x="92.13" y="136.0">palabras legibles en inglés,</tspan><tspan x="92.13" y="145.0">venciendo burlas de teóricos</tspan><tspan x="92.13" y="154.0">militares.</tspan>
         </text>
 
         <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">E2</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">3x2C</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">B1</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">3x51</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x2B Reverso -->
-    <g id="carta_3_2B_reverso">
+    <!-- Tarjeta 3x50 Reverso -->
+    <g id="carta_3_50_reverso">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -171,32 +171,32 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="306.00" y="295.37" width="201.26" height="201.26" fill="#f3cc68" />
+      <rect x="306.00" y="295.37" width="201.26" height="201.26" fill="#2ac3ea" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 303.87)">
         <!-- Autor protegido (>= 8.5mm del borde superior) -->
         <text font-family="'Outfit', sans-serif" font-size="8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="24">Thomas Nicely</tspan><tspan x="92.13" y="34.4">(descubridor) e Intel</tspan>
+          <tspan x="92.13" y="24">Darren Shepherd (Rancher</tspan><tspan x="92.13" y="34.4">Labs)</tspan>
         </text>
 
         <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
-        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">1994</text>
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2019</text>
 
         <!-- Trivia protegida -->
         <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="118.0">Un profesor descubrió una</tspan><tspan x="92.13" y="127.0">tabla de división defectuosa</tspan><tspan x="92.13" y="136.0">en el coprocesador; la</tspan><tspan x="92.13" y="145.0">soberbia de Intel costó 475</tspan><tspan x="92.13" y="154.0">millones en reemplazos.</tspan>
+          <tspan x="92.13" y="118.0">Eliminó componentes pesados</tspan><tspan x="92.13" y="127.0">para correr Kubernetes en</tspan><tspan x="92.13" y="136.0">Raspberry Pi y dispositivos</tspan><tspan x="92.13" y="145.0">IoT con menos de 512 MB de</tspan><tspan x="92.13" y="154.0">RAM.</tspan>
         </text>
 
         <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">E6</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">3x2B</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">C2</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">3x50</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x2E Reverso -->
-    <g id="carta_3_2E_reverso">
+    <!-- Tarjeta 3x53 Reverso -->
+    <g id="carta_3_53_reverso">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -214,32 +214,32 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="104.74" y="496.63" width="201.26" height="201.26" fill="#f6cc4c" />
+      <rect x="104.74" y="496.63" width="201.26" height="201.26" fill="#e8739f" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 505.13)">
         <!-- Autor protegido (>= 8.5mm del borde superior) -->
         <text font-family="'Outfit', sans-serif" font-size="8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="24">Jon Lech Johansen (DVD</tspan><tspan x="92.13" y="34.4">Jon)</tspan>
+          <tspan x="92.13" y="24">MongoDB, Elastic,</tspan><tspan x="92.13" y="34.4">HashiCorp y Redis</tspan>
         </text>
 
         <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
-        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">1999</text>
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2023</text>
 
         <!-- Trivia protegida -->
-        <text font-family="'Outfit', sans-serif" font-size="7.2" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="118.0">Jon quería ver DVDs legales en</tspan><tspan x="92.13" y="127.5">Linux; la industria del cine</tspan><tspan x="92.13" y="137.0">intentó censurar judicialmente</tspan><tspan x="92.13" y="146.5">la clave DeCSS en toda la web.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="118.0">Firmas de código abierto</tspan><tspan x="92.13" y="127.0">acusaron a AWS de lucrar con</tspan><tspan x="92.13" y="136.0">sus proyectos gratis sin</tspan><tspan x="92.13" y="145.0">aportar código, empujando</tspan><tspan x="92.13" y="154.0">licencias como SSPL y BSL.</tspan>
         </text>
 
         <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">E5</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">3x2E</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">E4</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">3x53</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x2D Reverso -->
-    <g id="carta_3_2D_reverso">
+    <!-- Tarjeta 3x52 Reverso -->
+    <g id="carta_3_52_reverso">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -257,26 +257,26 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="306.00" y="496.63" width="201.26" height="201.26" fill="#f4cc57" />
+      <rect x="306.00" y="496.63" width="201.26" height="201.26" fill="#e87da8" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 505.13)">
         <!-- Autor protegido (>= 8.5mm del borde superior) -->
         <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="29.5">Chris Lattner (Modular)</tspan>
+          <tspan x="92.13" y="29.5">Comunidades Python de Asia</tspan>
         </text>
 
         <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
-        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2023</text>
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2009</text>
 
         <!-- Trivia protegida -->
-        <text font-family="'Outfit', sans-serif" font-size="7.2" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="118.0">Permite programar aceleradores</tspan><tspan x="92.13" y="127.5">IA y memoria SIMD de bajo</tspan><tspan x="92.13" y="137.0">nivel manteniendo la sintaxis</tspan><tspan x="92.13" y="146.5">amigable de Python.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          <tspan x="92.13" y="118.0">Unificó las comunidades de</tspan><tspan x="92.13" y="127.0">Japón, Taiwán, Corea, India y</tspan><tspan x="92.13" y="136.0">el sudeste asiático,</tspan><tspan x="92.13" y="145.0">impulsando la</tspan><tspan x="92.13" y="154.0">internacionalización de la</tspan><tspan x="92.13" y="163.0">documentación del lenguaje.</tspan>
         </text>
 
         <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">B1</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">3x2D</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">A3</text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">3x52</text>
 
         
       </g>

@@ -91,9 +91,9 @@ function build() {
       [volCards[i], volCards[j]] = [volCards[j], volCards[i]];
     }
     
-    // Asignar numeración local (1..N) dentro del volumen
+    // Asignar numeración local (0..N-1) dentro del volumen
     volCards.forEach((card, idx) => {
-      card.card_number = idx + 1;
+      card.card_number = idx;
       card.card_number_hex = "0x" + card.card_number.toString(16).toUpperCase().padStart(2, '0');
       delete card.id;
     });

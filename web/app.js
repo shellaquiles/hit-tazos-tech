@@ -751,7 +751,7 @@ class HitTazosEngine {
   //  - 87..96: Turquesa / Cian cielo
   //  - 97..100+: Rojo carmín / Magenta intenso y morados profundos
   getCardTheme(card) {
-    let cardNum = card.card_number || card.globalIndex;
+    let cardNum = card.card_number !== undefined ? card.card_number + 1 : card.globalIndex;
     if (!cardNum || isNaN(cardNum)) {
       const matchNum = (card.id || '').match(/(\d+)$/);
       cardNum = matchNum ? parseInt(matchNum[1], 10) : 1;
@@ -842,7 +842,7 @@ class HitTazosEngine {
 
     // Número de carta consecutivo (#001..#N)
     const volId = card.volumen !== undefined ? card.volumen : 0;
-    const hexPart = card.card_number_hex ? card.card_number_hex.substring(2) : (card.card_number || card.globalIndex || 1).toString(16).toUpperCase().padStart(2, '0');
+    const hexPart = card.card_number_hex ? card.card_number_hex.substring(2) : (card.card_number !== undefined ? card.card_number : (card.globalIndex || 1)).toString(16).toUpperCase().padStart(2, '0');
     const cardNumStr = `${volId}x${hexPart}`;
 
     // Tema cromático Hit-Tazos Tech
@@ -1222,7 +1222,7 @@ class HitTazosEngine {
       const chip = document.createElement('div');
       chip.className = `shelf-card-chip theme-${c.grupo}`;
       const volId = c.volumen !== undefined ? c.volumen : 0;
-      const hexPart = c.card_number_hex ? c.card_number_hex.substring(2) : (c.card_number || c.globalIndex || 1).toString(16).toUpperCase().padStart(2, '0');
+      const hexPart = c.card_number_hex ? c.card_number_hex.substring(2) : (c.card_number !== undefined ? c.card_number : (c.globalIndex || 1)).toString(16).toUpperCase().padStart(2, '0');
       const chipNum = `${volId}x${hexPart}`;
       chip.innerHTML = `
         <div class="shelf-year">${c.year}</div>
@@ -1277,7 +1277,7 @@ class HitTazosEngine {
 
     this.filteredCatalog = this.cards.filter(c => {
       const matchGrp = grp === 'ALL' || c.grupo === grp;
-      const numStr = c.card_number ? String(c.card_number) : '';
+      const numStr = c.card_number !== undefined ? String(c.card_number) : '';
       const matchQ = !q ||
         c.hito.toLowerCase().includes(q) ||
         c.creador.toLowerCase().includes(q) ||
@@ -1292,7 +1292,7 @@ class HitTazosEngine {
     } else if (sort === 'YEAR_DESC') {
       this.filteredCatalog.sort((a, b) => b.year - a.year);
     } else if (sort === 'DECK_ORDER') {
-      this.filteredCatalog.sort((a, b) => (a.card_number || 0) - (b.card_number || 0));
+      this.filteredCatalog.sort((a, b) => (a.card_number !== undefined ? a.card_number : 0) - (b.card_number !== undefined ? b.card_number : 0));
     }
 
     this.renderCatalog();
@@ -1401,7 +1401,7 @@ class HitTazosEngine {
           const groupIcon = this.getGroupIconName(card.grupo);
           const hitoFormatted = this.formatMarkdown(card.hito);
           const volId = card.volumen !== undefined ? card.volumen : 0;
-          const hexPart = card.card_number_hex ? card.card_number_hex.substring(2) : (card.card_number || card.globalIndex || 1).toString(16).toUpperCase().padStart(2, '0');
+          const hexPart = card.card_number_hex ? card.card_number_hex.substring(2) : (card.card_number !== undefined ? card.card_number : (card.globalIndex || 1)).toString(16).toUpperCase().padStart(2, '0');
           const cardNumStr = `${volId}x${hexPart}`;
 
           box.innerHTML = `
@@ -1459,7 +1459,7 @@ class HitTazosEngine {
           const creadorFormatted = this.formatMarkdown(card.creador);
           const triviaFormatted = this.formatMarkdown(card.dato_curioso);
           const volId = card.volumen !== undefined ? card.volumen : 0;
-          const hexPart = card.card_number_hex ? card.card_number_hex.substring(2) : (card.card_number || card.globalIndex || 1).toString(16).toUpperCase().padStart(2, '0');
+          const hexPart = card.card_number_hex ? card.card_number_hex.substring(2) : (card.card_number !== undefined ? card.card_number : (card.globalIndex || 1)).toString(16).toUpperCase().padStart(2, '0');
           const cardNumStr = `${volId}x${hexPart}`;
 
           box.innerHTML = `
