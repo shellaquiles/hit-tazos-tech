@@ -12,7 +12,7 @@
  * 
  * Reglas de diseño oficial de Hit-Tazos Tech:
  *  1. Los años y categorías están distribuidos de forma no lineal (barajados).
- *  2. Las tarjetas reciben un número consecutivo impreso: card_number (1..531).
+ *  2. Las tarjetas reciben un número consecutivo impreso: card_number (1..N).
  *  3. Cada tarjeta conserva su id único correlacionado al número (#CAT-XXX).
  *  4. Guarda el mazo unificado y listo para consumo en cards.json.
  */
@@ -90,6 +90,30 @@ function build() {
   const outputPath = path.join(ROOT_DIR, 'data', 'cards.json');
   fs.writeFileSync(outputPath, JSON.stringify(shuffled, null, 2) + '\n', 'utf8');
   console.log(`✅ ${shuffled.length} tarjetas compiladas exitosamente en: ${outputPath}`);
+
+  // Generar manifest.json oficial con metadatos de autoría y distribución
+  let version = '1.0.0-rc.1';
+  try {
+    version = fs.readFileSync(path.join(ROOT_DIR, 'VERSION'), 'utf8').trim();
+  } catch (_) {}
+
+  const manifest = {
+    name: 'hit-tazos-tech',
+    title: 'Hit-Tazos Tech — Trivia Cronológica Técnica',
+    version: version,
+    description: 'Juego de trivia cronológica técnica de hitos verificados (1957–2026) sobre Python, Software, DevOps, IA y Cultura Hacker.',
+    author: 'Shellaquiles Org (https://shellaquiles.org)',
+    website: 'https://shellaquiles.org',
+    repository: 'https://github.com/shellaquiles/hit-tazos-tech',
+    license: 'MIT',
+    year_range: { min: 1957, max: 2026 },
+    groups_count: 5,
+    categories_count: 24,
+    build_date: new Date().toISOString()
+  };
+  const manifestPath = path.join(ROOT_DIR, 'data', 'manifest.json');
+  fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n', 'utf8');
+  console.log(`📋 Manifiesto oficial generado en: ${manifestPath}`);
 
   // Actualizar también los archivos por categoría manteniendo sus nuevos card_number y sin 'id'
   const cardById = new Map();

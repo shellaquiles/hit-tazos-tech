@@ -838,7 +838,7 @@ class HitTazosEngine {
     const eraName = this.getEraLabel(card.year);
     const centerArtifactHTML = this.renderCenterArtifact(card);
 
-    // Número de carta consecutivo (#001..#531)
+    // Número de carta consecutivo (#001..#N)
     const cardNumStr = card.card_number ? `#${String(card.card_number).padStart(3, '0')}` : '';
 
     // Tema cromático Hit-Tazos Tech
@@ -1361,7 +1361,7 @@ class HitTazosEngine {
         targetCards = targetCards.filter(c => c.grupo === activeGrp);
       }
     }
-    // Si es 'ALL' toma las 531 cartas completas (30 pliegos tabloide)
+    // Si es 'ALL' toma todas las cartas de la baraja completa
 
     const CARDS_PER_SHEET = 18;
     const totalSheets = Math.ceil(targetCards.length / CARDS_PER_SHEET);

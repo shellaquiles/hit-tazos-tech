@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="zapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#f43f5e"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#818cf8" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  
+  <!-- Outer Rounded Container -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Border Stroke -->
+  <rect x="8" y="8" width="496" height="496" rx="120" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="8"/>
+  
+  <!-- Zap / Lightning Icon -->
+  <path d="M 288 64 L 144 272 L 256 272 L 224 448 L 384 224 L 272 224 Z" 
+        fill="url(#zapGrad)" 
+        filter="url(#glow)"/>
+</svg>

@@ -7,7 +7,7 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 ## [1.0.0-rc.1] - 2026-09-07
 
 ### Añadido
-- **Mazo canónico de 531 tarjetas de trivia técnica (1957–2026)**: Dividido en 5 grandes grupos temáticos y 24 categorías rigurosamente investigadas y auditadas.
+- **Mazo canónico de tarjetas de trivia técnica (1957–2026)**: Dividido en 5 grandes grupos temáticos y 24 categorías rigurosamente investigadas y auditadas.
 - **Sistema cromático desacoplado por millar (`card_colors.json`)**: Paletas HSL intra-bloque con gradiente tonal (de suave a profundo cada 10 cartas) y coordenadas CMYK para imprenta.
 - **Generador cromático CLI (`generate_card_colors.js`)**: Soporte para generación modular por lotes de 1,000 cartas.
 - **Compilador y barajador determinista (`build_cards.js`)**: Generación y verificación del archivo maestro `cards.json` a partir de los 24 archivos fuente JSON.

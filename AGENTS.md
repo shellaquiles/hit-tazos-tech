@@ -6,7 +6,7 @@ Este documento es la **fuente canónica de verdad**, directrices técnicas, mode
 
 ## 🎯 1. Visión y Arquitectura del Proyecto
 
-**Hit-Tazos Tech** es un juego original e independiente de cartas de trivia cronológica técnica que comprende **531 tarjetas** rigurosamente verificadas (1957–2026), divididas en 5 grandes grupos temáticos y 24 categorías.
+**Hit-Tazos Tech** es un juego original e independiente de cartas de trivia cronológica técnica que comprende un **mazo exhaustivo de tarjetas** rigurosamente verificadas (1957–2026), divididas en 5 grandes grupos temáticos y 24 categorías.
 
 ### Estructura del Repositorio
 ```
@@ -27,7 +27,7 @@ hit-tazos-tech/
 ├── package.json                         # Manifiesto y scripts npm (test, validate, build, print)
 ├── server.js                            # Servidor local de desarrollo (sirve web/ y data/)
 ├── data/                                # Contenido editorial y datos de trivia
-│   ├── cards.json                       # Archivo compilado de distribución (barajado oficial #001-#531)
+│   ├── cards.json                       # Archivo compilado de distribución (barajado oficial secuencial)
 │   ├── card_colors.json                 # Configuración desacoplada de paletas cromáticas (#0001-#1000)
 │   └── categories/                      # 24 archivos JSON fuente de categorías
 │       ├── grupo_a_python/              # A1 a A5 (194 tarjetas)
@@ -44,12 +44,12 @@ hit-tazos-tech/
 │   ├── build_cards.js                   # Compilador y barajador determinista maestro
 │   ├── scratch_audit.py                 # Script de auditoría de caracteres y presupuestos
 │   └── generate_card_colors.js          # Generador CLI de configuración cromática por millar
-└── print/                               # Motor de imposición y salidas para imprenta tabloide (11x17)
-    ├── render_print_tabloid.js          # Generador de pliegos vectoriales (SVG, Cairo PDF, HTML)
-    ├── tabloide_editable.pdf            # PDF vectorial de 72 páginas con fuentes TrueType reales
-    ├── tabloide_impresion.html          # Vista previa interactiva en navegador para impresión
-    ├── tabloide_impresion.pdf           # Salida PDF de producción
-    └── pliegos_svg/                     # 72 archivos SVG individuales con capas editables
+├── print/                               # Motor de imposición y salidas para imprenta (Tabloide y Carta)
+│   ├── render_print_tabloid.js          # Generador maestro de imposición multi-formato (SVG, Cairo PDF)
+│   ├── tabloide_editable.pdf            # PDF vectorial de 72 páginas tamaño Tabloide (11x17)
+│   ├── carta_editable.pdf               # PDF vectorial de 178 páginas tamaño Carta (8.5x11)
+│   ├── pliegos_svg/                     # 72 archivos SVG tamaño Tabloide con capas editables
+│   └── pliegos_carta_svg/               # 178 archivos SVG tamaño Carta con capas editables
 ```
 
 > [!IMPORTANT]
@@ -108,7 +108,7 @@ Cada elemento de tarjeta en los archivos JSON debe coincidir estrictamente con e
 ```
 
 ### Reglas de Campos:
-1. **`card_number`:** Entero secuencial (`1` a `531`). Asignado automáticamente por `build_cards.js`.
+1. **`card_number`:** Entero secuencial (`1` a `N`). Asignado automáticamente por `build_cards.js`.
 2. **`grupo` / `grupo_nombre`:** Letra `"A"`..`"E"` y nombre oficial del grupo.
 3. **`categoria` / `categoria_nombre`:** Código de 2 caracteres (`"A1"`..`"E6"`) y descripción.
 4. **`hito`:** Pista histórica para el anverso. Formato Markdown (`**`, `*`, `` ` ``). **No debe revelar el año.**
@@ -203,10 +203,16 @@ La paleta se encuentra centralizada en [`card_colors.json`](./card_colors.json) 
 La imposición está diseñada cumpliendo rigurosamente los estándares industriales de impresión **Offset comercial y Prensa Digital** (CDMX / internacional):
 
 ### 6.1 Dimensiones y Geometría de Pliego
-* **Formato Predeterminado (Tabloide / Doble Carta):** $11 \times 17\text{ pulgadas}$ = $279.4 \times 431.8\text{ mm}$ = **$792 \times 1224\text{ pt}$**.
+* **Formato Tabloide / Doble Carta (11x17 pulg):** $11 \times 17\text{ pulgadas}$ = $279.4 \times 431.8\text{ mm}$ = **$792 \times 1224\text{ pt}$** (`--format=11x17`).
   * **Rejilla:** **15 cartas por pliego** ($3 \text{ columnas} \times 5 \text{ filas}$).
   * **Hojas totales:** 36 pliegos (72 páginas dúplex frentes/reversos: 35 pliegos completos de 15 cartas + 1 pliego final con 6 cartas).
   * **Márgenes de Hoja:** $X_{\text{offset}} \approx 102.7\text{ pt}$ ($36.2\text{ mm}$), $Y_{\text{offset}} \approx 117.4\text{ pt}$ ($41.4\text{ mm}$). Deja espacio generoso para pinza de máquina (*gripper* $>12\text{ mm}$), crucetas de registro y barras de calibración CMYK.
+  * **Salidas:** `print/tabloide_editable.pdf` y `print/pliegos_svg/`.
+* **Formato Carta / Letter (8.5x11 pulg):** $8.5 \times 11\text{ pulgadas}$ = $215.9 \times 279.4\text{ mm}$ = **$612 \times 792\text{ pt}$** (`--format=carta`).
+  * **Rejilla:** **6 cartas por pliego** ($2 \text{ columnas} \times 3 \text{ filas}$).
+  * **Hojas totales:** 89 pliegos (178 páginas dúplex frentes/reversos: 88 pliegos completos de 6 cartas + 1 pliego final con 3 cartas).
+  * **Márgenes de Hoja:** $X_{\text{offset}} \approx 113.2\text{ pt}$ ($40.0\text{ mm}$), $Y_{\text{offset}} \approx 102.6\text{ pt}$ ($36.2\text{ mm}$).
+  * **Salidas:** `print/carta_editable.pdf` y `print/pliegos_carta_svg/`.
 * **Formato Opcional (Super Tabloide / Extra):** $12 \times 18\text{ pulgadas}$ = $304.8 \times 457.2\text{ mm}$ = **$864 \times 1296\text{ pt}$** (`--format=12x18`).
   * **Rejilla:** **18 cartas por pliego** ($3 \text{ columnas} \times 6 \text{ filas}$, 30 pliegos = 60 páginas dúplex).
 
@@ -220,8 +226,8 @@ La imposición está diseñada cumpliendo rigurosamente los estándares industri
 ### 6.3 Espacio Cromático CMYK y Dúplex
 * **Color CMYK Calibrado:** Cada tarjeta cuenta con valores CMYK precisos (`bg_cmyk` y `front_bg_cmyk`) calculados y desacoplados en `card_colors.json`.
 * **Dúplex y Espejado Horizontal:**
-  * **Cara A (Páginas Impares — Frentes):** Columnas `[0, 1, 2]`.
-  * **Cara B (Páginas Pares — Reversos):** **Espejado horizontal fila por fila `[2, 1, 0]`**.
+  * **Cara A (Páginas Impares — Frentes):** Columnas de izquierda a derecha.
+  * **Cara B (Páginas Pares — Reversos):** **Espejado horizontal fila por fila** (`[2, 1, 0]` en Tabloide 3 columnas; `[1, 0]` en Carta 2 columnas).
   * Coincidencia submilimétrica al voltear en borde largo (*flip on long edge*).
 
 ### 6.4 Especificaciones Vectoriales para Herramientas de Diseño (Illustrator / Figma / Affinity)
@@ -241,18 +247,23 @@ npm test
 # o directamente: python3 scripts/scratch_audit.py
 # Debe reportar: Creador > 45: 0 | Hito > 150: 0 | Trivia > 150: 0
 
-# 2. Recompilar el mazo maestro (sincroniza data/cards.json y numeración #001-#531)
+# 2. Recompilar el mazo maestro (sincroniza data/cards.json y numeración secuencial)
 npm run build
 # o directamente: node scripts/build_cards.js
 
-# 3. Regenerar los pliegos SVG y el PDF vectorial editable (predeterminado 11x17)
+# 3. Regenerar los pliegos SVG y los PDFs vectoriales editables (Tabloide y Carta)
 npm run print
+# o por formato específico:
+# npm run print:tabloide
+# npm run print:carta
 # o para muestra de prueba:
 # npm run print:test
 
-# 4. Verificar integridad técnica del PDF generado
+# 4. Verificar integridad técnica de los PDFs generados
 pdfinfo print/tabloide_editable.pdf
 # Debe verificar: Pages = 72, Page size = 792 x 1224 pts
+pdfinfo print/carta_editable.pdf
+# Debe verificar: Pages = 178, Page size = 612 x 792 pts (letter)
 ```
 
 ---

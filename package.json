@@ -11,8 +11,11 @@
     "serve": "node server.js",
     "colors:generate": "node scripts/generate_card_colors.js",
     "print": "node print/render_print_tabloid.js",
-    "print:test": "node print/render_print_tabloid.js --range=15",
-    "print:chrome": "node print/render_print_tabloid.js --pdf"
+    "print:tabloide": "node print/render_print_tabloid.js --format=11x17",
+    "print:carta": "node print/render_print_tabloid.js --format=carta",
+    "print:test": "node print/render_print_tabloid.js --range=sample",
+    "print:test:tabloide": "node print/render_print_tabloid.js --format=11x17 --range=15",
+    "print:test:carta": "node print/render_print_tabloid.js --format=carta --range=6"
   },
   "keywords": [
     "hit-tazos",

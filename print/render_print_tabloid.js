@@ -16,15 +16,24 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const { execSync, spawnSync } = require('child_process');
 
 const PRINT_DIR = path.resolve(__dirname);
 const ROOT_DIR = path.resolve(__dirname, '..');
 const CARDS_JSON_PATH = path.join(ROOT_DIR, 'data', 'cards.json');
-const OUTPUT_HTML_PATH = path.join(PRINT_DIR, 'tabloide_impresion.html');
-const OUTPUT_CHROME_PDF_PATH = path.join(PRINT_DIR, 'tabloide_impresion.pdf');
-const OUTPUT_EDITABLE_PDF_PATH = path.join(PRINT_DIR, 'tabloide_editable.pdf');
-const OUTPUT_SVG_DIR = path.join(PRINT_DIR, 'pliegos_svg');
+
+let APP_VERSION = '1.0.0-rc.1';
+try {
+  APP_VERSION = fs.readFileSync(path.join(ROOT_DIR, 'VERSION'), 'utf8').trim();
+} catch (e) {
+  try {
+    APP_VERSION = require('../package.json').version;
+  } catch (_) {}
+}
+
+const ORG_NAME = 'Shellaquiles Org';
+const ORG_URL = 'https://shellaquiles.org';
+const REPO_URL = 'https://github.com/shellaquiles/hit-tazos-tech';
 
 // Medidas tipográficas e imprenta estándar (1 mm = 72 / 25.4 = 2.8346456 pt)
 const MM_TO_PT = 72.0 / 25.4;
@@ -131,14 +140,7 @@ function stripMarkdown(str) {
     .replace(/&#124;/g, '|');
 }
 
-function formatMarkdown(str) {
-  if (!str) return '';
-  return str
-    .replace(/&#124;/g, '|')
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    .replace(/`([^`]+)`/g, '<code>$1</code>');
-}
+
 
 // Divide texto en líneas para SVG nativo respetando el ancho disponible de 49mm
 function wrapTextToLines(text, maxCharsPerLine = 28) {
@@ -192,31 +194,80 @@ function generateCropMarksSvg(cutX, cutY, cutW, cutH) {
       </g>\n`;
 }
 
+const FORMAT_CONFIGS = {
+  '11x17': {
+    id: '11x17',
+    name: 'Tabloide',
+    label: '11 × 17 PULGADAS (279.4 × 431.8 mm) — TABLOIDE',
+    shortLabel: '11 × 17 PULGADAS — TABLOIDE',
+    widthInches: 11.0,
+    heightInches: 17.0,
+    cols: 3,
+    rows: 5,
+    cardsPerSheet: 15,
+    svgDir: path.join(PRINT_DIR, 'pliegos_svg'),
+    pdfPath: path.join(PRINT_DIR, 'tabloide_editable.pdf')
+  },
+  'carta': {
+    id: 'carta',
+    name: 'Carta',
+    label: '8.5 × 11 PULGADAS (215.9 × 279.4 mm) — CARTA',
+    shortLabel: '8.5 × 11 PULGADAS — CARTA',
+    widthInches: 8.5,
+    heightInches: 11.0,
+    cols: 2,
+    rows: 3,
+    cardsPerSheet: 6,
+    svgDir: path.join(PRINT_DIR, 'pliegos_carta_svg'),
+    pdfPath: path.join(PRINT_DIR, 'carta_editable.pdf')
+  },
+  '12x18': {
+    id: '12x18',
+    name: 'Super Tabloide',
+    label: '12 × 18 PULGADAS (304.8 × 457.2 mm) — SUPER TABLOIDE',
+    shortLabel: '12 × 18 PULGADAS — SUPER TABLOIDE',
+    widthInches: 12.0,
+    heightInches: 18.0,
+    cols: 3,
+    rows: 6,
+    cardsPerSheet: 18,
+    svgDir: path.join(PRINT_DIR, 'pliegos_12x18_svg'),
+    pdfPath: path.join(PRINT_DIR, 'super_tabloide_editable.pdf')
+  }
+};
+
+function resolveFormat(formatStr) {
+  const f = (formatStr || '').toLowerCase().trim();
+  if (f === 'all' || f === 'ambos' || f === 'both') return 'all';
+  if (f === 'carta' || f === 'letter' || f === '8.5x11' || f === '8.5*11') return 'carta';
+  if (f === '11x17' || f === 'tabloide' || f === 'tabloid') return '11x17';
+  if (f === '12x18' || f === 'supertabloide' || f === 'super-tabloide') return '12x18';
+  return 'all';
+}
+
 function parseArgs() {
   const args = process.argv.slice(2);
   const options = {
-    range: 'ALL',        // '15', '18', '30', '36', 'ALL'
+    range: 'ALL',        // 'ALL', 'sample', '15', '6', etc.
     crop: 'marks',       // 'marks' (cruces pro), 'guides' (guías punteadas), 'clean'
-    format: '11x17',     // '11x17' (Tabloide 3x5 = 15 cartas), '12x18' (Super Tabloide 3x6 = 18 cartas)
-    pdf: false,          // Chrome PDF
+    format: 'all',       // 'all' (Tabloide y Carta), '11x17' (Tabloide), 'carta' (Carta), '12x18'
     svg: false,          // Exportar hojas SVG
     pdfEditable: false   // Exportar PDF vectorial editable con rsvg-convert y Cairo
   };
 
   args.forEach(arg => {
-    if (arg === '--pdf') options.pdf = true;
     if (arg === '--svg') options.svg = true;
-    if (arg === '--pdf-editable' || arg === '--editable') {
+    if (arg === '--pdf-editable' || arg === '--editable' || arg === '--pdf') {
       options.pdfEditable = true;
       options.svg = true;
     }
     if (arg.startsWith('--range=')) options.range = arg.split('=')[1];
     if (arg.startsWith('--crop=')) options.crop = arg.split('=')[1];
-    if (arg.startsWith('--format=')) options.format = arg.split('=')[1];
+    if (arg.startsWith('--format=')) options.format = resolveFormat(arg.split('=')[1]);
   });
 
   // Si no se especifica nada, generar SVG + PDF editable por defecto
-  if (!options.pdf && !options.svg && !options.pdfEditable) {
+  if (!options.svg && !options.pdfEditable) {
     options.svg = true;
     options.pdfEditable = true;
   }
@@ -227,16 +278,16 @@ function parseArgs() {
 // -------------------------------------------------------------
 // Generador de Pliegos SVG para Illustrator / Figma / Inkscape
 // -------------------------------------------------------------
-function generateSvgSheets(cards, options) {
-  fs.mkdirSync(OUTPUT_SVG_DIR, { recursive: true });
+function generateSvgSheets(cards, formatConfig, options) {
+  const svgDir = formatConfig.svgDir;
+  fs.mkdirSync(svgDir, { recursive: true });
 
-  const isSuperTabloid = options.format === '12x18';
-  const cols = 3;
-  const rows = isSuperTabloid ? 6 : 5;
+  const cols = formatConfig.cols;
+  const rows = formatConfig.rows;
   const cardsPerSheet = cols * rows;
 
-  const pageWidthPt = isSuperTabloid ? 12 * 72 : 11 * 72; // 864 o 792 pt
-  const pageHeightPt = isSuperTabloid ? 18 * 72 : 17 * 72; // 1296 o 1224 pt
+  const pageWidthPt = formatConfig.widthInches * 72.0;
+  const pageHeightPt = formatConfig.heightInches * 72.0;
 
   const gridWidthPt = cols * CARD_SIZE_PT + (cols - 1) * GUTTER_PT;
   const gridHeightPt = rows * CARD_SIZE_PT + (rows - 1) * GUTTER_PT;
@@ -249,9 +300,7 @@ function generateSvgSheets(cards, options) {
   const showGuides = options.crop === 'guides';
   const generatedFiles = [];
 
-  const paperLabel = isSuperTabloid
-    ? '12 × 18 PULGADAS (304.8 × 457.2 mm) — SUPER TABLOIDE'
-    : '11 × 17 PULGADAS (279.4 × 431.8 mm) — TABLOIDE';
+  const paperLabel = formatConfig.shortLabel || formatConfig.label;
 
   for (let s = 0; s < totalSheets; s++) {
     const sheetCards = cards.slice(s * cardsPerSheet, (s + 1) * cardsPerSheet);
@@ -260,7 +309,7 @@ function generateSvgSheets(cards, options) {
     }
 
     // --- CARA A: FRENTES ---
-    const frontSvgPath = path.join(OUTPUT_SVG_DIR, `pliego_${String(s + 1).padStart(2, '0')}_frentes.svg`);
+    const frontSvgPath = path.join(svgDir, `pliego_${String(s + 1).padStart(2, '0')}_frentes.svg`);
     let frontCardsSvg = '';
 
     sheetCards.forEach((c, idx) => {
@@ -337,23 +386,47 @@ function generateSvgSheets(cards, options) {
 
     const frontSvgContent = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${(pageWidthPt / MM_TO_PT).toFixed(1)}mm" height="${(pageHeightPt / MM_TO_PT).toFixed(1)}mm" viewBox="0 0 ${pageWidthPt} ${pageHeightPt}" style="background-color: #ffffff;">
+  <title>Hit-Tazos Tech v${APP_VERSION} — Pliego ${s + 1} (${paperLabel}) — Shellaquiles Org</title>
+  <desc>Juego de cartas de trivia cronológica técnica desarrollado por Shellaquiles Org (${ORG_URL}). Licencia MIT.</desc>
+  <metadata>
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <rdf:Description>
+        <dc:title>Hit-Tazos Tech v${APP_VERSION} — Pliego ${s + 1} [CARA A: FRENTES]</dc:title>
+        <dc:creator>${ORG_NAME} (${ORG_URL})</dc:creator>
+        <dc:publisher>${ORG_NAME}</dc:publisher>
+        <dc:identifier>${REPO_URL}</dc:identifier>
+        <dc:relation>${ORG_URL}</dc:relation>
+        <dc:rights>© 2026 ${ORG_NAME}. MIT License.</dc:rights>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:language>es</dc:language>
+      </rdf:Description>
+    </rdf:RDF>
+  </metadata>
   <g id="encabezado_pliego">
-    <text x="${marginXPt.toFixed(2)}" y="${(marginYPt - 16).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="700" fill="#555555">HIT-TAZOS TECH — PLIEGO ${s + 1} DE ${totalSheets} [CARA A: FRENTES]</text>
-    <text x="${(marginXPt + gridWidthPt).toFixed(2)}" y="${(marginYPt - 16).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="700" fill="#555555" text-anchor="end">${paperLabel} — CORTE 65 × 65 mm (SANGRADO 3 mm)</text>
+    <text x="${marginXPt.toFixed(2)}" y="${(marginYPt - 22).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="6.8" font-weight="700" fill="#333333">HIT-TAZOS TECH v${APP_VERSION} — PLIEGO ${s + 1} DE ${totalSheets} [CARA A: FRENTES]</text>
+    <text x="${(marginXPt + gridWidthPt).toFixed(2)}" y="${(marginYPt - 22).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="6.8" font-weight="700" fill="#333333" text-anchor="end">${paperLabel} · shellaquiles.org</text>
+    <text x="${marginXPt.toFixed(2)}" y="${(marginYPt - 12).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777">CORTE TERMINADO: 65 × 65 mm · SANGRADO: 3 mm · CALLE: 6 mm</text>
+    <text x="${(marginXPt + gridWidthPt).toFixed(2)}" y="${(marginYPt - 12).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO (LONG EDGE)</text>
   </g>
   <g id="tarjetas_frente">
 ${frontCardsSvg}  </g>
+  <g id="pie_pliego">
+    <text x="${(pageWidthPt / 2).toFixed(2)}" y="${(pageHeightPt - 24).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="500" fill="#777777" text-anchor="middle">© 2026 ${ORG_NAME} · Hit-Tazos Tech v${APP_VERSION} · Licencia MIT · Descarga gratuita y actualizaciones en ${ORG_URL}</text>
+  </g>
 </svg>`;
 
     fs.writeFileSync(frontSvgPath, frontSvgContent, 'utf8');
     generatedFiles.push(frontSvgPath);
 
-    // --- CARA B: REVERSOS (Espejado Horizontal por Fila: [c2, c1, c0]) ---
-    const backSvgPath = path.join(OUTPUT_SVG_DIR, `pliego_${String(s + 1).padStart(2, '0')}_reversos.svg`);
+    // --- CARA B: REVERSOS (Espejado Horizontal por Fila: [cols-1, ..., 0]) ---
+    const backSvgPath = path.join(svgDir, `pliego_${String(s + 1).padStart(2, '0')}_reversos.svg`);
     let backCardsSvg = '';
 
     for (let r = 0; r < rows; r++) {
-      const rowIndices = [r * cols + 2, r * cols + 1, r * cols + 0];
+      const rowIndices = [];
+      for (let cIdx = cols - 1; cIdx >= 0; cIdx--) {
+        rowIndices.push(r * cols + cIdx);
+      }
 
       for (let col = 0; col < cols; col++) {
         const cardIndex = rowIndices[col];
@@ -441,27 +514,91 @@ ${frontCardsSvg}  </g>
 
     const backSvgContent = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${(pageWidthPt / MM_TO_PT).toFixed(1)}mm" height="${(pageHeightPt / MM_TO_PT).toFixed(1)}mm" viewBox="0 0 ${pageWidthPt} ${pageHeightPt}" style="background-color: #ffffff;">
+  <title>Hit-Tazos Tech v${APP_VERSION} — Pliego ${s + 1} (${paperLabel}) [Reversos] — Shellaquiles Org</title>
+  <desc>Juego de cartas de trivia cronológica técnica desarrollado por Shellaquiles Org (${ORG_URL}). Licencia MIT.</desc>
+  <metadata>
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <rdf:Description>
+        <dc:title>Hit-Tazos Tech v${APP_VERSION} — Pliego ${s + 1} [CARA B: REVERSOS ESPEJADOS]</dc:title>
+        <dc:creator>${ORG_NAME} (${ORG_URL})</dc:creator>
+        <dc:publisher>${ORG_NAME}</dc:publisher>
+        <dc:identifier>${REPO_URL}</dc:identifier>
+        <dc:relation>${ORG_URL}</dc:relation>
+        <dc:rights>© 2026 ${ORG_NAME}. MIT License.</dc:rights>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:language>es</dc:language>
+      </rdf:Description>
+    </rdf:RDF>
+  </metadata>
   <g id="encabezado_pliego">
-    <text x="${marginXPt.toFixed(2)}" y="${(marginYPt - 16).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="700" fill="#555555">HIT-TAZOS TECH — PLIEGO ${s + 1} DE ${totalSheets} [CARA B: REVERSOS ESPEJADOS]</text>
-    <text x="${(marginXPt + gridWidthPt).toFixed(2)}" y="${(marginYPt - 16).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="700" fill="#555555" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO (LONG EDGE DUPLEX)</text>
+    <text x="${marginXPt.toFixed(2)}" y="${(marginYPt - 22).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="6.8" font-weight="700" fill="#333333">HIT-TAZOS TECH v${APP_VERSION} — PLIEGO ${s + 1} DE ${totalSheets} [CARA B: REVERSOS ESPEJADOS]</text>
+    <text x="${(marginXPt + gridWidthPt).toFixed(2)}" y="${(marginYPt - 22).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="6.8" font-weight="700" fill="#333333" text-anchor="end">${paperLabel} · shellaquiles.org</text>
+    <text x="${marginXPt.toFixed(2)}" y="${(marginYPt - 12).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777">CORTE TERMINADO: 65 × 65 mm · SANGRADO: 3 mm · CALLE: 6 mm</text>
+    <text x="${(marginXPt + gridWidthPt).toFixed(2)}" y="${(marginYPt - 12).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO (LONG EDGE)</text>
   </g>
   <g id="tarjetas_reverso">
 ${backCardsSvg}  </g>
+  <g id="pie_pliego">
+    <text x="${(pageWidthPt / 2).toFixed(2)}" y="${(pageHeightPt - 24).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="500" fill="#777777" text-anchor="middle">© 2026 ${ORG_NAME} · Hit-Tazos Tech v${APP_VERSION} · Licencia MIT · Descarga gratuita y actualizaciones en ${ORG_URL}</text>
+  </g>
 </svg>`;
 
     fs.writeFileSync(backSvgPath, backSvgContent, 'utf8');
     generatedFiles.push(backSvgPath);
   }
 
-  console.log(`✅ ${generatedFiles.length} pliegos SVG generados en: ${OUTPUT_SVG_DIR}/`);
+  console.log(`✅ ${generatedFiles.length} pliegos SVG generados en: ${svgDir}/`);
   return generatedFiles;
+}
+
+// -------------------------------------------------------------
+// Inyección de Metadatos Oficiales en PDF con PyPDF2
+// -------------------------------------------------------------
+function attachPdfMetadata(pdfPath, formatConfig, version) {
+  const pyScript = `
+import PyPDF2
+
+pdf_path = ${JSON.stringify(pdfPath)}
+try:
+    reader = PyPDF2.PdfReader(pdf_path)
+    writer = PyPDF2.PdfWriter()
+    for page in reader.pages:
+        writer.add_page(page)
+
+    metadata = {
+        '/Title': 'Hit-Tazos Tech v${version} — Mazo Imprimible (${formatConfig.name})',
+        '/Author': '${ORG_NAME} (${ORG_URL})',
+        '/Subject': 'Juego de cartas y trivia cronológica técnica — Universo Python, Software, DevOps, IA y Cultura Hacker',
+        '/Creator': 'Hit-Tazos Tech Imposition Engine — ${ORG_NAME}',
+        '/Producer': '${ORG_NAME} (${ORG_URL})',
+        '/Keywords': 'hit-tazos, hit-tazos-tech, shellaquiles, shellaquiles.org, trivia, python, linux, devops, ai, open-source, board-game, print-and-play'
+    }
+    writer.add_metadata(metadata)
+
+    with open(pdf_path, 'wb') as f:
+        writer.write(f)
+except Exception as e:
+    import sys
+    sys.stderr.write(str(e))
+    sys.exit(1)
+`;
+
+  try {
+    const res = spawnSync('python3', ['-c', pyScript], { encoding: 'utf8' });
+    if (res.status !== 0) {
+      throw new Error(res.stderr || res.stdout);
+    }
+    console.log(`   🏷️  Metadatos incrustados: ${ORG_NAME} · v${version}`);
+  } catch (err) {
+    console.warn(`   ⚠️ Advertencia al incrustar metadatos PDF: ${err.message}`);
+  }
 }
 
 // -------------------------------------------------------------
 // Conversión de SVGs a PDF Vectorial con rsvg-convert y Cairo
 // -------------------------------------------------------------
-function compileEditablePdf(svgFiles, outputPdfPath) {
-  console.log('🔄 Compilando PDF vectorial editable con rsvg-convert (Cairo TrueType)...');
+function compileEditablePdf(svgFiles, outputPdfPath, aliasPdfPath, formatConfig) {
+  console.log(`🔄 Compilando PDF vectorial editable con rsvg-convert (Cairo TrueType)...`);
   const tempPdfDir = path.join(ROOT_DIR, '.temp_pdf_pages');
   fs.mkdirSync(tempPdfDir, { recursive: true });
 
@@ -474,7 +611,12 @@ function compileEditablePdf(svgFiles, outputPdfPath) {
     });
 
     execSync(`pdfunite ${tempPdfs.map(p => `"${p}"`).join(' ')} "${outputPdfPath}"`);
-    console.log(`🎉 ¡PDF vectorial editable generado exitosamente!\n   📂 ${outputPdfPath}`);
+    console.log(`   📄 Archivo distribuible compilado: ${path.basename(outputPdfPath)}`);
+
+    // Inyectar metadatos oficiales de Shellaquiles Org
+    attachPdfMetadata(outputPdfPath, formatConfig, APP_VERSION);
+
+    console.log(`🎉 ¡PDF vectorial editable listo para distribución!\n   📂 ${outputPdfPath}`);
   } catch (err) {
     console.error('⚠️ Error al compilar PDF editable:', err.message);
   } finally {
@@ -485,218 +627,83 @@ function compileEditablePdf(svgFiles, outputPdfPath) {
   }
 }
 
-// -------------------------------------------------------------
-// Generador HTML (Vista Previa e Impresión Web)
-// -------------------------------------------------------------
-function generateHtmlPreview(cards, options) {
-  const isSuperTabloid = options.format === '12x18';
-  const cols = 3;
-  const rows = isSuperTabloid ? 6 : 5;
-  const cardsPerSheet = cols * rows;
+function processFormat(formatConfig, allCards, options) {
+  console.log(`\n======================================================`);
+  console.log(`📐 Procesando formato: ${formatConfig.name.toUpperCase()} (${formatConfig.label})`);
+  console.log(`   Rejilla: ${formatConfig.cols} col x ${formatConfig.rows} filas (${formatConfig.cardsPerSheet} cartas por pliego)`);
+  console.log(`======================================================`);
 
-  const totalSheets = Math.ceil(cards.length / cardsPerSheet);
-  const showGuides = options.crop !== 'clean';
-  let sheetsHtml = '';
-
-  for (let s = 0; s < totalSheets; s++) {
-    const sheetCards = cards.slice(s * cardsPerSheet, (s + 1) * cardsPerSheet);
-    while (sheetCards.length < cardsPerSheet) {
-      sheetCards.push(null);
-    }
-
-    // Frentes
-    let frontGridHtml = '';
-    sheetCards.forEach((c) => {
-      if (!c) {
-        frontGridHtml += `<div class="card-cell ${showGuides ? 'has-crop' : ''}"></div>`;
-        return;
-      }
-      const theme = getCardTheme(c);
-      const hito = formatMarkdown(c.hito);
-      const numStr = `#${String(c.card_number).padStart(3, '0')}`;
-
-      frontGridHtml += `
-        <div class="card-cell ${showGuides ? 'has-crop' : ''}">
-          <div class="card-bleed" style="--card-bg: ${theme.bg}; --card-front-bg: ${theme.frontBg};">
-            <div class="card-cut face-front">
-              <div class="topbar">
-                <span class="group-title">${c.grupo_nombre}</span>
-                <span class="category-name">${c.categoria_nombre}</span>
-              </div>
-              <div class="clue-stage">
-                <p class="clue-text">${hito}</p>
-              </div>
-              <div class="footbar">
-                <span class="cat-tag">${c.categoria}</span>
-                <span class="card-num">${numStr}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-    });
-
-    sheetsHtml += `
-      <section class="sheet ${isSuperTabloid ? 'sheet-12x18' : 'sheet-11x17'}">
-        <header class="sheet-meta">
-          <span>HIT-TAZOS TECH — PLIEGO ${s + 1} DE ${totalSheets} [CARA A: FRENTES]</span>
-          <span>${isSuperTabloid ? '12x18 PULG (305x457 mm)' : '11x17 PULG (279x432 mm)'} — CORTE 65x65mm (SANGRADO 3mm)</span>
-        </header>
-        <div class="grid-${cols}x${rows}">${frontGridHtml}</div>
-      </section>
-    `;
-
-    // Reversos Espejados
-    const mirroredIndices = [];
-    for (let r = 0; r < rows; r++) {
-      const base = r * cols;
-      mirroredIndices.push(base + 2, base + 1, base);
-    }
-
-    let backGridHtml = '';
-    mirroredIndices.forEach((idx) => {
-      const c = sheetCards[idx];
-      if (!c) {
-        backGridHtml += `<div class="card-cell ${showGuides ? 'has-crop' : ''}"></div>`;
-        return;
-      }
-      const theme = getCardTheme(c);
-      const creador = formatMarkdown(c.creador);
-      const trivia = formatMarkdown(c.dato_curioso);
-      const cleanCardNum = String(c.card_number).padStart(3, '0');
-
-      backGridHtml += `
-        <div class="card-cell ${showGuides ? 'has-crop' : ''}">
-          <div class="card-bleed" style="--card-bg: ${theme.bg};">
-            <div class="card-cut face-back">
-              <div class="back-author">${creador}</div>
-              <div class="year-stage">${c.year}</div>
-              <div class="back-trivia">${trivia}</div>
-              <div class="footbar">
-                <span class="cat-tag">${c.categoria}</span>
-                <span class="card-num">${cleanCardNum}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-    });
-
-    sheetsHtml += `
-      <section class="sheet ${isSuperTabloid ? 'sheet-12x18' : 'sheet-11x17'}">
-        <header class="sheet-meta">
-          <span>HIT-TAZOS TECH — PLIEGO ${s + 1} DE ${totalSheets} [CARA B: REVERSOS ESPEJADOS]</span>
-          <span>IMPRESIÓN DÚPLEX: VOLTEAR POR EL BORDE LARGO</span>
-        </header>
-        <div class="grid-${cols}x${rows}">${backGridHtml}</div>
-      </section>
-    `;
-  }
-
-  const fullHtml = `<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>HIT-TAZOS Tech — Imposición Profesional con Sangrado 3mm</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@700;800;900&display=swap');
-    @page { size: ${isSuperTabloid ? '12in 18in' : 'tabloid'} portrait; margin: 0; }
-    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-    body { background: #dbeafe; font-family: 'Outfit', sans-serif; display: flex; flex-direction: column; align-items: center; padding: 25px 0; }
-    .sheet { background: #ffffff; margin-bottom: 30px; box-shadow: 0 12px 32px rgba(15,23,42,0.18); page-break-after: always; break-after: page; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-    .sheet-11x17 { width: 279.4mm; height: 431.8mm; }
-    .sheet-12x18 { width: 304.8mm; height: 457.2mm; }
-    .sheet-meta { position: absolute; top: 10mm; left: 30mm; right: 30mm; display: flex; justify-content: space-between; font-size: 7.5pt; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 0.5pt solid #cbd5e1; padding-bottom: 4px; }
-    .grid-3x5 { display: grid; grid-template-columns: repeat(3, 71mm); grid-template-rows: repeat(5, 71mm); gap: 0mm; margin-top: 10mm; }
-    .grid-3x6 { display: grid; grid-template-columns: repeat(3, 71mm); grid-template-rows: repeat(6, 71mm); gap: 0mm; margin-top: 10mm; }
-    .card-cell { width: 71mm; height: 71mm; position: relative; display: flex; align-items: center; justify-content: center; }
-    .has-crop::after { content: ''; position: absolute; width: 65mm; height: 65mm; outline: 0.4pt dashed rgba(255,255,255,0.4); pointer-events: none; z-index: 10; }
-    .face-back.has-crop::after { outline-color: rgba(0,0,0,0.25); }
-    .card-bleed { width: 71mm; height: 71mm; background: var(--card-bg); display: flex; align-items: center; justify-content: center; }
-    .face-front.card-cut { background: var(--card-front-bg); color: #ffffff; }
-    .face-back.card-cut { background: var(--card-bg); color: #111111; text-align: center; }
-    .card-cut { width: 65mm; height: 65mm; padding: 8mm 8mm; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
-    .topbar { display: flex; flex-direction: column; gap: 2px; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 2.5px; }
-    .group-title { font-size: 6.4pt; font-weight: 800; text-transform: uppercase; color: var(--card-bg); letter-spacing: 0.4px; }
-    .category-name { font-size: 5.6pt; color: rgba(255,255,255,0.7); line-height: 1.25; }
-    .clue-stage { flex: 1; display: flex; align-items: center; justify-content: flex-start; padding: 2mm 0; overflow: hidden; }
-    .clue-text { font-size: 8.8pt; line-height: 1.4; color: #ffffff; text-align: left; }
-    .footbar { display: flex; justify-content: space-between; align-items: flex-end; }
-    .cat-tag, .card-num { font-size: 5.2pt; font-weight: 500; color: rgba(255, 255, 255, 0.7); }
-    .face-front .cat-tag { color: rgba(255, 255, 255, 0.45); }
-    .face-front .card-num { color: rgba(255, 255, 255, 0.55); font-family: 'Space Grotesk', sans-serif; }
-    .face-back .card-num { font-family: 'Space Grotesk', sans-serif; }
-    .back-author { font-size: 8.4pt; font-weight: 600; line-height: 1.2; min-height: 18px; display: flex; align-items: center; justify-content: center; }
-    .year-stage { font-family: 'Space Grotesk', sans-serif; font-size: 50pt; font-weight: 900; letter-spacing: -1.8px; line-height: 0.88; margin: 1px 0; }
-    .back-trivia { font-size: 7.2pt; font-style: italic; line-height: 1.35; flex: 1; display: flex; align-items: center; justify-content: center; padding: 0 1mm; }
-    @media print { body { background: transparent !important; padding: 0 !important; } .sheet { box-shadow: none !important; margin: 0 !important; } }
-  </style>
-</head>
-<body>${sheetsHtml}</body>
-</html>`;
-
-  fs.writeFileSync(OUTPUT_HTML_PATH, fullHtml, 'utf8');
-  console.log(`✅ Archivo HTML de pliegos generado: ${OUTPUT_HTML_PATH}`);
-}
-
-function main() {
-  const options = parseArgs();
-  console.log('🎨 HIT-TAZOS TECH - Generador de Imposición Profesional (Sangrado 3mm, Margen 8mm, Crop Marks)');
-
-  if (!fs.existsSync(CARDS_JSON_PATH)) {
-    console.error('❌ No se encontró cards.json. Ejecuta primero `node build_cards.js`');
-    process.exit(1);
-  }
-
-  let cards = JSON.parse(fs.readFileSync(CARDS_JSON_PATH, 'utf8'));
-  console.log(`📦 Total de tarjetas disponibles: ${cards.length}`);
-  console.log(`📐 Formato de pliego: ${options.format.toUpperCase()} | Marcas: ${options.crop.toUpperCase()}`);
-
-  if (options.range === '15' || options.range === 'SAMPLE_15') {
-    cards = cards.slice(0, 15);
-    console.log('📄 Rango: Muestra de 1 pliego (15 cartas)');
-  } else if (options.range === '18' || options.range === 'SAMPLE_18') {
-    cards = cards.slice(0, 18);
-    console.log('📄 Rango: Muestra de 1 pliego (18 cartas)');
-  } else if (options.range === '30' || options.range === 'SAMPLE_30') {
-    cards = cards.slice(0, 30);
-    console.log('📄 Rango: Muestra de 2 pliegos (30 cartas)');
+  let cards = allCards;
+  if (options.range === 'sample' || options.range === '1sheet') {
+    cards = allCards.slice(0, formatConfig.cardsPerSheet);
+    console.log(`📄 Rango: Muestra de 1 pliego (${cards.length} cartas)`);
+  } else if (!isNaN(parseInt(options.range, 10)) && options.range !== 'ALL') {
+    const limit = parseInt(options.range, 10);
+    cards = allCards.slice(0, limit);
+    console.log(`📄 Rango: Muestra limitada a ${cards.length} cartas`);
   } else {
     console.log(`📄 Rango: Baraja completa de ${cards.length} cartas`);
   }
 
-  // 1. Generar HTML
-  generateHtmlPreview(cards, options);
-
-  // 2. Generar SVGs
+  // 1. Generar SVGs
   let svgFiles = [];
   if (options.svg || options.pdfEditable) {
-    svgFiles = generateSvgSheets(cards, options);
+    svgFiles = generateSvgSheets(cards, formatConfig, options);
   }
 
-  // 3. Generar PDF Editable (TrueType Cairo)
+  // 2. Generar PDF Editable (TrueType Cairo)
   if (options.pdfEditable && svgFiles.length > 0) {
-    compileEditablePdf(svgFiles, OUTPUT_EDITABLE_PDF_PATH);
+    compileEditablePdf(svgFiles, formatConfig.pdfPath, formatConfig.aliasPdfPath, formatConfig);
   }
 
-  // 4. Generar PDF con Chrome Headless si se solicita explícitamente
-  if (options.pdf) {
-    console.log('🔄 Exportando con Chrome Headless...');
-    try {
-      execSync(
-        `google-chrome --headless --disable-gpu --no-pdf-header-footer --print-to-pdf="${OUTPUT_CHROME_PDF_PATH}" "file://${OUTPUT_HTML_PATH}"`,
-        { stdio: 'inherit' }
-      );
-      console.log(`🎉 ¡PDF generado con Chrome!\n   📂 ${OUTPUT_CHROME_PDF_PATH}`);
-    } catch (err) {
-      console.error('⚠️ Error en Chrome:', err.message);
+  return {
+    format: formatConfig.name,
+    svgCount: svgFiles.length,
+    svgDir: formatConfig.svgDir,
+    pdfPath: formatConfig.pdfPath
+  };
+}
+
+function main() {
+  const options = parseArgs();
+  console.log(`🎨 HIT-TAZOS TECH v${APP_VERSION} - Imposición Profesional (${ORG_NAME} · ${ORG_URL})`);
+
+  if (!fs.existsSync(CARDS_JSON_PATH)) {
+    console.error('❌ No se encontró cards.json. Ejecuta primero `node scripts/build_cards.js`');
+    process.exit(1);
+  }
+
+  const cards = JSON.parse(fs.readFileSync(CARDS_JSON_PATH, 'utf8'));
+  console.log(`📦 Total de tarjetas disponibles: ${cards.length}`);
+  console.log(`📐 Modo de formato: ${options.format.toUpperCase()} | Marcas: ${options.crop.toUpperCase()}`);
+
+  const formatsToProcess = [];
+  if (options.format === 'all') {
+    formatsToProcess.push(FORMAT_CONFIGS['11x17']);
+    formatsToProcess.push(FORMAT_CONFIGS['carta']);
+  } else if (FORMAT_CONFIGS[options.format]) {
+    formatsToProcess.push(FORMAT_CONFIGS[options.format]);
+  } else {
+    console.error(`❌ Formato desconocido: ${options.format}. Formatos disponibles: 11x17, carta, 12x18, all`);
+    process.exit(1);
+  }
+
+  const results = [];
+  for (const fmt of formatsToProcess) {
+    results.push(processFormat(fmt, cards, options));
+  }
+
+  console.log('\n======================================================');
+  console.log(`✨ RESUMEN DE DISTRIBUCIÓN — HIT-TAZOS TECH v${APP_VERSION} (${ORG_URL})`);
+  for (const res of results) {
+    console.log(`  📄 Formato [${res.format.toUpperCase()}]:`);
+    if (options.svg) console.log(`     📂 SVGs (${res.svgCount} pliegos): ${res.svgDir}/`);
+    if (options.pdfEditable) {
+      console.log(`     📕 PDF Oficial de Distribución: ${path.basename(res.pdfPath)}`);
+      console.log(`        └─ Ruta: ${res.pdfPath}`);
     }
   }
-
-  console.log('\n✨ Salidas profesionales listas para imprenta:');
-  if (options.svg) console.log(`   📂 Hojas SVG (Illustrator/Figma): ${OUTPUT_SVG_DIR}/`);
-  if (options.pdfEditable) console.log(`   📂 PDF vectorial editable (Cairo): ${OUTPUT_EDITABLE_PDF_PATH}`);
-  if (options.pdf) console.log(`   📂 PDF de Chrome:                 ${OUTPUT_CHROME_PDF_PATH}`);
+  console.log('======================================================\n');
 }
 
 main();

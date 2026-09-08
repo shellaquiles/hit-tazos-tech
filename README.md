@@ -4,7 +4,7 @@
 
 Juego original e independiente de trivia cronológica técnica centrado en el ecosistema de **Tecnología, Desarrollo de Software, Infraestructura, Inteligencia Artificial y Cultura Hacker**, con un marcado énfasis en el **Universo Python**.
 
-El juego comprende **531 tarjetas físicas de trivia (1957 – 2026)** organizadas en 5 grandes grupos temáticos y 24 categorías, listas para jugar en mesa o explorar interactivamente en la web.
+El juego comprende un **mazo exhaustivo de tarjetas de trivia cronológica (1957 – 2026)** organizadas en 5 grandes grupos temáticos y 24 categorías, listas para jugar en mesa o explorar interactivamente en la web.
 
 ---
 
@@ -24,7 +24,7 @@ npm run serve
 
 ### Modos de la Aplicación Web:
 * **🕹️ Partida Interactiva:** Tarjeta 3D que se voltea con animación WAAPI o barra espaciadora, flujo multi-intento con pistas direccionales (más reciente / más antiguo) y temperatura (frío/tibio/caliente), chips de décadas, racha de aciertos y repisa cronológica para coleccionar 10 cartas.
-* **🔍 Explorador y Catálogo:** Visualización en cuadrícula con el **"Orden del Mazo (Bloques de Color #001..#531)"**, donde se aprecia la transición tonal continua de 10 en 10 de claro a oscuro, además de filtros por grupo y búsqueda en tiempo real.
+* **🔍 Explorador y Catálogo:** Visualización en cuadrícula con el **"Orden del Mazo (Bloques de Color)"**, donde se aprecia la transición tonal continua de 10 en 10 de claro a oscuro, además de filtros por grupo y búsqueda en tiempo real.
 * **🔊 Audio y FX:** Efectos de sonido retro sintetizados con Web Audio API y confeti dinámico con la paleta de cada tarjeta al acertar.
 
 ---
@@ -35,7 +35,7 @@ npm run serve
 Ser el primer jugador o equipo en construir una **Línea de Tiempo cronológicamente correcta de 10 tarjetas**.
 
 ### Preparación
-1. Toma el mazo barajado [`cards.json`](./data/cards.json) (o las tarjetas impresas correspondientes a sus números `#001` a `#531`).
+1. Toma el mazo barajado [`cards.json`](./data/cards.json) (o las tarjetas impresas con su numeración correlativa).
 2. Cada jugador recibe **1 tarjeta inicial boca arriba** (con el año visible), marcando el inicio de su línea temporal personal.
 3. Cada jugador recibe **3 tokens** (fichas o monedas de juego).
 
@@ -53,20 +53,28 @@ Ser el primer jugador o equipo en construir una **Línea de Tiempo cronológicam
 
 ## 🖨️ Impresión Profesional en Tabloide (11×17 pulg)
 
-El repositorio incluye un motor de imposición para imprenta optimizado para hojas tamaño **Tabloide / Doble Carta (11 &times; 17 pulgadas / 279.4 &times; 431.8 mm)** con rejilla de **15 cartas cuadradas por pliego (3 &times; 5, de 65 &times; 65 mm)**:
+El repositorio incluye un motor de imposición profesional para imprenta optimizado para hojas estándar **Tabloide / Doble Carta (11 &times; 17 pulgadas)** y **Carta / Letter (8.5 &times; 11 pulgadas)** para tarjetas cuadradas de **$65 \times 65\text{ mm}$**:
 
 ```bash
-# Compilar baraja completa (72 pliegos SVG + PDF vectorial editable de 72 páginas)
+# Compilar baraja completa para ambos formatos (Tabloide y Carta)
 npm run print
 
-# Generar muestra de prueba (1 pliego)
-npm run print:test
+# Compilar específicamente por formato:
+npm run print:tabloide   # 72 páginas dúplex (rejilla 3x5, 15 cartas/pliego)
+npm run print:carta      # 178 páginas dúplex (rejilla 2x3, 6 cartas/pliego)
+
+# Generar muestras de prueba (1 pliego):
+npm run print:test            # Muestra de 1 pliego para ambos formatos
+npm run print:test:tabloide   # Muestra de 1 pliego Tabloide (15 cartas)
+npm run print:test:carta      # Muestra de 1 pliego Carta (6 cartas)
 ```
 
-### Salidas Disponibles:
-* **[`print/tabloide_editable.pdf`](./print/tabloide_editable.pdf):** Documento vectorial de 72 páginas con fuentes TrueType (`Noto Sans`, `WinAnsi`), sin fuentes rasterizadas Tipo 3. La Cara A (frentes) y Cara B (reversos espejados `[2, 1, 0]`) garantizan coincidencia milimétrica en guillotina al imprimir a doble cara volteando por el borde largo.
-* **[`print/pliegos_svg/`](./print/pliegos_svg/):** Pliegos SVG individuales con capas organizadas (`<text>`, `<tspan>`, `<clipPath>`) listos para abrir y editar en **Adobe Illustrator, Figma, Affinity Designer o Inkscape**.
-* **[`print/tabloide_impresion.html`](./print/tabloide_impresion.html):** Vista previa para mandar a imprimir directamente desde el navegador web (`Ctrl+P`).
+### Salidas y Archivos de Distribución Oficial:
+* **[`print/hit-tazos-tech-v1.0.0-rc.1-tabloide.pdf`](./print/hit-tazos-tech-v1.0.0-rc.1-tabloide.pdf)** *(alias `tabloide_editable.pdf`)*: Documento vectorial de 72 páginas ($11 \times 17\text{ pulg}$) con fuentes TrueType (`Noto Sans`, `WinAnsi`), sin rasterizado. Rejilla de $3 \times 5$ cartas por pliego con reversos espejados `[2, 1, 0]`, pie de autoría oficial de **Shellaquiles Org** y metadatos PDF completos.
+* **[`print/hit-tazos-tech-v1.0.0-rc.1-carta.pdf`](./print/hit-tazos-tech-v1.0.0-rc.1-carta.pdf)** *(alias `carta_editable.pdf`)*: Documento vectorial de 178 páginas ($8.5 \times 11\text{ pulg}$) con fuentes TrueType (`Noto Sans`, `WinAnsi`). Rejilla de $2 \times 3$ cartas por pliego con reversos espejados `[1, 0]` para coincidencia milimétrica en cualquier impresora doméstica o de oficina.
+* **[`print/pliegos_svg/`](./print/pliegos_svg/):** 72 pliegos SVG individuales tamaño Tabloide con capas vectoriales editables y metadatos Dublin Core (`dc:creator = Shellaquiles Org`, `dc:relation = https://shellaquiles.org`).
+* **[`print/pliegos_carta_svg/`](./print/pliegos_carta_svg/):** 178 pliegos SVG individuales tamaño Carta con capas vectoriales editables y metadatos Dublin Core.
+* **[`data/manifest.json`](./data/manifest.json):** Manifiesto JSON canónico del mazo con versión, autoría, rangos cronológicos y sumarios editoriales.
 
 ---
 
