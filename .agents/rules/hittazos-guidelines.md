@@ -5,26 +5,25 @@ globs: ["**/*.json", "render_print_tabloid.js", "build_cards.js"]
 
 # Hit-Tazos Tech — Directrices para Agentes
 
-## 1. Presupuestos de Caracteres Obligatorios
-- `creador`: Máximo 45 caracteres (`*Autor* et al.`, siglas como `(*MIT*)`).
-- `hito`: Máximo 145 caracteres (pista clara sin circunloquios).
-- `dato_curioso`: Máximo 150 caracteres (límite duro 155). 3-4 líneas compactas.
+## 1. Presupuestos de Caracteres Obligatorios (Data Contract)
+- `autor`: Máximo 45 caracteres (`*Autor* et al.`, siglas como `(*MIT*)`).
+- `hito`: Máximo 145 caracteres en Markdown (pista clara sin revelar el año).
+- `trivia`: Máximo 150 caracteres (3-4 líneas compactas para lectura ágil).
 
 ## 2. Flujo de Validación y Compilación
-Tras editar cualquier archivo JSON en `grupo_*/*.json`:
-1. `python3 scratch_audit.py` (debe dar 0 violaciones).
-2. `node build_cards.js` (compila `cards.json`).
-3. `node render_print_tabloid.js --range=ALL` (compila pliegos SVG y `tabloide_editable.pdf`).
+Tras editar cualquier archivo JSON en `data/volumes/*.json`:
+1. `npm test` o `python3 scripts/scratch_audit.py` (debe dar 0 violaciones).
+2. `npm run build` (compila `data/cards.json` y `data/manifest.json`).
+3. `npm run print` (compila pliegos SVG y PDFs vectoriales oficiales: Tabloide, Carta y Super Tabloide).
 
 ## 3. Imposición Dúplex Milimétrica
-- Tamaño de hoja: Tabloide ($11 \times 17\text{ pulg}$, $279.4 \times 431.8\text{ mm}$, $792 \times 1224\text{ pt}$).
-- Rejilla: 15 cartas por pliego ($3 \times 5$, opcional 18 cartas en $12 \times 18$), tamaño $65 \times 65\text{ mm}$ ($184.25\text{ pt}$).
-- Reversos: Espejados horizontalmente fila por fila `[2, 1, 0]` para coincidencia en guillotina al voltear por el borde largo.
-- Formatos: Texto vectorial nativo con fuentes TrueType (`NotoSans`, `WinAnsi`). Sin rasterización.
+- Formatos: Tabloide (11×17", 15 cartas/pliego), Carta (8.5×11", 6 cartas/pliego) y Super Tabloide (12×18", 18 cartas/pliego).
+- Tamaño de carta: $65 \times 65\text{ mm}$ ($184.25\text{ pt}$) con sangrado de +3 mm y calles de 6 mm.
+- Reversos: Espejados horizontalmente fila por fila para coincidencia perfecta al voltear por el borde largo.
+- Salidas PDF oficiales: `hit-tazos-tech-v{VERSION}-{formato}.pdf` con metadatos incrustados y fuentes TrueType (`Noto Sans`).
 
-## 4. Paleta Cromática Desacoplada (`card_colors.json`)
-- Los colores son independientes de los textos y vinculados únicamente por `card_number`.
-- Se configuran y generan por millar: `node generate_card_colors.js [--millar=N]`.
-- Archivo maestro para 1..1000: `card_colors.json`.
+## 4. Estructura de Volúmenes y Paleta Cromática
+- El mazo consta de 576 cartas distribuidas en 8 volúmenes canónicos (`vol0` a `vol7`).
+- Los colores están desacoplados en `data/card_colors.json` y se configuran por millar (`scripts/generate_card_colors.js`).
 
 Ver [AGENTS.md](../../AGENTS.md) para la especificación completa.

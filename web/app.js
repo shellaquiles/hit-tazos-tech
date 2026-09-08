@@ -223,15 +223,22 @@ class HitTazosEngine {
 
   async loadData() {
     try {
-      const [cards, colorsData] = await Promise.all([
-        this.fetchFirst(['data/cards.json', '/data/cards.json', '../data/cards.json', 'cards.json']),
-        this.fetchFirst(['data/card_colors.json', '/data/card_colors.json', '../data/card_colors.json', 'card_colors.json'])
+      const [cards, colorsData, catalogData] = await Promise.all([
+        this.fetchFirst(['../data/cards.json', 'data/cards.json', '/data/cards.json', 'cards.json']),
+        this.fetchFirst(['../data/card_colors.json', 'data/card_colors.json', '/data/card_colors.json', 'card_colors.json']),
+        this.fetchFirst(['../data/catalog.json', 'data/catalog.json', '/data/catalog.json', 'catalog.json'])
       ]);
 
       if (cards) {
         this.cards = cards;
       } else {
         throw new Error('Could not load cards.json from data/cards.json or fallbacks');
+      }
+
+      if (catalogData) {
+        this.catalog = catalogData;
+      } else {
+        this.catalog = { domains: {}, tags: {}, volumes: {} };
       }
 
       if (colorsData) {
@@ -310,7 +317,7 @@ class HitTazosEngine {
       pill.addEventListener('click', () => {
         this.groupRibbon.querySelectorAll('.ribbon-pill').forEach(p => p.classList.remove('active'));
         pill.classList.add('active');
-        const grp = pill.getAttribute('data-group');
+        const grp = pill.getAttribute('data-volumen');
         this.selectActiveGroup(grp);
       });
     });
@@ -439,9 +446,9 @@ class HitTazosEngine {
       this.activeDeck = [...this.cards];
       this.hudGroupLabel.textContent = 'Todos los Grupos';
     } else {
-      this.activeDeck = this.cards.filter(c => c.grupo === grp);
-      const name = this.activeDeck[0]?.grupo_nombre || `Grupo ${grp}`;
-      this.hudGroupLabel.textContent = name;
+      this.activeDeck = this.cards.filter(c => c.volumen === grp);
+      const name = (this.catalog?.volumes?.[grp] || this.activeDeck[0]?.volumen || `Volumen ${grp}`).toUpperCase();
+      this.hudGroupLabel.textContent = grp === 'ALL' ? 'Todos los Volúmenes' : name;
     }
     this.currentIndex = 0;
     this.renderActiveArenaCard();
@@ -455,7 +462,7 @@ class HitTazosEngine {
       .replace(/`([^`]+)`/g, '<code>$1</code>');
   }
 
-  getGroupIconName(grp) {
+  getDomainIconName(domain) {
     const map = {
       'A': 'terminal',
       'B': 'code-2',
@@ -463,7 +470,7 @@ class HitTazosEngine {
       'D': 'cpu',
       'E': 'shield-alert'
     };
-    return map[grp] || 'layers';
+    return 'layers'; // simplify for now
   }
 
   getEraLabel(year) {
@@ -478,8 +485,8 @@ class HitTazosEngine {
   }
 
   renderCenterArtifact(card) {
-    const grp = card.grupo;
-    if (grp === 'A') {
+    const vol = card.volumen || (card.id ? card.id.split('-')[0] : '');
+    if (vol === 'python-track' || vol === 'unix-sysadmin-networks') {
       // 1. TERMINAL SHELL - Clean, razor-sharp Unix / Python interactive console
       return `
         <div class="tech-artifact-hero">
@@ -520,7 +527,7 @@ class HitTazosEngine {
           </div>
         </div>
       `;
-    } else if (grp === 'B') {
+    } else if (vol === 'kernel-foundations' || vol === 'cypherpunks-hacker-lore') {
       // 2. FLOPPY DISK 3.5" - Iconic form factor, stepped beveled corner, metal shutter, hub & label
       return `
         <div class="tech-artifact-hero">
@@ -578,7 +585,7 @@ class HitTazosEngine {
           </div>
         </div>
       `;
-    } else if (grp === 'C') {
+    } else if (vol === 'backend-distributed-systems' || vol === 'cloud-containers-sre') {
       // 3. SERVER RACK & MAGNETIC TAPE REEL - Data center mainframe unit
       return `
         <div class="tech-artifact-hero">
@@ -628,7 +635,7 @@ class HitTazosEngine {
           </div>
         </div>
       `;
-    } else if (grp === 'D') {
+    } else if (vol === 'embedded-silicon-hardware') {
       // 4. MODERN CPU PROCESSOR - Metallic Heat Spreader (IHS), substrate PCB and gold capacitor array
       return `
         <div class="tech-artifact-hero">
@@ -687,7 +694,7 @@ class HitTazosEngine {
           </div>
         </div>
       `;
-    } else {
+    } else if (vol === 'unix-sysadmin-networks') {
       // 5. CYBER KEYCARD / CRYPTO TOKEN - Smart card with EMV contact chip and holographic crest
       return `
         <div class="tech-artifact-hero">
@@ -732,6 +739,66 @@ class HitTazosEngine {
           </div>
         </div>
       `;
+    } else if (vol === 'scifi-pop-culture-cinema' || vol === 'scifi-literature-cyberpunk') {
+      // 6. HOLOCUBE / QUANTUM DATA CRYSTAL - Sci-Fi futuristic artifact
+      return `
+        <div class="tech-artifact-hero">
+          <div class="tech-artifact-svg-wrap" title="Cristal de datos cuántico / Holocubo">
+            <svg class="artifact-svg" viewBox="0 0 150 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" y="5" width="140" height="80" rx="8" fill="#080718" stroke="#a855f7" stroke-width="1.8"/>
+              <!-- Isometric Holocube wireframe -->
+              <polygon points="75,18 105,32 75,46 45,32" fill="#3b0764" stroke="#c084fc" stroke-width="1.5" opacity="0.9"/>
+              <polygon points="45,32 75,46 75,74 45,60" fill="#1e1b4b" stroke="#a855f7" stroke-width="1.5" opacity="0.8"/>
+              <polygon points="75,46 105,32 105,60 75,74" fill="#2e1065" stroke="#9333ea" stroke-width="1.5" opacity="0.8"/>
+              <!-- Central glowing core -->
+              <circle cx="75" cy="46" r="6" fill="#f3e8ff"/>
+              <circle cx="75" cy="46" r="12" fill="#c084fc" opacity="0.3"/>
+              <!-- Data streams & text -->
+              <text x="75" y="82" fill="#e9d5ff" font-family="'JetBrains Mono', monospace" font-size="6.5" font-weight="bold" text-anchor="middle" letter-spacing="1">CYBERDECK • SPECULATIVE ARCHIVE</text>
+            </svg>
+          </div>
+        </div>
+      `;
+    } else if (vol === 'cinema-vfx-hacker-culture') {
+      // 7. CINEMA CLAPPER & 3D WIREFRAME MESH - VFX & Cinema artifact
+      return `
+        <div class="tech-artifact-hero">
+          <div class="tech-artifact-svg-wrap" title="Claqueta de cine digital y malla de render 3D">
+            <svg class="artifact-svg" viewBox="0 0 150 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" y="5" width="140" height="80" rx="8" fill="#0c0e14" stroke="#06b6d4" stroke-width="1.8"/>
+              <!-- Clapper top bars -->
+              <rect x="25" y="16" width="100" height="14" rx="2" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
+              <polygon points="35,16 45,16 35,30 25,30" fill="#38bdf8"/>
+              <polygon points="55,16 65,16 55,30 45,30" fill="#38bdf8"/>
+              <polygon points="75,16 85,16 75,30 65,30" fill="#38bdf8"/>
+              <polygon points="95,16 105,16 95,30 85,30" fill="#38bdf8"/>
+              <polygon points="115,16 125,16 115,30 105,30" fill="#38bdf8"/>
+              <!-- 3D camera wireframe icon -->
+              <circle cx="50" cy="55" r="14" fill="#082f49" stroke="#22d3ee" stroke-width="1.4"/>
+              <circle cx="50" cy="55" r="7" fill="#0284c7" stroke="#38bdf8" stroke-width="1"/>
+              <!-- Wireframe mesh grid right -->
+              <line x1="80" y1="42" x2="125" y2="42" stroke="#06b6d4" stroke-width="1" stroke-dasharray="2 2"/>
+              <line x1="80" y1="54" x2="125" y2="54" stroke="#06b6d4" stroke-width="1" stroke-dasharray="2 2"/>
+              <line x1="80" y1="66" x2="125" y2="66" stroke="#06b6d4" stroke-width="1" stroke-dasharray="2 2"/>
+              <line x1="95" y1="36" x2="95" y2="72" stroke="#06b6d4" stroke-width="1" stroke-dasharray="2 2"/>
+              <line x1="110" y1="36" x2="110" y2="72" stroke="#06b6d4" stroke-width="1" stroke-dasharray="2 2"/>
+              <text x="75" y="82" fill="#bae6fd" font-family="'JetBrains Mono', monospace" font-size="6.5" font-weight="bold" text-anchor="middle" letter-spacing="1">RENDERMAN • VFX • CGI PIPELINE</text>
+            </svg>
+          </div>
+        </div>
+      `;
+    } else {
+      // Fallback: Terminal interactiva clásica
+      return `
+        <div class="tech-artifact-hero">
+          <div class="tech-artifact-svg-wrap" title="Terminal interactiva">
+            <svg class="artifact-svg" viewBox="0 0 160 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="156" height="86" rx="8" fill="#090d16" stroke="#38bdf8" stroke-width="1.8" stroke-opacity="0.8"/>
+              <text x="80" y="48" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold" text-anchor="middle">&gt; HIT-TAZOS TECH</text>
+            </svg>
+          </div>
+        </div>
+      `;
     }
   }
 
@@ -751,10 +818,10 @@ class HitTazosEngine {
   //  - 87..96: Turquesa / Cian cielo
   //  - 97..100+: Rojo carmín / Magenta intenso y morados profundos
   getCardTheme(card) {
-    let cardNum = card.card_number !== undefined ? card.card_number + 1 : card.globalIndex;
+    let cardNum = card.globalIndex !== undefined ? card.globalIndex : (card.index !== undefined ? card.index + 1 : 1);
     if (!cardNum || isNaN(cardNum)) {
       const matchNum = (card.id || '').match(/(\d+)$/);
-      cardNum = matchNum ? parseInt(matchNum[1], 10) : 1;
+      cardNum = card.index !== undefined ? card.index + 1 : 1;
     }
     if (!cardNum || isNaN(cardNum)) cardNum = 1;
 
@@ -827,8 +894,8 @@ class HitTazosEngine {
     const yearStateClass = isRevealed ? 'is-revealed' : 'is-hidden';
 
     const hitoFormatted = this.formatMarkdown(card.hito);
-    const creadorFormatted = this.formatMarkdown(card.creador);
-    const triviaFormatted = this.formatMarkdown(card.dato_curioso);
+    const creadorFormatted = this.formatMarkdown(card.autor);
+    const triviaFormatted = this.formatMarkdown(card.trivia);
 
     // Timeline calculation (1950 - 2026)
     const minYear = 1950;
@@ -836,13 +903,13 @@ class HitTazosEngine {
     const clampedYear = Math.max(minYear, Math.min(maxYear, card.year));
     const percent = ((clampedYear - minYear) / (maxYear - minYear)) * 100;
 
-    const groupIcon = this.getGroupIconName(card.grupo);
+    const groupIcon = 'layers';
     const eraName = this.getEraLabel(card.year);
     const centerArtifactHTML = this.renderCenterArtifact(card);
 
     // Número de carta consecutivo (#001..#N)
-    const volId = card.volumen !== undefined ? card.volumen : 0;
-    const hexPart = card.card_number_hex ? card.card_number_hex.substring(2) : (card.card_number !== undefined ? card.card_number : (card.globalIndex || 1)).toString(16).toUpperCase().padStart(2, '0');
+    const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
+    const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
     const cardNumStr = `${volId}x${hexPart}`;
 
     // Tema cromático Hit-Tazos Tech
@@ -854,9 +921,9 @@ class HitTazosEngine {
         <div class="card-topbar-minimal">
           <span class="group-badge-tiny">
             <i data-lucide="${groupIcon}"></i>
-            ${card.grupo_nombre.toUpperCase()}
+            ${(this.catalog.domains[card.domain] || card.domain).toUpperCase()}
           </span>
-          <span class="category-badge-tiny">${card.categoria_nombre}</span>
+          <span class="category-badge-tiny">${this.catalog.tags[card.tag] || card.tag}</span>
         </div>
 
         <div class="clue-stage-pure">
@@ -864,7 +931,7 @@ class HitTazosEngine {
         </div>
 
         <div class="card-footbar-minimal">
-          <span class="corner-meta-left">${card.categoria}</span>
+          <span class="corner-meta-left">${this.catalog.volumes[card.volumen] || card.volumen}</span>
           <span class="flip-pill"><i data-lucide="rotate-cw"></i> Voltear</span>
           <span class="corner-meta-right">${cardNumStr}</span>
         </div>
@@ -892,7 +959,7 @@ class HitTazosEngine {
         </div>
 
         <div class="card-footbar-minimal">
-          <span class="corner-meta-left">${card.categoria}</span>
+          <span class="corner-meta-left">${this.catalog.volumes[card.volumen] || card.volumen}</span>
           <span class="corner-meta-right">${volId}x${hexPart}</span>
         </div>
       </div>
@@ -906,7 +973,7 @@ class HitTazosEngine {
     this.cardStage.innerHTML = '';
     const cardEl = document.createElement('div');
     cardEl.id = 'active-card-3d';
-    cardEl.className = `hittazos-card-3d theme-${card.grupo}`;
+    cardEl.className = `hittazos-card-3d theme-${this.catalog.domains[card.domain] || card.domain}`;
     cardEl.innerHTML = this.buildCardHTML(card, { isRevealed: false });
 
     this.cardStage.appendChild(cardEl);
@@ -1220,9 +1287,9 @@ class HitTazosEngine {
     this.shelfCardsContainer.innerHTML = '';
     this.playerShelf.forEach(c => {
       const chip = document.createElement('div');
-      chip.className = `shelf-card-chip theme-${c.grupo}`;
-      const volId = c.volumen !== undefined ? c.volumen : 0;
-      const hexPart = c.card_number_hex ? c.card_number_hex.substring(2) : (c.card_number !== undefined ? c.card_number : (c.globalIndex || 1)).toString(16).toUpperCase().padStart(2, '0');
+      chip.className = `shelf-card-chip theme-${c.domain}`;
+      const volId = c.id ? c.id.split('-')[0].replace('vol', '') : '0';
+      const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
       const chipNum = `${volId}x${hexPart}`;
       chip.innerHTML = `
         <div class="shelf-year">${c.year}</div>
@@ -1276,12 +1343,12 @@ class HitTazosEngine {
     const sort = this.selectSortOrder.value;
 
     this.filteredCatalog = this.cards.filter(c => {
-      const matchGrp = grp === 'ALL' || c.grupo === grp;
-      const numStr = c.card_number !== undefined ? String(c.card_number) : '';
+      const matchGrp = grp === 'ALL' || c.volumen === grp;
+      const numStr = c.index !== undefined ? String(c.index) : '';
       const matchQ = !q ||
         c.hito.toLowerCase().includes(q) ||
-        c.creador.toLowerCase().includes(q) ||
-        c.dato_curioso.toLowerCase().includes(q) ||
+        c.autor.toLowerCase().includes(q) ||
+        c.trivia.toLowerCase().includes(q) ||
         numStr.includes(q) ||
         `#${numStr}`.includes(q);
       return matchGrp && matchQ;
@@ -1292,7 +1359,7 @@ class HitTazosEngine {
     } else if (sort === 'YEAR_DESC') {
       this.filteredCatalog.sort((a, b) => b.year - a.year);
     } else if (sort === 'DECK_ORDER') {
-      this.filteredCatalog.sort((a, b) => (a.card_number !== undefined ? a.card_number : 0) - (b.card_number !== undefined ? b.card_number : 0));
+      this.filteredCatalog.sort((a, b) => (a.index !== undefined ? a.index : 0) - (b.index !== undefined ? b.index : 0));
     }
 
     this.renderCatalog();
@@ -1307,7 +1374,7 @@ class HitTazosEngine {
       cell.className = 'catalog-card-cell';
 
       const cardEl = document.createElement('div');
-      cardEl.className = `hittazos-card-3d theme-${card.grupo}`;
+      cardEl.className = `hittazos-card-3d theme-${this.catalog.domains[card.domain] || card.domain}`;
       cardEl.innerHTML = this.buildCardHTML(card, { isRevealed: false });
 
       const yearStage = cardEl.querySelector('.year-center-stage');
@@ -1364,7 +1431,7 @@ class HitTazosEngine {
       const currentActivePill = this.groupRibbon.querySelector('.ribbon-pill.active');
       const activeGrp = currentActivePill ? currentActivePill.getAttribute('data-group') : 'ALL';
       if (activeGrp && activeGrp !== 'ALL') {
-        targetCards = targetCards.filter(c => c.grupo === activeGrp);
+        targetCards = targetCards.filter(c => c.volumen === activeGrp);
       }
     }
     // Si es 'ALL' toma todas las cartas de la baraja completa
@@ -1398,10 +1465,10 @@ class HitTazosEngine {
 
         if (card) {
           const theme = this.getCardTheme(card);
-          const groupIcon = this.getGroupIconName(card.grupo);
+          const groupIcon = 'layers';
           const hitoFormatted = this.formatMarkdown(card.hito);
-          const volId = card.volumen !== undefined ? card.volumen : 0;
-          const hexPart = card.card_number_hex ? card.card_number_hex.substring(2) : (card.card_number !== undefined ? card.card_number : (card.globalIndex || 1)).toString(16).toUpperCase().padStart(2, '0');
+          const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
+          const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
           const cardNumStr = `${volId}x${hexPart}`;
 
           box.innerHTML = `
@@ -1409,15 +1476,15 @@ class HitTazosEngine {
               <div class="card-topbar-minimal">
                 <span class="group-badge-tiny">
                   <i data-lucide="${groupIcon}"></i>
-                  ${card.grupo_nombre}
+                  ${this.catalog.domains[card.domain] || card.domain}
                 </span>
-                <span class="category-badge-tiny">${card.categoria_nombre}</span>
+                <span class="category-badge-tiny">${this.catalog.tags[card.tag] || card.tag}</span>
               </div>
               <div class="clue-stage-pure">
                 <p class="clue-quote">${hitoFormatted}</p>
               </div>
               <div class="card-footbar-minimal">
-                <span class="corner-meta-left">${card.categoria}</span>
+                <span class="corner-meta-left">${this.catalog.volumes[card.volumen] || card.volumen}</span>
                 <span class="corner-meta-right">${cardNumStr}</span>
               </div>
             </div>
@@ -1456,10 +1523,10 @@ class HitTazosEngine {
 
         if (card) {
           const theme = this.getCardTheme(card);
-          const creadorFormatted = this.formatMarkdown(card.creador);
-          const triviaFormatted = this.formatMarkdown(card.dato_curioso);
-          const volId = card.volumen !== undefined ? card.volumen : 0;
-          const hexPart = card.card_number_hex ? card.card_number_hex.substring(2) : (card.card_number !== undefined ? card.card_number : (card.globalIndex || 1)).toString(16).toUpperCase().padStart(2, '0');
+          const creadorFormatted = this.formatMarkdown(card.autor);
+          const triviaFormatted = this.formatMarkdown(card.trivia);
+          const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
+          const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
           const cardNumStr = `${volId}x${hexPart}`;
 
           box.innerHTML = `
@@ -1474,7 +1541,7 @@ class HitTazosEngine {
                 <div class="back-trivia-phrase">${triviaFormatted}</div>
               </div>
               <div class="card-footbar-minimal">
-                <span class="corner-meta-left">${card.categoria}</span>
+                <span class="corner-meta-left">${this.catalog.volumes[card.volumen] || card.volumen}</span>
                 <span class="corner-meta-right">${volId}x${hexPart}</span>
               </div>
             </div>

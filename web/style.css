@@ -1224,18 +1224,20 @@ main {
 
 .sheet-front .corner-meta-left {
   font-family: var(--font-sans);
-  font-size: 0.65rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.45) !important;
+  font-size: 0.45rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.15) !important;
 }
 
 .sheet-front .corner-meta-right {
   font-family: var(--font-display);
-  font-size: 0.65rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.55) !important;
+  font-size: 0.45rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.15) !important;
 }
 
 .flip-pill {
@@ -1476,18 +1478,20 @@ main {
 /* Metadatos de esquinas reverso: discretos, sutiles y sin protagonismo */
 .sheet-back .corner-meta-left {
   font-family: var(--font-sans);
-  color: rgba(255, 255, 255, 0.7) !important;
-  font-size: 0.62rem;
+  color: rgba(0, 0, 0, 0.25) !important;
+  font-size: 0.45rem;
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .sheet-back .corner-meta-right {
   font-family: var(--font-display);
-  color: rgba(255, 255, 255, 0.7) !important;
-  font-size: 0.62rem;
+  color: rgba(0, 0, 0, 0.25) !important;
+  font-size: 0.45rem;
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 /* Chronological Guessing Console (DJ Synthesizer Style) */
@@ -2419,7 +2423,9 @@ main {
 
   .print-face-front .corner-meta-left,
   .print-face-front .corner-meta-right {
-    font-size: 6pt !important;
+    font-size: 4pt !important;
+    font-weight: 400 !important;
+    color: rgba(255, 255, 255, 0.15) !important;
   }
 
   .print-face-front .flip-pill {
@@ -2478,8 +2484,9 @@ main {
 
   .print-face-back .corner-meta-left,
   .print-face-back .corner-meta-right {
-    font-size: 6pt !important;
-    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 4pt !important;
+    font-weight: 500 !important;
+    color: rgba(0, 0, 0, 0.25) !important;
   }
 }
 

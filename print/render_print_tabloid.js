@@ -18,6 +18,9 @@ const fs = require('fs');
 const path = require('path');
 const { execSync, spawnSync } = require('child_process');
 
+const CARDS_FILE = path.join(__dirname, '../data/cards.json');
+const CATALOG_FILE = path.join(__dirname, '../data/catalog.json');
+const CONFIG_FILE = path.join(__dirname, '../data/card_colors.json');
 const PRINT_DIR = path.resolve(__dirname);
 const ROOT_DIR = path.resolve(__dirname, '..');
 const CARDS_JSON_PATH = path.join(ROOT_DIR, 'data', 'cards.json');
@@ -52,6 +55,13 @@ const CROP_LEN_PT = 5.0 * MM_TO_PT;                 // 14.173 pt (largo de marca
 const CROP_OFFSET_PT = 1.0 * MM_TO_PT;              // 2.835 pt (separación fuera del sangrado)
 
 let cardColorsConfig = null;
+let catalog = { domains: {}, tags: {}, volumes: {} };
+try {
+  catalog = JSON.parse(fs.readFileSync(CATALOG_FILE, 'utf8'));
+} catch (e) {
+  console.warn('⚠️ No se encontró catalog.json, usando slugs nativos.');
+}
+
 try {
   cardColorsConfig = require('../data/card_colors.json');
 } catch (e) {
@@ -59,7 +69,7 @@ try {
 }
 
 function getCardTheme(card) {
-  let cardNum = card.card_number || 1;
+  let cardNum = card.globalIndex !== undefined ? card.globalIndex : (card.index !== undefined ? card.index + 1 : 1);
   if (cardColorsConfig && cardColorsConfig.cards && cardColorsConfig.cards[cardNum]) {
     const c = cardColorsConfig.cards[cardNum];
     return {
@@ -205,11 +215,11 @@ const FORMAT_CONFIGS = {
     cols: 3,
     rows: 5,
     cardsPerSheet: 15,
-    svgDir: path.join(PRINT_DIR, 'pliegos_svg'),
-    pdfPath: path.join(PRINT_DIR, 'tabloide_editable.pdf')
+    svgDir: path.join(PRINT_DIR, `svg/tabloide/v${APP_VERSION}`),
+    pdfPath: path.join(PRINT_DIR, `hit-tazos-tech-v${APP_VERSION}-tabloide.pdf`)
   },
-  'carta': {
-    id: 'carta',
+  '8x11': {
+    id: '8x11',
     name: 'Carta',
     label: '8.5 × 11 PULGADAS (215.9 × 279.4 mm) — CARTA',
     shortLabel: '8.5 × 11 PULGADAS — CARTA',
@@ -218,8 +228,8 @@ const FORMAT_CONFIGS = {
     cols: 2,
     rows: 3,
     cardsPerSheet: 6,
-    svgDir: path.join(PRINT_DIR, 'pliegos_carta_svg'),
-    pdfPath: path.join(PRINT_DIR, 'carta_editable.pdf')
+    svgDir: path.join(PRINT_DIR, `svg/carta/v${APP_VERSION}`),
+    pdfPath: path.join(PRINT_DIR, `hit-tazos-tech-v${APP_VERSION}-carta.pdf`)
   },
   '12x18': {
     id: '12x18',
@@ -231,15 +241,15 @@ const FORMAT_CONFIGS = {
     cols: 3,
     rows: 6,
     cardsPerSheet: 18,
-    svgDir: path.join(PRINT_DIR, 'pliegos_12x18_svg'),
-    pdfPath: path.join(PRINT_DIR, 'super_tabloide_editable.pdf')
+    svgDir: path.join(PRINT_DIR, `svg/super_tabloide/v${APP_VERSION}`),
+    pdfPath: path.join(PRINT_DIR, `hit-tazos-tech-v${APP_VERSION}-super-tabloide.pdf`)
   }
 };
 
 function resolveFormat(formatStr) {
   const f = (formatStr || '').toLowerCase().trim();
   if (f === 'all' || f === 'ambos' || f === 'both') return 'all';
-  if (f === 'carta' || f === 'letter' || f === '8.5x11' || f === '8.5*11') return 'carta';
+  if (f === '8x11' || f === '8.5x11' || f === '8.5*11' || f === 'carta' || f === 'letter') return '8x11';
   if (f === '11x17' || f === 'tabloide' || f === 'tabloid') return '11x17';
   if (f === '12x18' || f === 'supertabloide' || f === 'super-tabloide') return '12x18';
   return 'all';
@@ -250,7 +260,7 @@ function parseArgs() {
   const options = {
     range: 'ALL',        // 'ALL', 'sample', '15', '6', etc.
     crop: 'marks',       // 'marks' (cruces pro), 'guides' (guías punteadas), 'clean'
-    format: 'all',       // 'all' (Tabloide y Carta), '11x17' (Tabloide), 'carta' (Carta), '12x18'
+    format: 'all',       // 'all' (Tabloide, Carta y Super Tabloide), '11x17' (Tabloide), 'carta' (Carta), '12x18' (Super Tabloide)
     svg: false,          // Exportar hojas SVG
     pdfEditable: false   // Exportar PDF vectorial editable con rsvg-convert y Cairo
   };
@@ -326,11 +336,11 @@ function generateSvgSheets(cards, formatConfig, options) {
       }
 
       const theme = getCardTheme(c);
-      const volId = c.volumen !== undefined ? c.volumen : 0;
-      const hexPart = c.card_number_hex ? c.card_number_hex.substring(2) : c.card_number.toString(16).toUpperCase().padStart(2, '0');
+      const volId = c.id ? c.id.split('-')[0].replace('vol', '') : '0';
+      const hexPart = c.id ? c.id.split('-')[1].substring(2) : '00';
       const numStr = `${volId}x${hexPart}`;
-      const grupoText = escapeXml(stripMarkdown(c.grupo_nombre).toUpperCase());
-      const catText = escapeXml(stripMarkdown(c.categoria_nombre));
+      const grupoText = escapeXml(stripMarkdown(catalog.domains[c.domain] || c.domain).toUpperCase());
+      const catText = escapeXml(stripMarkdown(catalog.tags[c.tag] || c.tag));
       const clueText = stripMarkdown(c.hito);
 
       // Con textos limitados (máx 145 car.), ajuste en ancho 49mm (<= 28 car/línea)
@@ -377,7 +387,7 @@ function generateSvgSheets(cards, formatConfig, options) {
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="${SAFE_MARGIN_PT.toFixed(2)}" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">${escapeXml(c.categoria)}</text>
+        <text transform="translate(12, 161.5) rotate(-90)" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.15)" text-transform="uppercase">${escapeXml(catalog.volumes[c.volumen] || c.volumen)}</text>
         <text x="${(CARD_SIZE_PT - SAFE_MARGIN_PT).toFixed(2)}" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">${numStr}</text>
 
         ${showGuides ? `<rect width="${CARD_SIZE_PT.toFixed(2)}" height="${CARD_SIZE_PT.toFixed(2)}" fill="none" stroke="rgba(255,255,255,0.25)" stroke-dasharray="2 2" stroke-width="0.35" />` : ''}
@@ -443,13 +453,13 @@ ${frontCardsSvg}  </g>
         }
 
         const theme = getCardTheme(c);
-        const volId = c.volumen !== undefined ? c.volumen : 0;
-        const hexPart = c.card_number_hex ? c.card_number_hex.substring(2) : c.card_number.toString(16).toUpperCase().padStart(2, '0');
+        const volId = c.id ? c.id.split('-')[0].replace('vol', '') : '0';
+        const hexPart = c.id ? c.id.split('-')[1].substring(2) : '00';
         const colorMain = '#111111';
         const colorCorner = theme.cornerColor || 'rgba(255, 255, 255, 0.7)';
 
         // 1. Autor (máx 45 car.): Limpio, centrado, peso 600, no cursiva
-        const autorText = stripMarkdown(c.creador);
+        const autorText = stripMarkdown(c.autor || c.creador);
         const autorLines = wrapTextToLines(autorText, 26);
         const autorFontSize = autorLines.length > 1 ? 8.0 : 8.8;
         const autorLeading = 10.4;
@@ -460,7 +470,7 @@ ${frontCardsSvg}  </g>
         });
 
         // 2. Trivia (máx 150 car.): En cursiva, masa equilibrada en zona inferior
-        const triviaText = stripMarkdown(c.dato_curioso);
+        const triviaText = stripMarkdown(c.trivia || c.dato_curioso);
         const triviaLines = wrapTextToLines(triviaText, 30);
         const triviaFontSize = triviaLines.length <= 4 ? 7.2 : 6.8;
         const triviaLeading = triviaLines.length <= 4 ? 9.5 : 9.0;
@@ -505,7 +515,7 @@ ${frontCardsSvg}  </g>
         </text>
 
         <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
-        <text x="${SAFE_MARGIN_PT.toFixed(2)}" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="${colorCorner}">${escapeXml(c.categoria)}</text>
+        <text transform="translate(12, 161.5) rotate(-90)" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="${colorCorner}" text-transform="uppercase">${escapeXml(catalog.volumes[c.volumen] || c.volumen)}</text>
         <text x="${(CARD_SIZE_PT - SAFE_MARGIN_PT).toFixed(2)}" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="${colorCorner}" text-anchor="end">${cleanCardNum}</text>
 
         ${showGuides ? `<rect width="${CARD_SIZE_PT.toFixed(2)}" height="${CARD_SIZE_PT.toFixed(2)}" fill="none" stroke="rgba(0,0,0,0.18)" stroke-dasharray="2 2" stroke-width="0.35" />` : ''}
@@ -599,9 +609,9 @@ except Exception as e:
 // -------------------------------------------------------------
 // Conversión de SVGs a PDF Vectorial con rsvg-convert y Cairo
 // -------------------------------------------------------------
-function compileEditablePdf(svgFiles, outputPdfPath, aliasPdfPath, formatConfig) {
+function compileEditablePdf(svgFiles, outputPdfPath, formatConfig) {
   console.log(`🔄 Compilando PDF vectorial editable con rsvg-convert (Cairo TrueType)...`);
-  const tempPdfDir = path.join(ROOT_DIR, '.temp_pdf_pages');
+  const tempPdfDir = path.join(ROOT_DIR, `.temp_pdf_pages_${formatConfig.name.toLowerCase()}`);
   fs.mkdirSync(tempPdfDir, { recursive: true });
 
   const tempPdfs = [];
@@ -655,7 +665,7 @@ function processFormat(formatConfig, allCards, options) {
 
   // 2. Generar PDF Editable (TrueType Cairo)
   if (options.pdfEditable && svgFiles.length > 0) {
-    compileEditablePdf(svgFiles, formatConfig.pdfPath, formatConfig.aliasPdfPath, formatConfig);
+    compileEditablePdf(svgFiles, formatConfig.pdfPath, formatConfig);
   }
 
   return {
@@ -676,17 +686,19 @@ function main() {
   }
 
   const cards = JSON.parse(fs.readFileSync(CARDS_JSON_PATH, 'utf8'));
+  cards.forEach((c, idx) => c.globalIndex = idx + 1);
   console.log(`📦 Total de tarjetas disponibles: ${cards.length}`);
   console.log(`📐 Modo de formato: ${options.format.toUpperCase()} | Marcas: ${options.crop.toUpperCase()}`);
 
   const formatsToProcess = [];
   if (options.format === 'all') {
     formatsToProcess.push(FORMAT_CONFIGS['11x17']);
-    formatsToProcess.push(FORMAT_CONFIGS['carta']);
+    formatsToProcess.push(FORMAT_CONFIGS['8x11']);
+    formatsToProcess.push(FORMAT_CONFIGS['12x18']);
   } else if (FORMAT_CONFIGS[options.format]) {
     formatsToProcess.push(FORMAT_CONFIGS[options.format]);
   } else {
-    console.error(`❌ Formato desconocido: ${options.format}. Formatos disponibles: 11x17, carta, 12x18, all`);
+    console.error(`❌ Formato desconocido: ${options.format}. Formatos disponibles: 11x17, 8x11, 12x18, all`);
     process.exit(1);
   }
 

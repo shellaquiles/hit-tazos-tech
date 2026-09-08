@@ -15,7 +15,7 @@ import re
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def audit_corpus():
-    files = sorted(glob.glob(os.path.join(ROOT_DIR, 'data', 'categories', 'grupo_*', '*.json')))
+    files = sorted(glob.glob(os.path.join(ROOT_DIR, 'data', 'volumes', '*.json')))
     print(f"Archivos a procesar: {len(files)}")
     
     total = 0
@@ -28,11 +28,13 @@ def audit_corpus():
             cards = json.load(fp)
         for c in cards:
             total += 1
-            if len(c.get('creador', '')) > 45:
+            autor = c.get('autor') or c.get('creador', '')
+            trivia = c.get('trivia') or c.get('dato_curioso', '')
+            if len(autor) > 45:
                 over_creador += 1
             if len(c.get('hito', '')) > 150:
                 over_hito += 1
-            if len(c.get('dato_curioso', '')) > 150:
+            if len(trivia) > 150:
                 over_trivia += 1
 
     print(f"Total tarjetas: {total}")
