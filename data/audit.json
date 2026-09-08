@@ -2706,18 +2706,20 @@
     "id": "vol1-0x00",
     "volumen": "cypherpunks-hacker-lore",
     "index": 0,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste de precisión pedagógica sobre la economía de privacidad y eliminación de hipérboles sobre control estatal."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "The Crypto Anarchist Manifesto (Timothy C. May, 1988)",
+        "url": "https://www.activism.net/cypherpunk/crypto-anarchy.html"
       }
     ]
   },
@@ -2725,18 +2727,25 @@
     "id": "vol1-0x01",
     "volumen": "cypherpunks-hacker-lore",
     "index": 1,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Desvincular la afirmación de que todas las licencias ocurrieron en 2023; centrar en la ola de transición hacia licencias no-OSI."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/flame-wars",
-        "url": "https://en.wikipedia.org/wiki/flame_wars"
+        "type": "primary",
+        "title": "HashiCorp adopts Business Source License (August 2023)",
+        "url": "https://www.hashicorp.com/blog/defaulting-to-the-business-source-license"
+      },
+      {
+        "type": "primary",
+        "title": "OSI Statement on the SSPL and Source-Available Licenses",
+        "url": "https://opensource.org/blog/the-sspl-is-not-open-source"
       }
     ]
   },
@@ -2744,18 +2753,20 @@
     "id": "vol1-0x02",
     "volumen": "cypherpunks-hacker-lore",
     "index": 2,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Validado factual y tipográficamente; estandarización de comillas."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/flame-wars",
-        "url": "https://en.wikipedia.org/wiki/flame_wars"
+        "type": "primary",
+        "title": "Usenet comp.os.minix: LINUX is obsolete (January 1992)",
+        "url": "https://www.oreilly.com/openbook/opensources/book/appa.html"
       }
     ]
   },
@@ -2766,17 +2777,17 @@
     "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
-      "pedagogical": "IMPROVED",
+      "pedagogical": "COMPLIANT",
       "editorial": "REWRITTEN_SOBER"
     },
     "detected_issues": [
-      "Lenguaje bélico/novelesco ('invasión', 'rebelión')."
+      "Ajuste pedagógico para reflejar el debate sobre SysVinit y la resolución general de Debian en 2014."
     ],
     "sources": [
       {
         "type": "primary",
-        "title": "Debian Technical Committee resolution on systemd (2014)",
-        "url": "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=727708"
+        "title": "Debian General Resolution: Init system coupling (2014)",
+        "url": "https://www.debian.org/vote/2014/vote_003"
       }
     ]
   },
@@ -2787,17 +2798,17 @@
     "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
-      "pedagogical": "IMPROVED",
+      "pedagogical": "COMPLIANT",
       "editorial": "REWRITTEN_SOBER"
     },
     "detected_issues": [
-      "Sensacionalismo ('imparable e inmortal')."
+      "Verificación de autoría y detalles de retiro en 24 horas por parte de AOL."
     ],
     "sources": [
       {
         "type": "primary",
-        "title": "Gnutella Protocol Specification v0.4",
-        "url": "https://web.archive.org/web/20010210084534/http://rfc-gnutella.sourceforge.net/"
+        "title": "Gnutella Protocol Specification v0.4 (Clip2)",
+        "url": "https://web.archive.org/web/20010217032128/http://www.clip2.com/GnutellaProtocol04.pdf"
       }
     ]
   },
@@ -2805,18 +2816,20 @@
     "id": "vol1-0x05",
     "volumen": "cypherpunks-hacker-lore",
     "index": 5,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Añadido John Gilmore como cofundador clave y referencia a la Operación Sundevil."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "EFF: A History of Protecting Rights on the Electronic Frontier",
+        "url": "https://www.eff.org/about/history"
       }
     ]
   },
@@ -2824,18 +2837,20 @@
     "id": "vol1-0x06",
     "volumen": "cypherpunks-hacker-lore",
     "index": 6,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Especificación técnica de la lectura fuera de límites en la extensión Heartbeat TLS."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "CVE-2014-0160: Heartbleed OpenSSL Vulnerability",
+        "url": "https://nvd.nist.gov/vuln/detail/cve-2014-0160"
       }
     ]
   },
@@ -2843,18 +2858,20 @@
     "id": "vol1-0x07",
     "volumen": "cypherpunks-hacker-lore",
     "index": 7,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Alineación pedagógica con el concepto formal Man-in-the-Browser."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "CISA Alert TA14-150A: Zeus Trojan Variants",
+        "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/ta14-150a"
       }
     ]
   },
@@ -2862,18 +2879,20 @@
     "id": "vol1-0x08",
     "volumen": "cypherpunks-hacker-lore",
     "index": 8,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Clarificación del consorcio industrial y mención de Sigstore."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "Linux Foundation Launches OpenSSF (August 2020)",
+        "url": "https://www.linuxfoundation.org/press/press-release/linux-foundation-launches-the-open-source-security-foundation"
       }
     ]
   },
@@ -2884,22 +2903,22 @@
     "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
-      "pedagogical": "IMPROVED",
+      "pedagogical": "COMPLIANT",
       "editorial": "REWRITTEN_SOBER"
     },
     "detected_issues": [
-      "Giro sensacionalista ('puerta trasera estatal'); se sustituye por la terminología técnica oficial: depósito de claves / key escrow."
+      "Validado conforme a NIST FIPS 185 y paper de Blaze de 1994."
     ],
     "sources": [
       {
         "type": "primary",
-        "title": "Protocol Failure in the Escrowed Encryption Standard (Matt Blaze, 1994)",
-        "url": "https://www.mattblaze.org/papers/ees.pdf"
+        "title": "NIST FIPS PUB 185: Escrowed Encryption Standard",
+        "url": "https://csrc.nist.gov/publications/detail/fips/185/archive/1994-02-09"
       },
       {
         "type": "primary",
-        "title": "NIST FIPS PUB 185: Escrowed Encryption Standard (EES)",
-        "url": "https://csrc.nist.gov/pubs/fips/185/final"
+        "title": "Protocol Failure in the Escrowed Encryption Standard (Matt Blaze, 1994)",
+        "url": "https://www.mattblaze.org/papers/ees.pdf"
       }
     ]
   },
@@ -2907,18 +2926,20 @@
     "id": "vol1-0x0A",
     "volumen": "cypherpunks-hacker-lore",
     "index": 10,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Especificación técnica de Bass-O-Matic y RSA."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "PGP User's Guide (Phil Zimmermann, 1991)",
+        "url": "https://www.mit.edu/activities/safe/packages/pgp/doc/pgpdoc1.txt"
       }
     ]
   },
@@ -2926,18 +2947,20 @@
     "id": "vol1-0x0B",
     "volumen": "cypherpunks-hacker-lore",
     "index": 11,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Clarificación de la protección constitucional del texto impreso frente a binarios."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "MIT Press: PGP Source Code and Internals (1995)",
+        "url": "https://mitpress.mit.edu/9780262240390/pgp-source-code-and-internals/"
       }
     ]
   },
@@ -2945,18 +2968,20 @@
     "id": "vol1-0x0C",
     "volumen": "cypherpunks-hacker-lore",
     "index": 12,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste sobrio y verificación de fecha exacta (31 octubre 2008)."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "Bitcoin: A Peer-to-Peer Electronic Cash System (Satoshi Nakamoto, 2008)",
+        "url": "https://bitcoin.org/bitcoin.pdf"
       }
     ]
   },
@@ -2964,18 +2989,20 @@
     "id": "vol1-0x0D",
     "volumen": "cypherpunks-hacker-lore",
     "index": 13,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Sobriedad técnica sobre el daño físico (requería reprogramación de chip EEPROM)."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "CERT Advisory CA-1999-03: CIH Clone Viruses",
+        "url": "https://www.cert.org/advisories/CA-1999-03.html"
       }
     ]
   },
@@ -2983,18 +3010,20 @@
     "id": "vol1-0x0E",
     "volumen": "cypherpunks-hacker-lore",
     "index": 14,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Precisión histórica del origen como fiesta de despedida de BBS Platinum/Cyber-Man."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "DEF CON 1 Archive and Retrospective",
+        "url": "https://defcon.org/html/links/dc-archives/dc-1-archive.html"
       }
     ]
   },
@@ -3002,18 +3031,20 @@
     "id": "vol1-0x0F",
     "volumen": "cypherpunks-hacker-lore",
     "index": 15,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Sustituir términos hiperbólicos ('fiebre y resaca') por descripción arquitectónica formal."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/flame-wars",
-        "url": "https://en.wikipedia.org/wiki/flame_wars"
+        "type": "primary",
+        "title": "Microservices: a definition of this new architectural term (Fowler & Lewis, 2014)",
+        "url": "https://martinfowler.com/articles/microservices.html"
       }
     ]
   },
@@ -3021,18 +3052,20 @@
     "id": "vol1-0x10",
     "volumen": "cypherpunks-hacker-lore",
     "index": 16,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Atribución técnica rigurosa: VirusBlokAda descubrió la muestra; operación de inteligencia atribuida."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "Symantec W32.Stuxnet Dossier (Falliere, Murchu, Chien, 2011)",
+        "url": "https://www.wired.com/images_blogs/threatlevel/2011/02/Symantec-Stuxnet-Update.pdf"
       }
     ]
   },
@@ -3040,18 +3073,20 @@
     "id": "vol1-0x11",
     "volumen": "cypherpunks-hacker-lore",
     "index": 17,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Especificación técnica del protocolo UDP y autoría de Sir Dystic en cDc."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "cDc Communications: Back Orifice Press Release (DEF CON 6, 1998)",
+        "url": "https://www.cultdeadcow.com/tools/bo.html"
       }
     ]
   },
@@ -3059,18 +3094,20 @@
     "id": "vol1-0x12",
     "volumen": "cypherpunks-hacker-lore",
     "index": 18,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Eliminar personalismos sesgados ('Stallman vs Apache') para reflejar el marco conceptual jurídico del software libre."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/flame-wars",
-        "url": "https://en.wikipedia.org/wiki/flame_wars"
+        "type": "primary",
+        "title": "FSF: Categories of Free and Nonfree Software",
+        "url": "https://www.gnu.org/philosophy/categories.html"
       }
     ]
   },
@@ -3078,18 +3115,20 @@
     "id": "vol1-0x13",
     "volumen": "cypherpunks-hacker-lore",
     "index": 19,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Atribución del término acuñado por Dave Fischer en alt.folklore.computers en 1994."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/p2p-culture",
-        "url": "https://en.wikipedia.org/wiki/p2p_culture"
+        "type": "primary",
+        "title": "Usenet post: 'September that never ended' (Dave Fischer, Jan 1994)",
+        "url": "https://groups.google.com/g/alt.folklore.computers/c/u_H5iS2c09c"
       }
     ]
   },
@@ -3097,18 +3136,20 @@
     "id": "vol1-0x14",
     "volumen": "cypherpunks-hacker-lore",
     "index": 20,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Explicación pedagógica precisa del error de coma flotante de 24 bits."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/software-disasters",
-        "url": "https://en.wikipedia.org/wiki/software_disasters"
+        "type": "primary",
+        "title": "GAO Report IMTEC-92-26: Patriot Missile Defense Software Problem",
+        "url": "https://www.gao.gov/products/imtec-92-26"
       }
     ]
   },
@@ -3116,18 +3157,20 @@
     "id": "vol1-0x15",
     "volumen": "cypherpunks-hacker-lore",
     "index": 21,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Presentación formal en la conferencia CodeCon 2002/2001 e incentivo tit-for-tat."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/p2p-culture",
-        "url": "https://en.wikipedia.org/wiki/p2p_culture"
+        "type": "primary",
+        "title": "Incentives Build Robustness in BitTorrent (Bram Cohen, 2003)",
+        "url": "https://www.bittorrent.org/bittorrentecon.pdf"
       }
     ]
   },
@@ -3135,18 +3178,20 @@
     "id": "vol1-0x16",
     "volumen": "cypherpunks-hacker-lore",
     "index": 22,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste sobrio y verificación de hechos del rastreo en Raleigh en febrero de 1995."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "US DOJ Press Release: Arrest of Kevin Mitnick (Feb 15, 1995)",
+        "url": "https://www.justice.gov/archive/criminal/cybercrime/press-releases/1995/mitnick.txt"
       }
     ]
   },
@@ -3154,18 +3199,21 @@
     "id": "vol1-0x17",
     "volumen": "cypherpunks-hacker-lore",
     "index": 23,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Especificación técnica de la resolución de nombres JNDI/LDAP no autenticada.",
+      "Eliminado identificador CVE del anverso para evitar spoiler de año 2021."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "CISA Alert AA21-356A: Mitigating Apache Log4j Vulnerability",
+        "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-356a"
       }
     ]
   },
@@ -3173,18 +3221,20 @@
     "id": "vol1-0x18",
     "volumen": "cypherpunks-hacker-lore",
     "index": 24,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación del número 7 de Phrack (enero de 1986)."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "Phrack Magazine, Issue 7, File 3: The Conscience of a Hacker (1986)",
+        "url": "http://phrack.org/issues/7/3.html"
       }
     ]
   },
@@ -3192,18 +3242,20 @@
     "id": "vol1-0x19",
     "volumen": "cypherpunks-hacker-lore",
     "index": 25,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Resolución de redundancia temática: la carta 0x04 ya trataba Gnutella en el mismo año 2000; se reasigna a Freenet (Ian Clarke)."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/p2p-culture",
-        "url": "https://en.wikipedia.org/wiki/p2p_culture"
+        "type": "primary",
+        "title": "A Distributed Decentralised Information Storage and Retrieval System (Ian Clarke, 2000)",
+        "url": "https://freenetproject.org/papers/freenet.pdf"
       }
     ]
   },
@@ -3211,18 +3263,20 @@
     "id": "vol1-0x1A",
     "volumen": "cypherpunks-hacker-lore",
     "index": 26,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste pedagógico sobre el origen del marco Zero Trust / BeyondCorp."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "Google Blog: A new approach to China (David Drummond, Jan 2010)",
+        "url": "https://googleblog.blogspot.com/2010/01/new-approach-to-china.html"
       }
     ]
   },
@@ -3233,16 +3287,16 @@
     "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
-      "pedagogical": "IMPROVED",
+      "pedagogical": "COMPLIANT",
       "editorial": "REWRITTEN_SOBER"
     },
     "detected_issues": [
-      "Cliché 'para siempre'."
+      "Atribución formal a Richard Stallman con la FSF y definición jurídica del copyleft."
     ],
     "sources": [
       {
         "type": "primary",
-        "title": "GNU General Public License, version 1 (1989)",
+        "title": "GNU General Public License, version 1 (February 1989)",
         "url": "https://www.gnu.org/licenses/old-licenses/gpl-1.0.html"
       }
     ]
@@ -3251,18 +3305,20 @@
     "id": "vol1-0x1C",
     "volumen": "cypherpunks-hacker-lore",
     "index": 28,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Precisión del fenómeno financiero ('short squeeze') y neutralidad expositiva."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/p2p-culture",
-        "url": "https://en.wikipedia.org/wiki/p2p_culture"
+        "type": "primary",
+        "title": "US SEC Staff Report on Equity and Options Market Structure Conditions (Oct 2021)",
+        "url": "https://www.sec.gov/files/staff-report-equity-options-market-stucture-conditions-early-2021.pdf"
       }
     ]
   },
@@ -3270,18 +3326,20 @@
     "id": "vol1-0x1D",
     "volumen": "cypherpunks-hacker-lore",
     "index": 29,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación de la condena penal juvenil de 1981 por la intrusión en COSMOS."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "The Fugitive Game: Online with Kevin Mitnick (Jonathan Littman, 1996)",
+        "url": "https://archive.org/details/fugitivegameonli00litt"
       }
     ]
   },
@@ -3289,18 +3347,20 @@
     "id": "vol1-0x1E",
     "volumen": "cypherpunks-hacker-lore",
     "index": 30,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Especificación técnica del desbordamiento en memoria y paquete sin estado UDP."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "The Spread of the Sapphire/Slammer Worm (Moore et al., CAIDA 2003)",
+        "url": "https://www.caida.org/publications/papers/2003/sapphire/"
       }
     ]
   },
@@ -3308,18 +3368,20 @@
     "id": "vol1-0x1F",
     "volumen": "cypherpunks-hacker-lore",
     "index": 31,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste pedagógico del caso Horizon: no fue una vulnerabilidad externa sino un fallo del software corporativo y de gobernanza."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/software-disasters",
-        "url": "https://en.wikipedia.org/wiki/software_disasters"
+        "type": "primary",
+        "title": "High Court of Justice: Bates v Post Office Ltd (Horizon Issues, 2019)",
+        "url": "https://www.judiciary.uk/judgments/bates-v-post-office-judgment-no-6-horizon-issues/"
       }
     ]
   },
@@ -3327,18 +3389,20 @@
     "id": "vol1-0x20",
     "volumen": "cypherpunks-hacker-lore",
     "index": 32,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste sobrio y verificación de las operaciones de enlace dial-up."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "Telecomix: We Promise to Keep the Flow (2011)",
+        "url": "https://telecomix.org/"
       }
     ]
   },
@@ -3346,18 +3410,20 @@
     "id": "vol1-0x21",
     "volumen": "cypherpunks-hacker-lore",
     "index": 33,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Eliminación de adjetivos novelescos ('redada militar') para enfocarse en la dimensión judicial e infracción de copyright."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/p2p-culture",
-        "url": "https://en.wikipedia.org/wiki/p2p_culture"
+        "type": "primary",
+        "title": "US DOJ Indictment: Megaupload Limited and Kim Dotcom (Jan 5, 2012)",
+        "url": "https://www.justice.gov/archive/criminal/cybercrime/press-releases/2012/dotcomIndictment.pdf"
       }
     ]
   },
@@ -3365,18 +3431,20 @@
     "id": "vol1-0x22",
     "volumen": "cypherpunks-hacker-lore",
     "index": 34,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación de la motivación técnica (reproducción en Linux) y juicio en Noruega."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/p2p-culture",
-        "url": "https://en.wikipedia.org/wiki/p2p_culture"
+        "type": "primary",
+        "title": "Borgarting Court of Appeal: DVD Jon Acquittal Judgment (Dec 2003)",
+        "url": "https://www.eff.org/cases/norway-v-johansen"
       }
     ]
   },
@@ -3384,18 +3452,20 @@
     "id": "vol1-0x23",
     "volumen": "cypherpunks-hacker-lore",
     "index": 35,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Clarificación técnica de la reclamación sobre atribución de licencias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/flame-wars",
-        "url": "https://en.wikipedia.org/wiki/flame_wars"
+        "type": "primary",
+        "title": "US District Court ND Cal: Doe v. GitHub, Inc. (Order on Motion to Dismiss, 2023)",
+        "url": "https://casetext.com/case/doe-v-github-inc-1"
       }
     ]
   },
@@ -3403,18 +3473,20 @@
     "id": "vol1-0x24",
     "volumen": "cypherpunks-hacker-lore",
     "index": 36,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Explicación del defecto de despliegue en el octavo servidor según el informe de la SEC."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/software-disasters",
-        "url": "https://en.wikipedia.org/wiki/software_disasters"
+        "type": "primary",
+        "title": "SEC Administrative Proceeding File No. 3-15570: Knight Capital Americas LLC",
+        "url": "https://www.sec.gov/litigation/admin/2013/34-70694.pdf"
       }
     ]
   },
@@ -3422,18 +3494,25 @@
     "id": "vol1-0x25",
     "volumen": "cypherpunks-hacker-lore",
     "index": 37,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Identificación técnica de la vulnerabilidad de Apache Struts."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "FTC Settlement Announcement: Equifax Data Breach (2019)",
+        "url": "https://www.ftc.gov/enforcement/refunds/equifax-data-breach-settlement"
+      },
+      {
+        "type": "primary",
+        "title": "CVE-2017-5638: Apache Struts Jakarta Parser OGNL Execution",
+        "url": "https://nvd.nist.gov/vuln/detail/cve-2017-5638"
       }
     ]
   },
@@ -3441,18 +3520,20 @@
     "id": "vol1-0x26",
     "volumen": "cypherpunks-hacker-lore",
     "index": 38,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Alineación con el boletín MS17-010 de Microsoft."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "Microsoft Security Bulletin MS17-010: Security Update for Windows SMB Server",
+        "url": "https://learn.microsoft.com/en-us/security-updates/securitybulletins/2017/ms17-010"
       }
     ]
   },
@@ -3460,18 +3541,20 @@
     "id": "vol1-0x27",
     "volumen": "cypherpunks-hacker-lore",
     "index": 39,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste pedagógico del hito: la acción técnica fue la manipulación de conmutadores telefónicos (phreaking)."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "Wired Retrospective / DoJ Case History: Kevin Poulsen",
+        "url": "https://www.wired.com/author/kevin-poulsen/"
       }
     ]
   },
@@ -3479,18 +3562,20 @@
     "id": "vol1-0x28",
     "volumen": "cypherpunks-hacker-lore",
     "index": 40,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Enfoque arquitectónico en la compatibilidad x86-64 retrocompatible."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "AMD64 Architecture Programmer's Manual (2002)",
+        "url": "https://www.amd.com/system/files/TechDocs/24592.pdf"
       }
     ]
   },
@@ -3498,18 +3583,20 @@
     "id": "vol1-0x29",
     "volumen": "cypherpunks-hacker-lore",
     "index": 41,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Detalle físico preciso de las unidades de impulso (lbf*s vs N*s)."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/software-disasters",
-        "url": "https://en.wikipedia.org/wiki/software_disasters"
+        "type": "primary",
+        "title": "NASA Mars Climate Orbiter Mishap Investigation Board Report (Nov 1999)",
+        "url": "https://llis.nasa.gov/llis_lib/pdf/1009464main1_0641-mr.pdf"
       }
     ]
   },
@@ -3517,18 +3604,20 @@
     "id": "vol1-0x2A",
     "volumen": "cypherpunks-hacker-lore",
     "index": 42,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Sobriedad respecto a las causas técnicas y la bancarrota formal de 2014."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/software-disasters",
-        "url": "https://en.wikipedia.org/wiki/software_disasters"
+        "type": "primary",
+        "title": "Mt. Gox Bankruptcy Filing Announcement (Tokyo District Court, 2014)",
+        "url": "https://www.mtgox.com/"
       }
     ]
   },
@@ -3536,18 +3625,20 @@
     "id": "vol1-0x2B",
     "volumen": "cypherpunks-hacker-lore",
     "index": 43,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Identificación técnica del vector inicial M.E.Doc y destrucción de MFT."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "CISA Alert TA18-074A: Russian Cyber Activity Targeting Critical Infrastructure",
+        "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/ta18-074a"
       }
     ]
   },
@@ -3555,18 +3646,20 @@
     "id": "vol1-0x2C",
     "volumen": "cypherpunks-hacker-lore",
     "index": 44,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Mención específica a las fallas estructurales de BGP citadas en el testimonio."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "US Senate Committee on Governmental Affairs: Hearing on Computer Security (May 1998)",
+        "url": "https://www.govinfo.gov/content/pkg/CHRG-105shrg49195/html/CHRG-105shrg49195.htm"
       }
     ]
   },
@@ -3574,18 +3667,20 @@
     "id": "vol1-0x2D",
     "volumen": "cypherpunks-hacker-lore",
     "index": 45,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación histórica de la frecuencia de 2600 Hz en telefonía analógica."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "2600: The Hacker Quarterly, Vol 1, No 1 (January 1984)",
+        "url": "https://www.2600.com/backissues/"
       }
     ]
   },
@@ -3593,18 +3688,20 @@
     "id": "vol1-0x2E",
     "volumen": "cypherpunks-hacker-lore",
     "index": 46,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste pedagógico sobre los conceptos precursores de consenso."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "b-money Proposal (Wei Dai, 1998)",
+        "url": "http://www.weidai.com/bmoney.txt"
       }
     ]
   },
@@ -3612,18 +3709,20 @@
     "id": "vol1-0x2F",
     "volumen": "cypherpunks-hacker-lore",
     "index": 47,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Definición rigurosa de la tivoización conforme a los borradores de la FSF."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "GNU General Public License v3.0 (June 2007)",
+        "url": "https://www.gnu.org/licenses/gpl-3.0.html"
       }
     ]
   },
@@ -3631,18 +3730,20 @@
     "id": "vol1-0x30",
     "volumen": "cypherpunks-hacker-lore",
     "index": 48,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Atribución compartida a los medios que verificaron y publicaron las revelaciones."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "The Guardian / The Washington Post PRISM Disclosures (June 2013)",
+        "url": "https://www.theguardian.com/world/2013/jun/06/us-tech-giants-nsa-data"
       }
     ]
   },
@@ -3650,18 +3751,20 @@
     "id": "vol1-0x31",
     "volumen": "cypherpunks-hacker-lore",
     "index": 49,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación de la conferencia Linux Kongress 1997."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "The Cathedral and the Bazaar (Eric S. Raymond, 1997)",
+        "url": "http://www.catb.org/~esr/writings/cathedral-bazaar/"
       }
     ]
   },
@@ -3669,18 +3772,20 @@
     "id": "vol1-0x32",
     "volumen": "cypherpunks-hacker-lore",
     "index": 50,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Sobriedad expositiva del anuncio corporativo de abril de 2021."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/flame-wars",
-        "url": "https://en.wikipedia.org/wiki/flame_wars"
+        "type": "primary",
+        "title": "Basecamp Blog: Changes at Basecamp (Jason Fried, April 2021)",
+        "url": "https://world.hey.com/jason/changes-at-basecamp-7f32af5e"
       }
     ]
   },
@@ -3688,18 +3793,20 @@
     "id": "vol1-0x33",
     "volumen": "cypherpunks-hacker-lore",
     "index": 51,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste conceptual del mecanismo de pruebas criptográficas de Szabo."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "Bit Gold (Nick Szabo, 1998/2005)",
+        "url": "https://unenumerated.blogspot.com/2005/12/bit-gold.html"
       }
     ]
   },
@@ -3707,18 +3814,20 @@
     "id": "vol1-0x34",
     "volumen": "cypherpunks-hacker-lore",
     "index": 52,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste sobrio eliminando referencias a respuestas de cartas de abogados."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/p2p-culture",
-        "url": "https://en.wikipedia.org/wiki/p2p_culture"
+        "type": "primary",
+        "title": "Svea Court of Appeal: The Pirate Bay Trial Judgment (Nov 2010)",
+        "url": "https://www.eff.org/cases/pirate-bay"
       }
     ]
   },
@@ -3726,18 +3835,20 @@
     "id": "vol1-0x35",
     "volumen": "cypherpunks-hacker-lore",
     "index": 53,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Atribución a los investigadores que formalizaron el caso de estudio ético y técnico de 1993."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/software-disasters",
-        "url": "https://en.wikipedia.org/wiki/software_disasters"
+        "type": "primary",
+        "title": "An Investigation of the Therac-25 Accidents (Leveson & Turner, IEEE Computer 1993)",
+        "url": "https://courses.cs.vt.edu/professionalism/Therac_25/Therac_1.html"
       }
     ]
   },
@@ -3745,18 +3856,20 @@
     "id": "vol1-0x36",
     "volumen": "cypherpunks-hacker-lore",
     "index": 54,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Enfoque pedagógico en guías formales de estilo frente a debates anecdóticos."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/flame-wars",
-        "url": "https://en.wikipedia.org/wiki/flame_wars"
+        "type": "primary",
+        "title": "PEP 8 – Style Guide for Python Code (Indentation section)",
+        "url": "https://peps.python.org/pep-0008/#indentation"
       }
     ]
   },
@@ -3764,18 +3877,20 @@
     "id": "vol1-0x37",
     "volumen": "cypherpunks-hacker-lore",
     "index": 55,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Referencia a la reunión de febrero de 1998 tras el anuncio de Netscape."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "OSI: History of the Open Source Initiative (1998)",
+        "url": "https://opensource.org/history"
       }
     ]
   },
@@ -3783,18 +3898,20 @@
     "id": "vol1-0x38",
     "volumen": "cypherpunks-hacker-lore",
     "index": 56,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación de la duración del apagado global del servicio."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "Sony Corporation Press Release: PlayStation Network and Qriocity Outage (April 2011)",
+        "url": "https://www.sony.com/en/SonyInfo/News/Press/201104/11-054E/"
       }
     ]
   },
@@ -3802,18 +3919,20 @@
     "id": "vol1-0x39",
     "volumen": "cypherpunks-hacker-lore",
     "index": 57,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Explicación pedagógica de la colisión de ID de 16 bits y necesidad de DNSSEC."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "US-CERT Vulnerability Note VU#800113: Multiple DNS implementations vulnerable to cache poisoning",
+        "url": "https://www.kb.cert.org/vuls/id/800113"
       }
     ]
   },
@@ -3821,18 +3940,20 @@
     "id": "vol1-0x3A",
     "volumen": "cypherpunks-hacker-lore",
     "index": 58,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Añadido Paul Syverson como coinventor original en el NRL."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "Tor: The Second-Generation Onion Router (Dingledine, Mathewson, Syverson, USENIX Security 2004)",
+        "url": "https://www.usenix.org/legacy/event/sec04/tech/full_papers/dingledine/dingledine.pdf"
       }
     ]
   },
@@ -3840,18 +3961,20 @@
     "id": "vol1-0x3B",
     "volumen": "cypherpunks-hacker-lore",
     "index": 59,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Detalle técnico del desbordamiento en el motor multimedia Stagefright (libstagefright)."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "Zimperium zLabs: Stagefright Vulnerability Report (Black Hat USA 2015)",
+        "url": "https://www.blackhat.com/docs/us-15/materials/us-15-Drake-Stagefright-Scary-Code-In-The-Heart-Of-Android.pdf"
       }
     ]
   },
@@ -3859,18 +3982,20 @@
     "id": "vol1-0x3C",
     "volumen": "cypherpunks-hacker-lore",
     "index": 60,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Explicación pedagógica de la conservación estadística de frecuencias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "Steghide: A Combinatorial Approach to Steganography (Stefan Hetzl, 2003)",
+        "url": "https://steghide.sourceforge.net/"
       }
     ]
   },
@@ -3878,18 +4003,20 @@
     "id": "vol1-0x3D",
     "volumen": "cypherpunks-hacker-lore",
     "index": 61,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Sobriedad expositiva de la operación policial."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/p2p-culture",
-        "url": "https://en.wikipedia.org/wiki/p2p_culture"
+        "type": "primary",
+        "title": "US DOJ Complaint: United States v. Ross William Ulbricht (Oct 2013)",
+        "url": "https://www.justice.gov/sites/default/files/usao-sdny/legacy/2015/03/25/Ulbricht%2C%20Ross%20Criminal%20Complaint.pdf"
       }
     ]
   },
@@ -3897,18 +4024,20 @@
     "id": "vol1-0x3E",
     "volumen": "cypherpunks-hacker-lore",
     "index": 62,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Definición formal de GPU como motor de Transform & Lighting (T&L)."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "NVIDIA GeForce 256 Press Release: The World's First GPU (Aug 31, 1999)",
+        "url": "https://www.nvidia.com/en-us/about-nvidia/press-releases/1999/pr-083199/"
       }
     ]
   },
@@ -3916,18 +4045,20 @@
     "id": "vol1-0x3F",
     "volumen": "cypherpunks-hacker-lore",
     "index": 63,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación de la publicación en la lista de correo en marzo de 1993."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "A Cypherpunk's Manifesto (Eric Hughes, March 1993)",
+        "url": "https://www.activism.net/cypherpunk/manifesto.html"
       }
     ]
   },

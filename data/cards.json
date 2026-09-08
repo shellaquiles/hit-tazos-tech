@@ -1413,10 +1413,10 @@
     "index": 0,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Publicación del manifiesto **The Crypto Anarchist Manifesto**, prediciendo la economía digital cifrada y el declive del control estatal.",
+    "hito": "Publicación del manifiesto **The Crypto Anarchist Manifesto**, anticipando la economía digital cifrada y la privacidad computacional.",
     "year": 1988,
     "autor": "Timothy C. May",
-    "trivia": "Fue leído por primera vez en la reunión fundacional de los cypherpunks en Aptos, California."
+    "trivia": "Difundido en la reunión fundacional preliminar cypherpunk de 1988, predijo mercados de red anónimos antes de la World Wide Web."
   },
   {
     "id": "vol1-0x01",
@@ -1424,10 +1424,10 @@
     "index": 1,
     "domain": "hacker-culture-web",
     "tag": "flame-wars",
-    "hito": "Oleada de deserciones corporativas del código abierto tradicional hacia licencias de código disponible (**SSPL**, **BSL** y **RSALv2**).",
+    "hito": "Viraje de grandes proyectos de infraestructura hacia licencias de código disponible (**SSPL**, **BSL**) frente a proveedores de nube.",
     "year": 2023,
-    "autor": "MongoDB, Elastic, HashiCorp y Redis",
-    "trivia": "Firmas de código abierto acusaron a AWS de lucrar con sus proyectos gratis sin aportar código, empujando licencias como SSPL y BSL."
+    "autor": "Empresas de infraestructura abierta",
+    "trivia": "Firmas de software restringieron el uso como servicio gestionado por terceros, generando bifurcaciones comunitarias como OpenTofu."
   },
   {
     "id": "vol1-0x02",
@@ -1438,7 +1438,7 @@
     "hito": "Estallido del célebre debate **Tanenbaum vs. Torvalds** en el grupo de noticias *comp.os.minix* sobre la arquitectura de kernels.",
     "year": 1992,
     "autor": "Andrew S. Tanenbaum y Linus Torvalds",
-    "trivia": "Tanenbaum afirmó en Usenet que *\"LINUX is obsolete\"*; Linus respondió con fiereza defendiendo la velocidad monolítica pragmática."
+    "trivia": "Tanenbaum afirmó en Usenet que «LINUX is obsolete»; Torvalds defendió la practicidad del diseño monolítico frente a los microkernels."
   },
   {
     "id": "vol1-0x03",
@@ -1446,10 +1446,10 @@
     "index": 3,
     "domain": "hacker-culture-web",
     "tag": "flame-wars",
-    "hito": "Debate y controversia comunitaria por la adopción acelerada de **systemd** en las principales distribuciones de Linux.",
+    "hito": "Debate y controversia comunitaria por la adopción generalizada de **systemd** como sistema de inicialización en Linux.",
     "year": 2014,
     "autor": "Lennart Poettering y comunidad Linux",
-    "trivia": "Críticos señalaron que systemd se alejaba del principio de modularidad Unix al centralizar servicios, montaje y registros del sistema."
+    "trivia": "Sustituyó a los scripts SysVinit en Debian y Red Hat, generando acaloradas discusiones sobre modularidad y alcance del PID 1."
   },
   {
     "id": "vol1-0x04",
@@ -1460,7 +1460,7 @@
     "hito": "Creación de **Gnutella**, arquitectura de intercambio de archivos P2P totalmente distribuida sin servidores centrales de indexación.",
     "year": 2000,
     "autor": "Justin Frankel y Tom Pepper (Nullsoft)",
-    "trivia": "Desarrollado en Nullsoft; aunque AOL retiró la descarga a las pocas horas, el protocolo fue analizado e implementado en clientes libres."
+    "trivia": "Desarrollado en Nullsoft; aunque AOL retiró el binario en 24 horas, el protocolo fue analizado e implementado en clientes libres."
   },
   {
     "id": "vol1-0x05",
@@ -1468,10 +1468,10 @@
     "index": 5,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Fundación de la **Electronic Frontier Foundation (EFF)** para defender los derechos civiles y la libertad de expresión en el ciberespacio.",
+    "hito": "Fundación de la **Electronic Frontier Foundation (EFF)** para defender los derechos civiles y libertades públicas en el ciberespacio.",
     "year": 1990,
-    "autor": "John Perry Barlow, Mitch Kapor",
-    "trivia": "Se creó tras las redadas abusivas del Servicio Secreto contra Steve Jackson Games por un juego de rol."
+    "autor": "John Perry Barlow, Mitch Kapor, J. Gilmore",
+    "trivia": "Nació tras la redada federal de la Operación Sundevil contra Steve Jackson Games por un manual de juego de rol cyberpunk."
   },
   {
     "id": "vol1-0x06",
@@ -1479,10 +1479,10 @@
     "index": 6,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Descubrimiento del bug **Heartbleed** en **OpenSSL**, permitiendo extraer claves privadas de servidores HTTPS.",
+    "hito": "Descubrimiento de la vulnerabilidad **Heartbleed** en **OpenSSL**, exponiendo memoria y claves privadas de servidores HTTPS.",
     "year": 2014,
     "autor": "Neel Mehta (Google) y Codenomicon",
-    "trivia": "Fallo de lectura de buffer en C; su logo del corazón sangrante inició la era de las vulnerabilidades con marca comercial."
+    "trivia": "Un desbordamiento de lectura en la extensión Heartbeat (RFC 6520) permitía filtrar 64 KB de memoria de procesos sin dejar rastro."
   },
   {
     "id": "vol1-0x07",
@@ -1490,10 +1490,10 @@
     "index": 7,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Aparición del troyano bancario y malware modular **Zeus (Zbot)**, robando credenciales bancarias mediante inyección web en navegadores.",
+    "hito": "Aparición del troyano bancario **Zeus (Zbot)**, pionero en ataques de intermediación en navegador (*Man-in-the-Browser*).",
     "year": 2007,
     "autor": "Evgeniy Bogachev (Slavik)",
-    "trivia": "Afectó a millones de computadoras corporativas y el FBI ofreció la recompensa cibernética más alta hasta entonces."
+    "trivia": "Inyectaba formularios falsos en sesiones HTTPS bancarias y creó botnets que comprometieron millones de terminales en el mundo."
   },
   {
     "id": "vol1-0x08",
@@ -1501,10 +1501,10 @@
     "index": 8,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Fundación de la **Open Source Security Foundation** (**OpenSSF**) por la Linux Foundation para blindar los repositorios abiertos globales.",
+    "hito": "Creación de la **Open Source Security Foundation** (**OpenSSF**) para auditar y proteger la cadena de suministro de código abierto.",
     "year": 2020,
-    "autor": "Linux Foundation y gigantes tecnológicos",
-    "trivia": "Surgió tras ataques a npm y PyPI, reuniendo fondos de gigantes tecnológicos para auditar proyectos críticos de código abierto."
+    "autor": "Linux Foundation y consorcio industrial",
+    "trivia": "Consolidó iniciativas previas para mitigar ataques a registros como npm y PyPI mediante herramientas de firma como Sigstore."
   },
   {
     "id": "vol1-0x09",
@@ -1514,7 +1514,7 @@
     "tag": "cypherpunks-foss",
     "hito": "Propuesta gubernamental del chip criptográfico **Clipper Chip**, diseñada con un mecanismo de depósito de claves bajo custodia estatal.",
     "year": 1993,
-    "autor": "NSA / Gobierno de EE.UU.",
+    "autor": "NSA y Gobierno de EE.UU.",
     "trivia": "Matt Blaze demostró que era posible eludir el campo de custodia unitaria (EES), invalidando técnicamente el despliegue del sistema."
   },
   {
@@ -1523,10 +1523,10 @@
     "index": 10,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Publicación de **PGP** (*Pretty Good Privacy*) en Usenet para ofrecer cifrado militar de comunicaciones a cualquier ciudadano común.",
+    "hito": "Publicación de **PGP** (*Pretty Good Privacy*) en Usenet, ofreciendo criptografía asimétrica militar al público general.",
     "year": 1991,
     "autor": "Phil Zimmermann",
-    "trivia": "EE.UU. investigó penalmente a Zimmermann por exportar armas de guerra, pues la criptografía fuerte estaba clasificada como munición."
+    "trivia": "Empleaba RSA y el cifrado Bass-O-Matic; el gobierno estadounidense abrió una investigación penal contra Zimmermann por exportación de armas."
   },
   {
     "id": "vol1-0x0B",
@@ -1534,10 +1534,10 @@
     "index": 11,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Impresión del código de **PGP** en formato de libro de tapa dura para exportarlo legalmente bajo el amparo de la Primera Enmienda.",
+    "hito": "Impresión del código fuente de **PGP** en libro de tapa dura para exportarlo bajo el amparo de la Primera Enmienda de EE.UU.",
     "year": 1995,
     "autor": "Phil Zimmermann / MIT Press",
-    "trivia": "Al estar protegido como libertad de expresión en papel, cualquiera fuera de EE.UU. podía escanearlo mediante OCR."
+    "trivia": "Al estar el código impreso protegido como libertad de prensa, activistas en Europa escanearon el texto mediante OCR para reconstruir el software."
   },
   {
     "id": "vol1-0x0C",
@@ -1545,10 +1545,10 @@
     "index": 12,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Envío a la lista de correo de criptografía del whitepaper fundacional de **Bitcoin** bajo el seudónimo de **Satoshi Nakamoto**.",
+    "hito": "Envío a la lista de correo de criptografía del whitepaper fundacional de **Bitcoin**, dinero electrónico P2P descentralizado.",
     "year": 2008,
     "autor": "Satoshi Nakamoto",
-    "trivia": "Resolvió el problema del doble gasto sin bancos centrales combinando cadenas de bloques (*Blockchain*) y prueba de trabajo."
+    "trivia": "Resolvió el problema del doble gasto sin intermediarios combinando una red entre pares con prueba de trabajo y cadenas de bloques."
   },
   {
     "id": "vol1-0x0D",
@@ -1556,10 +1556,10 @@
     "index": 13,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Ataque del virus **Chernobyl** (**CIH**), capaz de destruir físicamente placas madre sobrescribiendo la memoria Flash BIOS.",
+    "hito": "Aparición del virus **CIH** (**Chernobyl**), capaz de inutilizar placas madre sobrescribiendo la memoria Flash BIOS.",
     "year": 1998,
     "autor": "Chen Ing-hau (Taiwán)",
-    "trivia": "Se activaba cada 26 de abril (aniversario de Chernóbil), borrando la BIOS de miles de PCs con Windows 95 y 98 en el mundo."
+    "trivia": "Diseñado para ejecutarse en Windows 95 y 98, activaba su rutina el 26 de abril y corrompía los datos del disco duro y de la BIOS."
   },
   {
     "id": "vol1-0x0E",
@@ -1567,10 +1567,10 @@
     "index": 14,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Primera edición de la conferencia hacker **DEF CON** en Las Vegas, originalmente concebida como fiesta de despedida de redes BBS.",
+    "hito": "Primera edición de la conferencia hacker **DEF CON** en Las Vegas, convocada como reunión de despedida de redes BBS.",
     "year": 1993,
     "autor": "Jeff Moss (The Dark Tangent)",
-    "trivia": "Asistieron unas 100 personas y hoy reúne a más de 30,000 hackers e investigadores de todo el mundo."
+    "trivia": "Reunió a un centenar de entusiastas en el hotel Sands y evolucionó hasta convertirse en uno de los mayores encuentros de seguridad del mundo."
   },
   {
     "id": "vol1-0x0F",
@@ -1578,10 +1578,10 @@
     "index": 15,
     "domain": "hacker-culture-web",
     "tag": "flame-wars",
-    "hito": "Popularización y posterior resaca arquitectónica de la fiebre de los **Microservicios** frente al **Monolito**.",
+    "hito": "Publicación del artículo canónico sobre arquitectura de **Microservicios**, formalizando la descomposición de aplicaciones web.",
     "year": 2014,
     "autor": "Martin Fowler y James Lewis",
-    "trivia": "Tras fragmentar apps simples en cientos de microservicios caóticos, ingenieros reivindicaron el valor del *Majestic Monolith*."
+    "trivia": "Describió servicios autónomos comunicados por HTTP; tras abusos de microsegmentación, la industria revalorizó el diseño monolítico."
   },
   {
     "id": "vol1-0x10",
@@ -1589,10 +1589,10 @@
     "index": 16,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Detección del ciberarma **Stuxnet**, saboteando físicamente centrifugadoras nucleares de enriquecimiento de uranio en Irán.",
+    "hito": "Detección del malware industrial **Stuxnet**, diseñado para sabotear controladores PLC de centrifugadoras nucleares.",
     "year": 2010,
-    "autor": "EE.UU. e Israel (Olympic Games)",
-    "trivia": "Usó cuatro 0-days y memorias USB para alterar centrifugadoras nucleares en Irán hasta hacerlas estallar físicamente."
+    "autor": "VirusBlokAda (Atrib. EE.UU. e Israel)",
+    "trivia": "Empleó cuatro vulnerabilidades de día cero y certificados digitales legítimos para alterar la velocidad de centrifugado en Natanz."
   },
   {
     "id": "vol1-0x11",
@@ -1600,10 +1600,10 @@
     "index": 17,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Publicación de la herramienta de administración remota y troyano **Back Orifice** durante la conferencia DEF CON 6.",
+    "hito": "Presentación de la herramienta de administración remota **Back Orifice** en DEF CON 6, exponiendo debilidades en Windows 95 y 98.",
     "year": 1998,
     "autor": "Cult of the Dead Cow (cDc)",
-    "trivia": "Su nombre parodiaba al software de servidor corporativo Microsoft BackOffice."
+    "trivia": "Creada por Sir Dystic del colectivo cDc, demostró que un cliente sin privilegios podía controlar sistemas remotos sobre UDP."
   },
   {
     "id": "vol1-0x12",
@@ -1611,10 +1611,10 @@
     "index": 18,
     "domain": "hacker-culture-web",
     "tag": "flame-wars",
-    "hito": "Debate filosófico entre defensores del **Copyleft estricto (GPL)** y las **Licencias Permisivas (MIT/BSD)**.",
+    "hito": "Consolidación del debate sobre gobernanza entre licencias de **Copyleft recíproco (GPL)** y licencias **Permisivas (MIT, Apache)**.",
     "year": 2007,
-    "autor": "Richard Stallman vs. Apache y BSD",
-    "trivia": "Stallman defendió que el software derivado debe ser siempre libre; las corporaciones prefirieron MIT y Apache para cerrar código."
+    "autor": "Comunidad de Software Libre y Código Abierto",
+    "trivia": "La GPL exige liberar el código de obras derivadas, mientras que las licencias permisivas facilitan la integración en productos comerciales."
   },
   {
     "id": "vol1-0x13",
@@ -1622,10 +1622,10 @@
     "index": 19,
     "domain": "hacker-culture-web",
     "tag": "p2p-culture",
-    "hito": "Inicio del **Septiembre Eterno** (*Eternal September*), cuando el proveedor AOL abrió las compuertas de Usenet a millones de usuarios novatos.",
+    "hito": "Comienzo del **Septiembre Eterno** (*Eternal September*), tras la apertura masiva del acceso a Usenet por parte del proveedor AOL.",
     "year": 1993,
-    "autor": "America Online (AOL)",
-    "trivia": "Cada septiembre llegaban universitarios novatos que aprendían netiqueta en 30 días; con AOL la oleada comercial masiva nunca cesó."
+    "autor": "Dave Fischer y usuarios de Usenet",
+    "trivia": "Cada septiembre los novatos universitarios aprendían netiqueta; con el ingreso masivo y comercial de AOL en 1993 la afluencia nunca cesó."
   },
   {
     "id": "vol1-0x14",
@@ -1633,10 +1633,10 @@
     "index": 20,
     "domain": "security-exploits",
     "tag": "software-disasters",
-    "hito": "Fallo del sistema antimisiles **Patriot** en Dhahran, costando la vida a 28 soldados al no interceptar un misil Scud.",
+    "hito": "Fallo del sistema de misiles **Patriot** en Dhahran, Arabia Saudita, causado por un error de truncamiento numérico acumulado.",
     "year": 1991,
-    "autor": "Ejército de EE.UU. y Raytheon",
-    "trivia": "Un redondeo acumulado en el reloj tras 100 horas encendido desfasó el radar por un tercio de segundo, fallando ante un misil Scud."
+    "autor": "General Accounting Office (GAO)",
+    "trivia": "Tras 100 horas encendido, la imprecisión al convertir décimas de segundo a punto flotante desfasó el radar impidiendo interceptar un Scud."
   },
   {
     "id": "vol1-0x15",
@@ -1644,10 +1644,10 @@
     "index": 21,
     "domain": "hacker-culture-web",
     "tag": "p2p-culture",
-    "hito": "Presentación del protocolo **BitTorrent**, resolviendo la distribución eficiente de archivos gigantescos mediante la compartición en enjambres.",
+    "hito": "Presentación del protocolo **BitTorrent** en CodeCon, introduciendo la distribución de grandes archivos mediante enjambres P2P.",
     "year": 2001,
     "autor": "Bram Cohen",
-    "trivia": "Con la regla *tit-for-tat* que premia a quien más comparte, BitTorrent llegó a consumir un tercio del ancho de banda de Internet."
+    "trivia": "Implementó incentivos como la reciprocidad (*tit-for-tat*), dividiendo archivos en piezas para optimizar el ancho de banda global."
   },
   {
     "id": "vol1-0x16",
@@ -1655,10 +1655,10 @@
     "index": 22,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Arresto de **Kevin Mitnick** en Raleigh por el FBI tras una persecución técnica rastreada mediante análisis de registros celulares.",
+    "hito": "Arresto de **Kevin Mitnick** en Raleigh, Carolina del Norte, tras un seguimiento técnico de sus ataques y líneas telefónicas.",
     "year": 1995,
     "autor": "FBI / Tsutomu Shimomura",
-    "trivia": "Mitnick pasó casi cinco años en prisión preventiva antes de su juicio, convirtiéndose en icono de 'Free Kevin'."
+    "trivia": "Shimomura colaboró con el FBI tras sufrir intrusiones de Mitnick en sus servidores; el caso detonó la campaña internacional 'Free Kevin'."
   },
   {
     "id": "vol1-0x17",
@@ -1666,10 +1666,10 @@
     "index": 23,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Alerta por **Log4Shell**, vulnerabilidad crítica de ejecución remota en la biblioteca Java **Apache Log4j**.",
+    "hito": "Divulgación de **Log4Shell**, vulnerabilidad crítica de inyección JNDI en la biblioteca Java **Apache Log4j**.",
     "year": 2021,
     "autor": "Chen Zhaojun (Alibaba Cloud Security)",
-    "trivia": "Gravedad máxima 10/10 en CVSS; bastaba enviar texto malicioso en un chat de Minecraft para tomar control total del servidor."
+    "trivia": "Permitía ejecución remota arbitraria al evaluar mensajes de registro formateados contra servidores LDAP maliciosos."
   },
   {
     "id": "vol1-0x18",
@@ -1677,10 +1677,10 @@
     "index": 24,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Publicación del **Hacker Manifesto** (*The Conscience of a Hacker*) en el fanzine Phrack tras ser arrestado.",
+    "hito": "Publicación del **Hacker Manifesto** (*The Conscience of a Hacker*) en el número 7 de la revista electrónica underground *Phrack*.",
     "year": 1986,
     "autor": "The Mentor (Loyd Blankenship)",
-    "trivia": "Fue redactado después de que el autor fuera arrestado por el Servicio Secreto en Austin, Texas."
+    "trivia": "Redactado tras su arresto por agentes federales en Austin, Texas, se convirtió en la declaración ética fundamental de la cultura hacker."
   },
   {
     "id": "vol1-0x19",
@@ -1688,10 +1688,10 @@
     "index": 25,
     "domain": "hacker-culture-web",
     "tag": "p2p-culture",
-    "hito": "Lanzamiento del protocolo de compartición de archivos descentralizado **Gnutella**, desafiando la clausura judicial de Napster.",
+    "hito": "Publicación de la red **Freenet**, protocolo de almacenamiento P2P descentralizado para publicación anónima y resistente a censura.",
     "year": 2000,
-    "autor": "Justin Frankel y Tom Pepper",
-    "trivia": "Nullsoft lo publicó en su web y AOL lo retiró horas después, pero el protocolo ya había sido descargado."
+    "autor": "Ian Clarke",
+    "trivia": "Diseñada en la Universidad de Edimburgo, enrutaba peticiones de forma ciega cifrando fragmentos en nodos intermedios sin catálogo central."
   },
   {
     "id": "vol1-0x1A",
@@ -1699,10 +1699,10 @@
     "index": 26,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Detección de la intrusión informática **Operation Aurora**, vulnerando a Google y decenas de corporaciones desde China.",
+    "hito": "Detección y denuncia pública de la intrusión informática **Operation Aurora**, vulnerando a decenas de corporaciones tecnológicas.",
     "year": 2009,
     "autor": "Google Information Security",
-    "trivia": "Llevó a Google a rediseñar toda su seguridad interna y dio origen al paradigma 'Zero Trust' de BeyondCorp."
+    "trivia": "Aprovechó una falla en Internet Explorer para atacar repositorios de código; motivó la creación del modelo de seguridad BeyondCorp de Google."
   },
   {
     "id": "vol1-0x1B",
@@ -1710,10 +1710,10 @@
     "index": 27,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Publicación de la **GNU General Public License** (**GPL v1**), formalizando el mecanismo legal del **Copyleft**.",
+    "hito": "Publicación de la **GNU General Public License** (**GPL v1**), formalizando legalmente el mecanismo de **Copyleft** para software.",
     "year": 1989,
-    "autor": "Richard Stallman",
-    "trivia": "Utilizó el derecho de autor para exigir que cualquier redistribución u obra derivada preserve las libertades del código fuente."
+    "autor": "Richard Stallman (Free Software Foundation)",
+    "trivia": "Utilizó la ley de derechos de autor para garantizar que cualquier distribución o modificación preserve la libertad del código fuente."
   },
   {
     "id": "vol1-0x1C",
@@ -1721,10 +1721,10 @@
     "index": 28,
     "domain": "hacker-culture-web",
     "tag": "p2p-culture",
-    "hito": "Levantamiento de **r/wallstreetbets**, coordinando la compra masiva de **GameStop** contra fondos de Wall Street.",
+    "hito": "Coordinación colectiva en **r/wallstreetbets** provocando un estrangulamiento de posiciones cortas en las acciones de **GameStop**.",
     "year": 2021,
-    "autor": "Comunidad r/wallstreetbets",
-    "trivia": "Usuarios de Reddit causaron pérdidas multimillonarias a fondos de Wall Street coordinando compras de GameStop (*short squeeze*)."
+    "autor": "Comunidad de inversores minoristas en Reddit",
+    "trivia": "Millones de usuarios desafiaron a fondos de cobertura que apostaban a la baja, provocando restricciones de compra en plataformas como Robinhood."
   },
   {
     "id": "vol1-0x1D",
@@ -1732,10 +1732,10 @@
     "index": 29,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Infiltración en el sistema central **COSMOS** de Pacific Bell mediante ingeniería social pura por un joven **Kevin Mitnick**.",
+    "hito": "Acceso no autorizado al sistema de gestión de telefonía **COSMOS** de Pacific Bell mediante ingeniería social.",
     "year": 1981,
     "autor": "Kevin Mitnick (The Condor)",
-    "trivia": "Mitnick y sus amigos obtuvieron listas de claves y manuales del sistema de telefonía hurgando en contenedores de basura."
+    "trivia": "Mitnick y sus colaboradores obtuvieron contraseñas y listas de clientes hurgando en contenedores de basura de las oficinas de la telefónica."
   },
   {
     "id": "vol1-0x1E",
@@ -1743,10 +1743,10 @@
     "index": 30,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Ataque del gusano **SQL Slammer**, colapsando la infraestructura de telecomunicaciones global en apenas diez minutos.",
+    "hito": "Propagación del gusano **SQL Slammer**, colapsando infraestructuras de red en diez minutos con un paquete UDP de **376 bytes**.",
     "year": 2003,
-    "autor": "Autor desconocido",
-    "trivia": "Con apenas **376 bytes** en un paquete UDP sobre SQL Server, saturó routers y paralizó cajeros y aeropuertos globales."
+    "autor": "Autor desconocido (CVE-2002-0649)",
+    "trivia": "Aprovechó un desbordamiento de búfer en Microsoft SQL Server 2000; al residir en memoria generaba paquetes a máxima velocidad de red."
   },
   {
     "id": "vol1-0x1F",
@@ -1754,10 +1754,10 @@
     "index": 31,
     "domain": "security-exploits",
     "tag": "software-disasters",
-    "hito": "Escándalo del software **Horizon** de la Oficina Postal británica, condenando injustamente a cientos de directores.",
+    "hito": "Aparición de sentencias injustas contra directores de oficinas postales británicas por errores en el software contable **Horizon**.",
     "year": 2020,
-    "autor": "Fujitsu y Post Office Ltd.",
-    "trivia": "Bugs en el software Horizon inventaron desfalcos falsos; Correos encubrió el fallo y mandó a prisión a cientos de directores inocentes."
+    "autor": "Post Office Ltd. y Fujitsu",
+    "trivia": "Defectos en el software registraban déficits inexistentes; Post Office encubrió las fallas técnicas y procesó a más de 700 directores."
   },
   {
     "id": "vol1-0x20",
@@ -1765,10 +1765,10 @@
     "index": 32,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Fundación del colectivo ciberactivista **Telecomix**, combatiendo la censura en Oriente Medio durante la Primavera Árabe.",
+    "hito": "Creación del colectivo **Telecomix**, proveyendo vías de comunicación alternativas ante bloqueos estatales de Internet.",
     "year": 2009,
-    "autor": "Ciberactivistas Telecomix",
-    "trivia": "Proveyeron conexiones de acceso telefónico por módem a ciudadanos sirios y egipcios cuando apagaron Internet."
+    "autor": "Colectivo Telecomix",
+    "trivia": "Facilitaron enlaces por módem telefónico y retransmitieron faxes de radio en Egipto y Siria durante la Primavera Árabe."
   },
   {
     "id": "vol1-0x21",
@@ -1776,10 +1776,10 @@
     "index": 33,
     "domain": "hacker-culture-web",
     "tag": "p2p-culture",
-    "hito": "Redada militar del FBI en Nueva Zelanda para clausurar el portal de descargas directas **Megaupload** y arrestar a su fundador **Kim Dotcom**.",
+    "hito": "Operativo internacional y clausura del portal de almacenamiento **Megaupload**, acusando infracción masiva de propiedad intelectual.",
     "year": 2012,
     "autor": "Departamento de Justicia de EE.UU. y FBI",
-    "trivia": "El FBI allanó la mansión de Kim Dotcom y clausuró el sitio (4% del tráfico web), borrando archivos legítimos sin juicio previo."
+    "trivia": "La clausura del servicio provocó el bloqueo repentino de petabytes de datos personales legítimos y derivó en largos litigios de extradición."
   },
   {
     "id": "vol1-0x22",
@@ -1787,10 +1787,10 @@
     "index": 34,
     "domain": "hacker-culture-web",
     "tag": "p2p-culture",
-    "hito": "Publicación de **DeCSS** por el adolescente **\"DVD Jon\"**, reventando el sistema de cifrado comercial de películas en DVD.",
+    "hito": "Publicación del programa **DeCSS**, quebrando el cifrado CSS de los discos DVD para permitir su lectura en plataformas libres.",
     "year": 1999,
     "autor": "Jon Lech Johansen (DVD Jon)",
-    "trivia": "Jon quería ver DVDs legales en Linux; la industria del cine intentó censurar judicialmente la clave DeCSS en toda la web."
+    "trivia": "Desarrollado para reproducir películas en Linux; la industria del cine demandó al autor e intentó prohibir la clave criptográfica en la web."
   },
   {
     "id": "vol1-0x23",
@@ -1798,10 +1798,10 @@
     "index": 35,
     "domain": "hacker-culture-web",
     "tag": "flame-wars",
-    "hito": "Debate mundial sobre los derechos de autor y el uso legítimo (*Fair Use*) en el entrenamiento de modelos de lenguaje con código abierto.",
+    "hito": "Debate jurídico sobre el entrenamiento de **modelos de lenguaje** con repositorios públicos frente a licencias de código abierto.",
     "year": 2024,
-    "autor": "Devs independientes vs. Gigantes de IA",
-    "trivia": "Demandas contra Copilot cuestionaron si entrenar IA con repositorios públicos de código abierto viola licencias libres o es uso legítimo."
+    "autor": "Comunidad de desarrolladores y litigantes",
+    "trivia": "Demandas contra GitHub Copilot cuestionaron si omitir atribuciones y licencias de código fuente en el entrenamiento constituye uso legítimo."
   },
   {
     "id": "vol1-0x24",
@@ -1809,10 +1809,10 @@
     "index": 36,
     "domain": "security-exploits",
     "tag": "software-disasters",
-    "hito": "Quiebra fulminante de la firma de bolsa **Knight Capital Group** tras perder **$440 millones de dólares en apenas 45 minutos**.",
+    "hito": "Colapso financiero de **Knight Capital Group** al perder más de 400 millones de dólares por un fallo de despliegue de software.",
     "year": 2012,
-    "autor": "Knight Capital",
-    "trivia": "Olvidaron actualizar 1 de sus 8 servidores de bolsa; el código viejo revivió y compró a pérdida, perdiendo 440M en 45 minutos."
+    "autor": "Comisión de Bolsa y Valores de EE.UU. (SEC)",
+    "trivia": "Ocho servidores recibieron código nuevo pero uno conservó una rutina obsoleta de prueba, desatando millones de órdenes erróneas en 45 minutos."
   },
   {
     "id": "vol1-0x25",
@@ -1820,10 +1820,10 @@
     "index": 37,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Brecha de seguridad en **Equifax**, exponiendo datos financieros sensibles de más de 147 millones de personas.",
+    "hito": "Brecha de seguridad masiva en **Equifax**, comprometiendo registros personales y crediticios de más de 147 millones de usuarios.",
     "year": 2017,
-    "autor": "Hackers estatales (acusación del DoJ)",
-    "trivia": "Entraron por un bug público en *Apache Struts* que administradores de Equifax olvidaron parchar por meses, robando 147M de datos."
+    "autor": "Comisión Federal de Comercio (FTC)",
+    "trivia": "Atacantes explotaron la vulnerabilidad CVE-2017-5638 en Apache Struts, la cual no había sido actualizada en los sistemas centrales."
   },
   {
     "id": "vol1-0x26",
@@ -1831,10 +1831,10 @@
     "index": 38,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Filtración pública del exploit **EternalBlue** por el misterioso grupo *The Shadow Brokers* tras ser sustraído a la NSA.",
+    "hito": "Filtración pública del exploit **EternalBlue**, aprovechando una vulnerabilidad crítica en el protocolo SMBv1 de Windows.",
     "year": 2017,
     "autor": "The Shadow Brokers",
-    "trivia": "Explotaba una falla en SMBv1 y semanas después alimentó los ataques globales de WannaCry y NotPetya."
+    "trivia": "Sustraído de herramientas vinculadas a la NSA, el exploit sirvió de vector para la rápida propagación de los gusanos WannaCry y NotPetya."
   },
   {
     "id": "vol1-0x27",
@@ -1842,10 +1842,10 @@
     "index": 39,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Arresto del célebre hacker **Kevin Poulsen** tras aparecer en el programa de TV *Unsolved Mysteries* y cortarse la emisión.",
+    "hito": "Manipulación de las líneas telefónicas de una emisora de radio por **Kevin Poulsen** para ganar concursos con premios de lujo.",
     "year": 1991,
-    "autor": "FBI",
-    "trivia": "Poulsen trucó las líneas de la radio KIIS-FM de Los Ángeles para ser la llamada número 102 y ganar un Porsche 944."
+    "autor": "Kevin Poulsen (Dark Dante)",
+    "trivia": "Bloqueó las llamadas entrantes a KIIS-FM para asegurarse de ser la llamada 102 y ganar un Porsche 944; fue sentenciado en 1995 tras huir."
   },
   {
     "id": "vol1-0x28",
@@ -1853,10 +1853,10 @@
     "index": 40,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento del procesador **AMD Opteron**, introduciendo la extensión de 64 bits **AMD64** y obligando a Intel a licenciarla.",
+    "hito": "Lanzamiento del procesador **AMD Opteron**, introduciendo la arquitectura **AMD64** con compatibilidad nativa para 32 y 64 bits.",
     "year": 2003,
-    "autor": "AMD (Fred Weber)",
-    "trivia": "Intel intentó imponer *Itanium* sin compatibilidad; el triunfo de AMD obligó a Intel a licenciar el estándar x86-64 de su rival."
+    "autor": "AMD (Fred Weber y equipo de diseño)",
+    "trivia": "Permitió migrar a 64 bits sin perder compatibilidad con el ecosistema x86, desplazando a la arquitectura Itanium de Intel."
   },
   {
     "id": "vol1-0x29",
@@ -1864,10 +1864,10 @@
     "index": 41,
     "domain": "security-exploits",
     "tag": "software-disasters",
-    "hito": "Pérdida de la nave **Mars Climate Orbiter**, desintegrada en Marte por una catastrófica confusión de unidades de medida.",
+    "hito": "Pérdida de la sonda **Mars Climate Orbiter** en la atmósfera marciana por una discrepancia entre unidades imperiales y métricas.",
     "year": 1999,
-    "autor": "NASA y Lockheed Martin",
-    "trivia": "Lockheed usó libras-fuerza imperiales y la NASA esperaba newtons métricos, desintegrando la sonda en la atmósfera de Marte."
+    "autor": "NASA Project Management Review Board",
+    "trivia": "El software de propulsión de Lockheed Martin calculaba en libras-fuerza segundo, mientras que el control de la NASA esperaba newtons segundo."
   },
   {
     "id": "vol1-0x2A",
@@ -1875,10 +1875,10 @@
     "index": 42,
     "domain": "security-exploits",
     "tag": "software-disasters",
-    "hito": "Colapso del exchange **Mt. Gox** tras el robo de 850,000 bitcoins por fallas en maleabilidad de transacciones.",
+    "hito": "Colapso y quiebra del exchange de criptomonedas **Mt. Gox** tras la pérdida y sustracción prolongada de 850,000 bitcoins.",
     "year": 2014,
-    "autor": "Mark Karpelès (Mt. Gox)",
-    "trivia": "Procesaba el 70% de compras de Bitcoin del mundo; la pérdida de 850,000 bitcoins dejó a miles atrapados en litigios por una década."
+    "autor": "Mt. Gox (Mark Karpelès)",
+    "trivia": "Gestionaba la gran mayoría de operaciones mundiales de Bitcoin; la insolvencia se atribuyó a sustracciones no detectadas durante años."
   },
   {
     "id": "vol1-0x2B",
@@ -1886,10 +1886,10 @@
     "index": 43,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Propagación del ciberataque destructivo **NotPetya**, paralizando puertos, hospitales y gigantes navieros mundiales.",
+    "hito": "Despliegue del ataque destructivo **NotPetya**, paralizando sistemas portuarios, navieros y logísticos a nivel global.",
     "year": 2017,
-    "autor": "Sandworm (GRU)",
-    "trivia": "Disfrazado de ransomware, no tenía mecanismo real de descifrado y fue catalogado como el ciberataque más costoso."
+    "autor": "Sandworm (Atribución gubernamental)",
+    "trivia": "Propagado mediante una actualización del software contable M.E.Doc en Ucrania, cifraba la tabla MFT sin posibilidad de recuperación."
   },
   {
     "id": "vol1-0x2C",
@@ -1897,10 +1897,10 @@
     "index": 44,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Los siete miembros del grupo **L0pht Heavy Industries** testifican ante el Senado de EE.UU. afirmando poder derribar Internet en 30 minutos.",
+    "hito": "Comparecencia de los miembros del grupo **L0pht** ante el Senado de EE.UU., advirtiendo sobre la fragilidad de la seguridad en Internet.",
     "year": 1998,
-    "autor": "L0pht (Mudge, Dildog, Weld Pond)",
-    "trivia": "Fue la primera vez que un comité senatorial reconoció a hackers usando exclusivamente sus 'handles' hacker."
+    "autor": "L0pht Heavy Industries (Mudge et al.)",
+    "trivia": "Advirtieron que problemas de enrutamiento BGP podían interrumpir la red en 30 minutos, siendo recibidos por sus seudónimos hacker."
   },
   {
     "id": "vol1-0x2D",
@@ -1908,10 +1908,10 @@
     "index": 45,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Publicación del primer número de la revista de culto hacker y phreaking **2600: The Hacker Quarterly**.",
+    "hito": "Publicación del primer número de la revista **2600: The Hacker Quarterly**, referente impreso sobre phreaking y cultura hacker.",
     "year": 1984,
-    "autor": "Emmanuel Goldstein (Eric Corley)",
-    "trivia": "El número '2600' rinde homenaje a la frecuencia en hercios del famoso silbato de cereal Cap'n Crunch."
+    "autor": "Eric Corley (Emmanuel Goldstein)",
+    "trivia": "El nombre hace honor a la frecuencia de 2600 hercios que permitía controlar los enlaces troncales de telefonía de larga distancia."
   },
   {
     "id": "vol1-0x2E",
@@ -1919,10 +1919,10 @@
     "index": 46,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Publicación del whitepaper de **b-money**, proponiendo dinero electrónico anónimo y descentralizado basado en prueba de trabajo.",
+    "hito": "Publicación de la propuesta de **b-money**, diseñando un protocolo de dinero electrónico descentralizado y prueba de trabajo.",
     "year": 1998,
     "autor": "Wei Dai",
-    "trivia": "Satoshi Nakamoto citó a b-money en la primera página del whitepaper de Bitcoin en 2008."
+    "trivia": "Propuso la creación de dinero resolviendo problemas computacionales y registros contables compartidos, citado por Satoshi Nakamoto."
   },
   {
     "id": "vol1-0x2F",
@@ -1930,10 +1930,10 @@
     "index": 47,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Publicación de la licencia **GNU GPL v3** tras meses de feroz debate comunitario para combatir la práctica de la *\"tivoización\"*.",
+    "hito": "Publicación de la **GNU General Public License v3** (**GPLv3**), incorporando cláusulas contra la *tivoización* y patentes.",
     "year": 2007,
     "autor": "Richard Stallman (FSF)",
-    "trivia": "Frenó la \"tivoización\": prohibió empaquetar GPL en hardware con candados digitales que bloqueen versiones modificadas."
+    "trivia": "Impidió instalar software modificado en dispositivos donde candados criptográficos de hardware bloquearan su ejecución alternativa."
   },
   {
     "id": "vol1-0x30",
@@ -1941,10 +1941,10 @@
     "index": 48,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Filtración de documentos de la NSA revelando el programa de vigilancia **PRISM** y espionaje masivo de fibra óptica.",
+    "hito": "Filtración pública de documentos clasificados revelando el programa **PRISM** y la vigilancia masiva de telecomunicaciones por la NSA.",
     "year": 2013,
-    "autor": "Edward Snowden (filtración masiva)",
-    "trivia": "Snowden arriesgó su vida para revelar que la NSA interceptaba llamadas, correos y chats de ciudadanos en Silicon Valley."
+    "autor": "Edward Snowden / The Guardian y WashPost",
+    "trivia": "Evidenció la recolección sistemática de metadatos telefónicos y comunicaciones directas de grandes proveedores tecnológicos."
   },
   {
     "id": "vol1-0x31",
@@ -1952,10 +1952,10 @@
     "index": 49,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Difusión del influyente ensayo *The Cathedral and the Bazaar*, analizando las virtudes del modelo de desarrollo abierto y caótico de Linux.",
+    "hito": "Presentación del ensayo **The Cathedral and the Bazaar**, analizando la eficiencia del modelo de desarrollo abierto y distribuido.",
     "year": 1997,
     "autor": "Eric S. Raymond",
-    "trivia": "Acuñó la **Ley de Linus**: *\"Con suficientes ojos, todos los errores son superficiales\"*; inspiró a Netscape a abrir su código."
+    "trivia": "Acuñó la conocida ley de Linus («con suficientes ojos, todos los errores son superficiales») y motivó la liberación del código de Netscape."
   },
   {
     "id": "vol1-0x32",
@@ -1963,10 +1963,10 @@
     "index": 50,
     "domain": "hacker-culture-web",
     "tag": "flame-wars",
-    "hito": "Choque cultural en la empresa **Basecamp / 37signals** tras prohibir debates políticos y sociales en los canales internos de trabajo.",
+    "hito": "Controversia interna en la empresa **Basecamp** tras prohibir discusiones de índole política y social en las herramientas de trabajo.",
     "year": 2021,
-    "autor": "Jason Fried y David H. Hansson (DHH)",
-    "trivia": "Basecamp prohibió debates políticos internos; un tercio del equipo renunció en 48 horas desatando debate sobre activismo laboral."
+    "autor": "Jason Fried y David Heinemeier Hansson",
+    "trivia": "La nueva directriz de la dirección provocó la renuncia inmediata de aproximadamente un tercio de la plantilla de ingenieros."
   },
   {
     "id": "vol1-0x33",
@@ -1974,10 +1974,10 @@
     "index": 51,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Creación del concepto de **Bit Gold**, una arquitectura teórica de dinero digital basada en acertijos computacionales.",
+    "hito": "Formulación teórica del sistema **Bit Gold**, dinero digital basado en funciones criptográficas de coste computacional.",
     "year": 1998,
     "autor": "Nick Szabo",
-    "trivia": "Diseñó también el concepto pionero de 'contratos inteligentes' (smart contracts) en 1994."
+    "trivia": "Planteó resolver un acertijo computacional para emitir unidades no inflacionarias verificadas mediante un registro público con sellos de tiempo."
   },
   {
     "id": "vol1-0x34",
@@ -1985,10 +1985,10 @@
     "index": 52,
     "domain": "hacker-culture-web",
     "tag": "p2p-culture",
-    "hito": "Fundación del portal de enlaces magnéticos **The Pirate Bay** por el colectivo sueco de cultura libre *Piratbyrån*.",
+    "hito": "Fundación del portal de indexación de enlaces torrent **The Pirate Bay**, icono de la cultura de libre intercambio en la red.",
     "year": 2003,
-    "autor": "The Pirate Bay (Svartholm et al.)",
-    "trivia": "Famoso por publicar respuestas sarcásticas y desternillantes a las cartas de abogados y estudios de Hollywood."
+    "autor": "Colectivo Piratbyrån",
+    "trivia": "Surgido en Suecia, resistió bloqueos judiciales y redadas policiales migrando a enlaces magnéticos y dominios distribuidos."
   },
   {
     "id": "vol1-0x35",
@@ -1996,10 +1996,10 @@
     "index": 53,
     "domain": "security-exploits",
     "tag": "software-disasters",
-    "hito": "Tragedia del acelerador **Therac-25**, administrando radiación letal por una condición de carrera en su software de control.",
+    "hito": "Investigación de los accidentes mortales del acelerador médico **Therac-25** debidos a condiciones de carrera en su software.",
     "year": 1985,
-    "autor": "Atomic Energy of Canada Limited (AECL)",
-    "trivia": "Retiraron los seguros mecánicos confiando ciegamente en software programado por una sola persona en ensamblador; murieron 6 pacientes."
+    "autor": "Nancy Leveson y Clark Turner",
+    "trivia": "La supresión de bloqueos de seguridad mecánicos y la falta de pruebas de concurrencia provocaron sobredosis de radiación en varios pacientes."
   },
   {
     "id": "vol1-0x36",
@@ -2007,10 +2007,10 @@
     "index": 54,
     "domain": "hacker-culture-web",
     "tag": "flame-wars",
-    "hito": "Apogeo del polarizado debate entre **Espacios vs. Tabulaciones** (*Spaces vs. Tabs*) para la indentación del código fuente.",
+    "hito": "Consolidación de las directrices de estilo en torno al debate sobre **Espacios vs. Tabulaciones** para la sangría de código.",
     "year": 2004,
-    "autor": "Comunidad Mundial de Programadores",
-    "trivia": "PEP 8 zanjó el debate con 4 espacios; un estudio en broma de Stack Overflow halló que devs que usan espacios ganaban más salario."
+    "autor": "Comunidad de desarrollo de software",
+    "trivia": "Guías canónicas como PEP 8 recomendaron el uso estricto de 4 espacios para garantizar consistencia visual en cualquier entorno."
   },
   {
     "id": "vol1-0x37",
@@ -2018,10 +2018,10 @@
     "index": 55,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Nacimiento formal del término **Open Source** en una reunión estratégica en Palo Alto y fundación de la **Open Source Initiative** (**OSI**).",
+    "hito": "Acuñación del término **Open Source** y fundación de la **Open Source Initiative** (**OSI**) en Palo Alto, California.",
     "year": 1998,
-    "autor": "C. Peterson, B. Perens y E. Raymond",
-    "trivia": "Acuñaron el término \"Open Source\" para alejar el sesgo político de \"Free\" y atraer a las corporaciones al código abierto."
+    "autor": "Bruce Perens, Eric S. Raymond, C. Peterson",
+    "trivia": "Adaptaron las directrices de software libre de Debian para crear la Definición de Código Abierto (OSD) orientada al entorno corporativo."
   },
   {
     "id": "vol1-0x38",
@@ -2029,10 +2029,10 @@
     "index": 56,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Despliegue del ataque contra la red de **Sony PlayStation Network**, comprometiendo los datos de 77 millones de cuentas.",
+    "hito": "Intrusión masiva en la red **PlayStation Network**, provocando la filtración de datos de 77 millones de usuarios y un cierre de 23 días.",
     "year": 2011,
-    "autor": "Atacantes no identificados",
-    "trivia": "Obligó a Sony a apagar sus servidores durante 23 días consecutivos en todo el mundo."
+    "autor": "Sony Computer Entertainment",
+    "trivia": "Obligó a una reconstrucción completa de la infraestructura de seguridad tras comprometer nombres, credenciales y domicilios de jugadores."
   },
   {
     "id": "vol1-0x39",
@@ -2040,10 +2040,10 @@
     "index": 57,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Descubrimiento de la vulnerabilidad de suplantación de identidad en caché **DNS Cache Poisoning** a escala global.",
+    "hito": "Descubrimiento de la vulnerabilidad crítica de envenenamiento de caché **DNS**, permitiendo redirigir tráfico web de forma imperceptible.",
     "year": 2008,
     "autor": "Dan Kaminsky",
-    "trivia": "Kaminsky coordinó en secreto el mayor parche conjunto de la historia de Internet con decenas de empresas."
+    "trivia": "Al aprovechar debilidades en los identificadores de transacción de 16 bits, motivó la adopción urgente de aleatorización de puertos y DNSSEC."
   },
   {
     "id": "vol1-0x3A",
@@ -2051,10 +2051,10 @@
     "index": 58,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Lanzamiento de **Tor (The Onion Router)** como software libre bajo licencia BSD para anonimato en red.",
+    "hito": "Lanzamiento de **Tor (The Onion Router)** como software libre, permitiendo comunicaciones anónimas mediante enrutamiento cebolla.",
     "year": 2004,
-    "autor": "Roger Dingledine, Nick Mathewson",
-    "trivia": "El concepto de enrutamiento cebolla original fue desarrollado por el Laboratorio de Investigación Naval de EE.UU."
+    "autor": "Roger Dingledine, Nick Mathewson, P. Syverson",
+    "trivia": "Basado en investigaciones del Naval Research Laboratory, el protocolo cifra el tráfico en capas sucesivas a través de nodos de retransmisión."
   },
   {
     "id": "vol1-0x3B",
@@ -2062,10 +2062,10 @@
     "index": 59,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Aparición de la vulnerabilidad por desbordamiento de enteros **Stagefright** en Android, explotable con un simple mensaje multimedia SMS.",
+    "hito": "Divulgación de las vulnerabilidades **Stagefright** en Android, permitiendo ejecución de código mediante mensajes multimedia MMS.",
     "year": 2015,
-    "autor": "Joshua Drake (Zimperium)",
-    "trivia": "Afectó a casi mil millones de teléfonos Android sin requerir ninguna interacción por parte de la víctima."
+    "autor": "Joshua Drake (Zimperium zLabs)",
+    "trivia": "Defectos de desbordamiento de enteros al procesar metadatos en archivos multimedia MP4 permitían comprometer el terminal sin interacción del usuario."
   },
   {
     "id": "vol1-0x3C",
@@ -2073,10 +2073,10 @@
     "index": 60,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Publicación del software esteganográfico **Steghide**, permitiendo ocultar mensajes cifrados dentro de archivos de imagen y audio.",
+    "hito": "Publicación del software esteganográfico **Steghide**, permitiendo ocultar información confidencial dentro de imágenes y pistas de audio.",
     "year": 2002,
     "autor": "Stefan Hetzl",
-    "trivia": "Utiliza un algoritmo gráfico basado en teoría de emparejamiento para evitar alterar las frecuencias del archivo."
+    "trivia": "Aplica un algoritmo basado en teoría de grafos que preserva las frecuencias de primer orden del archivo portador sin alterar su apariencia."
   },
   {
     "id": "vol1-0x3D",
@@ -2084,10 +2084,10 @@
     "index": 61,
     "domain": "hacker-culture-web",
     "tag": "p2p-culture",
-    "hito": "Captura de **Ross Ulbricht** y clausura del mercado clandestino en la dark web **Silk Road**.",
+    "hito": "Arresto de Ross Ulbricht y clausura de **Silk Road**, el principal mercado clandestino que operaba sobre la red Tor con pagos en Bitcoin.",
     "year": 2013,
     "autor": "FBI (Agente Christopher Tarbell)",
-    "trivia": "Agentes del FBI fingieron una pelea de novios en una biblioteca para arrebatarle la laptop abierta a Ulbricht sin que cifrara el disco."
+    "trivia": "Agentes federales intervinieron la computadora portátil de Ulbricht en una biblioteca pública de San Francisco para incautarla descifrada."
   },
   {
     "id": "vol1-0x3E",
@@ -2095,10 +2095,10 @@
     "index": 62,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Invención del concepto **GPU** (*Graphics Processing Unit*) por parte de NVIDIA con el lanzamiento de la tarjeta **GeForce 256**.",
+    "hito": "Lanzamiento de la tarjeta gráfica **GeForce 256**, acuñando comercialmente el término **GPU** en la industria del hardware computacional.",
     "year": 1999,
-    "autor": "NVIDIA (Jensen Huang)",
-    "trivia": "Primer procesador gráfico dedicado en un chip con transformación geométrica e iluminación 3D integradas por hardware."
+    "autor": "NVIDIA",
+    "trivia": "Fue el primer chip para PC en integrar motores dedicados de transformación geométrica e iluminación 3D por hardware independiente de la CPU."
   },
   {
     "id": "vol1-0x3F",
@@ -2106,10 +2106,10 @@
     "index": 63,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Publicación de *A Cypherpunk's Manifesto*, proclamando que la privacidad es vital para la sociedad digital.",
+    "hito": "Publicación de *A Cypherpunk's Manifesto*, proclamando la necesidad de software criptográfico de libre acceso para defender la privacidad.",
     "year": 1993,
     "autor": "Eric Hughes",
-    "trivia": "Hughes sentenció: *\"Los Cypherpunks escribimos código. Alguien debe defender la privacidad y vamos a escribirlo nosotros\"*."
+    "trivia": "Consagró la máxima «los Cypherpunks escribimos código», postulando que la privacidad individual debe construirse activamente con criptografía."
   },
   {
     "id": "vol2-0x00",
