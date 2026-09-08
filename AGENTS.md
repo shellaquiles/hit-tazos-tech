@@ -20,7 +20,7 @@ hit-tazos-tech/
 ├── CODE_OF_CONDUCT.md                   # Código de conducta de la comunidad Shellaquiles
 ├── SECURITY.md                          # Política de seguridad y reporte responsable
 ├── LICENSE                              # Licencia de código abierto MIT (Shellaquiles Org)
-├── VERSION                              # Archivo de versión semántica (1.0.1-rc.1)
+├── VERSION                              # Archivo de versión semántica (1.0.0-rc2)
 ├── package.json                         # Manifiesto y scripts npm (test, validate, build, print)
 ├── server.js                            # Servidor local de desarrollo (sirve web/ y data/)
 ├── data/                                # Contenido editorial y datos de trivia
