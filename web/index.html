@@ -259,67 +259,55 @@
           </div>
         </div>
 
-        <!-- Escenario 3D de la Carta con Aura Ambiental y Mazo Físico Apilado -->
-        <div class="arena-stage-container">
+        <!-- Escenario 3D del Tazo Físico Coleccionable con Aura Ambiental -->
+        <div class="tazo-arena-stage">
           <div class="ambient-card-aura" id="ambient-card-aura"></div>
 
-          <!-- Mazo Físico Apilado (Capas táctiles de cartas debajo) -->
-          <div class="deck-physical-stack" id="deck-physical-stack" aria-hidden="true">
-            <div class="deck-stack-card layer-3"></div>
-            <div class="deck-stack-card layer-2"></div>
-            <div class="deck-stack-card layer-1"></div>
+          <!-- Pila física de tazos debajo -->
+          <div class="tazo-physical-stack" id="deck-physical-stack" aria-hidden="true">
+            <div class="tazo-stack-disc layer-3"></div>
+            <div class="tazo-stack-disc layer-2"></div>
+            <div class="tazo-stack-disc layer-1"></div>
           </div>
 
-          <div class="card-perspective-stage" id="card-stage" title="Haz clic o presiona Espacio para voltear la carta">
-            <!-- Tarjeta inyectada dinámicamente -->
+          <!-- Escenario del Tazo Disco 3D -->
+          <div class="tazo-stage" id="card-stage" title="Toca o pulsa Espacio para voltear el Tazo">
+            <!-- Tazo inyectado dinámicamente -->
           </div>
         </div>
 
         <!-- Guía de Gestos Táctiles para Móvil -->
         <div class="mobile-gesture-guide" aria-hidden="true">
-          <span class="gesture-item"><i data-lucide="hand"></i> Desliza para navegar</span>
+          <span class="gesture-item"><i data-lucide="hand"></i> Desliza para cambiar tazo</span>
           <span class="gesture-sep">&bull;</span>
-          <span class="gesture-item"><i data-lucide="touchpad"></i> Toca para voltear</span>
+          <span class="gesture-item"><i data-lucide="rotate-cw"></i> Toca para voltear</span>
         </div>
 
-        <!-- Consola Cronológica / Chrono-Dial Time Machine Controller -->
-        <div class="chronological-console-wrapper">
-          <!-- Selector Rápido de Décadas de Juego -->
-          <div class="decade-quick-picker" id="decade-quick-picker" aria-label="Saltar de época">
-            <span class="decade-label"><i data-lucide="calendar"></i> Época:</span>
-            <button class="decade-chip" data-decade="1950">'50s</button>
-            <button class="decade-chip" data-decade="1960">'60s</button>
-            <button class="decade-chip" data-decade="1970">'70s</button>
-            <button class="decade-chip" data-decade="1980">'80s</button>
-            <button class="decade-chip" data-decade="1990">'90s</button>
-            <button class="decade-chip" data-decade="2000">'00s</button>
-            <button class="decade-chip" data-decade="2010">'10s</button>
-            <button class="decade-chip" data-decade="2020">'20s</button>
+        <!-- Selector Chrono-Dial / Lanzador de Tiro -->
+        <div class="dial-launcher-wrapper">
+          <div class="dial-value-badge">
+            <span class="badge-title">AÑO ESTIMADO</span>
+            <span class="badge-year" id="display-selected-year">1990</span>
           </div>
 
-          <!-- Estación de Estimación de Año -->
-          <div class="chronological-console">
-            <div class="console-stepper-group">
-              <button class="nudge-btn step-big" id="btn-nudge-minus5" title="Retroceder 5 años [Shift+←]">&minus;5</button>
-              <button class="nudge-btn step-small" id="btn-nudge-minus1" title="Retroceder 1 año [←]">&minus;1</button>
-            </div>
+          <div class="dial-slider-container">
+            <span class="slider-boundary-year">1940</span>
+            <input 
+              type="range" 
+              id="chrono-dial" 
+              min="1940" 
+              max="2026" 
+              value="1990" 
+              class="tazo-year-slider"
+              aria-label="Seleccionar año con el dial cronológico"
+            >
+            <span class="slider-boundary-year">2026</span>
+          </div>
 
-            <!-- Contador de Año Numérico -->
-            <div class="console-dial-unit">
-              <div class="dial-meter-label">AÑO ESTIMADO</div>
-              <div class="console-input-wrap">
-                <input type="number" id="input-year" class="console-input chrono-digit-display" placeholder="----" min="1800" max="2030" autocomplete="off" spellcheck="false">
-              </div>
-            </div>
-
-            <div class="console-stepper-group">
-              <button class="nudge-btn step-small" id="btn-nudge-plus1" title="Avanzar 1 año [→]">+1</button>
-              <button class="nudge-btn step-big" id="btn-nudge-plus5" title="Avanzar 5 años [Shift+→]">+5</button>
-            </div>
-
-            <button class="btn-primary btn-submit-guess" id="btn-submit-guess">
-              <i data-lucide="check-circle-2"></i>
-              <span>COMPROBAR</span>
+          <div class="dial-action-row">
+            <button class="btn-slam" id="btn-submit-guess" title="Disparar tiro con el año seleccionado [Enter]">
+              <i data-lucide="zap"></i>
+              <span>¡LANZAR TIRO!</span>
             </button>
           </div>
 
@@ -332,21 +320,21 @@
           </div>
         </div>
 
-        <!-- Controles de Navegación -->
-        <div class="action-cluster">
-          <button class="btn-secondary" id="btn-prev">
+        <!-- Controles Rápidos de Navegación del Tazo -->
+        <div class="tazo-nav-cluster">
+          <button class="btn-secondary btn-nav-tazo" id="btn-prev" title="Tazo anterior [P]">
             <i data-lucide="arrow-left"></i> Anterior
           </button>
-          <button class="btn-primary btn-flip-cta" id="btn-flip">
-            <i data-lucide="rotate-cw"></i> <span>Girar Carta</span> <kbd class="kbd-shortcut-hint">[Espacio]</kbd>
+          <button class="btn-secondary btn-nav-tazo" id="btn-flip" title="Voltear disco [Espacio]">
+            <i data-lucide="rotate-cw"></i> Voltear
           </button>
-          <button class="btn-secondary" id="btn-reveal" title="Revelar el año sin adivinar [R]">
-            <i data-lucide="eye"></i> <span>Revelar Año</span>
+          <button class="btn-secondary btn-nav-tazo" id="btn-reveal" title="Revelar el año [R]">
+            <i data-lucide="eye"></i> Revelar
           </button>
-          <button class="btn-secondary" id="btn-next">
+          <button class="btn-secondary btn-nav-tazo" id="btn-next" title="Tazo siguiente [N]">
             Siguiente <i data-lucide="arrow-right"></i>
           </button>
-          <button class="btn-secondary" id="btn-shuffle" title="Barajar el mazo activo">
+          <button class="btn-secondary btn-nav-tazo" id="btn-shuffle" title="Barajar tazos">
             <i data-lucide="shuffle"></i> Barajar
           </button>
         </div>
@@ -593,6 +581,7 @@
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.2/dist/fuse.basic.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/snarkdown@2.0.0/dist/snarkdown.umd.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/idb-keyval@6/dist/umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tinygesture@2.0.0/TinyGesture.js"></script>
 
   <!-- Datos y Lógica del Juego -->
   <script src="deck-data.js"></script>

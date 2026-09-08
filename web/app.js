@@ -1,4 +1,4 @@
-// Hit-Tazos Tech - Application Core Engine with Curated Lucide Icons
+// Hit-Tazos Tech - Application Core Engine with Modular Interactive Libraries
 
 class HitTazosEngine {
   constructor() {
@@ -12,95 +12,30 @@ class HitTazosEngine {
     this.streak = 0;
     this.activeGroup = 'ALL';
     this.soundEnabled = true;
-    this.audioCtx = null;
     this.attemptCount = 0;   // intentos en la tarjeta actual
     this.maxAttempts = 3;    // máximo de intentos antes de revelar
     this.cardSolved = false; // si ya se acertó/resolvió la carta actual
+    this.fuse = null;        // instancia Fuse.js
 
-    this.initAudio();
     this.initDOM();
-    this.initFX();
+    this.initTilt();
     this.bindEvents();
+    this.bindKeyboardShortcuts();
+    this.initTouchGestures();
     this.loadData();
+    this.loadSavedState();
   }
 
-  initAudio() {
-    try {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      this.audioCtx = new AudioCtx();
-    } catch (e) {
-      console.warn('AudioContext not supported.');
-    }
-  }
-
+  // 1. Audio procedural con ZzFX (Elimina AudioContext y osciladores manuales)
   playAudioFeedback(type) {
-    if (!this.soundEnabled || !this.audioCtx) return;
-    if (this.audioCtx.state === 'suspended') {
-      this.audioCtx.resume();
-    }
-
-    const now = this.audioCtx.currentTime;
-
-    if (type === 'flip') {
-      // Deslizamiento sutil de carta de cartulina (card slide/swoosh)
-      const osc = this.audioCtx.createOscillator();
-      const gain = this.audioCtx.createGain();
-      const filter = this.audioCtx.createBiquadFilter();
-      filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(800, now);
-      filter.frequency.exponentialRampToValueAtTime(300, now + 0.14);
-
-      osc.connect(filter);
-      filter.connect(gain);
-      gain.connect(this.audioCtx.destination);
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(220, now);
-      osc.frequency.exponentialRampToValueAtTime(140, now + 0.14);
-      gain.gain.setValueAtTime(0.12, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
-      osc.start(now);
-      osc.stop(now + 0.14);
-    } else if (type === 'hit') {
-      // Acorde cálido de campanilla de mesa (Acoustic bell / glass chime C-E-G-B)
-      const freqs = [523.25, 659.25, 783.99, 1046.50];
-      freqs.forEach((f, idx) => {
-        const osc = this.audioCtx.createOscillator();
-        const gain = this.audioCtx.createGain();
-        osc.connect(gain);
-        gain.connect(this.audioCtx.destination);
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(f, now + idx * 0.05);
-        gain.gain.setValueAtTime(0.10, now + idx * 0.05);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45 + idx * 0.05);
-        osc.start(now + idx * 0.05);
-        osc.stop(now + 0.45 + idx * 0.05);
-      });
-    } else if (type === 'miss') {
-      // Golpe sordo de madera / tapón de mesa (Warm wooden thud, no sawtooth arcade)
-      const osc = this.audioCtx.createOscillator();
-      const gain = this.audioCtx.createGain();
-      osc.connect(gain);
-      gain.connect(this.audioCtx.destination);
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(130, now);
-      osc.frequency.exponentialRampToValueAtTime(45, now + 0.18);
-      gain.gain.setValueAtTime(0.18, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
-      osc.start(now);
-      osc.stop(now + 0.18);
-    } else if (type === 'tick') {
-      // Click táctil de stepper / ficha de cartón
-      const osc = this.audioCtx.createOscillator();
-      const gain = this.audioCtx.createGain();
-      osc.connect(gain);
-      gain.connect(this.audioCtx.destination);
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(580, now);
-      osc.frequency.exponentialRampToValueAtTime(200, now + 0.035);
-      gain.gain.setValueAtTime(0.08, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
-      osc.start(now);
-      osc.stop(now + 0.035);
+    if (!this.soundEnabled) return;
+    if (typeof zzfx === 'function') {
+      try {
+        if (type === 'flip') zzfx(0.1, 0, 220, .02, .14, .08, 1, 0, -4);       // Deslizamiento de carta
+        else if (type === 'hit') zzfx(1, .05, 523, .05, .45, 0, 0, 1.4);         // Campanilla victoria
+        else if (type === 'miss') zzfx(1, .05, 130, .05, .18, 0, 0, 0);          // Golpe sordo
+        else if (type === 'tick') zzfx(0.08, 0, 580, .01, .035, .01, 1);         // Clic de dial
+      } catch (_) {}
     }
   }
 
@@ -124,7 +59,8 @@ class HitTazosEngine {
     this.hudScore = document.getElementById('hud-score');
     this.hudStreak = document.getElementById('hud-streak');
     this.hudStreakBox = document.getElementById('hud-streak-box');
-    this.inputYear = document.getElementById('input-year');
+    this.chronoDial = document.getElementById('chrono-dial');
+    this.displaySelectedYear = document.getElementById('display-selected-year');
     this.btnSubmitGuess = document.getElementById('btn-submit-guess');
     this.guessResultPill = document.getElementById('guess-result-pill');
     this.btnFlip = document.getElementById('btn-flip');
@@ -140,14 +76,6 @@ class HitTazosEngine {
     this.attemptDots    = document.getElementById('attempt-dots');
     this.attemptLabel   = document.getElementById('attempt-label');
 
-    // Decade quick picker
-    this.decadeChips = document.querySelectorAll('.decade-chip');
-
-    // Nudge buttons
-    this.btnNudgeMinus5 = document.getElementById('btn-nudge-minus5');
-    this.btnNudgeMinus1 = document.getElementById('btn-nudge-minus1');
-    this.btnNudgePlus1 = document.getElementById('btn-nudge-plus1');
-    this.btnNudgePlus5 = document.getElementById('btn-nudge-plus5');
 
     // Catalog elements
     this.galleryQuery = document.getElementById('gallery-query');
@@ -161,79 +89,36 @@ class HitTazosEngine {
     this.btnCloseHelpModal = document.getElementById('btn-close-help-modal');
     this.btnUnderstoodHelp = document.getElementById('btn-understood-help');
 
-    // Touch & Swipe Gestures Tracking
-    this.touchStartX = 0;
-    this.touchStartY = 0;
-    this.touchStartTime = 0;
-    this.isTouchDragging = false;
+    // Touch gesture debouncing para evitar clics duplicados
     this.justHandledTouch = false;
   }
 
-  initFX() {
-    this.fxCanvas = document.getElementById('fx-canvas');
-    if (!this.fxCanvas) return;
-    this.fxCtx = this.fxCanvas.getContext('2d');
-    this.particles = [];
-
-    const resizeCanvas = () => {
-      this.fxCanvas.width = window.innerWidth;
-      this.fxCanvas.height = window.innerHeight;
-    };
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    const loop = () => {
-      if (this.particles.length > 0) {
-        this.fxCtx.clearRect(0, 0, this.fxCanvas.width, this.fxCanvas.height);
-        for (let i = this.particles.length - 1; i >= 0; i--) {
-          const p = this.particles[i];
-          p.x += p.vx;
-          p.y += p.vy;
-          p.vy += 0.18; // gravity
-          p.rot += p.vRot;
-          p.alpha -= 0.015;
-
-          if (p.alpha <= 0) {
-            this.particles.splice(i, 1);
-            continue;
-          }
-
-          this.fxCtx.save();
-          this.fxCtx.translate(p.x, p.y);
-          this.fxCtx.rotate(p.rot);
-          this.fxCtx.globalAlpha = p.alpha;
-          this.fxCtx.fillStyle = p.color;
-          this.fxCtx.shadowColor = p.color;
-          this.fxCtx.shadowBlur = 8;
-          this.fxCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
-          this.fxCtx.restore();
-        }
-      }
-      requestAnimationFrame(loop);
-    };
-    requestAnimationFrame(loop);
+  // 2. Inclinación 3D y Glare con VanillaTilt
+  initTilt() {
+    if (typeof VanillaTilt !== 'undefined' && this.cardStage) {
+      try {
+        VanillaTilt.init(this.cardStage, {
+          max: 12,
+          speed: 400,
+          glare: true,
+          "max-glare": 0.25,
+          perspective: 1400
+        });
+      } catch (_) {}
+    }
   }
 
-  triggerCyberConfetti(color = '#38bdf8') {
-    if (!this.fxCanvas) return;
-    const originX = window.innerWidth / 2;
-    const originY = window.innerHeight / 2 - 40;
-    const palette = [color, '#facc15', '#f472b6', '#34d399', '#ffffff'];
-
-    for (let i = 0; i < 70; i++) {
-      const angle = (Math.PI * 2 * i) / 70 + (Math.random() - 0.5) * 0.4;
-      const speed = Math.random() * 9 + 4;
-      this.particles.push({
-        x: originX,
-        y: originY,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed - 3,
-        size: Math.random() * 8 + 4,
-        color: palette[Math.floor(Math.random() * palette.length)],
-        rot: Math.random() * Math.PI,
-        vRot: (Math.random() - 0.5) * 0.2,
-        alpha: 1
-      });
+  // 3. Confetti procedural con canvas-confetti (Elimina el elemento <canvas> y loop manual)
+  triggerCyberConfetti(accentColor = '#38bdf8') {
+    if (typeof confetti === 'function') {
+      try {
+        confetti({
+          particleCount: 70,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: [accentColor, '#facc15', '#f472b6', '#34d399', '#ffffff']
+        });
+      } catch (_) {}
     }
   }
 
@@ -306,6 +191,7 @@ class HitTazosEngine {
         this.counterTotal.textContent = this.cards.length;
       }
 
+      this.setupSearchIndex();
       this.renderActiveArenaCard();
       this.renderCatalog();
       this.refreshIcons();
@@ -439,262 +325,149 @@ class HitTazosEngine {
     this.btnPrev.addEventListener('click', () => this.prevCard());
     this.btnShuffle.addEventListener('click', () => this.shuffleCurrentDeck());
 
-    // Keyboard Space, R, Arrows & Pro Gamer Shortcuts
-    window.addEventListener('keydown', (e) => {
-      if (document.activeElement === this.inputYear || document.activeElement === this.galleryQuery) {
-        return;
-      }
-      if (e.code === 'Space') {
-        e.preventDefault();
-        this.flipCurrentCard();
-      } else if (e.code === 'KeyR') {
-        e.preventDefault();
-        this.toggleActiveCardYear();
-      } else if (e.code === 'ArrowRight') {
-        if (e.shiftKey) {
-          this.nudgeYear(5);
-        } else {
-          this.nudgeYear(1);
+    // Chrono-Dial time machine slider
+    if (this.chronoDial) {
+      this.chronoDial.addEventListener('input', () => {
+        if (this.displaySelectedYear) {
+          this.displaySelectedYear.textContent = this.chronoDial.value;
         }
-      } else if (e.code === 'ArrowLeft') {
-        if (e.shiftKey) {
-          this.nudgeYear(-5);
-        } else {
-          this.nudgeYear(-1);
-        }
-      } else if (e.code === 'KeyN') {
-        this.nextCard();
-      } else if (e.code === 'KeyP') {
-        this.prevCard();
-      } else if (e.code === 'KeyS') {
-        this.btnSound.click();
-      } else if (e.key === '?' || (e.code === 'Slash' && e.shiftKey)) {
-        if (this.helpDialog) {
-          if (this.helpDialog.open) {
-            this.helpDialog.close();
-          } else {
-            this.helpDialog.showModal();
-            this.refreshIcons();
-          }
-        }
-      } else if (e.key >= '0' && e.key <= '8' && !e.ctrlKey && !e.altKey && !e.metaKey) {
-        const volumeKeys = [
-          'ALL',
-          'kernel-foundations',
-          'cypherpunks-hacker-lore',
-          'embedded-silicon-hardware',
-          'unix-sysadmin-networks',
-          'backend-distributed-systems',
-          'cloud-containers-sre',
-          'python-track',
-          'scifi-pop-culture-cinema'
-        ];
-        const num = parseInt(e.key, 10);
-        const targetVol = volumeKeys[num];
-        if (targetVol) {
-          const pill = this.groupRibbon.querySelector(`[data-volumen="${targetVol}"]`);
-          if (pill) pill.click();
-        }
-      }
-    });
-
-    // Decade Quick Picker
-    this.decadeChips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        const decade = chip.getAttribute('data-decade');
-        this.inputYear.value = decade;
-        this.inputYear.focus();
         this.playAudioFeedback('tick');
       });
-    });
+    }
 
-    // 3D Tilt Parallax on Mousemove
-    this.cardStage.addEventListener('mousemove', (e) => this.handle3DTilt(e));
-    this.cardStage.addEventListener('mouseleave', () => this.reset3DTilt());
-
-    // Guess submission
-    this.btnSubmitGuess.addEventListener('click', () => this.evaluateGuess());
-    this.inputYear.addEventListener('keyup', (e) => {
-      if (e.key === 'Enter') this.evaluateGuess();
-    });
-
-    // Nudge buttons
-    this.btnNudgeMinus5.addEventListener('click', () => this.nudgeYear(-5));
-    this.btnNudgeMinus1.addEventListener('click', () => this.nudgeYear(-1));
-    this.btnNudgePlus1.addEventListener('click', () => this.nudgeYear(1));
-    this.btnNudgePlus5.addEventListener('click', () => this.nudgeYear(5));
+    // Botón de Tiro / Slam
+    if (this.btnSubmitGuess) {
+      this.btnSubmitGuess.addEventListener('click', () => this.evaluateGuess());
+    }
 
     // Gallery search and filter
     this.galleryQuery.addEventListener('input', () => this.filterCatalog());
     this.selectFilterGroup.addEventListener('change', () => this.filterCatalog());
     this.selectSortOrder.addEventListener('change', () => this.filterCatalog());
-
-    // Gestos táctiles para móviles (Tap para voltear, Swipe izquierda/derecha para navegar cartas)
-    this.initTouchGestures();
   }
 
+  // 4. Atajos de Teclado con hotkeys-js (Respetan inputs y modales automáticamente)
+  bindKeyboardShortcuts() {
+    if (typeof hotkeys === 'function') {
+      hotkeys('space', (e) => { e.preventDefault(); this.flipCurrentCard(); });
+      hotkeys('enter', (e) => { e.preventDefault(); this.evaluateGuess(); });
+      hotkeys('r', (e) => { e.preventDefault(); this.toggleActiveCardYear(); });
+      hotkeys('n', () => this.nextCard());
+      hotkeys('p', () => this.prevCard());
+      hotkeys('s', () => this.btnSound?.click());
+      hotkeys('left', () => this.nudgeYear(-1));
+      hotkeys('right', () => this.nudgeYear(1));
+      hotkeys('shift+left', () => this.nudgeYear(-5));
+      hotkeys('shift+right', () => this.nudgeYear(5));
+
+      const volumeKeys = [
+        'ALL', 'kernel-foundations', 'cypherpunks-hacker-lore',
+        'embedded-silicon-hardware', 'unix-sysadmin-networks',
+        'backend-distributed-systems', 'cloud-containers-sre',
+        'python-track', 'scifi-pop-culture-cinema'
+      ];
+      for (let i = 0; i <= 8; i++) {
+        hotkeys(`${i}`, () => {
+          const pill = this.groupRibbon?.querySelector(`[data-volumen="${volumeKeys[i]}"]`);
+          if (pill) pill.click();
+        });
+      }
+    } else {
+      // Fallback nativo ligero si hotkeys-js no está disponible
+      window.addEventListener('keydown', (e) => {
+        if (document.activeElement?.tagName === 'INPUT' || document.activeElement === this.galleryQuery) return;
+        if (e.code === 'Space') { e.preventDefault(); this.flipCurrentCard(); }
+        else if (e.code === 'KeyR') { e.preventDefault(); this.toggleActiveCardYear(); }
+        else if (e.code === 'KeyN') this.nextCard();
+        else if (e.code === 'KeyP') this.prevCard();
+      });
+    }
+  }
+
+  // 8. Gestos Táctiles con TinyGesture (~1 KB)
   initTouchGestures() {
-    if (!this.cardStage) return;
+    const stage = document.getElementById('card-stage');
+    if (!stage) return;
 
-    this.cardStage.addEventListener('touchstart', (e) => {
-      if (e.touches.length !== 1) return;
-      const card = document.getElementById('active-card-3d');
-      if (!card || card.dataset.flipping === '1') return;
+    if (typeof TinyGesture === 'function') {
+      const gesture = new TinyGesture(stage, {
+        // Umbral mínimo de desplazamiento en píxeles para reconocer un swipe
+        threshold: (type) => Math.max(30, Math.floor(0.15 * (type === 'x' ? window.innerWidth : window.innerHeight))),
+        // Permite que la pantalla siga haciendo scroll vertical si no es un swipe horizontal claro
+        diagonalSwipes: false
+      });
 
-      this.touchStartX = e.touches[0].clientX;
-      this.touchStartY = e.touches[0].clientY;
-      this.touchStartTime = Date.now();
-      this.isTouchDragging = true;
-      card.style.transition = 'none';
-    }, { passive: true });
-
-    this.cardStage.addEventListener('touchmove', (e) => {
-      if (!this.isTouchDragging || e.touches.length !== 1) return;
-      const card = document.getElementById('active-card-3d');
-      if (!card || card.dataset.flipping === '1') return;
-
-      const currentX = e.touches[0].clientX;
-      const currentY = e.touches[0].clientY;
-      const dx = currentX - this.touchStartX;
-      const dy = currentY - this.touchStartY;
-
-      // Si el gesto es horizontal, prevenir scroll vertical y dar feedback físico elástico
-      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 8) {
-        if (e.cancelable) e.preventDefault();
-        const rot = Math.max(-10, Math.min(10, dx * 0.04));
-        const moveX = Math.max(-100, Math.min(100, dx * 0.65));
-        const moveY = Math.max(-30, Math.min(30, dy * 0.2));
-        card.style.transform = `perspective(1000px) translate3d(${moveX}px, ${moveY}px, 0) rotate(${rot}deg)`;
-      }
-    }, { passive: false });
-
-    const handleTouchEnd = (e) => {
-      if (!this.isTouchDragging) return;
-      this.isTouchDragging = false;
-
-      const card = document.getElementById('active-card-3d');
-      if (!card) return;
-
-      const touch = (e.changedTouches && e.changedTouches[0]) || (e.touches && e.touches[0]);
-      const endX = touch ? touch.clientX : this.touchStartX;
-      const endY = touch ? touch.clientY : this.touchStartY;
-      const dx = endX - this.touchStartX;
-      const dy = endY - this.touchStartY;
-
-      const elapsed = Date.now() - this.touchStartTime;
-      const absX = Math.abs(dx);
-      const absY = Math.abs(dy);
-
-      card.style.transition = 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease';
-
-      // 1. GESTO TAP (Toque conciso sin arrastre para voltear o interactuar con el año)
-      if (absX < 14 && absY < 14 && elapsed < 350) {
-        card.style.transform = '';
-        card.style.opacity = '1';
+      // Deslizar a la izquierda: Siguiente carta
+      gesture.on('swipeleft', () => {
         this.justHandledTouch = true;
         setTimeout(() => { this.justHandledTouch = false; }, 350);
-
-        if (e.target && e.target.closest('.year-center-stage')) {
-          this.toggleActiveCardYear();
-        } else {
-          this.flipCurrentCard();
-        }
         if (navigator.vibrate) {
-          try { navigator.vibrate(12); } catch (_) {}
+          try { navigator.vibrate(20); } catch (_) {}
         }
-        return;
-      }
+        this.nextCard();
+        this.playAudioFeedback('flip');
+      });
 
-      // 2. GESTO SWIPE HORIZONTAL (Deslizar para cambiar de carta)
-      if (absX >= 40 && absX > absY) {
+      // Deslizar a la derecha: Carta anterior
+      gesture.on('swiperight', () => {
         this.justHandledTouch = true;
         setTimeout(() => { this.justHandledTouch = false; }, 350);
-
-        if (dx < 0) {
-          // Swipe Izquierda: Avanzar a la siguiente carta
-          card.style.transform = 'perspective(1000px) translate3d(-115%, 0, 0) rotate(-12deg)';
-          card.style.opacity = '0';
-          if (navigator.vibrate) {
-            try { navigator.vibrate(20); } catch (_) {}
-          }
-          setTimeout(() => {
-            this.nextCard();
-          }, 140);
-        } else {
-          // Swipe Derecha: Volver a la carta anterior
-          card.style.transform = 'perspective(1000px) translate3d(115%, 0, 0) rotate(12deg)';
-          card.style.opacity = '0';
-          if (navigator.vibrate) {
-            try { navigator.vibrate(20); } catch (_) {}
-          }
-          setTimeout(() => {
-            this.prevCard();
-          }, 140);
+        if (navigator.vibrate) {
+          try { navigator.vibrate(20); } catch (_) {}
         }
-        return;
-      }
+        this.prevCard();
+        this.playAudioFeedback('flip');
+      });
 
-      // 3. GESTO SWIPE VERTICAL (Deslizar hacia arriba/abajo para voltear)
-      if (absY >= 40 && absY > absX) {
+      // Deslizar hacia arriba: Revelar / ocultar año rápidamente
+      gesture.on('swipeup', () => {
         this.justHandledTouch = true;
         setTimeout(() => { this.justHandledTouch = false; }, 350);
-        card.style.transform = '';
-        card.style.opacity = '1';
+        if (navigator.vibrate) {
+          try { navigator.vibrate(15); } catch (_) {}
+        }
+        this.toggleActiveCardYear();
+      });
+
+      // Deslizar hacia abajo: Voltear carta
+      gesture.on('swipedown', () => {
+        this.justHandledTouch = true;
+        setTimeout(() => { this.justHandledTouch = false; }, 350);
         if (navigator.vibrate) {
           try { navigator.vibrate(15); } catch (_) {}
         }
         this.flipCurrentCard();
-        return;
-      }
+      });
 
-      // Si fue un arrastre menor sin intención de swipe, restaurar de inmediato
-      card.style.transform = '';
-      card.style.opacity = '1';
-      setTimeout(() => { card.style.transition = ''; }, 240);
-    };
-
-    this.cardStage.addEventListener('touchend', handleTouchEnd);
-    this.cardStage.addEventListener('touchcancel', handleTouchEnd);
-  }
-
-  handle3DTilt(e) {
-    const card = document.getElementById('active-card-3d');
-    if (!card) return;
-
-    const rect = this.cardStage.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-
-    // No aplicar tilt durante el flip
-    if (card.dataset.flipping === '1') return;
-
-    const rotateX = ((y - centerY) / centerY) * -12;
-    const rotateY = ((x - centerX) / centerX) * 12;
-
-    // Con WAAPI el contenedor no rota — solo aplicar el tilt suave del mouse
-    card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
-
-    const glareX = (x / rect.width) * 100;
-    const glareY = (y / rect.height) * 100;
-    card.style.setProperty('--glare-x', `${glareX}%`);
-    card.style.setProperty('--glare-y', `${glareY}%`);
-    card.style.setProperty('--glare-opacity', '0.9');
+      // Tap simple: Voltear la carta
+      gesture.on('tap', (event) => {
+        // Evita voltear si el usuario tocó el botón o área de revelado del año
+        if (event && event.target && event.target.closest('.year-center-stage')) return;
+        this.justHandledTouch = true;
+        setTimeout(() => { this.justHandledTouch = false; }, 350);
+        if (navigator.vibrate) {
+          try { navigator.vibrate(12); } catch (_) {}
+        }
+        this.flipCurrentCard();
+      });
+    }
   }
 
   reset3DTilt() {
     const card = document.getElementById('active-card-3d');
     if (!card) return;
-    // Con WAAPI el contenedor no rota — solo limpiar glare
     card.style.transform = '';
-    card.style.setProperty('--glare-opacity', '0');
   }
 
+
   nudgeYear(delta) {
-    const cur = parseInt(this.inputYear.value, 10) || 2000;
-    this.inputYear.value = cur + delta;
+    if (!this.chronoDial) return;
+    const cur = parseInt(this.chronoDial.value, 10) || 1990;
+    const min = parseInt(this.chronoDial.min, 10) || 1940;
+    const max = parseInt(this.chronoDial.max, 10) || 2026;
+    const nextVal = Math.max(min, Math.min(max, cur + delta));
+    this.chronoDial.value = nextVal;
+    if (this.displaySelectedYear) this.displaySelectedYear.textContent = nextVal;
     this.playAudioFeedback('tick');
   }
 
@@ -731,13 +504,18 @@ class HitTazosEngine {
     this.renderActiveArenaCard();
   }
 
+  // 5. Formateo de Texto con Snarkdown (~1 KB Markdown Parser)
   formatMarkdown(str) {
     if (!str) return '';
+    if (typeof snarkdown === 'function') {
+      return snarkdown(str);
+    }
     return str
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
       .replace(/`([^`]+)`/g, '<code>$1</code>');
   }
+
 
   getDomainIconName(domain) {
     const map = {
@@ -858,9 +636,9 @@ class HitTazosEngine {
     const creadorFormatted = this.formatMarkdown(card.autor);
     const triviaFormatted = this.formatMarkdown(card.trivia);
 
-    const groupIcon = 'layers';
+    const groupIcon = 'disc';
 
-    // Número de carta consecutivo (#001..#N)
+    // Número de tazo consecutivo
     const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
     const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
     const cardNumStr = `${volId}x${hexPart}`;
@@ -869,51 +647,50 @@ class HitTazosEngine {
     const theme = this.getCardTheme(card);
 
     return `
-      <!-- FRONT (Hit-Tazos / Pure Color Matte Face) -->
-      <div class="card-sheet sheet-front hittazos-matte-card" style="--hittazos-bg: ${theme.bg}; --card-bg: ${theme.bg}; --hittazos-front-bg: ${theme.frontBg}; --card-front-bg: ${theme.frontBg}; --card-text: ${theme.text}; --card-subtext: ${theme.subText}; --card-accent: ${theme.accent};">
-        <div class="card-topbar-minimal">
-          <span class="group-badge-tiny">
-            <i data-lucide="${groupIcon}"></i>
-            ${(this.catalog.domains[card.domain] || card.domain).toUpperCase()}
-          </span>
-          <span class="category-badge-tiny">${this.catalog.tags[card.tag] || card.tag}</span>
-        </div>
+      <!-- Tazo 3D Físico: Disco Circular Noventero con Muescas y Glare -->
+      <div class="tazo-disc ${isRevealed ? 'is-flipped' : ''}" id="active-tazo-disc" style="--tazo-color: ${theme.bg}; --tazo-accent: ${theme.accent};">
+        <!-- Cara Frontal (Anverso: Hito, Categoría, Muescas de Ensamble) -->
+        <div class="tazo-face tazo-face-front" style="--tazo-theme-bg: ${theme.bg};">
+          <div class="tazo-glare"></div>
+          <div class="tazo-rim-notches"></div>
+          <div class="tazo-inner-ring">
+            <div class="tazo-category-tag">
+              <i data-lucide="${groupIcon}"></i>
+              <span>${(this.catalog.domains[card.domain] || card.domain).toUpperCase()}</span>
+            </div>
 
-        <div class="clue-stage-pure">
-          <p class="clue-quote">${hitoFormatted}</p>
-        </div>
+            <div class="tazo-clue-stage">
+              <p class="tazo-clue-text">${hitoFormatted}</p>
+            </div>
 
-        <div class="card-footbar-minimal">
-          <span class="corner-meta-left">${this.catalog.volumes[card.volumen] || card.volumen}</span>
-          <span class="flip-pill"><i data-lucide="rotate-cw"></i> Voltear</span>
-          <span class="corner-meta-right">${cardNumStr}</span>
-        </div>
-      </div>
-
-      <!-- BACK (Hit-Tazos Solid Matte Reveal: Author Top, Year Center, Lore Bottom) -->
-      <div class="card-sheet sheet-back hittazos-matte-card" style="--hittazos-bg: ${theme.bg}; --card-bg: ${theme.bg}; --card-text: ${theme.text}; --card-subtext: ${theme.subText}; --card-accent: ${theme.accent};">
-        <div class="card-back-top">
-          <div class="back-author-title">${creadorFormatted}</div>
-        </div>
-
-        <div class="year-center-stage ${yearStateClass}" title="Haz clic para revelar el año [R]">
-          <div class="year-mystery-box">
-            <div class="year-mystery-digits">????</div>
-            <div class="year-reveal-badge">
-              <i data-lucide="eye"></i>
-              <span>Revelar año</span>
+            <div class="tazo-footer-tag">
+              <span class="tazo-vol-id">${cardNumStr}</span>
+              <span class="tazo-hint-action"><i data-lucide="rotate-cw"></i> Voltear</span>
             </div>
           </div>
-          <div class="year-digits-hero">${card.year}</div>
         </div>
 
-        <div class="card-back-bottom">
-          <div class="back-trivia-phrase">${triviaFormatted}</div>
-        </div>
+        <!-- Cara Trasera (Reverso: Año Hero, Creador, Trivia Lore) -->
+        <div class="tazo-face tazo-face-back" style="--tazo-color: ${theme.bg};">
+          <div class="tazo-glare"></div>
+          <div class="tazo-rim-notches"></div>
+          <div class="tazo-inner-ring tazo-back-ring">
+            <div class="tazo-author">${creadorFormatted}</div>
 
-        <div class="card-footbar-minimal">
-          <span class="corner-meta-left">${this.catalog.volumes[card.volumen] || card.volumen}</span>
-          <span class="corner-meta-right">${volId}x${hexPart}</span>
+            <div class="year-center-stage ${yearStateClass}" title="Toca para revelar el año [R]">
+              <div class="year-mystery-box">
+                <div class="year-mystery-digits">????</div>
+                <div class="year-reveal-badge">
+                  <i data-lucide="eye"></i>
+                  <span>Revelar</span>
+                </div>
+              </div>
+              <div class="tazo-year-hero">${card.year}</div>
+            </div>
+
+            <div class="tazo-trivia-lore">${triviaFormatted}</div>
+            <div class="tazo-back-meta">${this.catalog.volumes[card.volumen] || card.volumen} &bull; ${cardNumStr}</div>
+          </div>
         </div>
       </div>
     `;
@@ -926,14 +703,13 @@ class HitTazosEngine {
     this.cardStage.innerHTML = '';
     const cardEl = document.createElement('div');
     cardEl.id = 'active-card-3d';
-    cardEl.className = `hittazos-card-3d theme-${this.catalog.domains[card.domain] || card.domain}`;
+    cardEl.className = 'tazo-disc-container';
     cardEl.innerHTML = this.buildCardHTML(card, { isRevealed: false });
     cardEl.style.opacity = '1';
     cardEl.style.transform = '';
 
     this.cardStage.appendChild(cardEl);
     this.hudCardCounter.textContent = `${this.currentIndex + 1} / ${this.activeDeck.length}`;
-    this.inputYear.value = '';
     this.guessResultPill.textContent = '';
     this.updateRevealButtonState(false);
 
@@ -941,7 +717,7 @@ class HitTazosEngine {
     this.attemptCount = 0;
     this.cardSolved   = false;
     this.renderAttemptTracker(false);
-    this.btnSubmitGuess.disabled = false;
+    if (this.btnSubmitGuess) this.btnSubmitGuess.disabled = false;
 
     // Update Ambient Aura glow with Card Pop Color
     if (this.ambientAura) {
@@ -965,19 +741,20 @@ class HitTazosEngine {
   updateRevealButtonState(isRevealed) {
     if (!this.btnReveal) return;
     if (isRevealed) {
-      this.btnReveal.innerHTML = `<i data-lucide="eye-off"></i> <span>Ocultar Año</span>`;
+      this.btnReveal.innerHTML = `<i data-lucide="eye-off"></i> <span>Ocultar</span>`;
       this.btnReveal.classList.add('active');
     } else {
-      this.btnReveal.innerHTML = `<i data-lucide="eye"></i> <span>Revelar Año</span>`;
+      this.btnReveal.innerHTML = `<i data-lucide="eye"></i> <span>Revelar</span>`;
       this.btnReveal.classList.remove('active');
     }
     this.refreshIcons();
   }
 
   revealActiveCardYear() {
-    const cardEl = document.getElementById('active-card-3d');
-    if (!cardEl) return;
-    const yearStage = cardEl.querySelector('.year-center-stage');
+    const stage = document.getElementById('card-stage');
+    const tazoDisc = stage?.querySelector('.tazo-disc') || stage;
+    if (!tazoDisc) return;
+    const yearStage = tazoDisc.querySelector('.year-center-stage');
     if (yearStage && yearStage.classList.contains('is-hidden')) {
       yearStage.classList.remove('is-hidden');
       yearStage.classList.add('is-revealed');
@@ -987,16 +764,16 @@ class HitTazosEngine {
   }
 
   toggleActiveCardYear() {
-    const cardEl = document.getElementById('active-card-3d');
-    if (!cardEl) return;
+    const stage = document.getElementById('card-stage');
+    const tazoDisc = stage?.querySelector('.tazo-disc') || stage;
+    if (!tazoDisc) return;
 
-    // Si la carta está en el frente, voltearla primero para ver el reverso
-    if (!cardEl.classList.contains('is-flipped') && !cardEl.classList.contains('is-unflipping')) {
-      this.flipCard(cardEl);
-      this.reset3DTilt();
+    // Si el tazo está de frente, voltearlo para ver el reverso
+    if (!tazoDisc.classList.contains('is-flipped')) {
+      this.flipCard(stage);
     }
 
-    const yearStage = cardEl.querySelector('.year-center-stage');
+    const yearStage = tazoDisc.querySelector('.year-center-stage');
     if (!yearStage) return;
 
     const isHidden = yearStage.classList.contains('is-hidden');
@@ -1014,98 +791,73 @@ class HitTazosEngine {
     this.refreshIcons();
   }
 
+  // Volteo del Tazo 3D con tambaleo y física de moneda
+  flipCard(containerEl) {
+    if (!containerEl) return;
+    const tazoDisc = containerEl.querySelector('.tazo-disc') || containerEl;
+    if (!tazoDisc) return;
 
+    const isFlipped = tazoDisc.classList.contains('is-flipped');
+    const targetRot = isFlipped ? 0 : 180;
 
-  /** Flip de tarjeta. Usa WAAPI (element.animate) para compatibilidad
-   *  total Firefox ESR + Chrome + Safari.
-   *  Patrón: animate → onfinish → commitStyles() → cancel()
-   *  Los inline styles resultantes siempre ganan en la cascade. */
-  flipCard(cardEl) {
-    if (!cardEl) return;
-    const front = cardEl.querySelector('.sheet-front');
-    const back  = cardEl.querySelector('.sheet-back');
-    if (!front || !back) return;
+    if (typeof tazoDisc.animate === 'function') {
+      tazoDisc.animate([
+        { transform: `scale(1) rotateY(${isFlipped ? 180 : 0}deg) rotateZ(0deg)` },
+        { transform: `scale(1.14) translateY(-22px) rotateY(${isFlipped ? 90 : 90}deg) rotateZ(${isFlipped ? -12 : 12}deg)`, offset: 0.5 },
+        { transform: `scale(1) translateY(0) rotateY(${targetRot}deg) rotateZ(0deg)` }
+      ], {
+        duration: 540,
+        easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+        fill: 'forwards'
+      });
+    }
 
-    const HALF = 260; // ms — cada mitad del flip
-    const EASE = 'cubic-bezier(0.4, 0, 0.6, 1)';
-    const P = 'perspective(1400px)';
-    cardEl.dataset.flipping = '1';
-    cardEl.style.transform = ''; // limpiar tilt del hover
-
-    const commitAndCancel = (anim, el) => {
-      try { anim.commitStyles(); } catch(e) {
-        // fallback si commitStyles no disponible (no debería pasar en FF ESR 140)
-        const kf = anim.effect.getKeyframes();
-        if (kf.length) {
-          const last = kf[kf.length - 1];
-          if (last.opacity !== undefined) el.style.opacity = String(last.opacity);
-          if (last.transform !== undefined) el.style.transform = last.transform;
-        }
-      }
-      anim.cancel();
-    };
-
-    if (cardEl.classList.contains('is-flipped')) {
-      // ── Reverso → Frente ──────────────────────────────────────────────
-      const animBack = back.animate([
-        { transform: `${P} rotateY(0deg)`,   opacity: 1 },
-        { transform: `${P} rotateY(-90deg)`, opacity: 0 }
-      ], { duration: HALF, easing: EASE, fill: 'forwards' });
-
-      animBack.onfinish = () => {
-        commitAndCancel(animBack, back);
-        back.style.pointerEvents = 'none';
-
-        const animFront = front.animate([
-          { transform: `${P} rotateY(-90deg)`, opacity: 0 },
-          { transform: `${P} rotateY(0deg)`,   opacity: 1 }
-        ], { duration: HALF, easing: EASE, fill: 'forwards' });
-
-        animFront.onfinish = () => {
-          commitAndCancel(animFront, front);
-          // Limpiar transform residual del frente
-          front.style.transform = '';
-          front.style.pointerEvents = 'auto';
-          cardEl.classList.remove('is-flipped');
-          cardEl.dataset.flipping = '0';
-        };
-      };
-
+    if (isFlipped) {
+      tazoDisc.classList.remove('is-flipped');
     } else {
-      // ── Frente → Reverso ──────────────────────────────────────────────
-      cardEl.classList.add('is-flipped');
-
-      const animFront = front.animate([
-        { transform: `${P} rotateY(0deg)`,   opacity: 1 },
-        { transform: `${P} rotateY(-90deg)`, opacity: 0 }
-      ], { duration: HALF, easing: EASE, fill: 'forwards' });
-
-      animFront.onfinish = () => {
-        commitAndCancel(animFront, front);
-        front.style.pointerEvents = 'none';
-
-        const animBack = back.animate([
-          { transform: `${P} rotateY(-90deg)`, opacity: 0 },
-          { transform: `${P} rotateY(0deg)`,   opacity: 1 }
-        ], { duration: HALF, easing: EASE, fill: 'forwards' });
-
-        animBack.onfinish = () => {
-          commitAndCancel(animBack, back);
-          // Limpiar transform residual del reverso
-          back.style.transform = '';
-          back.style.pointerEvents = 'auto';
-          cardEl.dataset.flipping = '0';
-        };
-      };
+      tazoDisc.classList.add('is-flipped');
     }
   }
 
   flipCurrentCard() {
-    const cardEl = document.getElementById('active-card-3d');
-    if (cardEl) {
-      this.flipCard(cardEl);
+    const stage = document.getElementById('card-stage');
+    if (stage) {
+      this.flipCard(stage);
       this.reset3DTilt();
       this.playAudioFeedback('flip');
+    }
+  }
+
+  // Animación de impacto y giro plástico al comprobar el año (física de tazo)
+  slamTazo(isSuccess) {
+    const stage = document.getElementById('card-stage');
+    const tazoDisc = stage?.querySelector('.tazo-disc') || stage;
+    if (!tazoDisc) return;
+
+    if (typeof tazoDisc.animate === 'function') {
+      tazoDisc.animate([
+        { transform: 'scale(1) rotateY(0deg) rotateZ(0deg)' },
+        { transform: 'scale(1.22) translateY(-38px) rotateY(180deg) rotateZ(16deg)', offset: 0.38 },
+        { transform: 'scale(0.94) translateY(8px) rotateY(180deg) rotateZ(-7deg)', offset: 0.68 },
+        { transform: 'scale(1.03) translateY(-3px) rotateY(180deg) rotateZ(3deg)', offset: 0.85 },
+        { transform: 'scale(1) translateY(0) rotateY(180deg) rotateZ(0deg)' }
+      ], {
+        duration: 750,
+        easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)',
+        fill: 'forwards'
+      });
+      tazoDisc.classList.add('is-flipped');
+    }
+
+    // Efecto sonoro de impacto plástico
+    if (typeof zzfx === 'function' && this.soundEnabled) {
+      try {
+        if (isSuccess) {
+          zzfx(1, .05, 523, .05, .45, 0, 0, 1.4); // Victoria
+        } else {
+          zzfx(0.8, .08, 120, .03, .16, .1, 2, 1.2, -6); // Clac plástico seco
+        }
+      } catch (_) {}
     }
   }
 
@@ -1114,7 +866,6 @@ class HitTazosEngine {
     if (!this.attemptTracker) return;
     if (!visible) { this.attemptTracker.style.display = 'none'; return; }
     this.attemptTracker.style.display = 'flex';
-    // Puntos: ● usado, ○ disponible
     const dots = Array.from({ length: this.maxAttempts }, (_, i) =>
       `<span class="attempt-dot ${i < this.attemptCount ? 'used' : ''}"></span>`
     ).join('');
@@ -1138,26 +889,19 @@ class HitTazosEngine {
   }
 
   evaluateGuess() {
-    if (this.cardSolved) return; // ya resuelta, no procesar
+    if (this.cardSolved) return;
     const card = this.activeDeck[this.currentIndex];
-    const val  = parseInt(this.inputYear.value, 10);
-    if (isNaN(val)) {
-      this.guessResultPill.innerHTML = `<span style="color:#f87171">Ingresa un año válido (ej. 1995)</span>`;
-      return;
-    }
-
-    // Voltear la carta si aún está en el frente
-    const cardEl = document.getElementById('active-card-3d');
-    if (cardEl && !cardEl.classList.contains('is-flipped')) {
-      this.flipCard(cardEl);
-      this.reset3DTilt();
-    }
+    const val  = parseInt(this.chronoDial ? this.chronoDial.value : (this.displaySelectedYear?.textContent || '1990'), 10);
+    if (isNaN(val)) return;
 
     this.attemptCount++;
     this.renderAttemptTracker(true);
 
     const diff = Math.abs(val - card.year);
     const theme = this.getCardTheme(card);
+
+    // Animación física del Tazo (Slam / Wobble)
+    this.slamTazo(diff <= 2);
 
     // ─ Resultado ─────────────────────────────────────────────────────────────
     if (diff === 0) {
@@ -1167,11 +911,10 @@ class HitTazosEngine {
       </span>`;
       this.score += 3; this.streak += 1;
       this.cardSolved = true;
-      this.playAudioFeedback('hit');
       this.triggerCyberConfetti(theme.bg);
       this.addToShelf(card);
       this.revealActiveCardYear();
-      this.btnSubmitGuess.disabled = true;
+      if (this.btnSubmitGuess) this.btnSubmitGuess.disabled = true;
 
     } else if (diff <= 2) {
       // 🟡 Muy cerca (±2 años)
@@ -1180,17 +923,14 @@ class HitTazosEngine {
       </span>`;
       this.score += 1; this.streak += 1;
       this.cardSolved = true;
-      this.playAudioFeedback('hit');
       this.addToShelf(card);
       this.revealActiveCardYear();
-      this.btnSubmitGuess.disabled = true;
+      if (this.btnSubmitGuess) this.btnSubmitGuess.disabled = true;
 
     } else if (this.attemptCount < this.maxAttempts) {
       // 🔁 Incorrecto pero quedan intentos — mostrar pista
       this.guessResultPill.innerHTML = this.buildHint(diff, val, card.year);
       this.streak = 0;
-      this.playAudioFeedback('miss');
-      // Actualizar el label al siguiente intento
       this.attemptLabel.textContent = `Intento ${this.attemptCount + 1} / ${this.maxAttempts}`;
 
     } else {
@@ -1200,39 +940,143 @@ class HitTazosEngine {
       </span>`;
       this.streak = 0;
       this.cardSolved = true;
-      this.playAudioFeedback('miss');
       this.revealActiveCardYear();
-      this.btnSubmitGuess.disabled = true;
+      if (this.btnSubmitGuess) this.btnSubmitGuess.disabled = true;
     }
 
     // Actualizar dots con estado final del intento
     this.renderAttemptTracker(true);
-    this.hudScore.textContent = this.score;
+    if (this.hudScore) this.hudScore.textContent = this.score;
     if (this.hudStreak) this.hudStreak.textContent = this.streak;
     if (this.hudStreakBox) {
       if (this.streak >= 2) this.hudStreakBox.classList.add('streak-hot');
       else this.hudStreakBox.classList.remove('streak-hot');
     }
+    this.persistGameState();
     this.refreshIcons();
   }
 
-  addToShelf(card) {
-    if (this.playerShelf.some(c => c.globalIndex === card.globalIndex)) return;
-    this.playerShelf.push(card);
-    this.playerShelf.sort((a, b) => a.year - b.year);
+  // 6. Búsqueda difusa con Fuse.js
+  setupSearchIndex() {
+    if (typeof Fuse === 'function' && this.cards && this.cards.length) {
+      this.fuse = new Fuse(this.cards, {
+        keys: [
+          { name: 'hito', weight: 0.5 },
+          { name: 'autor', weight: 0.3 },
+          { name: 'trivia', weight: 0.1 },
+          { name: 'tag', weight: 0.05 },
+          { name: 'id', weight: 0.05 }
+        ],
+        threshold: 0.38,
+        ignoreLocation: true
+      });
+    }
+  }
 
+  filterCatalog() {
+    const q = this.galleryQuery.value.trim();
+    const grp = this.selectFilterGroup.value;
+    const sort = this.selectSortOrder.value;
+
+    let results = [];
+    if (q) {
+      if (this.fuse) {
+        results = this.fuse.search(q).map(res => res.item);
+      } else {
+        const qLow = q.toLowerCase();
+        results = this.cards.filter(c =>
+          c.hito.toLowerCase().includes(qLow) ||
+          c.autor.toLowerCase().includes(qLow) ||
+          c.trivia.toLowerCase().includes(qLow) ||
+          (c.tag && c.tag.toLowerCase().includes(qLow)) ||
+          c.id.toLowerCase().includes(qLow)
+        );
+      }
+    } else {
+      results = [...this.cards];
+    }
+
+    if (grp !== 'ALL') {
+      results = results.filter(c => c.volumen === grp);
+    }
+
+    if (sort === 'YEAR_ASC') {
+      results.sort((a, b) => a.year - b.year);
+    } else if (sort === 'YEAR_DESC') {
+      results.sort((a, b) => b.year - a.year);
+    } else if (sort === 'DECK_ORDER') {
+      results.sort((a, b) => (a.index !== undefined ? a.index : 0) - (b.index !== undefined ? b.index : 0));
+    }
+
+    this.filteredCatalog = results;
+    this.renderCatalog();
+  }
+
+  // 7. Persistencia Asíncrona con idb-keyval (con fallback a localStorage)
+  async persistGameState() {
+    try {
+      if (typeof idbKeyval !== 'undefined') {
+        await idbKeyval.set('hittazos_shelf', this.playerShelf);
+        await idbKeyval.set('hittazos_score', this.score);
+        await idbKeyval.set('hittazos_streak', this.streak);
+      } else if (window.localStorage) {
+        localStorage.setItem('hittazos_shelf', JSON.stringify(this.playerShelf));
+        localStorage.setItem('hittazos_score', String(this.score));
+        localStorage.setItem('hittazos_streak', String(this.streak));
+      }
+    } catch (_) {}
+  }
+
+  async loadSavedState() {
+    try {
+      let savedShelf, savedScore, savedStreak;
+      if (typeof idbKeyval !== 'undefined') {
+        savedShelf = await idbKeyval.get('hittazos_shelf');
+        savedScore = await idbKeyval.get('hittazos_score');
+        savedStreak = await idbKeyval.get('hittazos_streak');
+      } else if (window.localStorage) {
+        const rawShelf = localStorage.getItem('hittazos_shelf');
+        if (rawShelf) savedShelf = JSON.parse(rawShelf);
+        const rawScore = localStorage.getItem('hittazos_score');
+        if (rawScore !== null) savedScore = parseInt(rawScore, 10);
+        const rawStreak = localStorage.getItem('hittazos_streak');
+        if (rawStreak !== null) savedStreak = parseInt(rawStreak, 10);
+      }
+
+      if (Array.isArray(savedShelf) && savedShelf.length > 0) {
+        this.playerShelf = savedShelf;
+        this.renderShelf();
+      }
+      if (typeof savedScore === 'number' && !isNaN(savedScore)) {
+        this.score = savedScore;
+        if (this.hudScore) this.hudScore.textContent = this.score;
+      }
+      if (typeof savedStreak === 'number' && !isNaN(savedStreak)) {
+        this.streak = savedStreak;
+        if (this.hudStreak) this.hudStreak.textContent = this.streak;
+        if (this.hudStreakBox) {
+          if (this.streak >= 2) this.hudStreakBox.classList.add('streak-hot');
+          else this.hudStreakBox.classList.remove('streak-hot');
+        }
+      }
+    } catch (_) {}
+  }
+
+  renderShelf() {
+    if (!this.shelfCardsContainer) return;
     this.shelfCardsContainer.innerHTML = '';
     this.playerShelf.forEach(c => {
       const chip = document.createElement('div');
       const theme = this.getCardTheme(c);
-      chip.className = 'shelf-card-chip';
-      chip.style.setProperty('--theme-color', theme.bg);
+      chip.className = 'shelf-tazo-chip';
+      chip.style.setProperty('--tazo-color', theme.bg);
       const volId = c.id ? c.id.split('-')[0].replace('vol', '') : '0';
       const hexPart = c.id ? c.id.split('-')[1].substring(2) : '00';
       const chipNum = `${volId}x${hexPart}`;
+      chip.title = `${c.year} — ${c.autor || ''}`;
       chip.innerHTML = `
-        <div class="shelf-year">${c.year}</div>
-        <div class="shelf-id">${chipNum}</div>
+        <div class="shelf-tazo-year">${c.year}</div>
+        <div class="shelf-tazo-id">${chipNum}</div>
       `;
       this.shelfCardsContainer.appendChild(chip);
     });
@@ -1242,12 +1086,26 @@ class HitTazosEngine {
       this.shelfProgressFill.style.width = `${pct}%`;
     }
 
-    this.shelfCounter.textContent = `${this.playerShelf.length} / 10 cartas para ganar`;
+    if (this.shelfCounter) {
+      if (this.playerShelf.length >= 10) {
+        this.shelfCounter.innerHTML = `<strong style="color: #4ade80; display: inline-flex; align-items: center; gap: 0.35rem;"><i data-lucide="trophy"></i> ¡Línea de Tiempo Completada! Victoria</strong>`;
+      } else {
+        this.shelfCounter.textContent = `${this.playerShelf.length} / 10 tazos para ganar`;
+      }
+    }
+  }
+
+  addToShelf(card) {
+    if (this.playerShelf.some(c => c.id === card.id || c.globalIndex === card.globalIndex)) return;
+    this.playerShelf.push(card);
+    this.playerShelf.sort((a, b) => a.year - b.year);
+    this.renderShelf();
+
     if (this.playerShelf.length >= 10) {
-      this.shelfCounter.innerHTML = `<strong style="color: #4ade80; display: inline-flex; align-items: center; gap: 0.35rem;"><i data-lucide="trophy"></i> ¡Línea de Tiempo Completada! Victoria</strong>`;
       this.triggerCyberConfetti('#facc15');
       this.refreshIcons();
     }
+    this.persistGameState();
   }
 
   nextCard() {
@@ -1274,33 +1132,6 @@ class HitTazosEngine {
     this.playAudioFeedback('flip');
   }
 
-  filterCatalog() {
-    const q = this.galleryQuery.value.toLowerCase().trim();
-    const grp = this.selectFilterGroup.value;
-    const sort = this.selectSortOrder.value;
-
-    this.filteredCatalog = this.cards.filter(c => {
-      const matchGrp = grp === 'ALL' || c.volumen === grp;
-      const numStr = c.index !== undefined ? String(c.index) : '';
-      const matchQ = !q ||
-        c.hito.toLowerCase().includes(q) ||
-        c.autor.toLowerCase().includes(q) ||
-        c.trivia.toLowerCase().includes(q) ||
-        numStr.includes(q) ||
-        `#${numStr}`.includes(q);
-      return matchGrp && matchQ;
-    });
-
-    if (sort === 'YEAR_ASC') {
-      this.filteredCatalog.sort((a, b) => a.year - b.year);
-    } else if (sort === 'YEAR_DESC') {
-      this.filteredCatalog.sort((a, b) => b.year - a.year);
-    } else if (sort === 'DECK_ORDER') {
-      this.filteredCatalog.sort((a, b) => (a.index !== undefined ? a.index : 0) - (b.index !== undefined ? b.index : 0));
-    }
-
-    this.renderCatalog();
-  }
 
   renderCatalog() {
     this.catalogGrid.innerHTML = '';

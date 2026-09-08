@@ -33,4 +33,8 @@ Tras editar cualquier archivo JSON en `data/volumes/*.json`:
 - El mazo consta de 576 cartas distribuidas en 8 volúmenes canónicos (`vol0` a `vol7`).
 - Los colores están desacoplados en `data/card_colors.json` y se configuran por millar (`scripts/generate_card_colors.js`).
 
+## 6. Arquitectura Web: Evitar NIH ("Don't Reinvent the Wheel")
+- **Micro-libraries Drop-in (1-5 KB):** Prohibido programar utilidades desde cero (audio procedural, gestos táctiles, confeti, búsqueda difusa, parseo markdown o persistencia). Usar siempre librerías CDN estándar, modulares y probadas (`canvas-confetti`, `zzfx`, `vanilla-tilt`, `hotkeys-js`, `fuse.js`, `snarkdown`, `idb-keyval`, `tinygesture`).
+
 Ver [AGENTS.md](../../AGENTS.md) para la especificación completa.
+

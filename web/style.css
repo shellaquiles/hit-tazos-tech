@@ -606,47 +606,287 @@ main {
   transform: translate3d(12px, 15px, -18px) rotate(3.3deg);
 }
 
-/* 3D Card Architecture — flip gestionado 100% por WAAPI en app.js */
+/* ==========================================================================
+   HIT-TAZOS TECH: ARQUITECTURA TAZO CIRCULAR 3D (DISCO NOVENTERO COLECCIONABLE)
+   ========================================================================== */
+
+.tazo-arena-stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.2rem auto 0.8rem auto;
+  perspective: 1400px;
+}
+
+.tazo-stage,
 .card-perspective-stage {
-  width: var(--card-width);
-  height: var(--card-height);
+  width: min(340px, 82vw);
+  height: min(340px, 82vw);
+  perspective: 1200px;
   user-select: none;
-  cursor: pointer;
+  cursor: grab;
   position: relative;
   z-index: 2;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.tazo-stage:active,
+.card-perspective-stage:active {
+  cursor: grabbing;
+}
+
+.tazo-stage:hover,
 .card-perspective-stage:hover {
   transform: translateY(-4px);
 }
 
+/* El disco tridimensional */
+.tazo-disc,
 .hittazos-card-3d {
   width: 100%;
   height: 100%;
   position: relative;
-  border-radius: var(--card-radius);
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 
+    0 20px 45px rgba(0, 0, 0, 0.7),
+    0 6px 16px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 6px rgba(255, 255, 255, 0.2); /* Bisel plástico */
 }
 
-/* Estado base: frente visible, reverso invisible */
-.hittazos-card-3d .sheet-front {
-  opacity: 1;
-  pointer-events: auto;
-}
-.hittazos-card-3d .sheet-back {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Card Faces */
-.card-sheet {
+/* Caras circulares del tazo */
+.tazo-face {
   position: absolute;
   inset: 0;
-  border-radius: var(--card-radius);
+  border-radius: 50%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   display: flex;
   flex-direction: column;
-  padding: 1.4rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+  box-sizing: border-box;
   overflow: hidden;
+  border: 10px solid rgba(0, 0, 0, 0.22);
+}
+
+/* Cara Frontal (Anverso) */
+.tazo-face-front {
+  background: radial-gradient(circle at 35% 30%, #252b3b 0%, #11141d 85%);
+  color: #ffffff;
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.85);
+  transform: rotateY(0deg);
+}
+
+/* Cara Trasera (Reverso con el Año y la Trivia) */
+.tazo-face-back {
+  background: radial-gradient(circle at 35% 30%, var(--tazo-color, #38bdf8) 0%, #0369a1 85%);
+  color: #0f172a;
+  transform: rotateY(180deg);
+  box-shadow: inset 0 0 28px rgba(0, 0, 0, 0.4);
+}
+
+/* Muescas / Ranuras perimetrales clásicas del tazo para ensamble */
+.tazo-rim-notches {
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  border: 4px dashed rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.tazo-face-back .tazo-rim-notches {
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+/* Reflejo especular plástico (Glare) */
+.tazo-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.38) 0%, 
+    rgba(255, 255, 255, 0.05) 45%, 
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* Anillo concéntrico interior */
+.tazo-inner-ring {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 0.8rem;
+  box-sizing: border-box;
+}
+
+.tazo-face-back .tazo-inner-ring {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Textos y tags del Tazo */
+.tazo-category-tag {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tazo-color, #38bdf8);
+  background: rgba(0, 0, 0, 0.45);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  max-width: 88%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tazo-clue-stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.4rem;
+}
+
+.tazo-clue-text {
+  font-size: clamp(0.78rem, 2.7vw, 0.88rem);
+  line-height: 1.35;
+  color: #f1f5f9;
+  margin: 0;
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tazo-clue-text strong {
+  color: var(--tazo-color, #38bdf8);
+  font-weight: 700;
+}
+
+.tazo-footer-tag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 88%;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--font-mono, monospace);
+}
+
+.tazo-hint-action {
+  font-size: 0.64rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+}
+
+/* Reverso */
+.tazo-author {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #0f172a;
+  background: rgba(255, 255, 255, 0.35);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  max-width: 88%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tazo-year-hero {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: clamp(2.4rem, 8.5vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #0f172a;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.4);
+  letter-spacing: -0.03em;
+}
+
+.tazo-trivia-lore {
+  font-size: clamp(0.72rem, 2.5vw, 0.8rem);
+  line-height: 1.3;
+  color: #1e293b;
+  font-weight: 600;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  padding: 0 0.4rem;
+}
+
+.tazo-back-meta {
+  font-size: 0.64rem;
+  color: rgba(15, 23, 42, 0.65);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* Pila física de tazos debajo */
+.tazo-physical-stack {
+  position: absolute;
+  width: min(340px, 82vw);
+  height: min(340px, 82vw);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tazo-stack-disc {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 8px solid rgba(0, 0, 0, 0.28);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
+  background: radial-gradient(circle at 40% 30%, #2d3345 0%, #151822 80%);
+}
+
+.tazo-stack-disc.layer-1 {
+  transform: translate3d(5px, 6px, -10px) rotate(4deg);
+  opacity: 0.85;
+}
+
+.tazo-stack-disc.layer-2 {
+  transform: translate3d(9px, 12px, -20px) rotate(-6deg);
+  opacity: 0.65;
+}
+
+.tazo-stack-disc.layer-3 {
+  transform: translate3d(14px, 18px, -30px) rotate(8deg);
+  opacity: 0.45;
 }
 
 /* ==========================================================================
@@ -1045,237 +1285,180 @@ main {
   text-transform: uppercase;
 }
 
-/* Estación de Estimación de Año (Tactile Board Game Controls) */
-.chronological-console-wrapper {
+/* ==========================================================================
+   CHRONO-DIAL & LANZADOR DE TIRO (CONTROL LÚDICO SIN FORMULARIOS)
+   ========================================================================== */
+
+.dial-launcher-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
+  margin: 1.1rem auto 0.6rem auto;
   width: 100%;
-  max-width: 580px;
+  max-width: 480px;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
-.decade-quick-picker {
+.dial-value-badge {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.35rem;
-  overflow-x: auto;
-  padding: 0.3rem 0.65rem;
-  background: rgba(20, 23, 31, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.82);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  padding: 0.35rem 1.6rem;
+  border-radius: 14px;
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    0 0 25px rgba(56, 189, 248, 0.2);
 }
 
-.decade-label {
-  font-size: 0.72rem;
+.badge-title {
+  font-size: 0.64rem;
   font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-muted, #94a3b8);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-  margin-right: 0.3rem;
+}
+
+.badge-year {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 2.3rem;
+  font-weight: 900;
+  color: #38bdf8;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  text-shadow: 0 0 18px rgba(56, 189, 248, 0.6);
+}
+
+.dial-slider-container {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.85rem;
+  width: 100%;
 }
 
-.decade-label svg,
-.decade-label i {
-  width: 13px;
-  height: 13px;
-}
-
-.decade-chip {
-  background: #1e2230;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #94a3b8;
-  font-family: var(--font-display);
+.slider-boundary-year {
+  font-family: var(--font-mono, monospace);
   font-size: 0.78rem;
   font-weight: 700;
-  padding: 0.28rem 0.65rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  color: #64748b;
 }
 
-.decade-chip:hover {
-  color: #ffffff;
-  background: #272d40;
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-1px);
-}
-
-.decade-chip:active {
-  transform: translateY(1px);
-}
-
-.decade-chip.active {
-  background: #f1f5f9;
-  color: #0f172a;
-  border-color: #ffffff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
-
-.chronological-console {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  background: #171a24;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.75rem 1.25rem;
-  border-radius: 16px;
-  box-shadow: 
-    0 12px 32px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  position: relative;
-  flex-wrap: wrap;
-}
-
-.console-stepper-group {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.nudge-btn {
-  background: #222634;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #e2e8f0;
-  font-family: var(--font-display);
-  font-weight: 700;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 
-    0 2px 4px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  user-select: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.nudge-btn.step-small {
-  width: 42px;
-  height: 44px;
-  font-size: 0.95rem;
-}
-
-.nudge-btn.step-big {
-  width: 46px;
-  height: 44px;
-  font-size: 0.85rem;
-  color: #cbd5e1;
-}
-
-.nudge-btn:hover {
-  background: #2b3142;
-  border-color: rgba(255, 255, 255, 0.22);
-  color: #ffffff;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-}
-
-.nudge-btn:active {
-  transform: translateY(1px);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-/* Contador Numérico de Sobremesa */
-.console-dial-unit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-
-.dial-meter-label {
-  font-size: 0.62rem;
-  font-family: var(--font-sans);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #94a3b8;
-  text-transform: uppercase;
-}
-
-.console-input-wrap {
-  position: relative;
-  background: #0d0f15;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 10px;
-  padding: 0.15rem 0.5rem;
-  box-shadow: 
-    inset 0 2px 4px rgba(0, 0, 0, 0.6),
-    0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-.console-input.chrono-digit-display {
-  width: 115px;
-  background: transparent;
-  border: none;
-  color: #ffffff;
-  font-family: var(--font-display);
-  font-size: 1.85rem;
-  font-weight: 800;
-  text-align: center;
-  letter-spacing: 0.04em;
-  outline: none;
-  -moz-appearance: textfield;
-}
-
-.console-input.chrono-digit-display::-webkit-outer-spin-button,
-.console-input.chrono-digit-display::-webkit-inner-spin-button {
+.tazo-year-slider {
+  flex: 1;
   -webkit-appearance: none;
-  margin: 0;
+  appearance: none;
+  height: 12px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.75);
+  cursor: ew-resize;
 }
 
-.dial-scanline {
-  display: none !important;
+.tazo-year-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #38bdf8 0%, #0284c7 80%);
+  border: 3px solid #ffffff;
+  box-shadow: 
+    0 4px 14px rgba(0, 0, 0, 0.65), 
+    0 0 14px rgba(56, 189, 248, 0.8);
+  cursor: grab;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* Botón Comprobar Board Game (Calidez, solidez de ficha de juego) */
-.btn-submit-guess {
-  background: linear-gradient(180deg, #e11d48 0%, #be123c 100%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  padding: 0 1.35rem;
-  height: 44px;
-  border-radius: 10px;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 0.88rem;
-  letter-spacing: 0.04em;
-  display: inline-flex;
+.tazo-year-slider::-webkit-slider-thumb:active {
+  transform: scale(1.22);
+  cursor: grabbing;
+  box-shadow: 
+    0 6px 18px rgba(0, 0, 0, 0.85), 
+    0 0 22px rgba(56, 189, 248, 0.95);
+}
+
+.tazo-year-slider::-moz-range-thumb {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #38bdf8 0%, #0284c7 80%);
+  border: 3px solid #ffffff;
+  box-shadow: 
+    0 4px 14px rgba(0, 0, 0, 0.65), 
+    0 0 14px rgba(56, 189, 248, 0.8);
+  cursor: grab;
+}
+
+.dial-action-row {
+  width: 100%;
+}
+
+.btn-slam {
+  width: 100%;
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.95rem 1.6rem;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
+  color: #ffffff;
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 1.08rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   cursor: pointer;
   box-shadow: 
-    0 3px 10px rgba(190, 18, 60, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    0 5px 18px rgba(217, 119, 6, 0.45),
+    0 2px 4px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
   user-select: none;
 }
 
-.btn-submit-guess:hover {
-  background: linear-gradient(180deg, #f43f5e 0%, #e11d48 100%);
-  transform: translateY(-1px);
+.btn-slam:hover {
+  transform: translateY(-2px);
   box-shadow: 
-    0 5px 14px rgba(225, 29, 72, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    0 8px 24px rgba(217, 119, 6, 0.6),
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
-.btn-submit-guess:active {
-  transform: translateY(1px);
-  box-shadow: 0 1px 3px rgba(190, 18, 60, 0.4);
+.btn-slam:active {
+  transform: translateY(1px) scale(0.98);
 }
 
-.btn-submit-guess i,
-.btn-submit-guess svg {
-  width: 16px;
-  height: 16px;
+.btn-slam:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
 }
-  height: 16px;
+
+.btn-slam i,
+.btn-slam svg {
+  width: 18px;
+  height: 18px;
+}
+
+.tazo-nav-cluster {
+  display: flex;
+  justify-content: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  margin: 0.5rem auto 1.2rem auto;
+}
+
+.btn-nav-tazo {
+  padding: 0.42rem 0.85rem;
+  font-size: 0.78rem;
+  border-radius: 10px;
 }
 
 .guess-result-pill {
@@ -1514,49 +1697,52 @@ main {
   z-index: 0;
 }
 
-.shelf-card-chip {
+.shelf-card-chip,
+.shelf-tazo-chip {
   flex-shrink: 0;
-  background: #1c202d;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 10px;
-  padding: 0.6rem 0.85rem;
-  min-width: 90px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--tazo-color, var(--theme-color, #38bdf8)) 0%, #0369a1 85%);
+  border: 4px solid rgba(0, 0, 0, 0.25);
+  box-shadow: 
+    0 6px 14px rgba(0, 0, 0, 0.45), 
+    inset 0 0 0 2px rgba(255, 255, 255, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #0f172a;
   text-align: center;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
   position: relative;
   z-index: 1;
-  overflow: hidden;
+  cursor: pointer;
+  box-sizing: border-box;
 }
 
-.shelf-card-chip::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3.5px;
-  background: var(--theme-color, #38bdf8);
+.shelf-card-chip:hover,
+.shelf-tazo-chip:hover {
+  transform: translateY(-4px) scale(1.12);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.6);
 }
 
-.shelf-card-chip:hover {
-  border-color: rgba(255, 255, 255, 0.25);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+.shelf-year,
+.shelf-tazo-year {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
-.shelf-year {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: -0.01em;
-}
-
-.shelf-id {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: #94a3b8;
+.shelf-id,
+.shelf-tazo-id {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.52rem;
+  color: rgba(15, 23, 42, 0.8);
+  font-weight: 700;
   margin-top: 2px;
 }
 

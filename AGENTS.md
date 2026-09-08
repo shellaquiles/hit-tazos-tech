@@ -206,4 +206,24 @@ npm run print
 2. **Sin acceso a red para pip externo:** Usar únicamente la biblioteca estándar de Python 3 y utilidades CLI instaladas (`rsvg-convert`, `pdfunite`).
 3. **POLÍTICA ESTRICTA DE GIT:** **NUNCA ejecutar `git commit` ni `git add`.** El control de versiones es potestad exclusiva del usuario.
 
+---
+
+## 🧩 13. Directriz de Desarrollo Web: "Don't Reinvent the Wheel" y Micro-Librerías
+
+Para evitar el **síndrome NIH (Not Invented Here)** y no escribir código utilitario de bajo nivel repetitivo o frágil:
+
+1. **"Don't reinvent the wheel":** Prohibido programar motores de partículas, sintetizadores de audio complejos desde cero, parsers ad-hoc o gestores táctiles trigonométricos a mano cuando existen soluciones maduras y estándar.
+2. **"Off-the-shelf libraries":** Utilizar soluciones listas para usar mediante CDN en HTML estático sin bundlers obligatorios.
+3. **"Drop-in replacement":** Toda librería integrada debe funcionar como reemplazo directo sin desarmar la arquitectura central del motor ni su persistencia.
+4. **"Micro-libraries / Zero-dependencies (1 a 5 KB)":** Priorizar librerías ultra-ligeras y modulares de un solo propósito:
+   - **`canvas-confetti`:** Efecto de confeti y partículas.
+   - **`zzfx`:** Audio procedural y sonidos de impacto sin AudioContext manual.
+   - **`vanilla-tilt`:** Parallax 3D y reflejo especular (*glare*).
+   - **`hotkeys-js`:** Mapeo declarativo de teclado ignorando inputs de texto.
+   - **`fuse.js`:** Búsqueda difusa tolerante a fallas en el catálogo.
+   - **`snarkdown`:** Parser de Markdown a HTML estándar.
+   - **`idb-keyval`:** Persistencia asíncrona en IndexedDB con API tipo clave-valor.
+   - **`tinygesture`:** Reconocimiento de gestos táctiles móviles (`swipe`, `tap`) respetando el scroll vertical.
+
+
 
