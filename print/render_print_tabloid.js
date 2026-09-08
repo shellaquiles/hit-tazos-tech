@@ -611,7 +611,7 @@ except Exception as e:
 // -------------------------------------------------------------
 function compileEditablePdf(svgFiles, outputPdfPath, aliasPdfPath, formatConfig) {
   console.log(`🔄 Compilando PDF vectorial editable con rsvg-convert (Cairo TrueType)...`);
-  const tempPdfDir = path.join(ROOT_DIR, '.temp_pdf_pages');
+  const tempPdfDir = path.join(ROOT_DIR, `.temp_pdf_pages_${formatConfig.name.toLowerCase()}`);
   fs.mkdirSync(tempPdfDir, { recursive: true });
 
   const tempPdfs = [];
