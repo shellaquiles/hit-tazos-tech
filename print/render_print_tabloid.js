@@ -59,7 +59,7 @@ try {
 }
 
 function getCardTheme(card) {
-  let cardNum = card.card_number || 1;
+  let cardNum = card.index !== undefined ? card.index + 1 : 1;
   if (cardColorsConfig && cardColorsConfig.cards && cardColorsConfig.cards[cardNum]) {
     const c = cardColorsConfig.cards[cardNum];
     return {
@@ -327,7 +327,7 @@ function generateSvgSheets(cards, formatConfig, options) {
 
       const theme = getCardTheme(c);
       const volId = c.volumen !== undefined ? c.volumen : 0;
-      const hexPart = c.card_number_hex ? c.card_number_hex.substring(2) : c.card_number.toString(16).toUpperCase().padStart(2, '0');
+      const hexPart = c.id ? c.id.split('-')[1].substring(2) : '00';
       const numStr = `${volId}x${hexPart}`;
       const grupoText = escapeXml(stripMarkdown(c.grupo_nombre).toUpperCase());
       const catText = escapeXml(stripMarkdown(c.categoria_nombre));
@@ -444,7 +444,7 @@ ${frontCardsSvg}  </g>
 
         const theme = getCardTheme(c);
         const volId = c.volumen !== undefined ? c.volumen : 0;
-        const hexPart = c.card_number_hex ? c.card_number_hex.substring(2) : c.card_number.toString(16).toUpperCase().padStart(2, '0');
+        const hexPart = c.id ? c.id.split('-')[1].substring(2) : '00';
         const colorMain = '#111111';
         const colorCorner = theme.cornerColor || 'rgba(255, 255, 255, 0.7)';
 

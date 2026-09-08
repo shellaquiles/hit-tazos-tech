@@ -23,8 +23,8 @@
     <text x="498.76" y="90.61" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO (LONG EDGE)</text>
   </g>
   <g id="tarjetas_frente">
-    <!-- Tarjeta 3x7E Frente -->
-    <g id="carta_3_7E_frente">
+    <!-- Tarjeta python-trackx3E Frente -->
+    <g id="carta_python-track_3E_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -42,29 +42,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="104.74" y="94.11" width="201.26" height="201.26" fill="#221811" />
+      <rect x="104.74" y="94.11" width="201.26" height="201.26" fill="#1f2211" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 102.61)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f18e46">DEVOPS E INFRAESTRUCTURA</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Contenedores, Aislamiento y Virtualización</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#d4eb70"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="65.8">Introducción de la llamada</tspan><tspan x="22.68" y="77.3">al sistema chroot en Unix</tspan><tspan x="22.68" y="88.8">Versión 7, permitiendo</tspan><tspan x="22.68" y="100.3">enjaular la raíz del</tspan><tspan x="22.68" y="111.8">sistema de archivos para un</tspan><tspan x="22.68" y="123.3">proceso.</tspan>
+          <tspan x="22.68" y="60.0">Despliegue de</tspan><tspan x="22.68" y="71.5">optimizaciones de</tspan><tspan x="22.68" y="83.0">desvirtualización de</tspan><tspan x="22.68" y="94.5">llamadas y análisis de</tspan><tspan x="22.68" y="106.0">escape en el compilador JIT</tspan><tspan x="22.68" y="117.5">experimental de Python</tspan><tspan x="22.68" y="129.0">3.14.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">C2</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">3x7E</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">python-trackx3E</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x7F Frente -->
-    <g id="carta_3_7F_frente">
+    <!-- Tarjeta python-trackx3F Frente -->
+    <g id="carta_python-track_3F_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -82,23 +82,23 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="306.00" y="94.11" width="201.26" height="201.26" fill="#221811" />
+      <rect x="306.00" y="94.11" width="201.26" height="201.26" fill="#1f2211" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 102.61)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f18a3b">UNIVERSO PYTHON</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Runtimes, Intérpretes y GIL</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#d0eb6b"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Fundación de PyPy,</tspan><tspan x="22.68" y="82.3">reimplementación de Python</tspan><tspan x="22.68" y="94.5">escrita en el propio</tspan><tspan x="22.68" y="106.7">lenguaje (RPython) con</tspan><tspan x="22.68" y="118.9">compilación JIT.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="9" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="75.0">Evaluación del modo libre</tspan><tspan x="22.68" y="88.0">de hilos para declarar el</tspan><tspan x="22.68" y="101.0">soporte no-GIL por defecto</tspan><tspan x="22.68" y="114.0">a partir de Python 3.15.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">A2</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">3x7F</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">python-trackx3F</text>
 
         
       </g>

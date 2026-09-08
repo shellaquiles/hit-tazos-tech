@@ -23,8 +23,8 @@
     <text x="498.76" y="90.61" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO (LONG EDGE)</text>
   </g>
   <g id="tarjetas_frente">
-    <!-- Tarjeta 1x4C Frente -->
-    <g id="carta_1_4C_frente">
+    <!-- Tarjeta embedded-silicon-hardwarex0C Frente -->
+    <g id="carta_embedded-silicon-hardware_0C_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -42,29 +42,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="104.74" y="94.11" width="201.26" height="201.26" fill="#112222" />
+      <rect x="104.74" y="94.11" width="201.26" height="201.26" fill="#191122" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 102.61)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#57dee5">UNIVERSO PYTHON</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Python Core, Sintaxis y PEPs</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#ad7be0"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Introducción del método</tspan><tspan x="22.68" y="82.3">avanzado de formateo de</tspan><tspan x="22.68" y="94.5">cadenas str.format() a</tspan><tspan x="22.68" y="106.7">través de la especificación</tspan><tspan x="22.68" y="118.9">del PEP 3101.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="65.8">Introducción de la llamada</tspan><tspan x="22.68" y="77.3">al sistema chroot en Unix</tspan><tspan x="22.68" y="88.8">Versión 7, permitiendo</tspan><tspan x="22.68" y="100.3">enjaular la raíz del</tspan><tspan x="22.68" y="111.8">sistema de archivos para un</tspan><tspan x="22.68" y="123.3">proceso.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">A1</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">1x4C</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">embedded-silicon-hardwarex0C</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 1x4D Frente -->
-    <g id="carta_1_4D_frente">
+    <!-- Tarjeta embedded-silicon-hardwarex0D Frente -->
+    <g id="carta_embedded-silicon-hardware_0D_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -82,29 +82,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="306.00" y="94.11" width="201.26" height="201.26" fill="#112122" />
+      <rect x="306.00" y="94.11" width="201.26" height="201.26" fill="#1a1122" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 102.61)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#4dd8e5">CÓMPUTO, IA Y DATOS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Cómputo Científico y Stack Analítico</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#ac74e2"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Nacimiento de IPython, una</tspan><tspan x="22.68" y="82.3">consola interactiva</tspan><tspan x="22.68" y="94.5">avanzada para Python con</tspan><tspan x="22.68" y="106.7">comandos mágicos, resaltado</tspan><tspan x="22.68" y="118.9">y depuración en vivo.</tspan>
+          <tspan x="22.68" y="70.1">Presentación del procesador</tspan><tspan x="22.68" y="82.3">Motorola 68000, aportando</tspan><tspan x="22.68" y="94.5">arquitectura interna de 32</tspan><tspan x="22.68" y="106.7">bits y direccionamiento</tspan><tspan x="22.68" y="118.9">lineal plano.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">D1</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">1x4D</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">embedded-silicon-hardwarex0D</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 1x4E Frente -->
-    <g id="carta_1_4E_frente">
+    <!-- Tarjeta embedded-silicon-hardwarex0E Frente -->
+    <g id="carta_embedded-silicon-hardware_0E_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -122,29 +122,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="104.74" y="295.37" width="201.26" height="201.26" fill="#112022" />
+      <rect x="104.74" y="295.37" width="201.26" height="201.26" fill="#1a1122" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 303.87)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#40d2e7">UNIVERSO PYTHON</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Gobernanza, Comunidad y Eventos</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#a96ae2"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Lanzamiento del primer</tspan><tspan x="22.68" y="82.3">taller de Django Girls en</tspan><tspan x="22.68" y="94.5">la conferencia EuroPython</tspan><tspan x="22.68" y="106.7">en Berlín por dos</tspan><tspan x="22.68" y="118.9">programadoras polacas.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="65.8">Presentación de Ada, un</tspan><tspan x="22.68" y="77.3">lenguaje militar de tipado</tspan><tspan x="22.68" y="88.8">estricto diseñado para</tspan><tspan x="22.68" y="100.3">sistemas embebidos de</tspan><tspan x="22.68" y="111.8">misión crítica y armamento</tspan><tspan x="22.68" y="123.3">militar.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">A3</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">1x4E</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">embedded-silicon-hardwarex0E</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 1x4F Frente -->
-    <g id="carta_1_4F_frente">
+    <!-- Tarjeta embedded-silicon-hardwarex0F Frente -->
+    <g id="carta_embedded-silicon-hardware_0F_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -162,29 +162,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="306.00" y="295.37" width="201.26" height="201.26" fill="#112022" />
+      <rect x="306.00" y="295.37" width="201.26" height="201.26" fill="#1a1122" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 303.87)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#35cbe9">UNIVERSO PYTHON</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Ecosistema Web, APIs y Backend</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#a660e2"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Nacimiento de FastAPI,</tspan><tspan x="22.68" y="82.3">articulando Starlette,</tspan><tspan x="22.68" y="94.5">Pydantic y tipado estático</tspan><tspan x="22.68" y="106.7">con generación automática</tspan><tspan x="22.68" y="118.9">de esquemas OpenAPI.</tspan>
+          <tspan x="22.68" y="70.1">Debut de C++ (&quot;C with</tspan><tspan x="22.68" y="82.3">Classes&quot;), sumando</tspan><tspan x="22.68" y="94.5">orientación a objetos y</tspan><tspan x="22.68" y="106.7">sobrecarga sin perder</tspan><tspan x="22.68" y="118.9">rendimiento de C.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">A4</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">1x4F</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">embedded-silicon-hardwarex0F</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 1x50 Frente -->
-    <g id="carta_1_50_frente">
+    <!-- Tarjeta embedded-silicon-hardwarex10 Frente -->
+    <g id="carta_embedded-silicon-hardware_10_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -202,29 +202,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="104.74" y="496.63" width="201.26" height="201.26" fill="#111f22" />
+      <rect x="104.74" y="496.63" width="201.26" height="201.26" fill="#1a1122" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 505.13)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#2ac3ea">UNIVERSO PYTHON</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Python Core, Sintaxis y PEPs</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#a355e2"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Adición de argumentos</tspan><tspan x="22.68" y="82.3">nombrados (keyword</tspan><tspan x="22.68" y="94.5">arguments) en las llamadas</tspan><tspan x="22.68" y="106.7">a funciones con la llegada</tspan><tspan x="22.68" y="118.9">de Python 1.1.</tspan>
+          <tspan x="22.68" y="70.1">Debut del procesador ARM1</tspan><tspan x="22.68" y="82.3">(Acorn RISC Machine),</tspan><tspan x="22.68" y="94.5">pionero en la computación</tspan><tspan x="22.68" y="106.7">de conjunto reducido de</tspan><tspan x="22.68" y="118.9">instrucciones.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">A1</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">1x50</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">embedded-silicon-hardwarex10</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 1x51 Frente -->
-    <g id="carta_1_51_frente">
+    <!-- Tarjeta embedded-silicon-hardwarex11 Frente -->
+    <g id="carta_embedded-silicon-hardware_11_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -242,23 +242,23 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="306.00" y="496.63" width="201.26" height="201.26" fill="#221118" />
+      <rect x="306.00" y="496.63" width="201.26" height="201.26" fill="#1b1122" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 505.13)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#e887b0">SOFTWARE, WEB Y DATOS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Bases de Datos y Almacenamiento</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#a44ee4"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Paper de Bigtable,</tspan><tspan x="22.68" y="82.3">describiendo la base de</tspan><tspan x="22.68" y="94.5">datos distribuida de Google</tspan><tspan x="22.68" y="106.7">para almacenar petabytes no</tspan><tspan x="22.68" y="118.9">estructurados.</tspan>
+          <tspan x="22.68" y="70.1">Lanzamiento de Erlang en</tspan><tspan x="22.68" y="82.3">Ericsson, implementando el</tspan><tspan x="22.68" y="94.5">modelo de actores para</tspan><tspan x="22.68" y="106.7">telecomunicaciones</tspan><tspan x="22.68" y="118.9">tolerantes a fallos.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">B5</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">1x51</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">embedded-silicon-hardwarex11</text>
 
         
       </g>

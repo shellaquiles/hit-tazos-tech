@@ -23,8 +23,8 @@
     <text x="498.76" y="90.61" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO (LONG EDGE)</text>
   </g>
   <g id="tarjetas_reverso">
-    <!-- Tarjeta 1x3B Reverso -->
-    <g id="carta_1_3B_reverso">
+    <!-- Tarjeta cypherpunks-hacker-lorex3B Reverso -->
+    <g id="carta_cypherpunks-hacker-lore_3B_reverso">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -42,32 +42,32 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="104.74" y="94.11" width="201.26" height="201.26" fill="#7a54de" />
+      <rect x="104.74" y="94.11" width="201.26" height="201.26" fill="#7649df" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 102.61)">
         <!-- Autor protegido (>= 8.5mm del borde superior) -->
         <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="29.5">Guido van Rossum</tspan>
+          
         </text>
 
         <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
-        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2002</text>
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2024</text>
 
         <!-- Trivia protegida -->
-        <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="118.0">Por razones de compatibilidad</tspan><tspan x="92.13" y="127.0">hacia atrás estricta con</tspan><tspan x="92.13" y="136.0">código añejo, bool se definió</tspan><tspan x="92.13" y="145.0">como una subclase de int,</tspan><tspan x="92.13" y="154.0">haciendo que True + True == 2.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="7.2" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          
         </text>
 
         <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">A1</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">1x3B</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">cypherpunks-hacker-lorex3B</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 1x3A Reverso -->
-    <g id="carta_1_3A_reverso">
+    <!-- Tarjeta cypherpunks-hacker-lorex3A Reverso -->
+    <g id="carta_cypherpunks-hacker-lore_3A_reverso">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -85,32 +85,32 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="306.00" y="94.11" width="201.26" height="201.26" fill="#7f5fdd" />
+      <rect x="306.00" y="94.11" width="201.26" height="201.26" fill="#7a54de" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 102.61)">
         <!-- Autor protegido (>= 8.5mm del borde superior) -->
-        <text font-family="'Outfit', sans-serif" font-size="8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="24">Jann Horn (Project Zero) y</tspan><tspan x="92.13" y="34.4">TU Graz</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
+          
         </text>
 
         <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
-        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2018</text>
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2023</text>
 
         <!-- Trivia protegida -->
-        <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="118.0">Demostraron que la ejecución</tspan><tspan x="92.13" y="127.0">especulativa de CPUs Intel/AMD</tspan><tspan x="92.13" y="136.0">permitía a apps comunes espiar</tspan><tspan x="92.13" y="145.0">secretos del kernel en</tspan><tspan x="92.13" y="154.0">memoria.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="7.2" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          
         </text>
 
         <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">E2</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">1x3A</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">cypherpunks-hacker-lorex3A</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 1x3D Reverso -->
-    <g id="carta_1_3D_reverso">
+    <!-- Tarjeta cypherpunks-hacker-lorex3D Reverso -->
+    <g id="carta_cypherpunks-hacker-lore_3D_reverso">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -128,32 +128,32 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="104.74" y="295.37" width="201.26" height="201.26" fill="#ddeb84" />
+      <rect x="104.74" y="295.37" width="201.26" height="201.26" fill="#d8ea7b" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 303.87)">
         <!-- Autor protegido (>= 8.5mm del borde superior) -->
         <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="29.5">Jeffrey Yasskin</tspan>
+          
         </text>
 
         <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
-        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2006</text>
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2024</text>
 
         <!-- Trivia protegida -->
-        <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="118.0">Empleó clases base abstractas</tspan><tspan x="92.13" y="127.0">(ABCs) para permitir que</tspan><tspan x="92.13" y="136.0">librerías externas como NumPy</tspan><tspan x="92.13" y="145.0">interactuaran armoniosamente</tspan><tspan x="92.13" y="154.0">con los tipos nativos.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="7.2" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          
         </text>
 
         <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">A1</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">1x3D</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">cypherpunks-hacker-lorex3D</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 1x3C Reverso -->
-    <g id="carta_1_3C_reverso">
+    <!-- Tarjeta cypherpunks-hacker-lorex3C Reverso -->
+    <g id="carta_cypherpunks-hacker-lore_3C_reverso">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -171,32 +171,32 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="306.00" y="295.37" width="201.26" height="201.26" fill="#7649df" />
+      <rect x="306.00" y="295.37" width="201.26" height="201.26" fill="#ddeb84" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 303.87)">
         <!-- Autor protegido (>= 8.5mm del borde superior) -->
-        <text font-family="'Outfit', sans-serif" font-size="8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="24">Ian Goodfellow et al. (U.</tspan><tspan x="92.13" y="34.4">Montréal)</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
+          
         </text>
 
         <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
-        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2014</text>
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2024</text>
 
         <!-- Trivia protegida -->
-        <text font-family="'Outfit', sans-serif" font-size="6.8" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="118.0">Goodfellow concibió la idea en</tspan><tspan x="92.13" y="127.0">un bar debatiendo con amigos;</tspan><tspan x="92.13" y="136.0">fue a su casa esa noche y</tspan><tspan x="92.13" y="145.0">programó el prototipo</tspan><tspan x="92.13" y="154.0">funcional.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="7.2" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
+          
         </text>
 
         <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">D2</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">1x3C</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">cypherpunks-hacker-lorex3C</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 1x3F Reverso -->
-    <g id="carta_1_3F_reverso">
+    <!-- Tarjeta cypherpunks-hacker-lorex3F Reverso -->
+    <g id="carta_cypherpunks-hacker-lore_3F_reverso">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -214,32 +214,32 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="104.74" y="496.63" width="201.26" height="201.26" fill="#d4eb70" />
+      <rect x="104.74" y="496.63" width="201.26" height="201.26" fill="#d0eb6b" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 505.13)">
         <!-- Autor protegido (>= 8.5mm del borde superior) -->
-        <text font-family="'Outfit', sans-serif" font-size="8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="24">E. Hughes, T. C. May y J.</tspan><tspan x="92.13" y="34.4">Gilmore</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
+          
         </text>
 
         <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
-        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">1992</text>
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2024</text>
 
         <!-- Trivia protegida -->
         <text font-family="'Outfit', sans-serif" font-size="7.2" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="118.0">Postularon que la criptografía</tspan><tspan x="92.13" y="127.5">fuerte es la única garantía de</tspan><tspan x="92.13" y="137.0">privacidad y libertad frente a</tspan><tspan x="92.13" y="146.5">corporaciones y estados.</tspan>
+          
         </text>
 
         <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">E1</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">1x3F</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">cypherpunks-hacker-lorex3F</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 1x3E Reverso -->
-    <g id="carta_1_3E_reverso">
+    <!-- Tarjeta cypherpunks-hacker-lorex3E Reverso -->
+    <g id="carta_cypherpunks-hacker-lore_3E_reverso">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -257,26 +257,26 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="306.00" y="496.63" width="201.26" height="201.26" fill="#d8ea7b" />
+      <rect x="306.00" y="496.63" width="201.26" height="201.26" fill="#d4eb70" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 505.13)">
         <!-- Autor protegido (>= 8.5mm del borde superior) -->
         <text font-family="'Outfit', sans-serif" font-size="8.8" font-weight="600" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="29.5">Niklaus Wirth</tspan>
+          
         </text>
 
         <!-- Año Heroico Centrado (y=100 pt, tamaño masivo 52 pt) -->
-        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">1970</text>
+        <text x="92.13" y="100" font-family="'Space Grotesk', sans-serif" font-size="52" font-weight="900" letter-spacing="-1.8" fill="#111111" text-anchor="middle">2024</text>
 
         <!-- Trivia protegida -->
         <text font-family="'Outfit', sans-serif" font-size="7.2" font-weight="400" font-style="italic" fill="#111111" text-anchor="middle">
-          <tspan x="92.13" y="118.0">Nombrado por Blaise Pascal,</tspan><tspan x="92.13" y="127.5">generaba p-code, precursor</tspan><tspan x="92.13" y="137.0">conceptual del bytecode</tspan><tspan x="92.13" y="146.5">moderno de Java y C#.</tspan>
+          
         </text>
 
         <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)">B1</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">1x3E</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255, 255, 255, 0.7)" text-anchor="end">cypherpunks-hacker-lorex3E</text>
 
         
       </g>

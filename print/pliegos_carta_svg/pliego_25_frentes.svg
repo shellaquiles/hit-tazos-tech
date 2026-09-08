@@ -23,8 +23,8 @@
     <text x="498.76" y="90.61" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO (LONG EDGE)</text>
   </g>
   <g id="tarjetas_frente">
-    <!-- Tarjeta 1x10 Frente -->
-    <g id="carta_1_10_frente">
+    <!-- Tarjeta cypherpunks-hacker-lorex10 Frente -->
+    <g id="carta_cypherpunks-hacker-lore_10_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -47,24 +47,24 @@
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 102.61)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#a660e2">DEVOPS E INFRAESTRUCTURA</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Automatización e Infraestructura como Código</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#a355e2"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="65.8">Lanzamiento de Pulumi,</tspan><tspan x="22.68" y="77.3">permitiendo definir</tspan><tspan x="22.68" y="88.8">infraestructura de nube</tspan><tspan x="22.68" y="100.3">utilizando lenguajes de</tspan><tspan x="22.68" y="111.8">programación reales como</tspan><tspan x="22.68" y="123.3">Python, TypeScript y Go.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="70.1">Explosión del cohete Ariane</tspan><tspan x="22.68" y="82.3">5 (vuelo 501) a los 37</tspan><tspan x="22.68" y="94.5">segundos, destruyendo una</tspan><tspan x="22.68" y="106.7">carga de 370 millones de</tspan><tspan x="22.68" y="118.9">dólares.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">C4</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">1x10</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cypherpunks-hacker-lorex10</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 1x11 Frente -->
-    <g id="carta_1_11_frente">
+    <!-- Tarjeta cypherpunks-hacker-lorex11 Frente -->
+    <g id="carta_cypherpunks-hacker-lore_11_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -82,29 +82,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="306.00" y="94.11" width="201.26" height="201.26" fill="#1a1122" />
+      <rect x="306.00" y="94.11" width="201.26" height="201.26" fill="#1b1122" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 102.61)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#a355e2">SOFTWARE, WEB Y DATOS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Bases de Datos y Almacenamiento</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#a44ee4"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Nacimiento de DuckDB,</tspan><tspan x="22.68" y="82.3">concebido como el</tspan><tspan x="22.68" y="94.5">equivalente a SQLite para</tspan><tspan x="22.68" y="106.7">analítica en memoria y</tspan><tspan x="22.68" y="118.9">archivos Parquet.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="65.8">Difusión del influyente</tspan><tspan x="22.68" y="77.3">ensayo The Cathedral and</tspan><tspan x="22.68" y="88.8">the Bazaar, analizando las</tspan><tspan x="22.68" y="100.3">virtudes del modelo de</tspan><tspan x="22.68" y="111.8">desarrollo abierto y</tspan><tspan x="22.68" y="123.3">caótico de Linux.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">B5</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">1x11</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cypherpunks-hacker-lorex11</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 1x12 Frente -->
-    <g id="carta_1_12_frente">
+    <!-- Tarjeta cypherpunks-hacker-lorex12 Frente -->
+    <g id="carta_cypherpunks-hacker-lore_12_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -127,24 +127,24 @@
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 303.87)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#a44ee4">SOFTWARE, WEB Y DATOS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Genealogía de Lenguajes de Programación</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#a243e5"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="65.8">Creación de Fortran</tspan><tspan x="22.68" y="77.3">(Formula Translating</tspan><tspan x="22.68" y="88.8">System), el primer lenguaje</tspan><tspan x="22.68" y="100.3">de programación de alto</tspan><tspan x="22.68" y="111.8">nivel comercialmente</tspan><tspan x="22.68" y="123.3">exitoso.</tspan>
+          <tspan x="22.68" y="65.8">Filtración de los</tspan><tspan x="22.68" y="77.3">Documentos de Halloween,</tspan><tspan x="22.68" y="88.8">donde ingenieros de</tspan><tspan x="22.68" y="100.3">Microsoft admitían la</tspan><tspan x="22.68" y="111.8">enorme amenaza competitiva</tspan><tspan x="22.68" y="123.3">de Linux.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">B1</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">1x12</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cypherpunks-hacker-lorex12</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 1x13 Frente -->
-    <g id="carta_1_13_frente">
+    <!-- Tarjeta cypherpunks-hacker-lorex13 Frente -->
+    <g id="carta_cypherpunks-hacker-lore_13_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -167,24 +167,24 @@
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 303.87)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#a243e5">UNIVERSO PYTHON</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Tooling, Empaquetado y Ola Rust</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#a037e6"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Nacimiento de Poetry,</tspan><tspan x="22.68" y="82.3">gestionando dependencias</tspan><tspan x="22.68" y="94.5">deterministas, resolución</tspan><tspan x="22.68" y="106.7">de grafos y empaquetado en</tspan><tspan x="22.68" y="118.9">pyproject.toml.</tspan>
+          <tspan x="22.68" y="70.1">Nacimiento formal del</tspan><tspan x="22.68" y="82.3">término Open Source en una</tspan><tspan x="22.68" y="94.5">reunión estratégica en Palo</tspan><tspan x="22.68" y="106.7">Alto y fundación de la Open</tspan><tspan x="22.68" y="118.9">Source Initiative (OSI).</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">A5</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">1x13</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cypherpunks-hacker-lorex13</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 1x14 Frente -->
-    <g id="carta_1_14_frente">
+    <!-- Tarjeta cypherpunks-hacker-lorex14 Frente -->
+    <g id="carta_cypherpunks-hacker-lore_14_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -202,29 +202,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="104.74" y="496.63" width="201.26" height="201.26" fill="#1b1122" />
+      <rect x="104.74" y="496.63" width="201.26" height="201.26" fill="#221711" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 505.13)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#a037e6">CULTURA HACKER Y LEYENDAS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">P2P, Fenómenos de Internet y Guerras Digitales</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#eea377"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="9" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="75.0">Captura de Ross Ulbricht y</tspan><tspan x="22.68" y="88.0">clausura del mercado</tspan><tspan x="22.68" y="101.0">clandestino en la dark web</tspan><tspan x="22.68" y="114.0">Silk Road.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="70.1">Ataque del virus Chernobyl</tspan><tspan x="22.68" y="82.3">(CIH), capaz de destruir</tspan><tspan x="22.68" y="94.5">físicamente placas madre</tspan><tspan x="22.68" y="106.7">sobrescribiendo la memoria</tspan><tspan x="22.68" y="118.9">Flash BIOS.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">E5</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">1x14</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cypherpunks-hacker-lorex14</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 1x15 Frente -->
-    <g id="carta_1_15_frente">
+    <!-- Tarjeta cypherpunks-hacker-lorex15 Frente -->
+    <g id="carta_cypherpunks-hacker-lore_15_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -247,18 +247,18 @@
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 505.13)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#eea377">CÓMPUTO, IA Y DATOS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Era LLMs, Pesos Abiertos e Inferencia</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#ef9e6c"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Filtración en la web de los</tspan><tspan x="22.68" y="82.3">pesos de LLaMA de Meta AI</tspan><tspan x="22.68" y="94.5">mediante un enlace torrent</tspan><tspan x="22.68" y="106.7">en un Pull Request de</tspan><tspan x="22.68" y="118.9">GitHub.</tspan>
+          <tspan x="22.68" y="70.1">Pérdida de la nave Mars</tspan><tspan x="22.68" y="82.3">Climate Orbiter,</tspan><tspan x="22.68" y="94.5">desintegrada en Marte por</tspan><tspan x="22.68" y="106.7">una catastrófica confusión</tspan><tspan x="22.68" y="118.9">de unidades de medida.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">D4</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">1x15</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cypherpunks-hacker-lorex15</text>
 
         
       </g>

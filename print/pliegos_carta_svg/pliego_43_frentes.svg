@@ -23,8 +23,8 @@
     <text x="498.76" y="90.61" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO (LONG EDGE)</text>
   </g>
   <g id="tarjetas_frente">
-    <!-- Tarjeta 1x7C Frente -->
-    <g id="carta_1_7C_frente">
+    <!-- Tarjeta embedded-silicon-hardwarex3C Frente -->
+    <g id="carta_embedded-silicon-hardware_3C_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -42,29 +42,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="104.74" y="94.11" width="201.26" height="201.26" fill="#221811" />
+      <rect x="104.74" y="94.11" width="201.26" height="201.26" fill="#202211" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 102.61)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f0975c">CULTURA HACKER Y LEYENDAS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Guerras Santas y Debates Históricos</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#ddeb84"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Inicio de la mítica Guerra</tspan><tspan x="22.68" y="82.3">de los Editores entre los</tspan><tspan x="22.68" y="94.5">partidarios devotos de</tspan><tspan x="22.68" y="106.7">Emacs y los usuarios de Vi</tspan><tspan x="22.68" y="118.9">/ Vim.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="65.8">Estandarización y</tspan><tspan x="22.68" y="77.3">despliegue masivo de la API</tspan><tspan x="22.68" y="88.8">de WebGPU para aceleración</tspan><tspan x="22.68" y="100.3">de gráficos y cómputo de</tspan><tspan x="22.68" y="111.8">modelos de IA en el</tspan><tspan x="22.68" y="123.3">navegador.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">E4</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">1x7C</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">embedded-silicon-hardwarex3C</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 1x7D Frente -->
-    <g id="carta_1_7D_frente">
+    <!-- Tarjeta embedded-silicon-hardwarex3D Frente -->
+    <g id="carta_embedded-silicon-hardware_3D_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -82,29 +82,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="306.00" y="94.11" width="201.26" height="201.26" fill="#221811" />
+      <rect x="306.00" y="94.11" width="201.26" height="201.26" fill="#202211" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 102.61)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f09351">SOFTWARE, WEB Y DATOS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Bases de Datos y Almacenamiento</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#d8ea7b"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Nacimiento de MySQL,</tspan><tspan x="22.68" y="82.3">concebido como un motor</tspan><tspan x="22.68" y="94.5">relacional extremadamente</tspan><tspan x="22.68" y="106.7">rápido y ligero para bases</tspan><tspan x="22.68" y="118.9">de datos de páginas web.</tspan>
+          <tspan x="22.68" y="70.1">Integración nativa de</tspan><tspan x="22.68" y="82.3">microcontenedores basados</tspan><tspan x="22.68" y="94.5">en WebAssembly en clusters</tspan><tspan x="22.68" y="106.7">de producción mediante el</tspan><tspan x="22.68" y="118.9">proyecto SpinKube.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">B5</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">1x7D</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">embedded-silicon-hardwarex3D</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 1x7E Frente -->
-    <g id="carta_1_7E_frente">
+    <!-- Tarjeta embedded-silicon-hardwarex3E Frente -->
+    <g id="carta_embedded-silicon-hardware_3E_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -122,29 +122,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="104.74" y="295.37" width="201.26" height="201.26" fill="#221811" />
+      <rect x="104.74" y="295.37" width="201.26" height="201.26" fill="#1f2211" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 303.87)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f18e46">CULTURA HACKER Y LEYENDAS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Movimiento Open Source y Cypherpunks</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#d4eb70"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="65.8">Lanzamiento del software de</tspan><tspan x="22.68" y="77.3">anonimato y enrutamiento en</tspan><tspan x="22.68" y="88.8">cebolla Tor (The Onion</tspan><tspan x="22.68" y="100.3">Routing) para proteger el</tspan><tspan x="22.68" y="111.8">tráfico web contra</tspan><tspan x="22.68" y="123.3">vigilancia.</tspan>
+          <tspan x="22.68" y="60.0">Presentación de la</tspan><tspan x="22.68" y="71.5">arquitectura de</tspan><tspan x="22.68" y="83.0">aceleradores de</tspan><tspan x="22.68" y="94.5">inteligencia artificial</tspan><tspan x="22.68" y="106.0">NVIDIA Blackwell B200 con</tspan><tspan x="22.68" y="117.5">208,000 millones de</tspan><tspan x="22.68" y="129.0">transistores.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">E1</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">1x7E</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">embedded-silicon-hardwarex3E</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 1x7F Frente -->
-    <g id="carta_1_7F_frente">
+    <!-- Tarjeta embedded-silicon-hardwarex3F Frente -->
+    <g id="carta_embedded-silicon-hardware_3F_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -162,29 +162,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="306.00" y="295.37" width="201.26" height="201.26" fill="#221811" />
+      <rect x="306.00" y="295.37" width="201.26" height="201.26" fill="#1f2211" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 303.87)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f18a3b">CÓMPUTO, IA Y DATOS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Hitos Competitivos (Máquinas vs. Humanos)</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#d0eb6b"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="65.8">Creación de AlphaZero,</tspan><tspan x="22.68" y="77.3">aprendiendo ajedrez, shogi</tspan><tspan x="22.68" y="88.8">y Go desde cero absoluto en</tspan><tspan x="22.68" y="100.3">menos de 24 horas jugando</tspan><tspan x="22.68" y="111.8">exclusivamente contra sí</tspan><tspan x="22.68" y="123.3">mismo.</tspan>
+          <tspan x="22.68" y="65.8">Estandarización de tensores</tspan><tspan x="22.68" y="77.3">en formatos de coma</tspan><tspan x="22.68" y="88.8">flotante de precisión ultra</tspan><tspan x="22.68" y="100.3">reducida (FP8 y FP4) en</tspan><tspan x="22.68" y="111.8">todo el stack analítico de</tspan><tspan x="22.68" y="123.3">Python.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">D3</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">1x7F</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">embedded-silicon-hardwarex3F</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 2x00 Frente -->
-    <g id="carta_2_00_frente">
+    <!-- Tarjeta unix-sysadmin-networksx00 Frente -->
+    <g id="carta_unix-sysadmin-networks_00_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -207,24 +207,24 @@
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 505.13)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#ea7b8e">UNIVERSO PYTHON</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Python Core, Sintaxis y PEPs</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#ea7b8e"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Optimización radical de</tspan><tspan x="22.68" y="82.3">memoria para cadenas</tspan><tspan x="22.68" y="94.5">Unicode con representación</tspan><tspan x="22.68" y="106.7">interna flexible en el PEP</tspan><tspan x="22.68" y="118.9">393.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="65.8">Creación del sistema</tspan><tspan x="22.68" y="77.3">operativo Unix en los</tspan><tspan x="22.68" y="88.8">laboratorios Bell tras el</tspan><tspan x="22.68" y="100.3">fracaso y cancelación del</tspan><tspan x="22.68" y="111.8">mastodóntico proyecto</tspan><tspan x="22.68" y="123.3">Multics.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">A1</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">2x00</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">unix-sysadmin-networksx00</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 2x01 Frente -->
-    <g id="carta_2_01_frente">
+    <!-- Tarjeta unix-sysadmin-networksx01 Frente -->
+    <g id="carta_unix-sysadmin-networks_01_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -242,23 +242,23 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="306.00" y="496.63" width="201.26" height="201.26" fill="#221114" />
+      <rect x="306.00" y="496.63" width="201.26" height="201.26" fill="#221113" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 505.13)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#ea7b8e">UNIVERSO PYTHON</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Ecosistema Web, APIs y Backend</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#ea7184"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Presentación de Granian, un</tspan><tspan x="22.68" y="82.3">servidor HTTP para Python</tspan><tspan x="22.68" y="94.5">escrito enteramente en Rust</tspan><tspan x="22.68" y="106.7">que implementa interfaces</tspan><tspan x="22.68" y="118.9">WSGI, ASGI y RSGI.</tspan>
+          <tspan x="22.68" y="70.1">Creación de SCCS (Source</tspan><tspan x="22.68" y="82.3">Code Control System), el</tspan><tspan x="22.68" y="94.5">primer sistema automatizado</tspan><tspan x="22.68" y="106.7">de control de versiones de</tspan><tspan x="22.68" y="118.9">código de la historia.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">A4</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">2x01</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">unix-sysadmin-networksx01</text>
 
         
       </g>

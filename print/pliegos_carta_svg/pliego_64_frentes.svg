@@ -23,8 +23,8 @@
     <text x="498.76" y="90.61" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO (LONG EDGE)</text>
   </g>
   <g id="tarjetas_frente">
-    <!-- Tarjeta 2x7A Frente -->
-    <g id="carta_2_7A_frente">
+    <!-- Tarjeta backend-distributed-systemsx3A Frente -->
+    <g id="carta_backend-distributed-systems_3A_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -42,29 +42,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="104.74" y="94.11" width="201.26" height="201.26" fill="#221711" />
+      <rect x="104.74" y="94.11" width="201.26" height="201.26" fill="#161122" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 102.61)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#ef9e6c">UNIVERSO PYTHON</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Ecosistema Web, APIs y Backend</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#7a54de"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Creación de Uvicorn, el</tspan><tspan x="22.68" y="82.3">servidor web ASGI de alto</tspan><tspan x="22.68" y="94.5">rendimiento basado en</tspan><tspan x="22.68" y="106.7">uvloop y el parser de</tspan><tspan x="22.68" y="118.9">peticiones en C httptools.</tspan>
+          <tspan x="22.68" y="70.1">Presentación de Mojo,</tspan><tspan x="22.68" y="82.3">uniendo la sintaxis de</tspan><tspan x="22.68" y="94.5">Python con optimización</tspan><tspan x="22.68" y="106.7">nativa para GPUs y</tspan><tspan x="22.68" y="118.9">aceleradores IA.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">A4</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">2x7A</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">backend-distributed-systemsx3A</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 2x7B Frente -->
-    <g id="carta_2_7B_frente">
+    <!-- Tarjeta backend-distributed-systemsx3B Frente -->
+    <g id="carta_backend-distributed-systems_3B_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -82,29 +82,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="306.00" y="94.11" width="201.26" height="201.26" fill="#221811" />
+      <rect x="306.00" y="94.11" width="201.26" height="201.26" fill="#161122" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 102.61)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#ef9962">SOFTWARE, WEB Y DATOS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Genealogía de Lenguajes de Programación</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#7649df"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Aparición de Zig, lenguaje</tspan><tspan x="22.68" y="82.3">de sistemas para reemplazar</tspan><tspan x="22.68" y="94.5">a C sin costos ocultos y</tspan><tspan x="22.68" y="106.7">con evaluación en</tspan><tspan x="22.68" y="118.9">compilación (comptime).</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="65.8">Apagón masivo de</tspan><tspan x="22.68" y="77.3">comunidades (Reddit</tspan><tspan x="22.68" y="88.8">Blackout) en protesta por</tspan><tspan x="22.68" y="100.3">las abusivas tarifas</tspan><tspan x="22.68" y="111.8">impuestas por la directiva</tspan><tspan x="22.68" y="123.3">al acceso a su API.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">B1</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">2x7B</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">backend-distributed-systemsx3B</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 2x7C Frente -->
-    <g id="carta_2_7C_frente">
+    <!-- Tarjeta backend-distributed-systemsx3C Frente -->
+    <g id="carta_backend-distributed-systems_3C_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -122,29 +122,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="104.74" y="295.37" width="201.26" height="201.26" fill="#221811" />
+      <rect x="104.74" y="295.37" width="201.26" height="201.26" fill="#202211" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 303.87)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f0975c">CULTURA HACKER Y LEYENDAS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Ciberseguridad, Virus y Vulnerabilidades</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#ddeb84"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Ataque del virus Chernobyl</tspan><tspan x="22.68" y="82.3">(CIH), capaz de destruir</tspan><tspan x="22.68" y="94.5">físicamente placas madre</tspan><tspan x="22.68" y="106.7">sobrescribiendo la memoria</tspan><tspan x="22.68" y="118.9">Flash BIOS.</tspan>
+          <tspan x="22.68" y="70.1">Auge fulminante de</tspan><tspan x="22.68" y="82.3">pgvector, transformando a</tspan><tspan x="22.68" y="94.5">PostgreSQL en base de datos</tspan><tspan x="22.68" y="106.7">vectorial para IA</tspan><tspan x="22.68" y="118.9">generativa y pipelines RAG.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">E2</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">2x7C</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">backend-distributed-systemsx3C</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 2x7D Frente -->
-    <g id="carta_2_7D_frente">
+    <!-- Tarjeta backend-distributed-systemsx3D Frente -->
+    <g id="carta_backend-distributed-systems_3D_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -162,29 +162,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="306.00" y="295.37" width="201.26" height="201.26" fill="#221811" />
+      <rect x="306.00" y="295.37" width="201.26" height="201.26" fill="#202211" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 303.87)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f09351">SOFTWARE, WEB Y DATOS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Herramientas Dev y Control de Versiones</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#d8ea7b"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Nacimiento de Subversion</tspan><tspan x="22.68" y="82.3">(SVN), diseñado para</tspan><tspan x="22.68" y="94.5">corregir las graves</tspan><tspan x="22.68" y="106.7">deficiencias estructurales</tspan><tspan x="22.68" y="118.9">de CVS.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="65.8">Inicio del movimiento de</tspan><tspan x="22.68" y="77.3">salida de la nube (Cloud</tspan><tspan x="22.68" y="88.8">Exit) liderado por la</tspan><tspan x="22.68" y="100.3">empresa 37signals tras</tspan><tspan x="22.68" y="111.8">repatriar sus servidores al</tspan><tspan x="22.68" y="123.3">metal propio.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">B3</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">2x7D</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">backend-distributed-systemsx3D</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 2x7E Frente -->
-    <g id="carta_2_7E_frente">
+    <!-- Tarjeta backend-distributed-systemsx3E Frente -->
+    <g id="carta_backend-distributed-systems_3E_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -202,29 +202,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="104.74" y="496.63" width="201.26" height="201.26" fill="#221811" />
+      <rect x="104.74" y="496.63" width="201.26" height="201.26" fill="#1f2211" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 505.13)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f18e46">SOFTWARE, WEB Y DATOS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Herramientas Dev y Control de Versiones</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#d4eb70"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="60.0">Lanzamiento de IntelliJ</tspan><tspan x="22.68" y="71.5">IDEA, revolucionando los</tspan><tspan x="22.68" y="83.0">entornos de desarrollo</tspan><tspan x="22.68" y="94.5">integrados con</tspan><tspan x="22.68" y="106.0">autocompletado y</tspan><tspan x="22.68" y="117.5">refactorización semántica</tspan><tspan x="22.68" y="129.0">avanzada.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="70.1">Controversia por el cambio</tspan><tspan x="22.68" y="82.3">de licencia de Terraform en</tspan><tspan x="22.68" y="94.5">HashiCorp, sustituyendo el</tspan><tspan x="22.68" y="106.7">código abierto por la</tspan><tspan x="22.68" y="118.9">licencia BSL.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">B3</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">2x7E</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">backend-distributed-systemsx3E</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 2x7F Frente -->
-    <g id="carta_2_7F_frente">
+    <!-- Tarjeta backend-distributed-systemsx3F Frente -->
+    <g id="carta_backend-distributed-systems_3F_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -242,23 +242,23 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="306.00" y="496.63" width="201.26" height="201.26" fill="#221811" />
+      <rect x="306.00" y="496.63" width="201.26" height="201.26" fill="#1f2211" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 505.13)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f18a3b">CÓMPUTO, IA Y DATOS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Cómputo Científico y Stack Analítico</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#d0eb6b"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="65.8">Creación de Dask, una</tspan><tspan x="22.68" y="77.3">librería para paralelismo</tspan><tspan x="22.68" y="88.8">flexible y computación</tspan><tspan x="22.68" y="100.3">escalada de arrays y</tspan><tspan x="22.68" y="111.8">DataFrames sobre clusters</tspan><tspan x="22.68" y="123.3">en Python.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="70.1">Fractura en el ecosistema</tspan><tspan x="22.68" y="82.3">de Redis tras el cambio de</tspan><tspan x="22.68" y="94.5">licencia de código abierto</tspan><tspan x="22.68" y="106.7">a licencias restrictivas de</tspan><tspan x="22.68" y="118.9">código disponible (RSALv2).</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">D1</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">2x7F</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">backend-distributed-systemsx3F</text>
 
         
       </g>

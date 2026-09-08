@@ -310,7 +310,7 @@ class HitTazosEngine {
       pill.addEventListener('click', () => {
         this.groupRibbon.querySelectorAll('.ribbon-pill').forEach(p => p.classList.remove('active'));
         pill.classList.add('active');
-        const grp = pill.getAttribute('data-group');
+        const grp = pill.getAttribute('data-volumen');
         this.selectActiveGroup(grp);
       });
     });
@@ -439,9 +439,9 @@ class HitTazosEngine {
       this.activeDeck = [...this.cards];
       this.hudGroupLabel.textContent = 'Todos los Grupos';
     } else {
-      this.activeDeck = this.cards.filter(c => c.grupo === grp);
-      const name = this.activeDeck[0]?.grupo_nombre || `Grupo ${grp}`;
-      this.hudGroupLabel.textContent = name;
+      this.activeDeck = this.cards.filter(c => c.volumen === grp);
+      const name = this.activeDeck[0]?.volumen.toUpperCase() || `Volumen ${grp}`;
+      this.hudGroupLabel.textContent = grp === 'ALL' ? 'Todos los Volúmenes' : name;
     }
     this.currentIndex = 0;
     this.renderActiveArenaCard();
@@ -455,7 +455,7 @@ class HitTazosEngine {
       .replace(/`([^`]+)`/g, '<code>$1</code>');
   }
 
-  getGroupIconName(grp) {
+  getDomainIconName(domain) {
     const map = {
       'A': 'terminal',
       'B': 'code-2',
@@ -463,7 +463,7 @@ class HitTazosEngine {
       'D': 'cpu',
       'E': 'shield-alert'
     };
-    return map[grp] || 'layers';
+    return 'layers'; // simplify for now
   }
 
   getEraLabel(year) {
@@ -478,7 +478,7 @@ class HitTazosEngine {
   }
 
   renderCenterArtifact(card) {
-    const grp = card.grupo;
+    const domain = card.domain;
     if (grp === 'A') {
       // 1. TERMINAL SHELL - Clean, razor-sharp Unix / Python interactive console
       return `
@@ -751,10 +751,10 @@ class HitTazosEngine {
   //  - 87..96: Turquesa / Cian cielo
   //  - 97..100+: Rojo carmín / Magenta intenso y morados profundos
   getCardTheme(card) {
-    let cardNum = card.card_number !== undefined ? card.card_number + 1 : card.globalIndex;
+    let cardNum = card.index !== undefined ? card.index + 1 : 1;
     if (!cardNum || isNaN(cardNum)) {
       const matchNum = (card.id || '').match(/(\d+)$/);
-      cardNum = matchNum ? parseInt(matchNum[1], 10) : 1;
+      cardNum = card.index !== undefined ? card.index + 1 : 1;
     }
     if (!cardNum || isNaN(cardNum)) cardNum = 1;
 
@@ -827,8 +827,8 @@ class HitTazosEngine {
     const yearStateClass = isRevealed ? 'is-revealed' : 'is-hidden';
 
     const hitoFormatted = this.formatMarkdown(card.hito);
-    const creadorFormatted = this.formatMarkdown(card.creador);
-    const triviaFormatted = this.formatMarkdown(card.dato_curioso);
+    const creadorFormatted = this.formatMarkdown(card.autor);
+    const triviaFormatted = this.formatMarkdown(card.trivia);
 
     // Timeline calculation (1950 - 2026)
     const minYear = 1950;
@@ -836,13 +836,13 @@ class HitTazosEngine {
     const clampedYear = Math.max(minYear, Math.min(maxYear, card.year));
     const percent = ((clampedYear - minYear) / (maxYear - minYear)) * 100;
 
-    const groupIcon = this.getGroupIconName(card.grupo);
+    const groupIcon = 'layers';
     const eraName = this.getEraLabel(card.year);
     const centerArtifactHTML = this.renderCenterArtifact(card);
 
     // Número de carta consecutivo (#001..#N)
     const volId = card.volumen !== undefined ? card.volumen : 0;
-    const hexPart = card.card_number_hex ? card.card_number_hex.substring(2) : (card.card_number !== undefined ? card.card_number : (card.globalIndex || 1)).toString(16).toUpperCase().padStart(2, '0');
+    const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
     const cardNumStr = `${volId}x${hexPart}`;
 
     // Tema cromático Hit-Tazos Tech
@@ -854,9 +854,9 @@ class HitTazosEngine {
         <div class="card-topbar-minimal">
           <span class="group-badge-tiny">
             <i data-lucide="${groupIcon}"></i>
-            ${card.grupo_nombre.toUpperCase()}
+            ${card.domain.toUpperCase()}
           </span>
-          <span class="category-badge-tiny">${card.categoria_nombre}</span>
+          <span class="category-badge-tiny">${card.tag}</span>
         </div>
 
         <div class="clue-stage-pure">
@@ -864,7 +864,7 @@ class HitTazosEngine {
         </div>
 
         <div class="card-footbar-minimal">
-          <span class="corner-meta-left">${card.categoria}</span>
+          <span class="corner-meta-left">${card.tag}</span>
           <span class="flip-pill"><i data-lucide="rotate-cw"></i> Voltear</span>
           <span class="corner-meta-right">${cardNumStr}</span>
         </div>
@@ -892,7 +892,7 @@ class HitTazosEngine {
         </div>
 
         <div class="card-footbar-minimal">
-          <span class="corner-meta-left">${card.categoria}</span>
+          <span class="corner-meta-left">${card.tag}</span>
           <span class="corner-meta-right">${volId}x${hexPart}</span>
         </div>
       </div>
@@ -906,7 +906,7 @@ class HitTazosEngine {
     this.cardStage.innerHTML = '';
     const cardEl = document.createElement('div');
     cardEl.id = 'active-card-3d';
-    cardEl.className = `hittazos-card-3d theme-${card.grupo}`;
+    cardEl.className = `hittazos-card-3d theme-${card.domain}`;
     cardEl.innerHTML = this.buildCardHTML(card, { isRevealed: false });
 
     this.cardStage.appendChild(cardEl);
@@ -1220,9 +1220,9 @@ class HitTazosEngine {
     this.shelfCardsContainer.innerHTML = '';
     this.playerShelf.forEach(c => {
       const chip = document.createElement('div');
-      chip.className = `shelf-card-chip theme-${c.grupo}`;
+      chip.className = `shelf-card-chip theme-${c.domain}`;
       const volId = c.volumen !== undefined ? c.volumen : 0;
-      const hexPart = c.card_number_hex ? c.card_number_hex.substring(2) : (c.card_number !== undefined ? c.card_number : (c.globalIndex || 1)).toString(16).toUpperCase().padStart(2, '0');
+      const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
       const chipNum = `${volId}x${hexPart}`;
       chip.innerHTML = `
         <div class="shelf-year">${c.year}</div>
@@ -1276,12 +1276,12 @@ class HitTazosEngine {
     const sort = this.selectSortOrder.value;
 
     this.filteredCatalog = this.cards.filter(c => {
-      const matchGrp = grp === 'ALL' || c.grupo === grp;
-      const numStr = c.card_number !== undefined ? String(c.card_number) : '';
+      const matchGrp = grp === 'ALL' || c.volumen === grp;
+      const numStr = c.index !== undefined ? String(c.index) : '';
       const matchQ = !q ||
         c.hito.toLowerCase().includes(q) ||
-        c.creador.toLowerCase().includes(q) ||
-        c.dato_curioso.toLowerCase().includes(q) ||
+        c.autor.toLowerCase().includes(q) ||
+        c.trivia.toLowerCase().includes(q) ||
         numStr.includes(q) ||
         `#${numStr}`.includes(q);
       return matchGrp && matchQ;
@@ -1292,7 +1292,7 @@ class HitTazosEngine {
     } else if (sort === 'YEAR_DESC') {
       this.filteredCatalog.sort((a, b) => b.year - a.year);
     } else if (sort === 'DECK_ORDER') {
-      this.filteredCatalog.sort((a, b) => (a.card_number !== undefined ? a.card_number : 0) - (b.card_number !== undefined ? b.card_number : 0));
+      this.filteredCatalog.sort((a, b) => (a.index !== undefined ? a.index : 0) - (b.index !== undefined ? b.index : 0));
     }
 
     this.renderCatalog();
@@ -1307,7 +1307,7 @@ class HitTazosEngine {
       cell.className = 'catalog-card-cell';
 
       const cardEl = document.createElement('div');
-      cardEl.className = `hittazos-card-3d theme-${card.grupo}`;
+      cardEl.className = `hittazos-card-3d theme-${card.domain}`;
       cardEl.innerHTML = this.buildCardHTML(card, { isRevealed: false });
 
       const yearStage = cardEl.querySelector('.year-center-stage');
@@ -1364,7 +1364,7 @@ class HitTazosEngine {
       const currentActivePill = this.groupRibbon.querySelector('.ribbon-pill.active');
       const activeGrp = currentActivePill ? currentActivePill.getAttribute('data-group') : 'ALL';
       if (activeGrp && activeGrp !== 'ALL') {
-        targetCards = targetCards.filter(c => c.grupo === activeGrp);
+        targetCards = targetCards.filter(c => c.volumen === activeGrp);
       }
     }
     // Si es 'ALL' toma todas las cartas de la baraja completa
@@ -1398,10 +1398,10 @@ class HitTazosEngine {
 
         if (card) {
           const theme = this.getCardTheme(card);
-          const groupIcon = this.getGroupIconName(card.grupo);
+          const groupIcon = 'layers';
           const hitoFormatted = this.formatMarkdown(card.hito);
           const volId = card.volumen !== undefined ? card.volumen : 0;
-          const hexPart = card.card_number_hex ? card.card_number_hex.substring(2) : (card.card_number !== undefined ? card.card_number : (card.globalIndex || 1)).toString(16).toUpperCase().padStart(2, '0');
+          const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
           const cardNumStr = `${volId}x${hexPart}`;
 
           box.innerHTML = `
@@ -1409,15 +1409,15 @@ class HitTazosEngine {
               <div class="card-topbar-minimal">
                 <span class="group-badge-tiny">
                   <i data-lucide="${groupIcon}"></i>
-                  ${card.grupo_nombre}
+                  ${card.domain}
                 </span>
-                <span class="category-badge-tiny">${card.categoria_nombre}</span>
+                <span class="category-badge-tiny">${card.tag}</span>
               </div>
               <div class="clue-stage-pure">
                 <p class="clue-quote">${hitoFormatted}</p>
               </div>
               <div class="card-footbar-minimal">
-                <span class="corner-meta-left">${card.categoria}</span>
+                <span class="corner-meta-left">${card.tag}</span>
                 <span class="corner-meta-right">${cardNumStr}</span>
               </div>
             </div>
@@ -1456,10 +1456,10 @@ class HitTazosEngine {
 
         if (card) {
           const theme = this.getCardTheme(card);
-          const creadorFormatted = this.formatMarkdown(card.creador);
-          const triviaFormatted = this.formatMarkdown(card.dato_curioso);
+          const creadorFormatted = this.formatMarkdown(card.autor);
+          const triviaFormatted = this.formatMarkdown(card.trivia);
           const volId = card.volumen !== undefined ? card.volumen : 0;
-          const hexPart = card.card_number_hex ? card.card_number_hex.substring(2) : (card.card_number !== undefined ? card.card_number : (card.globalIndex || 1)).toString(16).toUpperCase().padStart(2, '0');
+          const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
           const cardNumStr = `${volId}x${hexPart}`;
 
           box.innerHTML = `
@@ -1474,7 +1474,7 @@ class HitTazosEngine {
                 <div class="back-trivia-phrase">${triviaFormatted}</div>
               </div>
               <div class="card-footbar-minimal">
-                <span class="corner-meta-left">${card.categoria}</span>
+                <span class="corner-meta-left">${card.tag}</span>
                 <span class="corner-meta-right">${volId}x${hexPart}</span>
               </div>
             </div>

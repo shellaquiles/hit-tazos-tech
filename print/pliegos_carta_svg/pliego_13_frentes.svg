@@ -23,8 +23,8 @@
     <text x="498.76" y="90.61" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO (LONG EDGE)</text>
   </g>
   <g id="tarjetas_frente">
-    <!-- Tarjeta 0x48 Frente -->
-    <g id="carta_0_48_frente">
+    <!-- Tarjeta kernel-foundationsx48 Frente -->
+    <g id="carta_kernel-foundations_48_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -47,24 +47,24 @@
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 102.61)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#82e3da">UNIVERSO PYTHON</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Tooling, Empaquetado y Ola Rust</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#78e3dd"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="9" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="75.0">Expansión de uv como gestor</tspan><tspan x="22.68" y="88.0">integral de proyectos,</tspan><tspan x="22.68" y="101.0">scripts monosemilla y</tspan><tspan x="22.68" y="114.0">versiones de Python.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="70.1">Vulnerabilidad crítica en</tspan><tspan x="22.68" y="82.3">el protocolo DNS,</tspan><tspan x="22.68" y="94.5">permitiendo suplantar</tspan><tspan x="22.68" y="106.7">dominios mediante</tspan><tspan x="22.68" y="118.9">envenenamiento de caché.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">A5</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">0x48</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">kernel-foundationsx48</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 0x49 Frente -->
-    <g id="carta_0_49_frente">
+    <!-- Tarjeta kernel-foundationsx49 Frente -->
+    <g id="carta_kernel-foundations_49_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -82,29 +82,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="306.00" y="94.11" width="201.26" height="201.26" fill="#112221" />
+      <rect x="306.00" y="94.11" width="201.26" height="201.26" fill="#112222" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 102.61)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#78e3dd">UNIVERSO PYTHON</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Runtimes, Intérpretes y GIL</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#6ce4e2"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Reescritura del compilador</tspan><tspan x="22.68" y="82.3">de CPython introduciendo la</tspan><tspan x="22.68" y="94.5">estructura de Árbol de</tspan><tspan x="22.68" y="106.7">Sintaxis Abstracta (AST)</tspan><tspan x="22.68" y="118.9">formal mediante el PEP 339.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="9" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="75.0">Reemplazo de optparse por</tspan><tspan x="22.68" y="88.0">el nuevo módulo estándar</tspan><tspan x="22.68" y="101.0">argparse para parsing de</tspan><tspan x="22.68" y="114.0">CLI mediante el PEP 389.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">A2</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">0x49</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">kernel-foundationsx49</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 0x4A Frente -->
-    <g id="carta_0_4A_frente">
+    <!-- Tarjeta kernel-foundationsx4A Frente -->
+    <g id="carta_kernel-foundations_4A_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -127,24 +127,24 @@
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 303.87)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#6ce4e2">UNIVERSO PYTHON</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Tooling, Empaquetado y Ola Rust</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#62e2e4"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="65.8">Nacimiento de Conda, el</tspan><tspan x="22.68" y="77.3">gestor de paquetes y</tspan><tspan x="22.68" y="88.8">entornos binarios</tspan><tspan x="22.68" y="100.3">multiplataforma creado para</tspan><tspan x="22.68" y="111.8">el ecosistema analítico y</tspan><tspan x="22.68" y="123.3">científico.</tspan>
+          <tspan x="22.68" y="65.8">Debut del framework de</tspan><tspan x="22.68" y="77.3">testing pytest,</tspan><tspan x="22.68" y="88.8">revolucionando la</tspan><tspan x="22.68" y="100.3">verificación de código</tspan><tspan x="22.68" y="111.8">mediante reescritura de la</tspan><tspan x="22.68" y="123.3">sentencia estándar assert.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">A5</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">0x4A</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">kernel-foundationsx4A</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 0x4B Frente -->
-    <g id="carta_0_4B_frente">
+    <!-- Tarjeta kernel-foundationsx4B Frente -->
+    <g id="carta_kernel-foundations_4B_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -167,24 +167,24 @@
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 303.87)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#62e2e4">CULTURA HACKER Y LEYENDAS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">P2P, Fenómenos de Internet y Guerras Digitales</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#57dee5"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="65.8">Lanzamiento de Napster,</tspan><tspan x="22.68" y="77.3">desatando la primera</tspan><tspan x="22.68" y="88.8">revolución planetaria de</tspan><tspan x="22.68" y="100.3">intercambio de música en</tspan><tspan x="22.68" y="111.8">archivos MP3 punto a punto</tspan><tspan x="22.68" y="123.3">(P2P).</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="70.1">Anuncio de Go por Google,</tspan><tspan x="22.68" y="82.3">diseñado para compilar en</tspan><tspan x="22.68" y="94.5">segundos y simplificar</tspan><tspan x="22.68" y="106.7">concurrencia con</tspan><tspan x="22.68" y="118.9">goroutines.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">E5</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">0x4B</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">kernel-foundationsx4B</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 0x4C Frente -->
-    <g id="carta_0_4C_frente">
+    <!-- Tarjeta kernel-foundationsx4C Frente -->
+    <g id="carta_kernel-foundations_4C_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -202,29 +202,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="104.74" y="496.63" width="201.26" height="201.26" fill="#112222" />
+      <rect x="104.74" y="496.63" width="201.26" height="201.26" fill="#112122" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(113.24, 505.13)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#57dee5">SOFTWARE, WEB Y DATOS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Herramientas Dev y Control de Versiones</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#4dd8e5"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Aparición de Sublime Text,</tspan><tspan x="22.68" y="82.3">conquistando a los</tspan><tspan x="22.68" y="94.5">desarrolladores por su</tspan><tspan x="22.68" y="106.7">velocidad instantánea y su</tspan><tspan x="22.68" y="118.9">minimapa lateral de código.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="65.8">Creación de Redis (REmote</tspan><tspan x="22.68" y="77.3">DIctionary Server),</tspan><tspan x="22.68" y="88.8">revolucionando el</tspan><tspan x="22.68" y="100.3">almacenamiento en memoria</tspan><tspan x="22.68" y="111.8">con estructuras de datos</tspan><tspan x="22.68" y="123.3">complejas nativas.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">B3</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">0x4C</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">kernel-foundationsx4C</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 0x4D Frente -->
-    <g id="carta_0_4D_frente">
+    <!-- Tarjeta kernel-foundationsx4D Frente -->
+    <g id="carta_kernel-foundations_4D_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -242,23 +242,23 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="306.00" y="496.63" width="201.26" height="201.26" fill="#112122" />
+      <rect x="306.00" y="496.63" width="201.26" height="201.26" fill="#112022" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(314.50, 505.13)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#4dd8e5">SOFTWARE, WEB Y DATOS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Bases de Datos y Almacenamiento</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#40d2e7"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Lanzamiento de Memcached,</tspan><tspan x="22.68" y="82.3">un sistema distribuido de</tspan><tspan x="22.68" y="94.5">caché en memoria RAM para</tspan><tspan x="22.68" y="106.7">acelerar la carga de sitios</tspan><tspan x="22.68" y="118.9">web dinámicos.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="60.0">Nacimiento de MongoDB,</tspan><tspan x="22.68" y="71.5">apostando por el</tspan><tspan x="22.68" y="83.0">almacenamiento de</tspan><tspan x="22.68" y="94.5">documentos</tspan><tspan x="22.68" y="106.0">semiestructurados en</tspan><tspan x="22.68" y="117.5">formato binario BSON y</tspan><tspan x="22.68" y="129.0">esquemas dinámicos.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">B5</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">0x4D</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">kernel-foundationsx4D</text>
 
         
       </g>

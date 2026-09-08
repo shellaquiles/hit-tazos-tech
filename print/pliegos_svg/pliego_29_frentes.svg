@@ -23,8 +23,8 @@
     <text x="689.39" y="105.35" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO (LONG EDGE)</text>
   </g>
   <g id="tarjetas_frente">
-    <!-- Tarjeta 3x24 Frente -->
-    <g id="carta_3_24_frente">
+    <!-- Tarjeta cloud-containers-srex24 Frente -->
+    <g id="carta_cloud-containers-sre_24_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -47,24 +47,24 @@
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(102.61, 117.35)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#c074d8">CULTURA HACKER Y LEYENDAS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Desastres de Software y Bugs Críticos</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#bf6ad7"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Pérdida de la nave Mars</tspan><tspan x="22.68" y="82.3">Climate Orbiter,</tspan><tspan x="22.68" y="94.5">desintegrada en Marte por</tspan><tspan x="22.68" y="106.7">una catastrófica confusión</tspan><tspan x="22.68" y="118.9">de unidades de medida.</tspan>
+          <tspan x="22.68" y="70.1">Presentación pública de</tspan><tspan x="22.68" y="82.3">Kubernetes (K8s) como</tspan><tspan x="22.68" y="94.5">proyecto de código abierto</tspan><tspan x="22.68" y="106.7">inspirado en los sistemas</tspan><tspan x="22.68" y="118.9">internos Borg y Omega.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">E3</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">3x24</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cloud-containers-srex24</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x25 Frente -->
-    <g id="carta_3_25_frente">
+    <!-- Tarjeta cloud-containers-srex25 Frente -->
+    <g id="carta_cloud-containers-sre_25_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -82,29 +82,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="295.37" y="108.85" width="201.26" height="201.26" fill="#1e1122" />
+      <rect x="295.37" y="108.85" width="201.26" height="201.26" fill="#1f1122" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(303.87, 117.35)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#bf6ad7">SOFTWARE, WEB Y DATOS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Genealogía de Lenguajes de Programación</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#c163d9"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Lanzamiento de Erlang en</tspan><tspan x="22.68" y="82.3">Ericsson, implementando el</tspan><tspan x="22.68" y="94.5">modelo de actores para</tspan><tspan x="22.68" y="106.7">telecomunicaciones</tspan><tspan x="22.68" y="118.9">tolerantes a fallos.</tspan>
+          <tspan x="22.68" y="70.1">Presentación de AWS Lambda</tspan><tspan x="22.68" y="82.3">en la conferencia</tspan><tspan x="22.68" y="94.5">re:Invent, inaugurando la</tspan><tspan x="22.68" y="106.7">era de la computación</tspan><tspan x="22.68" y="118.9">Serverless (FaaS).</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">B1</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">3x25</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cloud-containers-srex25</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x26 Frente -->
-    <g id="carta_3_26_frente">
+    <!-- Tarjeta cloud-containers-srex26 Frente -->
+    <g id="carta_cloud-containers-sre_26_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -127,24 +127,24 @@
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(505.13, 117.35)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#c163d9">SOFTWARE, WEB Y DATOS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Herramientas Dev y Control de Versiones</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#c159d9"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="65.8">Fallecimiento de Bram</tspan><tspan x="22.68" y="77.3">Moolenaar, conmocionando a</tspan><tspan x="22.68" y="88.8">la comunidad global de</tspan><tspan x="22.68" y="100.3">desarrollo tras 32 años de</tspan><tspan x="22.68" y="111.8">custodia ininterrumpida de</tspan><tspan x="22.68" y="123.3">Vim.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="70.1">Presentación de Consul</tspan><tspan x="22.68" y="82.3">(HashiCorp), resolviendo</tspan><tspan x="22.68" y="94.5">descubrimiento de servicios</tspan><tspan x="22.68" y="106.7">y configuración distribuida</tspan><tspan x="22.68" y="118.9">vía Raft.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">B3</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">3x26</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cloud-containers-srex26</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x27 Frente -->
-    <g id="carta_3_27_frente">
+    <!-- Tarjeta cloud-containers-srex27 Frente -->
+    <g id="carta_cloud-containers-sre_27_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -167,24 +167,24 @@
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(102.61, 318.61)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#c159d9">CÓMPUTO, IA Y DATOS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Hitos Competitivos (Máquinas vs. Humanos)</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#c24eda"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Otorgamiento del Premio</tspan><tspan x="22.68" y="82.3">Nobel de Química a Demis</tspan><tspan x="22.68" y="94.5">Hassabis y John Jumper de</tspan><tspan x="22.68" y="106.7">DeepMind por su desarrollo</tspan><tspan x="22.68" y="118.9">de AlphaFold.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="65.8">Lanzamiento de Terraform</tspan><tspan x="22.68" y="77.3">0.1, consolidando el</tspan><tspan x="22.68" y="88.8">paradigma de</tspan><tspan x="22.68" y="100.3">Infraestructura como Código</tspan><tspan x="22.68" y="111.8">(IaC) agnóstico a cualquier</tspan><tspan x="22.68" y="123.3">proveedor de nube.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">D3</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">3x27</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cloud-containers-srex27</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x28 Frente -->
-    <g id="carta_3_28_frente">
+    <!-- Tarjeta cloud-containers-srex28 Frente -->
+    <g id="carta_cloud-containers-sre_28_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -202,29 +202,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="295.37" y="310.11" width="201.26" height="201.26" fill="#1f1122" />
+      <rect x="295.37" y="310.11" width="201.26" height="201.26" fill="#221d11" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(303.87, 318.61)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#c24eda">SOFTWARE, WEB Y DATOS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Herramientas Dev y Control de Versiones</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f2cf7d"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="9" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="75.0">Desarrollo de Vi, el editor</tspan><tspan x="22.68" y="88.0">modal de pantalla completa</tspan><tspan x="22.68" y="101.0">incluido en la primera</tspan><tspan x="22.68" y="114.0">distribución BSD de Unix.</tspan>
+          <tspan x="22.68" y="75.0">Donación oficial y</tspan><tspan x="22.68" y="88.0">graduación de Kubernetes</tspan><tspan x="22.68" y="101.0">1.0 bajo la tutela de la</tspan><tspan x="22.68" y="114.0">nueva fundación CNCF.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">B3</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">3x28</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cloud-containers-srex28</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x29 Frente -->
-    <g id="carta_3_29_frente">
+    <!-- Tarjeta cloud-containers-srex29 Frente -->
+    <g id="carta_cloud-containers-sre_29_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -247,24 +247,24 @@
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(505.13, 318.61)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f2cf7d">DEVOPS E INFRAESTRUCTURA</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Automatización e Infraestructura como Código</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f3ce72"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="65.8">Creación de Helm, el gestor</tspan><tspan x="22.68" y="77.3">de paquetes de aplicaciones</tspan><tspan x="22.68" y="88.8">para orquestar despliegues</tspan><tspan x="22.68" y="100.3">repetibles de Kubernetes</tspan><tspan x="22.68" y="111.8">mediante plantillas</tspan><tspan x="22.68" y="123.3">(charts).</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="70.1">Fundación de la CNCF y la</tspan><tspan x="22.68" y="82.3">OCI para salvaguardar la</tspan><tspan x="22.68" y="94.5">interoperabilidad y</tspan><tspan x="22.68" y="106.7">estándares abiertos de</tspan><tspan x="22.68" y="118.9">contenedores.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">C4</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">3x29</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cloud-containers-srex29</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x2A Frente -->
-    <g id="carta_3_2A_frente">
+    <!-- Tarjeta cloud-containers-srex2A Frente -->
+    <g id="carta_cloud-containers-sre_2A_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -287,24 +287,24 @@
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(102.61, 519.87)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f3ce72">DEVOPS E INFRAESTRUCTURA</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Contenedores, Aislamiento y Virtualización</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f3cc68"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="9" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="75.0">Donación oficial y</tspan><tspan x="22.68" y="88.0">graduación de Kubernetes</tspan><tspan x="22.68" y="101.0">1.0 bajo la tutela de la</tspan><tspan x="22.68" y="114.0">nueva fundación CNCF.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="65.8">Adquisición millonaria de</tspan><tspan x="22.68" y="77.3">Ansible por parte de Red</tspan><tspan x="22.68" y="88.8">Hat para integrarlo como el</tspan><tspan x="22.68" y="100.3">cerebro de automatización</tspan><tspan x="22.68" y="111.8">de sus soluciones</tspan><tspan x="22.68" y="123.3">empresariales.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">C2</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">3x2A</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cloud-containers-srex2A</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x2B Frente -->
-    <g id="carta_3_2B_frente">
+    <!-- Tarjeta cloud-containers-srex2B Frente -->
+    <g id="carta_cloud-containers-sre_2B_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -322,29 +322,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="295.37" y="511.37" width="201.26" height="201.26" fill="#221d11" />
+      <rect x="295.37" y="511.37" width="201.26" height="201.26" fill="#221e11" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(303.87, 519.87)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f3cc68">SOFTWARE, WEB Y DATOS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Genealogía de Lenguajes de Programación</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f4cd62"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Estandarización de</tspan><tspan x="22.68" y="82.3">WebAssembly (Wasm) como el</tspan><tspan x="22.68" y="94.5">cuarto lenguaje oficial de</tspan><tspan x="22.68" y="106.7">la web junto a HTML, CSS y</tspan><tspan x="22.68" y="118.9">JavaScript.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="65.8">Creación de Helm, el gestor</tspan><tspan x="22.68" y="77.3">de paquetes de aplicaciones</tspan><tspan x="22.68" y="88.8">para orquestar despliegues</tspan><tspan x="22.68" y="100.3">repetibles de Kubernetes</tspan><tspan x="22.68" y="111.8">mediante plantillas</tspan><tspan x="22.68" y="123.3">(charts).</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">B1</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">3x2B</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cloud-containers-srex2B</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x2C Frente -->
-    <g id="carta_3_2C_frente">
+    <!-- Tarjeta cloud-containers-srex2C Frente -->
+    <g id="carta_cloud-containers-sre_2C_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -367,24 +367,24 @@
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(505.13, 519.87)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f4cd62">UNIVERSO PYTHON</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Python Core, Sintaxis y PEPs</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f4cc57"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Incorporación de primitivas</tspan><tspan x="22.68" y="82.3">de programación funcional</tspan><tspan x="22.68" y="94.5">como lambda, map(),</tspan><tspan x="22.68" y="106.7">filter() y reduce() en el</tspan><tspan x="22.68" y="118.9">lanzamiento de Python 1.0.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="65.8">Extracción y publicación de</tspan><tspan x="22.68" y="77.3">containerd como un daemon</tspan><tspan x="22.68" y="88.8">de ejecución de</tspan><tspan x="22.68" y="100.3">contenedores desacoplado e</tspan><tspan x="22.68" y="111.8">independiente por parte de</tspan><tspan x="22.68" y="123.3">Docker.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">A1</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">3x2C</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cloud-containers-srex2C</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x2D Frente -->
-    <g id="carta_3_2D_frente">
+    <!-- Tarjeta cloud-containers-srex2D Frente -->
+    <g id="carta_cloud-containers-sre_2D_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -407,24 +407,24 @@
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(102.61, 721.13)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f4cc57">CULTURA HACKER Y LEYENDAS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Desastres de Software y Bugs Críticos</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f6cc4c"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Colapso del exchange Mt.</tspan><tspan x="22.68" y="82.3">Gox tras el robo de 850,000</tspan><tspan x="22.68" y="94.5">bitcoins por fallas en</tspan><tspan x="22.68" y="106.7">maleabilidad de</tspan><tspan x="22.68" y="118.9">transacciones.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="65.8">Lanzamiento de Cloudflare</tspan><tspan x="22.68" y="77.3">Workers, permitiendo</tspan><tspan x="22.68" y="88.8">ejecutar lógica de backend</tspan><tspan x="22.68" y="100.3">en el borde (Edge) de la</tspan><tspan x="22.68" y="111.8">red mediante aislamientos</tspan><tspan x="22.68" y="123.3">de V8.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">E3</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">3x2D</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cloud-containers-srex2D</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x2E Frente -->
-    <g id="carta_3_2E_frente">
+    <!-- Tarjeta cloud-containers-srex2E Frente -->
+    <g id="carta_cloud-containers-sre_2E_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -447,24 +447,24 @@
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(303.87, 721.13)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f6cc4c">UNIVERSO PYTHON</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Python Core, Sintaxis y PEPs</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f6cc41"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Primera publicación en</tspan><tspan x="22.68" y="82.3">alt.sources del código</tspan><tspan x="22.68" y="94.5">fuente de Python (0.9.0),</tspan><tspan x="22.68" y="106.7">con soporte para clases,</tspan><tspan x="22.68" y="118.9">herencia y excepciones.</tspan>
+          <tspan x="22.68" y="70.1">Lanzamiento de Podman en</tspan><tspan x="22.68" y="82.3">Red Hat, ejecutando</tspan><tspan x="22.68" y="94.5">contenedores sin demonio</tspan><tspan x="22.68" y="106.7">central y en modo rootless</tspan><tspan x="22.68" y="118.9">sin root.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">A1</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">3x2E</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cloud-containers-srex2E</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x2F Frente -->
-    <g id="carta_3_2F_frente">
+    <!-- Tarjeta cloud-containers-srex2F Frente -->
+    <g id="carta_cloud-containers-sre_2F_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -487,24 +487,24 @@
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(505.13, 721.13)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f6cc41">DEVOPS E INFRAESTRUCTURA</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Automatización e Infraestructura como Código</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f8ce3a"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Lanzamiento de GitHub</tspan><tspan x="22.68" y="82.3">Actions, integrando CI/CD y</tspan><tspan x="22.68" y="94.5">flujos de trabajo</tspan><tspan x="22.68" y="106.7">automatizados directo en</tspan><tspan x="22.68" y="118.9">los repositorios.</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="65.8">Popularización de los</tspan><tspan x="22.68" y="77.3">despliegues web</tspan><tspan x="22.68" y="88.8">instantáneos con enlaces de</tspan><tspan x="22.68" y="100.3">vista previa por rama</tspan><tspan x="22.68" y="111.8">mediante la plataforma</tspan><tspan x="22.68" y="123.3">Vercel.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">C4</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">3x2F</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cloud-containers-srex2F</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x30 Frente -->
-    <g id="carta_3_30_frente">
+    <!-- Tarjeta cloud-containers-srex30 Frente -->
+    <g id="carta_cloud-containers-sre_30_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -522,29 +522,29 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="94.11" y="913.89" width="201.26" height="201.26" fill="#221e11" />
+      <rect x="94.11" y="913.89" width="201.26" height="201.26" fill="#221f11" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(102.61, 922.39)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f8ce3a">UNIVERSO PYTHON</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Python Core, Sintaxis y PEPs</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f9ce2f"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.6" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="70.1">Creación de la sentencia</tspan><tspan x="22.68" y="82.3">assert y del módulo de</tspan><tspan x="22.68" y="94.5">expresiones regulares re</tspan><tspan x="22.68" y="106.7">compatible con la sintaxis</tspan><tspan x="22.68" y="118.9">de Perl en Python 1.5.</tspan>
+          <tspan x="22.68" y="70.1">Presentación de Argo CD, un</tspan><tspan x="22.68" y="82.3">controlador declarativo de</tspan><tspan x="22.68" y="94.5">despliegue continuo para</tspan><tspan x="22.68" y="106.7">Kubernetes guiado por</tspan><tspan x="22.68" y="118.9">principios GitOps.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">A1</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">3x30</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cloud-containers-srex30</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x31 Frente -->
-    <g id="carta_3_31_frente">
+    <!-- Tarjeta cloud-containers-srex31 Frente -->
+    <g id="carta_cloud-containers-sre_31_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -567,24 +567,24 @@
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(303.87, 922.39)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#f9ce2f">CÓMPUTO, IA Y DATOS</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Papers y Avances Fundacionales de ML/DL</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#fbcf23"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
         <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="65.8">Publicación del algoritmo</tspan><tspan x="22.68" y="77.3">Word2Vec, demostrando que</tspan><tspan x="22.68" y="88.8">vectores matemáticos de</tspan><tspan x="22.68" y="100.3">palabras podían codificar</tspan><tspan x="22.68" y="111.8">relaciones semánticas</tspan><tspan x="22.68" y="123.3">precisas.</tspan>
+          <tspan x="22.68" y="65.8">Acuñación del concepto</tspan><tspan x="22.68" y="77.3">GitOps, proponiendo que los</tspan><tspan x="22.68" y="88.8">repositorios de Git sean la</tspan><tspan x="22.68" y="100.3">única fuente de verdad para</tspan><tspan x="22.68" y="111.8">la infraestructura en</tspan><tspan x="22.68" y="123.3">Kubernetes.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">D2</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">3x31</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cloud-containers-srex31</text>
 
         
       </g>
     </g>
-    <!-- Tarjeta 3x32 Frente -->
-    <g id="carta_3_32_frente">
+    <!-- Tarjeta cloud-containers-srex32 Frente -->
+    <g id="carta_cloud-containers-sre_32_frente">
             <!-- Marcas de corte (Crop marks 5mm) -->
       <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
         <!-- Top-Left -->
@@ -602,23 +602,23 @@
       </g>
 
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="496.63" y="913.89" width="201.26" height="201.26" fill="#221f11" />
+      <rect x="496.63" y="913.89" width="201.26" height="201.26" fill="#121122" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(505.13, 922.39)">
         <!-- Cabecera protegida (>= 8.5mm del borde superior) -->
-        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#fbcf23">UNIVERSO PYTHON</text>
-        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0">Runtimes, Intérpretes y GIL</text>
+        <text x="22.68" y="25" font-family="'Outfit', sans-serif" font-size="6.5" font-weight="800" fill="#a6a1de"></text>
+        <text x="22.68" y="34" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="400" fill="#a0aec0"></text>
         <line x1="22.68" y1="38" x2="161.57" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width="0.5" />
 
         <!-- Pista técnica centrada ópticamente -->
-        <text font-family="'Outfit', sans-serif" font-size="9" font-weight="400" fill="#ffffff">
-          <tspan x="22.68" y="75.0">Nacimiento de JPython</tspan><tspan x="22.68" y="88.0">(luego Jython), compilando</tspan><tspan x="22.68" y="101.0">código Python directamente</tspan><tspan x="22.68" y="114.0">a bytecode de Java (JVM).</tspan>
+        <text font-family="'Outfit', sans-serif" font-size="8.2" font-weight="400" fill="#ffffff">
+          <tspan x="22.68" y="65.8">Lanzamiento de Pulumi,</tspan><tspan x="22.68" y="77.3">permitiendo definir</tspan><tspan x="22.68" y="88.8">infraestructura de nube</tspan><tspan x="22.68" y="100.3">utilizando lenguajes de</tspan><tspan x="22.68" y="111.8">programación reales como</tspan><tspan x="22.68" y="123.3">Python, TypeScript y Go.</tspan>
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">A2</text>
-        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">3x32</text>
+        <text x="22.68" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)"></text>
+        <text x="161.57" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">cloud-containers-srex32</text>
 
         
       </g>
