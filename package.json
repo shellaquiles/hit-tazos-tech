@@ -5,8 +5,8 @@
   "main": "web/app.js",
   "scripts": {
     "build": "node scripts/build_cards.js",
-    "audit": "python3 scripts/scratch_audit.py",
-    "test": "python3 scripts/scratch_audit.py && node --check web/app.js && node --check scripts/build_cards.js && node --check print/render_print_tabloid.js && node --check scripts/generate_card_colors.js && node --check server.js",
+    "audit": "python3 scripts/audit_deck.py",
+    "test": "python3 scripts/audit_deck.py && node --check web/app.js && node --check scripts/build_cards.js && node --check print/render_print_tabloid.js && node --check scripts/generate_card_colors.js && node --check server.js",
     "validate": "npm test && npm run build",
     "serve": "node server.js",
     "colors:generate": "node scripts/generate_card_colors.js",

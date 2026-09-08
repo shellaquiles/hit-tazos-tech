@@ -18,9 +18,10 @@ globs: ["**/*.json", "render_print_tabloid.js", "build_cards.js"]
 
 ## 3. Flujo de Validación y Compilación
 Tras editar cualquier archivo JSON en `data/volumes/*.json`:
-1. `npm test` o `python3 scripts/scratch_audit.py` (debe dar 0 violaciones).
-2. `npm run build` (compila `data/cards.json` y `data/manifest.json`).
-3. `npm run print` (compila pliegos SVG y PDFs vectoriales oficiales: Tabloide, Carta y Super Tabloide).
+1. `npm run audit` o `python3 scripts/audit_deck.py` (auditoría en 4 niveles, límites y fuentes, debe dar 0 violaciones).
+2. `npm test` (suite integral de pruebas y sintaxis).
+3. `npm run build` (compila `data/cards.json` y `data/manifest.json`).
+4. `npm run print` (compila pliegos SVG y PDFs vectoriales oficiales: Tabloide, Carta y Super Tabloide).
 
 ## 4. Imposición Dúplex Milimétrica
 - Formatos: Tabloide (11×17", 15 cartas/pliego), Carta (8.5×11", 6 cartas/pliego) y Super Tabloide (12×18", 18 cartas/pliego).

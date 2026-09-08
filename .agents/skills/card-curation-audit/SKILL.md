@@ -30,12 +30,14 @@ Este skill define el procedimiento riguroso para auditar y curar tarjetas en el 
    - **Nivel 3 (Pedagógico):** **Una carta = una sola idea principal.** Sin sobrecarga cognitiva ni simplificaciones falsas.
    - **Nivel 4 (Editorial):** Cero lenguaje sensacionalista o novelesco (*"revolucionó para siempre"*, *"estándar indiscutible"*, *"colosal"*). Separar hecho histórico (anverso) de la trivia/contexto (reverso).
 
-3. **Auditoría Automatizada de Límites:**
+3. **Auditoría Automatizada de Límites, Spoilers y Fuentes:**
    Ejecutar siempre en la terminal:
    ```bash
-   npm test
+   npm run audit
+   # o bien:
+   python3 scripts/audit_deck.py
    ```
-   Asegurarse de que reporte `0` violaciones para `autor` ($\le 45$), `hito` ($\le 145$) y `trivia` ($\le 150$).
+   Asegurarse de que reporte `0` violaciones para `autor` ($\le 45$), `hito` ($\le 145$), `trivia` ($\le 150$), formato en negritas y respaldo en `data/audit.json`. Luego ejecutar `npm test`.
 
 4. **Verificación de Spoilers Temporales:**
    Revisar que ningún texto en `hito` contenga menciones explícitas de 4 dígitos que delaten el año antes de voltear la tarjeta.

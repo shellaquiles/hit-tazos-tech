@@ -160,7 +160,9 @@ Para garantizar que el juego enseñe hechos precisos y verificables sin sesgos n
 Cada vez que un agente o desarrollador modifique datos editoriales en `data/volumes/*.json` o código de renderizado, **debe ejecutar en orden estricto**:
 
 ```bash
-# Paso 1: Auditoría de caracteres, esquema y spoilers de fechas
+# Paso 1: Auditoría integral en 4 niveles (Data Contract, presupuestos, anti-spoilers y audit.json)
+npm run audit
+# o bien: python3 scripts/audit_deck.py
 npm test
 
 # Paso 2: Compilación de baraja maestra y actualización de manifest
