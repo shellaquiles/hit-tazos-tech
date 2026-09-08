@@ -244,7 +244,9 @@ class HitTazosEngine {
       });
       this.activeDeck = [...this.cards];
       this.filteredCatalog = [...this.cards];
-      this.counterTotal.textContent = this.cards.length;
+      if (this.counterTotal) {
+        this.counterTotal.textContent = this.cards.length;
+      }
 
       this.renderActiveArenaCard();
       this.renderCatalog();
@@ -839,7 +841,9 @@ class HitTazosEngine {
     const centerArtifactHTML = this.renderCenterArtifact(card);
 
     // Número de carta consecutivo (#001..#N)
-    const cardNumStr = card.card_number ? `#${String(card.card_number).padStart(3, '0')}` : '';
+    const volId = card.volumen !== undefined ? card.volumen : 0;
+    const hexPart = card.card_number_hex ? card.card_number_hex.substring(2) : (card.card_number || card.globalIndex || 1).toString(16).toUpperCase().padStart(2, '0');
+    const cardNumStr = `${volId}x${hexPart}`;
 
     // Tema cromático Hit-Tazos Tech
     const theme = this.getCardTheme(card);
@@ -889,7 +893,7 @@ class HitTazosEngine {
 
         <div class="card-footbar-minimal">
           <span class="corner-meta-left">${card.categoria}</span>
-          <span class="corner-meta-right">${String(card.card_number).padStart(3, '0')}</span>
+          <span class="corner-meta-right">${volId}x${hexPart}</span>
         </div>
       </div>
     `;
@@ -1209,7 +1213,7 @@ class HitTazosEngine {
   }
 
   addToShelf(card) {
-    if (this.playerShelf.some(c => c.card_number === card.card_number)) return;
+    if (this.playerShelf.some(c => c.globalIndex === card.globalIndex)) return;
     this.playerShelf.push(card);
     this.playerShelf.sort((a, b) => a.year - b.year);
 
@@ -1217,7 +1221,9 @@ class HitTazosEngine {
     this.playerShelf.forEach(c => {
       const chip = document.createElement('div');
       chip.className = `shelf-card-chip theme-${c.grupo}`;
-      const chipNum = c.card_number ? `#${String(c.card_number).padStart(3, '0')}` : '';
+      const volId = c.volumen !== undefined ? c.volumen : 0;
+      const hexPart = c.card_number_hex ? c.card_number_hex.substring(2) : (c.card_number || c.globalIndex || 1).toString(16).toUpperCase().padStart(2, '0');
+      const chipNum = `${volId}x${hexPart}`;
       chip.innerHTML = `
         <div class="shelf-year">${c.year}</div>
         <div class="shelf-id">${chipNum}</div>
@@ -1394,7 +1400,9 @@ class HitTazosEngine {
           const theme = this.getCardTheme(card);
           const groupIcon = this.getGroupIconName(card.grupo);
           const hitoFormatted = this.formatMarkdown(card.hito);
-          const cardNumStr = card.card_number ? `#${String(card.card_number).padStart(3, '0')}` : '';
+          const volId = card.volumen !== undefined ? card.volumen : 0;
+          const hexPart = card.card_number_hex ? card.card_number_hex.substring(2) : (card.card_number || card.globalIndex || 1).toString(16).toUpperCase().padStart(2, '0');
+          const cardNumStr = `${volId}x${hexPart}`;
 
           box.innerHTML = `
             <div class="print-card-face print-face-front" style="--hittazos-bg: ${theme.bg}; --card-bg: ${theme.bg}; --hittazos-front-bg: ${theme.frontBg}; --card-front-bg: ${theme.frontBg};">
@@ -1450,7 +1458,9 @@ class HitTazosEngine {
           const theme = this.getCardTheme(card);
           const creadorFormatted = this.formatMarkdown(card.creador);
           const triviaFormatted = this.formatMarkdown(card.dato_curioso);
-          const cardNumStr = card.card_number ? `#${String(card.card_number).padStart(3, '0')}` : '';
+          const volId = card.volumen !== undefined ? card.volumen : 0;
+          const hexPart = card.card_number_hex ? card.card_number_hex.substring(2) : (card.card_number || card.globalIndex || 1).toString(16).toUpperCase().padStart(2, '0');
+          const cardNumStr = `${volId}x${hexPart}`;
 
           box.innerHTML = `
             <div class="print-card-face print-face-back" style="--hittazos-bg: ${theme.bg}; --card-bg: ${theme.bg};">
@@ -1465,7 +1475,7 @@ class HitTazosEngine {
               </div>
               <div class="card-footbar-minimal">
                 <span class="corner-meta-left">${card.categoria}</span>
-                <span class="corner-meta-right">${String(card.card_number).padStart(3, '0')}</span>
+                <span class="corner-meta-right">${volId}x${hexPart}</span>
               </div>
             </div>
           `;
