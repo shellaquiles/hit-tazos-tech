@@ -27,7 +27,7 @@ Tras editar cualquier archivo JSON en `data/volumes/*.json`:
 - Formatos: Tabloide (11×17", 15 cartas/pliego), Carta (8.5×11", 6 cartas/pliego) y Super Tabloide (12×18", 18 cartas/pliego).
 - Tamaño de carta: $65 \times 65\text{ mm}$ ($184.25\text{ pt}$) con sangrado de +3 mm y calles de 6 mm.
 - Reversos: Espejados horizontalmente fila por fila para coincidencia perfecta al voltear por el borde largo.
-- Salidas PDF oficiales: `hit-tazos-tech-v{VERSION}-{formato}.pdf` con metadatos incrustados y fuentes TrueType (`Noto Sans`).
+- Salidas organizadas por versión en `print/v{VERSION}/`: PDFs oficiales `hit-tazos-tech-v{VERSION}-{formato}.pdf` y pliegos SVG en `print/v{VERSION}/svg/{formato}/`.
 
 ## 5. Estructura de Volúmenes y Paleta Cromática
 - El mazo consta de 576 cartas distribuidas en 8 volúmenes canónicos (`vol0` a `vol7`).

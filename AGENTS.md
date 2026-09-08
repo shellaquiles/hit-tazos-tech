@@ -150,9 +150,10 @@ Para garantizar que el juego enseñe hechos precisos y verificables sin sesgos n
 3. **Reversos Espejados:**
    - En Tabloide: cada fila $[A, B, C]$ en el anverso se espeja como $[C, B, A]$ en el reverso.
    - En Carta: cada fila $[A, B]$ en el anverso se espeja como $[B, A]$ en el reverso.
-4. **Nombres Oficiales de Salida:**
-   - Los PDFs de distribución se compilan directamente en `print/hit-tazos-tech-v{VERSION}-{formato}.pdf`.
-   - Los pliegos SVG individuales se organizan en `print/svg/{formato}/v{VERSION}/`.
+4. **Nombres y Estructura Oficial de Salida por Versión:**
+   - Todo el material de imprenta se organiza bajo su versión semántica: `print/v{VERSION}/`
+   - Los PDFs de distribución se compilan en: `print/v{VERSION}/hit-tazos-tech-v{VERSION}-{formato}.pdf`.
+   - Los pliegos SVG individuales se organizan en: `print/v{VERSION}/svg/{formato}/`.
    - Nunca generar archivos con sufijos redundantes (`_editable.pdf`).
 
 ---

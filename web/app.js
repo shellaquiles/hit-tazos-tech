@@ -223,10 +223,11 @@ class HitTazosEngine {
 
   async loadData() {
     try {
-      const [cards, colorsData, catalogData] = await Promise.all([
+      const [cards, colorsData, catalogData, manifestData] = await Promise.all([
         this.fetchFirst(['../data/cards.json', 'data/cards.json', '/data/cards.json', 'cards.json']),
         this.fetchFirst(['../data/card_colors.json', 'data/card_colors.json', '/data/card_colors.json', 'card_colors.json']),
-        this.fetchFirst(['../data/catalog.json', 'data/catalog.json', '/data/catalog.json', 'catalog.json'])
+        this.fetchFirst(['../data/catalog.json', 'data/catalog.json', '/data/catalog.json', 'catalog.json']),
+        this.fetchFirst(['../data/manifest.json', 'data/manifest.json', '/data/manifest.json', 'manifest.json'])
       ]);
 
       if (cards) {
@@ -245,6 +246,11 @@ class HitTazosEngine {
         this.cardColors = colorsData.cards || colorsData;
       }
 
+      if (manifestData) {
+        this.manifest = manifestData;
+        this.updatePrintPdfLinks(manifestData);
+      }
+
       // Asignar índice global continuo (1..N) para la correspondencia de color idéntica al mazo de 100 cartas
       this.cards.forEach((c, idx) => {
         c.globalIndex = idx + 1;
@@ -260,6 +266,59 @@ class HitTazosEngine {
       this.refreshIcons();
     } catch (err) {
       console.error('Error fetching cards or colors:', err);
+    }
+  }
+
+  updatePrintPdfLinks(manifest) {
+    if (!manifest) return;
+    const version = manifest.version || '1.0.0-rc3';
+    const totalCards = manifest.totalCards || this.cards.length || 576;
+
+    // Fórmulas dúplex oficiales:
+    // Carta: 6 cartas por pliego (2 x 3). Páginas dúplex = Math.ceil(totalCards / 6) * 2
+    const cartaSheets = Math.ceil(totalCards / 6);
+    const cartaPages = cartaSheets * 2;
+
+    // Tabloide: 15 cartas por pliego (3 x 5). Páginas dúplex = Math.ceil(totalCards / 15) * 2
+    const tabloideSheets = Math.ceil(totalCards / 15);
+    const tabloidePages = tabloideSheets * 2;
+
+    const cartaCard = document.getElementById('pdf-dl-carta');
+    if (cartaCard) {
+      const filename = `hit-tazos-tech-v${version}-carta.pdf`;
+      const url = `/print/v${version}/${filename}`;
+      cartaCard.setAttribute('href', url);
+      cartaCard.setAttribute('download', filename);
+
+      const verPill = cartaCard.querySelector('[data-role="version-pill"]');
+      if (verPill) verPill.textContent = `v${version}`;
+
+      const titleEl = cartaCard.querySelector('[data-role="pdf-title"]');
+      if (titleEl) titleEl.textContent = filename;
+
+      const specsEl = cartaCard.querySelector('[data-role="pdf-specs"]');
+      if (specsEl) {
+        specsEl.innerHTML = `${cartaPages} páginas dúplex &bull; 6 cartas/pliego &bull; Impresoras domésticas / oficina`;
+      }
+    }
+
+    const tabloideCard = document.getElementById('pdf-dl-tabloide');
+    if (tabloideCard) {
+      const filename = `hit-tazos-tech-v${version}-tabloide.pdf`;
+      const url = `/print/v${version}/${filename}`;
+      tabloideCard.setAttribute('href', url);
+      tabloideCard.setAttribute('download', filename);
+
+      const verPill = tabloideCard.querySelector('[data-role="version-pill"]');
+      if (verPill) verPill.textContent = `v${version}`;
+
+      const titleEl = tabloideCard.querySelector('[data-role="pdf-title"]');
+      if (titleEl) titleEl.textContent = filename;
+
+      const specsEl = tabloideCard.querySelector('[data-role="pdf-specs"]');
+      if (specsEl) {
+        specsEl.innerHTML = `${tabloidePages} páginas dúplex &bull; 15 cartas/pliego &bull; Prensa digital / imprenta`;
+      }
     }
   }
 

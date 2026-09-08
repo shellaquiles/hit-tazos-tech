@@ -215,8 +215,8 @@ const FORMAT_CONFIGS = {
     cols: 3,
     rows: 5,
     cardsPerSheet: 15,
-    svgDir: path.join(PRINT_DIR, `svg/tabloide/v${APP_VERSION}`),
-    pdfPath: path.join(PRINT_DIR, `hit-tazos-tech-v${APP_VERSION}-tabloide.pdf`)
+    svgDir: path.join(PRINT_DIR, `v${APP_VERSION}`, 'svg', 'tabloide'),
+    pdfPath: path.join(PRINT_DIR, `v${APP_VERSION}`, `hit-tazos-tech-v${APP_VERSION}-tabloide.pdf`)
   },
   '8x11': {
     id: '8x11',
@@ -228,8 +228,8 @@ const FORMAT_CONFIGS = {
     cols: 2,
     rows: 3,
     cardsPerSheet: 6,
-    svgDir: path.join(PRINT_DIR, `svg/carta/v${APP_VERSION}`),
-    pdfPath: path.join(PRINT_DIR, `hit-tazos-tech-v${APP_VERSION}-carta.pdf`)
+    svgDir: path.join(PRINT_DIR, `v${APP_VERSION}`, 'svg', 'carta'),
+    pdfPath: path.join(PRINT_DIR, `v${APP_VERSION}`, `hit-tazos-tech-v${APP_VERSION}-carta.pdf`)
   },
   '12x18': {
     id: '12x18',
@@ -241,8 +241,8 @@ const FORMAT_CONFIGS = {
     cols: 3,
     rows: 6,
     cardsPerSheet: 18,
-    svgDir: path.join(PRINT_DIR, `svg/super_tabloide/v${APP_VERSION}`),
-    pdfPath: path.join(PRINT_DIR, `hit-tazos-tech-v${APP_VERSION}-super-tabloide.pdf`)
+    svgDir: path.join(PRINT_DIR, `v${APP_VERSION}`, 'svg', 'super_tabloide'),
+    pdfPath: path.join(PRINT_DIR, `v${APP_VERSION}`, `hit-tazos-tech-v${APP_VERSION}-super-tabloide.pdf`)
   }
 };
 
@@ -622,6 +622,7 @@ function compileEditablePdf(svgFiles, outputPdfPath, formatConfig) {
       tempPdfs.push(pagePdf);
     });
 
+    fs.mkdirSync(path.dirname(outputPdfPath), { recursive: true });
     execSync(`pdfunite ${tempPdfs.map(p => `"${p}"`).join(' ')} "${outputPdfPath}"`);
     console.log(`   📄 Archivo distribuible compilado: ${path.basename(outputPdfPath)}`);
 
