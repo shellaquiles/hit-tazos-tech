@@ -16,7 +16,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { exec } = require('child_process');
+const { execSync, spawnSync } = require('child_process');
 
 const CARDS_FILE = path.join(__dirname, '../data/cards.json');
 const CATALOG_FILE = path.join(__dirname, '../data/catalog.json');
@@ -69,7 +69,7 @@ try {
 }
 
 function getCardTheme(card) {
-  let cardNum = card.index !== undefined ? card.index + 1 : 1;
+  let cardNum = card.globalIndex !== undefined ? card.globalIndex : (card.index !== undefined ? card.index + 1 : 1);
   if (cardColorsConfig && cardColorsConfig.cards && cardColorsConfig.cards[cardNum]) {
     const c = cardColorsConfig.cards[cardNum];
     return {
@@ -335,6 +335,7 @@ function generateSvgSheets(cards, formatConfig, options) {
         return;
       }
 
+      const theme = getCardTheme(c);
       const volId = c.id ? c.id.split('-')[0].replace('vol', '') : '0';
       const hexPart = c.id ? c.id.split('-')[1].substring(2) : '00';
       const numStr = `${volId}x${hexPart}`;
@@ -386,7 +387,7 @@ function generateSvgSheets(cards, formatConfig, options) {
         </text>
 
         <!-- Pie protegido (>= 8mm del borde inferior) -->
-        <text x="${SAFE_MARGIN_PT.toFixed(2)}" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.45)">${escapeXml(c.categoria)}</text>
+        <text transform="translate(12, 161.5) rotate(-90)" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.15)" text-transform="uppercase">${escapeXml(catalog.volumes[c.volumen] || c.volumen)}</text>
         <text x="${(CARD_SIZE_PT - SAFE_MARGIN_PT).toFixed(2)}" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="rgba(255,255,255,0.55)" text-anchor="end">${numStr}</text>
 
         ${showGuides ? `<rect width="${CARD_SIZE_PT.toFixed(2)}" height="${CARD_SIZE_PT.toFixed(2)}" fill="none" stroke="rgba(255,255,255,0.25)" stroke-dasharray="2 2" stroke-width="0.35" />` : ''}
@@ -458,7 +459,7 @@ ${frontCardsSvg}  </g>
         const colorCorner = theme.cornerColor || 'rgba(255, 255, 255, 0.7)';
 
         // 1. Autor (máx 45 car.): Limpio, centrado, peso 600, no cursiva
-        const autorText = stripMarkdown(c.creador);
+        const autorText = stripMarkdown(c.autor || c.creador);
         const autorLines = wrapTextToLines(autorText, 26);
         const autorFontSize = autorLines.length > 1 ? 8.0 : 8.8;
         const autorLeading = 10.4;
@@ -469,7 +470,7 @@ ${frontCardsSvg}  </g>
         });
 
         // 2. Trivia (máx 150 car.): En cursiva, masa equilibrada en zona inferior
-        const triviaText = stripMarkdown(c.dato_curioso);
+        const triviaText = stripMarkdown(c.trivia || c.dato_curioso);
         const triviaLines = wrapTextToLines(triviaText, 30);
         const triviaFontSize = triviaLines.length <= 4 ? 7.2 : 6.8;
         const triviaLeading = triviaLines.length <= 4 ? 9.5 : 9.0;
@@ -514,7 +515,7 @@ ${frontCardsSvg}  </g>
         </text>
 
         <!-- Metadatos de esquinas protegidos (>= 8mm del borde) -->
-        <text x="${SAFE_MARGIN_PT.toFixed(2)}" y="161.5" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="${colorCorner}">${escapeXml(c.categoria)}</text>
+        <text transform="translate(12, 161.5) rotate(-90)" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="${colorCorner}" text-transform="uppercase">${escapeXml(catalog.volumes[c.volumen] || c.volumen)}</text>
         <text x="${(CARD_SIZE_PT - SAFE_MARGIN_PT).toFixed(2)}" y="161.5" font-family="'Space Grotesk', sans-serif" font-size="5.4" font-weight="500" fill="${colorCorner}" text-anchor="end">${cleanCardNum}</text>
 
         ${showGuides ? `<rect width="${CARD_SIZE_PT.toFixed(2)}" height="${CARD_SIZE_PT.toFixed(2)}" fill="none" stroke="rgba(0,0,0,0.18)" stroke-dasharray="2 2" stroke-width="0.35" />` : ''}
@@ -685,6 +686,7 @@ function main() {
   }
 
   const cards = JSON.parse(fs.readFileSync(CARDS_JSON_PATH, 'utf8'));
+  cards.forEach((c, idx) => c.globalIndex = idx + 1);
   console.log(`📦 Total de tarjetas disponibles: ${cards.length}`);
   console.log(`📐 Modo de formato: ${options.format.toUpperCase()} | Marcas: ${options.crop.toUpperCase()}`);
 

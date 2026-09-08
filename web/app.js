@@ -223,15 +223,22 @@ class HitTazosEngine {
 
   async loadData() {
     try {
-      const [cards, colorsData] = await Promise.all([
+      const [cards, colorsData, catalogData] = await Promise.all([
         this.fetchFirst(['../data/cards.json', 'data/cards.json', '/data/cards.json', 'cards.json']),
-        this.fetchFirst(['../data/card_colors.json', 'data/card_colors.json', '/data/card_colors.json', 'card_colors.json'])
+        this.fetchFirst(['../data/card_colors.json', 'data/card_colors.json', '/data/card_colors.json', 'card_colors.json']),
+        this.fetchFirst(['../data/catalog.json', 'data/catalog.json', '/data/catalog.json', 'catalog.json'])
       ]);
 
       if (cards) {
         this.cards = cards;
       } else {
         throw new Error('Could not load cards.json from data/cards.json or fallbacks');
+      }
+
+      if (catalogData) {
+        this.catalog = catalogData;
+      } else {
+        this.catalog = { domains: {}, tags: {}, volumes: {} };
       }
 
       if (colorsData) {
@@ -440,7 +447,7 @@ class HitTazosEngine {
       this.hudGroupLabel.textContent = 'Todos los Grupos';
     } else {
       this.activeDeck = this.cards.filter(c => c.volumen === grp);
-      const name = this.activeDeck[0]?.volumen.toUpperCase() || `Volumen ${grp}`;
+      const name = (this.catalog?.volumes?.[grp] || this.activeDeck[0]?.volumen || `Volumen ${grp}`).toUpperCase();
       this.hudGroupLabel.textContent = grp === 'ALL' ? 'Todos los Volúmenes' : name;
     }
     this.currentIndex = 0;
@@ -751,7 +758,7 @@ class HitTazosEngine {
   //  - 87..96: Turquesa / Cian cielo
   //  - 97..100+: Rojo carmín / Magenta intenso y morados profundos
   getCardTheme(card) {
-    let cardNum = card.index !== undefined ? card.index + 1 : 1;
+    let cardNum = card.globalIndex !== undefined ? card.globalIndex : (card.index !== undefined ? card.index + 1 : 1);
     if (!cardNum || isNaN(cardNum)) {
       const matchNum = (card.id || '').match(/(\d+)$/);
       cardNum = card.index !== undefined ? card.index + 1 : 1;
@@ -841,7 +848,7 @@ class HitTazosEngine {
     const centerArtifactHTML = this.renderCenterArtifact(card);
 
     // Número de carta consecutivo (#001..#N)
-    const volId = card.volumen !== undefined ? card.volumen : 0;
+    const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
     const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
     const cardNumStr = `${volId}x${hexPart}`;
 
@@ -854,9 +861,9 @@ class HitTazosEngine {
         <div class="card-topbar-minimal">
           <span class="group-badge-tiny">
             <i data-lucide="${groupIcon}"></i>
-            ${card.domain.toUpperCase()}
+            ${(this.catalog.domains[card.domain] || card.domain).toUpperCase()}
           </span>
-          <span class="category-badge-tiny">${card.tag}</span>
+          <span class="category-badge-tiny">${this.catalog.tags[card.tag] || card.tag}</span>
         </div>
 
         <div class="clue-stage-pure">
@@ -864,7 +871,7 @@ class HitTazosEngine {
         </div>
 
         <div class="card-footbar-minimal">
-          <span class="corner-meta-left">${card.tag}</span>
+          <span class="corner-meta-left">${this.catalog.volumes[card.volumen] || card.volumen}</span>
           <span class="flip-pill"><i data-lucide="rotate-cw"></i> Voltear</span>
           <span class="corner-meta-right">${cardNumStr}</span>
         </div>
@@ -892,7 +899,7 @@ class HitTazosEngine {
         </div>
 
         <div class="card-footbar-minimal">
-          <span class="corner-meta-left">${card.tag}</span>
+          <span class="corner-meta-left">${this.catalog.volumes[card.volumen] || card.volumen}</span>
           <span class="corner-meta-right">${volId}x${hexPart}</span>
         </div>
       </div>
@@ -906,7 +913,7 @@ class HitTazosEngine {
     this.cardStage.innerHTML = '';
     const cardEl = document.createElement('div');
     cardEl.id = 'active-card-3d';
-    cardEl.className = `hittazos-card-3d theme-${card.domain}`;
+    cardEl.className = `hittazos-card-3d theme-${this.catalog.domains[card.domain] || card.domain}`;
     cardEl.innerHTML = this.buildCardHTML(card, { isRevealed: false });
 
     this.cardStage.appendChild(cardEl);
@@ -1221,7 +1228,7 @@ class HitTazosEngine {
     this.playerShelf.forEach(c => {
       const chip = document.createElement('div');
       chip.className = `shelf-card-chip theme-${c.domain}`;
-      const volId = c.volumen !== undefined ? c.volumen : 0;
+      const volId = c.id ? c.id.split('-')[0].replace('vol', '') : '0';
       const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
       const chipNum = `${volId}x${hexPart}`;
       chip.innerHTML = `
@@ -1307,7 +1314,7 @@ class HitTazosEngine {
       cell.className = 'catalog-card-cell';
 
       const cardEl = document.createElement('div');
-      cardEl.className = `hittazos-card-3d theme-${card.domain}`;
+      cardEl.className = `hittazos-card-3d theme-${this.catalog.domains[card.domain] || card.domain}`;
       cardEl.innerHTML = this.buildCardHTML(card, { isRevealed: false });
 
       const yearStage = cardEl.querySelector('.year-center-stage');
@@ -1400,7 +1407,7 @@ class HitTazosEngine {
           const theme = this.getCardTheme(card);
           const groupIcon = 'layers';
           const hitoFormatted = this.formatMarkdown(card.hito);
-          const volId = card.volumen !== undefined ? card.volumen : 0;
+          const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
           const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
           const cardNumStr = `${volId}x${hexPart}`;
 
@@ -1409,15 +1416,15 @@ class HitTazosEngine {
               <div class="card-topbar-minimal">
                 <span class="group-badge-tiny">
                   <i data-lucide="${groupIcon}"></i>
-                  ${card.domain}
+                  ${this.catalog.domains[card.domain] || card.domain}
                 </span>
-                <span class="category-badge-tiny">${card.tag}</span>
+                <span class="category-badge-tiny">${this.catalog.tags[card.tag] || card.tag}</span>
               </div>
               <div class="clue-stage-pure">
                 <p class="clue-quote">${hitoFormatted}</p>
               </div>
               <div class="card-footbar-minimal">
-                <span class="corner-meta-left">${card.tag}</span>
+                <span class="corner-meta-left">${this.catalog.volumes[card.volumen] || card.volumen}</span>
                 <span class="corner-meta-right">${cardNumStr}</span>
               </div>
             </div>
@@ -1458,7 +1465,7 @@ class HitTazosEngine {
           const theme = this.getCardTheme(card);
           const creadorFormatted = this.formatMarkdown(card.autor);
           const triviaFormatted = this.formatMarkdown(card.trivia);
-          const volId = card.volumen !== undefined ? card.volumen : 0;
+          const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
           const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
           const cardNumStr = `${volId}x${hexPart}`;
 
@@ -1474,7 +1481,7 @@ class HitTazosEngine {
                 <div class="back-trivia-phrase">${triviaFormatted}</div>
               </div>
               <div class="card-footbar-minimal">
-                <span class="corner-meta-left">${card.tag}</span>
+                <span class="corner-meta-left">${this.catalog.volumes[card.volumen] || card.volumen}</span>
                 <span class="corner-meta-right">${volId}x${hexPart}</span>
               </div>
             </div>
