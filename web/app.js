@@ -209,22 +209,33 @@ class HitTazosEngine {
     }
   }
 
+  async fetchFirst(urls) {
+    for (const url of urls) {
+      try {
+        const res = await fetch(url);
+        if (res.ok) return await res.json();
+      } catch (e) {
+        // Intentar siguiente ruta candidata
+      }
+    }
+    return null;
+  }
+
   async loadData() {
     try {
-      const [resCards, resColors] = await Promise.allSettled([
-        fetch('cards.json'),
-        fetch('card_colors.json')
+      const [cards, colorsData] = await Promise.all([
+        this.fetchFirst(['data/cards.json', '/data/cards.json', '../data/cards.json', 'cards.json']),
+        this.fetchFirst(['data/card_colors.json', '/data/card_colors.json', '../data/card_colors.json', 'card_colors.json'])
       ]);
 
-      if (resCards.status === 'fulfilled' && resCards.value.ok) {
-        this.cards = await resCards.value.json();
+      if (cards) {
+        this.cards = cards;
       } else {
-        throw new Error('Could not load cards.json');
+        throw new Error('Could not load cards.json from data/cards.json or fallbacks');
       }
 
-      if (resColors.status === 'fulfilled' && resColors.value.ok) {
-        const colorsData = await resColors.value.json();
-        this.cardColors = colorsData.cards || {};
+      if (colorsData) {
+        this.cardColors = colorsData.cards || colorsData;
       }
 
       // Asignar índice global continuo (1..N) para la correspondencia de color idéntica al mazo de 100 cartas

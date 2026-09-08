@@ -35,7 +35,7 @@ npm run serve
 Ser el primer jugador o equipo en construir una **Línea de Tiempo cronológicamente correcta de 10 tarjetas**.
 
 ### Preparación
-1. Toma el mazo barajado [`cards.json`](./cards.json) (o las tarjetas impresas correspondientes a sus números `#001` a `#531`).
+1. Toma el mazo barajado [`cards.json`](./data/cards.json) (o las tarjetas impresas correspondientes a sus números `#001` a `#531`).
 2. Cada jugador recibe **1 tarjeta inicial boca arriba** (con el año visible), marcando el inicio de su línea temporal personal.
 3. Cada jugador recibe **3 tokens** (fichas o monedas de juego).
 
@@ -64,9 +64,9 @@ npm run print:test
 ```
 
 ### Salidas Disponibles:
-* **[`tabloide_editable.pdf`](./tabloide_editable.pdf):** Documento vectorial de 72 páginas con fuentes TrueType (`Noto Sans`, `WinAnsi`), sin fuentes rasterizadas Tipo 3. La Cara A (frentes) y Cara B (reversos espejados `[2, 1, 0]`) garantizan coincidencia milimétrica en guillotina al imprimir a doble cara volteando por el borde largo.
-* **[`tabloide_pliegos_svg/`](./tabloide_pliegos_svg/):** Pliegos SVG individuales con capas organizadas (`<text>`, `<tspan>`, `<clipPath>`) listos para abrir y editar en **Adobe Illustrator, Figma, Affinity Designer o Inkscape**.
-* **[`tabloide_impresion.html`](./tabloide_impresion.html):** Vista previa para mandar a imprimir directamente desde el navegador web (`Ctrl+P`).
+* **[`print/tabloide_editable.pdf`](./print/tabloide_editable.pdf):** Documento vectorial de 72 páginas con fuentes TrueType (`Noto Sans`, `WinAnsi`), sin fuentes rasterizadas Tipo 3. La Cara A (frentes) y Cara B (reversos espejados `[2, 1, 0]`) garantizan coincidencia milimétrica en guillotina al imprimir a doble cara volteando por el borde largo.
+* **[`print/pliegos_svg/`](./print/pliegos_svg/):** Pliegos SVG individuales con capas organizadas (`<text>`, `<tspan>`, `<clipPath>`) listos para abrir y editar en **Adobe Illustrator, Figma, Affinity Designer o Inkscape**.
+* **[`print/tabloide_impresion.html`](./print/tabloide_impresion.html):** Vista previa para mandar a imprimir directamente desde el navegador web (`Ctrl+P`).
 
 ---
 

@@ -18,12 +18,13 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const ROOT_DIR = path.resolve(__dirname);
-const CARDS_JSON_PATH = path.join(ROOT_DIR, 'cards.json');
-const OUTPUT_HTML_PATH = path.join(ROOT_DIR, 'tabloide_impresion.html');
-const OUTPUT_CHROME_PDF_PATH = path.join(ROOT_DIR, 'tabloide_impresion.pdf');
-const OUTPUT_EDITABLE_PDF_PATH = path.join(ROOT_DIR, 'tabloide_editable.pdf');
-const OUTPUT_SVG_DIR = path.join(ROOT_DIR, 'tabloide_pliegos_svg');
+const PRINT_DIR = path.resolve(__dirname);
+const ROOT_DIR = path.resolve(__dirname, '..');
+const CARDS_JSON_PATH = path.join(ROOT_DIR, 'data', 'cards.json');
+const OUTPUT_HTML_PATH = path.join(PRINT_DIR, 'tabloide_impresion.html');
+const OUTPUT_CHROME_PDF_PATH = path.join(PRINT_DIR, 'tabloide_impresion.pdf');
+const OUTPUT_EDITABLE_PDF_PATH = path.join(PRINT_DIR, 'tabloide_editable.pdf');
+const OUTPUT_SVG_DIR = path.join(PRINT_DIR, 'pliegos_svg');
 
 // Medidas tipográficas e imprenta estándar (1 mm = 72 / 25.4 = 2.8346456 pt)
 const MM_TO_PT = 72.0 / 25.4;
@@ -43,7 +44,7 @@ const CROP_OFFSET_PT = 1.0 * MM_TO_PT;              // 2.835 pt (separación fue
 
 let cardColorsConfig = null;
 try {
-  cardColorsConfig = require('./card_colors.json');
+  cardColorsConfig = require('../data/card_colors.json');
 } catch (e) {
   // Configuración ausente
 }

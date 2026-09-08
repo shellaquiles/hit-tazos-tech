@@ -23,17 +23,17 @@ jobs:
           python-version: "3.11"
 
       - name: Validar presupuesto editorial (Scratch Audit)
-        run: python3 scratch_audit.py
+        run: python3 scripts/scratch_audit.py
 
       - name: Verificar sintaxis JS de scripts
         run: |
-          node --check app.js
-          node --check build_cards.js
-          node --check render_print_tabloid.js
-          node --check generate_card_colors.js
+          node --check web/app.js
+          node --check scripts/build_cards.js
+          node --check print/render_print_tabloid.js
+          node --check scripts/generate_card_colors.js
           node --check server.js
 
       - name: Recompilar mazo maestro y comprobar consistencia
         run: |
-          node build_cards.js
-          git diff --exit-code cards.json || (echo "Error: cards.json desincronizado con los archivos de categorías fuente" && exit 1)
+          node scripts/build_cards.js
+          git diff --exit-code data/cards.json || (echo "Error: data/cards.json desincronizado con los archivos de categorías fuente" && exit 1)

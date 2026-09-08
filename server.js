@@ -20,19 +20,28 @@ const server = http.createServer((req, res) => {
   let reqPath = decodeURIComponent(req.url.split('?')[0]);
   if (reqPath === '/' || reqPath === '') reqPath = '/index.html';
 
-  const safePath = path.normalize(path.join(__dirname, reqPath));
-  if (!safePath.startsWith(__dirname)) {
-    res.writeHead(403);
-    res.end('Forbidden');
+  // Candidatos de resolución por orden de prioridad
+  const candidates = [
+    path.normalize(path.join(__dirname, 'web', reqPath)),
+    path.normalize(path.join(__dirname, reqPath)),
+    path.normalize(path.join(__dirname, 'data', reqPath))
+  ];
+
+  let resolvedPath = null;
+  for (const candidate of candidates) {
+    if (candidate.startsWith(__dirname) && fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+      resolvedPath = candidate;
+      break;
+    }
+  }
+
+  if (!resolvedPath) {
+    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end('404 Not Found');
     return;
   }
 
-  fs.stat(safePath, (err, stats) => {
-    if (err || !stats.isFile()) {
-      res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
-      res.end('404 Not Found');
-      return;
-    }
+  const safePath = resolvedPath;
 
     const ext = path.extname(safePath).toLowerCase();
     const contentType = MIME_TYPES[ext] || 'application/octet-stream';
@@ -42,7 +51,6 @@ const server = http.createServer((req, res) => {
       'Access-Control-Allow-Origin': '*'
     });
     fs.createReadStream(safePath).pipe(res);
-  });
 });
 
 server.listen(PORT, '0.0.0.0', () => {

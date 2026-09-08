@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HIT-TAZOS Tech | Trivia Cronológica</title>
+  <meta name="description" content="Juego de cartas de trivia cronológica HIT-TAZOS Tech para Tecnología, Python, DevOps, Inteligencia Artificial y Cultura Hacker.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Curated Icon Library: Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon">
+        <i data-lucide="zap"></i>
+      </div>
+      <div>
+        <div class="brand-title">
+          HIT-TAZOS 
+          <span class="brand-badge">Tech</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <button class="tab-btn active" id="btn-tab-play" data-view="play">
+        <i data-lucide="gamepad-2"></i> Modo Juego
+      </button>
+      <button class="tab-btn" id="btn-tab-gallery" data-view="gallery">
+        <i data-lucide="layout-grid"></i> Explorador (<span id="counter-total">531</span>)
+      </button>
+      <button class="icon-btn" id="btn-sound-toggle" title="Sonido activado / desactivado">
+        <i data-lucide="volume-2" id="icon-sound-state"></i>
+      </button>
+      <button class="icon-btn" id="btn-print" title="Imprimir cartas para recortar">
+        <i data-lucide="printer"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Group Category Ribbon -->
+  <nav class="category-ribbon" id="group-ribbon">
+    <button class="ribbon-pill active" data-group="ALL">
+      <i data-lucide="layers"></i>
+      <span>Todos los Grupos</span>
+    </button>
+    <button class="ribbon-pill theme-A" data-group="A">
+      <i data-lucide="terminal"></i>
+      <span>Universo Python</span>
+    </button>
+    <button class="ribbon-pill theme-B" data-group="B">
+      <i data-lucide="code-2"></i>
+      <span>Software & Web</span>
+    </button>
+    <button class="ribbon-pill theme-C" data-group="C">
+      <i data-lucide="server"></i>
+      <span>DevOps & Infra</span>
+    </button>
+    <button class="ribbon-pill theme-D" data-group="D">
+      <i data-lucide="cpu"></i>
+      <span>Cómputo & IA</span>
+    </button>
+    <button class="ribbon-pill theme-E" data-group="E">
+      <i data-lucide="shield-alert"></i>
+      <span>Cultura Hacker</span>
+    </button>
+  </nav>
+
+  <!-- Full-screen FX Canvas for Cyber Confetti / Sparks -->
+  <canvas id="fx-canvas"></canvas>
+
+  <main>
+    <!-- VISTA 1: MODO JUEGO INTERACTIVO -->
+    <section id="view-play" class="view-section active">
+      <div class="arena-wrapper">
+        
+        <!-- HUD Superior -->
+        <div class="hud-bar">
+          <div class="hud-item">
+            <i data-lucide="disc"></i>
+            <span id="hud-group-label">Todos los Grupos</span>
+          </div>
+          <div class="hud-item">
+            <i data-lucide="calendar"></i>
+            Carta: <strong id="hud-card-counter">1 / 531</strong>
+          </div>
+          <div class="hud-item">
+            <i data-lucide="target"></i>
+            Puntos: <strong id="hud-score">0</strong>
+          </div>
+          <div class="hud-item hud-streak-item" id="hud-streak-box">
+            <i data-lucide="flame"></i>
+            Racha: <strong id="hud-streak">0</strong>
+          </div>
+        </div>
+
+        <!-- Escenario 3D de la Carta con Aura Ambiental -->
+        <div class="arena-stage-container">
+          <div class="ambient-card-aura" id="ambient-card-aura"></div>
+          <div class="card-perspective-stage" id="card-stage" title="Haz clic o presiona Espacio para voltear la carta">
+            <!-- Tarjeta inyectada dinámicamente -->
+          </div>
+        </div>
+
+        <!-- Consola Cronológica / Deck DJ Sintetizador -->
+        <div class="chronological-console-wrapper">
+          <!-- Salto Rápido por Décadas -->
+          <div class="decade-quick-picker" id="decade-quick-picker">
+            <span class="decade-label">Saltar:</span>
+            <button class="decade-chip" data-decade="1960">'60s</button>
+            <button class="decade-chip" data-decade="1970">'70s</button>
+            <button class="decade-chip" data-decade="1980">'80s</button>
+            <button class="decade-chip" data-decade="1990">'90s</button>
+            <button class="decade-chip" data-decade="2000">'00s</button>
+            <button class="decade-chip" data-decade="2010">'10s</button>
+            <button class="decade-chip" data-decade="2020">'20s</button>
+          </div>
+
+          <div class="chronological-console">
+            <button class="nudge-btn" id="btn-nudge-minus5" title="Retroceder 5 años">-5</button>
+            <button class="nudge-btn" id="btn-nudge-minus1" title="Retroceder 1 año">-1</button>
+            <div class="console-input-wrap">
+              <input type="number" id="input-year" class="console-input" placeholder="AÑO" min="1950" max="2030">
+            </div>
+            <button class="nudge-btn" id="btn-nudge-plus1" title="Avanzar 1 año">+1</button>
+            <button class="nudge-btn" id="btn-nudge-plus5" title="Avanzar 5 años">+5</button>
+            <button class="btn-primary btn-submit-guess" id="btn-submit-guess">
+              <i data-lucide="check"></i>
+              <span>Comprobar</span>
+            </button>
+          </div>
+
+          <div class="guess-feedback-row">
+            <div id="guess-result-pill" class="guess-result-pill"></div>
+            <div id="attempt-tracker" class="attempt-tracker" style="display:none">
+              <span id="attempt-dots"></span>
+              <span id="attempt-label">Intento 1 / 3</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controles de Navegación -->
+        <div class="action-cluster">
+          <button class="btn-secondary" id="btn-prev">
+            <i data-lucide="arrow-left"></i> Anterior
+          </button>
+          <button class="btn-primary btn-flip-cta" id="btn-flip">
+            <i data-lucide="rotate-cw"></i> Girar Carta [Espacio]
+          </button>
+          <button class="btn-secondary" id="btn-reveal" title="Revelar el año sin adivinar [R]">
+            <i data-lucide="eye"></i> <span>Revelar Año</span>
+          </button>
+          <button class="btn-secondary" id="btn-next">
+            Siguiente <i data-lucide="arrow-right"></i>
+          </button>
+          <button class="btn-secondary" id="btn-shuffle" title="Barajar el mazo activo">
+            <i data-lucide="shuffle"></i> Barajar
+          </button>
+        </div>
+
+        <!-- Bandeja de Línea de Tiempo del Jugador (Rack Coleccionable) -->
+        <div class="timeline-shelf">
+          <div class="shelf-header">
+            <div class="shelf-title-wrap">
+              <i data-lucide="trophy"></i>
+              <span>Tu Línea de Tiempo Personal</span>
+            </div>
+            <span id="shelf-counter">0 / 10 cartas para ganar</span>
+          </div>
+          <div class="shelf-progress-track">
+            <div class="shelf-progress-fill" id="shelf-progress-fill"></div>
+          </div>
+          <div class="shelf-cards-row" id="shelf-cards-container">
+            <div class="shelf-empty-prompt">
+              Adivina el año exacto o cercano (±2) para coleccionar cartas y completar tu línea de tiempo.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- VISTA 2: EXPLORADOR / CATÁLOGO COMPLETO -->
+    <section id="view-gallery" class="view-section">
+      <div class="gallery-toolbar">
+        <div class="search-field-wrap">
+          <span class="search-icon-slot">
+            <i data-lucide="search"></i>
+          </span>
+          <input type="text" id="gallery-query" class="search-field" placeholder="Buscar tecnología, autor, paper, sintaxis o anécdota...">
+        </div>
+
+        <div class="dropdown-cluster">
+          <select id="select-filter-group" class="select-control">
+            <option value="ALL">Todos los Grupos (A - E)</option>
+            <option value="A">Grupo A: Universo Python</option>
+            <option value="B">Grupo B: Software, Web y Datos</option>
+            <option value="C">Grupo C: DevOps e Infraestructura</option>
+            <option value="D">Grupo D: Cómputo, IA y Datos</option>
+            <option value="E">Grupo E: Cultura Hacker y Leyendas</option>
+          </select>
+
+          <select id="select-sort-order" class="select-control">
+            <option value="DECK_ORDER" selected>Orden del Mazo (Bloques de Color #1..#531)</option>
+            <option value="YEAR_ASC">Año: Cronológico (1957 - 2026)</option>
+            <option value="YEAR_DESC">Año: Reciente (2026 - 1957)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="cards-catalog-grid" id="catalog-grid">
+        <!-- Tarjetas del catálogo -->
+      </div>
+    </section>
+
+    <!-- VISTA 3: HOJAS DE IMPRESIÓN DÚPLEX (FRENTE Y REVERSO EN ESPEJO) -->
+    <div id="print-sheets-container" class="print-sheets-container"></div>
+  </main>
+
+  <!-- Modal de Configuración de Impresión Milimétrica a 2 Caras -->
+  <dialog id="print-dialog" class="print-modal">
+    <div class="print-modal-content">
+      <div class="print-modal-header">
+        <div class="print-modal-title">
+          <i data-lucide="printer"></i>
+          <span>Impresión Dúplex (2 Caras Milimétricas)</span>
+        </div>
+        <button class="print-modal-close" id="btn-close-print-modal">&times;</button>
+      </div>
+      <div class="print-modal-body">
+        <p class="print-modal-desc">
+          Genera pliegos en tamaño <strong>Tabloide / Doble Carta (11 &times; 17 pulg / 279.4 &times; 431.8 mm)</strong> optimizados con <strong>18 cartas por pliego (rejilla 3 &times; 6, cuadradas de 6.5 &times; 6.5 cm)</strong>. Las páginas impares contienen los <strong>Frentes</strong> y las páginas pares contienen los <strong>Reversos espejados horizontalmente fila por fila</strong> para coincidencia milimétrica exacta al voltear por el borde largo.
+        </p>
+
+        <div class="print-form-group">
+          <label for="print-select-range">Seleccionar grupo o rango de cartas:</label>
+          <select id="print-select-range" class="select-control" style="width: 100%;">
+            <option value="SAMPLE_18">Muestra de prueba: 1 Pliego Tabloide (18 Cartas: #001 - #018)</option>
+            <option value="SAMPLE_36">Muestra de prueba: 2 Pliegos Tabloide (36 Cartas: #001 - #036)</option>
+            <option value="CURRENT_GROUP">Cartas del Grupo seleccionado en el filtro</option>
+            <option value="ALL">Baraja completa (Todas las 531 cartas — 30 pliegos)</option>
+          </select>
+        </div>
+
+        <div class="print-form-group">
+          <label for="print-crop-marks">Marcas de corte y guías:</label>
+          <select id="print-crop-marks" class="select-control" style="width: 100%;">
+            <option value="GUIDES" selected>Con líneas de corte finas (Recomendado para guillotina)</option>
+            <option value="CLEAN">Borde limpio sin líneas de corte</option>
+          </select>
+        </div>
+
+        <div class="print-instructions-box">
+          <strong>💡 Instrucciones de Impresión en tu impresora / centro de copiado:</strong>
+          <ul>
+            <li>Tamaño de papel: <strong>Tabloide / 11 &times; 17 pulg / Doble Carta</strong>.</li>
+            <li>Orientación: <strong>Vertical (Portrait)</strong>.</li>
+            <li>Escala: <strong>100% / Tamaño Real</strong> (desactiva "Ajustar a la página").</li>
+            <li>Márgenes: <strong>Ninguno / Mínimo</strong>.</li>
+            <li>Impresión a 2 caras: <strong>Doble cara automática volteando por el borde largo</strong>.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="print-modal-footer">
+        <button class="btn-secondary" id="btn-cancel-print">Cancelar</button>
+        <button class="btn-primary" id="btn-execute-print">
+          <i data-lucide="printer"></i>
+          Preparar e Imprimir
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

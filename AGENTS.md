@@ -25,25 +25,35 @@ hit-tazos-tech/
 ├── LICENSE                              # Licencia de código abierto MIT (Shellaquiles Org)
 ├── VERSION                              # Archivo de versión semántica (1.0.0-rc.1)
 ├── package.json                         # Manifiesto y scripts npm (test, validate, build, print)
-├── cards.json                           # Archivo compilado de distribución (barajado oficial #001-#531)
-├── card_colors.json                     # Configuración desacoplada de paletas cromáticas (#0001-#1000)
-├── generate_card_colors.js              # Generador CLI de configuración cromática por millar
-├── build_cards.js                       # Compilador y barajador determinista maestro
-├── render_print_tabloid.js              # Generador de pliegos vectoriales (SVG, Cairo PDF, HTML)
-├── scratch_audit.py                     # Script de auditoría de caracteres y presupuestos
-├── tabloide_editable.pdf                # PDF vectorial de 72 páginas con fuentes TrueType reales
-├── tabloide_impresion.html              # Vista previa interactiva en navegador para impresión
-├── tabloide_pliegos_svg/                # 72 archivos SVG individuales con capas editables
-└── grupo_[a-e]_*/                       # 24 archivos JSON fuente de categorías
-    ├── grupo_a_python/                  # A1 a A5 (194 tarjetas)
-    ├── grupo_b_software_web/            # B1 a B5 (120 tarjetas)
-    ├── grupo_c_devops_infra/            # C1 a C4 (77 tarjetas)
-    ├── grupo_d_ia_datos/                # D1 a D4 (65 tarjetas)
-    └── grupo_e_cultura_hacker/          # E1 a E6 (75 tarjetas)
+├── server.js                            # Servidor local de desarrollo (sirve web/ y data/)
+├── data/                                # Contenido editorial y datos de trivia
+│   ├── cards.json                       # Archivo compilado de distribución (barajado oficial #001-#531)
+│   ├── card_colors.json                 # Configuración desacoplada de paletas cromáticas (#0001-#1000)
+│   └── categories/                      # 24 archivos JSON fuente de categorías
+│       ├── grupo_a_python/              # A1 a A5 (194 tarjetas)
+│       ├── grupo_b_software_web/        # B1 a B5 (120 tarjetas)
+│       ├── grupo_c_devops_infra/        # C1 a C4 (77 tarjetas)
+│       ├── grupo_d_ia_datos/            # D1 a D4 (65 tarjetas)
+│       └── grupo_e_cultura_hacker/      # E1 a E6 (75 tarjetas)
+├── web/                                 # Aplicación web interactiva (juego y catálogo)
+│   ├── index.html                       # Interfaz HTML5 principal
+│   ├── app.js                           # Lógica del cliente, animaciones WAAPI y audio
+│   ├── style.css                        # Hoja de estilos moderna
+│   └── assets/                          # Recursos gráficos y multimedia
+├── scripts/                             # Herramientas y scripts CLI de compilación y auditoría
+│   ├── build_cards.js                   # Compilador y barajador determinista maestro
+│   ├── scratch_audit.py                 # Script de auditoría de caracteres y presupuestos
+│   └── generate_card_colors.js          # Generador CLI de configuración cromática por millar
+└── print/                               # Motor de imposición y salidas para imprenta tabloide (11x17)
+    ├── render_print_tabloid.js          # Generador de pliegos vectoriales (SVG, Cairo PDF, HTML)
+    ├── tabloide_editable.pdf            # PDF vectorial de 72 páginas con fuentes TrueType reales
+    ├── tabloide_impresion.html          # Vista previa interactiva en navegador para impresión
+    ├── tabloide_impresion.pdf           # Salida PDF de producción
+    └── pliegos_svg/                     # 72 archivos SVG individuales con capas editables
 ```
 
 > [!IMPORTANT]
-> **REGLA DE EDICIÓN:** Los archivos fuente son exclusivamente los 24 archivos JSON en `grupo_*/*.json`. **NUNCA modificar `cards.json` a mano.** Siempre se modifica el archivo de categoría correspondiente y luego se ejecuta `node build_cards.js`.
+> **REGLA DE EDICIÓN:** Los archivos fuente son exclusivamente los 24 archivos JSON en `data/categories/grupo_*/*.json`. **NUNCA modificar `data/cards.json` a mano.** Siempre se modifica el archivo de categoría correspondiente y luego se ejecuta `npm run build` o `node scripts/build_cards.js`.
 
 ---
 
@@ -51,30 +61,30 @@ hit-tazos-tech/
 
 | Grupo | Código | Categoría Específica | Rango Temporal | Archivo JSON Fuente |
 | :--- | :---: | :--- | :---: | :--- |
-| **Grupo A: Universo Python** | `A1` | Python Core, Sintaxis y PEPs | 1991 – 2026 | [`grupo_a_python/A1_python_core_sintaxis_peps.json`](./grupo_a_python/A1_python_core_sintaxis_peps.json) |
-| | `A2` | Runtimes, Intérpretes y GIL | 1994 – 2026 | [`grupo_a_python/A2_runtimes_interpretes_gil.json`](./grupo_a_python/A2_runtimes_interpretes_gil.json) |
-| | `A3` | Gobernanza, Comunidad y Eventos | 1994 – 2026 | [`grupo_a_python/A3_gobernanza_comunidad_eventos.json`](./grupo_a_python/A3_gobernanza_comunidad_eventos.json) |
-| | `A4` | Ecosistema Web, APIs y Backend | 2000 – 2025 | [`grupo_a_python/A4_ecosistema_web_apis_backend.json`](./grupo_a_python/A4_ecosistema_web_apis_backend.json) |
-| | `A5` | Tooling, Empaquetado y Ola Rust | 1998 – 2026 | [`grupo_a_python/A5_tooling_empaquetado_ola_rust.json`](./grupo_a_python/A5_tooling_empaquetado_ola_rust.json) |
-| **Grupo B: Software, Web y Datos** | `B1` | Genealogía de Lenguajes de Programación | 1957 – 2024 | [`grupo_b_software_web/B1_genealogia_lenguajes.json`](./grupo_b_software_web/B1_genealogia_lenguajes.json) |
-| | `B2` | Protocolos, Navegadores y Estándares Web | 1989 – 2025 | [`grupo_b_software_web/B2_protocolos_navegadores_estandares.json`](./grupo_b_software_web/B2_protocolos_navegadores_estandares.json) |
-| | `B3` | Herramientas Dev y Control de Versiones | 1976 – 2024 | [`grupo_b_software_web/B3_herramientas_dev_vcs.json`](./grupo_b_software_web/B3_herramientas_dev_vcs.json) |
-| | `B4` | Plataformas y Cultura Colaborativa | 1999 – 2025 | [`grupo_b_software_web/B4_plataformas_cultura_colaborativa.json`](./grupo_b_software_web/B4_plataformas_cultura_colaborativa.json) |
-| | `B5` | Bases de Datos y Almacenamiento | 1970 – 2025 | [`grupo_b_software_web/B5_bases_de_datos_almacenamiento.json`](./grupo_b_software_web/B5_bases_de_datos_almacenamiento.json) |
-| **Grupo C: DevOps e Infraestructura** | `C1` | Linux y Sistemas Operativos Clásicos | 1969 – 2024 | [`grupo_c_devops_infra/C1_linux_sistemas_operativos.json`](./grupo_c_devops_infra/C1_linux_sistemas_operativos.json) |
-| | `C2` | Contenedores, Aislamiento y Virtualización | 1979 – 2025 | [`grupo_c_devops_infra/C2_contenedores_virtualizacion.json`](./grupo_c_devops_infra/C2_contenedores_virtualizacion.json) |
-| | `C3` | Nube Pública y Paradigmas de Cómputo | 2002 – 2026 | [`grupo_c_devops_infra/C3_nube_publica_paradigmas.json`](./grupo_c_devops_infra/C3_nube_publica_paradigmas.json) |
-| | `C4` | Automatización e Infraestructura como Código | 1993 – 2024 | [`grupo_c_devops_infra/C4_automatizacion_iac.json`](./grupo_c_devops_infra/C4_automatizacion_iac.json) |
-| **Grupo D: Cómputo, IA y Datos** | `D1` | Cómputo Científico y Stack Analítico | 1995 – 2025 | [`grupo_d_ia_datos/D1_computo_cientifico_analitica.json`](./grupo_d_ia_datos/D1_computo_cientifico_analitica.json) |
-| | `D2` | Papers y Avances Fundacionales de ML/DL | 1957 – 2023 | [`grupo_d_ia_datos/D2_papers_avances_mldl.json`](./grupo_d_ia_datos/D2_papers_avances_mldl.json) |
-| | `D3` | Hitos Competitivos (Máquinas vs. Humanos) | 1997 – 2024 | [`grupo_d_ia_datos/D3_hitos_competitivos_maquinas_humanos.json`](./grupo_d_ia_datos/D3_hitos_competitivos_maquinas_humanos.json) |
-| | `D4` | Era LLMs, Pesos Abiertos e Inferencia | 2018 – 2026 | [`grupo_d_ia_datos/D4_era_llms_modelos_abiertos.json`](./grupo_d_ia_datos/D4_era_llms_modelos_abiertos.json) |
-| **Grupo E: Cultura Hacker y Leyendas** | `E1` | Movimiento Open Source y Cypherpunks | 1983 – 2024 | [`grupo_e_cultura_hacker/E1_open_source_cypherpunks.json`](./grupo_e_cultura_hacker/E1_open_source_cypherpunks.json) |
-| | `E2` | Ciberseguridad, Virus y Vulnerabilidades | 1988 – 2026 | [`grupo_e_cultura_hacker/E2_ciberseguridad_vulnerabilidades.json`](./grupo_e_cultura_hacker/E2_ciberseguridad_vulnerabilidades.json) |
-| | `E3` | Desastres de Software y Bugs Críticos | 1962 – 2024 | [`grupo_e_cultura_hacker/E3_desastres_software_bugs.json`](./grupo_e_cultura_hacker/E3_desastres_software_bugs.json) |
-| | `E4` | Guerras Santas y Debates Históricos | 1976 – 2024 | [`grupo_e_cultura_hacker/E4_guerras_santas_debates.json`](./grupo_e_cultura_hacker/E4_guerras_santas_debates.json) |
-| | `E5` | P2P, Fenómenos de Internet y Guerras Digitales | 1993 – 2025 | [`grupo_e_cultura_hacker/E5_p2p_fenomenos_guerras_digitales.json`](./grupo_e_cultura_hacker/E5_p2p_fenomenos_guerras_digitales.json) |
-| | `E6` | Hardware y Microprocesadores Icónicos | 1971 – 2024 | [`grupo_e_cultura_hacker/E6_hardware_microprocesadores.json`](./grupo_e_cultura_hacker/E6_hardware_microprocesadores.json) |
+| **Grupo A: Universo Python** | `A1` | Python Core, Sintaxis y PEPs | 1991 – 2026 | [`data/categories/grupo_a_python/A1_python_core_sintaxis_peps.json`](./data/categories/grupo_a_python/A1_python_core_sintaxis_peps.json) |
+| | `A2` | Runtimes, Intérpretes y GIL | 1994 – 2026 | [`data/categories/grupo_a_python/A2_runtimes_interpretes_gil.json`](./data/categories/grupo_a_python/A2_runtimes_interpretes_gil.json) |
+| | `A3` | Gobernanza, Comunidad y Eventos | 1994 – 2026 | [`data/categories/grupo_a_python/A3_gobernanza_comunidad_eventos.json`](./data/categories/grupo_a_python/A3_gobernanza_comunidad_eventos.json) |
+| | `A4` | Ecosistema Web, APIs y Backend | 2000 – 2025 | [`data/categories/grupo_a_python/A4_ecosistema_web_apis_backend.json`](./data/categories/grupo_a_python/A4_ecosistema_web_apis_backend.json) |
+| | `A5` | Tooling, Empaquetado y Ola Rust | 1998 – 2026 | [`data/categories/grupo_a_python/A5_tooling_empaquetado_ola_rust.json`](./data/categories/grupo_a_python/A5_tooling_empaquetado_ola_rust.json) |
+| **Grupo B: Software, Web y Datos** | `B1` | Genealogía de Lenguajes de Programación | 1957 – 2024 | [`data/categories/grupo_b_software_web/B1_genealogia_lenguajes.json`](./data/categories/grupo_b_software_web/B1_genealogia_lenguajes.json) |
+| | `B2` | Protocolos, Navegadores y Estándares Web | 1989 – 2025 | [`data/categories/grupo_b_software_web/B2_protocolos_navegadores_estandares.json`](./data/categories/grupo_b_software_web/B2_protocolos_navegadores_estandares.json) |
+| | `B3` | Herramientas Dev y Control de Versiones | 1976 – 2024 | [`data/categories/grupo_b_software_web/B3_herramientas_dev_vcs.json`](./data/categories/grupo_b_software_web/B3_herramientas_dev_vcs.json) |
+| | `B4` | Plataformas y Cultura Colaborativa | 1999 – 2025 | [`data/categories/grupo_b_software_web/B4_plataformas_cultura_colaborativa.json`](./data/categories/grupo_b_software_web/B4_plataformas_cultura_colaborativa.json) |
+| | `B5` | Bases de Datos y Almacenamiento | 1970 – 2025 | [`data/categories/grupo_b_software_web/B5_bases_de_datos_almacenamiento.json`](./data/categories/grupo_b_software_web/B5_bases_de_datos_almacenamiento.json) |
+| **Grupo C: DevOps e Infraestructura** | `C1` | Linux y Sistemas Operativos Clásicos | 1969 – 2024 | [`data/categories/grupo_c_devops_infra/C1_linux_sistemas_operativos.json`](./data/categories/grupo_c_devops_infra/C1_linux_sistemas_operativos.json) |
+| | `C2` | Contenedores, Aislamiento y Virtualización | 1979 – 2025 | [`data/categories/grupo_c_devops_infra/C2_contenedores_virtualizacion.json`](./data/categories/grupo_c_devops_infra/C2_contenedores_virtualizacion.json) |
+| | `C3` | Nube Pública y Paradigmas de Cómputo | 2002 – 2026 | [`data/categories/grupo_c_devops_infra/C3_nube_publica_paradigmas.json`](./data/categories/grupo_c_devops_infra/C3_nube_publica_paradigmas.json) |
+| | `C4` | Automatización e Infraestructura como Código | 1993 – 2024 | [`data/categories/grupo_c_devops_infra/C4_automatizacion_iac.json`](./data/categories/grupo_c_devops_infra/C4_automatizacion_iac.json) |
+| **Grupo D: Cómputo, IA y Datos** | `D1` | Cómputo Científico y Stack Analítico | 1995 – 2025 | [`data/categories/grupo_d_ia_datos/D1_computo_cientifico_analitica.json`](./data/categories/grupo_d_ia_datos/D1_computo_cientifico_analitica.json) |
+| | `D2` | Papers y Avances Fundacionales de ML/DL | 1957 – 2023 | [`data/categories/grupo_d_ia_datos/D2_papers_avances_mldl.json`](./data/categories/grupo_d_ia_datos/D2_papers_avances_mldl.json) |
+| | `D3` | Hitos Competitivos (Máquinas vs. Humanos) | 1997 – 2024 | [`data/categories/grupo_d_ia_datos/D3_hitos_competitivos_maquinas_humanos.json`](./data/categories/grupo_d_ia_datos/D3_hitos_competitivos_maquinas_humanos.json) |
+| | `D4` | Era LLMs, Pesos Abiertos e Inferencia | 2018 – 2026 | [`data/categories/grupo_d_ia_datos/D4_era_llms_modelos_abiertos.json`](./data/categories/grupo_d_ia_datos/D4_era_llms_modelos_abiertos.json) |
+| **Grupo E: Cultura Hacker y Leyendas** | `E1` | Movimiento Open Source y Cypherpunks | 1983 – 2024 | [`data/categories/grupo_e_cultura_hacker/E1_open_source_cypherpunks.json`](./data/categories/grupo_e_cultura_hacker/E1_open_source_cypherpunks.json) |
+| | `E2` | Ciberseguridad, Virus y Vulnerabilidades | 1988 – 2026 | [`data/categories/grupo_e_cultura_hacker/E2_ciberseguridad_vulnerabilidades.json`](./data/categories/grupo_e_cultura_hacker/E2_ciberseguridad_vulnerabilidades.json) |
+| | `E3` | Desastres de Software y Bugs Críticos | 1962 – 2024 | [`data/categories/grupo_e_cultura_hacker/E3_desastres_software_bugs.json`](./data/categories/grupo_e_cultura_hacker/E3_desastres_software_bugs.json) |
+| | `E4` | Guerras Santas y Debates Históricos | 1976 – 2024 | [`data/categories/grupo_e_cultura_hacker/E4_guerras_santas_debates.json`](./data/categories/grupo_e_cultura_hacker/E4_guerras_santas_debates.json) |
+| | `E5` | P2P, Fenómenos de Internet y Guerras Digitales | 1993 – 2025 | [`data/categories/grupo_e_cultura_hacker/E5_p2p_fenomenos_guerras_digitales.json`](./data/categories/grupo_e_cultura_hacker/E5_p2p_fenomenos_guerras_digitales.json) |
+| | `E6` | Hardware y Microprocesadores Icónicos | 1971 – 2024 | [`data/categories/grupo_e_cultura_hacker/E6_hardware_microprocesadores.json`](./data/categories/grupo_e_cultura_hacker/E6_hardware_microprocesadores.json) |
 
 ---
 
@@ -227,19 +237,21 @@ Cuando un agente modifique datos en los JSON o en el motor de diseño, debe segu
 
 ```bash
 # 1. Validar que ninguna tarjeta exceda los presupuestos de caracteres
-python3 scratch_audit.py
+npm test
+# o directamente: python3 scripts/scratch_audit.py
 # Debe reportar: Creador > 45: 0 | Hito > 150: 0 | Trivia > 150: 0
 
-# 2. Recompilar el mazo maestro (sincroniza cards.json y numeración #001-#531)
-node build_cards.js
+# 2. Recompilar el mazo maestro (sincroniza data/cards.json y numeración #001-#531)
+npm run build
+# o directamente: node scripts/build_cards.js
 
 # 3. Regenerar los pliegos SVG y el PDF vectorial editable (predeterminado 11x17)
-node render_print_tabloid.js --range=ALL
-# O para formato Super Tabloide 12x18:
-# node render_print_tabloid.js --range=ALL --format=12x18
+npm run print
+# o para muestra de prueba:
+# npm run print:test
 
 # 4. Verificar integridad técnica del PDF generado
-pdfinfo tabloide_editable.pdf
+pdfinfo print/tabloide_editable.pdf
 # Debe verificar: Pages = 72, Page size = 792 x 1224 pts
 ```
 

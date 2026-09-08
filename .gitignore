@@ -18,8 +18,11 @@ venv/
 
 # Temporales de compilación e imprenta
 .temp_pdf_pages/
+print/.temp_pdf_pages/
 temp_*.svg
 temp_*.png
+print/temp_*.svg
+print/temp_*.png
 
 # Sistema operativo y editores
 .DS_Store

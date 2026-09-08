@@ -20,7 +20,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const ROOT_DIR = path.resolve(__dirname);
+const ROOT_DIR = path.resolve(__dirname, '..');
+const CATEGORIES_DIR = path.join(ROOT_DIR, 'data', 'categories');
 const GROUPS = [
   'grupo_a_python',
   'grupo_b_software_web',
@@ -34,7 +35,7 @@ function loadAllCategoryCards() {
   const categoryMap = new Map();
 
   for (const grp of GROUPS) {
-    const grpPath = path.join(ROOT_DIR, grp);
+    const grpPath = path.join(CATEGORIES_DIR, grp);
     if (!fs.existsSync(grpPath)) continue;
 
     const files = fs.readdirSync(grpPath).filter(f => f.endsWith('.json')).sort();
@@ -44,7 +45,7 @@ function loadAllCategoryCards() {
         const raw = fs.readFileSync(filePath, 'utf8');
         const list = JSON.parse(raw);
         if (Array.isArray(list)) {
-          categoryMap.set(path.join(grp, file), list);
+          categoryMap.set(path.join('data', 'categories', grp, file), list);
           allCards.push(...list);
         }
       } catch (err) {
@@ -86,7 +87,7 @@ function build() {
   });
 
   // Guardar cards.json compilado
-  const outputPath = path.join(ROOT_DIR, 'cards.json');
+  const outputPath = path.join(ROOT_DIR, 'data', 'cards.json');
   fs.writeFileSync(outputPath, JSON.stringify(shuffled, null, 2) + '\n', 'utf8');
   console.log(`✅ ${shuffled.length} tarjetas compiladas exitosamente en: ${outputPath}`);
 

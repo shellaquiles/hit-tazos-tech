@@ -123,8 +123,9 @@ for (const arg of args) {
 
 const startCard = (millarIdx - 1) * 1000 + 1;
 const endCard = millarIdx * 1000;
+const ROOT_DIR = path.resolve(__dirname, '..');
 const outputFilename = customOut || (millarIdx === 1 ? 'card_colors.json' : `card_colors_millar_${millarIdx}.json`);
-const outputPath = path.isAbsolute(outputFilename) ? outputFilename : path.join(__dirname, outputFilename);
+const outputPath = path.isAbsolute(outputFilename) ? outputFilename : path.join(ROOT_DIR, 'data', outputFilename);
 
 const data = generateMillar(millarIdx, startCard, endCard);
 fs.writeFileSync(outputPath, JSON.stringify(data, null, 2), 'utf-8');

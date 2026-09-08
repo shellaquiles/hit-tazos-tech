@@ -2,17 +2,17 @@
   "name": "hit-tazos-tech",
   "version": "1.0.0-rc.1",
   "description": "Juego de cartas y trivia cronológica técnica centrado en el ecosistema de software, Python, infraestructura, IA y cultura hacker.",
-  "main": "app.js",
+  "main": "web/app.js",
   "scripts": {
-    "build": "node build_cards.js",
-    "audit": "python3 scratch_audit.py",
-    "test": "python3 scratch_audit.py && node --check app.js && node --check build_cards.js && node --check render_print_tabloid.js && node --check generate_card_colors.js && node --check server.js",
+    "build": "node scripts/build_cards.js",
+    "audit": "python3 scripts/scratch_audit.py",
+    "test": "python3 scripts/scratch_audit.py && node --check web/app.js && node --check scripts/build_cards.js && node --check print/render_print_tabloid.js && node --check scripts/generate_card_colors.js && node --check server.js",
     "validate": "npm test && npm run build",
     "serve": "node server.js",
-    "colors:generate": "node generate_card_colors.js",
-    "print": "node render_print_tabloid.js",
-    "print:test": "node render_print_tabloid.js --range=18",
-    "print:chrome": "node render_print_tabloid.js --pdf"
+    "colors:generate": "node scripts/generate_card_colors.js",
+    "print": "node print/render_print_tabloid.js",
+    "print:test": "node print/render_print_tabloid.js --range=15",
+    "print:chrome": "node print/render_print_tabloid.js --pdf"
   },
   "keywords": [
     "hit-tazos",

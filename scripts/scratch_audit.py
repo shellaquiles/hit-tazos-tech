@@ -12,10 +12,10 @@ import glob
 import os
 import re
 
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def audit_corpus():
-    files = sorted(glob.glob(os.path.join(ROOT_DIR, 'grupo_*', '*.json')))
+    files = sorted(glob.glob(os.path.join(ROOT_DIR, 'data', 'categories', 'grupo_*', '*.json')))
     print(f"Archivos a procesar: {len(files)}")
     
     total = 0
