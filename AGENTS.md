@@ -34,11 +34,13 @@ hit-tazos-tech/
 │   ├── index.html                       # Interfaz HTML5 principal
 │   ├── app.js                           # Lógica del cliente, animaciones WAAPI y audio
 │   ├── style.css                        # Hoja de estilos moderna
-│   └── assets/                          # Recursos gráficos y multimedia
+│   └── assets/                          # Recursos gráficos, multimedia y fuentes
+│       └── fonts/                       # 6 tipografías locales TTF (Outfit y Space Grotesk para modo offline)
 ├── scripts/                             # Herramientas y scripts CLI canónicos
 │   ├── audit_deck.py                    # Validador integral en 4 niveles, presupuestos y anti-spoilers
 │   ├── build_cards.js                   # Compilador de la baraja maestra y manifest
-│   └── generate_card_colors.js          # Generador CLI de configuración cromática por millar
+│   ├── generate_card_colors.js          # Generador CLI de configuración cromática por millar
+│   └── sync_version.py                  # Sincronizador y verificador de paridad de versión canónica
 ├── print/                               # Motor de imposición y salidas para imprenta (Tabloide, Carta, Super Tabloide)
 │   ├── render_print_tabloid.js          # Generador maestro de imposición multi-formato (SVG, Cairo PDF)
 ```
@@ -178,9 +180,30 @@ npm run print
 
 ---
 
-## ⚠️ 10. Restricciones del Entorno y Políticas de Git
+## 🏷️ 10. Gobernanza y Sincronización de Versión Canónica
+
+1. **Fuente Única de Verdad:** El archivo `VERSION` en la raíz del repositorio es la única fuente autorizada de la versión semántica actual (ej. `1.0.0-rc3`).
+2. **Validación Automática:** `npm test` incluye la verificación de coherencia (`python3 scripts/sync_version.py --check`) que asegura que `package.json`, `data/manifest.json`, `data/card_colors.json`, `README.md`, `web/index.html` y `web/assets/og-cover.svg` estén estrictamente alineados.
+3. **Propagación:** Para actualizar todos los metadatos tras cambiar `VERSION`, se ejecuta:
+   ```bash
+   npm run version:sync
+   ```
+
+---
+
+## 🔤 11. Tipografías Locales y Soporte Offline
+
+1. La web consume por defecto Google Fonts en entornos con conexión.
+2. Como respaldo para entornos desconectados (offline / air-gapped) y para usuarios que clonen el repositorio, `web/assets/fonts/` contiene los archivos TrueType oficiales (`Outfit-Bold.ttf`, `Outfit-Medium.ttf`, `Outfit-Regular.ttf`, `SpaceGrotesk-Bold.ttf`, `SpaceGrotesk-Medium.ttf`, `SpaceGrotesk-Regular.ttf`).
+3. `web/style.css` declara directivas `@font-face` locales apuntando a estos archivos como fallback garantizado.
+4. Para la imposición con Cairo (`rsvg-convert`), estas fuentes pueden instalarse en el sistema operativo del desarrollador (`~/.local/share/fonts`).
+
+---
+
+## ⚠️ 12. Restricciones del Entorno y Políticas de Git
 
 1. **Entorno local sin dependencias pesadas:** La web debe funcionar con Vanilla JS + CSS nativo + HTML5 sin bundlers obligatorios.
 2. **Sin acceso a red para pip externo:** Usar únicamente la biblioteca estándar de Python 3 y utilidades CLI instaladas (`rsvg-convert`, `pdfunite`).
 3. **POLÍTICA ESTRICTA DE GIT:** **NUNCA ejecutar `git commit` ni `git add`.** El control de versiones es potestad exclusiva del usuario.
+
 

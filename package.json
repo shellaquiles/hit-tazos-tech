@@ -1,25 +1,38 @@
 {
   "name": "hit-tazos-tech",
   "version": "1.0.0-rc3",
-  "description": "Juego de cartas y trivia cronológica técnica centrado en el ecosistema de software, Python, infraestructura, IA y cultura hacker.",
-  "main": "web/app.js",
+  "description": "Juego libre e independiente de cartas de trivia cronológica técnica centrado en el universo Python, desarrollo de software, Linux, DevOps, infraestructura, IA y cultura hacker.",
+  "main": "server.js",
+  "browser": "web/index.html",
+  "type": "commonjs",
   "scripts": {
-    "build": "node scripts/build_cards.js",
-    "audit": "python3 scripts/audit_deck.py",
-    "test": "python3 scripts/audit_deck.py && node --check web/app.js && node --check scripts/build_cards.js && node --check print/render_print_tabloid.js && node --check scripts/generate_card_colors.js && node --check server.js",
-    "validate": "npm test && npm run build",
+    "start": "node server.js",
+    "dev": "node server.js",
     "serve": "node server.js",
+    "build": "node scripts/build_cards.js",
+    "build:cards": "node scripts/build_cards.js",
+    "audit": "python3 scripts/audit_deck.py",
+    "audit:deck": "python3 scripts/audit_deck.py",
+    "version:check": "python3 scripts/sync_version.py --check",
+    "version:sync": "python3 scripts/sync_version.py --sync",
     "colors:generate": "node scripts/generate_card_colors.js",
+    "test": "python3 scripts/sync_version.py --check && python3 scripts/audit_deck.py && node --check web/app.js && node --check scripts/build_cards.js && node --check print/render_print_tabloid.js && node --check scripts/generate_card_colors.js && node --check server.js",
+    "test:syntax": "node --check web/app.js && node --check scripts/build_cards.js && node --check print/render_print_tabloid.js && node --check scripts/generate_card_colors.js && node --check server.js",
+    "validate": "npm test && npm run build",
     "print": "node print/render_print_tabloid.js",
-    "print:tabloide": "node print/render_print_tabloid.js --format=11x17",
-    "print:8x11": "node print/render_print_tabloid.js --format=8x11",
+    "print:all": "node print/render_print_tabloid.js --format=all",
     "print:carta": "node print/render_print_tabloid.js --format=8x11",
+    "print:8x11": "node print/render_print_tabloid.js --format=8x11",
+    "print:tabloide": "node print/render_print_tabloid.js --format=11x17",
+    "print:11x17": "node print/render_print_tabloid.js --format=11x17",
+    "print:super-tabloide": "node print/render_print_tabloid.js --format=12x18",
+    "print:12x18": "node print/render_print_tabloid.js --format=12x18",
     "print:volumes": "node print/render_print_tabloid.js --volume=all-volumes",
     "print:carta:volumes": "node print/render_print_tabloid.js --format=8x11 --volume=all-volumes",
+    "print:sample": "node print/render_print_tabloid.js --range=sample",
     "print:test": "node print/render_print_tabloid.js --range=sample",
-    "print:test:tabloide": "node print/render_print_tabloid.js --format=11x17 --range=15",
-    "print:test:8x11": "node print/render_print_tabloid.js --format=8x11 --range=6",
-    "print:test:carta": "node print/render_print_tabloid.js --format=8x11 --range=6"
+    "print:test:carta": "node print/render_print_tabloid.js --format=8x11 --range=6",
+    "print:test:tabloide": "node print/render_print_tabloid.js --format=11x17 --range=15"
   },
   "keywords": [
     "hit-tazos",
@@ -30,16 +43,65 @@
     "open-source",
     "board-game",
     "card-game",
-    "shellaquiles"
+    "shellaquiles",
+    "linux",
+    "unix",
+    "devops",
+    "sysadmin",
+    "cloud-native",
+    "containers",
+    "ai",
+    "data-science",
+    "silicon",
+    "hardware",
+    "cypherpunks",
+    "cyberpunk",
+    "print-and-play",
+    "pnp",
+    "tabletop"
   ],
-  "author": "Shellaquiles Org <pixelead0>",
+  "author": {
+    "name": "Shellaquiles Org",
+    "url": "https://shellaquiles.org"
+  },
+  "contributors": [
+    {
+      "name": "pixelead0",
+      "url": "https://github.com/pixelead0"
+    }
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/shellaquiles/hit-tazos-tech.git"
+    "url": "git+https://github.com/shellaquiles/hit-tazos-tech.git"
   },
   "bugs": {
     "url": "https://github.com/shellaquiles/hit-tazos-tech/issues"
   },
-  "homepage": "https://github.com/shellaquiles/hit-tazos-tech#readme"
+  "homepage": "https://shellaquiles.org/hit-tazos-tech/",
+  "engines": {
+    "node": ">=18.0.0",
+    "python": ">=3.8.0"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/shellaquiles"
+    },
+    {
+      "type": "community",
+      "url": "https://shellaquiles.org"
+    }
+  ],
+  "files": [
+    "data/",
+    "web/",
+    "scripts/",
+    "print/",
+    "server.js",
+    "VERSION",
+    "README.md",
+    "LICENSE",
+    "AGENTS.md"
+  ]
 }
