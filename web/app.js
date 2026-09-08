@@ -224,8 +224,8 @@ class HitTazosEngine {
   async loadData() {
     try {
       const [cards, colorsData] = await Promise.all([
-        this.fetchFirst(['data/cards.json', '/data/cards.json', '../data/cards.json', 'cards.json']),
-        this.fetchFirst(['data/card_colors.json', '/data/card_colors.json', '../data/card_colors.json', 'card_colors.json'])
+        this.fetchFirst(['../data/cards.json', 'data/cards.json', '/data/cards.json', 'cards.json']),
+        this.fetchFirst(['../data/card_colors.json', 'data/card_colors.json', '/data/card_colors.json', 'card_colors.json'])
       ]);
 
       if (cards) {
@@ -478,8 +478,8 @@ class HitTazosEngine {
   }
 
   renderCenterArtifact(card) {
-    const domain = card.domain;
-    if (grp === 'A') {
+    const vol = card.volumen || (card.id ? card.id.split('-')[0] : '');
+    if (vol === 'python-track' || vol === 'unix-sysadmin-networks') {
       // 1. TERMINAL SHELL - Clean, razor-sharp Unix / Python interactive console
       return `
         <div class="tech-artifact-hero">
@@ -520,7 +520,7 @@ class HitTazosEngine {
           </div>
         </div>
       `;
-    } else if (grp === 'B') {
+    } else if (vol === 'kernel-foundations' || vol === 'cypherpunks-hacker-lore') {
       // 2. FLOPPY DISK 3.5" - Iconic form factor, stepped beveled corner, metal shutter, hub & label
       return `
         <div class="tech-artifact-hero">
@@ -578,7 +578,7 @@ class HitTazosEngine {
           </div>
         </div>
       `;
-    } else if (grp === 'C') {
+    } else if (vol === 'backend-distributed-systems' || vol === 'cloud-containers-sre') {
       // 3. SERVER RACK & MAGNETIC TAPE REEL - Data center mainframe unit
       return `
         <div class="tech-artifact-hero">
@@ -628,7 +628,7 @@ class HitTazosEngine {
           </div>
         </div>
       `;
-    } else if (grp === 'D') {
+    } else if (vol === 'embedded-silicon-hardware') {
       // 4. MODERN CPU PROCESSOR - Metallic Heat Spreader (IHS), substrate PCB and gold capacitor array
       return `
         <div class="tech-artifact-hero">
