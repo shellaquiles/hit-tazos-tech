@@ -694,7 +694,7 @@ class HitTazosEngine {
           </div>
         </div>
       `;
-    } else {
+    } else if (vol === 'unix-sysadmin-networks') {
       // 5. CYBER KEYCARD / CRYPTO TOKEN - Smart card with EMV contact chip and holographic crest
       return `
         <div class="tech-artifact-hero">
@@ -735,6 +735,66 @@ class HitTazosEngine {
                   <stop offset="100%" stop-color="#fbbf24" stop-opacity="0.3"/>
                 </linearGradient>
               </defs>
+            </svg>
+          </div>
+        </div>
+      `;
+    } else if (vol === 'scifi-literature-cyberpunk') {
+      // 6. HOLOCUBE / QUANTUM DATA CRYSTAL - Sci-Fi futuristic artifact
+      return `
+        <div class="tech-artifact-hero">
+          <div class="tech-artifact-svg-wrap" title="Cristal de datos cuántico / Holocubo">
+            <svg class="artifact-svg" viewBox="0 0 150 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" y="5" width="140" height="80" rx="8" fill="#080718" stroke="#a855f7" stroke-width="1.8"/>
+              <!-- Isometric Holocube wireframe -->
+              <polygon points="75,18 105,32 75,46 45,32" fill="#3b0764" stroke="#c084fc" stroke-width="1.5" opacity="0.9"/>
+              <polygon points="45,32 75,46 75,74 45,60" fill="#1e1b4b" stroke="#a855f7" stroke-width="1.5" opacity="0.8"/>
+              <polygon points="75,46 105,32 105,60 75,74" fill="#2e1065" stroke="#9333ea" stroke-width="1.5" opacity="0.8"/>
+              <!-- Central glowing core -->
+              <circle cx="75" cy="46" r="6" fill="#f3e8ff"/>
+              <circle cx="75" cy="46" r="12" fill="#c084fc" opacity="0.3"/>
+              <!-- Data streams & text -->
+              <text x="75" y="82" fill="#e9d5ff" font-family="'JetBrains Mono', monospace" font-size="6.5" font-weight="bold" text-anchor="middle" letter-spacing="1">CYBERDECK • SPECULATIVE ARCHIVE</text>
+            </svg>
+          </div>
+        </div>
+      `;
+    } else if (vol === 'cinema-vfx-hacker-culture') {
+      // 7. CINEMA CLAPPER & 3D WIREFRAME MESH - VFX & Cinema artifact
+      return `
+        <div class="tech-artifact-hero">
+          <div class="tech-artifact-svg-wrap" title="Claqueta de cine digital y malla de render 3D">
+            <svg class="artifact-svg" viewBox="0 0 150 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" y="5" width="140" height="80" rx="8" fill="#0c0e14" stroke="#06b6d4" stroke-width="1.8"/>
+              <!-- Clapper top bars -->
+              <rect x="25" y="16" width="100" height="14" rx="2" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
+              <polygon points="35,16 45,16 35,30 25,30" fill="#38bdf8"/>
+              <polygon points="55,16 65,16 55,30 45,30" fill="#38bdf8"/>
+              <polygon points="75,16 85,16 75,30 65,30" fill="#38bdf8"/>
+              <polygon points="95,16 105,16 95,30 85,30" fill="#38bdf8"/>
+              <polygon points="115,16 125,16 115,30 105,30" fill="#38bdf8"/>
+              <!-- 3D camera wireframe icon -->
+              <circle cx="50" cy="55" r="14" fill="#082f49" stroke="#22d3ee" stroke-width="1.4"/>
+              <circle cx="50" cy="55" r="7" fill="#0284c7" stroke="#38bdf8" stroke-width="1"/>
+              <!-- Wireframe mesh grid right -->
+              <line x1="80" y1="42" x2="125" y2="42" stroke="#06b6d4" stroke-width="1" stroke-dasharray="2 2"/>
+              <line x1="80" y1="54" x2="125" y2="54" stroke="#06b6d4" stroke-width="1" stroke-dasharray="2 2"/>
+              <line x1="80" y1="66" x2="125" y2="66" stroke="#06b6d4" stroke-width="1" stroke-dasharray="2 2"/>
+              <line x1="95" y1="36" x2="95" y2="72" stroke="#06b6d4" stroke-width="1" stroke-dasharray="2 2"/>
+              <line x1="110" y1="36" x2="110" y2="72" stroke="#06b6d4" stroke-width="1" stroke-dasharray="2 2"/>
+              <text x="75" y="82" fill="#bae6fd" font-family="'JetBrains Mono', monospace" font-size="6.5" font-weight="bold" text-anchor="middle" letter-spacing="1">RENDERMAN • VFX • CGI PIPELINE</text>
+            </svg>
+          </div>
+        </div>
+      `;
+    } else {
+      // Fallback: Terminal interactiva clásica
+      return `
+        <div class="tech-artifact-hero">
+          <div class="tech-artifact-svg-wrap" title="Terminal interactiva">
+            <svg class="artifact-svg" viewBox="0 0 160 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="156" height="86" rx="8" fill="#090d16" stroke="#38bdf8" stroke-width="1.8" stroke-opacity="0.8"/>
+              <text x="80" y="48" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold" text-anchor="middle">&gt; HIT-TAZOS TECH</text>
             </svg>
           </div>
         </div>

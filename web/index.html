@@ -204,6 +204,14 @@
       <i data-lucide="code-2"></i>
       <span>Vol 6: Python Track</span>
     </button>
+    <button class="ribbon-pill" data-volumen="scifi-literature-cyberpunk">
+      <i data-lucide="book-open"></i>
+      <span>Vol 7: Sci-Fi & Cyberpunk</span>
+    </button>
+    <button class="ribbon-pill" data-volumen="cinema-vfx-hacker-culture">
+      <i data-lucide="clapperboard"></i>
+      <span>Vol 8: Cinema & CGI</span>
+    </button>
   </nav>
 
   <!-- Full-screen FX Canvas for Cyber Confetti / Sparks -->
@@ -261,7 +269,7 @@
             <button class="nudge-btn" id="btn-nudge-minus5" title="Retroceder 5 años">-5</button>
             <button class="nudge-btn" id="btn-nudge-minus1" title="Retroceder 1 año">-1</button>
             <div class="console-input-wrap">
-              <input type="number" id="input-year" class="console-input" placeholder="AÑO" min="1950" max="2030">
+              <input type="number" id="input-year" class="console-input" placeholder="AÑO" min="1800" max="2030">
             </div>
             <button class="nudge-btn" id="btn-nudge-plus1" title="Avanzar 1 año">+1</button>
             <button class="nudge-btn" id="btn-nudge-plus5" title="Avanzar 5 años">+5</button>
@@ -334,12 +342,16 @@
 
         <div class="dropdown-cluster">
           <select id="select-filter-group" class="select-control">
-            <option value="ALL">Todos los Grupos (A - E)</option>
-            <option value="A">Grupo A: Universo Python</option>
-            <option value="B">Grupo B: Software, Web y Datos</option>
-            <option value="C">Grupo C: DevOps e Infraestructura</option>
-            <option value="D">Grupo D: Cómputo, IA y Datos</option>
-            <option value="E">Grupo E: Cultura Hacker y Leyendas</option>
+            <option value="ALL">Todos los Volúmenes (Vol 0 - 8)</option>
+            <option value="kernel-foundations">Vol 0: Kernel Foundations</option>
+            <option value="cypherpunks-hacker-lore">Vol 1: Hacker Lore</option>
+            <option value="embedded-silicon-hardware">Vol 2: Hardware</option>
+            <option value="unix-sysadmin-networks">Vol 3: Unix & Networks</option>
+            <option value="backend-distributed-systems">Vol 4: Backend</option>
+            <option value="cloud-containers-sre">Vol 5: Cloud & SRE</option>
+            <option value="python-track">Vol 6: Python Track</option>
+            <option value="scifi-literature-cyberpunk">Vol 7: Sci-Fi & Cyberpunk</option>
+            <option value="cinema-vfx-hacker-culture">Vol 8: Cinema & CGI</option>
           </select>
 
           <select id="select-sort-order" class="select-control">
