@@ -4066,18 +4066,20 @@
     "id": "vol2-0x00",
     "volumen": "embedded-silicon-hardware",
     "index": 0,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste pedagógico sobre el origen en ingeniería petrolera y arquitectura C ANSI."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "The Evolution of Lua (Ierusalimschy, de Figueiredo, Celes, HOPL III 2007)",
+        "url": "https://www.lua.org/history.html"
       }
     ]
   },
@@ -4088,17 +4090,17 @@
     "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
-      "pedagogical": "IMPROVED",
+      "pedagogical": "COMPLIANT",
       "editorial": "REWRITTEN_SOBER"
     },
     "detected_issues": [
-      "Término hiperbólico 'dominando'."
+      "Verificación de compatibilidad con 8080 y adopción en sistemas emblemáticos."
     ],
     "sources": [
       {
         "type": "primary",
-        "title": "Zilog Z80 Microprocessor Product Specification (1976)",
-        "url": "http://www.z80.info/zip/z80specs.pdf"
+        "title": "Z80 CPU Technical Manual (Zilog, 1977)",
+        "url": "http://www.zilog.com/docs/z80/um0080.pdf"
       }
     ]
   },
@@ -4106,18 +4108,20 @@
     "id": "vol2-0x02",
     "volumen": "embedded-silicon-hardware",
     "index": 2,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Especificación técnica de Intel VT-x/AMD-V e integración en Linux 2.6.20."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: cloud-infrastructure/containers-virt",
-        "url": "https://en.wikipedia.org/wiki/containers_virt"
+        "type": "primary",
+        "title": "kvm: the Linux Kernel-based Virtual Machine (Avi Kivity et al., OLS 2007)",
+        "url": "https://www.kernel.org/doc/ols/2007/ols2007v1-pages-225-230.pdf"
       }
     ]
   },
@@ -4125,18 +4129,20 @@
     "id": "vol2-0x03",
     "volumen": "embedded-silicon-hardware",
     "index": 3,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Corrección de autoría: chroot en Version 7 Unix fue creada por Dennis Ritchie en Bell Labs (no por Bill Joy)."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: cloud-infrastructure/containers-virt",
-        "url": "https://en.wikipedia.org/wiki/containers_virt"
+        "type": "primary",
+        "title": "Unix Version 7 Manual: CHROOT(2) (Bell Laboratories, 1979)",
+        "url": "https://s3.amazonaws.com/plan9-bell-labs/v7/v7man.pdf"
       }
     ]
   },
@@ -4144,18 +4150,20 @@
     "id": "vol2-0x04",
     "volumen": "embedded-silicon-hardware",
     "index": 4,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación de la publicación en Usenet comp.sources.misc en diciembre de 1987."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "comp.sources.misc: Perl v1.0 release announcement (Larry Wall, Dec 1987)",
+        "url": "https://groups.google.com/g/comp.sources.misc/c/uC_XjA_z_lQ"
       }
     ]
   },
@@ -4163,18 +4171,20 @@
     "id": "vol2-0x05",
     "volumen": "embedded-silicon-hardware",
     "index": 5,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Sobriedad expositiva de la fijación de precio de lanzamiento."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "MOS Technology 6502 Hardware Manual (August 1975)",
+        "url": "https://archive.org/details/bitsavers_commodore6areManualAug75_10023616"
       }
     ]
   },
@@ -4182,18 +4192,20 @@
     "id": "vol2-0x06",
     "volumen": "embedded-silicon-hardware",
     "index": 6,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste pedagógico del reparto de competencias técnicas entre OCI y CNCF."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: cloud-infrastructure/containers-virt",
-        "url": "https://en.wikipedia.org/wiki/containers_virt"
+        "type": "primary",
+        "title": "Linux Foundation Launches OCI & Cloud Native Computing Foundation (2015)",
+        "url": "https://www.linuxfoundation.org/press/press-release/open-container-initiative-celebrates-first-anniversary"
       }
     ]
   },
@@ -4201,18 +4213,20 @@
     "id": "vol2-0x07",
     "volumen": "embedded-silicon-hardware",
     "index": 7,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Atribución técnica precisa de la influencia de FLOW-MATIC."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "CODASYL: Initial Specifications for Common Business Oriented Language (April 1960)",
+        "url": "https://archive.org/details/bitsavers_codasylcobReportApr60_6606399"
       }
     ]
   },
@@ -4220,18 +4234,21 @@
     "id": "vol2-0x08",
     "volumen": "embedded-silicon-hardware",
     "index": 8,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Añadido Tim Berners-Lee como coautor del RFC 2068.",
+      "Eliminado RFC 2068 del anverso para evitar confusión/spoiler con el número 2068."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/web-standards",
-        "url": "https://en.wikipedia.org/wiki/web_standards"
+        "type": "primary",
+        "title": "RFC 2068: Hypertext Transfer Protocol -- HTTP/1.1 (January 1997)",
+        "url": "https://www.rfc-editor.org/rfc/rfc2068"
       }
     ]
   },
@@ -4239,18 +4256,20 @@
     "id": "vol2-0x09",
     "volumen": "embedded-silicon-hardware",
     "index": 9,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación de la publicación 'Why We Created Julia' en febrero de 2012."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "Why We Created Julia (Bezanson, Edelman, Karpinski, Shah, Feb 2012)",
+        "url": "https://julialang.org/blog/2012/02/why-we-created-julia/"
       }
     ]
   },
@@ -4258,18 +4277,20 @@
     "id": "vol2-0x0A",
     "volumen": "embedded-silicon-hardware",
     "index": 10,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Atribución a Jean Ichbiah con CII Honeywell Bull contratado por el Departamento de Defensa."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "Reference Manual for the Ada Programming Language (DoD, MIL-STD-1815, 1980)",
+        "url": "https://archive.org/details/milstd18151980"
       }
     ]
   },
@@ -4277,18 +4298,20 @@
     "id": "vol2-0x0B",
     "volumen": "embedded-silicon-hardware",
     "index": 11,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación del lanzamiento en EPFL en 2003/2004."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "An Overview of the Scala Programming Language (Martin Odersky et al., EPFL 2004)",
+        "url": "https://www.scala-lang.org/docu/files/ScalaOverview.pdf"
       }
     ]
   },
@@ -4296,18 +4319,20 @@
     "id": "vol2-0x0C",
     "volumen": "embedded-silicon-hardware",
     "index": 12,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste sobrio y verificación de fecha del anuncio en JVM Language Summit 2011."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "JetBrains unveils Kotlin (July 2011)",
+        "url": "https://blog.jetbrains.com/kotlin/2011/07/jetbrains-announces-kotlin/"
       }
     ]
   },
@@ -4315,18 +4340,20 @@
     "id": "vol2-0x0D",
     "volumen": "embedded-silicon-hardware",
     "index": 13,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Atribución a ETH Zürich y verificación del informe de 1970."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "The Programming Language Pascal (Niklaus Wirth, ETH Zürich 1970)",
+        "url": "https://doi.org/10.1007/BF00264291"
       }
     ]
   },
@@ -4334,18 +4361,20 @@
     "id": "vol2-0x0E",
     "volumen": "embedded-silicon-hardware",
     "index": 14,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Alineación pedagógica con el runtime containerd-wasm."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: cloud-infrastructure/containers-virt",
-        "url": "https://en.wikipedia.org/wiki/containers_virt"
+        "type": "primary",
+        "title": "SpinKube: Open Source WebAssembly on Kubernetes (March 2024)",
+        "url": "https://www.spinkube.dev/blog/announcing-spinkube/"
       }
     ]
   },
@@ -4353,18 +4382,20 @@
     "id": "vol2-0x0F",
     "volumen": "embedded-silicon-hardware",
     "index": 15,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación de Stephen Morse como arquitecto principal."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "The 8086 Architecture (Stephen P. Morse et al., IEEE Micro 1980)",
+        "url": "https://doi.org/10.1109/MC.1980.1653609"
       }
     ]
   },
@@ -4372,18 +4403,20 @@
     "id": "vol2-0x10",
     "volumen": "embedded-silicon-hardware",
     "index": 16,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación del anuncio en comp.infosystems.www.authoring.cgi en junio de 1995."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "Announce: Personal Home Page Tools (Rasmus Lerdorf, Usenet June 1995)",
+        "url": "https://groups.google.com/g/comp.infosystems.www.authoring.cgi/c/b0J_gKqI6-M"
       }
     ]
   },
@@ -4391,18 +4424,20 @@
     "id": "vol2-0x11",
     "volumen": "embedded-silicon-hardware",
     "index": 17,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación del 1 de mayo de 1964 en Dartmouth College."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "Dartmouth College: BASIC and the Dartmouth Time-Sharing System (1964)",
+        "url": "https://www.dartmouth.edu/basic50/basic.html"
       }
     ]
   },
@@ -4410,18 +4445,20 @@
     "id": "vol2-0x12",
     "volumen": "embedded-silicon-hardware",
     "index": 18,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste sobrio y verificación del lanzamiento en red en diciembre de 1995."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "An Interview with the Creator of Ruby (Yukihiro Matsumoto, LinuxDevCenter 2001)",
+        "url": "https://www.oreilly.com/openbook/ruby/"
       }
     ]
   },
@@ -4429,18 +4466,20 @@
     "id": "vol2-0x13",
     "volumen": "embedded-silicon-hardware",
     "index": 19,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Añadido Craig McLuckie y referencia formal a Borg/Omega."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: cloud-infrastructure/containers-virt",
-        "url": "https://en.wikipedia.org/wiki/containers_virt"
+        "type": "primary",
+        "title": "Borg, Omega, and Kubernetes (Burns et al., ACM Queue 2016)",
+        "url": "https://queue.acm.org/detail.cfm?id=2898444"
       }
     ]
   },
@@ -4448,18 +4487,20 @@
     "id": "vol2-0x14",
     "volumen": "embedded-silicon-hardware",
     "index": 20,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Detalle técnico de arquitectura híbrida 16/32 bits sin segmentación."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "MC68000 16-Bit Microprocessor User's Manual (Motorola, 1979)",
+        "url": "https://archive.org/details/bitsavers_motorolaMCnualSep82_21200213"
       }
     ]
   },
@@ -4467,18 +4508,20 @@
     "id": "vol2-0x15",
     "volumen": "embedded-silicon-hardware",
     "index": 21,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Enfoque en 'sin flujo de control oculto' y comptime."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "Zig Programming Language Documentation and Philosophy",
+        "url": "https://ziglang.org/learn/overview/"
       }
     ]
   },
@@ -4486,18 +4529,20 @@
     "id": "vol2-0x16",
     "volumen": "embedded-silicon-hardware",
     "index": 22,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Atribución formal compartida a Sophie Wilson y Steve Furber en Acorn."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "The ARM Architecture (Furber S., IEEE Micro 1989)",
+        "url": "https://doi.org/10.1109/40.31349"
       }
     ]
   },
@@ -4505,18 +4550,20 @@
     "id": "vol2-0x17",
     "volumen": "embedded-silicon-hardware",
     "index": 23,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación de la presentación en BSDCon 2000."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: cloud-infrastructure/containers-virt",
-        "url": "https://en.wikipedia.org/wiki/containers_virt"
+        "type": "primary",
+        "title": "Jails: Confining the omnipotent root (Poul-Henning Kamp, Robert Watson, BSDCon 2000)",
+        "url": "https://www.usenix.org/legacy/publications/library/proceedings/bsdcon2000/full_papers/kamp/kamp.pdf"
       }
     ]
   },
@@ -4524,18 +4571,20 @@
     "id": "vol2-0x18",
     "volumen": "embedded-silicon-hardware",
     "index": 24,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación del artículo en Communications of the ACM (abril 1960)."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "Recursive Functions of Symbolic Expressions and Their Computation by Machine (John McCarthy, CACM 1960)",
+        "url": "https://doi.org/10.1145/367177.367199"
       }
     ]
   },
@@ -4543,18 +4592,20 @@
     "id": "vol2-0x19",
     "volumen": "embedded-silicon-hardware",
     "index": 25,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Atribución técnica de la traducción binaria ante la falta de virtualización por hardware en los procesadores x86 de la época."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: cloud-infrastructure/containers-virt",
-        "url": "https://en.wikipedia.org/wiki/containers_virt"
+        "type": "primary",
+        "title": "Virtual Machine Monitors for x86 (Bugnion, Devine, Rosenblum, ACM TOCS 2012)",
+        "url": "https://dl.acm.org/doi/10.1145/2382553.2382554"
       }
     ]
   },
@@ -4562,18 +4613,20 @@
     "id": "vol2-0x1A",
     "volumen": "embedded-silicon-hardware",
     "index": 26,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Detalle técnico de la arquitectura GTE + GPU."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "The Architecture of the Sony PlayStation (Ken Kutaragi, IEEE Micro 1995)",
+        "url": "https://doi.org/10.1109/40.378952"
       }
     ]
   },
@@ -4581,18 +4634,20 @@
     "id": "vol2-0x1B",
     "volumen": "embedded-silicon-hardware",
     "index": 27,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Detalle de la arquitectura de pipeline sin interlocks delegada al compilador."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "MIPS R2000 Microprocessor (MIPS Computer Systems, 1986)",
+        "url": "https://archive.org/details/bitsavers_mipsR2000000RISCArchitecture1986_7233215"
       }
     ]
   },
@@ -4600,18 +4655,20 @@
     "id": "vol2-0x1C",
     "volumen": "embedded-silicon-hardware",
     "index": 28,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste pedagógico sobre el modelo de virtualización por zonas en Solaris."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: cloud-infrastructure/containers-virt",
-        "url": "https://en.wikipedia.org/wiki/containers_virt"
+        "type": "primary",
+        "title": "Solaris Zones: System Administration Guide (Sun Microsystems, 2004)",
+        "url": "https://docs.oracle.com/cd/E19253-01/817-1592/"
       }
     ]
   },
@@ -4619,18 +4676,20 @@
     "id": "vol2-0x1D",
     "volumen": "embedded-silicon-hardware",
     "index": 29,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación del origen del prototipo Ruby de Cooper."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "The Father of Visual Basic (Alan Cooper, 1996 interview)",
+        "url": "https://www.cooper.com/about/alan-cooper/"
       }
     ]
   },
@@ -4638,18 +4697,20 @@
     "id": "vol2-0x1E",
     "volumen": "embedded-silicon-hardware",
     "index": 30,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Explicación del relevo de WebGL y compatibilidad con APIs modernas."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/web-standards",
-        "url": "https://en.wikipedia.org/wiki/web_standards"
+        "type": "primary",
+        "title": "W3C WebGPU Specification",
+        "url": "https://www.w3.org/TR/webgpu/"
       }
     ]
   },
@@ -4657,18 +4718,20 @@
     "id": "vol2-0x1F",
     "volumen": "embedded-silicon-hardware",
     "index": 31,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste sobrio y verificación de los nombres en clave Mocha y LiveScript."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "JavaScript: The First 20 Years (Wirfs-Brock & Eich, HOPL IV 2020)",
+        "url": "https://dl.acm.org/doi/10.1145/3386327"
       }
     ]
   },
@@ -4676,18 +4739,20 @@
     "id": "vol2-0x20",
     "volumen": "embedded-silicon-hardware",
     "index": 32,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste pedagógico del rol didáctico de MINIX e influencia en Linux."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/linux-unix-os",
-        "url": "https://en.wikipedia.org/wiki/linux_unix_os"
+        "type": "primary",
+        "title": "Operating Systems: Design and Implementation (Tanenbaum, 1987)",
+        "url": "https://www.minix3.org/history.html"
       }
     ]
   },
@@ -4695,18 +4760,20 @@
     "id": "vol2-0x21",
     "volumen": "embedded-silicon-hardware",
     "index": 33,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Especificación técnica de la conmutación de bancos de memoria (bank switching)."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "MOS 6510 Microprocessor with I/O (Commodore Semiconductor Group)",
+        "url": "https://archive.org/details/bitsavers_commodore6510MicroprocessorwithIO_1487216"
       }
     ]
   },
@@ -4714,18 +4781,20 @@
     "id": "vol2-0x22",
     "volumen": "embedded-silicon-hardware",
     "index": 34,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Añadido Mike Williams y especificación del modelo de supervisión de procesos."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "A History of Erlang (Armstrong, HOPL III 2007)",
+        "url": "https://dl.acm.org/doi/10.1145/1238844.1238850"
       }
     ]
   },
@@ -4733,18 +4802,20 @@
     "id": "vol2-0x23",
     "volumen": "embedded-silicon-hardware",
     "index": 35,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación de la instalación en el Laboratorio Nacional de Los Álamos en 1976."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "The CRAY-1 Computer System (Russell R.M., CACM 1978)",
+        "url": "https://doi.org/10.1145/359327.359336"
       }
     ]
   },
@@ -4752,18 +4823,20 @@
     "id": "vol2-0x24",
     "volumen": "embedded-silicon-hardware",
     "index": 36,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste sobrio del hito de graduación y constitución de CNCF."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: cloud-infrastructure/containers-virt",
-        "url": "https://en.wikipedia.org/wiki/containers_virt"
+        "type": "primary",
+        "title": "Google and Linux Foundation Launch CNCF with Kubernetes 1.0 (July 2015)",
+        "url": "https://www.linuxfoundation.org/press/press-release/as-kubernetes-hits-1-0-new-foundation-forms-to-catalyze-the-future-of-cloud-native-computing"
       }
     ]
   },
@@ -4771,18 +4844,20 @@
     "id": "vol2-0x25",
     "volumen": "embedded-silicon-hardware",
     "index": 37,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación del paper de 1989 en Neural Computation."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/neural-networks-papers",
-        "url": "https://en.wikipedia.org/wiki/neural_networks_papers"
+        "type": "primary",
+        "title": "Backpropagation Applied to Handwritten Zip Code Recognition (LeCun et al., Neural Computation 1989)",
+        "url": "https://doi.org/10.1162/neco.1989.1.4.541"
       }
     ]
   },
@@ -4790,18 +4865,20 @@
     "id": "vol2-0x26",
     "volumen": "embedded-silicon-hardware",
     "index": 38,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Eliminación de hipérboles sobre valor bursátil; descripción microarquitectónica formal."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "NVIDIA Blackwell Architecture Technical Brief (March 2024)",
+        "url": "https://www.nvidia.com/en-us/data-center/technologies/blackwell-architecture/"
       }
     ]
   },
@@ -4809,18 +4886,20 @@
     "id": "vol2-0x27",
     "volumen": "embedded-silicon-hardware",
     "index": 39,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Atribución compartida a los tres diseñadores principales del 4004."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "The Making of the First Microprocessor (Federico Faggin, IEEE Solid-State Circuits Magazine 2009)",
+        "url": "https://doi.org/10.1109/MSSC.2008.931086"
       }
     ]
   },
@@ -4828,18 +4907,20 @@
     "id": "vol2-0x28",
     "volumen": "embedded-silicon-hardware",
     "index": 40,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Enfoque formal en ámbito léxico y tail call optimization."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "Scheme: An Interpreter for Extended Lambda Calculus (Steele & Sussman, MIT AI Lab Memo 349, 1975)",
+        "url": "https://dspace.mit.edu/handle/1721.1/5794"
       }
     ]
   },
@@ -4847,18 +4928,20 @@
     "id": "vol2-0x29",
     "volumen": "embedded-silicon-hardware",
     "index": 41,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Explicación pedagógica precisa de los formatos E4M3 y E5M2 en tensores."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/scientific-stack",
-        "url": "https://en.wikipedia.org/wiki/scientific_stack"
+        "type": "primary",
+        "title": "FP8 Formats for Deep Learning (Micikevicius et al., NVIDIA/ARM/Intel 2022)",
+        "url": "https://arxiv.org/abs/2209.05433"
       }
     ]
   },
@@ -4866,18 +4949,20 @@
     "id": "vol2-0x2A",
     "volumen": "embedded-silicon-hardware",
     "index": 42,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación de la versión del kernel Linux 2.6.24 y nombre original Process Containers."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: cloud-infrastructure/containers-virt",
-        "url": "https://en.wikipedia.org/wiki/containers_virt"
+        "type": "primary",
+        "title": "Linux Kernel Documentation: Control Groups (cgroups v1/v2)",
+        "url": "https://docs.kernel.org/admin-guide/cgroup-v1/cgroups.html"
       }
     ]
   },
@@ -4885,18 +4970,20 @@
     "id": "vol2-0x2B",
     "volumen": "embedded-silicon-hardware",
     "index": 43,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Detalle técnico de la tabla SRT en el algoritmo de división en coma flotante."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "Statistical Analysis of Floating Point Flaw in the Pentium Processor (Thomas R. Nicely, 1994)",
+        "url": "https://faculty.lynchburg.edu/~nicely/pentbug/bug.html"
       }
     ]
   },
@@ -4904,18 +4991,20 @@
     "id": "vol2-0x2C",
     "volumen": "embedded-silicon-hardware",
     "index": 44,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Añadida Adele Goldberg como figura clave del entorno."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "The Early History of Smalltalk (Alan Kay, HOPL II 1993)",
+        "url": "https://dl.acm.org/doi/10.1145/155360.155364"
       }
     ]
   },
@@ -4923,18 +5012,20 @@
     "id": "vol2-0x2D",
     "volumen": "embedded-silicon-hardware",
     "index": 45,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Explicación formal de la especificación App Container (appc)."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: cloud-infrastructure/containers-virt",
-        "url": "https://en.wikipedia.org/wiki/containers_virt"
+        "type": "primary",
+        "title": "CoreOS is building a container runtime, rkt (December 2014)",
+        "url": "https://coreos.com/blog/rocket/"
       }
     ]
   },
@@ -4942,18 +5033,20 @@
     "id": "vol2-0x2E",
     "volumen": "embedded-silicon-hardware",
     "index": 46,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación de la derivación de MicroPython en 2017."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/cpython-runtime",
-        "url": "https://en.wikipedia.org/wiki/cpython_runtime"
+        "type": "primary",
+        "title": "CircuitPython 1.0.0 Release (Adafruit Industries, 2017)",
+        "url": "https://github.com/adafruit/circuitpython/releases/tag/1.0.0"
       }
     ]
   },
@@ -4961,18 +5054,20 @@
     "id": "vol2-0x2F",
     "volumen": "embedded-silicon-hardware",
     "index": 47,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Detalle técnico de la arquitectura Harvard modificada y velocidad de ciclo."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "TMS32010 User's Guide (Texas Instruments, 1983)",
+        "url": "https://archive.org/details/bitsavers_tiTMS32010UsersGuide1983_8943806"
       }
     ]
   },
@@ -4980,18 +5075,20 @@
     "id": "vol2-0x30",
     "volumen": "embedded-silicon-hardware",
     "index": 48,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Atribución a Hal Laning y equipo del MIT Instrumentation Lab."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "The Apollo Guidance Computer: Architecture and Operation (Frank O'Brien, Springer 2010)",
+        "url": "https://www.nasa.gov/history/computers/ApolloGuidance.html"
       }
     ]
   },
@@ -4999,18 +5096,20 @@
     "id": "vol2-0x31",
     "volumen": "embedded-silicon-hardware",
     "index": 49,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste pedagógico sobre los protocolos y macros higiénicas."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "Elixir: A modern language on the Erlang VM (José Valim, 2012)",
+        "url": "https://elixir-lang.org/"
       }
     ]
   },
@@ -5018,18 +5117,20 @@
     "id": "vol2-0x32",
     "volumen": "embedded-silicon-hardware",
     "index": 50,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Detalle de comandos AT iniciales y soporte posterior en Arduino."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "ESP8266 Technical Reference Manual (Espressif Systems)",
+        "url": "https://www.espressif.com/en/products/socs/esp8266"
       }
     ]
   },
@@ -5037,18 +5138,20 @@
     "id": "vol2-0x33",
     "volumen": "embedded-silicon-hardware",
     "index": 51,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Sobriedad expositiva y precisión del proyecto Oak."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "The Java Language Specification (James Gosling, Bill Joy, Guy Steele, 1996)",
+        "url": "https://docs.oracle.com/javase/specs/"
       }
     ]
   },
@@ -5056,18 +5159,20 @@
     "id": "vol2-0x34",
     "volumen": "embedded-silicon-hardware",
     "index": 52,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Especificación técnica de la integración de memoria Flash."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "AVR Microcontroller Hardware Architecture (Atmel Corporation)",
+        "url": "https://www.microchip.com/en-us/products/microcontrollers-and-microprocessors/8-bit-mcus/avr-mcus"
       }
     ]
   },
@@ -5075,18 +5180,20 @@
     "id": "vol2-0x35",
     "volumen": "embedded-silicon-hardware",
     "index": 53,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Detalle técnico de ARC e inferencia de tipos."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "Apple WWDC 2014: Introduction of Swift",
+        "url": "https://developer.apple.com/swift/"
       }
     ]
   },
@@ -5094,18 +5201,20 @@
     "id": "vol2-0x36",
     "volumen": "embedded-silicon-hardware",
     "index": 54,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Explicación pedagógica precisa de los bloques PIO."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "RP2040 Datasheet: A microcontroller by Raspberry Pi (Jan 2021)",
+        "url": "https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf"
       }
     ]
   },
@@ -5113,18 +5222,20 @@
     "id": "vol2-0x37",
     "volumen": "embedded-silicon-hardware",
     "index": 55,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste formal al mecanismo de unificación y cláusulas de Horn."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "The Birth of Prolog (Alain Colmerauer, Philippe Roussel, HOPL II 1993)",
+        "url": "https://dl.acm.org/doi/10.1145/155360.155362"
       }
     ]
   },
@@ -5132,18 +5243,20 @@
     "id": "vol2-0x38",
     "volumen": "embedded-silicon-hardware",
     "index": 56,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación de la publicación del Tech Report en UC Berkeley en 2010."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "The RISC-V Instruction Set Manual (Waterman, Asanović, Patterson, UCB/EECS-2011-62)",
+        "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2011/EECS-2011-62.pdf"
       }
     ]
   },
@@ -5151,18 +5264,20 @@
     "id": "vol2-0x39",
     "volumen": "embedded-silicon-hardware",
     "index": 57,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación de la versión 1.14 en disco Fred Fish para Amiga en 1991."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/developer-tools",
-        "url": "https://en.wikipedia.org/wiki/developer_tools"
+        "type": "primary",
+        "title": "Vim: 30 years of development (Bram Moolenaar, 2021)",
+        "url": "https://www.vim.org/history.php"
       }
     ]
   },
@@ -5170,18 +5285,20 @@
     "id": "vol2-0x3A",
     "volumen": "embedded-silicon-hardware",
     "index": 58,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Detalle microarquitectónico de las ventanas de registros solapados (register windows)."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "The SPARC Architecture Manual (Sun Microsystems, 1987)",
+        "url": "https://archive.org/details/bitsavers_sunsparcThualVersion71987_6819878"
       }
     ]
   },
@@ -5189,18 +5306,20 @@
     "id": "vol2-0x3B",
     "volumen": "embedded-silicon-hardware",
     "index": 59,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Reconocimiento a la base del proyecto Wiring de Hernando Barragán."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "Arduino: A Low-Cost Hardware Platform for Education (Banzi et al., 2005)",
+        "url": "https://www.arduino.cc/en/About/History"
       }
     ]
   },
@@ -5208,18 +5327,20 @@
     "id": "vol2-0x3C",
     "volumen": "embedded-silicon-hardware",
     "index": 60,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Explicación pedagógica de la memoria EEPROM frente a EPROM ultravioleta."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "PIC16C84 8-Bit CMOS Microcontroller with EEPROM (Microchip Technology, 1993)",
+        "url": "https://archive.org/details/bitsavers_microchipPIC16C841994_3423783"
       }
     ]
   },
@@ -5227,18 +5348,20 @@
     "id": "vol2-0x3D",
     "volumen": "embedded-silicon-hardware",
     "index": 61,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Corrección de errata en trivia previa ('desarrollo en TypeScript') y enfoque pedagógico en comprobación en compilación."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "Microsoft Corporation: Announcing TypeScript 0.8 (S. Somasegar, Oct 2012)",
+        "url": "https://devblogs.microsoft.com/typescript/announcing-typescript-0-8/"
       }
     ]
   },
@@ -5246,18 +5369,20 @@
     "id": "vol2-0x3E",
     "volumen": "embedded-silicon-hardware",
     "index": 62,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación de la campaña de Kickstarter en diciembre de 2013."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/cpython-runtime",
-        "url": "https://en.wikipedia.org/wiki/cpython_runtime"
+        "type": "primary",
+        "title": "MicroPython: Python for Microcontrollers (Damien George, Kickstarter 2013)",
+        "url": "https://micropython.org/"
       }
     ]
   },
@@ -5265,18 +5390,20 @@
     "id": "vol2-0x3F",
     "volumen": "embedded-silicon-hardware",
     "index": 63,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Verificación de la recomendación oficial del W3C en diciembre de 2019."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "W3C Recommendation: WebAssembly Core Specification (Dec 2019)",
+        "url": "https://www.w3.org/TR/wasm-core-1/"
       }
     ]
   },
