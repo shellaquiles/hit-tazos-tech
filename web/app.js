@@ -42,44 +42,65 @@ class HitTazosEngine {
     const now = this.audioCtx.currentTime;
 
     if (type === 'flip') {
+      // Deslizamiento sutil de carta de cartulina (card slide/swoosh)
       const osc = this.audioCtx.createOscillator();
       const gain = this.audioCtx.createGain();
-      osc.connect(gain);
+      const filter = this.audioCtx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(800, now);
+      filter.frequency.exponentialRampToValueAtTime(300, now + 0.14);
+
+      osc.connect(filter);
+      filter.connect(gain);
       gain.connect(this.audioCtx.destination);
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(260, now);
-      osc.frequency.exponentialRampToValueAtTime(540, now + 0.15);
-      gain.gain.setValueAtTime(0.14, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(220, now);
+      osc.frequency.exponentialRampToValueAtTime(140, now + 0.14);
+      gain.gain.setValueAtTime(0.12, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
       osc.start(now);
-      osc.stop(now + 0.15);
+      osc.stop(now + 0.14);
     } else if (type === 'hit') {
-      // Lush multi-oscillator chord (Maj7 arpeggio)
-      const freqs = [523.25, 659.25, 783.99, 987.77];
+      // Acorde cálido de campanilla de mesa (Acoustic bell / glass chime C-E-G-B)
+      const freqs = [523.25, 659.25, 783.99, 1046.50];
       freqs.forEach((f, idx) => {
         const osc = this.audioCtx.createOscillator();
         const gain = this.audioCtx.createGain();
         osc.connect(gain);
         gain.connect(this.audioCtx.destination);
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(f, now + idx * 0.06);
-        gain.gain.setValueAtTime(0.14, now + idx * 0.06);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5 + idx * 0.05);
-        osc.start(now + idx * 0.06);
-        osc.stop(now + 0.5 + idx * 0.05);
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(f, now + idx * 0.05);
+        gain.gain.setValueAtTime(0.10, now + idx * 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45 + idx * 0.05);
+        osc.start(now + idx * 0.05);
+        osc.stop(now + 0.45 + idx * 0.05);
       });
     } else if (type === 'miss') {
+      // Golpe sordo de madera / tapón de mesa (Warm wooden thud, no sawtooth arcade)
       const osc = this.audioCtx.createOscillator();
       const gain = this.audioCtx.createGain();
       osc.connect(gain);
       gain.connect(this.audioCtx.destination);
-      osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(170, now);
-      osc.frequency.linearRampToValueAtTime(95, now + 0.25);
-      gain.gain.setValueAtTime(0.15, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(130, now);
+      osc.frequency.exponentialRampToValueAtTime(45, now + 0.18);
+      gain.gain.setValueAtTime(0.18, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
       osc.start(now);
-      osc.stop(now + 0.25);
+      osc.stop(now + 0.18);
+    } else if (type === 'tick') {
+      // Click táctil de stepper / ficha de cartón
+      const osc = this.audioCtx.createOscillator();
+      const gain = this.audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(this.audioCtx.destination);
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(580, now);
+      osc.frequency.exponentialRampToValueAtTime(200, now + 0.035);
+      gain.gain.setValueAtTime(0.08, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
+      osc.start(now);
+      osc.stop(now + 0.035);
     }
   }
 
@@ -133,6 +154,19 @@ class HitTazosEngine {
     this.selectFilterGroup = document.getElementById('select-filter-group');
     this.selectSortOrder = document.getElementById('select-sort-order');
     this.catalogGrid = document.getElementById('catalog-grid');
+
+    // Help & Shortcuts Dialog
+    this.btnHelpToggle = document.getElementById('btn-help-toggle');
+    this.helpDialog = document.getElementById('help-dialog');
+    this.btnCloseHelpModal = document.getElementById('btn-close-help-modal');
+    this.btnUnderstoodHelp = document.getElementById('btn-understood-help');
+
+    // Touch & Swipe Gestures Tracking
+    this.touchStartX = 0;
+    this.touchStartY = 0;
+    this.touchStartTime = 0;
+    this.isTouchDragging = false;
+    this.justHandledTouch = false;
   }
 
   initFX() {
@@ -223,12 +257,23 @@ class HitTazosEngine {
 
   async loadData() {
     try {
-      const [cards, colorsData, catalogData, manifestData] = await Promise.all([
-        this.fetchFirst(['../data/cards.json', 'data/cards.json', '/data/cards.json', 'cards.json']),
-        this.fetchFirst(['../data/card_colors.json', 'data/card_colors.json', '/data/card_colors.json', 'card_colors.json']),
-        this.fetchFirst(['../data/catalog.json', 'data/catalog.json', '/data/catalog.json', 'catalog.json']),
-        this.fetchFirst(['../data/manifest.json', 'data/manifest.json', '/data/manifest.json', 'manifest.json'])
-      ]);
+      let cards = window.HIT_DECK_DATA?.cards || null;
+      let colorsData = window.HIT_DECK_DATA?.cardColors || null;
+      let catalogData = window.HIT_DECK_DATA?.catalog || null;
+      let manifestData = window.HIT_DECK_DATA?.manifest || null;
+
+      if (!cards) {
+        const [fCards, fColors, fCatalog, fManifest] = await Promise.all([
+          this.fetchFirst(['../data/cards.json', 'data/cards.json', '/data/cards.json', 'cards.json']),
+          this.fetchFirst(['../data/card_colors.json', 'data/card_colors.json', '/data/card_colors.json', 'card_colors.json']),
+          this.fetchFirst(['../data/catalog.json', 'data/catalog.json', '/data/catalog.json', 'catalog.json']),
+          this.fetchFirst(['../data/manifest.json', 'data/manifest.json', '/data/manifest.json', 'manifest.json'])
+        ]);
+        cards = fCards;
+        colorsData = fColors;
+        catalogData = fCatalog;
+        manifestData = fManifest;
+      }
 
       if (cards) {
         this.cards = cards;
@@ -352,18 +397,37 @@ class HitTazosEngine {
       });
     }
 
-    // Ribbon Group Selection
+    // Ribbon Group Selection (Deck Selector con feedback táctil y audio)
     this.groupRibbon.querySelectorAll('.ribbon-pill').forEach(pill => {
       pill.addEventListener('click', () => {
         this.groupRibbon.querySelectorAll('.ribbon-pill').forEach(p => p.classList.remove('active'));
         pill.classList.add('active');
+        pill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         const grp = pill.getAttribute('data-volumen');
+        this.playAudioFeedback('flip');
         this.selectActiveGroup(grp);
       });
     });
 
+    // Help Modal Triggers
+    if (this.btnHelpToggle) {
+      this.btnHelpToggle.addEventListener('click', () => {
+        if (this.helpDialog && typeof this.helpDialog.showModal === 'function') {
+          this.helpDialog.showModal();
+          this.refreshIcons();
+        }
+      });
+    }
+    if (this.btnCloseHelpModal) {
+      this.btnCloseHelpModal.addEventListener('click', () => this.helpDialog?.close());
+    }
+    if (this.btnUnderstoodHelp) {
+      this.btnUnderstoodHelp.addEventListener('click', () => this.helpDialog?.close());
+    }
+
     // 3D Card Click & Key Navigation
     this.cardStage.addEventListener('click', (e) => {
+      if (this.justHandledTouch) return;
       if (e.target.closest('.year-center-stage')) return;
       this.flipCurrentCard();
     });
@@ -375,7 +439,7 @@ class HitTazosEngine {
     this.btnPrev.addEventListener('click', () => this.prevCard());
     this.btnShuffle.addEventListener('click', () => this.shuffleCurrentDeck());
 
-    // Keyboard Space, R & Arrow support
+    // Keyboard Space, R, Arrows & Pro Gamer Shortcuts
     window.addEventListener('keydown', (e) => {
       if (document.activeElement === this.inputYear || document.activeElement === this.galleryQuery) {
         return;
@@ -387,9 +451,50 @@ class HitTazosEngine {
         e.preventDefault();
         this.toggleActiveCardYear();
       } else if (e.code === 'ArrowRight') {
-        this.nextCard();
+        if (e.shiftKey) {
+          this.nudgeYear(5);
+        } else {
+          this.nudgeYear(1);
+        }
       } else if (e.code === 'ArrowLeft') {
+        if (e.shiftKey) {
+          this.nudgeYear(-5);
+        } else {
+          this.nudgeYear(-1);
+        }
+      } else if (e.code === 'KeyN') {
+        this.nextCard();
+      } else if (e.code === 'KeyP') {
         this.prevCard();
+      } else if (e.code === 'KeyS') {
+        this.btnSound.click();
+      } else if (e.key === '?' || (e.code === 'Slash' && e.shiftKey)) {
+        if (this.helpDialog) {
+          if (this.helpDialog.open) {
+            this.helpDialog.close();
+          } else {
+            this.helpDialog.showModal();
+            this.refreshIcons();
+          }
+        }
+      } else if (e.key >= '0' && e.key <= '8' && !e.ctrlKey && !e.altKey && !e.metaKey) {
+        const volumeKeys = [
+          'ALL',
+          'kernel-foundations',
+          'cypherpunks-hacker-lore',
+          'embedded-silicon-hardware',
+          'unix-sysadmin-networks',
+          'backend-distributed-systems',
+          'cloud-containers-sre',
+          'python-track',
+          'scifi-pop-culture-cinema'
+        ];
+        const num = parseInt(e.key, 10);
+        const targetVol = volumeKeys[num];
+        if (targetVol) {
+          const pill = this.groupRibbon.querySelector(`[data-volumen="${targetVol}"]`);
+          if (pill) pill.click();
+        }
       }
     });
 
@@ -399,7 +504,7 @@ class HitTazosEngine {
         const decade = chip.getAttribute('data-decade');
         this.inputYear.value = decade;
         this.inputYear.focus();
-        this.playAudioFeedback('flip');
+        this.playAudioFeedback('tick');
       });
     });
 
@@ -423,6 +528,133 @@ class HitTazosEngine {
     this.galleryQuery.addEventListener('input', () => this.filterCatalog());
     this.selectFilterGroup.addEventListener('change', () => this.filterCatalog());
     this.selectSortOrder.addEventListener('change', () => this.filterCatalog());
+
+    // Gestos táctiles para móviles (Tap para voltear, Swipe izquierda/derecha para navegar cartas)
+    this.initTouchGestures();
+  }
+
+  initTouchGestures() {
+    if (!this.cardStage) return;
+
+    this.cardStage.addEventListener('touchstart', (e) => {
+      if (e.touches.length !== 1) return;
+      const card = document.getElementById('active-card-3d');
+      if (!card || card.dataset.flipping === '1') return;
+
+      this.touchStartX = e.touches[0].clientX;
+      this.touchStartY = e.touches[0].clientY;
+      this.touchStartTime = Date.now();
+      this.isTouchDragging = true;
+      card.style.transition = 'none';
+    }, { passive: true });
+
+    this.cardStage.addEventListener('touchmove', (e) => {
+      if (!this.isTouchDragging || e.touches.length !== 1) return;
+      const card = document.getElementById('active-card-3d');
+      if (!card || card.dataset.flipping === '1') return;
+
+      const currentX = e.touches[0].clientX;
+      const currentY = e.touches[0].clientY;
+      const dx = currentX - this.touchStartX;
+      const dy = currentY - this.touchStartY;
+
+      // Si el gesto es horizontal, prevenir scroll vertical y dar feedback físico elástico
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 8) {
+        if (e.cancelable) e.preventDefault();
+        const rot = Math.max(-10, Math.min(10, dx * 0.04));
+        const moveX = Math.max(-100, Math.min(100, dx * 0.65));
+        const moveY = Math.max(-30, Math.min(30, dy * 0.2));
+        card.style.transform = `perspective(1000px) translate3d(${moveX}px, ${moveY}px, 0) rotate(${rot}deg)`;
+      }
+    }, { passive: false });
+
+    const handleTouchEnd = (e) => {
+      if (!this.isTouchDragging) return;
+      this.isTouchDragging = false;
+
+      const card = document.getElementById('active-card-3d');
+      if (!card) return;
+
+      const touch = (e.changedTouches && e.changedTouches[0]) || (e.touches && e.touches[0]);
+      const endX = touch ? touch.clientX : this.touchStartX;
+      const endY = touch ? touch.clientY : this.touchStartY;
+      const dx = endX - this.touchStartX;
+      const dy = endY - this.touchStartY;
+
+      const elapsed = Date.now() - this.touchStartTime;
+      const absX = Math.abs(dx);
+      const absY = Math.abs(dy);
+
+      card.style.transition = 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease';
+
+      // 1. GESTO TAP (Toque conciso sin arrastre para voltear o interactuar con el año)
+      if (absX < 14 && absY < 14 && elapsed < 350) {
+        card.style.transform = '';
+        card.style.opacity = '1';
+        this.justHandledTouch = true;
+        setTimeout(() => { this.justHandledTouch = false; }, 350);
+
+        if (e.target && e.target.closest('.year-center-stage')) {
+          this.toggleActiveCardYear();
+        } else {
+          this.flipCurrentCard();
+        }
+        if (navigator.vibrate) {
+          try { navigator.vibrate(12); } catch (_) {}
+        }
+        return;
+      }
+
+      // 2. GESTO SWIPE HORIZONTAL (Deslizar para cambiar de carta)
+      if (absX >= 40 && absX > absY) {
+        this.justHandledTouch = true;
+        setTimeout(() => { this.justHandledTouch = false; }, 350);
+
+        if (dx < 0) {
+          // Swipe Izquierda: Avanzar a la siguiente carta
+          card.style.transform = 'perspective(1000px) translate3d(-115%, 0, 0) rotate(-12deg)';
+          card.style.opacity = '0';
+          if (navigator.vibrate) {
+            try { navigator.vibrate(20); } catch (_) {}
+          }
+          setTimeout(() => {
+            this.nextCard();
+          }, 140);
+        } else {
+          // Swipe Derecha: Volver a la carta anterior
+          card.style.transform = 'perspective(1000px) translate3d(115%, 0, 0) rotate(12deg)';
+          card.style.opacity = '0';
+          if (navigator.vibrate) {
+            try { navigator.vibrate(20); } catch (_) {}
+          }
+          setTimeout(() => {
+            this.prevCard();
+          }, 140);
+        }
+        return;
+      }
+
+      // 3. GESTO SWIPE VERTICAL (Deslizar hacia arriba/abajo para voltear)
+      if (absY >= 40 && absY > absX) {
+        this.justHandledTouch = true;
+        setTimeout(() => { this.justHandledTouch = false; }, 350);
+        card.style.transform = '';
+        card.style.opacity = '1';
+        if (navigator.vibrate) {
+          try { navigator.vibrate(15); } catch (_) {}
+        }
+        this.flipCurrentCard();
+        return;
+      }
+
+      // Si fue un arrastre menor sin intención de swipe, restaurar de inmediato
+      card.style.transform = '';
+      card.style.opacity = '1';
+      setTimeout(() => { card.style.transition = ''; }, 240);
+    };
+
+    this.cardStage.addEventListener('touchend', handleTouchEnd);
+    this.cardStage.addEventListener('touchcancel', handleTouchEnd);
   }
 
   handle3DTilt(e) {
@@ -463,6 +695,7 @@ class HitTazosEngine {
   nudgeYear(delta) {
     const cur = parseInt(this.inputYear.value, 10) || 2000;
     this.inputYear.value = cur + delta;
+    this.playAudioFeedback('tick');
   }
 
   switchView(mode) {
@@ -470,12 +703,16 @@ class HitTazosEngine {
       this.viewPlay.classList.add('active');
       this.viewGallery.classList.remove('active');
       this.btnTabPlay.classList.add('active');
+      this.btnTabPlay.setAttribute('aria-selected', 'true');
       this.btnTabGallery.classList.remove('active');
+      this.btnTabGallery.setAttribute('aria-selected', 'false');
     } else {
       this.viewGallery.classList.add('active');
       this.viewPlay.classList.remove('active');
       this.btnTabGallery.classList.add('active');
+      this.btnTabGallery.setAttribute('aria-selected', 'true');
       this.btnTabPlay.classList.remove('active');
+      this.btnTabPlay.setAttribute('aria-selected', 'false');
       this.refreshIcons();
     }
   }
@@ -484,11 +721,11 @@ class HitTazosEngine {
     this.activeGroup = grp;
     if (grp === 'ALL') {
       this.activeDeck = [...this.cards];
-      this.hudGroupLabel.textContent = 'Todos los Grupos';
+      this.hudGroupLabel.textContent = 'Mazo Maestro (576 cartas)';
     } else {
       this.activeDeck = this.cards.filter(c => c.volumen === grp);
       const name = (this.catalog?.volumes?.[grp] || this.activeDeck[0]?.volumen || `Volumen ${grp}`).toUpperCase();
-      this.hudGroupLabel.textContent = grp === 'ALL' ? 'Todos los Volúmenes' : name;
+      this.hudGroupLabel.textContent = name;
     }
     this.currentIndex = 0;
     this.renderActiveArenaCard();
@@ -691,6 +928,8 @@ class HitTazosEngine {
     cardEl.id = 'active-card-3d';
     cardEl.className = `hittazos-card-3d theme-${this.catalog.domains[card.domain] || card.domain}`;
     cardEl.innerHTML = this.buildCardHTML(card, { isRevealed: false });
+    cardEl.style.opacity = '1';
+    cardEl.style.transform = '';
 
     this.cardStage.appendChild(cardEl);
     this.hudCardCounter.textContent = `${this.currentIndex + 1} / ${this.activeDeck.length}`;
@@ -707,7 +946,9 @@ class HitTazosEngine {
     // Update Ambient Aura glow with Card Pop Color
     if (this.ambientAura) {
       const theme = this.getCardTheme(card);
-      this.ambientAura.style.background = `radial-gradient(circle, ${theme.bg}55 0%, transparent 70%)`;
+      const hue = theme.hue !== undefined ? theme.hue : 215;
+      this.ambientAura.style.background = `radial-gradient(circle, hsla(${hue}, 90%, 65%, 0.35) 0%, hsla(${hue}, 80%, 55%, 0.15) 45%, transparent 75%)`;
+      document.documentElement.style.setProperty('--current-card-glow', `hsl(${hue}, 90%, 60%)`);
     }
 
     // Interacción de clic en la zona del año para revelar/ocultar
@@ -1010,19 +1251,17 @@ class HitTazosEngine {
   }
 
   nextCard() {
-    if (this.currentIndex < this.activeDeck.length - 1) {
-      this.currentIndex++;
-      this.renderActiveArenaCard();
-      this.playAudioFeedback('flip');
-    }
+    if (!this.activeDeck.length) return;
+    this.currentIndex = (this.currentIndex + 1) % this.activeDeck.length;
+    this.renderActiveArenaCard();
+    this.playAudioFeedback('flip');
   }
 
   prevCard() {
-    if (this.currentIndex > 0) {
-      this.currentIndex--;
-      this.renderActiveArenaCard();
-      this.playAudioFeedback('flip');
-    }
+    if (!this.activeDeck.length) return;
+    this.currentIndex = (this.currentIndex - 1 + this.activeDeck.length) % this.activeDeck.length;
+    this.renderActiveArenaCard();
+    this.playAudioFeedback('flip');
   }
 
   shuffleCurrentDeck() {
