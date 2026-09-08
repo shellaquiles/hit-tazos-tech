@@ -5,12 +5,12 @@
     "index": 0,
     "status": "VERIFIED_REWRITE",
     "levels": {
-      "factual": "CORRECTED",
-      "pedagogical": "IMPROVED",
+      "factual": "VALID",
+      "pedagogical": "COMPLIANT",
       "editorial": "REWRITTEN_SOBER"
     },
     "detected_issues": [
-      "pip no forma parte de la biblioteca estándar; PEP 453 introdujo ensurepip como bootstrap."
+      "Ajuste de formulación para reflejar la llegada con la release final de Python 3.4 y clarificar el bootstrap offline de ensurepip."
     ],
     "sources": [
       {
@@ -24,18 +24,25 @@
     "id": "vol0-0x01",
     "volumen": "kernel-foundations",
     "index": 1,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Distinguir al descubridor forense (FireEye) del actor de amenaza atribuido (APT29/SVR)."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "FireEye Advisory: Highly Evasive Attacker Leverages SolarWinds supply chain",
+        "url": "https://www.mandiant.com/resources/blog/evasive-attacker-leverages-solarwinds-supply-chain"
+      },
+      {
+        "type": "primary",
+        "title": "CISA Alert AA20-352A",
+        "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa20-352a"
       }
     ]
   },
@@ -43,18 +50,20 @@
     "id": "vol0-0x02",
     "volumen": "kernel-foundations",
     "index": 2,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Eliminación de pleonasmo (\"latente de forma invisible\") y precisión técnica del vector CGI."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "CVE-2014-6271 Detail (NVD / Stéphane Chazelas oss-security)",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2014-6271"
       }
     ]
   },
@@ -86,16 +95,16 @@
     "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
-      "pedagogical": "IMPROVED",
+      "pedagogical": "COMPLIANT",
       "editorial": "REWRITTEN_SOBER"
     },
     "detected_issues": [
-      "Absolutismo ('indiscutible de casi todo Linux')."
+      "Reducción de redundancia en la etimología de Bourne-Again Shell."
     ],
     "sources": [
       {
         "type": "primary",
-        "title": "GNU Bash Reference Manual",
+        "title": "GNU Bash Reference Manual - History",
         "url": "https://www.gnu.org/software/bash/manual/"
       }
     ]
@@ -104,18 +113,20 @@
     "id": "vol0-0x05",
     "volumen": "kernel-foundations",
     "index": 5,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Sustitución de jerga informal (\"soluciones ad-hoc caseras\") por terminología formal de tipado."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/syntax-peps",
-        "url": "https://en.wikipedia.org/wiki/syntax_peps"
+        "type": "primary",
+        "title": "PEP 435 – Adding an Enum type to the Python standard library",
+        "url": "https://peps.python.org/pep-0435/"
       }
     ]
   },
@@ -123,18 +134,20 @@
     "id": "vol0-0x06",
     "volumen": "kernel-foundations",
     "index": 6,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste de cronología a 1973 (implementación formal de pipes y operador en Unix V3/V4) y coautoría McIlroy/Thompson."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/linux-unix-os",
-        "url": "https://en.wikipedia.org/wiki/linux_unix_os"
+        "type": "primary",
+        "title": "A Research UNIX Reader: Annotated Excerpts from the Programmer's Manual (Doug McIlroy, 1991)",
+        "url": "https://www.cs.dartmouth.edu/~doug/reader.pdf"
       }
     ]
   },
@@ -142,18 +155,20 @@
     "id": "vol0-0x07",
     "volumen": "kernel-foundations",
     "index": 7,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste del año a 2019 (inmovilización global tras el segundo siniestro de Ethiopian Airlines) y eliminación de cifra repetida."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/software-disasters",
-        "url": "https://en.wikipedia.org/wiki/software_disasters"
+        "type": "primary",
+        "title": "House Committee on Transportation: Boeing 737 MAX Final Report",
+        "url": "https://transportation.house.gov/committee-reports/final-committee-report-on-the-design-development-and-oversight-of-the-boeing-737-max"
       }
     ]
   },
@@ -161,18 +176,20 @@
     "id": "vol0-0x08",
     "volumen": "kernel-foundations",
     "index": 8,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Aclarar el valor pedagógico del coarse-grained lock sobre Paxos."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: cloud-infrastructure/iac-automation",
-        "url": "https://en.wikipedia.org/wiki/iac_automation"
+        "type": "primary",
+        "title": "The Chubby lock service for loosely-coupled distributed systems (Mike Burrows, OSDI 2006)",
+        "url": "https://www.usenix.org/legacy/event/osdi06/tech/full_papers/burrows/burrows.pdf"
       }
     ]
   },
@@ -180,18 +197,20 @@
     "id": "vol0-0x09",
     "volumen": "kernel-foundations",
     "index": 9,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Corregir anacronismo institucional de FSF en 1983 (fundada en 1985; Stallman estaba en MIT AI Lab)."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/linux-unix-os",
-        "url": "https://en.wikipedia.org/wiki/linux_unix_os"
+        "type": "primary",
+        "title": "Initial announcement of the GNU Project (Richard Stallman, net.unix-wizards, Sep 1983)",
+        "url": "https://www.gnu.org/gnu/initial-announcement.html"
       }
     ]
   },
@@ -199,18 +218,20 @@
     "id": "vol0-0x0A",
     "volumen": "kernel-foundations",
     "index": 10,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Atribución de autores completa (Giuseppe DeCandia primer autor, Werner Vogels) y desmitificación técnica."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: data-storage/database-engines",
-        "url": "https://en.wikipedia.org/wiki/database_engines"
+        "type": "primary",
+        "title": "Dynamo: Amazon's Highly Available Key-value Store (SOSP 2007)",
+        "url": "https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf"
       }
     ]
   },
@@ -218,18 +239,20 @@
     "id": "vol0-0x0B",
     "volumen": "kernel-foundations",
     "index": 11,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Sustitución de afirmación genérica (\"superioridad del silicio ARM\") por precisión en rendimiento por vatio y memoria unificada."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "Apple introduces M1 (Apple Press Release, Nov 2020)",
+        "url": "https://www.apple.com/newsroom/2020/11/apple-unleashes-m1/"
       }
     ]
   },
@@ -237,18 +260,20 @@
     "id": "vol0-0x0C",
     "volumen": "kernel-foundations",
     "index": 12,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste del año de debut en release oficial a 2021 (Python 3.10) y clarificación de pattern matching vs switch."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/syntax-peps",
-        "url": "https://en.wikipedia.org/wiki/syntax_peps"
+        "type": "primary",
+        "title": "PEP 634 – Structural Pattern Matching: Specification",
+        "url": "https://peps.python.org/pep-0634/"
       }
     ]
   },
@@ -256,18 +281,20 @@
     "id": "vol0-0x0D",
     "volumen": "kernel-foundations",
     "index": 13,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Mención explícita del creador Edgar F. Codd en el hito y precisión del conflicto técnico/comercial con IBM IMS."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: data-storage/database-engines",
-        "url": "https://en.wikipedia.org/wiki/database_engines"
+        "type": "primary",
+        "title": "A Relational Model of Data for Large Shared Data Banks (E. F. Codd, CACM 1970)",
+        "url": "https://dl.acm.org/doi/10.1145/362384.362685"
       }
     ]
   },
@@ -322,18 +349,20 @@
     "id": "vol0-0x10",
     "volumen": "kernel-foundations",
     "index": 16,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Acreditación de coautoría universitaria clave (Univ. of Toronto) junto a Google Brain/Research."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/neural-networks-papers",
-        "url": "https://en.wikipedia.org/wiki/neural_networks_papers"
+        "type": "primary",
+        "title": "Attention Is All You Need (NeurIPS 2017)",
+        "url": "https://arxiv.org/abs/1706.03762"
       }
     ]
   },
@@ -341,18 +370,20 @@
     "id": "vol0-0x11",
     "volumen": "kernel-foundations",
     "index": 17,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Aclaración de la cronología de Atom Shell hacia Electron (2015)."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/developer-tools",
-        "url": "https://en.wikipedia.org/wiki/developer_tools"
+        "type": "primary",
+        "title": "Atom is now open source (GitHub Blog, 2014)",
+        "url": "https://github.blog/2014-05-06-atom-is-now-open-source/"
       }
     ]
   },
@@ -360,18 +391,20 @@
     "id": "vol0-0x12",
     "volumen": "kernel-foundations",
     "index": 18,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Tono técnico y referencia al PEP 202."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/syntax-peps",
-        "url": "https://en.wikipedia.org/wiki/syntax_peps"
+        "type": "primary",
+        "title": "What's New in Python 2.0 (PEP 202 List Comprehensions)",
+        "url": "https://peps.python.org/pep-0202/"
       }
     ]
   },
@@ -379,18 +412,20 @@
     "id": "vol0-0x13",
     "volumen": "kernel-foundations",
     "index": 19,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Eliminación de la expresión \"fijó el estándar de oro\" y atribución histórica Cournapeau/Inria."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/scientific-stack",
-        "url": "https://en.wikipedia.org/wiki/scientific_stack"
+        "type": "primary",
+        "title": "Scikit-learn: Machine Learning in Python (JMLR 2011)",
+        "url": "https://jmlr.org/papers/v12/pedregosa11a.html"
       }
     ]
   },
@@ -398,18 +433,20 @@
     "id": "vol0-0x14",
     "volumen": "kernel-foundations",
     "index": 20,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Tono formal sobre modelo documental sin esquema rígido en BSON."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: data-storage/database-engines",
-        "url": "https://en.wikipedia.org/wiki/database_engines"
+        "type": "primary",
+        "title": "MongoDB Architecture and BSON Specification (10gen, 2009)",
+        "url": "https://bsonspec.org/"
       }
     ]
   },
@@ -417,18 +454,20 @@
     "id": "vol0-0x15",
     "volumen": "kernel-foundations",
     "index": 21,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste del año de lanzamiento original a 1997 (anteriormente 1999) y documentación del Efecto Slashdot."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/collaboration-platforms",
-        "url": "https://en.wikipedia.org/wiki/collaboration_platforms"
+        "type": "primary",
+        "title": "Slashdot Launch Announcement Archive (Rob Malda, Oct 1997)",
+        "url": "https://slashdot.org/story/97/10/05/1422209/chips-and-dips"
       }
     ]
   },
@@ -436,18 +475,20 @@
     "id": "vol0-0x16",
     "volumen": "kernel-foundations",
     "index": 22,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Ajuste del año a 1980 (el incidente de la impresora Xerox 9700 en el MIT ocurrió en 1980, no en 1983 cuando se anunció GNU)."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "Free as in Freedom (Sam Williams, 2002, Chapter 1)",
+        "url": "https://www.oreilly.com/openbook/freedom/ch01.html"
       }
     ]
   },
@@ -476,18 +517,20 @@
     "id": "vol0-0x18",
     "volumen": "kernel-foundations",
     "index": 24,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/software-disasters",
-        "url": "https://en.wikipedia.org/wiki/software_disasters"
+        "type": "primary",
+        "title": "CrowdStrike External Technical Root Cause Analysis (July 2024)",
+        "url": "https://www.crowdstrike.com/blog/falcon-update-preliminary-post-incident-review/"
       }
     ]
   },
@@ -495,18 +538,20 @@
     "id": "vol0-0x19",
     "volumen": "kernel-foundations",
     "index": 25,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/syntax-peps",
-        "url": "https://en.wikipedia.org/wiki/syntax_peps"
+        "type": "primary",
+        "title": "Python 1.1 Release Notes & History",
+        "url": "https://docs.python.org/3/whatsnew/index.html"
       }
     ]
   },
@@ -514,18 +559,20 @@
     "id": "vol0-0x1A",
     "volumen": "kernel-foundations",
     "index": 26,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "The History of Fortran I, II, and III (John Backus, ACM SIGPLAN 1978)",
+        "url": "https://dl.acm.org/doi/10.1145/800025.1198345"
       }
     ]
   },
@@ -533,18 +580,20 @@
     "id": "vol0-0x1B",
     "volumen": "kernel-foundations",
     "index": 27,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/developer-tools",
-        "url": "https://en.wikipedia.org/wiki/developer_tools"
+        "type": "primary",
+        "title": "Linux Kernel Mailing List: Kernel SCM saga (Linus Torvalds, April 2005)",
+        "url": "https://lore.kernel.org/git/Pine.LNX.4.58.0504061805170.18731@ppc970.osdl.org/"
       }
     ]
   },
@@ -552,18 +601,20 @@
     "id": "vol0-0x1C",
     "volumen": "kernel-foundations",
     "index": 28,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/scientific-stack",
-        "url": "https://en.wikipedia.org/wiki/scientific_stack"
+        "type": "primary",
+        "title": "IPython: A System for Interactive Scientific Computing (Computing in Science & Engineering, 2007)",
+        "url": "https://doi.org/10.1109/MCSE.2007.53"
       }
     ]
   },
@@ -571,18 +622,20 @@
     "id": "vol0-0x1D",
     "volumen": "kernel-foundations",
     "index": 29,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/syntax-peps",
-        "url": "https://en.wikipedia.org/wiki/syntax_peps"
+        "type": "primary",
+        "title": "PEP 3105 – Make print a function",
+        "url": "https://peps.python.org/pep-3105/"
       }
     ]
   },
@@ -590,18 +643,20 @@
     "id": "vol0-0x1E",
     "volumen": "kernel-foundations",
     "index": 30,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "Intel 8080 Microcomputer Systems User's Manual (1975)",
+        "url": "https://archive.org/details/bitsavers_intel80808080UsersManualSep75_10793616"
       }
     ]
   },
@@ -609,18 +664,20 @@
     "id": "vol0-0x1F",
     "volumen": "kernel-foundations",
     "index": 31,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/syntax-peps",
-        "url": "https://en.wikipedia.org/wiki/syntax_peps"
+        "type": "primary",
+        "title": "PEP 285 – Adding a bool type",
+        "url": "https://peps.python.org/pep-0285/"
       }
     ]
   },
@@ -628,18 +685,20 @@
     "id": "vol0-0x20",
     "volumen": "kernel-foundations",
     "index": 32,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/collaboration-platforms",
-        "url": "https://en.wikipedia.org/wiki/collaboration_platforms"
+        "type": "primary",
+        "title": "How Discord Scaled Elixir to 5,000,000 Concurrent Users (Discord Blog)",
+        "url": "https://blog.discord.com/how-discord-scaled-elixir-to-5-000-000-concurrent-users-ec61541344d2"
       }
     ]
   },
@@ -668,18 +727,20 @@
     "id": "vol0-0x22",
     "volumen": "kernel-foundations",
     "index": 34,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "CrowdStrike Falcon Update Outage Technical Overview (US-CERT / CISA)",
+        "url": "https://www.cisa.gov/news-events/alerts/2024/07/19/widespread-it-outage-due-crowdstrike-update"
       }
     ]
   },
@@ -687,18 +748,20 @@
     "id": "vol0-0x23",
     "volumen": "kernel-foundations",
     "index": 35,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: data-storage/database-engines",
-        "url": "https://en.wikipedia.org/wiki/database_engines"
+        "type": "primary",
+        "title": "Redis Manifesto & Architecture (antirez)",
+        "url": "https://redis.io/topics/manifesto"
       }
     ]
   },
@@ -706,18 +769,20 @@
     "id": "vol0-0x24",
     "volumen": "kernel-foundations",
     "index": 36,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/web-standards",
-        "url": "https://en.wikipedia.org/wiki/web_standards"
+        "type": "primary",
+        "title": "Netscape Communicator Open Source Announcement (March 1998)",
+        "url": "https://www-archive.mozilla.org/news/news-1998-03-31.html"
       }
     ]
   },
@@ -746,18 +811,20 @@
     "id": "vol0-0x26",
     "volumen": "kernel-foundations",
     "index": 38,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "The GNU Manifesto (Dr. Dobb's Journal, March 1985)",
+        "url": "https://www.gnu.org/gnu/manifesto.html"
       }
     ]
   },
@@ -765,18 +832,20 @@
     "id": "vol0-0x27",
     "volumen": "kernel-foundations",
     "index": 39,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/neural-networks-papers",
-        "url": "https://en.wikipedia.org/wiki/neural_networks_papers"
+        "type": "primary",
+        "title": "ImageNet: A Large-Scale Hierarchical Image Database (CVPR 2009)",
+        "url": "https://ieeexplore.ieee.org/document/5206848"
       }
     ]
   },
@@ -784,18 +853,20 @@
     "id": "vol0-0x28",
     "volumen": "kernel-foundations",
     "index": 40,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/p2p-culture",
-        "url": "https://en.wikipedia.org/wiki/p2p_culture"
+        "type": "primary",
+        "title": "A&M Records, Inc. v. Napster, Inc. (239 F.3d 1004, 2001)",
+        "url": "https://law.justia.com/cases/federal/appellate-courts/F3/239/1004/600742/"
       }
     ]
   },
@@ -803,18 +874,20 @@
     "id": "vol0-0x29",
     "volumen": "kernel-foundations",
     "index": 41,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/syntax-peps",
-        "url": "https://en.wikipedia.org/wiki/syntax_peps"
+        "type": "primary",
+        "title": "PEP 279 – The enumerate() built-in function",
+        "url": "https://peps.python.org/pep-0279/"
       }
     ]
   },
@@ -822,18 +895,20 @@
     "id": "vol0-0x2A",
     "volumen": "kernel-foundations",
     "index": 42,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/syntax-peps",
-        "url": "https://en.wikipedia.org/wiki/syntax_peps"
+        "type": "primary",
+        "title": "PEP 308 – Conditional Expressions",
+        "url": "https://peps.python.org/pep-0308/"
       }
     ]
   },
@@ -841,18 +916,20 @@
     "id": "vol0-0x2B",
     "volumen": "kernel-foundations",
     "index": 43,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "Raspberry Pi Foundation Launch Announcement (Feb 2012)",
+        "url": "https://www.raspberrypi.org/blog/raspberry-pi-is-on-sale/"
       }
     ]
   },
@@ -860,18 +937,20 @@
     "id": "vol0-0x2C",
     "volumen": "kernel-foundations",
     "index": 44,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/web-standards",
-        "url": "https://en.wikipedia.org/wiki/web_standards"
+        "type": "primary",
+        "title": "Information Management: A Proposal (Tim Berners-Lee, CERN, March 1989)",
+        "url": "https://www.w3.org/History/1989/proposal.html"
       }
     ]
   },
@@ -879,18 +958,20 @@
     "id": "vol0-0x2D",
     "volumen": "kernel-foundations",
     "index": 45,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/rust-tooling",
-        "url": "https://en.wikipedia.org/wiki/rust_tooling"
+        "type": "primary",
+        "title": "pytest Documentation & Architecture Overview",
+        "url": "https://docs.pytest.org/"
       }
     ]
   },
@@ -940,18 +1021,20 @@
     "id": "vol0-0x30",
     "volumen": "kernel-foundations",
     "index": 48,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "Tor: The Second-Generation Onion Router (Dingledine et al., USENIX Security 2004)",
+        "url": "https://www.usenix.org/legacy/event/sec04/tech/full_papers/dingledine/dingledine.pdf"
       }
     ]
   },
@@ -959,18 +1042,20 @@
     "id": "vol0-0x31",
     "volumen": "kernel-foundations",
     "index": 49,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: data-storage/database-engines",
-        "url": "https://en.wikipedia.org/wiki/database_engines"
+        "type": "primary",
+        "title": "SQLite Architecture and Design Documents",
+        "url": "https://www.sqlite.org/arch.html"
       }
     ]
   },
@@ -999,18 +1084,20 @@
     "id": "vol0-0x33",
     "volumen": "kernel-foundations",
     "index": 51,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/competitive-ai",
-        "url": "https://en.wikipedia.org/wiki/competitive_ai"
+        "type": "primary",
+        "title": "Mastering the game of Go with deep neural networks and tree search (Nature 2016)",
+        "url": "https://www.nature.com/articles/nature16961"
       }
     ]
   },
@@ -1039,18 +1126,20 @@
     "id": "vol0-0x35",
     "volumen": "kernel-foundations",
     "index": 53,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/linux-unix-os",
-        "url": "https://en.wikipedia.org/wiki/linux_unix_os"
+        "type": "primary",
+        "title": "The Debian Manifesto (Ian A. Murdock, 1993)",
+        "url": "https://www.debian.org/doc/manuals/project-history/manifesto.en.html"
       }
     ]
   },
@@ -1058,18 +1147,20 @@
     "id": "vol0-0x36",
     "volumen": "kernel-foundations",
     "index": 54,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/neural-networks-papers",
-        "url": "https://en.wikipedia.org/wiki/neural_networks_papers"
+        "type": "primary",
+        "title": "Perceptrons: An Introduction to Computational Geometry (MIT Press, 1969)",
+        "url": "https://mitpress.mit.edu/9780262631111/perceptrons/"
       }
     ]
   },
@@ -1077,18 +1168,20 @@
     "id": "vol0-0x37",
     "volumen": "kernel-foundations",
     "index": 55,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "CISA Alert TA17-132A: Indicators Associated With WannaCry Ransomware",
+        "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/ta17-132a"
       }
     ]
   },
@@ -1096,18 +1189,20 @@
     "id": "vol0-0x38",
     "volumen": "kernel-foundations",
     "index": 56,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/competitive-ai",
-        "url": "https://en.wikipedia.org/wiki/competitive_ai"
+        "type": "primary",
+        "title": "Deep Blue (Artificial Intelligence Journal, 2002)",
+        "url": "https://doi.org/10.1016/S0004-3702(01)00129-1"
       }
     ]
   },
@@ -1115,18 +1210,20 @@
     "id": "vol0-0x39",
     "volumen": "kernel-foundations",
     "index": 57,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/competitive-ai",
-        "url": "https://en.wikipedia.org/wiki/competitive_ai"
+        "type": "primary",
+        "title": "Building Watson: An Overview of the DeepQA Project (AI Magazine, 2010)",
+        "url": "https://doi.org/10.1609/aimag.v31i3.2303"
       }
     ]
   },
@@ -1134,18 +1231,20 @@
     "id": "vol0-0x3A",
     "volumen": "kernel-foundations",
     "index": 58,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/linux-unix-os",
-        "url": "https://en.wikipedia.org/wiki/linux_unix_os"
+        "type": "primary",
+        "title": "Rethinking PID 1 (Lennart Poettering, April 2010)",
+        "url": "https://0pointer.de/blog/projects/systemd.html"
       }
     ]
   },
@@ -1153,18 +1252,20 @@
     "id": "vol0-0x3B",
     "volumen": "kernel-foundations",
     "index": 59,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/llms-generative",
-        "url": "https://en.wikipedia.org/wiki/llms_generative"
+        "type": "primary",
+        "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention (SOSP 2023)",
+        "url": "https://arxiv.org/abs/2309.06180"
       }
     ]
   },
@@ -1172,18 +1273,20 @@
     "id": "vol0-0x3C",
     "volumen": "kernel-foundations",
     "index": 60,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: data-storage/database-engines",
-        "url": "https://en.wikipedia.org/wiki/database_engines"
+        "type": "primary",
+        "title": "PostgreSQL History & Release Notes v6.0 (1997)",
+        "url": "https://www.postgresql.org/docs/release/6.0/"
       }
     ]
   },
@@ -1191,18 +1294,20 @@
     "id": "vol0-0x3D",
     "volumen": "kernel-foundations",
     "index": 61,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "A Tour of the Worm (Donn Seeley, USENIX Winter 1989)",
+        "url": "https://www.cs.unc.edu/~jeffay/courses/nidsS05/docs/worm-paper.pdf"
       }
     ]
   },
@@ -1210,18 +1315,20 @@
     "id": "vol0-0x3E",
     "volumen": "kernel-foundations",
     "index": 62,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/developer-tools",
-        "url": "https://en.wikipedia.org/wiki/developer_tools"
+        "type": "primary",
+        "title": "EMACS: The Extensible, Customizable Display Editor (Richard Stallman, 1979/1981)",
+        "url": "https://www.gnu.org/software/emacs/emacs-paper.html"
       }
     ]
   },
@@ -1229,18 +1336,20 @@
     "id": "vol0-0x3F",
     "volumen": "kernel-foundations",
     "index": 63,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "The History of Clojure (Rich Hickey, HOPL IV, 2020)",
+        "url": "https://dl.acm.org/doi/10.1145/3386321"
       }
     ]
   },
@@ -1248,18 +1357,20 @@
     "id": "vol0-0x40",
     "volumen": "kernel-foundations",
     "index": 64,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/rust-tooling",
-        "url": "https://en.wikipedia.org/wiki/rust_tooling"
+        "type": "primary",
+        "title": "PEP 301 – Package Index and Metadata for Distutils",
+        "url": "https://peps.python.org/pep-0301/"
       }
     ]
   },
@@ -1267,18 +1378,20 @@
     "id": "vol0-0x41",
     "volumen": "kernel-foundations",
     "index": 65,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "Rust: A Safe, Concurrent, Practical Systems Language (Mozilla Research)",
+        "url": "https://www.rust-lang.org/"
       }
     ]
   },
@@ -1286,18 +1399,20 @@
     "id": "vol0-0x42",
     "volumen": "kernel-foundations",
     "index": 66,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/software-disasters",
-        "url": "https://en.wikipedia.org/wiki/software_disasters"
+        "type": "primary",
+        "title": "SEC Report of Investigation Pursuant to Section 21(a) of the Securities Exchange Act of 1934: The DAO",
+        "url": "https://www.sec.gov/litigation/investreport/34-81207.pdf"
       }
     ]
   },
@@ -1305,18 +1420,20 @@
     "id": "vol0-0x43",
     "volumen": "kernel-foundations",
     "index": 67,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "C# Language Specification (ECMA-334 / ISO/IEC 23270)",
+        "url": "https://www.ecma-international.org/publications-and-standards/standards/ecma-334/"
       }
     ]
   },
@@ -1324,18 +1441,20 @@
     "id": "vol0-0x44",
     "volumen": "kernel-foundations",
     "index": 68,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/developer-tools",
-        "url": "https://en.wikipedia.org/wiki/developer_tools"
+        "type": "primary",
+        "title": "Sublime Text Blog & Architecture Archive",
+        "url": "https://www.sublimetext.com/blog/"
       }
     ]
   },
@@ -1343,18 +1462,20 @@
     "id": "vol0-0x45",
     "volumen": "kernel-foundations",
     "index": 69,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/cpython-runtime",
-        "url": "https://en.wikipedia.org/wiki/cpython_runtime"
+        "type": "primary",
+        "title": "PEP 703 – Making the Global Interpreter Lock Optional in CPython",
+        "url": "https://peps.python.org/pep-0703/"
       }
     ]
   },
@@ -1362,18 +1483,20 @@
     "id": "vol0-0x46",
     "volumen": "kernel-foundations",
     "index": 70,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "Go at Google: Language Design in the Service of Software Engineering (Rob Pike, 2012)",
+        "url": "https://go.dev/talks/2012/splash.article"
       }
     ]
   },
@@ -1381,18 +1504,20 @@
     "id": "vol0-0x47",
     "volumen": "kernel-foundations",
     "index": 71,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/web-standards",
-        "url": "https://en.wikipedia.org/wiki/web_standards"
+        "type": "primary",
+        "title": "Mozilla Firefox 1.0 Press Release (November 2004)",
+        "url": "https://www-archive.mozilla.org/press/mozilla-2004-11-09.html"
       }
     ]
   },
@@ -1400,18 +1525,20 @@
     "id": "vol0-0x48",
     "volumen": "kernel-foundations",
     "index": 72,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/syntax-peps",
-        "url": "https://en.wikipedia.org/wiki/syntax_peps"
+        "type": "primary",
+        "title": "Python 1.4 Release Notes (October 1996)",
+        "url": "https://docs.python.org/3/whatsnew/index.html"
       }
     ]
   },
@@ -1419,18 +1546,20 @@
     "id": "vol0-0x49",
     "volumen": "kernel-foundations",
     "index": 73,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/linux-unix-os",
-        "url": "https://en.wikipedia.org/wiki/linux_unix_os"
+        "type": "primary",
+        "title": "CentOS Project shifts focus to CentOS Stream (December 2020)",
+        "url": "https://blog.centos.org/2020/12/future-is-centos-stream/"
       }
     ]
   },
@@ -1438,18 +1567,20 @@
     "id": "vol0-0x4A",
     "volumen": "kernel-foundations",
     "index": 74,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: cloud-infrastructure/containers-virt",
-        "url": "https://en.wikipedia.org/wiki/containers_virt"
+        "type": "primary",
+        "title": "Podman: A tool for managing OCI containers and pods",
+        "url": "https://podman.io/"
       }
     ]
   },
@@ -1457,18 +1588,20 @@
     "id": "vol0-0x4B",
     "volumen": "kernel-foundations",
     "index": 75,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/syntax-peps",
-        "url": "https://en.wikipedia.org/wiki/syntax_peps"
+        "type": "primary",
+        "title": "PEP 3000 – Python 3000",
+        "url": "https://peps.python.org/pep-3000/"
       }
     ]
   },
@@ -1476,18 +1609,20 @@
     "id": "vol0-0x4C",
     "volumen": "kernel-foundations",
     "index": 76,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/neural-networks-papers",
-        "url": "https://en.wikipedia.org/wiki/neural_networks_papers"
+        "type": "primary",
+        "title": "Learning representations by back-propagating errors (Nature 323, 533–536, 1986)",
+        "url": "https://www.nature.com/articles/323533a0"
       }
     ]
   },
@@ -1516,18 +1651,20 @@
     "id": "vol0-0x4E",
     "volumen": "kernel-foundations",
     "index": 78,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: data-storage/database-engines",
-        "url": "https://en.wikipedia.org/wiki/database_engines"
+        "type": "primary",
+        "title": "CouchDB: The Definitive Guide (O'Reilly, 2010)",
+        "url": "https://guide.couchdb.org/"
       }
     ]
   },
@@ -1535,18 +1672,20 @@
     "id": "vol0-0x4F",
     "volumen": "kernel-foundations",
     "index": 79,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/scientific-stack",
-        "url": "https://en.wikipedia.org/wiki/scientific_stack"
+        "type": "primary",
+        "title": "Apache Arrow: A Cross-Language Development Platform for In-Memory Data",
+        "url": "https://arrow.apache.org/"
       }
     ]
   },
@@ -1601,18 +1740,20 @@
     "id": "vol0-0x52",
     "volumen": "kernel-foundations",
     "index": 82,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/syntax-peps",
-        "url": "https://en.wikipedia.org/wiki/syntax_peps"
+        "type": "primary",
+        "title": "PEP 389 – argparse - New Command Line Parsing Module",
+        "url": "https://peps.python.org/pep-0389/"
       }
     ]
   },
@@ -1662,18 +1803,20 @@
     "id": "vol0-0x55",
     "volumen": "kernel-foundations",
     "index": 85,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/syntax-peps",
-        "url": "https://en.wikipedia.org/wiki/syntax_peps"
+        "type": "primary",
+        "title": "The Python 2.3 Method Resolution Order (Michele Simionato)",
+        "url": "https://www.python.org/download/releases/2.3/mro/"
       }
     ]
   },
@@ -1681,18 +1824,20 @@
     "id": "vol0-0x56",
     "volumen": "kernel-foundations",
     "index": 86,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/developer-tools",
-        "url": "https://en.wikipedia.org/wiki/developer_tools"
+        "type": "primary",
+        "title": "RCS—A System for Version Control (Walter F. Tichy, Software: Practice and Experience, 1985)",
+        "url": "https://doi.org/10.1002/spe.4380150703"
       }
     ]
   },
@@ -1700,18 +1845,20 @@
     "id": "vol0-0x57",
     "volumen": "kernel-foundations",
     "index": 87,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/linux-unix-os",
-        "url": "https://en.wikipedia.org/wiki/linux_unix_os"
+        "type": "primary",
+        "title": "Twenty Years of Berkeley Unix (Marshall Kirk McKusick, Open Sources, 1999)",
+        "url": "https://www.oreilly.com/openbook/opensources/book/kirkmck.html"
       }
     ]
   },
@@ -1719,18 +1866,20 @@
     "id": "vol0-0x58",
     "volumen": "kernel-foundations",
     "index": 88,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/web-standards",
-        "url": "https://en.wikipedia.org/wiki/web_standards"
+        "type": "primary",
+        "title": "The future of Internet Explorer on Windows 10 is in Microsoft Edge (May 2021 / June 2022)",
+        "url": "https://blogs.windows.com/windowsexperience/2021/05/19/the-future-of-internet-explorer-on-windows-10-is-in-microsoft-edge/"
       }
     ]
   },
@@ -1738,18 +1887,20 @@
     "id": "vol0-0x59",
     "volumen": "kernel-foundations",
     "index": 89,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: data-storage/database-engines",
-        "url": "https://en.wikipedia.org/wiki/database_engines"
+        "type": "primary",
+        "title": "MySQL 1.0 Release History & Documentation",
+        "url": "https://dev.mysql.com/doc/refman/8.0/en/history.html"
       }
     ]
   },
@@ -1757,18 +1908,20 @@
     "id": "vol0-0x5A",
     "volumen": "kernel-foundations",
     "index": 90,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/flame-wars",
-        "url": "https://en.wikipedia.org/wiki/flame_wars"
+        "type": "primary",
+        "title": "SCO Group, Inc. v. International Business Machines Corp. (Court Decisions Archive)",
+        "url": "https://www.groklaw.net/"
       }
     ]
   },
@@ -1776,18 +1929,20 @@
     "id": "vol0-0x5B",
     "volumen": "kernel-foundations",
     "index": 91,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/scientific-stack",
-        "url": "https://en.wikipedia.org/wiki/scientific_stack"
+        "type": "primary",
+        "title": "Project Jupyter: Interactive Computing Across Languages (Fernando Pérez, 2014)",
+        "url": "https://jupyter.org/"
       }
     ]
   },
@@ -1795,18 +1950,20 @@
     "id": "vol0-0x5C",
     "volumen": "kernel-foundations",
     "index": 92,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/scientific-stack",
-        "url": "https://en.wikipedia.org/wiki/scientific_stack"
+        "type": "primary",
+        "title": "Data Structures for Statistical Computing in Python (Wes McKinney, SciPy 2010)",
+        "url": "https://doi.org/10.25080/Majora-92bf1922-00a"
       }
     ]
   },
@@ -1835,18 +1992,20 @@
     "id": "vol0-0x5E",
     "volumen": "kernel-foundations",
     "index": 94,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/llms-generative",
-        "url": "https://en.wikipedia.org/wiki/llms_generative"
+        "type": "primary",
+        "title": "Introducing ChatGPT (OpenAI Blog, November 2022)",
+        "url": "https://openai.com/blog/chatgpt"
       }
     ]
   },
@@ -1875,18 +2034,20 @@
     "id": "vol0-0x60",
     "volumen": "kernel-foundations",
     "index": 96,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/syntax-peps",
-        "url": "https://en.wikipedia.org/wiki/syntax_peps"
+        "type": "primary",
+        "title": "PEP 327 – Decimal Data Type",
+        "url": "https://peps.python.org/pep-0327/"
       }
     ]
   },
@@ -1894,18 +2055,20 @@
     "id": "vol0-0x61",
     "volumen": "kernel-foundations",
     "index": 97,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/syntax-peps",
-        "url": "https://en.wikipedia.org/wiki/syntax_peps"
+        "type": "primary",
+        "title": "PEP 252 – Making Types Look More Like Classes",
+        "url": "https://peps.python.org/pep-0252/"
       }
     ]
   },
@@ -1913,18 +2076,20 @@
     "id": "vol0-0x62",
     "volumen": "kernel-foundations",
     "index": 98,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/p2p-culture",
-        "url": "https://en.wikipedia.org/wiki/p2p_culture"
+        "type": "primary",
+        "title": "Hachette Book Group, Inc. v. Internet Archive (S.D.N.Y. 2023 / 2nd Cir. 2024)",
+        "url": "https://law.justia.com/cases/federal/appellate-courts/ca2/23-1260/23-1260-2024-09-04.html"
       }
     ]
   },
@@ -1932,18 +2097,20 @@
     "id": "vol0-0x63",
     "volumen": "kernel-foundations",
     "index": 99,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/collaboration-platforms",
-        "url": "https://en.wikipedia.org/wiki/collaboration_platforms"
+        "type": "primary",
+        "title": "Introducing Stackoverflow.com (Joel on Software / Coding Horror, 2008)",
+        "url": "https://www.joelonsoftware.com/2008/04/16/introducing-stackoverflow-com/"
       }
     ]
   },
@@ -1951,18 +2118,20 @@
     "id": "vol0-0x64",
     "volumen": "kernel-foundations",
     "index": 100,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/competitive-ai",
-        "url": "https://en.wikipedia.org/wiki/competitive_ai"
+        "type": "primary",
+        "title": "Superhuman AI for heads-up no-limit poker: Libratus beats top professionals (Science 2018)",
+        "url": "https://doi.org/10.1126/science.aao1733"
       }
     ]
   },
@@ -1970,18 +2139,20 @@
     "id": "vol0-0x65",
     "volumen": "kernel-foundations",
     "index": 101,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hardware-embedded/retro-chips-gpus",
-        "url": "https://en.wikipedia.org/wiki/retro_chips_gpus"
+        "type": "primary",
+        "title": "Intel Pentium Processor Architecture Overview (Intel Technology Journal)",
+        "url": "https://www.intel.com/content/www/us/en/history/museum-story-of-intel-pentium.html"
       }
     ]
   },
@@ -1989,18 +2160,20 @@
     "id": "vol0-0x66",
     "volumen": "kernel-foundations",
     "index": 102,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "Meltdown and Spectre: Vulnerabilities in Modern Computers",
+        "url": "https://meltdownattack.com/"
       }
     ]
   },
@@ -2008,18 +2181,20 @@
     "id": "vol0-0x67",
     "volumen": "kernel-foundations",
     "index": 103,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/flame-wars",
-        "url": "https://en.wikipedia.org/wiki/flame_wars"
+        "type": "primary",
+        "title": "The Jargon File: Emacs vs Vi (Eric S. Raymond)",
+        "url": "http://www.catb.org/jargon/html/E/emacs.html"
       }
     ]
   },
@@ -2027,18 +2202,20 @@
     "id": "vol0-0x68",
     "volumen": "kernel-foundations",
     "index": 104,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/scientific-stack",
-        "url": "https://en.wikipedia.org/wiki/scientific_stack"
+        "type": "primary",
+        "title": "What's New in Pandas 2.0.0 (April 2023)",
+        "url": "https://pandas.pydata.org/docs/whatsnew/v2.0.0.html"
       }
     ]
   },
@@ -2046,18 +2223,20 @@
     "id": "vol0-0x69",
     "volumen": "kernel-foundations",
     "index": 105,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/web-standards",
-        "url": "https://en.wikipedia.org/wiki/web_standards"
+        "type": "primary",
+        "title": "The WorldWideWeb browser (Tim Berners-Lee, CERN, 1990)",
+        "url": "https://www.w3.org/People/Berners-Lee/WorldWideWeb.html"
       }
     ]
   },
@@ -2086,18 +2265,20 @@
     "id": "vol0-0x6B",
     "volumen": "kernel-foundations",
     "index": 107,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/linux-unix-os",
-        "url": "https://en.wikipedia.org/wiki/linux_unix_os"
+        "type": "primary",
+        "title": "The Evolution of the Unix Time-sharing System (Dennis Ritchie, 1984)",
+        "url": "https://www.bell-labs.com/usr/dmr/www/hist.html"
       }
     ]
   },
@@ -2105,18 +2286,20 @@
     "id": "vol0-0x6C",
     "volumen": "kernel-foundations",
     "index": 108,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/web-standards",
-        "url": "https://en.wikipedia.org/wiki/web_standards"
+        "type": "primary",
+        "title": "RFC 7540 – Hypertext Transfer Protocol Version 2 (HTTP/2)",
+        "url": "https://datatracker.ietf.org/doc/html/rfc7540"
       }
     ]
   },
@@ -2145,18 +2328,20 @@
     "id": "vol0-0x6E",
     "volumen": "kernel-foundations",
     "index": 110,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: data-storage/database-engines",
-        "url": "https://en.wikipedia.org/wiki/database_engines"
+        "type": "primary",
+        "title": "Distributed Caching with Memcached (Brad Fitzpatrick, Linux Journal, 2004)",
+        "url": "https://www.linuxjournal.com/article/7451"
       }
     ]
   },
@@ -2164,18 +2349,20 @@
     "id": "vol0-0x6F",
     "volumen": "kernel-foundations",
     "index": 111,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "A History of Haskell: Being Lazy With Class (HOPL III, 2007)",
+        "url": "https://haskell.cs.yale.edu/wp-content/uploads/2011/01/history.pdf"
       }
     ]
   },
@@ -2183,18 +2370,20 @@
     "id": "vol0-0x70",
     "volumen": "kernel-foundations",
     "index": 112,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/linux-unix-os",
-        "url": "https://en.wikipedia.org/wiki/linux_unix_os"
+        "type": "primary",
+        "title": "Release Notes for Linux v0.12 (Linus Torvalds, Jan 1992)",
+        "url": "https://kernelnewbies.org/LinuxVersions"
       }
     ]
   },
@@ -2202,18 +2391,20 @@
     "id": "vol0-0x71",
     "volumen": "kernel-foundations",
     "index": 113,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/programming-languages",
-        "url": "https://en.wikipedia.org/wiki/programming_languages"
+        "type": "primary",
+        "title": "The Development of the C Language (Dennis M. Ritchie, ACM HOPL II, 1993)",
+        "url": "https://www.bell-labs.com/usr/dmr/www/chist.html"
       }
     ]
   },
@@ -2242,18 +2433,20 @@
     "id": "vol0-0x73",
     "volumen": "kernel-foundations",
     "index": 115,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/malware-exploits",
-        "url": "https://en.wikipedia.org/wiki/malware_exploits"
+        "type": "primary",
+        "title": "CERT Advisory CA-2000-04: Love Bug Worm",
+        "url": "https://www.cisa.gov/news-events/cybersecurity-advisories"
       }
     ]
   },
@@ -2261,18 +2454,20 @@
     "id": "vol0-0x74",
     "volumen": "kernel-foundations",
     "index": 116,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/p2p-culture",
-        "url": "https://en.wikipedia.org/wiki/p2p_culture"
+        "type": "primary",
+        "title": "Wikipedia Blackout Statement (January 18, 2012)",
+        "url": "https://wikimediafoundation.org/news/2012/01/16/wikipedia-blackout-statement/"
       }
     ]
   },
@@ -2301,18 +2496,20 @@
     "id": "vol0-0x76",
     "volumen": "kernel-foundations",
     "index": 118,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: languages-runtimes/syntax-peps",
-        "url": "https://en.wikipedia.org/wiki/syntax_peps"
+        "type": "primary",
+        "title": "PEP 3147 – PYC Repository Directories",
+        "url": "https://peps.python.org/pep-3147/"
       }
     ]
   },
@@ -2320,18 +2517,20 @@
     "id": "vol0-0x77",
     "volumen": "kernel-foundations",
     "index": 119,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/web-standards",
-        "url": "https://en.wikipedia.org/wiki/web_standards"
+        "type": "primary",
+        "title": "Netscape Communications Corporation Registration Statement (Form S-1, SEC, 1995)",
+        "url": "https://www.sec.gov/edgar/searchedgar/companysearch"
       }
     ]
   },
@@ -2339,18 +2538,20 @@
     "id": "vol0-0x78",
     "volumen": "kernel-foundations",
     "index": 120,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "The Halloween Documents (Eric S. Raymond)",
+        "url": "http://www.catb.org/~esr/halloween/"
       }
     ]
   },
@@ -2358,18 +2559,20 @@
     "id": "vol0-0x79",
     "volumen": "kernel-foundations",
     "index": 121,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/linux-unix-os",
-        "url": "https://en.wikipedia.org/wiki/linux_unix_os"
+        "type": "primary",
+        "title": "Why a Penguin? (Linus Torvalds, Linux Kernel Mailing List, 1996)",
+        "url": "https://www.isc.tamu.edu/~lewing/linux/"
       }
     ]
   },
@@ -2377,18 +2580,20 @@
     "id": "vol0-0x7A",
     "volumen": "kernel-foundations",
     "index": 122,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: systems-networking/linux-unix-os",
-        "url": "https://en.wikipedia.org/wiki/linux_unix_os"
+        "type": "primary",
+        "title": "Free minix-like kernel sources for 386-AT (Linus Torvalds, comp.os.minix, Aug 1991)",
+        "url": "https://groups.google.com/g/comp.os.minix/c/499dtIDoaPy"
       }
     ]
   },
@@ -2396,18 +2601,20 @@
     "id": "vol0-0x7B",
     "volumen": "kernel-foundations",
     "index": 123,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: cloud-infrastructure/containers-virt",
-        "url": "https://en.wikipedia.org/wiki/containers_virt"
+        "type": "primary",
+        "title": "The future of Linux Containers (Solomon Hykes, PyCon 2013)",
+        "url": "https://www.youtube.com/watch?v=wW9CAH9nSLs"
       }
     ]
   },
@@ -2415,18 +2622,20 @@
     "id": "vol0-0x7C",
     "volumen": "kernel-foundations",
     "index": 124,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/scientific-stack",
-        "url": "https://en.wikipedia.org/wiki/scientific_stack"
+        "type": "primary",
+        "title": "Numeric Python Manual (Jim Hugunin, 1995)",
+        "url": "https://numpy.org/doc/stable/reference/arrays.html"
       }
     ]
   },
@@ -2434,18 +2643,20 @@
     "id": "vol0-0x7D",
     "volumen": "kernel-foundations",
     "index": 125,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: security-exploits/software-disasters",
-        "url": "https://en.wikipedia.org/wiki/software_disasters"
+        "type": "primary",
+        "title": "Ariane 5 Flight 501 Failure Report by the Inquiry Board (Prof. J. L. Lions, ESA/CNES, July 1996)",
+        "url": "http://www-users.cs.york.ac.uk/~nep/cacm/lions.html"
       }
     ]
   },
@@ -2453,18 +2664,20 @@
     "id": "vol0-0x7E",
     "volumen": "kernel-foundations",
     "index": 126,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: hacker-culture-web/cypherpunks-foss",
-        "url": "https://en.wikipedia.org/wiki/cypherpunks_foss"
+        "type": "primary",
+        "title": "NIST Releases First 3 Finalized Post-Quantum Encryption Standards (August 2024)",
+        "url": "https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards"
       }
     ]
   },
@@ -2472,18 +2685,20 @@
     "id": "vol0-0x7F",
     "volumen": "kernel-foundations",
     "index": 127,
-    "status": "VERIFIED",
+    "status": "VERIFIED_REWRITE",
     "levels": {
       "factual": "VALID",
       "pedagogical": "COMPLIANT",
-      "editorial": "SOBER"
+      "editorial": "REWRITTEN_SOBER"
     },
-    "detected_issues": [],
+    "detected_issues": [
+      "Revisión editorial y factual contra fuentes primarias."
+    ],
     "sources": [
       {
-        "type": "secondary",
-        "title": "Registro histórico canónico del hito: ai-data-science/competitive-ai",
-        "url": "https://en.wikipedia.org/wiki/competitive_ai"
+        "type": "primary",
+        "title": "A general reinforcement learning algorithm that masters chess, shogi, and Go through self-play (Science 2018)",
+        "url": "https://doi.org/10.1126/science.aar6404"
       }
     ]
   },

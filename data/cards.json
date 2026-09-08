@@ -5,10 +5,10 @@
     "index": 0,
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
-    "hito": "Aprobación del **PEP 453**, incorporando el módulo `ensurepip` en Python para inicializar el gestor de paquetes de forma estándar.",
+    "hito": "Inclusión del módulo estándar `ensurepip` con la llegada de **Python 3.4**, formalizada bajo el **PEP 453** para arrancar pip de forma nativa.",
     "year": 2014,
     "autor": "Donald Stufft y Nick Coghlan",
-    "trivia": "Permitió disponer de pip por defecto en Python 3.4 sin requerir la descarga manual de scripts de arranque externos como `get-pip.py`."
+    "trivia": "Permitió inicializar pip sin conexión ni requerir descargas externas como `get-pip.py`, unificando la distribución de paquetes en Python."
   },
   {
     "id": "vol0-0x01",
@@ -16,10 +16,10 @@
     "index": 1,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Descubrimiento del ciberataque masivo a **SolarWinds**, infectando agencias estatales mediante actualizaciones de software legítimas.",
+    "hito": "Identificación del ataque a la cadena de suministro de **SolarWinds**, comprometiendo redes gubernamentales mediante actualizaciones firmadas.",
     "year": 2020,
-    "autor": "Inteligencia Exterior Rusa (SVR)",
-    "trivia": "Inyectaron la puerta trasera *Sunburst* en el pipeline de compilación de SolarWinds, espiando al gobierno de EE.UU. por 9 meses."
+    "autor": "FireEye / Atribuido a APT29 (SVR)",
+    "trivia": "Los atacantes insertaron la puerta trasera *Sunburst* directamente en el proceso de compilación de Orion, pasando inadvertidos durante meses."
   },
   {
     "id": "vol0-0x02",
@@ -27,10 +27,10 @@
     "index": 2,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Alerta global por la vulnerabilidad **Shellshock** en el intérprete de comandos **GNU Bash**, latente de forma invisible durante más de 25 años.",
+    "hito": "Divulgación de la vulnerabilidad crítica **Shellshock** en **GNU Bash**, presente en el analizador del intérprete durante un cuarto de siglo.",
     "year": 2014,
     "autor": "Stéphane Chazelas",
-    "trivia": "Permitía inyectar comandos de sistema arbitrarios dentro de variables de entorno transmitidas a scripts CGI en Apache."
+    "trivia": "Permitía ejecutar código arbitrario al procesar definiciones de funciones exportadas dentro de variables de entorno en servidores CGI."
   },
   {
     "id": "vol0-0x03",
@@ -49,10 +49,10 @@
     "index": 4,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Debut del intérprete de comandos **GNU Bash** (*Bourne-Again SHell*), diseñado como el reemplazo libre del shell de Stephen Bourne.",
+    "hito": "Debut del intérprete de comandos **GNU Bash** (*Bourne-Again SHell*), diseñado como el reemplazo libre del clásico shell de Stephen Bourne.",
     "year": 1989,
     "autor": "Brian Fox (Free Software Foundation)",
-    "trivia": "Su nombre alude con ironía a *Bourne Again*; con el tiempo se convirtió en el shell interactivo por defecto en la mayoría de distros Linux."
+    "trivia": "El nombre es un juego de palabras con 'born-again' y Steve Bourne; con el tiempo se consolidó como el shell predeterminado en entornos Linux."
   },
   {
     "id": "vol0-0x05",
@@ -63,7 +63,7 @@
     "hito": "Oficialización del módulo `enum` en la biblioteca estándar para enumeraciones robustas bajo el **PEP 435**.",
     "year": 2013,
     "autor": "Barry Warsaw y Eli Bendersky",
-    "trivia": "Terminó con años de soluciones ad-hoc caseras basadas en clases con constantes enteras o tuplas dispersas."
+    "trivia": "Sustituyó patrones informales basados en clases de constantes enteras o diccionarios, dotando a Python de tipos enumerados con identidad única."
   },
   {
     "id": "vol0-0x06",
@@ -71,10 +71,10 @@
     "index": 6,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Invención de las tuberías de procesamiento (**pipes**) en Unix, permitiendo encadenar la salida de un programa con la entrada de otro.",
-    "year": 1972,
-    "autor": "Doug McIlroy (Bell Labs)",
-    "trivia": "Thompson implementó las pipes en una noche; la filosofía Unix de *\"hacer una sola cosa y hacerla bien\"* quedó sellada."
+    "hito": "Incorporación de las tuberías (**pipes**) en Unix, permitiendo encadenar flujos de salida y entrada estándar entre programas.",
+    "year": 1973,
+    "autor": "D. McIlroy y K. Thompson (Bell Labs)",
+    "trivia": "McIlroy propuso el concepto y Thompson implementó la llamada de sistema en pocas horas, cimentando la modularidad de Unix."
   },
   {
     "id": "vol0-0x07",
@@ -82,10 +82,10 @@
     "index": 7,
     "domain": "security-exploits",
     "tag": "software-disasters",
-    "hito": "Crisis mortal de los aviones **Boeing 737 MAX**, cobrándose la vida de 346 personas en dos accidentes aéreos catastróficos.",
-    "year": 2018,
+    "hito": "Inmovilización de la flota **Boeing 737 MAX** tras dos siniestros aéreos causados por fallos en el software de control de vuelo.",
+    "year": 2019,
     "autor": "Boeing",
-    "trivia": "El software **MCAS** forzó el morro hacia abajo por un sensor defectuoso sin informar a los pilotos, causando 346 muertes."
+    "trivia": "El sistema MCAS se activó repetidamente al confiar en lecturas erróneas de un único sensor de ángulo de ataque, anulando la intervención manual."
   },
   {
     "id": "vol0-0x08",
@@ -96,7 +96,7 @@
     "hito": "Publicación del paper sobre **Chubby**, el servicio de bloqueo distribuido con Paxos que sostiene los clústeres de Google.",
     "year": 2006,
     "autor": "Mike Burrows (Google)",
-    "trivia": "Burrows diseñó Chubby enfatizando la facilidad de uso y la sincronización gruesa para miles de clientes."
+    "trivia": "Burrows priorizó una interfaz simple de archivos y bloqueos gruesos (*coarse-grained*) para ocultar la complejidad matemática de Paxos."
   },
   {
     "id": "vol0-0x09",
@@ -104,10 +104,10 @@
     "index": 9,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Anuncio oficial del **Proyecto GNU** en el grupo de noticias *net.unix-wizards* para construir un sistema Unix completamente libre.",
+    "hito": "Anuncio fundacional del **Proyecto GNU** en Usenet para crear un sistema operativo completo y totalmente libre compatible con Unix.",
     "year": 1983,
-    "autor": "Richard Stallman (FSF)",
-    "trivia": "Su nombre es un acrónimo recursivo que significa *\"GNU's Not Unix\"*; sentó las bases legales, morales y filosóficas del movimiento del software libre."
+    "autor": "Richard Stallman (MIT AI Lab)",
+    "trivia": "Su nombre es un acrónimo recursivo para *'GNU's Not Unix'*; precedió a la creación de la FSF y concibió herramientas libres esenciales como GCC."
   },
   {
     "id": "vol0-0x0A",
@@ -115,10 +115,10 @@
     "index": 10,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Paper de **Dynamo** de Amazon, demostrando las ventajas de la consistencia eventual y el diseño NoSQL distribuido.",
+    "hito": "Publicación del paper de **Dynamo** por Amazon, pionero en alta disponibilidad con consistencia eventual y particionamiento hash.",
     "year": 2007,
-    "autor": "Amazon (Werner Vogels et al.)",
-    "trivia": "Nació tras caer el carrito de Amazon en el *Black Friday* de 2004, superando la rigidez de bases relacionales clásicas."
+    "autor": "G. DeCandia, W. Vogels et al. (Amazon)",
+    "trivia": "Diseñado para evitar carritos de compra caídos, priorizó la disponibilidad sobre la consistencia estricta, inspirando a Cassandra y Riak."
   },
   {
     "id": "vol0-0x0B",
@@ -126,10 +126,10 @@
     "index": 11,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento del procesador **Apple M1**, demostrando la superioridad del silicio ARM frente a x86 en laptops de consumo.",
+    "hito": "Presentación del procesador **Apple M1**, marcando la transición de Mac hacia arquitectura ARM con alta eficiencia y memoria unificada.",
     "year": 2020,
     "autor": "Apple (Johny Srouji)",
-    "trivia": "Unió CPU, GPU y memoria unificada en un silicio ultraeficiente, permitiendo a Apple romper su alianza histórica con Intel."
+    "trivia": "Integró CPU, GPU y memoria en un único empaquetado (SoC), logrando un rendimiento por vatio que superó a procesadores de consumo previos."
   },
   {
     "id": "vol0-0x0C",
@@ -137,10 +137,10 @@
     "index": 12,
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
-    "hito": "Debut del emparejamiento de patrones estructurales (*structural pattern matching*) con sintaxis `match`/`case` en el **PEP 634**.",
-    "year": 2020,
+    "hito": "Debut del emparejamiento de patrones estructurales (*pattern matching*) con sintaxis `match`/`case` vía **PEP 634** en Python 3.10.",
+    "year": 2021,
     "autor": "Brandt Bucher y Guido van Rossum",
-    "trivia": "Aportó capacidades de descomposición de objetos complejas inspiradas en lenguajes como *Scala* y *Rust*, superando con creces a un simple `switch`."
+    "trivia": "Inspirado en Scala y Haskell, permite descomponer y validar estructuras de secuencias y objetos complejos más allá de un simple switch."
   },
   {
     "id": "vol0-0x0D",
@@ -148,10 +148,10 @@
     "index": 13,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Publicación del paper fundacional sobre el modelo relacional de datos por parte de un investigador de IBM.",
+    "hito": "Publicación del modelo relacional de datos por **Edgar F. Codd**, fundamentando las bases matemáticas de las bases de datos modernas.",
     "year": 1970,
     "autor": "Edgar F. Codd (IBM Research)",
-    "trivia": "Directivos de IBM quisieron frenar el paper porque amenazaba el lucrativo negocio de sus bases de datos jerárquicas *IMS*."
+    "trivia": "Codd propuso independizar la estructura lógica de los datos de su soporte físico, enfrentando reticencias en IBM por proteger su producto IMS."
   },
   {
     "id": "vol0-0x0E",
@@ -181,10 +181,10 @@
     "index": 16,
     "domain": "ai-data-science",
     "tag": "neural-networks-papers",
-    "hito": "Formulación de la arquitectura **Transformer** en el célebre paper *Attention Is All You Need*, basada enteramente en autoatención.",
+    "hito": "Presentación de la arquitectura **Transformer** en el paper *Attention Is All You Need*, sustituyendo recurrencias por autoatención.",
     "year": 2017,
-    "autor": "Ashish Vaswani et al. (Google Brain)",
-    "trivia": "Diseñado para traducción, eliminó dependencias secuenciales y permitió entrenar modelos en paralelo a escala masiva."
+    "autor": "A. Vaswani et al. (Google / UToronto)",
+    "trivia": "Concebida para traducción automática, eliminó el procesamiento secuencial y permitió el entrenamiento paralelo masivo de modelos de lenguaje."
   },
   {
     "id": "vol0-0x11",
@@ -192,10 +192,10 @@
     "index": 17,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Lanzamiento del editor **Atom** por parte de GitHub bajo el lema *\"A hackable text editor for the 21st Century\"*.",
+    "hito": "Lanzamiento del editor de código abierto **Atom** por GitHub, diseñado como una plataforma modular extensible con tecnologías web.",
     "year": 2014,
     "autor": "GitHub (Chris Wanstrath)",
-    "trivia": "Para crearlo inventaron *Electron* (Chromium + Node.js), base que luego impulsaría apps como Slack, Discord y VS Code."
+    "trivia": "Su arquitectura combinó Chromium y Node.js en *Atom Shell* (renombrado *Electron* en 2015), base de aplicaciones como VS Code y Slack."
   },
   {
     "id": "vol0-0x12",
@@ -203,10 +203,10 @@
     "index": 18,
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
-    "hito": "Debut de las comprensiones de listas (*list comprehensions*) y del recolector de basura cíclico en **Python 2.0**.",
+    "hito": "Lanzamiento de **Python 2.0**, incorporando comprensiones de listas (*list comprehensions*) y recolección de basura para ciclos de referencias.",
     "year": 2000,
     "autor": "BeOpen PythonLabs (Guido van Rossum)",
-    "trivia": "La sintaxis `[x for x in s]` fue importada directamente del lenguaje funcional *Haskell*, transformando la manera idiomática de procesar colecciones."
+    "trivia": "La sintaxis `[x for x in s]` (PEP 202) adoptó la notación del lenguaje funcional Haskell para transformar colecciones de forma concisa."
   },
   {
     "id": "vol0-0x13",
@@ -214,10 +214,10 @@
     "index": 19,
     "domain": "ai-data-science",
     "tag": "scientific-stack",
-    "hito": "Lanzamiento de **Scikit-learn**, toolkit canónico de machine learning para regresión, clasificación y clustering.",
+    "hito": "Presentación de **Scikit-learn**, consolidando una biblioteca unificada de machine learning en Python sobre NumPy y SciPy.",
     "year": 2010,
     "autor": "Fabian Pedregosa et al. (scikit-learn)",
-    "trivia": "Iniciado en un Summer of Code de Google; su API `.fit()`, `.predict()` y `.transform()` fijó el estándar de oro."
+    "trivia": "Iniciado por David Cournapeau y refundado en Inria, popularizó una interfaz consistente de estimadores con métodos `.fit()` y `.predict()`."
   },
   {
     "id": "vol0-0x14",
@@ -225,10 +225,10 @@
     "index": 20,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Nacimiento de **MongoDB**, apostando por el almacenamiento de documentos semiestructurados en formato binario **BSON** y esquemas dinámicos.",
+    "hito": "Publicación de **MongoDB**, introduciendo almacenamiento de documentos semiestructurados en formato binario **BSON** sin esquema rígido.",
     "year": 2009,
     "autor": "Eliot Horowitz et al. (10gen / MongoDB)",
-    "trivia": "Viene de *\"humongous\"*; lideró el auge NoSQL al permitir almacenar documentos JSON dinámicos sin migraciones de esquemas."
+    "trivia": "Su nombre deriva de *humongous*; impulsó el modelo documental NoSQL al representar registros como estructuras anidadas similares a JSON."
   },
   {
     "id": "vol0-0x15",
@@ -236,10 +236,10 @@
     "index": 21,
     "domain": "hacker-culture-web",
     "tag": "collaboration-platforms",
-    "hito": "Consolidación del sitio de noticias técnicas **Slashdot** bajo el icónico lema *\"News for Nerds. Stuff that Matters\"*.",
-    "year": 1999,
+    "hito": "Lanzamiento del portal de noticias técnicas **Slashdot** bajo el lema *\"News for Nerds. Stuff that Matters\"*.",
+    "year": 1997,
     "autor": "Rob Malda (CmdrTaco)",
-    "trivia": "Originó el *\"Efecto Slashdot\"*, la caída fulminante de webs pequeñas que colapsaban al ser enlazadas en su portada."
+    "trivia": "Pionero en comentarios moderados por la comunidad, acuñó el *'Efecto Slashdot'* al saturar servidores web cuando eran enlazados en portada."
   },
   {
     "id": "vol0-0x16",
@@ -247,10 +247,10 @@
     "index": 22,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Inicio del movimiento por el software libre tras el incidente de una impresora láser Xerox atascada en el laboratorio del MIT.",
-    "year": 1983,
+    "hito": "Conflicto ético en el MIT por el controlador de una impresora **Xerox**, catalizando la postura contra los acuerdos de confidencialidad.",
+    "year": 1980,
     "autor": "Richard Stallman (MIT AI Lab)",
-    "trivia": "Al negarle el código de una impresora atascada por acuerdos de confidencialidad, Stallman inició su rebelión por el software libre."
+    "trivia": "Al negársele el acceso al código fuente de la impresora por un acuerdo de no divulgación (NDA), Stallman concibió las libertades del software libre."
   },
   {
     "id": "vol0-0x17",
@@ -269,10 +269,10 @@
     "index": 24,
     "domain": "security-exploits",
     "tag": "software-disasters",
-    "hito": "Falla del sensor de **CrowdStrike**, congelando infraestructuras globales por un puntero nulo en Windows.",
+    "hito": "Incidente global del sensor **CrowdStrike Falcon**, provocando caídas de sistemas en bucle por un fallo de validación en Windows.",
     "year": 2024,
-    "autor": "CrowdStrike (Equipo de Calidad)",
-    "trivia": "Un puntero nulo en el archivo `Channel File 291` desató un pantallazo azul masivo en Windows en millones de servidores del mundo."
+    "autor": "CrowdStrike",
+    "trivia": "Un error de validación en el archivo de canal 291 desató una lectura de puntero inválido en el controlador de kernel en 8.5M de equipos."
   },
   {
     "id": "vol0-0x19",
@@ -280,10 +280,10 @@
     "index": 25,
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
-    "hito": "Adición de argumentos nombrados (*keyword arguments*) en las llamadas a funciones con la llegada de **Python 1.1**.",
+    "hito": "Incorporación de argumentos por palabra clave (*keyword arguments*) en las llamadas a funciones con la llegada de **Python 1.1**.",
     "year": 1994,
     "autor": "Guido van Rossum",
-    "trivia": "Esta característica eliminó de raíz los errores por confusión posicional en funciones con listas largas de parámetros opcionales."
+    "trivia": "Permitió invocar funciones especificando el nombre de los parámetros opcionales, evitando errores posicionales en firmas complejas."
   },
   {
     "id": "vol0-0x1A",
@@ -291,10 +291,10 @@
     "index": 26,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Creación de **Fortran** (*Formula Translating System*), el primer lenguaje de programación de alto nivel comercialmente exitoso.",
+    "hito": "Publicación del compilador de **Fortran**, primer lenguaje de programación de alto nivel con adopción comercial masiva.",
     "year": 1957,
-    "autor": "John Backus (IBM)",
-    "trivia": "Había escepticismo de que un compilador igualara al ensamblador manual; el equipo de Backus demostró lo contrario."
+    "autor": "John Backus et al. (IBM)",
+    "trivia": "Backus demostró que el código generado por un compilador podía competir en eficiencia matemática con el código en ensamblador manual."
   },
   {
     "id": "vol0-0x1B",
@@ -302,10 +302,10 @@
     "index": 27,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Creación urgente de **Git** como sistema de control de versiones distribuido tras la crisis con el software propietario *BitKeeper*.",
+    "hito": "Creación del sistema de control de versiones **Git**, adoptando un grafo acíclico dirigido (DAG) de confirmaciones inmutables.",
     "year": 2005,
     "autor": "Linus Torvalds",
-    "trivia": "Linus programó el grafo DAG de Git en dos semanas, asombrando por su velocidad para ramificar y fusionar repositorios."
+    "trivia": "Diseñado tras la revocación de la licencia de BitKeeper para Linux, priorizó el rendimiento en ramas locales y la integridad SHA-1."
   },
   {
     "id": "vol0-0x1C",
@@ -313,10 +313,10 @@
     "index": 28,
     "domain": "ai-data-science",
     "tag": "scientific-stack",
-    "hito": "Nacimiento de **IPython**, una consola interactiva avanzada para Python con comandos mágicos, resaltado y depuración en vivo.",
+    "hito": "Lanzamiento de **IPython**, consola interactiva avanzada para Python con comandos mágicos, introspección y depuración integrada.",
     "year": 2001,
     "autor": "Fernando Pérez",
-    "trivia": "Fernando Pérez lo creó como estudiante de física cuántica en Colorado en una tarde para agilizar su tesis doctoral."
+    "trivia": "Creado por Pérez mientras realizaba investigación en física en la Universidad de Colorado, se convirtió en el núcleo del proyecto Jupyter."
   },
   {
     "id": "vol0-0x1D",
@@ -324,10 +324,10 @@
     "index": 29,
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
-    "hito": "Transformación de `print` de sentencia mágica de lenguaje a función estándar `print()` dictaminada en el **PEP 3105**.",
-    "year": 2006,
+    "hito": "Sustitución de la sentencia `print` por la función estándar `print()` en Python 3000 según lo dictaminado en el **PEP 3105**.",
+    "year": 2008,
     "autor": "Georg Brandl",
-    "trivia": "Desató gran controversia entre veteranos, pero habilitó pasar argumentos nombrados como `sep` y `end`, además de permitir sobrescribir la función."
+    "trivia": "Permitió personalizar argumentos como `sep` y `end`, además de facilitar el paso de `print` como argumento a funciones de orden superior."
   },
   {
     "id": "vol0-0x1E",
@@ -335,10 +335,10 @@
     "index": 30,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento del microprocesador **Intel 8080**, el cerebro que detonó la revolución de la informática personal en el Altair 8800.",
+    "hito": "Lanzamiento del microprocesador **Intel 8080**, acelerando el cómputo de 8 bits en sistemas personales como el Altair 8800.",
     "year": 1974,
     "autor": "Federico Faggin y Masatoshi Shima",
-    "trivia": "Requería tres voltajes distintos (+5V, -5V y +12V) y operaba a una vertiginosa frecuencia de 2 MHz."
+    "trivia": "Operaba a 2 MHz con bus de direcciones de 16 bits (64 KB de memoria) y requería tres líneas de alimentación (+5V, -5V y +12V)."
   },
   {
     "id": "vol0-0x1F",
@@ -346,10 +346,10 @@
     "index": 31,
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
-    "hito": "Oficialización del tipo booleano primitivo `bool` con las constantes fijas `True` y `False` en el **PEP 285**.",
+    "hito": "Oficialización del tipo de datos booleano `bool` con constantes `True` y `False` en la especificación del **PEP 285**.",
     "year": 2002,
     "autor": "Guido van Rossum",
-    "trivia": "Por razones de compatibilidad hacia atrás estricta con código añejo, `bool` se definió como una subclase de `int`, haciendo que `True + True == 2`."
+    "trivia": "Por compatibilidad hacia atrás, `bool` se implementó como una subclase de `int`, permitiendo que `True + True == 2`."
   },
   {
     "id": "vol0-0x20",
@@ -357,10 +357,10 @@
     "index": 32,
     "domain": "hacker-culture-web",
     "tag": "collaboration-platforms",
-    "hito": "Lanzamiento de **Discord**, plataforma de chat y voz que se convirtió en el punto de encuentro clave de comunidades dev.",
+    "hito": "Lanzamiento de **Discord**, plataforma de comunicación en tiempo real con canales de texto, audio de baja latencia y WebSockets.",
     "year": 2015,
     "autor": "Jason Citron y Stanislav Vishnevskiy",
-    "trivia": "Con arquitectura distribuida en Elixir y Rust, absorbió el tráfico de viejos canales de IRC y servidores gamer."
+    "trivia": "Construido sobre Elixir para gestionar millones de conexiones de voz concurrentes, facilitó la migración desde foros e IRC."
   },
   {
     "id": "vol0-0x21",
@@ -379,10 +379,10 @@
     "index": 34,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Apagón informático mundial de **CrowdStrike**, provocando una pantalla azul de la muerte (**BSOD**) en bucle en 8.5 millones de máquinas Windows.",
+    "hito": "Parálisis global de sistemas por la actualización defectuosa de **CrowdStrike**, provocando pantallas azules (**BSOD**) masivas.",
     "year": 2024,
-    "autor": "CrowdStrike Inc. (George Kurtz)",
-    "trivia": "Un archivo corrupto de pocos KB en Windows colapsó aerolíneas, hospitales y cajeros en el mayor apagón informático mundial."
+    "autor": "CrowdStrike Inc.",
+    "trivia": "Afectó a servicios de aviación, banca y salud tras desplegar un archivo de configuración sin control previo de integridad."
   },
   {
     "id": "vol0-0x23",
@@ -390,10 +390,10 @@
     "index": 35,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Creación de **Redis** (*REmote DIctionary Server*), revolucionando el almacenamiento en memoria con estructuras de datos complejas nativas.",
+    "hito": "Creación de **Redis**, servidor de estructuras de datos en memoria con soporte para listas, conjuntos y claves con caducidad.",
     "year": 2009,
     "autor": "Salvatore Sanfilippo (antirez)",
-    "trivia": "Creado en Sicilia para analítica en tiempo real, deslumbró por su código C poético, eficiente y ultracompacto."
+    "trivia": "Sanfilippo lo diseñó en C con arquitectura monociclo basada en eventos (*event loop*), optimizando accesos a memoria en RAM."
   },
   {
     "id": "vol0-0x24",
@@ -401,10 +401,10 @@
     "index": 36,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Liberación histórica en código abierto del navegador Netscape Communicator, dando origen al proyecto **Mozilla**.",
+    "hito": "Publicación del código fuente del navegador **Netscape Communicator**, sentando las bases de la comunidad **Mozilla**.",
     "year": 1998,
     "autor": "Netscape Communications",
-    "trivia": "Hito histórico: una corporación entregó su código más valioso a la comunidad, germen que dio vida a Firefox."
+    "trivia": "Fue una de las primeras grandes corporaciones en liberar su producto principal bajo licencia libre, germen de Mozilla Firefox."
   },
   {
     "id": "vol0-0x25",
@@ -423,10 +423,10 @@
     "index": 38,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Creación de la **Free Software Foundation** (**FSF**) y publicación del Manifiesto GNU en la revista *Dr. Dobb's Journal*.",
+    "hito": "Creación de la **Free Software Foundation** (**FSF**) y publicación del Manifiesto GNU para defender los derechos de los usuarios.",
     "year": 1985,
     "autor": "Richard Stallman",
-    "trivia": "Fijó las **cuatro libertades del software**: usarlo, estudiarlo, modificarlo y compartir copias sin restricciones."
+    "trivia": "Definió formalmente las cuatro libertades esenciales del software: usar, estudiar, modificar y redistribuir copias."
   },
   {
     "id": "vol0-0x27",
@@ -434,10 +434,10 @@
     "index": 39,
     "domain": "ai-data-science",
     "tag": "neural-networks-papers",
-    "hito": "Presentación del dataset **ImageNet**, reuniendo más de 14 millones de fotografías para clasificar visión artificial.",
+    "hito": "Presentación del corpus visual **ImageNet**, reuniendo millones de imágenes anotadas para la evaluación de visión por computador.",
     "year": 2009,
-    "autor": "Fei-Fei Li (Princeton University)",
-    "trivia": "Se tildó de pérdida de tiempo; el dataset de Fei-Fei Li se convirtió en el combustible del boom del Deep Learning."
+    "autor": "Fei-Fei Li et al. (Princeton Univ.)",
+    "trivia": "Su competición anual (ILSVRC) sirvió de banco de pruebas decisivo para el avance de redes neuronales profundas convolucionales."
   },
   {
     "id": "vol0-0x28",
@@ -445,10 +445,10 @@
     "index": 40,
     "domain": "hacker-culture-web",
     "tag": "p2p-culture",
-    "hito": "Lanzamiento de **Napster**, desatando la primera revolución planetaria de intercambio de música en archivos MP3 punto a punto (**P2P**).",
+    "hito": "Lanzamiento de **Napster**, masificando la distribución punto a punto (**P2P**) de archivos de audio comprimidos en formato MP3.",
     "year": 1999,
     "autor": "Shawn Fanning y Sean Parker",
-    "trivia": "Reunió a 80M de personas descargando MP3s en dormitorios universitarios hasta que demandas de *Metallica* y la RIAA lo cerraron."
+    "trivia": "Utilizaba un servidor central para indexar búsquedas mientras las descargas fluían directamente entre computadoras de usuarios."
   },
   {
     "id": "vol0-0x29",
@@ -456,10 +456,10 @@
     "index": 41,
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
-    "hito": "Incorporación de la función incorporada `enumerate()` para iterar índices y valores simultáneamente gracias al **PEP 279**.",
+    "hito": "Incorporación de la función nativa `enumerate()` para iterar índices y valores simultáneamente gracias al **PEP 279**.",
     "year": 2003,
     "autor": "Raymond Hettinger",
-    "trivia": "Desterró el antipatrón omnipresente de usar variables contadoras manuales `i = 0` seguidas de `i += 1` dentro de bucles `for`."
+    "trivia": "Sustituyó el patrón manual de incrementar contadores en bucles, optimizando el recorrido de iterables a nivel de C en CPython."
   },
   {
     "id": "vol0-0x2A",
@@ -468,9 +468,9 @@
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
     "hito": "Aprobación del operador condicional ternario `x if cond else y` para expresiones en una sola línea en el **PEP 308**.",
-    "year": 2005,
+    "year": 2006,
     "autor": "Guido van Rossum y Raymond Hettinger",
-    "trivia": "Guido lo rechazó por años temiendo código feo, hasta ver que se abusaba del truco inseguro `(cond and [x] or [y])[0]`."
+    "trivia": "Introducido formalmente en Python 2.5 tras años de debate para erradicar el truco inseguro con booleanos `(cond and [x] or [y])[0]`."
   },
   {
     "id": "vol0-0x2B",
@@ -478,10 +478,10 @@
     "index": 43,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Nacimiento de la computadora monoplaca **Raspberry Pi**, ofreciendo una placa Linux completa para enseñanza de software por solo **$35 dólares**.",
+    "hito": "Lanzamiento de la computadora monoplaca **Raspberry Pi**, facilitando el acceso al aprendizaje de informática por **$35 dólares**.",
     "year": 2012,
     "autor": "Eben Upton (Raspberry Pi Foundation)",
-    "trivia": "Esperaban vender mil placas a alumnos de Cambridge; la demanda superó los **60 millones de unidades** en todo el planeta."
+    "trivia": "Diseñada en Cambridge por Eben Upton con chip Broadcom ARM, vendió decenas de millones de unidades en educación y robótica."
   },
   {
     "id": "vol0-0x2C",
@@ -489,10 +489,10 @@
     "index": 44,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Redacción de la propuesta fundacional de la **World Wide Web** en un documento titulado *\"Information Management: A Proposal\"*.",
+    "hito": "Redacción de la propuesta fundacional de la **World Wide Web** en el CERN bajo el título *\"Information Management: A Proposal\"*.",
     "year": 1989,
     "autor": "Tim Berners-Lee (CERN)",
-    "trivia": "Su supervisor en el CERN anotó en la portada: *\"Vague but exciting...\"* antes de darle una computadora NeXT para programar."
+    "trivia": "Su supervisor Mike Sendall escribió en la portada *'Vague but exciting...'* y autorizó a Berners-Lee a programar el primer prototipo en NeXT."
   },
   {
     "id": "vol0-0x2D",
@@ -500,10 +500,10 @@
     "index": 45,
     "domain": "languages-runtimes",
     "tag": "rust-tooling",
-    "hito": "Debut del framework de testing **pytest**, revolucionando la verificación de código mediante reescritura de la sentencia estándar `assert`.",
+    "hito": "Debut del framework de pruebas **pytest**, simplificando la verificación de código en Python mediante reescritura de `assert`.",
     "year": 2009,
-    "autor": "Holger Krekel (PyPy Team)",
-    "trivia": "Eliminó herencias pesadas de `unittest.TestCase`, haciendo las pruebas legibles y concisas con simples `assert`."
+    "autor": "Holger Krekel et al. (PyPy Team)",
+    "trivia": "Evitó la necesidad de heredar clases de `unittest.TestCase`, introduciendo inyección de dependencias mediante *fixtures* modulares."
   },
   {
     "id": "vol0-0x2E",
@@ -533,10 +533,10 @@
     "index": 48,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Lanzamiento del software de anonimato y enrutamiento en cebolla **Tor** (*The Onion Routing*) para proteger el tráfico web contra vigilancia.",
+    "hito": "Presentación del software de enrutamiento en capas **Tor** (*The Onion Routing*) para anonimizar el tráfico de red.",
     "year": 2004,
-    "autor": "R. Dingledine, N. Mathewson y Syverson",
-    "trivia": "Paradójicamente, Tor fue inventado y financiado por la Marina de EE.UU. para proteger comunicaciones de agentes encubiertos."
+    "autor": "R. Dingledine, N. Mathewson y P. Syverson",
+    "trivia": "Desarrollado en colaboración con el Laboratorio de Investigación Naval (NRL) de EE.UU. para proteger comunicaciones y privacidad."
   },
   {
     "id": "vol0-0x31",
@@ -544,10 +544,10 @@
     "index": 49,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Creación de **SQLite**, un motor SQL embebido y contenido en una única librería en C sin necesidad de configuración ni procesos cliente-servidor.",
+    "hito": "Creación de **SQLite**, motor SQL transaccional y autocontenido en una biblioteca C sin requerir procesos cliente-servidor.",
     "year": 2000,
     "autor": "D. Richard Hipp",
-    "trivia": "Hipp lo creó a bordo de un buque de guerra tras ver caer servidores de bases de datos durante maniobras navales."
+    "trivia": "Hipp lo diseñó mientras trabajaba en sistemas navales para disponer de una base de datos sin costes de configuración de red."
   },
   {
     "id": "vol0-0x32",
@@ -566,10 +566,10 @@
     "index": 51,
     "domain": "ai-data-science",
     "tag": "competitive-ai",
-    "hito": "Victoria mundial de **AlphaGo** sobre el legendario campeón surcoreano **Lee Sedol** por 4 victorias a 1 en el milenario juego del **Go**.",
+    "hito": "Victoria de **AlphaGo** sobre el campeón mundial surcoreano **Lee Sedol** por 4 victorias a 1 en el juego del **Go**.",
     "year": 2016,
-    "autor": "DeepMind (David Silver y D. Hassabis)",
-    "trivia": "En la partida 2 ejecutó el **Movimiento 37**, jugada que comentaristas creyeron un error y terminó redefiniendo el Go."
+    "autor": "DeepMind (David Silver, Demis Hassabis)",
+    "trivia": "En la segunda partida ejecutó el *Movimiento 37*, una jugada calificada inicialmente de insólita que demostró intuición estratégica."
   },
   {
     "id": "vol0-0x34",
@@ -588,10 +588,10 @@
     "index": 53,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Fundación del proyecto **Debian GNU/Linux** bajo el manifiesto de crear una distribución universal guiada por principios éticos comunitarios.",
+    "hito": "Publicación del Manifiesto de **Debian GNU/Linux**, sentando las bases de una distribución comunitaria libre y universal.",
     "year": 1993,
     "autor": "Ian Murdock",
-    "trivia": "Murdock unió el nombre de su prometida **Debra** con el suyo (**Ian**), creando el estándar de empaquetado `.deb` y `apt`."
+    "trivia": "Murdock combinó el nombre de su pareja Debra con el suyo (Deb-Ian), formalizando el formato de paquetes `.deb` y las directrices DFSG."
   },
   {
     "id": "vol0-0x36",
@@ -599,10 +599,10 @@
     "index": 54,
     "domain": "ai-data-science",
     "tag": "neural-networks-papers",
-    "hito": "Publicación del devastador libro *Perceptrons*, demostrando matemáticamente que una sola capa lineal no podía resolver la función lógica **XOR**.",
+    "hito": "Publicación del libro *Perceptrons*, demostrando que redes lineales de una capa no podían resolver la función lógica **XOR**.",
     "year": 1969,
     "autor": "Marvin Minsky y Seymour Papert (MIT)",
-    "trivia": "Su rigurosa crítica secó la financiación para redes neuronales por una década, desatando el **Primer Invierno de la IA**."
+    "trivia": "El análisis matemático desalentó temporalmente la financiación de redes neuronales, marcando el inicio del primer *Invierno de la IA*."
   },
   {
     "id": "vol0-0x37",
@@ -610,10 +610,10 @@
     "index": 55,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Pandemia informática provocada por el ransomware **WannaCry**, bloqueando hospitales, bancos y redes ferroviarias en más de 150 países.",
+    "hito": "Ataque masivo del ransomware **WannaCry**, paralizando sistemas hospitalarios y corporativos en más de 150 países.",
     "year": 2017,
-    "autor": "The Shadow Brokers y Lazarus Group",
-    "trivia": "Usó el exploit militar *EternalBlue* de la NSA; Marcus Hutchins, de 22 años, lo frenó registrando un dominio en su código."
+    "autor": "Lazarus Group (atribuido)",
+    "trivia": "Aprovechó el exploit *EternalBlue* en SMBv1 de Windows; el investigador Marcus Hutchins detuvo su propagación registrando un dominio."
   },
   {
     "id": "vol0-0x38",
@@ -621,10 +621,10 @@
     "index": 56,
     "domain": "ai-data-science",
     "tag": "competitive-ai",
-    "hito": "Victoria de **Deep Blue** derrotando en un match de ajedrez al campeón mundial **Garry Kasparov**.",
+    "hito": "Victoria de la supercomputadora **Deep Blue** sobre el campeón mundial de ajedrez **Garry Kasparov** en un encuentro a 6 partidas.",
     "year": 1997,
-    "autor": "IBM (Feng-hsiung Hsu et al.)",
-    "trivia": "Kasparov acusó a IBM de trampa humana tras ser desconcertado por una jugada de Deep Blue provocada por un bug de software."
+    "autor": "IBM (Feng-hsiung Hsu, Murray Campbell)",
+    "trivia": "Utilizó 480 coprocesadores VLSI de ajedrez capaces de evaluar 200 millones de posiciones por segundo con búsqueda alfa-beta."
   },
   {
     "id": "vol0-0x39",
@@ -632,10 +632,10 @@
     "index": 57,
     "domain": "ai-data-science",
     "tag": "competitive-ai",
-    "hito": "Triunfo arrollador de la supercomputadora **Watson** derrotando a los dos campeones legendarios del concurso de televisión **Jeopardy!**.",
+    "hito": "Triunfo del sistema de preguntas y respuestas **Watson** sobre los campeones Ken Jennings y Brad Rutter en **Jeopardy!**.",
     "year": 2011,
-    "autor": "IBM Research (David Ferrucci)",
-    "trivia": "Watson leyó petabytes de libros offline, descifrando juegos de palabras, ironías y rimas en milisegundos en Jeopardy!."
+    "autor": "IBM Research (David Ferrucci et al.)",
+    "trivia": "Basado en la arquitectura *DeepQA*, procesaba lenguaje natural y evaluaba cientos de hipótesis sin conexión a Internet."
   },
   {
     "id": "vol0-0x3A",
@@ -643,10 +643,10 @@
     "index": 58,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Introducción de **systemd**, rediseñando la inicialización, servicios y logs en el espacio de usuario de Linux.",
+    "hito": "Introducción de **systemd**, unificando la inicialización en paralelo, la gestión de servicios y el registro del sistema en Linux.",
     "year": 2010,
     "autor": "Lennart Poettering y Kay Sievers",
-    "trivia": "Desató feroces *flamewars* en el software libre entre partidarios de la modernización y puristas de la filosofía Unix."
+    "trivia": "Reemplazó a SysVinit usando sockets y D-Bus para arrancar servicios en paralelo con control granular mediante cgroups."
   },
   {
     "id": "vol0-0x3B",
@@ -654,10 +654,10 @@
     "index": 59,
     "domain": "ai-data-science",
     "tag": "llms-generative",
-    "hito": "Presentación del motor de inferencia de alto rendimiento **vLLM** y su revolucionario algoritmo de memoria **PagedAttention**.",
+    "hito": "Presentación del motor de inferencia **vLLM** y el algoritmo **PagedAttention** para la gestión eficiente de memoria en LLMs.",
     "year": 2023,
-    "autor": "UC Berkeley (Woosuk Kwon et al.)",
-    "trivia": "Inspirado en la paginación de los SO, redujo el desperdicio en caché KV, multiplicando por 20 los usuarios concurrentes."
+    "autor": "Woosuk Kwon et al. (UC Berkeley)",
+    "trivia": "Inspirado en la memoria virtual paginada de los SO, redujo la fragmentación en la caché clave-valor (KV), aumentando el rendimiento."
   },
   {
     "id": "vol0-0x3C",
@@ -665,10 +665,10 @@
     "index": 60,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Presentación de **PostgreSQL 6.0**, marcando la refundación del proyecto con soporte SQL nativo completo impulsado por la comunidad libre.",
+    "hito": "Lanzamiento de **PostgreSQL 6.0**, consolidando el motor relacional de código abierto con soporte estándar para SQL.",
     "year": 1997,
     "autor": "PostgreSQL Global Development Group",
-    "trivia": "Sumó claves foráneas, índices GiST y disparadores, consagrándose como la base de datos relacional abierta más potente."
+    "trivia": "Refundó el proyecto de Berkeley (Postgres95) sumando claves foráneas, índices GiST y un optimizador de consultas avanzado."
   },
   {
     "id": "vol0-0x3D",
@@ -676,10 +676,10 @@
     "index": 61,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Infección masiva del **Gusano Morris**, paralizando el 10% de todas las computadoras conectadas a la incipiente red ARPANET.",
+    "hito": "Propagación del **Gusano Morris**, el primer gusano en infectar y ralentizar miles de máquinas conectadas a ARPANET.",
     "year": 1988,
-    "autor": "Robert Tappan Morris (Cornell University)",
-    "trivia": "Morris solo quería medir Internet; un bug causó que su gusano se reinstalara en bucle infinito colapsando los servidores Unix."
+    "autor": "Robert Tappan Morris (Cornell)",
+    "trivia": "Explotó desbordamientos de búfer en `fingerd` y comandos `DEBUG` en Sendmail; un error de diseño provocó reinfecciones continuas."
   },
   {
     "id": "vol0-0x3E",
@@ -687,10 +687,10 @@
     "index": 62,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Nacimiento del editor de texto extensible **Emacs** en el laboratorio de inteligencia artificial del MIT.",
+    "hito": "Desarrollo del editor extensible **Emacs** en el laboratorio de inteligencia artificial del MIT.",
     "year": 1976,
     "autor": "Richard Stallman y Guy Steele (MIT)",
-    "trivia": "Concebido por Stallman sobre macros TECO; extensible en Lisp, se convirtió en un entorno operativo en sí mismo."
+    "trivia": "Concebido inicialmente como un conjunto de macros de edición para TECO (*Editor MACroS*), evolucionó a un entorno programable en Lisp."
   },
   {
     "id": "vol0-0x3F",
@@ -698,10 +698,10 @@
     "index": 63,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Creación de **Clojure**, resucitando la filosofía homoicónica de Lisp adaptada a estructuras de datos inmutables y concurrencia sobre la JVM.",
+    "hito": "Creación de **Clojure**, dialecto moderno de Lisp enfocado en programación funcional y estructuras de datos inmutables sobre la JVM.",
     "year": 2007,
     "autor": "Rich Hickey",
-    "trivia": "Hickey lo creó tomándose un año sabático con ahorros; su defensa de la inmutabilidad impactó a la ingeniería de datos moderna."
+    "trivia": "Diseñado para abordar la complejidad de la concurrencia en arquitecturas multinúcleo mediante memoria transaccional de software (STM)."
   },
   {
     "id": "vol0-0x40",
@@ -709,10 +709,10 @@
     "index": 64,
     "domain": "languages-runtimes",
     "tag": "rust-tooling",
-    "hito": "Nacimiento del repositorio central **PyPI** (*Python Package Index*) bajo el alias humorístico *\"The Cheese Shop\"*.",
+    "hito": "Lanzamiento del índice central de paquetes **PyPI** (*Python Package Index*) bajo el alias humorístico *\"The Cheese Shop\"*.",
     "year": 2003,
-    "autor": "Richard Jones",
-    "trivia": "Su apodo rendía homenaje a un célebre sketch de los *Monty Python* sobre una tienda de quesos que, cómicamente, no tenía queso alguno a la venta."
+    "autor": "Richard Jones (PEP 301)",
+    "trivia": "Formalizado en el PEP 301, su apodo hacía referencia al sketch de Monty Python donde una tienda de quesos carece de queso a la venta."
   },
   {
     "id": "vol0-0x41",
@@ -720,10 +720,10 @@
     "index": 65,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Publicación del primer compilador funcional de **Rust** respaldado por Mozilla Research para sustituir a C++ con seguridad de memoria estricta.",
+    "hito": "Presentación del lenguaje de programación **Rust**, garantizando seguridad de memoria y concurrencia sin recolector de basura.",
     "year": 2010,
     "autor": "Graydon Hoare (Mozilla)",
-    "trivia": "Su modelo de pertenencia (*borrow checker*) eliminó fugas de memoria y condiciones de carrera sin usar garbage collector."
+    "trivia": "Su sistema de tipos basado en propiedad y préstamos (*borrow checker*) previene fallos de segmentación y condiciones de carrera en compilación."
   },
   {
     "id": "vol0-0x42",
@@ -731,10 +731,10 @@
     "index": 66,
     "domain": "security-exploits",
     "tag": "software-disasters",
-    "hito": "Robo a **The DAO** en Ethereum, obligando a ejecutar un *hard fork* de la cadena de bloques para rescatar los fondos.",
+    "hito": "Drenaje de fondos de **The DAO** mediante un ataque de reentrada, desencadenando una bifurcación dura (*hard fork*) de Ethereum.",
     "year": 2016,
-    "autor": "Christoph Jentzsch y Comunidad Ethereum",
-    "trivia": "Un hacker robó 3.6M de ether con un bug de reentrada, forzando un hard fork que dividió la red entre Ethereum y Ethereum Classic."
+    "autor": "Comunidad Ethereum",
+    "trivia": "El atacante explotó una vulnerabilidad en el contrato inteligente para retirar 3.6M de ether, dividiendo la red entre Ethereum y Ethereum Classic."
   },
   {
     "id": "vol0-0x43",
@@ -742,10 +742,10 @@
     "index": 67,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Creación de **C#** (*C-Sharp*) como el pilar del nuevo entorno de desarrollo .NET de Microsoft para competir contra la plataforma Java.",
+    "hito": "Presentación del lenguaje **C#** como pilar de la plataforma de ejecución compartida .NET de Microsoft.",
     "year": 2000,
     "autor": "Anders Hejlsberg (Microsoft)",
-    "trivia": "Creado por el autor de *Turbo Pascal*, dotó a C# de una rápida evolución sumando LINQ y tipado dinámico elegante."
+    "trivia": "Diseñado por el creador de Turbo Pascal y Delphi, combinó tipado estático seguro, recolección de basura e interoperabilidad orientada a objetos."
   },
   {
     "id": "vol0-0x44",
@@ -753,10 +753,10 @@
     "index": 68,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Aparición de **Sublime Text**, conquistando a los desarrolladores por su velocidad instantánea y su minimapa lateral de código.",
+    "hito": "Lanzamiento de **Sublime Text**, popularizando la edición con selección múltiple concurrente y un minimapa visual del código.",
     "year": 2008,
     "autor": "Jon Skinner",
-    "trivia": "Programado en C++ y Python sin lag; popularizó la selección con múltiples cursores simultáneos (`Ctrl+D`)."
+    "trivia": "Implementado en C++ para la interfaz nativa y Python para extensiones, destacó por su baja latencia y el atajo de navegación difusa `Ctrl+P`."
   },
   {
     "id": "vol0-0x45",
@@ -764,10 +764,10 @@
     "index": 69,
     "domain": "languages-runtimes",
     "tag": "cpython-runtime",
-    "hito": "Publicación del instalador oficial con soporte experimental para modo libre de hilos (*free-threaded build*) en **Python 3.13**.",
+    "hito": "Publicación del modo libre de hilos (*free-threaded build*) sin bloqueo global del intérprete (GIL) en **Python 3.13**.",
     "year": 2024,
-    "autor": "CPython Core Team",
-    "trivia": "Ejecuta CPython sin GIL, impulsando a *NumPy* y *PyTorch* a adaptar sus extensiones C a concurrencia real."
+    "autor": "CPython Core Team (PEP 703)",
+    "trivia": "Formalizado en el PEP 703 a partir del proyecto nogil de Sam Gross, permite ejecutar múltiples hilos de CPU en paralelo real en CPython."
   },
   {
     "id": "vol0-0x46",
@@ -775,10 +775,10 @@
     "index": 70,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Anuncio de **Go** por Google, diseñado para compilar en segundos y simplificar concurrencia con *goroutines*.",
+    "hito": "Anuncio de **Go** por Google, diseñado para acelerar la compilación y simplificar la concurrencia mediante canales y *goroutines*.",
     "year": 2009,
-    "autor": "Robert Griesemer, Rob Pike y Thompson",
-    "trivia": "Hartos de compilar horas en C++, ingenieros de Google crearon un lenguaje veloz con concurrencia basada en canales CSP."
+    "autor": "R. Griesemer, R. Pike y K. Thompson",
+    "trivia": "Inspirado en el modelo de procesos secuenciales comunicados (CSP) de Hoare, evitó complejidades sintácticas para agilizar grandes sistemas."
   },
   {
     "id": "vol0-0x47",
@@ -786,10 +786,10 @@
     "index": 71,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Lanzamiento de **Mozilla Firefox 1.0**, recuperando la competencia real en el mercado con pestañas de navegación y bloqueador de pop-ups.",
+    "hito": "Lanzamiento oficial de **Mozilla Firefox 1.0**, reintroduciendo la navegación por pestañas y el bloqueo integrado de ventanas emergentes.",
     "year": 2004,
     "autor": "Mozilla (Blake Ross y Joe Hewitt)",
-    "trivia": "Financiado por una campaña comunitaria que pagó un anuncio a doble página en *The New York Times*, rompió el estancamiento de Internet Explorer."
+    "trivia": "Financiado en parte por una campaña comunitaria que publicó un anuncio en *The New York Times*, redujo el monopolio de Internet Explorer."
   },
   {
     "id": "vol0-0x48",
@@ -797,10 +797,10 @@
     "index": 72,
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
-    "hito": "Introducción de soporte nativo para números complejos y palabras clave con valores por defecto en **Python 1.4**.",
+    "hito": "Introducción de soporte nativo para números complejos y argumentos con valores por defecto en **Python 1.4**.",
     "year": 1996,
     "autor": "Guido van Rossum",
-    "trivia": "Facilitó la adopción inmediata de Python en laboratorios científicos, sentando las bases del futuro ecosistema numérico del lenguaje."
+    "trivia": "La inclusión del tipo complejo facilitó el procesamiento numérico y sentó las bases para bibliotecas matemáticas tempranas."
   },
   {
     "id": "vol0-0x49",
@@ -808,10 +808,10 @@
     "index": 73,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Cancelación unilateral del modelo tradicional de **CentOS Linux** por parte de Red Hat a favor de la variante experimental *CentOS Stream*.",
+    "hito": "Transición del modelo de compilación fija de **CentOS Linux** hacia la variante continua *CentOS Stream*.",
     "year": 2020,
-    "autor": "Red Hat (IBM)",
-    "trivia": "Enfureció a miles de empresas de hosting, desatando el nacimiento inmediato de clones binarios como **Rocky** y **AlmaLinux**."
+    "autor": "Red Hat",
+    "trivia": "Al desplazar CentOS como clon idéntico de RHEL a rama previa de desarrollo, motivó la creación de alternativas comunitarias como Rocky Linux."
   },
   {
     "id": "vol0-0x4A",
@@ -819,10 +819,10 @@
     "index": 74,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Lanzamiento de **Podman** en Red Hat, ejecutando contenedores sin demonio central y en modo rootless sin root.",
+    "hito": "Lanzamiento de **Podman**, motor de contenedores compatible con OCI capaz de operar sin demonio central ni privilegios de root.",
     "year": 2018,
-    "autor": "Dan Walsh (Red Hat)",
-    "trivia": "Logró compatibilidad total con Docker eliminando el demonio central con privilegios de root (`alias docker=podman`)."
+    "autor": "Dan Walsh et al. (Red Hat)",
+    "trivia": "Adopta el modelo tradicional de bifurcación de procesos de Unix (fork-exec), integrándose de forma nativa con systemd y cgroups."
   },
   {
     "id": "vol0-0x4B",
@@ -830,10 +830,10 @@
     "index": 75,
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
-    "hito": "Publicación oficial de **Python 3.0** (*Python 3000*), rompiendo deliberadamente la compatibilidad hacia atrás para limpiar el lenguaje.",
+    "hito": "Publicación de **Python 3.0** (*Python 3000*), separando de forma estricta las cadenas de texto Unicode de los arreglos de bytes.",
     "year": 2008,
     "autor": "Guido van Rossum",
-    "trivia": "La separación tajante entre texto `str` (Unicode) y datos binarios `bytes` provocó una traumática transición de casi una década en la industria."
+    "trivia": "Al romper la compatibilidad binaria con Python 2, requirió una migración prolongada pero resolvió inconsistencias históricas de codificación."
   },
   {
     "id": "vol0-0x4C",
@@ -841,10 +841,10 @@
     "index": 76,
     "domain": "ai-data-science",
     "tag": "neural-networks-papers",
-    "hito": "Divulgación del algoritmo de retropropagación del error (**Backpropagation**) en un célebre artículo en la revista *Nature*.",
+    "hito": "Publicación en *Nature* del algoritmo de retropropagación del error (**Backpropagation**) para redes neuronales multicapa.",
     "year": 1986,
-    "autor": "David Rumelhart, Hinton y Williams",
-    "trivia": "Hinton y su equipo demostraron que la retropropagación permitía a redes multicapa aprender representaciones profundas."
+    "autor": "D. Rumelhart, G. Hinton y R. Williams",
+    "trivia": "Demostró que la aplicación de la regla de la cadena matemática permitía a capas ocultas aprender representaciones internas útiles."
   },
   {
     "id": "vol0-0x4D",
@@ -863,10 +863,10 @@
     "index": 78,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Publicación del paper de **CouchDB**, pionera en almacenamiento de documentos JSON sin esquema con replicación multi-maestro.",
+    "hito": "Publicación de **Apache CouchDB**, base de datos orientada a documentos JSON con replicación multi-maestro y sincronización eventual.",
     "year": 2005,
     "autor": "Damien Katz (Apache)",
-    "trivia": "Katz financió el desarrollo inicial vendiendo la mayor parte de sus pertenencias personales."
+    "trivia": "Utiliza vistas basadas en MapReduce y una API RESTful sobre HTTP, optimizando la tolerancia a particiones de red intermitentes."
   },
   {
     "id": "vol0-0x4F",
@@ -874,10 +874,10 @@
     "index": 79,
     "domain": "ai-data-science",
     "tag": "scientific-stack",
-    "hito": "Presentación de **Apache Arrow**, definiendo un formato columnar en memoria para procesamiento analítico sin serialización.",
+    "hito": "Presentación de **Apache Arrow**, formato columnar estándar en memoria para acelerar el procesamiento analítico entre lenguajes.",
     "year": 2016,
     "autor": "Wes McKinney y Apache Software Foundation",
-    "trivia": "Permite compartir datos en memoria sin coste de copia (*zero-copy*) entre Python, R, C++, Rust y motores SQL."
+    "trivia": "Permite compartir estructuras tabulares en RAM entre Python, R, Rust y motores SQL con coste de copia cero (*zero-copy*)."
   },
   {
     "id": "vol0-0x50",
@@ -907,10 +907,10 @@
     "index": 82,
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
-    "hito": "Reemplazo de `optparse` por el nuevo módulo estándar `argparse` para parsing de CLI mediante el **PEP 389**.",
+    "hito": "Incorporación del módulo estándar `argparse` para el procesamiento de argumentos de línea de comandos bajo el **PEP 389**.",
     "year": 2009,
     "autor": "Steven Bethard",
-    "trivia": "Unificó la gestión de subcomandos, argumentos requeridos y mensajes de ayuda en la terminal, convirtiéndose en el estándar de utilitarios CLI."
+    "trivia": "Sustituyó a los módulos `getopt` y `optparse`, unificando subcomandos, validación de tipos y mensajes de ayuda en la terminal."
   },
   {
     "id": "vol0-0x53",
@@ -943,7 +943,7 @@
     "hito": "Adopción del algoritmo C3 para el orden de resolución de métodos (*Method Resolution Order* - MRO) en **Python 2.3**.",
     "year": 2003,
     "autor": "Michele Simionato",
-    "trivia": "Eliminó ambigüedades insolubles en herencia múltiple compleja, adaptando una técnica demostrada matemáticamente en el lenguaje *Dylan*."
+    "trivia": "Garantizó la monotonía en jerarquías de herencia múltiple compleja, adaptando formalismos demostrados en el lenguaje Dylan."
   },
   {
     "id": "vol0-0x56",
@@ -951,10 +951,10 @@
     "index": 86,
     "domain": "systems-networking",
     "tag": "developer-tools",
-    "hito": "Aparición de **RCS** (*Revision Control System*), popularizando el bloqueo estricto de archivos por usuario en entornos Unix.",
+    "hito": "Presentación de **RCS** (*Revision Control System*), consolidando el almacenamiento eficiente de deltas inversos para archivos individuales.",
     "year": 1982,
     "autor": "Walter F. Tichy (Purdue University)",
-    "trivia": "Guardaba deltas inversos para que ver la última versión fuera instantáneo, motor estándar de servidores compartidos."
+    "trivia": "Permitía el bloqueo por usuario (*file locking*) para evitar colisiones en servidores compartidos, siendo el motor base de CVS."
   },
   {
     "id": "vol0-0x57",
@@ -962,10 +962,10 @@
     "index": 87,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Lanzamiento de **BSD** (*Berkeley Software Distribution*), transformando el Unix académico con soporte para memoria virtual y TCP/IP.",
+    "hito": "Lanzamiento de **BSD** (*Berkeley Software Distribution*), aportando soporte de paginación virtual y la pila de red **TCP/IP** a Unix.",
     "year": 1977,
-    "autor": "Bill Joy (UC Berkeley CSRG)",
-    "trivia": "Financiado por DARPA, su stack TCP/IP se convirtió en la base de las redes de telecomunicaciones de todo el planeta."
+    "autor": "Bill Joy et al. (UC Berkeley CSRG)",
+    "trivia": "El código de sockets e implementación TCP/IP desarrollado en Berkeley sirvió de cimiento para la conectividad de Internet global."
   },
   {
     "id": "vol0-0x58",
@@ -973,10 +973,10 @@
     "index": 88,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Retiro oficial y corte de soporte definitivo de **Internet Explorer 11** por parte de Microsoft tras 27 años ininterrumpidos de servicio.",
+    "hito": "Retiro definitivo del navegador **Internet Explorer 11**, completando la migración hacia motores basados en Chromium.",
     "year": 2022,
     "autor": "Microsoft",
-    "trivia": "Celebrado por millones de devs frontend, permitió retirar incontables polyfills y parches viejos de la web."
+    "trivia": "Puso fin a 27 años de soporte y compatibilidad heredada, permitiendo a desarrolladores retirar polyfills y trucos CSS antiguos."
   },
   {
     "id": "vol0-0x59",
@@ -984,10 +984,10 @@
     "index": 89,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Nacimiento de **MySQL**, concebido como un motor relacional extremadamente rápido y ligero para bases de datos de páginas web.",
+    "hito": "Publicación de **MySQL**, motor de base de datos relacional optimizado para velocidad en aplicaciones cliente-servidor y web.",
     "year": 1995,
     "autor": "Michael Widenius y David Axmark",
-    "trivia": "Nombrado por la hija de Monty, **My**; años después, al crear el fork libre tras vender MySQL a Sun, lo llamó **MariaDB**."
+    "trivia": "Bautizado en honor a My, hija de Widenius; el motor ISAM y su posterior adquisición por Sun impulsaron la creación de MariaDB."
   },
   {
     "id": "vol0-0x5A",
@@ -995,10 +995,10 @@
     "index": 90,
     "domain": "hacker-culture-web",
     "tag": "flame-wars",
-    "hito": "Inicio de la campaña de demandas judiciales del consorcio **SCO Group** contra IBM y empresas de Linux alegando código robado de Unix.",
+    "hito": "Inicio del litigio judicial de **SCO Group** contra IBM, alegando apropiación indebida de código fuente de Unix dentro de Linux.",
     "year": 2003,
-    "autor": "Darl McBride (The SCO Group)",
-    "trivia": "SCO demandó a usuarios de Linux alegando ser dueña de Unix; tras 10 años de litigios, los jueces fallaron a favor de Novell y SCO quebró."
+    "autor": "The SCO Group / IBM",
+    "trivia": "El proceso judicial duró más de una década; los tribunales fallaron que los derechos de autor de Unix pertenecían a Novell y no a SCO."
   },
   {
     "id": "vol0-0x5B",
@@ -1006,10 +1006,10 @@
     "index": 91,
     "domain": "ai-data-science",
     "tag": "scientific-stack",
-    "hito": "Anuncio del proyecto **Jupyter**, desacoplando el notebook web de Python para soportar múltiples lenguajes.",
+    "hito": "Anuncio del proyecto **Jupyter**, desacoplando el entorno de cuadernos web interactivos para admitir múltiples lenguajes.",
     "year": 2014,
-    "autor": "Fernando Pérez y Brian Granger",
-    "trivia": "Homenaje triple a **Ju**lia, **Pyt**hon y **R**, y a las lunas de Júpiter descubiertas por Galileo Galilei."
+    "autor": "F. Pérez, B. Granger et al. (Project Jupyter)",
+    "trivia": "El nombre rinde tributo a Julia, Python y R, así como a las lunas de Júpiter descritas en las libretas astronómicas de Galileo."
   },
   {
     "id": "vol0-0x5C",
@@ -1017,10 +1017,10 @@
     "index": 92,
     "domain": "ai-data-science",
     "tag": "scientific-stack",
-    "hito": "Desarrollo de **Pandas**, introduciendo las estructuras `Series` y `DataFrame` para el análisis y manipulación de datos tabulares en Python.",
+    "hito": "Desarrollo de la biblioteca **Pandas**, introduciendo las estructuras `Series` y `DataFrame` para el análisis de datos en Python.",
     "year": 2008,
     "autor": "Wes McKinney (AQR Capital Management)",
-    "trivia": "Nació en un hedge fund de Wall Street para manipular series temporales financieras complejas y valores *NaN*."
+    "trivia": "Creada en el sector financiero para manipular series temporales con alineación automática de índices y soporte de datos faltantes."
   },
   {
     "id": "vol0-0x5D",
@@ -1039,10 +1039,10 @@
     "index": 94,
     "domain": "ai-data-science",
     "tag": "llms-generative",
-    "hito": "Apertura pública de **ChatGPT**, convirtiéndose en la app de consumo de más rápido crecimiento en la historia.",
+    "hito": "Apertura pública del asistente conversacional **ChatGPT**, popularizando la interacción conversacional basada en RLHF.",
     "year": 2022,
-    "autor": "OpenAI (Sam Altman y equipo)",
-    "trivia": "Llegó a **100M de usuarios en 60 días**, forzando a Google a emitir un *\"Código Rojo\"* de emergencia ante la amenaza a su buscador."
+    "autor": "OpenAI",
+    "trivia": "Basado en la familia GPT-3.5 con aprendizaje por refuerzo con retroalimentación humana, alcanzó cien millones de usuarios activos en dos meses."
   },
   {
     "id": "vol0-0x5F",
@@ -1061,10 +1061,10 @@
     "index": 96,
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
-    "hito": "Creación del módulo `decimal` en la biblioteca estándar para aritmética de coma flotante de precisión fija vía **PEP 327**.",
+    "hito": "Incorporación del módulo estándar `decimal` para aritmética en base 10 de precisión arbitraria vía **PEP 327**.",
     "year": 2004,
     "autor": "Facundo Batista",
-    "trivia": "Resolvió los clásicos y embarazosos errores de redondeo de punto flotante en cálculos contables bancarios donde `0.1 + 0.2 != 0.3`."
+    "trivia": "Implementó el estándar aritmético IEEE 854-1987, evitando las inexactitudes de redondeo binario en cálculos financieros y contables."
   },
   {
     "id": "vol0-0x61",
@@ -1072,10 +1072,10 @@
     "index": 97,
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
-    "hito": "Unificación definitiva de tipos primitivos y clases (*new-style classes*) con herencia obligatoria de `object` en el **PEP 252**.",
+    "hito": "Unificación de tipos nativos y clases de usuario (*new-style classes*) heredando de `object` en el **PEP 252**.",
     "year": 2001,
     "autor": "Guido van Rossum",
-    "trivia": "Resolvió la anomalía donde tipos nativos y clases de usuario diferían, unificando tipos y clases bajo el mismo modelo."
+    "trivia": "Permitió que las clases creadas por el usuario pudieran subclasificar tipos nativos como `list` o `int`, unificando el modelo de objetos."
   },
   {
     "id": "vol0-0x62",
@@ -1083,10 +1083,10 @@
     "index": 98,
     "domain": "hacker-culture-web",
     "tag": "p2p-culture",
-    "hito": "Ofensiva judicial de las editoriales comerciales y ciberataque masivo contra el **Internet Archive** y la **Wayback Machine**.",
+    "hito": "Fallo judicial en Estados Unidos contra el programa de préstamo digital controlado de libros del **Internet Archive**.",
     "year": 2024,
-    "autor": "Tribunales de EE.UU. y Hacktivistas",
-    "trivia": "Un fallo judicial contra el préstamo digital controlado de libros puso en jaque a la mayor biblioteca de preservación de la web."
+    "autor": "Hachette Book Group v. Internet Archive",
+    "trivia": "Un tribunal federal determinó que la digitalización y distribución de libros con derechos vigentes no constituía uso legítimo (*fair use*)."
   },
   {
     "id": "vol0-0x63",
@@ -1094,10 +1094,10 @@
     "index": 99,
     "domain": "hacker-culture-web",
     "tag": "collaboration-platforms",
-    "hito": "Creación de la plataforma de preguntas y respuestas **Stack Overflow**, premiando el conocimiento técnico con puntos de reputación y medallas.",
+    "hito": "Lanzamiento del portal de preguntas y respuestas técnicas **Stack Overflow**, integrando moderación y reputación comunitaria.",
     "year": 2008,
     "autor": "Jeff Atwood y Joel Spolsky",
-    "trivia": "Construido con .NET, desbancó a portales de pago y se convirtió en la salvación diaria de millones de desarrolladores."
+    "trivia": "Diseñado como un recurso de acceso libre frente a foros de pago como Experts-Exchange, indexó millones de soluciones de programación."
   },
   {
     "id": "vol0-0x64",
@@ -1105,10 +1105,10 @@
     "index": 100,
     "domain": "ai-data-science",
     "tag": "competitive-ai",
-    "hito": "Hazaña de la IA **Libratus** derrotando a profesionales del mundo en partidas de póker **Texas Hold'em**.",
+    "hito": "Victoria del sistema de inteligencia artificial **Libratus** sobre jugadores profesionales de póker en **Texas Hold'em sin límite**.",
     "year": 2017,
-    "autor": "CMU (Tuomas Sandholm y Noam Brown)",
-    "trivia": "Calculó equilibrios de Nash en juegos de información oculta, aprendiendo a farolear y detectar engaños en póker."
+    "autor": "Tuomas Sandholm y Noam Brown (CMU)",
+    "trivia": "Resolvió la toma de decisiones bajo información imperfecta mediante cálculo de equilibrios de Nash y aprendizaje por refuerzo continuo."
   },
   {
     "id": "vol0-0x65",
@@ -1116,10 +1116,10 @@
     "index": 101,
     "domain": "hardware-embedded",
     "tag": "retro-chips-gpus",
-    "hito": "Lanzamiento de **Intel Pentium**, abandonando la numeración para poder registrar una marca comercial propia.",
+    "hito": "Lanzamiento del procesador **Intel Pentium**, adoptando un nombre de marca tras el fallo judicial que impedía registrar números.",
     "year": 1993,
-    "autor": "Intel (Vinod Dham)",
-    "trivia": "Como los números no podían patentarse como marcas registradas, Intel bautizó a la 5ª generación \"Pentium\" (del griego *pente*)."
+    "autor": "Intel (Vinod Dham et al.)",
+    "trivia": "Derivado del griego *pente* (cinco) por ser la quinta generación x86, incorporó arquitectura superescalar con dos cauces de ejecución."
   },
   {
     "id": "vol0-0x66",
@@ -1127,10 +1127,10 @@
     "index": 102,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Publicación de las vulnerabilidades de hardware **Spectre** y **Meltdown**, rompiendo el aislamiento de memoria en procesadores modernos.",
+    "hito": "Divulgación de las vulnerabilidades de hardware **Meltdown** y **Spectre**, rompiendo el aislamiento de memoria en CPUs modernas.",
     "year": 2018,
-    "autor": "Jann Horn (Project Zero) y TU Graz",
-    "trivia": "Demostraron que la ejecución especulativa de CPUs Intel/AMD permitía a apps comunes espiar secretos del kernel en memoria."
+    "autor": "Google Project Zero, TU Graz et al.",
+    "trivia": "Explotaron la ejecución especulativa y las memorias intermedias (*caché timing*) para filtrar datos privilegiados del kernel a nivel de silicio."
   },
   {
     "id": "vol0-0x67",
@@ -1138,10 +1138,10 @@
     "index": 103,
     "domain": "hacker-culture-web",
     "tag": "flame-wars",
-    "hito": "Inicio de la mítica **Guerra de los Editores** entre los partidarios devotos de **Emacs** y los usuarios de **Vi / Vim**.",
+    "hito": "Consolidación de la controversia comunitaria de la **Guerra de los Editores** entre partidarios de **Emacs** y usuarios de **vi**.",
     "year": 1985,
-    "autor": "Richard Stallman y Bill Joy",
-    "trivia": "Stallman creó la *Iglesia de Emacs* como San IGNUcius; fans de Vi bromeaban diciendo que Emacs usaba 8 MB y consumía toda la RAM."
+    "autor": "Comunidad Unix (R. Stallman y B. Joy)",
+    "trivia": "El debate contrastaba la extensibilidad programable de Emacs con el diseño modal, ligero y enfocado en la terminal de vi."
   },
   {
     "id": "vol0-0x68",
@@ -1149,10 +1149,10 @@
     "index": 104,
     "domain": "ai-data-science",
     "tag": "scientific-stack",
-    "hito": "Liberación de **Pandas 2.0**, incorporando el backend de memoria de Apache Arrow como motor nativo opcional de tipos de datos.",
+    "hito": "Lanzamiento de **Pandas 2.0**, incorporando el backend de memoria de Apache Arrow como soporte nativo opcional de tipos de datos.",
     "year": 2023,
     "autor": "Pandas Development Team",
-    "trivia": "Mejoró drásticamente el uso de memoria en columnas de texto y nulos integrando el backend de Apache Arrow."
+    "trivia": "Permitió un tratamiento eficiente de valores nulos y tipos de texto, mejorando el consumo de memoria frente a tipos nativos de NumPy."
   },
   {
     "id": "vol0-0x69",
@@ -1160,10 +1160,10 @@
     "index": 105,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Creación del primer navegador y editor web del mundo, bautizado como **WorldWideWeb**, corriendo en el sistema operativo NeXTSTEP.",
+    "hito": "Creación del primer navegador y editor hipertextual del mundo, bautizado como **WorldWideWeb**, sobre el sistema NeXTSTEP.",
     "year": 1990,
-    "autor": "Tim Berners-Lee",
-    "trivia": "No solo mostraba hipervínculos, sino que permitía editar páginas al vuelo, visión interactiva perdida en navegadores comerciales."
+    "autor": "Tim Berners-Lee (CERN)",
+    "trivia": "Además de renderizar documentos HTML mediante protocolo HTTP, integraba capacidades de edición directa de páginas web desde el cliente."
   },
   {
     "id": "vol0-0x6A",
@@ -1182,10 +1182,10 @@
     "index": 107,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Creación del sistema operativo **Unix** en los laboratorios Bell tras el fracaso y cancelación del mastodóntico proyecto Multics.",
+    "hito": "Creación del sistema operativo **Unix** en los laboratorios Bell tras la desvinculación del proyecto Multics.",
     "year": 1969,
-    "autor": "Ken Thompson y Dennis Ritchie (Bell)",
-    "trivia": "Thompson programó el primer Unix en un fin de semana en una PDP-7 de 8 KB para poder jugar a su videojuego *Space Travel*."
+    "autor": "Ken Thompson y Dennis Ritchie (Bell Labs)",
+    "trivia": "Thompson programó el primer núcleo en una minicomputadora PDP-7 en lenguaje ensamblador, sentando las bases de la portabilidad moderna."
   },
   {
     "id": "vol0-0x6C",
@@ -1195,8 +1195,8 @@
     "tag": "web-standards",
     "hito": "Publicación del estándar **HTTP/2** en el **RFC 7540**, introduciendo multiplexación binaria sobre una única conexión TCP.",
     "year": 2015,
-    "autor": "IETF (Mark Nottingham et al.)",
-    "trivia": "Basado en *SPDY* de Google, multiplicó la velocidad web permitiendo multiplexación y compresión de cabeceras *HPACK*."
+    "autor": "IETF (RFC 7540)",
+    "trivia": "Derivado del protocolo experimental SPDY de Google, incorporó compresión de cabeceras HPACK para optimizar la latencia en la web."
   },
   {
     "id": "vol0-0x6D",
@@ -1215,10 +1215,10 @@
     "index": 110,
     "domain": "data-storage",
     "tag": "database-engines",
-    "hito": "Lanzamiento de **Memcached**, un sistema distribuido de caché en memoria RAM para acelerar la carga de sitios web dinámicos.",
+    "hito": "Lanzamiento de **Memcached**, sistema distribuido de almacenamiento en caché en memoria RAM para bases de datos web dinámicas.",
     "year": 2003,
     "autor": "Brad Fitzpatrick (Danga Interactive)",
-    "trivia": "Creado para acelerar *LiveJournal* en Perl, fue reescrito en C para despachar cientos de miles de requests en RAM."
+    "trivia": "Creado para aliviar la carga de bases de datos en la plataforma LiveJournal, expuso un almacén clave-valor en memoria de alta velocidad."
   },
   {
     "id": "vol0-0x6F",
@@ -1226,10 +1226,10 @@
     "index": 111,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Estándar formal de **Haskell**, consolidando un lenguaje funcional puro, perezoso (*lazy*) y con sistema de mónadas.",
+    "hito": "Publicación del informe formal del lenguaje **Haskell**, consolidando la programación funcional pura con evaluación perezosa.",
     "year": 1990,
-    "autor": "Comité Haskell (Simon Peyton Jones)",
-    "trivia": "Nombrado por Haskell Curry; su pureza funcional y rigor de tipos inspiró a casi todos los lenguajes modernos."
+    "autor": "Comité Haskell (Peyton Jones, Hughes et al.)",
+    "trivia": "Nombrado en honor al lógico Haskell Curry, integró un sistema de tipos estático con clases de tipos e inferencia de Hindley-Milner."
   },
   {
     "id": "vol0-0x70",
@@ -1237,10 +1237,10 @@
     "index": 112,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Relanzamiento del kernel **Linux** bajo licencia **GNU GPL v2**, facilitando su desarrollo comunitario masivo.",
+    "hito": "Relanzamiento del kernel **Linux** bajo los términos de la licencia **GNU GPL v2**, sustituyendo la restricción comercial previa.",
     "year": 1992,
     "autor": "Linus Torvalds",
-    "trivia": "Linus confesó que adoptar la licencia GPL v2 fue la mejor decisión estratégica de su vida para el éxito de Linux."
+    "trivia": "La adopción de GPL v2 garantizó que las modificaciones del núcleo permanecieran abiertas, impulsando la colaboración comunitaria e industrial."
   },
   {
     "id": "vol0-0x71",
@@ -1248,10 +1248,10 @@
     "index": 113,
     "domain": "languages-runtimes",
     "tag": "programming-languages",
-    "hito": "Desarrollo del lenguaje **C** en los laboratorios Bell para reescribir el sistema operativo Unix sobre máquinas PDP-11.",
+    "hito": "Desarrollo del lenguaje **C** en Bell Labs para reescribir el sistema operativo Unix sobre la computadora PDP-11.",
     "year": 1972,
     "autor": "Dennis Ritchie (Bell Labs)",
-    "trivia": "Derivado del lenguaje *B*, su eficiencia implacable y punteros directos lo volvieron la lingua franca de la informática."
+    "trivia": "Evolucionó a partir del lenguaje B de Ken Thompson, dotando a Unix de portabilidad al desacoplar el código del ensamblador específico."
   },
   {
     "id": "vol0-0x72",
@@ -1270,10 +1270,10 @@
     "index": 115,
     "domain": "security-exploits",
     "tag": "malware-exploits",
-    "hito": "Propagación del virus **ILOVEYOU** mediante un correo electrónico que fingía ser una carta de amor en un script adjunto `.vbs`.",
+    "hito": "Propagación del gusano **ILOVEYOU**, afectando a millones de sistemas informáticos mediante un script VBScript adjunto por correo.",
     "year": 2000,
     "autor": "Onel de Guzman (Filipinas)",
-    "trivia": "Infectó 50M de PCs en 10 horas forzando al Pentágono a desconectarse; su autor fue absuelto por falta de leyes en Filipinas."
+    "trivia": "Sobrescribía archivos de usuario y enviaba copias a los contactos de Outlook; motivó la promulgación de leyes contra delitos informáticos."
   },
   {
     "id": "vol0-0x74",
@@ -1281,10 +1281,10 @@
     "index": 116,
     "domain": "hacker-culture-web",
     "tag": "p2p-culture",
-    "hito": "Apagón masivo de Internet en protesta contra las leyes de censura y propiedad intelectual **SOPA** y **PIPA** en el Congreso de EE.UU.",
+    "hito": "Apagón coordinado de servicios de Internet en protesta contra los proyectos de ley antipiratería **SOPA** y **PIPA** en EE.UU.",
     "year": 2012,
-    "autor": "Wikipedia, Reddit, Google y activistas",
-    "trivia": "Wikipedia y miles de sitios apagaron sus webs por 24 horas en señal de luto digital, enterrando la ley antipiratería SOPA."
+    "autor": "Wikipedia, Reddit, EFF y sociedad civil",
+    "trivia": "Miles de sitios web reemplazaron sus portadas por mensajes informativos durante 24 horas, deteniendo el avance legislativo de las propuestas."
   },
   {
     "id": "vol0-0x75",
@@ -1303,10 +1303,10 @@
     "index": 118,
     "domain": "languages-runtimes",
     "tag": "syntax-peps",
-    "hito": "Introducción del directorio `__pycache__` para almacenar archivos compilados `.pyc` mediante el **PEP 3147**.",
+    "hito": "Introducción del subdirectorio `__pycache__` para organizar archivos de bytecode compilado `.pyc` bajo el **PEP 3147**.",
     "year": 2011,
     "autor": "Barry Warsaw",
-    "trivia": "Terminó con la molesta proliferación de archivos `.pyc` huérfanos mezclados entre los archivos de código fuente en los repositorios de trabajo."
+    "trivia": "Evitó la colisión de versiones de bytecode al añadir etiquetas con la versión del runtime (`.cpython-32.pyc`) a cada archivo compilado."
   },
   {
     "id": "vol0-0x77",
@@ -1314,10 +1314,10 @@
     "index": 119,
     "domain": "systems-networking",
     "tag": "web-standards",
-    "hito": "Lanzamiento comercial de **Netscape Navigator 1.0**, desatando el frenesí de la burbuja *Dot-Com* en Silicon Valley.",
+    "hito": "Lanzamiento de **Netscape Navigator 1.0**, consolidando la adopción masiva de la navegación web gráfica comercial.",
     "year": 1994,
-    "autor": "Netscape (Jim Clark y M. Andreessen)",
-    "trivia": "Alcanzó el 80% de cuota de mercado; su salida a bolsa en 1995 fue el pistoletazo financiero de la era puntocom."
+    "autor": "Netscape (Marc Andreessen y Jim Clark)",
+    "trivia": "Su oferta pública inicial en bolsa en 1995 detonó el interés inversor en la infraestructura comercial de la naciente Internet."
   },
   {
     "id": "vol0-0x78",
@@ -1325,10 +1325,10 @@
     "index": 120,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Filtración de los **Documentos de Halloween**, donde ingenieros de Microsoft admitían la enorme amenaza competitiva de Linux.",
+    "hito": "Filtración y análisis de los memorandos internos de Microsoft conocidos como los **Documentos de Halloween**.",
     "year": 1998,
-    "autor": "Eric S. Raymond y V. Valloppillil",
-    "trivia": "Memos internos filtrados alertaban a Bill Gates de que Linux y el código abierto superaban en calidad a Microsoft."
+    "autor": "Eric S. Raymond y Vinod Valloppillil",
+    "trivia": "Reconocieron la viabilidad técnica y competitiva de Linux y el software de código abierto frente a plataformas propietarias."
   },
   {
     "id": "vol0-0x79",
@@ -1336,10 +1336,10 @@
     "index": 121,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Elección oficial del pingüino **Tux** como la mascota y símbolo universal representativo del kernel **Linux**.",
+    "hito": "Adopción formal del pingüino **Tux** como logotipo y mascota representativa del kernel **Linux**.",
     "year": 1996,
-    "autor": "Linus Torvalds y Larry Ewing",
-    "trivia": "Linus eligió el pingüino Tux recordando con humor cómo uno lo mordió en el dedo en el zoológico de Canberra en Australia."
+    "autor": "Larry Ewing y Linus Torvalds",
+    "trivia": "Ewing diseñó la imagen original utilizando la herramienta libre de gráficos GIMP tras la propuesta de Torvalds en listas de correo."
   },
   {
     "id": "vol0-0x7A",
@@ -1347,10 +1347,10 @@
     "index": 122,
     "domain": "systems-networking",
     "tag": "linux-unix-os",
-    "hito": "Publicación del histórico mensaje en *comp.os.minix* anunciando un sistema operativo gratuito desarrollado como simple pasatiempo.",
+    "hito": "Publicación del mensaje en *comp.os.minix* anunciando el desarrollo de un núcleo libre para arquitecturas 386 AT.",
     "year": 1991,
     "autor": "Linus Torvalds",
-    "trivia": "Linus anunció: *\"just a hobby, won't be big like gnu\"*, sin prever que dominaría la infraestructura de servidores mundial."
+    "trivia": "Torvalds lo describió como *'just a hobby, won't be big and professional like gnu'*, solicitando sugerencias de compatibilidad POSIX."
   },
   {
     "id": "vol0-0x7B",
@@ -1358,10 +1358,10 @@
     "index": 123,
     "domain": "cloud-infrastructure",
     "tag": "containers-virt",
-    "hito": "Demostración sorpresa de **Docker** en una charla relámpago de la conferencia *PyCon*, desatando la locura por los contenedores.",
+    "hito": "Presentación pública de **Docker** en una charla relámpago de la conferencia *PyCon*, popularizando el formato de contenedores de software.",
     "year": 2013,
     "autor": "Solomon Hykes (dotCloud)",
-    "trivia": "La demo en vivo de 5 minutos causó tal impacto que dotCloud abandonó su negocio PaaS para renacer como **Docker Inc.**"
+    "trivia": "Demostró el uso de cgroups y namespaces del kernel mediante una CLI amigable, transformando el empaquetado de aplicaciones."
   },
   {
     "id": "vol0-0x7C",
@@ -1369,10 +1369,10 @@
     "index": 124,
     "domain": "ai-data-science",
     "tag": "scientific-stack",
-    "hito": "Creación de **Numeric** (precursor de NumPy), introduciendo el primer objeto de array multidimensional homogéneo en C para Python.",
+    "hito": "Creación del paquete **Numeric**, introduciendo el primer tipo de arreglo multidimensional contiguo y homogéneo en C para Python.",
     "year": 1995,
-    "autor": "Jim Hugunin",
-    "trivia": "Creado con el laboratorio *LLNL*; demostró que Python podía rivalizar con MATLAB y Fortran en cálculo matricial."
+    "autor": "Jim Hugunin et al.",
+    "trivia": "Desarrollado con investigadores de Lawrence Livermore National Laboratory, sirvió de precursor directo para Numarray y NumPy."
   },
   {
     "id": "vol0-0x7D",
@@ -1380,10 +1380,10 @@
     "index": 125,
     "domain": "security-exploits",
     "tag": "software-disasters",
-    "hito": "Explosión del cohete **Ariane 5** (*vuelo 501*) a los 37 segundos, destruyendo una carga de 370 millones de dólares.",
+    "hito": "Destrucción del lanzador **Ariane 5** (*vuelo 501*) a los 37 segundos del despegue por un fallo de software en el sistema de navegación.",
     "year": 1996,
-    "autor": "Agencia Espacial Europea (ESA)",
-    "trivia": "Desbordamiento al convertir flotante de 64 bits a entero de 16 bits en código Ada reciclado, destruyendo el cohete en 37 segundos."
+    "autor": "Comisión de Investigación Ariane 5 (ESA)",
+    "trivia": "Una conversión de coma flotante de 64 bits a entero de 16 bits sin control de desbordamiento provocó una excepción no capturada en Ada."
   },
   {
     "id": "vol0-0x7E",
@@ -1391,10 +1391,10 @@
     "index": 126,
     "domain": "hacker-culture-web",
     "tag": "cypherpunks-foss",
-    "hito": "Despliegue industrial de algoritmos de criptografía poscuántica (**PQC**) certificados por el NIST en navegadores y servidores web.",
+    "hito": "Publicación de los primeros estándares de criptografía poscuántica (**PQC**) por el NIST para resistir ataques con computación cuántica.",
     "year": 2024,
-    "autor": "NIST, Cloudflare y Google",
-    "trivia": "Estandarizó algoritmos resistentes a computación cuántica (*ML-KEM* / *Kyber*), blindando el futuro del cifrado web."
+    "autor": "NIST (FIPS 203, FIPS 204, FIPS 205)",
+    "trivia": "Estandarizó algoritmos basados en retículos como ML-KEM (Kyber) para encapsulación de claves y ML-DSA (Dilithium) para firmas digitales."
   },
   {
     "id": "vol0-0x7F",
@@ -1402,10 +1402,10 @@
     "index": 127,
     "domain": "ai-data-science",
     "tag": "competitive-ai",
-    "hito": "Creación de **AlphaZero**, aprendiendo ajedrez, shogi y Go desde cero absoluto en menos de 24 horas jugando exclusivamente contra sí mismo.",
+    "hito": "Presentación de **AlphaZero**, aprendiendo ajedrez, shogi y Go desde cero mediante aprendizaje por refuerzo y auto-juego puro.",
     "year": 2017,
-    "autor": "Google DeepMind (David Silver et al.)",
-    "trivia": "Sin aperturas humanas, demolió al motor campeón *Stockfish* desplegando sacrificios y juego posicional asombroso."
+    "autor": "DeepMind (David Silver et al.)",
+    "trivia": "Sin bases de datos de aperturas ni heurísticas humanas, superó a motores de ajedrez tradicionales como Stockfish en pocas horas de cálculo."
   },
   {
     "id": "vol1-0x00",
