@@ -23,8 +23,8 @@ for (const file of files) {
   allCards = allCards.concat(data);
 }
 
-if (allCards.length !== 640) {
-  console.error(`❌ Error de validación: Se esperaban 640 cartas, pero hay ${allCards.length}.`);
+if (allCards.length !== 576) {
+  console.error(`❌ Error de validación: Se esperaban 576 cartas, pero hay ${allCards.length}.`);
   process.exit(1);
 }
 

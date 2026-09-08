@@ -739,7 +739,7 @@ class HitTazosEngine {
           </div>
         </div>
       `;
-    } else if (vol === 'scifi-literature-cyberpunk') {
+    } else if (vol === 'scifi-pop-culture-cinema' || vol === 'scifi-literature-cyberpunk') {
       // 6. HOLOCUBE / QUANTUM DATA CRYSTAL - Sci-Fi futuristic artifact
       return `
         <div class="tech-artifact-hero">
