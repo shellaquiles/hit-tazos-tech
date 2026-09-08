@@ -14,6 +14,8 @@
     "print:tabloide": "node print/render_print_tabloid.js --format=11x17",
     "print:8x11": "node print/render_print_tabloid.js --format=8x11",
     "print:carta": "node print/render_print_tabloid.js --format=8x11",
+    "print:volumes": "node print/render_print_tabloid.js --volume=all-volumes",
+    "print:carta:volumes": "node print/render_print_tabloid.js --format=8x11 --volume=all-volumes",
     "print:test": "node print/render_print_tabloid.js --range=sample",
     "print:test:tabloide": "node print/render_print_tabloid.js --format=11x17 --range=15",
     "print:test:8x11": "node print/render_print_tabloid.js --format=8x11 --range=6",

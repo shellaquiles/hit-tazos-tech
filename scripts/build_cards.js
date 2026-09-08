@@ -31,17 +31,44 @@ if (allCards.length !== 576) {
 // Generate compiled output
 fs.writeFileSync(CARDS_FILE, JSON.stringify(allCards, null, 2), 'utf8');
 
-let appVersion = '1.0.0-rc2';
+let appVersion = '1.0.0-rc3';
 try {
   appVersion = fs.readFileSync(path.join(__dirname, '../VERSION'), 'utf8').trim();
 } catch (_) {}
+
+const catalogFile = path.join(__dirname, '../data/catalog.json');
+let catalogVolumes = {};
+if (fs.existsSync(catalogFile)) {
+  try {
+    catalogVolumes = JSON.parse(fs.readFileSync(catalogFile, 'utf8')).volumes || {};
+  } catch (_) {}
+}
+
+const volumeList = files.map((file, idx) => {
+  const filePath = path.join(VOLUMES_DIR, file);
+  const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  const slug = file.replace(/^vol\d+_/, '').replace('.json', '');
+  const title = catalogVolumes[slug] || slug;
+  const cardsCount = data.length;
+  const pagesCarta = Math.ceil(cardsCount / 6) * 2;
+  return {
+    id: `vol${idx}`,
+    slug,
+    title,
+    cardsCount,
+    pagesCarta,
+    pdfFilename: `hit-tazos-tech-vol${idx}-${slug}.pdf`,
+    pdfPath: `/assets/print/hit-tazos-tech-vol${idx}-${slug}.pdf`
+  };
+});
 
 // Generate manifest
 const manifest = {
   compiledAt: new Date().toISOString(),
   totalCards: allCards.length,
   version: appVersion,
-  volumes: files.length
+  volumesCount: files.length,
+  volumes: volumeList
 };
 
 fs.writeFileSync(MANIFEST_FILE, JSON.stringify(manifest, null, 2), 'utf8');

@@ -2263,12 +2263,12 @@ main {
 
 /* ==========================================================================
    Dúplex Precision Print Engine (Milimétricamente Frente y Reverso)
-   Tamaño: Tabloide / Doble Carta (11 x 17 pulg / 279.4mm x 431.8mm)
-   18 cartas por pliego (3 columnas x 6 filas de 65mm x 65mm)
+   Tamaño: Carta / Letter (8.5 x 11 pulg / 215.9mm x 279.4mm)
+   6 cartas por pliego (2 columnas x 3 filas de 65mm x 65mm)
    ========================================================================== */
 @media print {
   @page {
-    size: tabloid portrait;
+    size: letter portrait;
     margin: 0; /* Sin márgenes del navegador para registro exacto */
   }
 
@@ -2308,10 +2308,10 @@ main {
     display: block !important;
   }
 
-  /* Pliego Tabloide (11 x 17 pulg: 279.4mm x 431.8mm) */
+  /* Pliego Carta (8.5 x 11 pulg: 215.9mm x 279.4mm) */
   .print-sheet {
-    width: 279.4mm;
-    height: 431.8mm;
+    width: 215.9mm;
+    height: 279.4mm;
     box-sizing: border-box;
     page-break-after: always;
     break-after: page;
@@ -2319,31 +2319,31 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 15mm 20mm; /* Centrado geométrico absoluto */
+    padding: 10mm 15mm; /* Centrado geométrico absoluto */
     position: relative;
     overflow: hidden;
   }
 
   .sheet-meta-header {
     position: absolute;
-    top: 6mm;
-    left: 20mm;
-    right: 20mm;
+    top: 5mm;
+    left: 15mm;
+    right: 15mm;
     display: flex;
     justify-content: space-between;
     font-family: var(--font-mono);
-    font-size: 7.5pt;
+    font-size: 7pt;
     color: #64748b;
   }
 
-  /* Cuadrícula 3 columnas x 6 filas = 18 cartas de 65mm x 65mm (195mm x 390mm) */
-  .print-grid-18 {
+  /* Cuadrícula 2 columnas x 3 filas = 6 cartas de 65mm x 65mm (130mm x 195mm) */
+  .print-grid-6 {
     display: grid !important;
-    grid-template-columns: 65mm 65mm 65mm !important;
-    grid-template-rows: repeat(6, 65mm) !important;
+    grid-template-columns: 65mm 65mm !important;
+    grid-template-rows: repeat(3, 65mm) !important;
     gap: 0 !important;
-    width: 195mm !important;
-    height: 390mm !important;
+    width: 130mm !important;
+    height: 195mm !important;
     margin: auto !important;
     box-sizing: border-box;
   }

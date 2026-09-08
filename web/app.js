@@ -272,54 +272,35 @@ class HitTazosEngine {
   updatePrintPdfLinks(manifest) {
     if (!manifest) return;
     const version = manifest.version || '1.0.0-rc3';
-    const totalCards = manifest.totalCards || this.cards.length || 576;
+    const volumesGrid = document.getElementById('official-pdf-volumes-grid');
+    if (!volumesGrid) return;
 
-    // Fórmulas dúplex oficiales:
-    // Carta: 6 cartas por pliego (2 x 3). Páginas dúplex = Math.ceil(totalCards / 6) * 2
-    const cartaSheets = Math.ceil(totalCards / 6);
-    const cartaPages = cartaSheets * 2;
+    volumesGrid.innerHTML = '';
 
-    // Tabloide: 15 cartas por pliego (3 x 5). Páginas dúplex = Math.ceil(totalCards / 15) * 2
-    const tabloideSheets = Math.ceil(totalCards / 15);
-    const tabloidePages = tabloideSheets * 2;
+    const volumes = manifest.volumes || [];
+    volumes.forEach(vol => {
+      const card = document.createElement('a');
+      card.className = 'pdf-dl-card';
+      const filename = vol.pdfFilename || `hit-tazos-tech-${vol.id}-${vol.slug}.pdf`;
+      const url = `/assets/print/${filename}`;
+      card.setAttribute('href', url);
+      card.setAttribute('download', filename);
 
-    const cartaCard = document.getElementById('pdf-dl-carta');
-    if (cartaCard) {
-      const filename = `hit-tazos-tech-v${version}-carta.pdf`;
-      const url = `/print/v${version}/${filename}`;
-      cartaCard.setAttribute('href', url);
-      cartaCard.setAttribute('download', filename);
+      card.innerHTML = `
+        <div class="pdf-dl-header">
+          <span class="pdf-tag format-carta">Carta (8.5 &times; 11 pulg)</span>
+          <span class="pdf-ver">${vol.id.toUpperCase()}</span>
+        </div>
+        <div class="pdf-dl-title">${vol.title}</div>
+        <div class="pdf-dl-specs">${vol.cardsCount} cartas &bull; ${vol.pagesCarta} páginas dúplex (6 cartas/pliego)</div>
+        <div class="pdf-dl-btn">
+          <i data-lucide="file-down"></i> Descargar ${vol.title}
+        </div>
+      `;
+      volumesGrid.appendChild(card);
+    });
 
-      const verPill = cartaCard.querySelector('[data-role="version-pill"]');
-      if (verPill) verPill.textContent = `v${version}`;
-
-      const titleEl = cartaCard.querySelector('[data-role="pdf-title"]');
-      if (titleEl) titleEl.textContent = filename;
-
-      const specsEl = cartaCard.querySelector('[data-role="pdf-specs"]');
-      if (specsEl) {
-        specsEl.innerHTML = `${cartaPages} páginas dúplex &bull; 6 cartas/pliego &bull; Impresoras domésticas / oficina`;
-      }
-    }
-
-    const tabloideCard = document.getElementById('pdf-dl-tabloide');
-    if (tabloideCard) {
-      const filename = `hit-tazos-tech-v${version}-tabloide.pdf`;
-      const url = `/print/v${version}/${filename}`;
-      tabloideCard.setAttribute('href', url);
-      tabloideCard.setAttribute('download', filename);
-
-      const verPill = tabloideCard.querySelector('[data-role="version-pill"]');
-      if (verPill) verPill.textContent = `v${version}`;
-
-      const titleEl = tabloideCard.querySelector('[data-role="pdf-title"]');
-      if (titleEl) titleEl.textContent = filename;
-
-      const specsEl = tabloideCard.querySelector('[data-role="pdf-specs"]');
-      if (specsEl) {
-        specsEl.innerHTML = `${tabloidePages} páginas dúplex &bull; 15 cartas/pliego &bull; Prensa digital / imprenta`;
-      }
-    }
+    this.refreshIcons();
   }
 
   bindEvents() {
@@ -1467,25 +1448,28 @@ class HitTazosEngine {
   }
 
   /**
-   * Generación Milimétrica de Pliegos Dúplex en Tabloide (11 x 17 pulg)
-   * 18 cartas por pliego en rejilla de 3 columnas x 6 filas (65mm x 65mm).
+   * Generación Milimétrica de Pliegos Dúplex en Tamaño Carta (8.5 x 11 pulg / 215.9 x 279.4 mm)
+   * 6 cartas por pliego en rejilla de 2 columnas x 3 filas (65mm x 65mm).
    * Regla de correspondencia Dúplex al voltear por el borde largo:
-   *  - Cada fila [A, B, C] en el Frente se espeja horizontalmente en el Reverso como [C, B, A].
+   *  - Cada fila [A, B] en el Frente se espeja horizontalmente en el Reverso como [B, A].
    */
   generatePrintSheets() {
     if (!this.printSheetsContainer) return;
     this.printSheetsContainer.innerHTML = '';
 
-    const rangeOption = this.printSelectRange ? this.printSelectRange.value : 'SAMPLE_18';
+    const rangeOption = this.printSelectRange ? this.printSelectRange.value : 'SAMPLE_6';
     const cropOption = this.printCropMarks ? this.printCropMarks.value : 'GUIDES';
     const hasBorder = cropOption === 'GUIDES';
 
     let targetCards = [...this.cards];
 
-    if (rangeOption === 'SAMPLE_18') {
-      targetCards = targetCards.slice(0, 18);
-    } else if (rangeOption === 'SAMPLE_36') {
-      targetCards = targetCards.slice(0, 36);
+    if (rangeOption === 'SAMPLE_6') {
+      targetCards = targetCards.slice(0, 6);
+    } else if (rangeOption === 'SAMPLE_12') {
+      targetCards = targetCards.slice(0, 12);
+    } else if (rangeOption.startsWith('VOL_')) {
+      const targetVolSlug = rangeOption.replace('VOL_', '');
+      targetCards = targetCards.filter(c => c.volumen === targetVolSlug);
     } else if (rangeOption === 'CURRENT_GROUP') {
       const currentActivePill = this.groupRibbon.querySelector('.ribbon-pill.active');
       const activeGrp = currentActivePill ? (currentActivePill.getAttribute('data-volumen') || currentActivePill.getAttribute('data-group')) : 'ALL';
@@ -1495,30 +1479,30 @@ class HitTazosEngine {
     }
     // Si es 'ALL' toma todas las cartas de la baraja completa
 
-    const CARDS_PER_SHEET = 18;
+    const CARDS_PER_SHEET = 6;
     const totalSheets = Math.ceil(targetCards.length / CARDS_PER_SHEET);
 
     for (let sheetIdx = 0; sheetIdx < totalSheets; sheetIdx++) {
       const sheetCards = targetCards.slice(sheetIdx * CARDS_PER_SHEET, (sheetIdx + 1) * CARDS_PER_SHEET);
-      // Rellenar hasta 18 si el último pliego tiene menos
+      // Rellenar hasta 6 si el último pliego tiene menos
       while (sheetCards.length < CARDS_PER_SHEET) {
         sheetCards.push(null);
       }
 
-      // --- PLIEGO IMPAR: FRENTES (Orden natural 0..17, 3x6) ---
+      // --- PLIEGO IMPAR: FRENTES (Orden natural 0..5, 2x3) ---
       const frontSheet = document.createElement('div');
       frontSheet.className = 'print-sheet print-sheet-fronts';
       frontSheet.innerHTML = `
         <div class="sheet-meta-header">
-          <span>HIT-TAZOS TECH — TABLOIDE ${sheetIdx + 1} DE ${totalSheets} [CARA A: FRENTES]</span>
-          <span>11x17 PULGADAS — 18 CARTAS (65x65mm) — CORTE MILIMÉTRICO</span>
+          <span>HIT-TAZOS TECH — CARTA ${sheetIdx + 1} DE ${totalSheets} [CARA A: FRENTES]</span>
+          <span>8.5x11 PULG — 6 CARTAS (65x65mm) — CORTE MILIMÉTRICO</span>
         </div>
       `;
 
       const frontGrid = document.createElement('div');
-      frontGrid.className = 'print-grid-18';
+      frontGrid.className = 'print-grid-6';
 
-      sheetCards.forEach((card, posIdx) => {
+      sheetCards.forEach((card) => {
         const box = document.createElement('div');
         box.className = `print-card-box ${hasBorder ? 'print-crop-border' : ''}`;
 
@@ -1555,24 +1539,24 @@ class HitTazosEngine {
       frontSheet.appendChild(frontGrid);
       this.printSheetsContainer.appendChild(frontSheet);
 
-      // --- PLIEGO PAR: REVERSOS (Espejado Horizontal Fila por Fila: [c2, c1, c0]) ---
+      // --- PLIEGO PAR: REVERSOS (Espejado Horizontal Fila por Fila en 2 columnas: [c1, c0]) ---
       const backSheet = document.createElement('div');
       backSheet.className = 'print-sheet print-sheet-backs';
       backSheet.innerHTML = `
         <div class="sheet-meta-header">
-          <span>HIT-TAZOS TECH — TABLOIDE ${sheetIdx + 1} DE ${totalSheets} [CARA B: REVERSOS ESPEJADOS]</span>
+          <span>HIT-TAZOS TECH — CARTA ${sheetIdx + 1} DE ${totalSheets} [CARA B: REVERSOS ESPEJADOS]</span>
           <span>VOLTEAR POR EL BORDE LARGO (LONG EDGE DUPLEX)</span>
         </div>
       `;
 
       const backGrid = document.createElement('div');
-      backGrid.className = 'print-grid-18';
+      backGrid.className = 'print-grid-6';
 
-      // 6 filas de 3 columnas: [row*3+2, row*3+1, row*3+0]
+      // 3 filas de 2 columnas: fila 0 -> [1, 0], fila 1 -> [3, 2], fila 2 -> [5, 4]
       const mirroredIndices = [];
-      for (let r = 0; r < 6; r++) {
-        const base = r * 3;
-        mirroredIndices.push(base + 2, base + 1, base);
+      for (let r = 0; r < 3; r++) {
+        const base = r * 2;
+        mirroredIndices.push(base + 1, base);
       }
 
       mirroredIndices.forEach(idx => {
@@ -1601,7 +1585,7 @@ class HitTazosEngine {
               </div>
               <div class="card-footbar-minimal">
                 <span class="corner-meta-left">${this.catalog.volumes[card.volumen] || card.volumen}</span>
-                <span class="corner-meta-right">${volId}x${hexPart}</span>
+                <span class="corner-meta-right">${cardNumStr}</span>
               </div>
             </div>
           `;

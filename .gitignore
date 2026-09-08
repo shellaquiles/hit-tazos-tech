@@ -16,10 +16,13 @@ __pycache__/
 env/
 venv/
 
-# Temporales de compilación e imprenta
+# Temporales de compilación e imprenta (generados en CI/CD para gh-pages)
+print/**/*.pdf
 print/*.pdf
-print/svg/
 print/**/svg/
+print/svg/
+web/assets/print/*.pdf
+web/assets/print/**/*.pdf
 .temp_pdf_pages*/
 
 # Sistema operativo y editores

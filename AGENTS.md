@@ -150,11 +150,12 @@ Para garantizar que el juego enseñe hechos precisos y verificables sin sesgos n
 3. **Reversos Espejados:**
    - En Tabloide: cada fila $[A, B, C]$ en el anverso se espeja como $[C, B, A]$ en el reverso.
    - En Carta: cada fila $[A, B]$ en el anverso se espeja como $[B, A]$ en el reverso.
-4. **Nombres y Estructura Oficial de Salida por Versión:**
-   - Todo el material de imprenta se organiza bajo su versión semántica: `print/v{VERSION}/`
-   - Los PDFs de distribución se compilan en: `print/v{VERSION}/hit-tazos-tech-v{VERSION}-{formato}.pdf`.
-   - Los pliegos SVG individuales se organizan en: `print/v{VERSION}/svg/{formato}/`.
-   - Nunca generar archivos con sufijos redundantes (`_editable.pdf`).
+4. **Nombres y Estructura Oficial de Salida:**
+   - **Organización interna de imprenta por versión:** Todo el material de imprenta se organiza localmente bajo su versión semántica: `print/v{VERSION}/{formato}/` (ej. `print/v1.0.0-rc3/carta/`, `print/v1.0.0-rc3/tabloide/`, `print/v1.0.0-rc3/super_tabloide/`).
+   - **Nombres canónicos permanentes para SEO:** Los PDFs no incluyen sufijo de versión en su nombre de archivo (ej. `hit-tazos-tech-vol0-kernel-foundations.pdf`, `hit-tazos-tech-carta.pdf`, `hit-tazos-tech-tabloide.pdf`). La versión semántica y autoría se preservan en los metadatos internos del documento (`DOCINFO` via Ghostscript).
+   - **Distribución web en `assets/print/`:** En la web pública y en producción, los PDFs descargables por volumen se sirven de forma canónica desde `assets/print/hit-tazos-tech-vol{X}-{slug}.pdf`.
+   - **Exclusión de Git en rama principal:** Los archivos binarios pesados (`print/**/*.pdf`, `print/**/svg/`, `web/assets/print/*.pdf`) están estrictamente ignorados en `.gitignore` para mantener limpio el historial del repositorio.
+   - **Publicación automática:** En cada despliegue a la rama `gh-pages` vía GitHub Actions (`deploy-pages.yml`), se generan los PDFs en formato Carta por volumen y se copian a `assets/print/` en el artefacto de despliegue.
 
 ---
 

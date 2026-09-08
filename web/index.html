@@ -381,64 +381,56 @@
           <div class="official-pdf-heading">
             <i data-lucide="download-cloud"></i>
             <div>
-              <h3 class="official-pdf-title">PDFs Oficiales Vectoriales para Imprenta (Shellaquiles Org)</h3>
-              <span>Listos para corte profesional, dúplex milimétrico con marcas de corte y metadatos incrustados.</span>
+              <h3 class="official-pdf-title">Descargar PDFs por Volumen Oficial (Tamaño Carta 8.5 &times; 11 pulg)</h3>
+              <span>Imposición dúplex milimétrica por volumen (6 cartas/pliego) con marcas de corte y metadatos incrustados.</span>
             </div>
           </div>
-          <div class="official-pdf-grid">
-            <a id="pdf-dl-carta" href="/print/v1.0.0-rc3/hit-tazos-tech-v1.0.0-rc3-carta.pdf" download="hit-tazos-tech-v1.0.0-rc3-carta.pdf" class="pdf-dl-card">
-              <div class="pdf-dl-header">
-                <span class="pdf-tag format-carta">Carta (8.5 &times; 11 pulg)</span>
-                <span class="pdf-ver" data-role="version-pill">v1.0.0-rc3</span>
-              </div>
-              <div class="pdf-dl-title" data-role="pdf-title">hit-tazos-tech-v1.0.0-rc3-carta.pdf</div>
-              <div class="pdf-dl-specs" data-role="pdf-specs">192 páginas dúplex &bull; 6 cartas/pliego &bull; Impresoras domésticas / oficina</div>
-              <div class="pdf-dl-btn">
-                <i data-lucide="file-down"></i> Descargar PDF Carta
-              </div>
-            </a>
-            <a id="pdf-dl-tabloide" href="/print/v1.0.0-rc3/hit-tazos-tech-v1.0.0-rc3-tabloide.pdf" download="hit-tazos-tech-v1.0.0-rc3-tabloide.pdf" class="pdf-dl-card">
-              <div class="pdf-dl-header">
-                <span class="pdf-tag format-tabloid">Tabloide (11 &times; 17 pulg)</span>
-                <span class="pdf-ver" data-role="version-pill">v1.0.0-rc3</span>
-              </div>
-              <div class="pdf-dl-title" data-role="pdf-title">hit-tazos-tech-v1.0.0-rc3-tabloide.pdf</div>
-              <div class="pdf-dl-specs" data-role="pdf-specs">78 páginas dúplex &bull; 15 cartas/pliego &bull; Prensa digital / imprenta</div>
-              <div class="pdf-dl-btn">
-                <i data-lucide="file-down"></i> Descargar PDF Tabloide
-              </div>
-            </a>
+          <div class="official-pdf-grid" id="official-pdf-volumes-grid">
+            <!-- Renderizado dinámico de los 8 volúmenes desde data/manifest.json -->
           </div>
         </div>
 
         <div class="print-divider">
-          <span>o bien, genera e imprime una selección desde el navegador</span>
+          <span>o bien, genera e imprime por volumen o pliego desde tu navegador</span>
         </div>
 
         <div class="print-form-group">
-          <label for="print-select-range">Seleccionar grupo o rango de cartas:</label>
+          <label for="print-select-range">Seleccionar volumen o rango de cartas a imprimir (Tamaño Carta):</label>
           <select id="print-select-range" class="select-control" style="width: 100%;">
-            <option value="SAMPLE_18">Muestra de prueba: 1 Pliego Tabloide (18 Cartas: #001 - #018)</option>
-            <option value="SAMPLE_36">Muestra de prueba: 2 Pliegos Tabloide (36 Cartas: #001 - #036)</option>
-            <option value="CURRENT_GROUP">Cartas del Grupo seleccionado en el filtro</option>
-            <option value="ALL">Baraja completa (Todos los pliegos)</option>
+            <optgroup label="Muestras Rápidas de Calibración">
+              <option value="SAMPLE_6" selected>Muestra de prueba: 1 Pliego Carta (6 Cartas: #001 - #006)</option>
+              <option value="SAMPLE_12">Muestra de prueba: 2 Pliegos Carta (12 Cartas: #001 - #012)</option>
+            </optgroup>
+            <optgroup label="Imprimir por Volumen Temático (Formato Carta)">
+              <option value="VOL_kernel-foundations">Vol 0: Kernel Foundations (128 cartas &bull; 44 páginas dúplex)</option>
+              <option value="VOL_cypherpunks-hacker-lore">Vol 1: Cypherpunks &amp; Hacker Lore (64 cartas &bull; 22 páginas dúplex)</option>
+              <option value="VOL_embedded-silicon-hardware">Vol 2: Embedded &amp; Silicon Hardware (64 cartas &bull; 22 páginas dúplex)</option>
+              <option value="VOL_unix-sysadmin-networks">Vol 3: Unix, Sysadmin &amp; Networks (64 cartas &bull; 22 páginas dúplex)</option>
+              <option value="VOL_backend-distributed-systems">Vol 4: Backend &amp; Distributed Systems (64 cartas &bull; 22 páginas dúplex)</option>
+              <option value="VOL_cloud-containers-sre">Vol 5: Cloud, Containers &amp; SRE (64 cartas &bull; 22 páginas dúplex)</option>
+              <option value="VOL_python-track">Vol 6: Python Track (64 cartas &bull; 22 páginas dúplex)</option>
+              <option value="VOL_scifi-pop-culture-cinema">Vol 7: Sci-Fi, Pop Culture &amp; Cinema (64 cartas &bull; 22 páginas dúplex)</option>
+            </optgroup>
+            <optgroup label="Selección Activa">
+              <option value="CURRENT_GROUP">Cartas del volumen activo en el filtro</option>
+            </optgroup>
           </select>
         </div>
 
         <div class="print-form-group">
           <label for="print-crop-marks">Marcas de corte y guías:</label>
           <select id="print-crop-marks" class="select-control" style="width: 100%;">
-            <option value="GUIDES" selected>Con líneas de corte finas (Recomendado para guillotina)</option>
+            <option value="GUIDES" selected>Con líneas de corte finas (Recomendado para tijeras o guillotina)</option>
             <option value="CLEAN">Borde limpio sin líneas de corte</option>
           </select>
         </div>
 
         <div class="print-instructions-box">
-          <strong>💡 Instrucciones de Impresión en tu impresora / centro de copiado:</strong>
+          <strong>💡 Instrucciones de Impresión en Tamaño Carta (8.5 &times; 11 pulg):</strong>
           <ul>
-            <li>Tamaño de papel: <strong>Tabloide / 11 &times; 17 pulg / Doble Carta</strong>.</li>
+            <li>Tamaño de papel: <strong>Carta / Letter / 8.5 &times; 11 pulg (215.9 &times; 279.4 mm)</strong>.</li>
             <li>Orientación: <strong>Vertical (Portrait)</strong>.</li>
-            <li>Escala: <strong>100% / Tamaño Real</strong> (desactiva "Ajustar a la página").</li>
+            <li>Escala: <strong>100% / Tamaño Real</strong> (desactivar "Ajustar a la página").</li>
             <li>Márgenes: <strong>Ninguno / Mínimo</strong>.</li>
             <li>Impresión a 2 caras: <strong>Doble cara automática volteando por el borde largo</strong>.</li>
           </ul>
