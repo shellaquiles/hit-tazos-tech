@@ -1849,15 +1849,16 @@ main {
   color: #f59e0b;
 }
 
+/* Asegurar contraste y grosor del contador en el estante */
 #shelf-counter {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #cbd5e1;
-  background: rgba(255, 255, 255, 0.06);
-  padding: 0.2rem 0.65rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #0f172a !important; /* Negro tinta sobre fondo blanco */
+  background: #f1f5f9;
+  padding: 0.18rem 0.6rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid #cbd5e1;
 }
 
 .shelf-progress-track {
@@ -3194,8 +3195,20 @@ main {
   }
 
   #shelf-counter {
-    font-size: 0.65rem;
-    padding: 0.1rem 0.45rem;
+    font-size: 0.70rem !important;
+    color: #0f172a !important;
+  }
+
+  /* Ajuste de profundidad de muescas para no pisar el nuevo radio del texto */
+  .disc-notches span:nth-child(1),
+  .tazo-notches span:nth-child(1) {
+    top: -5px;
+    height: 12px;
+  }
+  .disc-notches span:nth-child(2),
+  .tazo-notches span:nth-child(2) {
+    bottom: -5px;
+    height: 12px;
   }
 
   .shelf-progress-track {

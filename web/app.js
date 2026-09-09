@@ -977,8 +977,8 @@ class HitTazosEngine {
 
           <!-- Arco superior e inferior -->
           <svg class="disc-ring-text tazo-ring-text" viewBox="0 0 300 300" aria-hidden="true">
-            <path id="${topPathF}" d="M 22,150 A 128,128 0 0,1 278,150" fill="none" />
-            <path id="${botPathF}" d="M 22,150 A 128,128 0 0,0 278,150" fill="none" />
+            <path id="${topPathF}" d="M 38,150 A 112,112 0 0,1 262,150" fill="none" />
+            <path id="${botPathF}" d="M 38,150 A 112,112 0 0,0 262,150" fill="none" />
             <text class="ring-label"><textPath href="#${topPathF}" startOffset="50%" text-anchor="middle">${frontTopLabel}</textPath></text>
             <text class="ring-sub"><textPath href="#${botPathF}" startOffset="50%" text-anchor="middle">${frontBottomLabel}</textPath></text>
           </svg>
@@ -1002,8 +1002,8 @@ class HitTazosEngine {
           </div>
 
           <svg class="disc-ring-text tazo-ring-text" viewBox="0 0 300 300" aria-hidden="true">
-            <path id="${topPathB}" d="M 22,150 A 128,128 0 0,1 278,150" fill="none" />
-            <path id="${botPathB}" d="M 22,150 A 128,128 0 0,0 278,150" fill="none" />
+            <path id="${topPathB}" d="M 38,150 A 112,112 0 0,1 262,150" fill="none" />
+            <path id="${botPathB}" d="M 38,150 A 112,112 0 0,0 262,150" fill="none" />
             <text class="ring-label"><textPath href="#${topPathB}" startOffset="50%" text-anchor="middle">${backTopLabel}</textPath></text>
             <text class="ring-sub"><textPath href="#${botPathB}" startOffset="50%" text-anchor="middle">${backBottomLabel}</textPath></text>
           </svg>
