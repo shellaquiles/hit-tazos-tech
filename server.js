@@ -16,6 +16,9 @@ const MIME_TYPES = {
   '.ico': 'image/x-icon',
   '.xml': 'application/xml; charset=utf-8',
   '.webmanifest': 'application/manifest+json; charset=utf-8',
+  '.mp3': 'audio/mpeg',
+  '.ogg': 'audio/ogg',
+  '.wav': 'audio/wav',
   '.txt': 'text/plain; charset=utf-8'
 };
 

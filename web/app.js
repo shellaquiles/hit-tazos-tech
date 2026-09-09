@@ -16,8 +16,10 @@ class HitTazosEngine {
     this.maxAttempts = 3;    // máximo de intentos antes de revelar
     this.cardSolved = false; // si ya se acertó/resolvió la carta actual
     this.fuse = null;        // instancia Fuse.js
+    this.sfx = null;         // clips foley orgánicos Howler.js
 
     this.initDOM();
+    this.initAudioEngine();  // Precarga de los clips reales
     this.initTilt();
     this.bindEvents();
     this.bindKeyboardShortcuts();
@@ -26,17 +28,30 @@ class HitTazosEngine {
     this.loadSavedState();
   }
 
-  // 1. Audio procedural con ZzFX (Elimina AudioContext y osciladores manuales)
-  playAudioFeedback(type) {
-    if (!this.soundEnabled) return;
-    if (typeof zzfx === 'function') {
+  // 1. Audio Foley Orgánico Real (Howler.js)
+  initAudioEngine() {
+    if (typeof Howl === 'function') {
       try {
-        if (type === 'flip') zzfx(0.1, 0, 220, .02, .14, .08, 1, 0, -4);       // Deslizamiento de carta
-        else if (type === 'hit') zzfx(1, .05, 523, .05, .45, 0, 0, 1.4);         // Campanilla victoria
-        else if (type === 'miss') zzfx(1, .05, 130, .05, .18, 0, 0, 0);          // Golpe sordo
-        else if (type === 'tick') zzfx(0.08, 0, 580, .01, .035, .01, 1);         // Clic de dial
+        this.sfx = {
+          flip: new Howl({ src: ['assets/sfx/tazo_flip.mp3'], volume: 0.4 }),
+          slam: new Howl({ src: ['assets/sfx/tazo_slam.mp3'], volume: 0.7 }),
+          hit:  new Howl({ src: ['assets/sfx/tazo_win.mp3'], volume: 0.5 }),
+          miss: new Howl({ src: ['assets/sfx/tazo_miss.mp3'], volume: 0.4 }),
+          tick: new Howl({ src: ['assets/sfx/tazo_tick.mp3'], volume: 0.25 })
+        };
       } catch (_) {}
     }
+  }
+
+  playAudioFeedback(type) {
+    if (!this.soundEnabled || !this.sfx) return;
+    try {
+      if (this.sfx[type]) {
+        // Detiene el sonido previo si es un 'tick' rápido para evitar solapamiento saturado
+        if (type === 'tick') this.sfx[type].stop();
+        this.sfx[type].play();
+      }
+    } catch (_) {}
   }
 
   initDOM() {
@@ -741,11 +756,10 @@ class HitTazosEngine {
 
     const { title, clue } = this.parseHito(card.hito);
     const triviaFormatted = this.formatMarkdown(card.trivia);
-
     const groupIcon = this.getDomainIcon(card.domain);
     const palette = this.getTazoPalette(card);
 
-    // Número de tazo consecutivo y código de coleccionista
+    // Formato de numeración oficial
     const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
     const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
     const cardNumStr = `${volId}x${hexPart}`;
@@ -753,8 +767,8 @@ class HitTazosEngine {
 
     const discId = options.id !== undefined ? (options.id ? `id="${options.id}"` : '') : 'id="active-card-3d"';
 
-    const domainName = (this.catalog.domains[card.domain] || card.domain).toUpperCase();
-    const volName = (this.catalog.volumes[card.volumen] || card.volumen).toUpperCase();
+    const domainName = (this.catalog?.domains?.[card.domain] || card.domain || '').toUpperCase();
+    const volName = (this.catalog?.volumes?.[card.volumen] || card.volumen || '').toUpperCase();
     const topLabel = `${domainName} • ${volName}`;
     const bottomLabel = `SHELLAQUILES ORG • #${cardNumStr}`;
 
@@ -768,58 +782,72 @@ class HitTazosEngine {
     const bottomBackPathId = `curve-bottom-b-${uid}`;
 
     return `
-      <!-- Tazo 3D Físico: Edición Coleccionable Noventera de Torneo -->
-      <div class="tazo-physical tazo-disc ${isRevealed ? 'is-flipped' : ''}" ${discId} style="--tazo-c1: ${palette.c1}; --tazo-c2: ${palette.c2}; --tazo-badge-bg: ${palette.badgeBg}; --tazo-badge-color: ${palette.badgeColor};">
+      <!-- Disco Tazo Físico 3D -->
+      <div class="tazo-physical tazo-disc ${isRevealed ? 'is-flipped' : ''}" ${discId} style="--tazo-c1: ${palette.c1}; --tazo-c2: ${palette.c2}; --tazo-badge-bg: ${palette.badgeBg};">
         
-        <!-- CARA FRONTAL (ANVERSO: ANILLOS HIPNÓTICOS CONCÉNTRICOS ESTILO LOONEY TUNES) -->
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <!-- ANVERSO (CARA FRONTAL: DIANA CONCÉNTRICA LOONEY TUNES 1994)  -->
+        <!-- ══════════════════════════════════════════════════════════════ -->
         <div class="tazo-face tazo-front tazo-face-front">
-          <!-- 4 Ranuras físicas de ensamble en bordes -->
+          <!-- 4 Ranuras físicas de ensamble que muerden el borde -->
           <div class="tazo-notches" aria-hidden="true">
             <span></span><span></span><span></span><span></span>
           </div>
 
-          <!-- Anillo perimetral con texto curvado en SVG -->
+          <!-- Surcos concéntricos de inyección plástica -->
+          <div class="tazo-relief-ring ring-outer" aria-hidden="true"></div>
+          <div class="tazo-relief-ring ring-mid" aria-hidden="true"></div>
+          <div class="tazo-relief-ring ring-center" aria-hidden="true"></div>
+
+          <!-- Textos periféricos curvados en el aro exterior -->
           <svg class="tazo-ring-text" viewBox="0 0 300 300" aria-hidden="true">
-            <path id="${topPathId}" d="M 30,150 A 120,120 0 0,1 270,150" fill="none" />
-            <path id="${bottomPathId}" d="M 30,150 A 120,120 0 0,0 270,150" fill="none" />
+            <path id="${topPathId}" d="M 32,150 A 118,118 0 0,1 268,150" fill="none" />
+            <path id="${bottomPathId}" d="M 32,150 A 118,118 0 0,0 268,150" fill="none" />
             <text class="ring-label"><textPath href="#${topPathId}" startOffset="50%" text-anchor="middle">${topLabel}</textPath></text>
             <text class="ring-sub"><textPath href="#${bottomPathId}" startOffset="50%" text-anchor="middle">${bottomLabel}</textPath></text>
           </svg>
 
-          <!-- Núcleo Central: Spotlight Blanco con Sticker Pop y Pista Breve -->
-          <div class="tazo-core">
-            <div class="tazo-icon-badge">
+          <!-- Centro: Ícono + Título Sticker + Píldora Cómic -->
+          <div class="tazo-art-content">
+            <div class="tazo-mascot-badge">
               <i data-lucide="${groupIcon}"></i>
             </div>
-            <h3 class="tazo-title">${title}</h3>
-            <p class="tazo-clue">${clue}</p>
+            
+            <div class="tazo-sticker-title">
+              <span>${title}</span>
+            </div>
+
+            <p class="tazo-comic-speech">${clue}</p>
           </div>
 
-          <!-- Brillo plástico especular al rotar -->
+          <!-- Reflejo especular plástico de acetato -->
           <div class="tazo-foil-reflection" aria-hidden="true"></div>
         </div>
 
-        <!-- CARA TRASERA (REVERSO: ESTILO PAC-MAN SABRITAS CON CHECKERBOARD Y AÑO HERO) -->
+        <!-- ══════════════════════════════════════════════════════════════ -->
+        <!-- REVERSO (CARA TRASERA: PAC-MAN SABRITAS CHECKERBOARD + AÑO)   -->
+        <!-- ══════════════════════════════════════════════════════════════ -->
         <div class="tazo-face tazo-back tazo-face-back">
-          <!-- 4 Ranuras físicas de ensamble -->
           <div class="tazo-notches" aria-hidden="true">
             <span></span><span></span><span></span><span></span>
           </div>
 
-          <!-- Anillo perimetral trasero SVG -->
           <svg class="tazo-ring-text" viewBox="0 0 300 300" aria-hidden="true">
-            <path id="${topBackPathId}" d="M 30,150 A 120,120 0 0,1 270,150" fill="none" />
-            <path id="${bottomBackPathId}" d="M 30,150 A 120,120 0 0,0 270,150" fill="none" />
+            <path id="${topBackPathId}" d="M 32,150 A 118,118 0 0,1 268,150" fill="none" />
+            <path id="${bottomBackPathId}" d="M 32,150 A 118,118 0 0,0 268,150" fill="none" />
             <text class="ring-label"><textPath href="#${topBackPathId}" startOffset="50%" text-anchor="middle">${topBackLabel}</textPath></text>
             <text class="ring-sub"><textPath href="#${bottomBackPathId}" startOffset="50%" text-anchor="middle">${bottomBackLabel}</textPath></text>
           </svg>
 
-          <!-- Núcleo Trasero Arcade: Número Amarillo + Bloque Rojo de Año + Lore -->
-          <div class="tazo-core back-layout">
-            <div class="tazo-num-capsule">${collectorNum}/576</div>
-            <div class="tazo-author-box">${card.autor.toUpperCase()}</div>
+          <div class="tazo-art-content back-layout">
+            <!-- Pastilla superior de numeración (Estilo 001/100) -->
+            <div class="sabritas-pill-num">${collectorNum}/576</div>
             
-            <div class="year-hero-display ${yearStateClass}" id="year-target" title="Toca para revelar el año [R]">
+            <!-- Etiqueta de Autor -->
+            <div class="sabritas-author-tag">${(card.autor || '').toUpperCase()}</div>
+
+            <!-- Bloque del Año Hero / Tapa Interactiva -->
+            <div class="year-hero-display ${yearStateClass}" id="year-target" title="Toca o pulsa [R] para revelar">
               <span class="year-digits">${card.year}</span>
               <div class="year-cover-tape">
                 <i data-lucide="sparkles"></i>
@@ -827,11 +855,14 @@ class HitTazosEngine {
               </div>
             </div>
 
-            <div class="lore-bubble">${triviaFormatted}</div>
-            <div class="tazo-code-capsule">TAZO • #${cardNumStr}</div>
+            <!-- Tira blanca de trivia inferior -->
+            <div class="sabritas-trivia-strip">
+              <p>${triviaFormatted}</p>
+            </div>
+
+            <div class="sabritas-serial-code">TAZO • #${cardNumStr}</div>
           </div>
 
-          <!-- Brillo plástico especular al rotar -->
           <div class="tazo-foil-reflection" aria-hidden="true"></div>
         </div>
 
@@ -984,15 +1015,9 @@ class HitTazosEngine {
       tazoDisc.classList.add('is-flipped');
     }
 
-    // Efecto sonoro de impacto plástico
-    if (typeof zzfx === 'function' && this.soundEnabled) {
-      try {
-        if (isSuccess) {
-          zzfx(1, .05, 523, .05, .45, 0, 0, 1.4); // Victoria
-        } else {
-          zzfx(0.8, .08, 120, .03, .16, .1, 2, 1.2, -6); // Clac plástico seco
-        }
-      } catch (_) {}
+    // Efecto sonoro foley de impacto plástico
+    if (this.soundEnabled) {
+      this.playAudioFeedback(isSuccess ? 'hit' : 'slam');
     }
   }
 

@@ -673,7 +673,11 @@ main {
   transform: rotateY(180deg);
 }
 
-/* Caras circulares del tazo: relieve de inyección plástica prensada */
+/* ==========================================================================
+   ANATOMÍA REAL DE TAZOS (LOONEY TUNES 1994 + PAC-MAN SABRITAS)
+   ========================================================================== */
+
+/* 1. Base del Disco con Borde Grueso Prensado */
 .tazo-face {
   position: absolute;
   inset: 0;
@@ -687,107 +691,86 @@ main {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  border: 7px solid #ffffff !important;
   box-shadow: 
-    inset 0 3px 6px rgba(255, 255, 255, 0.95),
-    inset 0 -4px 7px rgba(0, 0, 0, 0.25),
-    0 0 0 6px #ffffff,
-    0 0 0 8px #cbd5e1,
-    0 16px 36px -8px rgba(15, 23, 42, 0.22);
+    inset 0 3px 6px rgba(255, 255, 255, 0.9),
+    inset 0 -5px 8px rgba(0, 0, 0, 0.45),
+    0 0 0 3px #0f172a,
+    0 18px 36px -8px rgba(15, 23, 42, 0.28) !important;
 }
 
-/* ==========================================================================
-   ACABADO FÍSICO REAL 1994: DIANA CONCÉNTRICA + REVERSO ARCADE SABRITAS
-   ========================================================================== */
-
-/* 1. ANVERSO: Relieve de 3 aros escalonados (Look Looney Tunes 1994) */
+/* 2. Anverso: Surcos concéntricos con degradados contrastados (No planos) */
 .tazo-front,
 .tazo-face-front {
-  background: radial-gradient(
-    circle at 50% 50%,
-    var(--tazo-c1, #00d2d3) 0%,
-    var(--tazo-c1, #00d2d3) 42%,
-    var(--tazo-c2, #0984e3) 42.5%,
-    var(--tazo-c2, #0984e3) 72%,
-    var(--tazo-c1, #00d2d3) 72.5%,
-    var(--tazo-c1, #00d2d3) 100%
-  ) !important;
-  border: 6px solid #ffffff !important;
-  box-shadow: 
-    inset 0 4px 6px rgba(255, 255, 255, 0.9),
-    inset 0 -5px 8px rgba(0, 0, 0, 0.4),
-    0 0 0 4px #0f172a,
-    0 18px 32px -8px rgba(15, 23, 42, 0.35) !important;
+  background: var(--tazo-c1, #00a651) !important;
   transform: rotateY(0deg);
 }
 
-/* Surco de sombra y bisel de luz sobre la diana */
-.tazo-front::before {
-  content: '';
+.tazo-relief-ring {
   position: absolute;
-  inset: 22%;
   border-radius: 50%;
-  box-shadow: 
-    inset 0 4px 5px rgba(0, 0, 0, 0.35),
-    0 2px 3px rgba(255, 255, 255, 0.6);
-  pointer-events: none;
-  z-index: 2;
+  box-sizing: border-box;
 }
 
-.tazo-front::after {
-  content: '';
-  position: absolute;
-  inset: 44%;
-  border-radius: 50%;
-  box-shadow: 
-    inset 0 4px 6px rgba(0, 0, 0, 0.45),
-    0 2px 3px rgba(255, 255, 255, 0.7);
-  pointer-events: none;
-  z-index: 2;
+.ring-outer {
+  inset: 0;
+  background: var(--tazo-c1, #00a651);
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.6);
 }
 
-/* 2. REVERSO: Tablero de ajedrez morado profundo Sabritas Pac-Man */
+.ring-mid {
+  inset: 38px;
+  background: var(--tazo-c2, #007337);
+  box-shadow: 
+    inset 0 3px 6px rgba(0, 0, 0, 0.5),
+    0 2px 3px rgba(255, 255, 255, 0.4);
+}
+
+.ring-center {
+  inset: 76px;
+  background: color-mix(in srgb, var(--tazo-c1) 85%, white);
+  box-shadow: 
+    inset 0 4px 6px rgba(0, 0, 0, 0.3),
+    0 2px 3px rgba(255, 255, 255, 0.5);
+}
+
+/* 3. Reverso: Patrón Damero / Cuadros Sabritas Pac-Man */
 .tazo-back,
 .tazo-face-back {
   background-color: #3b1464 !important;
   background-image: 
-    linear-gradient(45deg, #2a0845 25%, transparent 25%), 
-    linear-gradient(-45deg, #2a0845 25%, transparent 25%), 
-    linear-gradient(45deg, transparent 75%, #2a0845 75%), 
-    linear-gradient(-45deg, transparent 75%, #2a0845 75%) !important;
-  background-size: 26px 26px !important;
-  background-position: 0 0, 0 13px, 13px -13px, -13px 0px !important;
-  border: 6px solid #ffffff !important;
-  box-shadow: 
-    inset 0 4px 6px rgba(255, 255, 255, 0.8),
-    inset 0 -5px 8px rgba(0, 0, 0, 0.6),
-    0 0 0 4px #0f172a,
-    0 18px 32px -8px rgba(15, 23, 42, 0.35) !important;
+    linear-gradient(45deg, #270648 25%, transparent 25%), 
+    linear-gradient(-45deg, #270648 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #270648 75%), 
+    linear-gradient(-45deg, transparent 75%, #270648 75%) !important;
+  background-size: 28px 28px !important;
+  background-position: 0 0, 0 14px, 14px -14px, -14px 0px !important;
   transform: rotateY(180deg);
 }
 
-/* 3. Muescas físicas profundas: usan el color de la mesa para simular corte */
+/* 4. Muescas Físicas en el Borde Blanco (Simulan corte real hacia la mesa) */
 .tazo-notches {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 15;
+  z-index: 25;
 }
 
 .tazo-notches span {
   position: absolute;
   background: var(--bg-primary, #f8fafc) !important;
   border: 2px solid #0f172a !important;
-  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.25) !important;
-  z-index: 15;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.3) !important;
 }
-.tazo-notches span:nth-child(1) { top: -8px; left: calc(50% - 7px); width: 14px; height: 16px; border-radius: 4px; }
-.tazo-notches span:nth-child(2) { bottom: -8px; left: calc(50% - 7px); width: 14px; height: 16px; border-radius: 4px; }
-.tazo-notches span:nth-child(3) { left: -8px; top: calc(50% - 7px); width: 16px; height: 14px; border-radius: 4px; }
-.tazo-notches span:nth-child(4) { right: -8px; top: calc(50% - 7px); width: 16px; height: 14px; border-radius: 4px; }
 
-/* 4. Textos curvados periféricos en SVG con legibilidad de grabado */
+.tazo-notches span:nth-child(1) { top: -6px; left: calc(50% - 7px); width: 14px; height: 16px; border-radius: 4px; }
+.tazo-notches span:nth-child(2) { bottom: -6px; left: calc(50% - 7px); width: 14px; height: 16px; border-radius: 4px; }
+.tazo-notches span:nth-child(3) { left: -6px; top: calc(50% - 7px); width: 16px; height: 14px; border-radius: 4px; }
+.tazo-notches span:nth-child(4) { right: -6px; top: calc(50% - 7px); width: 16px; height: 14px; border-radius: 4px; }
+
+/* 5. Textos curvados periféricos en SVG con legibilidad de grabado */
 .tazo-ring-text {
   position: absolute;
   inset: 0;
@@ -813,128 +796,122 @@ main {
   fill: #ffe600;
 }
 
-/* Núcleo Central: El arte y los colores inundan el disco completo */
-.tazo-core {
-  width: 80%;
-  height: 80%;
-  border-radius: 50%;
-  background: transparent;
-  border: none;
+/* 6. Contenido Central Frontal (Tipografía de Historieta / Sticker) */
+.tazo-art-content {
+  position: relative;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0.4rem;
-  box-sizing: border-box;
-  box-shadow: none;
-  z-index: 6;
-  position: relative;
-}
-
-.tazo-core.back-layout {
   width: 82%;
   height: 82%;
-  padding: 0.4rem;
-  background: transparent;
-  border: none;
-  box-shadow: none;
+  padding: 0.2rem;
+  box-sizing: border-box;
 }
 
-/* 5. Título y sticker frontal (Tipo historieta noventera) */
-.tazo-icon-badge {
-  width: 56px;
-  height: 56px;
+.tazo-mascot-badge {
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: var(--tazo-badge-bg, #ffd32a);
-  color: var(--tazo-badge-color, #0f172a);
+  background: #ffe600;
+  color: #000000;
   border: 3px solid #000000;
   box-shadow: 
     0 3px 0 #000000,
-    0 0 0 3px #ffffff;
-  margin-bottom: 0.35rem;
+    0 0 0 2px #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 0.35rem;
   transform: rotate(-3deg);
-  z-index: 10;
 }
 
-.tazo-title {
-  font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: clamp(1.25rem, 4.4vw, 1.65rem);
-  font-weight: 900;
+.tazo-mascot-badge svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Sticker de Título: Borde negro grueso y relieve de etiqueta */
+.tazo-sticker-title {
+  background: #ff5722;
   color: #ffe600;
-  margin: 0 0 0.35rem 0;
-  line-height: 1.05;
-  letter-spacing: 0.02em;
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: clamp(1.15rem, 3.8vw, 1.45rem);
+  font-weight: 900;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
-  -webkit-text-stroke: 1.8px #000000;
+  padding: 0.2rem 0.8rem;
+  border-radius: 8px;
+  border: 3px solid #000000;
+  box-shadow: 
+    0 0 0 2px #ffffff,
+    0 3px 0 #000000;
   text-shadow: 
-    3px 3px 0 #000000,
-    -1px -1px 0 #000000,  
-     1px -1px 0 #000000,
-    -1px  1px 0 #000000,
-     1px  1px 0 #000000;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
-  z-index: 10;
+    -1.5px -1.5px 0 #000,
+     1.5px -1.5px 0 #000,
+    -1.5px  1.5px 0 #000,
+     1.5px  1.5px 0 #000;
+  margin-bottom: 0.45rem;
+  max-width: 90%;
+  word-break: break-word;
 }
 
-/* Píldora de texto frontal */
-.tazo-clue {
-  font-family: var(--font-sans, 'Outfit', sans-serif);
-  font-size: clamp(0.72rem, 2.3vw, 0.82rem);
-  color: #0f172a;
-  line-height: 1.35;
-  margin: 0;
-  font-weight: 700;
+/* Píldora cómic de la pista */
+.tazo-comic-speech {
   background: #ffffff;
-  border: 2.5px solid #000000;
-  box-shadow: 0 3px 0 #000000;
+  color: #0f172a;
+  font-family: var(--font-sans, 'Outfit', sans-serif);
+  font-size: clamp(0.72rem, 2.2vw, 0.8rem);
+  line-height: 1.35;
+  font-weight: 700;
   padding: 0.35rem 0.75rem;
   border-radius: 12px;
-  max-width: 90%;
-  z-index: 10;
+  border: 2.5px solid #000000;
+  box-shadow: 0 3px 0 #000000;
+  max-width: 88%;
+  margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* 7. Reverso Arcade (Pac-Man Sabritas) */
+.sabritas-pill-num {
+  background: #ffe600;
+  color: #000000;
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 900;
+  padding: 0.15rem 0.9rem;
+  border-radius: 999px;
+  border: 2.5px solid #000000;
+  box-shadow: 0 2.5px 0 #000000;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.3rem;
+}
+
+.sabritas-author-tag {
+  background: #ff5722;
+  color: #ffffff;
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 0.65rem;
+  font-weight: 900;
+  padding: 0.15rem 0.65rem;
+  border-radius: 6px;
+  border: 2px solid #000000;
+  box-shadow: 0 2px 0 #000000;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.3rem;
+  max-width: 88%;
+  white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* 6. Reverso Arcade (Pac-Man Sabritas) */
-.tazo-num-capsule {
-  font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: 0.85rem;
-  font-weight: 900;
-  background: #ffe600;
-  color: #000000;
-  border: 2.5px solid #000000;
-  box-shadow: 0 2.5px 0 #000000;
-  padding: 0.15rem 0.8rem;
-  border-radius: 999px;
-  letter-spacing: 1px;
-  margin-bottom: 0.35rem;
-  z-index: 10;
-}
-
-.tazo-author-box {
-  font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: 0.68rem;
-  font-weight: 900;
-  background: #ff5722;
-  color: #ffffff;
-  border: 2px solid #000000;
-  box-shadow: 0 2px 0 #000000;
-  padding: 0.15rem 0.65rem;
-  border-radius: 6px;
-  text-transform: uppercase;
-  max-width: 88%;
-  margin-bottom: 0.35rem;
-  z-index: 10;
-}
-
-/* Año gigante en sticker blanco */
+/* Año gigante en sticker arcade */
 .year-hero-display {
   position: relative;
   cursor: pointer;
@@ -1003,37 +980,37 @@ main {
   animation: revealPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-/* Tira blanca de texto informativo / trivia */
-.lore-bubble {
+.sabritas-trivia-strip {
   background: #ffffff;
   color: #000000;
-  border: 2.5px solid #000000;
-  box-shadow: 0 3px 0 #000000;
-  border-radius: 12px;
-  padding: 0.4rem 0.8rem;
-  font-size: clamp(0.68rem, 2.2vw, 0.76rem);
-  line-height: 1.35;
+  font-family: var(--font-sans, 'Outfit', sans-serif);
+  font-size: clamp(0.68rem, 2.1vw, 0.76rem);
+  line-height: 1.32;
   font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 10px;
+  border: 2px solid #000000;
+  box-shadow: 0 2.5px 0 #000000;
+  max-width: 86%;
   margin-top: 0.35rem;
-  max-width: 88%;
-  z-index: 10;
+}
+
+.sabritas-trivia-strip p {
+  margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.tazo-code-capsule {
+.sabritas-serial-code {
   font-family: var(--font-mono, monospace);
   font-size: 0.58rem;
   font-weight: 800;
-  background: #ffffff;
-  color: #0f172a;
-  border: 1.5px solid #000000;
-  border-radius: 999px;
-  padding: 0.1rem 0.5rem;
+  color: #ffe600;
+  letter-spacing: 1px;
   margin-top: 0.25rem;
-  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px #000000;
 }
 
 /* Brillo especular de acetato */
