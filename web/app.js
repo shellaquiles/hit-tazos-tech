@@ -942,7 +942,7 @@ export class HitTazosApp {
         easing: 'ease-in'
       });
       exitAnim.onfinish = () => {
-        this.state.setActiveDeck(nextDeck);
+        this.state.setActiveDeck(nextDeck, true, true);
         const newDisc = this.getActiveCardElement();
         if (newDisc && typeof newDisc.animate === 'function') {
           newDisc.animate([
@@ -955,7 +955,7 @@ export class HitTazosApp {
         }
       };
     } else {
-      this.state.setActiveDeck(nextDeck);
+      this.state.setActiveDeck(nextDeck, true, true);
     }
   }
 
@@ -1070,7 +1070,7 @@ export class HitTazosApp {
 
       if (this.counterTotal) this.counterTotal.textContent = this.cards.length;
 
-      this.state.setActiveDeck(this.cards);
+      this.state.setActiveDeck(this.cards, true, true);
       this.filteredCatalog = [...this.cards];
       this.setupSearchIndex();
       this.renderCatalog();

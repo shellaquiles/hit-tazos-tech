@@ -66,8 +66,14 @@ export class GameState {
 
   // ── Mutaciones de Estado ──────────────────────────────────────────────────
 
-  setActiveDeck(deck, resetIndex = true) {
+  setActiveDeck(deck, resetIndex = true, shuffle = false) {
     this.activeDeck = Array.isArray(deck) ? [...deck] : [];
+    if (shuffle && this.activeDeck.length > 1) {
+      for (let i = this.activeDeck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [this.activeDeck[i], this.activeDeck[j]] = [this.activeDeck[j], this.activeDeck[i]];
+      }
+    }
     if (resetIndex) this.currentIndex = 0;
     this.prepareTurnForCurrentCard();
     this.emit('DECK_CHANGED', { totalCards: this.activeDeck.length });

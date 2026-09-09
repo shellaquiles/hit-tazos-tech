@@ -115,6 +115,17 @@ export class CardRenderer {
     const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
     const cardNumStr = `${volId}x${hexPart}`;
 
+    // Determinación de Edición / Rareza
+    let rarityClass = 'edition-standard';
+    const cardIdx = card.index !== undefined ? card.index : parseInt(hexPart, 16);
+    if (card.id === 'vol1-0x00' || card.id === 'vol7-0x00' || cardIdx === 63) {
+      rarityClass = 'edition-holographic';
+    } else if (cardIdx === 0 || card.id === 'vol0-0x00' || card.id === 'vol3-0x00') {
+      rarityClass = 'edition-gold';
+    } else if (cardIdx <= 2) {
+      rarityClass = 'edition-silver';
+    }
+
     const domainName = (this.catalog?.domains?.[card.domain] || card.domain || '').toUpperCase();
     const tagName = (this.catalog?.tags?.[card.tag] || card.tag || '').toUpperCase();
     const volName = (this.catalog?.volumes?.[card.volumen] || card.volumen || '').toUpperCase();
@@ -131,8 +142,11 @@ export class CardRenderer {
     const topPathB = `curve-tb-${uid}`;
     const botPathB = `curve-bb-${uid}`;
 
+    const accentColor = palette.accent || '#38bdf8';
+    const glowColor = palette.glow || 'rgba(56, 189, 248, 0.4)';
+
     return `
-      <div class="disc-physical disc tazo-physical tazo-disc ${isFlipped ? 'is-flipped' : ''}" ${discId} style="--disc-c1: ${palette.c1}; --disc-c2: ${palette.c2}; --tazo-c1: ${palette.c1}; --tazo-c2: ${palette.c2};">
+      <div class="disc-physical disc tazo-physical tazo-disc ${rarityClass} ${isFlipped ? 'is-flipped' : ''}" ${discId} style="--disc-c1: ${palette.c1}; --disc-c2: ${palette.c2}; --disc-accent: ${accentColor}; --disc-glow: ${glowColor}; --tazo-c1: ${palette.c1}; --tazo-c2: ${palette.c2};">
 
         <!-- ANVERSO: DOMINIO + TAG + CITA COMPLETA + ID -->
         <div class="disc-face disc-front disc-face-front tazo-face tazo-front">

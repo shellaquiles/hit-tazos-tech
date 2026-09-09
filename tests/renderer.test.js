@@ -51,7 +51,7 @@ describe('CardRenderer — Templating & Formatting', () => {
     const palette = renderer.getDiscPalette(mockCard);
     assert.ok(palette.c1);
     assert.ok(palette.c2);
-    assert.equal(palette.c1, '#00d2d3');
+    assert.equal(palette.c1, '#0f172a');
   });
 
 });

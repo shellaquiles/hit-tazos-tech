@@ -53,72 +53,96 @@ export const ANIM_CONFIG = {
 
 export const DOMAIN_PALETTES = {
   'languages-runtimes': {
-    c1: '#00d2d3',
-    c2: '#0984e3',
-    badgeBg: '#ffe600',
-    badgeColor: '#000000'
+    c1: '#0f172a',
+    c2: '#0e7490',
+    accent: '#38bdf8',
+    glow: 'rgba(56, 189, 248, 0.4)',
+    badgeBg: '#0f172a',
+    badgeColor: '#38bdf8'
   },
   'python-ecosystem': {
-    c1: '#3867d6',
-    c2: '#fed330',
-    badgeBg: '#ffe600',
-    badgeColor: '#000000'
+    c1: '#1e1b4b',
+    c2: '#312e81',
+    accent: '#60a5fa',
+    secondaryAccent: '#facc15',
+    glow: 'rgba(96, 165, 250, 0.4)',
+    badgeBg: '#1e1b4b',
+    badgeColor: '#60a5fa'
   },
   'security-exploits': {
-    c1: '#eb3b5a',
-    c2: '#20bf6b',
-    badgeBg: '#ffe600',
-    badgeColor: '#000000'
+    c1: '#18181b',
+    c2: '#27272a',
+    accent: '#4ade80',
+    secondaryAccent: '#f43f5e',
+    glow: 'rgba(74, 222, 128, 0.4)',
+    badgeBg: '#18181b',
+    badgeColor: '#4ade80'
   },
   'unix-internals': {
-    c1: '#fa8231',
-    c2: '#8854d0',
-    badgeBg: '#ffe600',
-    badgeColor: '#000000'
+    c1: '#0f172a',
+    c2: '#1e293b',
+    accent: '#38bdf8',
+    glow: 'rgba(56, 189, 248, 0.4)',
+    badgeBg: '#0f172a',
+    badgeColor: '#38bdf8'
   },
   'cloud-devops': {
-    c1: '#4b7bec',
-    c2: '#2ed573',
-    badgeBg: '#ffe600',
-    badgeColor: '#000000'
+    c1: '#082f49',
+    c2: '#0369a1',
+    accent: '#2dd4bf',
+    glow: 'rgba(45, 212, 191, 0.4)',
+    badgeBg: '#082f49',
+    badgeColor: '#2dd4bf'
   },
   'silicon-hardware': {
-    c1: '#fd9644',
-    c2: '#2bcbba',
-    badgeBg: '#ffe600',
-    badgeColor: '#000000'
+    c1: '#291a10',
+    c2: '#431407',
+    accent: '#fb923c',
+    glow: 'rgba(251, 146, 60, 0.4)',
+    badgeBg: '#291a10',
+    badgeColor: '#fb923c'
   },
   'distributed-systems': {
-    c1: '#45aaf2',
-    c2: '#a55eea',
-    badgeBg: '#ffe600',
-    badgeColor: '#000000'
+    c1: '#082f49',
+    c2: '#0f172a',
+    accent: '#38bdf8',
+    glow: 'rgba(56, 189, 248, 0.4)',
+    badgeBg: '#082f49',
+    badgeColor: '#38bdf8'
   },
   'ai-data-science': {
-    c1: '#8854d0',
-    c2: '#f368e0',
-    badgeBg: '#ffe600',
-    badgeColor: '#000000'
+    c1: '#2e1065',
+    c2: '#3b0764',
+    accent: '#e879f9',
+    glow: 'rgba(232, 121, 249, 0.4)',
+    badgeBg: '#2e1065',
+    badgeColor: '#e879f9'
   },
   'scifi-cinema': {
-    c1: '#f368e0',
-    c2: '#5f27cd',
-    badgeBg: '#ffe600',
-    badgeColor: '#000000'
+    c1: '#09090b',
+    c2: '#18181b',
+    accent: '#a855f7',
+    glow: 'rgba(168, 85, 247, 0.4)',
+    badgeBg: '#09090b',
+    badgeColor: '#a855f7'
   },
   'hacker-lore': {
-    c1: '#2ed573',
-    c2: '#1e272e',
-    badgeBg: '#ffe600',
-    badgeColor: '#000000'
+    c1: '#18181b',
+    c2: '#27272a',
+    accent: '#4ade80',
+    glow: 'rgba(74, 222, 128, 0.4)',
+    badgeBg: '#18181b',
+    badgeColor: '#4ade80'
   }
 };
 
 export const DEFAULT_PALETTE = {
-  c1: '#00d2d3',
-  c2: '#0984e3',
-  badgeBg: '#ffe600',
-  badgeColor: '#000000'
+  c1: '#0f172a',
+  c2: '#0e7490',
+  accent: '#38bdf8',
+  glow: 'rgba(56, 189, 248, 0.4)',
+  badgeBg: '#0f172a',
+  badgeColor: '#38bdf8'
 };
 
 export const DOMAIN_ICONS = {
