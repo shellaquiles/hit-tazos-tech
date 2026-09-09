@@ -22,6 +22,7 @@ export class HitTazosApp {
     this.fuse = null;
     this.touchGestureInstance = null;
     this.justHandledTouch = false;
+    this.isTransitioning = false;
 
     this.initDOM();
     this.bindStateEvents();
@@ -300,13 +301,9 @@ export class HitTazosApp {
     // Botones de Acción en la Arena
     this.btnFlip?.addEventListener('click', () => this.flipCurrentCard());
     this.btnReveal?.addEventListener('click', () => this.toggleActiveCardYear());
-    this.btnNext?.addEventListener('click', () => this.state.nextCard());
-    this.btnPrev?.addEventListener('click', () => this.state.prevCard());
-    this.btnShuffle?.addEventListener('click', () => {
-      this.audio.play('slam');
-      this.animateShuffle();
-      this.state.shuffleDeck();
-    });
+    this.btnNext?.addEventListener('click', () => this.nextCard());
+    this.btnPrev?.addEventListener('click', () => this.prevCard());
+    this.btnShuffle?.addEventListener('click', () => this.shuffleCurrentDeck());
 
     // Botones de Reinicio
     this.btnResetGame?.addEventListener('click', () => this.confirmResetGame());
@@ -349,8 +346,8 @@ export class HitTazosApp {
 
   bindKeyboardShortcuts() {
     if (typeof hotkeys === 'function') {
-      hotkeys('left,p', (e) => { e.preventDefault(); this.state.prevCard(); });
-      hotkeys('right,n', (e) => { e.preventDefault(); this.state.nextCard(); });
+      hotkeys('left,p', (e) => { e.preventDefault(); this.prevCard(); });
+      hotkeys('right,n', (e) => { e.preventDefault(); this.nextCard(); });
       hotkeys('up,+,=', (e) => { e.preventDefault(); this.nudgeYear(1); });
       hotkeys('down,-', (e) => { e.preventDefault(); this.nudgeYear(-1); });
       hotkeys('enter', (e) => { e.preventDefault(); this.handleGuessSubmission(); });
@@ -376,6 +373,21 @@ export class HitTazosApp {
           if (pill) pill.click();
         });
       }
+    } else {
+      window.addEventListener('keydown', (e) => {
+        if (document.activeElement?.tagName === 'INPUT' || document.activeElement === this.galleryQuery) return;
+        if (e.code === 'Enter' || e.code === 'NumpadEnter') { e.preventDefault(); this.handleGuessSubmission(); }
+        else if (e.code === 'ArrowLeft') { e.preventDefault(); this.prevCard(); }
+        else if (e.code === 'ArrowRight') { e.preventDefault(); this.nextCard(); }
+        else if (e.key === '+' || e.code === 'NumpadAdd' || e.key === '=') { e.preventDefault(); this.nudgeYear(1); }
+        else if (e.key === '-' || e.code === 'NumpadSubtract') { e.preventDefault(); this.nudgeYear(-1); }
+        else if (e.code === 'Space') { e.preventDefault(); this.flipCurrentCard(); }
+        else if (e.code === 'KeyT') { e.preventDefault(); this.state.toggleFormat(); this.audio.play('tick'); }
+        else if (e.shiftKey && (e.code === 'KeyR' || e.key === 'R')) { e.preventDefault(); this.confirmResetGame(); }
+        else if (e.code === 'KeyR') { e.preventDefault(); this.toggleActiveCardYear(); }
+        else if (e.code === 'KeyN') this.nextCard();
+        else if (e.code === 'KeyP') this.prevCard();
+      });
     }
   }
 
@@ -395,11 +407,11 @@ export class HitTazosApp {
         });
 
         this.touchGestureInstance.on('swipeleft', () => {
-          this.triggerTouch(() => this.state.nextCard(), 20);
+          this.triggerTouch(() => this.nextCard(), 20);
         });
 
         this.touchGestureInstance.on('swiperight', () => {
-          this.triggerTouch(() => this.state.prevCard(), 20);
+          this.triggerTouch(() => this.prevCard(), 20);
         });
 
         this.touchGestureInstance.on('swipeup', () => {
@@ -678,11 +690,79 @@ export class HitTazosApp {
     return this.slamDisc(isSuccess);
   }
 
-  animateShuffle() {
+  // ── Transición Animada entre Tarjetas (Slide WAAPI + Rebote Elástico) ──────
+
+  transitionToCard(targetIndex, direction = 'next') {
+    if (this.isTransitioning) return;
     const stage = document.getElementById('card-stage');
-    const disc = stage?.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d');
-    if (disc && typeof disc.animate === 'function') {
-      disc.animate([
+    const currentDisc = stage?.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d');
+
+    const exitX = direction === 'next' ? -260 : 260;
+    const enterX = direction === 'next' ? 260 : -260;
+    const exitRot = direction === 'next' ? -24 : 24;
+    const enterRot = direction === 'next' ? 24 : -24;
+
+    this.audio.play('flip');
+
+    if (currentDisc && typeof currentDisc.animate === 'function') {
+      this.isTransitioning = true;
+      // 1. Animación de salida: el elemento actual sale de la mesa con desvanecimiento y rotación
+      const exitAnim = currentDisc.animate([
+        { transform: 'translateX(0) scale(1) rotateZ(0deg)', opacity: 1 },
+        { transform: `translateX(${exitX}px) scale(0.85) rotateZ(${exitRot}deg)`, opacity: 0 }
+      ], {
+        duration: 180,
+        easing: 'cubic-bezier(0.4, 0, 1, 1)',
+        fill: 'forwards'
+      });
+
+      exitAnim.onfinish = () => {
+        this.state.goToIndex(targetIndex);
+
+        const newDisc = stage.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d');
+        if (newDisc && typeof newDisc.animate === 'function') {
+          // 2. Animación de entrada: el nuevo elemento entra resbalando con rebote elástico
+          const enterAnim = newDisc.animate([
+            { transform: `translateX(${enterX}px) scale(0.85) rotateZ(${enterRot}deg)`, opacity: 0 },
+            { transform: 'translateX(0) scale(1) rotateZ(0deg)', opacity: 1 }
+          ], {
+            duration: 320,
+            easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+          });
+          enterAnim.onfinish = () => {
+            newDisc.style.transform = '';
+            newDisc.style.opacity = '';
+            this.isTransitioning = false;
+          };
+        } else {
+          this.isTransitioning = false;
+        }
+      };
+    } else {
+      this.state.goToIndex(targetIndex);
+    }
+  }
+
+  nextCard() {
+    if (!this.state.activeDeck.length) return;
+    const nextIdx = (this.state.currentIndex + 1) % this.state.activeDeck.length;
+    this.transitionToCard(nextIdx, 'next');
+  }
+
+  prevCard() {
+    if (!this.state.activeDeck.length) return;
+    const prevIdx = (this.state.currentIndex - 1 + this.state.activeDeck.length) % this.state.activeDeck.length;
+    this.transitionToCard(prevIdx, 'prev');
+  }
+
+  shuffleCurrentDeck() {
+    const stage = document.getElementById('card-stage');
+    const currentDisc = stage?.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d');
+
+    this.audio.play('slam');
+
+    if (currentDisc && typeof currentDisc.animate === 'function') {
+      currentDisc.animate([
         { transform: 'scale(1) rotateZ(0deg)' },
         { transform: 'scale(0.8) rotateZ(180deg)', offset: 0.5 },
         { transform: 'scale(1.05) rotateZ(360deg)', offset: 0.8 },
@@ -692,6 +772,20 @@ export class HitTazosApp {
         easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)'
       });
     }
+
+    setTimeout(() => {
+      this.state.shuffleDeck();
+      const newDisc = stage?.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d');
+      if (newDisc && typeof newDisc.animate === 'function') {
+        newDisc.animate([
+          { transform: 'scale(0.85) rotateZ(180deg)', opacity: 0.5 },
+          { transform: 'scale(1) rotateZ(360deg)', opacity: 1 }
+        ], {
+          duration: 220,
+          easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+        });
+      }
+    }, 180);
   }
 
   nudgeYear(delta) {
@@ -777,9 +871,10 @@ export class HitTazosApp {
     }
 
     if (idx !== -1) {
-      this.state.goToIndex(idx);
+      this.transitionToCard(idx, idx >= this.state.currentIndex ? 'next' : 'prev');
+    } else {
+      this.audio.play('flip');
     }
-    this.audio.play('flip');
     if (window.innerWidth <= 768 && this.cardStage) {
       this.cardStage.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
@@ -820,8 +915,35 @@ export class HitTazosApp {
       ? [...this.cards]
       : this.cards.filter(c => c.volumen === groupSlug);
 
-    this.state.setActiveDeck(nextDeck);
+    const stage = document.getElementById('card-stage');
+    const currentDisc = stage?.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d');
+
     this.audio.play('flip');
+
+    if (currentDisc && typeof currentDisc.animate === 'function') {
+      const exitAnim = currentDisc.animate([
+        { transform: 'scale(1) rotateY(0deg)', opacity: 1 },
+        { transform: 'scale(0.8) rotateY(90deg)', opacity: 0 }
+      ], {
+        duration: 160,
+        easing: 'ease-in'
+      });
+      exitAnim.onfinish = () => {
+        this.state.setActiveDeck(nextDeck);
+        const newDisc = stage?.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d');
+        if (newDisc && typeof newDisc.animate === 'function') {
+          newDisc.animate([
+            { transform: 'scale(0.8) rotateY(-90deg)', opacity: 0 },
+            { transform: 'scale(1) rotateY(0deg)', opacity: 1 }
+          ], {
+            duration: 260,
+            easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+          });
+        }
+      };
+    } else {
+      this.state.setActiveDeck(nextDeck);
+    }
   }
 
   // ── Catálogo, Búsqueda y Filtros ──────────────────────────────────────────
