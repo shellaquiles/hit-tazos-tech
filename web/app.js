@@ -648,78 +648,78 @@ class HitTazosEngine {
   getTazoPalette(card) {
     const domainPalettes = {
       'languages-runtimes': {
-        c1: '#00d2d3', // Electric Turquoise
-        c2: '#0984e3', // Vivid Azure
-        badgeBg: '#ffd32a', // Canary
-        badgeColor: '#0f172a'
+        c1: '#00d2d3', // Turquesa eléctrico
+        c2: '#0984e3', // Azul brillante
+        badgeBg: '#ffe600',
+        badgeColor: '#000000'
       },
       'python-ecosystem': {
-        c1: '#3867d6', // Python Blue
-        c2: '#fed330', // Python Yellow
-        badgeBg: '#ffd32a',
-        badgeColor: '#1e3799'
+        c1: '#3867d6', // Azul Python
+        c2: '#fed330', // Amarillo Python
+        badgeBg: '#ffe600',
+        badgeColor: '#000000'
       },
       'security-exploits': {
-        c1: '#ff4757', // Hot Crimson
-        c2: '#2ed573', // Neon Cyber Lime
-        badgeBg: '#ff4757',
-        badgeColor: '#ffffff'
+        c1: '#ff4757', // Rojo fuego
+        c2: '#2ed573', // Verde radioactivo
+        badgeBg: '#ffe600',
+        badgeColor: '#000000'
       },
       'systems-kernels': {
-        c1: '#10ac84', // Coyote Kelly Green
-        c2: '#00d2d3', // Turquoise Cyan
-        badgeBg: '#00d2d3',
-        badgeColor: '#0f172a'
+        c1: '#00a651', // Verde Looney Tunes (Gallo Claudio / Coyote)
+        c2: '#006935', // Verde oscuro del surco
+        badgeBg: '#ffe600',
+        badgeColor: '#000000'
       },
       'hardware-chips': {
-        c1: '#ff9f43', // Tangerine Orange
-        c2: '#ee5253', // Warm Red
-        badgeBg: '#ffd32a',
-        badgeColor: '#b33939'
+        c1: '#ff9f43', // Naranja mecánico
+        c2: '#ee5253', // Rojo carmesí
+        badgeBg: '#ffe600',
+        badgeColor: '#000000'
       },
       'networking-protocols': {
-        c1: '#5f27cd', // Deep Violet
-        c2: '#48dbfb', // Electric Aqua
-        badgeBg: '#48dbfb',
-        badgeColor: '#341f97'
+        c1: '#5f27cd', // Morado intenso
+        c2: '#48dbfb', // Aqua eléctrico
+        badgeBg: '#ffe600',
+        badgeColor: '#000000'
       },
       'distributed-databases': {
-        c1: '#2e86de', // Royal Cobalt
-        c2: '#ff9f43', // Tangerine
-        badgeBg: '#ff9f43',
-        badgeColor: '#ffffff'
+        c1: '#2e86de', // Azul cobalto
+        c2: '#ff9f43', // Naranja
+        badgeBg: '#ffe600',
+        badgeColor: '#000000'
       },
       'devops-containers': {
-        c1: '#0abde3', // Sky Cyan
-        c2: '#10ac84', // Emerald
-        badgeBg: '#ffd32a',
-        badgeColor: '#0f172a'
+        c1: '#0abde3', // Azul cielo
+        c2: '#10ac84', // Esmeralda
+        badgeBg: '#ffe600',
+        badgeColor: '#000000'
       },
       'ai-data-science': {
-        c1: '#8854d0', // Amethyst Purple
-        c2: '#f368e0', // Neon Orchid
-        badgeBg: '#fed330',
-        badgeColor: '#4834d4'
+        c1: '#8854d0', // Amatista
+        c2: '#f368e0', // Orquídea neón
+        badgeBg: '#ffe600',
+        badgeColor: '#000000'
       },
       'scifi-cinema': {
-        c1: '#f368e0', // Bubblegum Pink (Bugs Bunny style)
-        c2: '#00d2d3', // Cyan
-        badgeBg: '#fff200',
-        badgeColor: '#d63031'
+        c1: '#f368e0', // Rosa chicle (Bugs Bunny)
+        c2: '#5f27cd', // Morado intenso
+        badgeBg: '#ffe600',
+        badgeColor: '#000000'
       },
       'hacker-lore': {
-        c1: '#2ed573', // Cyber Lime
-        c2: '#1e272e', // Dark Noir
-        badgeBg: '#2ed573',
-        badgeColor: '#0f172a'
+        c1: '#2ed573', // Verde ciber
+        c2: '#1e272e', // Negro carbón
+        badgeBg: '#ffe600',
+        badgeColor: '#000000'
       }
     };
 
     return domainPalettes[card.domain] || {
       c1: '#00d2d3',
-      c2: '#10ac84',
-      badgeBg: '#ffd32a',
-      badgeColor: '#0f172a'
+      c2: '#0984e3',
+      badgeBg: '#ffe600',
+      badgeColor: '#000000'
     };
   }
 
