@@ -773,8 +773,8 @@ class HitTazosEngine {
     // Textos periféricos en los aros SVG
     const frontTopLabel = `${domainName} • ${tagName}`;
     const frontBottomLabel = `${volName} • #${cardNumStr}`;
-    const backTopLabel = `#${collectorNum}/576 • ${volName}`;
-    const backBottomLabel = `SHELLAQUILES ORG • #${cardNumStr}`;
+    const backTopLabel = `${volName} • #${cardNumStr}`;
+    const backBottomLabel = `SHELLAQUILES ORG`;
 
     const discId = options.id !== undefined ? (options.id ? `id="${options.id}"` : '') : 'id="active-card-3d"';
     const uid = (card.id || 'tazo').replace(/[^a-zA-Z0-9]/g, '_') + '_' + Math.floor(Math.random() * 1000);
@@ -799,8 +799,8 @@ class HitTazosEngine {
 
           <!-- Arco superior e inferior -->
           <svg class="tazo-ring-text" viewBox="0 0 300 300" aria-hidden="true">
-            <path id="${topPathF}" d="M 34,150 A 116,116 0 0,1 266,150" fill="none" />
-            <path id="${botPathF}" d="M 34,150 A 116,116 0 0,0 266,150" fill="none" />
+            <path id="${topPathF}" d="M 24,150 A 126,126 0 0,1 276,150" fill="none" />
+            <path id="${botPathF}" d="M 24,150 A 126,126 0 0,0 276,150" fill="none" />
             <text class="ring-label"><textPath href="#${topPathF}" startOffset="50%" text-anchor="middle">${frontTopLabel}</textPath></text>
             <text class="ring-sub"><textPath href="#${botPathF}" startOffset="50%" text-anchor="middle">${frontBottomLabel}</textPath></text>
           </svg>
@@ -824,8 +824,8 @@ class HitTazosEngine {
           </div>
 
           <svg class="tazo-ring-text" viewBox="0 0 300 300" aria-hidden="true">
-            <path id="${topPathB}" d="M 34,150 A 116,116 0 0,1 266,150" fill="none" />
-            <path id="${botPathB}" d="M 34,150 A 116,116 0 0,0 266,150" fill="none" />
+            <path id="${topPathB}" d="M 24,150 A 126,126 0 0,1 276,150" fill="none" />
+            <path id="${botPathB}" d="M 24,150 A 126,126 0 0,0 276,150" fill="none" />
             <text class="ring-label"><textPath href="#${topPathB}" startOffset="50%" text-anchor="middle">${backTopLabel}</textPath></text>
             <text class="ring-sub"><textPath href="#${botPathB}" startOffset="50%" text-anchor="middle">${backBottomLabel}</textPath></text>
           </svg>

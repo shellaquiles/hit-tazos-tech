@@ -773,9 +773,9 @@ main {
 
 .ring-label, .ring-sub {
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: 9px;
+  font-size: 8.5px;
   font-weight: 900;
-  letter-spacing: 1.8px;
+  letter-spacing: 1.4px;
   text-transform: uppercase;
   fill: #ffffff;
   stroke: #000000;
@@ -783,7 +783,8 @@ main {
   paint-order: stroke fill;
 }
 
-.tazo-back .ring-label {
+.tazo-back .ring-label,
+.tazo-back .ring-sub {
   fill: #ffe600;
 }
 
@@ -791,26 +792,26 @@ main {
 .tazo-core-front {
   position: relative;
   z-index: 10;
-  width: 82%;
-  height: 82%;
+  width: 80%;
+  height: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   box-sizing: border-box;
-  padding: 1.1rem;
+  padding: 0.8rem;
 }
 
 .tazo-hito-prose {
   font-family: var(--font-sans, 'Outfit', sans-serif);
-  font-size: clamp(0.88rem, 2.8vw, 1.02rem);
-  line-height: 1.45;
+  font-size: clamp(0.86rem, 2.7vw, 1rem);
+  line-height: 1.42;
   font-weight: 500;
   color: #ffffff;
   text-shadow: 
     0 1px 2px rgba(0, 0, 0, 0.9),
     0 2px 6px rgba(0, 0, 0, 0.6);
-  max-width: 96%;
+  max-width: 88%;
 }
 
 .tazo-hito-prose strong {
@@ -833,27 +834,28 @@ main {
 .tazo-core-back {
   position: relative;
   z-index: 10;
-  width: 82%;
-  height: 82%;
+  width: 78%;
+  height: 78%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 0.35rem;
   text-align: center;
   box-sizing: border-box;
-  padding: 1rem 0.6rem;
+  padding: 0.3rem 0.2rem;
 }
 
 /* Autor Arriba */
 .tazo-back-author {
   font-family: var(--font-sans, 'Outfit', sans-serif);
-  font-size: clamp(0.82rem, 2.6vw, 0.95rem);
+  font-size: clamp(0.76rem, 2.3vw, 0.86rem);
   font-weight: 700;
   color: #ffffff;
   letter-spacing: -0.01em;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
-  max-width: 92%;
-  line-height: 1.25;
+  max-width: 76%;
+  line-height: 1.2;
 }
 
 .tazo-back-author em,
@@ -871,21 +873,21 @@ main {
   justify-content: center;
   cursor: pointer;
   user-select: none;
-  margin: 0.2rem 0;
-  min-height: 4rem;
+  margin: 0.1rem 0;
+  min-height: 2.7rem;
 }
 
 .year-number-giant {
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: clamp(4rem, 13vw, 5.2rem);
+  font-size: clamp(3.4rem, 11vw, 4.3rem);
   font-weight: 900;
   color: #ffe600;
   line-height: 0.82;
-  letter-spacing: -3px;
-  -webkit-text-stroke: 2.2px #000000;
+  letter-spacing: -2px;
+  -webkit-text-stroke: 2px #000000;
   text-shadow: 
-    3.5px 3.5px 0 #000000,
-    0 8px 20px rgba(0, 0, 0, 0.7);
+    3px 3px 0 #000000,
+    0 6px 16px rgba(0, 0, 0, 0.7);
 }
 
 .tazo-year-hero.is-hidden .year-number-giant {
@@ -896,23 +898,28 @@ main {
   display: none;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
+  gap: 0.35rem;
   background: #ff5722;
   color: #ffffff;
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: 0.82rem;
+  font-size: 0.74rem;
   font-weight: 900;
-  letter-spacing: 1.2px;
-  padding: 0.45rem 1.2rem;
+  letter-spacing: 0.8px;
+  padding: 0.28rem 0.85rem;
   border-radius: 999px;
-  border: 2.5px solid #000000;
-  box-shadow: 0 4px 0 #000000;
+  border: 2px solid #000000;
+  box-shadow: 0 3px 0 #000000;
   cursor: pointer;
   transition: transform 0.15s ease;
 }
 
+.year-scratch-badge svg {
+  width: 13px;
+  height: 13px;
+}
+
 .year-scratch-badge:hover {
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
 
 .tazo-year-hero.is-hidden .year-scratch-badge {
@@ -932,16 +939,12 @@ main {
 .tazo-back-lore {
   font-family: var(--font-sans, 'Outfit', sans-serif);
   font-style: italic;
-  font-size: clamp(0.72rem, 2.3vw, 0.82rem);
-  line-height: 1.38;
+  font-size: clamp(0.66rem, 2vw, 0.74rem);
+  line-height: 1.28;
   color: #f1f5f9;
   font-weight: 500;
-  max-width: 92%;
+  max-width: 86%;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 .tazo-back-lore strong {
