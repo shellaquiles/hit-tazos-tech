@@ -329,7 +329,7 @@ class HitTazosEngine {
     // 3D Card Click & Key Navigation
     this.cardStage.addEventListener('click', (e) => {
       if (this.justHandledTouch) return;
-      if (e.target.closest('#year-target, .tazo-year-stage, .year-hero-display, .year-center-stage')) return;
+      if (e.target.closest('#year-target, .tazo-year-hero, .tazo-year-stage, .year-hero-display, .year-center-stage')) return;
       this.flipCurrentCard();
     });
     this.btnFlip.addEventListener('click', () => this.flipCurrentCard());
@@ -457,7 +457,7 @@ class HitTazosEngine {
       // Tap simple: Voltear la carta
       gesture.on('tap', (event) => {
         // Evita voltear si el usuario tocó el botón o área de revelado del año
-        if (event && event.target && event.target.closest('#year-target, .tazo-year-stage, .year-hero-display, .year-center-stage')) return;
+        if (event && event.target && event.target.closest('#year-target, .tazo-year-hero, .tazo-year-stage, .year-hero-display, .year-center-stage')) return;
         this.justHandledTouch = true;
         setTimeout(() => { this.justHandledTouch = false; }, 350);
         if (navigator.vibrate) {
@@ -760,7 +760,7 @@ class HitTazosEngine {
 
     const palette = this.getTazoPalette(card);
 
-    // Metadatos oficiales idénticos a la versión cuadrada
+    // Mismos metadatos exactos de la tarjeta cuadrada
     const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
     const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
     const cardNumStr = `${volId}x${hexPart}`;
@@ -770,10 +770,10 @@ class HitTazosEngine {
     const tagName = (this.catalog?.tags?.[card.tag] || card.tag || '').toUpperCase();
     const volName = (this.catalog?.volumes?.[card.volumen] || card.volumen || '').toUpperCase();
 
-    // Textos periféricos: exactamente los mismos que en los bordes cuadrados
+    // Textos periféricos en los aros SVG
     const frontTopLabel = `${domainName} • ${tagName}`;
     const frontBottomLabel = `${volName} • #${cardNumStr}`;
-    const backTopLabel = `${volName} • #${collectorNum}/576`;
+    const backTopLabel = `#${collectorNum}/576 • ${volName}`;
     const backBottomLabel = `SHELLAQUILES ORG • #${cardNumStr}`;
 
     const discId = options.id !== undefined ? (options.id ? `id="${options.id}"` : '') : 'id="active-card-3d"';
@@ -787,7 +787,7 @@ class HitTazosEngine {
       <div class="tazo-physical tazo-disc ${isRevealed ? 'is-flipped' : ''}" ${discId} style="--tazo-c1: ${palette.c1}; --tazo-c2: ${palette.c2};">
         
         <!-- ══════════════════════════════════════════════════════════════ -->
-        <!-- ANVERSO: DOMINIO + TAG + HITO TÉCNICO COMPLETO + METADATOS    -->
+        <!-- ANVERSO: DOMINIO + TAG + CITA COMPLETA + ID                   -->
         <!-- ══════════════════════════════════════════════════════════════ -->
         <div class="tazo-face tazo-front tazo-face-front">
           <div class="tazo-notches" aria-hidden="true">
@@ -797,7 +797,7 @@ class HitTazosEngine {
           <div class="tazo-relief-ring ring-outer" aria-hidden="true"></div>
           <div class="tazo-relief-ring ring-mid" aria-hidden="true"></div>
 
-          <!-- Arco superior e inferior con los datos del frente -->
+          <!-- Arco superior e inferior -->
           <svg class="tazo-ring-text" viewBox="0 0 300 300" aria-hidden="true">
             <path id="${topPathF}" d="M 34,150 A 116,116 0 0,1 266,150" fill="none" />
             <path id="${botPathF}" d="M 34,150 A 116,116 0 0,0 266,150" fill="none" />
@@ -805,9 +805,9 @@ class HitTazosEngine {
             <text class="ring-sub"><textPath href="#${botPathF}" startOffset="50%" text-anchor="middle">${frontBottomLabel}</textPath></text>
           </svg>
 
-          <!-- Centro: El hito completo sin títulos redundantes -->
-          <div class="tazo-content-core">
-            <div class="tazo-quote-bubble">
+          <!-- Centro: Texto del Hito (amplio, legible, sin marcos invasivos) -->
+          <div class="tazo-core-front">
+            <div class="tazo-hito-prose">
               ${hitoFormatted}
             </div>
           </div>
@@ -816,7 +816,7 @@ class HitTazosEngine {
         </div>
 
         <!-- ══════════════════════════════════════════════════════════════ -->
-        <!-- REVERSO: AUTOR + AÑO HERO (2017) + TRIVIA / LORE             -->
+        <!-- REVERSO: AUTOR ARRIBA + AÑO GIGANTE + TRIVIA LORE ABAJO      -->
         <!-- ══════════════════════════════════════════════════════════════ -->
         <div class="tazo-face tazo-back tazo-face-back">
           <div class="tazo-notches" aria-hidden="true">
@@ -830,23 +830,22 @@ class HitTazosEngine {
             <text class="ring-sub"><textPath href="#${botPathB}" startOffset="50%" text-anchor="middle">${backBottomLabel}</textPath></text>
           </svg>
 
-          <div class="tazo-content-core back-core">
-            <!-- 1. Autor arriba -->
-            <div class="tazo-author-line">${creadorFormatted}</div>
+          <!-- Distribución vertical pura: 1. Autor | 2. Año Hero | 3. Lore -->
+          <div class="tazo-core-back">
+            <!-- 1. Autor / Creador -->
+            <div class="tazo-back-author">${creadorFormatted}</div>
 
             <!-- 2. Año Hero en el centro -->
-            <div class="tazo-year-stage ${yearStateClass}" id="year-target" title="Toca para revelar el año [R]">
-              <span class="year-hero-number">${card.year}</span>
-              <div class="year-scratch-cover">
+            <div class="tazo-year-hero ${yearStateClass}" id="year-target" title="Toca para revelar el año [R]">
+              <span class="year-number-giant">${card.year}</span>
+              <div class="year-scratch-badge">
                 <i data-lucide="eye"></i>
-                <span>REVELAR</span>
+                <span>REVELAR AÑO</span>
               </div>
             </div>
 
-            <!-- 3. Trivia / Lore abajo -->
-            <div class="tazo-trivia-lore">
-              ${triviaFormatted}
-            </div>
+            <!-- 3. Trivia / Lore en cursiva -->
+            <div class="tazo-back-lore">${triviaFormatted}</div>
           </div>
 
           <div class="tazo-foil-reflection" aria-hidden="true"></div>
@@ -880,7 +879,7 @@ class HitTazosEngine {
     }
 
     // Interacción de clic en la zona del año para revelar/ocultar
-    const yearTarget = this.cardStage.querySelector('#year-target, .tazo-year-stage, .year-hero-display, .year-center-stage');
+    const yearTarget = this.cardStage.querySelector('#year-target, .tazo-year-hero, .tazo-year-stage, .year-hero-display, .year-center-stage');
     if (yearTarget) {
       yearTarget.addEventListener('click', (e) => {
         e.stopPropagation(); // no voltear la tarjeta, solo revelar el año
@@ -906,7 +905,7 @@ class HitTazosEngine {
     const stage = document.getElementById('card-stage');
     const tazoDisc = stage?.querySelector('.tazo-physical, .tazo-disc') || stage;
     if (!tazoDisc) return;
-    const yearStage = tazoDisc.querySelector('#year-target, .tazo-year-stage, .year-hero-display, .year-center-stage');
+    const yearStage = tazoDisc.querySelector('#year-target, .tazo-year-hero, .tazo-year-stage, .year-hero-display, .year-center-stage');
     if (yearStage && yearStage.classList.contains('is-hidden')) {
       yearStage.classList.remove('is-hidden');
       yearStage.classList.add('is-revealed');
@@ -925,7 +924,7 @@ class HitTazosEngine {
       this.flipCard(stage);
     }
 
-    const yearStage = tazoDisc.querySelector('#year-target, .tazo-year-stage, .year-hero-display, .year-center-stage');
+    const yearStage = tazoDisc.querySelector('#year-target, .tazo-year-hero, .tazo-year-stage, .year-hero-display, .year-center-stage');
     if (!yearStage) return;
 
     const isHidden = yearStage.classList.contains('is-hidden');

@@ -714,24 +714,15 @@ main {
 
 .ring-outer {
   inset: 0;
-  background: var(--tazo-c1, #00a651);
-  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.6);
+  background: var(--tazo-c1, #00d2d3);
 }
 
 .ring-mid {
-  inset: 38px;
-  background: var(--tazo-c2, #007337);
+  inset: 28px;
+  background: radial-gradient(circle at 50% 35%, color-mix(in srgb, var(--tazo-c1) 85%, white) 0%, var(--tazo-c2, #0984e3) 100%);
   box-shadow: 
-    inset 0 3px 6px rgba(0, 0, 0, 0.5),
-    0 2px 3px rgba(255, 255, 255, 0.4);
-}
-
-.ring-center {
-  inset: 76px;
-  background: color-mix(in srgb, var(--tazo-c1) 85%, white);
-  box-shadow: 
-    inset 0 4px 6px rgba(0, 0, 0, 0.3),
-    0 2px 3px rgba(255, 255, 255, 0.5);
+    inset 0 3px 6px rgba(0, 0, 0, 0.35),
+    0 2px 4px rgba(255, 255, 255, 0.6);
 }
 
 /* 3. Reverso: Patrón Damero / Cuadros Sabritas Pac-Man */
@@ -796,67 +787,84 @@ main {
   fill: #ffe600;
 }
 
-/* Núcleo de contenido del tazo */
-.tazo-content-core {
+/* Área central de lectura frontal */
+.tazo-core-front {
   position: relative;
   z-index: 10;
-  width: 78%;
-  height: 78%;
+  width: 82%;
+  height: 82%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   box-sizing: border-box;
-  padding: 0.5rem;
+  padding: 1.1rem;
 }
 
-/* 1. Hito en el Anverso: directo, con tipografía clara y sin pastilla */
-.tazo-quote-bubble {
+.tazo-hito-prose {
   font-family: var(--font-sans, 'Outfit', sans-serif);
-  font-size: clamp(0.85rem, 2.7vw, 0.98rem);
+  font-size: clamp(0.88rem, 2.8vw, 1.02rem);
   line-height: 1.45;
   font-weight: 500;
   color: #ffffff;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.85), 0 0 2px #000;
-  max-width: 94%;
+  text-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.9),
+    0 2px 6px rgba(0, 0, 0, 0.6);
+  max-width: 96%;
 }
 
-.tazo-quote-bubble strong {
-  color: #fde047; /* Amarillo cálido para las negritas originales */
+.tazo-hito-prose strong {
+  color: #fde047; /* Amarillo para conceptos destacados */
   font-weight: 800;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
-.tazo-quote-bubble code {
+.tazo-hito-prose code {
   font-family: var(--font-mono, monospace);
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.35);
   color: #67e8f9;
-  padding: 0.1rem 0.35rem;
-  border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.12rem 0.4rem;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 0.9em;
 }
 
-/* 2. Reverso: Distribución idéntica a la tarjeta morada original */
-.back-core {
+/* 2. Reverso: Distribución Vertical Espaciosa (Autor / Año / Trivia) */
+.tazo-core-back {
+  position: relative;
+  z-index: 10;
+  width: 82%;
+  height: 82%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 0.4rem;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 1rem 0.6rem;
 }
 
-/* Autor arriba (peso 600, como en la tarjeta) */
-.tazo-author-line {
+/* Autor Arriba */
+.tazo-back-author {
   font-family: var(--font-sans, 'Outfit', sans-serif);
-  font-size: clamp(0.78rem, 2.5vw, 0.92rem);
+  font-size: clamp(0.82rem, 2.6vw, 0.95rem);
   font-weight: 700;
   color: #ffffff;
   letter-spacing: -0.01em;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-  max-width: 90%;
-  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+  max-width: 92%;
+  line-height: 1.25;
+}
+
+.tazo-back-author em,
+.tazo-back-author strong {
+  font-style: normal;
+  font-weight: 700;
+  color: #ffffff;
 }
 
 /* Año Hero en el Centro */
-.tazo-year-stage {
+.tazo-year-hero {
   position: relative;
   display: flex;
   align-items: center;
@@ -864,27 +872,27 @@ main {
   cursor: pointer;
   user-select: none;
   margin: 0.2rem 0;
+  min-height: 4rem;
 }
 
-.year-hero-number {
+.year-number-giant {
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: clamp(3.8rem, 12vw, 4.8rem);
+  font-size: clamp(4rem, 13vw, 5.2rem);
   font-weight: 900;
   color: #ffe600;
-  line-height: 0.85;
+  line-height: 0.82;
   letter-spacing: -3px;
-  -webkit-text-stroke: 2px #000000;
+  -webkit-text-stroke: 2.2px #000000;
   text-shadow: 
-    3px 3px 0 #000000,
-    0 8px 16px rgba(0, 0, 0, 0.7);
+    3.5px 3.5px 0 #000000,
+    0 8px 20px rgba(0, 0, 0, 0.7);
 }
 
-.tazo-year-stage.is-hidden .year-hero-number {
+.tazo-year-hero.is-hidden .year-number-giant {
   display: none !important;
 }
 
-/* Tapa interactiva para ocultar año */
-.year-scratch-cover {
+.year-scratch-badge {
   display: none;
   align-items: center;
   justify-content: center;
@@ -903,42 +911,43 @@ main {
   transition: transform 0.15s ease;
 }
 
-.year-scratch-cover:hover {
-  transform: scale(1.05);
+.year-scratch-badge:hover {
+  transform: scale(1.06);
 }
 
-.tazo-year-stage.is-hidden .year-scratch-cover {
+.tazo-year-hero.is-hidden .year-scratch-badge {
   display: inline-flex !important;
 }
 
-.tazo-year-stage.is-revealed .year-scratch-cover {
+.tazo-year-hero.is-revealed .year-scratch-badge {
   display: none !important;
 }
 
-.tazo-year-stage.is-revealed .year-hero-number {
+.tazo-year-hero.is-revealed .year-number-giant {
   display: block !important;
   animation: revealPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-/* Trivia / Lore abajo (en cursiva, como en la original) */
-.tazo-trivia-lore {
+/* Trivia / Lore Abajo */
+.tazo-back-lore {
   font-family: var(--font-sans, 'Outfit', sans-serif);
   font-style: italic;
-  font-size: clamp(0.68rem, 2.1vw, 0.76rem);
-  line-height: 1.35;
-  color: #e2e8f0;
+  font-size: clamp(0.72rem, 2.3vw, 0.82rem);
+  line-height: 1.38;
+  color: #f1f5f9;
   font-weight: 500;
-  max-width: 88%;
+  max-width: 92%;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.tazo-trivia-lore strong {
+.tazo-back-lore strong {
   font-style: italic;
   color: #ffffff;
+  font-weight: 700;
 }
 
 /* Brillo especular de acetato */
