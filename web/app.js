@@ -16,6 +16,7 @@ class HitTazosEngine {
     this.maxAttempts = 3;    // máximo de intentos antes de revelar
     this.cardSolved = false; // si ya se acertó/resolvió la carta actual
     this.revealedCards = new Set(); // IDs de tazos ya revelados/resueltos (persistidos en caché)
+    this.cardFormat = localStorage.getItem('hittazos_format') || 'tazo'; // 'tazo' | 'card'
     this.fuse = null;        // instancia Fuse.js
     this.sfx = null;         // clips foley orgánicos Howler.js
 
@@ -61,6 +62,9 @@ class HitTazosEngine {
     this.viewGallery = document.getElementById('view-gallery');
     this.btnTabPlay = document.getElementById('btn-tab-play');
     this.btnTabGallery = document.getElementById('btn-tab-gallery');
+    this.btnFormatToggle = document.getElementById('btn-format-toggle');
+    this.iconFormatState = document.getElementById('icon-format-state');
+    this.updateFormatToggleUI();
     this.btnSound = document.getElementById('btn-sound-toggle');
     this.btnResetGame = document.getElementById('btn-reset-game');
     this.btnResetShelf = document.getElementById('btn-reset-shelf');
@@ -328,10 +332,14 @@ class HitTazosEngine {
       this.btnUnderstoodHelp.addEventListener('click', () => this.helpDialog?.close());
     }
 
-    // Volteo al hacer clic en el disco (excepto si se toca el número de año)
+    if (this.btnFormatToggle) {
+      this.btnFormatToggle.addEventListener('click', () => this.toggleCardFormat());
+    }
+
+    // Volteo al hacer clic en el disco/tarjeta (excepto si se toca el número de año)
     this.cardStage.addEventListener('click', (e) => {
       if (this.justHandledTouch) return;
-      if (e.target.closest('#year-target, .tazo-year-hero, .year-number-giant, .year-scratch-badge')) {
+      if (e.target.closest('#year-target, .tazo-year-hero, .year-number-giant, .year-scratch-badge, .year-center-stage')) {
         return; // Clic consumido por el revelador de año
       }
       this.flipCurrentCard();
@@ -393,6 +401,7 @@ class HitTazosEngine {
 
       // Volteo y utilidades
       hotkeys('space', (e) => { e.preventDefault(); this.flipCurrentCard(); });
+      hotkeys('t', (e) => { e.preventDefault(); this.toggleCardFormat(); });
       hotkeys('r', (e) => { e.preventDefault(); this.toggleActiveCardYear(); });
       hotkeys('shift+r', (e) => { e.preventDefault(); this.resetGame(); });
       hotkeys('s', () => this.btnSound?.click());
@@ -419,6 +428,7 @@ class HitTazosEngine {
         else if (e.key === '+' || e.code === 'NumpadAdd' || e.key === '=') { e.preventDefault(); this.nudgeYear(1); }
         else if (e.key === '-' || e.code === 'NumpadSubtract') { e.preventDefault(); this.nudgeYear(-1); }
         else if (e.code === 'Space') { e.preventDefault(); this.flipCurrentCard(); }
+        else if (e.code === 'KeyT') { e.preventDefault(); this.toggleCardFormat(); }
         else if (e.shiftKey && (e.code === 'KeyR' || e.key === 'R')) { e.preventDefault(); this.resetGame(); }
         else if (e.code === 'KeyR') { e.preventDefault(); this.toggleActiveCardYear(); }
         else if (e.code === 'KeyN') this.nextCard();
@@ -778,7 +788,133 @@ class HitTazosEngine {
     return { title: parts[0].replace(/`/g, '').trim(), clue: hito.replace(/\*\*/g, '').replace(/`/g, '').trim() };
   }
 
+  toggleCardFormat() {
+    this.cardFormat = this.cardFormat === 'card' ? 'tazo' : 'card';
+    try {
+      localStorage.setItem('hittazos_format', this.cardFormat);
+    } catch (_) {}
+
+    this.updateFormatToggleUI();
+    this.playAudioFeedback('tick');
+
+    if (this.activeDeck && this.activeDeck.length) {
+      this.renderActiveArenaCard();
+    }
+    if (this.filteredCatalog && this.filteredCatalog.length && this.catalogGrid) {
+      this.renderCatalog();
+    }
+  }
+
+  updateFormatToggleUI() {
+    if (!this.btnFormatToggle) return;
+    const isCard = this.cardFormat === 'card';
+    const titleText = isCard 
+      ? 'Cambiar a vista de Tazo 3D [T]' 
+      : 'Cambiar a vista de Tarjeta cuadrada [T]';
+    this.btnFormatToggle.setAttribute('title', titleText);
+    this.btnFormatToggle.setAttribute('aria-label', titleText);
+
+    if (this.iconFormatState) {
+      this.iconFormatState.setAttribute('data-lucide', isCard ? 'disc' : 'square');
+      this.refreshIcons();
+    }
+  }
+
   buildCardHTML(card, options = {}) {
+    if (this.cardFormat === 'card') {
+      return this.buildSquareCardHTML(card, options);
+    }
+    return this.buildTazoHTML(card, options);
+  }
+
+  buildSquareCardHTML(card, options = {}) {
+    const isFlipped = options.isFlipped !== undefined 
+      ? options.isFlipped === true 
+      : (options.isRevealed === true);
+    const showYear = options.showYear !== undefined 
+      ? options.showYear === true 
+      : (options.isRevealed === true);
+    const hideRevealButton = options.hideRevealButton !== undefined 
+      ? options.hideRevealButton === true 
+      : (options.showYear === true);
+
+    const yearStateClass = showYear ? 'is-revealed' : 'is-hidden';
+
+    const hitoFormatted = this.formatMarkdown(card.hito);
+    const triviaFormatted = this.formatMarkdown(card.trivia);
+    const creadorFormatted = this.formatMarkdown(card.autor);
+
+    const theme = this.getCardTheme(card);
+
+    const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
+    const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
+    const cardNumStr = `${volId}x${hexPart}`;
+
+    const domainName = (this.catalog?.domains?.[card.domain] || card.domain || '').toUpperCase();
+    const tagName = this.catalog?.tags?.[card.tag] || card.tag || '';
+    const volName = this.catalog?.volumes?.[card.volumen] || card.volumen || '';
+
+    const cardIdAttr = options.id !== undefined ? (options.id ? `id="${options.id}"` : '') : 'id="active-card-3d"';
+
+    return `
+      <!-- Tarjeta Cuadrada Clásica Hit-Tazos Tech (65x65mm) -->
+      <div class="hittazos-card-3d ${isFlipped ? 'is-flipped' : ''}" ${cardIdAttr} style="--hittazos-bg: ${theme.bg}; --card-bg: ${theme.bg}; --hittazos-front-bg: ${theme.frontBg}; --card-front-bg: ${theme.frontBg}; --card-text: ${theme.text}; --card-subtext: ${theme.subText}; --card-accent: ${theme.accent};">
+        <!-- FRONT (Hit-Tazos / Pure Color Matte Face) -->
+        <div class="card-sheet sheet-front hittazos-matte-card">
+          <div class="card-topbar-minimal">
+            <span class="group-badge-tiny">
+              <i data-lucide="layers"></i>
+              ${domainName}
+            </span>
+            <span class="category-badge-tiny">${tagName}</span>
+          </div>
+
+          <div class="clue-stage-pure">
+            <p class="clue-quote">${hitoFormatted}</p>
+          </div>
+
+          <div class="card-footbar-minimal">
+            <span class="corner-meta-left">${volName}</span>
+            <span class="flip-pill"><i data-lucide="rotate-cw"></i> Voltear</span>
+            <span class="corner-meta-right">#${cardNumStr}</span>
+          </div>
+        </div>
+
+        <!-- BACK (Hit-Tazos Solid Matte Reveal: Author Top, Year Center, Lore Bottom) -->
+        <div class="card-sheet sheet-back hittazos-matte-card">
+          <div class="card-back-top">
+            <div class="back-author-title">${creadorFormatted}</div>
+          </div>
+
+          <div class="year-center-stage ${yearStateClass}" ${hideRevealButton ? '' : 'id="year-target" title="Toca para revelar el año (-5 Pts) [R]"'}>
+            ${hideRevealButton ? `
+              <div class="year-digits-hero">${card.year}</div>
+            ` : `
+              <div class="year-mystery-box">
+                <div class="year-mystery-digits">????</div>
+                <div class="year-reveal-badge">
+                  <i data-lucide="eye"></i>
+                  <span>Revelar (-5 Pts)</span>
+                </div>
+              </div>
+              <div class="year-digits-hero">${card.year}</div>
+            `}
+          </div>
+
+          <div class="card-back-bottom">
+            <div class="back-trivia-phrase">${triviaFormatted}</div>
+          </div>
+
+          <div class="card-footbar-minimal">
+            <span class="corner-meta-left">${volName}</span>
+            <span class="corner-meta-right">#${cardNumStr}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  buildTazoHTML(card, options = {}) {
     const isFlipped = options.isFlipped !== undefined 
       ? options.isFlipped === true 
       : (options.isRevealed === true);
@@ -967,7 +1103,7 @@ class HitTazosEngine {
 
   revealActiveCardYear() {
     const stage = document.getElementById('card-stage');
-    const tazoDisc = stage?.querySelector('.tazo-physical, .tazo-disc') || stage;
+    const tazoDisc = stage?.querySelector('.tazo-physical, .tazo-disc, .hittazos-card-3d') || stage;
     if (!tazoDisc) return;
     if (!tazoDisc.classList.contains('is-flipped')) {
       this.flipCard(stage);
@@ -988,7 +1124,7 @@ class HitTazosEngine {
 
   toggleActiveCardYear() {
     const stage = document.getElementById('card-stage');
-    const tazoDisc = stage?.querySelector('.tazo-physical, .tazo-disc') || stage;
+    const tazoDisc = stage?.querySelector('.tazo-physical, .tazo-disc, .hittazos-card-3d') || stage;
     if (!tazoDisc) return;
 
     // Si el tazo está de frente, voltearlo para ver el reverso
@@ -1062,10 +1198,10 @@ class HitTazosEngine {
     this.refreshIcons();
   }
 
-  // Volteo del Tazo 3D con tambaleo y física de moneda
+  // Volteo del Tazo/Tarjeta 3D con tambaleo y física
   flipCard(containerEl) {
     if (!containerEl) return;
-    const tazoDisc = containerEl.querySelector('.tazo-disc') || containerEl;
+    const tazoDisc = containerEl.querySelector('.tazo-disc, .hittazos-card-3d') || containerEl;
     if (!tazoDisc) return;
 
     const isFlipped = tazoDisc.classList.contains('is-flipped');
@@ -1103,10 +1239,10 @@ class HitTazosEngine {
     }
   }
 
-  // Animación de impacto y giro plástico al comprobar el año (física de tazo)
+  // Animación de impacto y giro plástico al comprobar el año (física de tazo/tarjeta)
   slamTazo(isSuccess) {
     const stage = document.getElementById('card-stage');
-    const tazoDisc = stage?.querySelector('.tazo-disc') || stage;
+    const tazoDisc = stage?.querySelector('.tazo-disc, .hittazos-card-3d') || stage;
     if (!tazoDisc) return;
 
     if (typeof tazoDisc.animate === 'function') {
@@ -1470,10 +1606,10 @@ class HitTazosEngine {
     this.persistGameState();
   }
 
-  // Transición animada al avanzar o retroceder disco
+  // Transición animada al avanzar o retroceder disco o tarjeta
   transitionToCard(targetIndex, direction = 'next') {
     const stage = document.getElementById('card-stage');
-    const currentDisc = stage?.querySelector('.tazo-physical, .tazo-disc');
+    const currentDisc = stage?.querySelector('.tazo-physical, .tazo-disc, .hittazos-card-3d');
 
     const exitX = direction === 'next' ? -260 : 260;
     const enterX = direction === 'next' ? 260 : -260;
@@ -1483,7 +1619,7 @@ class HitTazosEngine {
     this.playAudioFeedback('flip');
 
     if (currentDisc && typeof currentDisc.animate === 'function') {
-      // 1. Animación de salida: el disco sale rodando de la mesa
+      // 1. Animación de salida: el elemento sale de la mesa
       const exitAnim = currentDisc.animate([
         { transform: 'translateX(0) scale(1) rotateZ(0deg)', opacity: 1 },
         { transform: `translateX(${exitX}px) scale(0.85) rotateZ(${exitRot}deg)`, opacity: 0 }
@@ -1497,9 +1633,9 @@ class HitTazosEngine {
         this.currentIndex = targetIndex;
         this.renderActiveArenaCard();
 
-        const newDisc = stage.querySelector('.tazo-physical, .tazo-disc');
+        const newDisc = stage.querySelector('.tazo-physical, .tazo-disc, .hittazos-card-3d');
         if (newDisc && typeof newDisc.animate === 'function') {
-          // 2. Animación de entrada: el nuevo disco entra resbalando con rebote elástico
+          // 2. Animación de entrada: el nuevo elemento entra resbalando con rebote elástico
           const enterAnim = newDisc.animate([
             { transform: `translateX(${enterX}px) scale(0.85) rotateZ(${enterRot}deg)`, opacity: 0 },
             { transform: 'translateX(0) scale(1) rotateZ(0deg)', opacity: 1 }
@@ -1541,7 +1677,7 @@ class HitTazosEngine {
 
   shuffleCurrentDeck() {
     const stage = document.getElementById('card-stage');
-    const currentDisc = stage?.querySelector('.tazo-physical, .tazo-disc');
+    const currentDisc = stage?.querySelector('.tazo-physical, .tazo-disc, .hittazos-card-3d');
 
     this.playAudioFeedback('slam');
 
@@ -1621,10 +1757,10 @@ class HitTazosEngine {
       cell.className = 'catalog-card-cell';
       cell.innerHTML = this.buildCardHTML(card, { showYear: true, hideRevealButton: true, isFlipped: false, id: '' });
 
-      const tazoDisc = cell.querySelector('.tazo-disc');
-      if (tazoDisc) {
-        tazoDisc.addEventListener('click', () => {
-          this.flipCard(tazoDisc);
+      const cardElem = cell.querySelector('.tazo-disc, .hittazos-card-3d');
+      if (cardElem) {
+        cardElem.addEventListener('click', () => {
+          this.flipCard(cardElem);
           this.playAudioFeedback('flip');
         });
       }

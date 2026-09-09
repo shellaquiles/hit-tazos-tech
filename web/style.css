@@ -721,9 +721,7 @@ main {
 
 /* El disco tridimensional de inyección plástica */
 .tazo-physical,
-.tazo-disc,
-#active-card-3d,
-.hittazos-card-3d {
+.tazo-disc {
   width: 100%;
   height: 100%;
   aspect-ratio: 1 / 1;
@@ -737,14 +735,50 @@ main {
     0 0 0 1px rgba(0, 0, 0, 0.06);
 }
 
-.tazo-stage:active .tazo-physical {
+/* La tarjeta cuadrada clásica Hit-Tazos Tech (65x65mm) */
+.hittazos-card-3d {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  border-radius: var(--card-radius, 18px);
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+  box-shadow:
+    0 20px 40px -12px rgba(15, 23, 42, 0.28),
+    0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.tazo-stage:active .tazo-physical,
+.tazo-stage:active .hittazos-card-3d {
   box-shadow:
     0 8px 18px -4px rgba(15, 23, 42, 0.22),
     0 0 0 1px rgba(0, 0, 0, 0.06);
 }
 
 .tazo-physical.is-flipped,
-.tazo-disc.is-flipped {
+.tazo-disc.is-flipped,
+.hittazos-card-3d.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.hittazos-card-3d .card-sheet {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--card-radius, 18px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-sizing: border-box;
+}
+
+.hittazos-card-3d .sheet-front {
+  transform: rotateY(0deg);
+}
+
+.hittazos-card-3d .sheet-back {
   transform: rotateY(180deg);
 }
 
