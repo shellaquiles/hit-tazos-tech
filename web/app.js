@@ -200,7 +200,7 @@ class HitTazosEngine {
       this.cards.forEach((c, idx) => {
         c.globalIndex = idx + 1;
       });
-      this.activeDeck = [...this.cards];
+      this.activeDeck = this.shuffleArray([...this.cards]);
       this.filteredCatalog = [...this.cards];
       if (this.counterTotal) {
         this.counterTotal.textContent = this.cards.length;
@@ -526,10 +526,10 @@ class HitTazosEngine {
   selectActiveGroup(grp) {
     this.activeGroup = grp;
     if (grp === 'ALL') {
-      this.activeDeck = [...this.cards];
+      this.activeDeck = this.shuffleArray([...this.cards]);
       if (this.hudGroupLabel) this.hudGroupLabel.textContent = 'Mazo Maestro (576 cartas)';
     } else {
-      this.activeDeck = this.cards.filter(c => c.volumen === grp);
+      this.activeDeck = this.shuffleArray(this.cards.filter(c => c.volumen === grp));
       const name = (this.catalog?.volumes?.[grp] || this.activeDeck[0]?.volumen || `Volumen ${grp}`).toUpperCase();
       if (this.hudGroupLabel) this.hudGroupLabel.textContent = name;
     }
@@ -1446,6 +1446,14 @@ class HitTazosEngine {
     this.transitionToCard(prevIdx, 'prev');
   }
 
+  shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
   shuffleCurrentDeck() {
     const stage = document.getElementById('card-stage');
     const currentDisc = stage?.querySelector('.tazo-physical, .tazo-disc');
@@ -1464,10 +1472,7 @@ class HitTazosEngine {
       });
     }
 
-    for (let i = this.activeDeck.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [this.activeDeck[i], this.activeDeck[j]] = [this.activeDeck[j], this.activeDeck[i]];
-    }
+    this.shuffleArray(this.activeDeck);
     this.currentIndex = 0;
     setTimeout(() => {
       this.renderActiveArenaCard();
