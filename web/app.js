@@ -932,6 +932,9 @@ class HitTazosEngine {
     const stage = document.getElementById('card-stage');
     const tazoDisc = stage?.querySelector('.tazo-physical, .tazo-disc') || stage;
     if (!tazoDisc) return;
+    if (!tazoDisc.classList.contains('is-flipped')) {
+      this.flipCard(stage);
+    }
     const yearStage = tazoDisc.querySelector('#year-target, .tazo-year-hero, .tazo-year-stage, .year-hero-display, .year-center-stage');
     if (yearStage && yearStage.classList.contains('is-hidden')) {
       yearStage.classList.remove('is-hidden');
@@ -988,8 +991,8 @@ class HitTazosEngine {
 
         const card = this.activeDeck[this.currentIndex];
         if (this.guessResultPill) {
-          this.guessResultPill.innerHTML = `<span style="color:#f87171;display:inline-flex;align-items:center;gap:0.4rem">
-            <i data-lucide="eye"></i> Año revelado (${card?.year || ''}) &mdash; <strong>-5 Puntos</strong> (Tiro bloqueado)
+          this.guessResultPill.innerHTML = `<span style="color:#dc2626;display:inline-flex;align-items:center;gap:0.4rem;font-weight:700">
+            <i data-lucide="eye"></i> Año revelado (<strong style="color:#0f172a;background:#fee2e2;padding:0.05rem 0.35rem;border-radius:6px;border:1px solid #fecaca">${card?.year || ''}</strong>) &mdash; <strong>-5 Puntos</strong> (Tiro bloqueado)
           </span>`;
         }
 
@@ -1103,16 +1106,15 @@ class HitTazosEngine {
 
   /** Devuelve mensaje de pista según diferencia y dirección */
   buildHint(diff, val, correctYear) {
-    const direction = val < correctYear ? '↑ más reciente' : '↓ más antiguo';
-    const dirColor = val < correctYear ? '#60a5fa' : '#f97316';
+    const direction = val < correctYear ? '↑ Más reciente' : '↓ Más antiguo';
+    const dirColor = val < correctYear ? '#0284c7' : '#ea580c';
     let temp, tempColor;
-    if (diff <= 5) { temp = '🔥 ¡Caliente!'; tempColor = '#f97316'; }
-    else if (diff <= 15) { temp = '🌡️ Tibio'; tempColor = '#facc15'; }
-    else { temp = '❄️ Frío'; tempColor = '#93c5fd'; }
-    return `<span style="display:inline-flex;align-items:center;gap:0.5rem;flex-wrap:wrap">
+    if (diff <= 5) { temp = '🔥 ¡Caliente!'; tempColor = '#ea580c'; }
+    else if (diff <= 15) { temp = '🌡️ Tibio'; tempColor = '#d97706'; }
+    else { temp = '❄️ Frío'; tempColor = '#0284c7'; }
+    return `<span style="display:inline-flex;align-items:center;gap:0.6rem;flex-wrap:wrap">
       <span style="color:${dirColor};font-weight:700">${direction}</span>
-      <span style="color:${tempColor}">${temp}</span>
-      <span style="color:rgba(255,255,255,0.55);font-size:0.82em">(${diff} año${diff !== 1 ? 's' : ''} de diferencia)</span>
+      <span style="color:${tempColor};font-weight:700">${temp}</span>
     </span>`;
   }
 
@@ -1134,8 +1136,8 @@ class HitTazosEngine {
     // ─ Resultado ─────────────────────────────────────────────────────────────
     if (diff === 0) {
       // ✅ Exacto
-      this.guessResultPill.innerHTML = `<span style="color:#4ade80;display:inline-flex;align-items:center;gap:0.4rem">
-        <i data-lucide="check-circle-2"></i> ¡Exacto! Era ${card.year} &mdash; +3 Puntos
+      this.guessResultPill.innerHTML = `<span style="color:#16a34a;display:inline-flex;align-items:center;gap:0.4rem;font-weight:700">
+        <i data-lucide="check-circle-2"></i> ¡Exacto! Era <strong style="color:#0f172a;background:#dcfce7;padding:0.1rem 0.4rem;border-radius:6px;border:1px solid #bbf7d0;margin:0 0.2rem">${card.year}</strong> &mdash; +3 Puntos
       </span>`;
       this.score += 3; this.streak += 1;
       this.cardSolved = true;
@@ -1146,8 +1148,8 @@ class HitTazosEngine {
 
     } else if (diff <= 2) {
       // 🟡 Muy cerca (±2 años)
-      this.guessResultPill.innerHTML = `<span style="color:#facc15;display:inline-flex;align-items:center;gap:0.4rem">
-        <i data-lucide="sparkles"></i> ¡Muy cerca! Era ${card.year} &mdash; +1 Punto
+      this.guessResultPill.innerHTML = `<span style="color:#b45309;display:inline-flex;align-items:center;gap:0.4rem;font-weight:700">
+        <i data-lucide="sparkles"></i> ¡Muy cerca! Era <strong style="color:#0f172a;background:#fef3c7;padding:0.1rem 0.4rem;border-radius:6px;border:1px solid #fde68a;margin:0 0.2rem">${card.year}</strong> &mdash; +1 Punto
       </span>`;
       this.score += 1; this.streak += 1;
       this.cardSolved = true;
@@ -1162,8 +1164,8 @@ class HitTazosEngine {
 
     } else {
       // ❌ Agotados los intentos — revelar sin puntos
-      this.guessResultPill.innerHTML = `<span style="color:#f87171;display:inline-flex;align-items:center;gap:0.4rem">
-        <i data-lucide="x-circle"></i> Ocurrió en <strong style="color:#fff;margin:0 0.2rem">${card.year}</strong> &mdash; sin puntos
+      this.guessResultPill.innerHTML = `<span style="color:#dc2626;display:inline-flex;align-items:center;gap:0.4rem;font-weight:700">
+        <i data-lucide="x-circle"></i> Ocurrió en <strong style="color:#0f172a;background:#fee2e2;padding:0.1rem 0.4rem;border-radius:6px;border:1px solid #fecaca;margin:0 0.2rem">${card.year}</strong> &mdash; sin puntos
       </span>`;
       this.streak = 0;
       this.cardSolved = true;
