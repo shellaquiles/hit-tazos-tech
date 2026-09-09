@@ -797,7 +797,11 @@ main {
    ANATOMÍA REAL DE TAZOS (LOONEY TUNES 1994 + PAC-MAN SABRITAS)
    ========================================================================== */
 
-/* 1. Base del Disco con Borde Grueso Prensado */
+/* ==========================================================================
+   ANATOMÍA MODERNA DE TAZOS (NEOFROST GLASSO-TITANIO 2026)
+   ========================================================================== */
+
+/* 1. Base del Disco: Acrílico mate pulido con bisel de titanio y neofrost */
 .disc-face,
 .tazo-face {
   position: absolute;
@@ -812,20 +816,43 @@ main {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border: 7px solid #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  background: radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.12), rgba(15, 23, 42, 0.88)) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   box-shadow:
-    inset 0 3px 6px rgba(255, 255, 255, 0.9),
-    inset 0 -5px 8px rgba(0, 0, 0, 0.45),
-    0 0 0 3px #0f172a,
-    0 18px 36px -8px rgba(15, 23, 42, 0.28) !important;
+    /* Sombra de apoyo en mesa */
+    0 24px 48px -12px rgba(0, 0, 0, 0.6),
+    /* Bisel exterior maquinado */
+    inset 0 1px 1px rgba(255, 255, 255, 0.35),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.7),
+    /* Rebaje del surco circular interior */
+    inset 0 0 0 12px rgba(0, 0, 0, 0.25) !important;
 }
 
-/* 2. Anverso: Surcos concéntricos con degradados contrastados (No planos) */
+/* Destello especular diagonal (Cristal zafiro) */
+.disc-face::after,
+.tazo-face::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.03) 40%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 15;
+}
+
+/* 2. Anverso: Neofrost con gradiente de volumen y profundidad óptica */
 .disc-front,
 .tazo-front,
 .disc-face-front,
 .tazo-face-front {
-  background: var(--disc-c1, var(--tazo-c1, #00a651)) !important;
+  background: radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--disc-c1, #0284c7) 40%, rgba(15, 23, 42, 0.95)) 0%, rgba(15, 23, 42, 0.96) 80%) !important;
   transform: rotateY(0deg);
 }
 
@@ -834,39 +861,34 @@ main {
   position: absolute;
   border-radius: 50%;
   box-sizing: border-box;
+  pointer-events: none;
 }
 
 .ring-outer {
   inset: 0;
-  background: var(--disc-c1, var(--tazo-c1, #00d2d3));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
 }
 
 .ring-mid {
-  inset: 46px;
-  background: radial-gradient(circle at 50% 35%, color-mix(in srgb, var(--disc-c1, var(--tazo-c1, #00a651)) 85%, white) 0%, var(--disc-c2, var(--tazo-c2, #0984e3)) 100%);
+  inset: 44px;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.25) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow:
-    inset 0 4px 8px rgba(0, 0, 0, 0.4),
-    0 0 0 2px rgba(0, 0, 0, 0.3),
-    0 2px 5px rgba(255, 255, 255, 0.45);
+    inset 0 2px 6px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
-/* 3. Reverso: Patrón Damero / Cuadros Sabritas Pac-Man */
+/* 3. Reverso: Superficie oscura de obsidiana mate con micro-gradiente */
 .disc-back,
 .tazo-back,
 .disc-face-back,
 .tazo-face-back {
-  background-color: #3b1464 !important;
-  background-image:
-    linear-gradient(45deg, #270648 25%, transparent 25%),
-    linear-gradient(-45deg, #270648 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #270648 75%),
-    linear-gradient(-45deg, transparent 75%, #270648 75%) !important;
-  background-size: 28px 28px !important;
-  background-position: 0 0, 0 14px, 14px -14px, -14px 0px !important;
+  background: radial-gradient(circle at 50% 25%, #1e1b4b 0%, #0f172a 70%, #020617 100%) !important;
   transform: rotateY(180deg);
 }
 
-/* 4. Muescas Físicas en el Borde Blanco (Simulan corte real hacia la mesa) */
+/* 4. Marcas de precisión CNC / Micro-grabado láser minimalista */
 .disc-notches,
 .tazo-notches {
   position: absolute;
@@ -880,20 +902,42 @@ main {
 .disc-notches span,
 .tazo-notches span {
   position: absolute;
-  background: #0f172a;
-  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.8);
+  background: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 4px rgba(56, 189, 248, 0.4);
+  border-radius: 1px;
 }
 
 .disc-notches span:nth-child(1),
-.tazo-notches span:nth-child(1) { top: -6px; left: calc(50% - 7px); width: 14px; height: 16px; border-radius: 4px; }
+.tazo-notches span:nth-child(1) { top: 3px; left: calc(50% - 1px); width: 2px; height: 7px; }
 .disc-notches span:nth-child(2),
-.tazo-notches span:nth-child(2) { bottom: -6px; left: calc(50% - 7px); width: 14px; height: 16px; border-radius: 4px; }
+.tazo-notches span:nth-child(2) { bottom: 3px; left: calc(50% - 1px); width: 2px; height: 7px; }
 .disc-notches span:nth-child(3),
-.tazo-notches span:nth-child(3) { left: -6px; top: calc(50% - 7px); width: 16px; height: 14px; border-radius: 4px; }
+.tazo-notches span:nth-child(3) { left: 3px; top: calc(50% - 1px); width: 7px; height: 2px; }
 .disc-notches span:nth-child(4),
-.tazo-notches span:nth-child(4) { right: -6px; top: calc(50% - 7px); width: 16px; height: 14px; border-radius: 4px; }
+.tazo-notches span:nth-child(4) { right: 3px; top: calc(50% - 1px); width: 7px; height: 2px; }
 
-/* 5. Textos curvados periféricos en SVG con legibilidad de grabado */
+/* 5. Reflejo iridiscente / foil holográfico reactivo al puntero */
+.disc-physical::after,
+.tazo-physical::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from var(--tilt-angle, 0deg),
+    transparent 0deg,
+    rgba(56, 189, 248, 0.22) 60deg,
+    rgba(244, 114, 182, 0.22) 120deg,
+    transparent 180deg
+  );
+  mix-blend-mode: color-dodge;
+  pointer-events: none;
+  opacity: 0.65;
+  transition: opacity 0.25s ease;
+  z-index: 20;
+}
+
+/* 6. Textos curvados periféricos en SVG con grabado nítido */
 .disc-ring-text,
 .tazo-ring-text {
   position: absolute;
@@ -906,15 +950,14 @@ main {
 
 .ring-label, .ring-sub {
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: 8.5px;
-  font-weight: 900;
-  letter-spacing: 1.4px;
+  font-size: 7.2px;
+  font-weight: 600;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  fill: #ffe600;
-  stroke: #000000;
-  stroke-width: 2.2px;
-  paint-order: stroke fill;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.8));
+  fill: #a5f3fc;
+  stroke: none !important;
+  opacity: 0.85;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));
 }
 
 /* Área central de lectura frontal */
@@ -935,61 +978,58 @@ main {
 .disc-hito-prose,
 .tazo-hito-prose {
   font-family: var(--font-sans, 'Outfit', sans-serif);
-  font-size: clamp(0.82rem, 2.5vw, 0.96rem);
-  line-height: 1.4;
+  font-size: clamp(0.84rem, 2.5vw, 0.98rem);
+  line-height: 1.45;
   font-weight: 500;
-  color: #ffffff;
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.9),
-    0 2px 6px rgba(0, 0, 0, 0.6);
+  color: #f1f5f9;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
   max-width: 90%;
 }
 
 .disc-hito-prose strong,
 .tazo-hito-prose strong {
-  color: #fde047; /* Amarillo para conceptos destacados */
+  color: #38bdf8; /* Azul cyan moderno */
   font-weight: 800;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 2px 8px rgba(2, 132, 199, 0.5);
 }
 
 .disc-hito-prose code,
 .tazo-hito-prose code {
   font-family: var(--font-mono, monospace);
-  background: rgba(0, 0, 0, 0.35);
-  color: #67e8f9;
-  padding: 0.12rem 0.4rem;
+  background: rgba(0, 0, 0, 0.4);
+  color: #38bdf8;
+  padding: 0.14rem 0.45rem;
   border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(56, 189, 248, 0.3);
   font-size: 0.9em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* 2. Reverso: Distribución Vertical Espaciosa (Autor / Año / Trivia) */
+/* 7. Reverso: Distribución Vertical Editorial (Autor / Año / Trivia) */
 .disc-core-back,
 .tazo-core-back {
   position: relative;
   z-index: 10;
-  width: 82%;
-  height: 82%;
+  width: 72%;
+  height: 72%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   text-align: center;
   box-sizing: border-box;
-  padding: 0.8rem 0.4rem;
+  padding: 0.5rem 0.3rem;
 }
 
 /* Autor Arriba */
 .disc-back-author,
 .tazo-back-author {
   font-family: var(--font-sans, 'Outfit', sans-serif);
-  font-size: clamp(0.84rem, 2.6vw, 0.96rem);
+  font-size: clamp(0.85rem, 2.6vw, 0.98rem);
   font-weight: 700;
-  color: #ffffff;
+  color: #f1f5f9;
   letter-spacing: -0.01em;
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.95),
-    0 2px 6px rgba(0, 0, 0, 0.85);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
   max-width: 86%;
   line-height: 1.25;
   text-wrap: balance;
@@ -1004,7 +1044,7 @@ main {
   color: #ffffff;
 }
 
-/* Año Hero en el Centro */
+/* Año Hero en el Centro: Escultura metálica con gradiente puro */
 .disc-year-hero,
 .tazo-year-hero {
   position: relative;
@@ -1030,15 +1070,16 @@ main {
 
 .year-number-giant {
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: clamp(3.8rem, 12vw, 4.8rem);
-  font-weight: 900;
-  color: #ffe600;
-  line-height: 0.82;
-  letter-spacing: -2px;
-  -webkit-text-stroke: 2.2px #000000;
-  text-shadow:
-    3.5px 3.5px 0 #000000,
-    0 8px 18px rgba(0, 0, 0, 0.7);
+  font-size: clamp(3.4rem, 11vw, 4.4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.88;
+  background: linear-gradient(180deg, #ffffff 20%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.45));
+  -webkit-text-stroke: 0 !important;
+  text-shadow: none !important;
 }
 
 .disc-year-hero.is-hidden .year-number-giant,
@@ -1051,18 +1092,20 @@ main {
   align-items: center;
   justify-content: center;
   gap: 0.45rem;
-  background: #ff5722;
+  background: rgba(2, 132, 199, 0.85);
   color: #ffffff;
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: 0.80rem;
-  font-weight: 900;
-  letter-spacing: 1px;
-  padding: 0.38rem 1.1rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  padding: 0.38rem 1.05rem;
   border-radius: 999px;
-  border: 2px solid #000000;
-  box-shadow: 0 4px 0 #000000;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
   cursor: pointer;
-  transition: transform 0.15s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.15s ease;
 }
 
 .year-scratch-badge svg {
@@ -1072,6 +1115,8 @@ main {
 
 .year-scratch-badge:hover {
   transform: scale(1.05);
+  background: #0284c7;
+  box-shadow: 0 6px 18px rgba(2, 132, 199, 0.5);
 }
 
 .disc-year-hero.is-hidden .year-scratch-badge,
@@ -1095,23 +1140,22 @@ main {
 .tazo-back-lore {
   font-family: var(--font-sans, 'Outfit', sans-serif);
   font-style: italic;
-  font-size: clamp(0.72rem, 2.2vw, 0.82rem);
-  line-height: 1.34;
-  color: #f8fafc;
-  font-weight: 500;
+  font-size: clamp(0.74rem, 2.2vw, 0.84rem);
+  line-height: 1.36;
+  color: #cbd5e1;
+  font-weight: 400;
   max-width: 88%;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
   text-wrap: pretty;
 }
 
 .disc-back-lore strong,
 .tazo-back-lore strong {
   font-style: italic;
-  color: #ffffff;
-  font-weight: 700;
+  color: #f1f5f9;
+  font-weight: 600;
 }
 
-/* Desactivar brillo especular que empañaba la lectura */
 .disc-foil-reflection,
 .tazo-foil-reflection {
   display: none !important;

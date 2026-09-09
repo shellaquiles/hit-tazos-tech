@@ -459,6 +459,22 @@ export class HitTazosApp {
           "max-glare": 0.25,
           perspective: 1400
         });
+
+        this.cardStage.addEventListener('tiltChange', (event) => {
+          const detail = event.detail;
+          if (detail && detail.angle !== undefined) {
+            this.cardStage.style.setProperty('--tilt-angle', `${detail.angle.toFixed(1)}deg`);
+          }
+        });
+
+        this.cardStage.addEventListener('pointermove', (e) => {
+          const rect = this.cardStage.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const rad = Math.atan2(e.clientY - cy, e.clientX - cx);
+          const deg = (rad * (180 / Math.PI) + 360 + 90) % 360;
+          this.cardStage.style.setProperty('--tilt-angle', `${deg.toFixed(1)}deg`);
+        });
       } catch (_) {}
     }
   }
