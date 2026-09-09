@@ -366,16 +366,27 @@ class HitTazosEngine {
   // 4. Atajos de Teclado con hotkeys-js (Respetan inputs y modales automáticamente)
   bindKeyboardShortcuts() {
     if (typeof hotkeys === 'function') {
-      hotkeys('space', (e) => { e.preventDefault(); this.flipCurrentCard(); });
-      hotkeys('enter', (e) => { e.preventDefault(); this.evaluateGuess(); });
-      hotkeys('r', (e) => { e.preventDefault(); this.toggleActiveCardYear(); });
-      hotkeys('n', () => this.nextCard());
+      // Navegación de cartas: Flechas Izquierda / Derecha
+      hotkeys('left', (e) => { e.preventDefault(); this.prevCard(); });
+      hotkeys('right', (e) => { e.preventDefault(); this.nextCard(); });
       hotkeys('p', () => this.prevCard());
+      hotkeys('n', () => this.nextCard());
+
+      // Ajuste de año: Teclas + y - (incluyendo teclado numérico y Shift)
+      hotkeys('+,=,num_add,shift+=', (e) => { e.preventDefault(); this.nudgeYear(1); });
+      hotkeys('-,num_subtract', (e) => { e.preventDefault(); this.nudgeYear(-1); });
+      hotkeys('up', (e) => { e.preventDefault(); this.nudgeYear(1); });
+      hotkeys('down', (e) => { e.preventDefault(); this.nudgeYear(-1); });
+      hotkeys('shift+up', (e) => { e.preventDefault(); this.nudgeYear(5); });
+      hotkeys('shift+down', (e) => { e.preventDefault(); this.nudgeYear(-5); });
+
+      // Lanzar predicción: Enter
+      hotkeys('enter', (e) => { e.preventDefault(); this.evaluateGuess(); });
+
+      // Volteo y utilidades
+      hotkeys('space', (e) => { e.preventDefault(); this.flipCurrentCard(); });
+      hotkeys('r', (e) => { e.preventDefault(); this.toggleActiveCardYear(); });
       hotkeys('s', () => this.btnSound?.click());
-      hotkeys('left', () => this.nudgeYear(-1));
-      hotkeys('right', () => this.nudgeYear(1));
-      hotkeys('shift+left', () => this.nudgeYear(-5));
-      hotkeys('shift+right', () => this.nudgeYear(5));
 
       const volumeKeys = [
         'ALL', 'kernel-foundations', 'cypherpunks-hacker-lore',
@@ -393,7 +404,12 @@ class HitTazosEngine {
       // Fallback nativo ligero si hotkeys-js no está disponible
       window.addEventListener('keydown', (e) => {
         if (document.activeElement?.tagName === 'INPUT' || document.activeElement === this.galleryQuery) return;
-        if (e.code === 'Space') { e.preventDefault(); this.flipCurrentCard(); }
+        if (e.code === 'Enter' || e.code === 'NumpadEnter') { e.preventDefault(); this.evaluateGuess(); }
+        else if (e.code === 'ArrowLeft') { e.preventDefault(); this.prevCard(); }
+        else if (e.code === 'ArrowRight') { e.preventDefault(); this.nextCard(); }
+        else if (e.key === '+' || e.code === 'NumpadAdd' || e.key === '=') { e.preventDefault(); this.nudgeYear(1); }
+        else if (e.key === '-' || e.code === 'NumpadSubtract') { e.preventDefault(); this.nudgeYear(-1); }
+        else if (e.code === 'Space') { e.preventDefault(); this.flipCurrentCard(); }
         else if (e.code === 'KeyR') { e.preventDefault(); this.toggleActiveCardYear(); }
         else if (e.code === 'KeyN') this.nextCard();
         else if (e.code === 'KeyP') this.prevCard();
@@ -511,11 +527,11 @@ class HitTazosEngine {
     this.activeGroup = grp;
     if (grp === 'ALL') {
       this.activeDeck = [...this.cards];
-      this.hudGroupLabel.textContent = 'Mazo Maestro (576 cartas)';
+      if (this.hudGroupLabel) this.hudGroupLabel.textContent = 'Mazo Maestro (576 cartas)';
     } else {
       this.activeDeck = this.cards.filter(c => c.volumen === grp);
       const name = (this.catalog?.volumes?.[grp] || this.activeDeck[0]?.volumen || `Volumen ${grp}`).toUpperCase();
-      this.hudGroupLabel.textContent = name;
+      if (this.hudGroupLabel) this.hudGroupLabel.textContent = name;
     }
     this.currentIndex = 0;
     this.renderActiveArenaCard();
@@ -753,8 +769,17 @@ class HitTazosEngine {
   }
 
   buildCardHTML(card, options = {}) {
-    const isRevealed = options.isRevealed === true;
-    const yearStateClass = isRevealed ? 'is-revealed' : 'is-hidden';
+    const isFlipped = options.isFlipped !== undefined 
+      ? options.isFlipped === true 
+      : (options.isRevealed === true);
+    const showYear = options.showYear !== undefined 
+      ? options.showYear === true 
+      : (options.isRevealed === true);
+    const hideRevealButton = options.hideRevealButton !== undefined 
+      ? options.hideRevealButton === true 
+      : (options.showYear === true);
+
+    const yearStateClass = showYear ? 'is-revealed' : 'is-hidden';
 
     const hitoFormatted = this.formatMarkdown(card.hito);
     const triviaFormatted = this.formatMarkdown(card.trivia);
@@ -786,7 +811,7 @@ class HitTazosEngine {
     const botPathB = `curve-bb-${uid}`;
 
     return `
-      <div class="tazo-physical tazo-disc ${isRevealed ? 'is-flipped' : ''}" ${discId} style="--tazo-c1: ${palette.c1}; --tazo-c2: ${palette.c2};">
+      <div class="tazo-physical tazo-disc ${isFlipped ? 'is-flipped' : ''}" ${discId} style="--tazo-c1: ${palette.c1}; --tazo-c2: ${palette.c2};">
 
         <!-- ══════════════════════════════════════════════════════════════ -->
         <!-- ANVERSO: DOMINIO + TAG + CITA COMPLETA + ID                   -->
@@ -838,12 +863,14 @@ class HitTazosEngine {
             <div class="tazo-back-author">${creadorFormatted}</div>
 
             <!-- 2. Año Hero en el centro -->
-            <div class="tazo-year-hero ${yearStateClass}" id="year-target" title="Toca para revelar el año [R]">
+            <div class="tazo-year-hero ${yearStateClass}" ${hideRevealButton ? '' : 'id="year-target" title="Toca para revelar el año [R]"'}>
               <span class="year-number-giant">${card.year}</span>
+              ${hideRevealButton ? '' : `
               <div class="year-scratch-badge">
                 <i data-lucide="eye"></i>
                 <span>REVELAR AÑO</span>
               </div>
+              `}
             </div>
 
             <!-- 3. Trivia / Lore en cursiva -->
@@ -862,7 +889,7 @@ class HitTazosEngine {
     const card = this.activeDeck[this.currentIndex];
 
     this.cardStage.innerHTML = this.buildCardHTML(card, { isRevealed: false });
-    this.hudCardCounter.textContent = `${this.currentIndex + 1} / ${this.activeDeck.length}`;
+    if (this.hudCardCounter) this.hudCardCounter.textContent = `${this.currentIndex + 1} / ${this.activeDeck.length}`;
     this.guessResultPill.textContent = '';
     this.updateRevealButtonState(false);
 
@@ -953,15 +980,19 @@ class HitTazosEngine {
     const targetRot = isFlipped ? 0 : 180;
 
     if (typeof tazoDisc.animate === 'function') {
-      tazoDisc.animate([
+      const flipAnim = tazoDisc.animate([
         { transform: `scale(1) rotateY(${isFlipped ? 180 : 0}deg) rotateZ(0deg)` },
         { transform: `scale(1.14) translateY(-22px) rotateY(${isFlipped ? 90 : 90}deg) rotateZ(${isFlipped ? -12 : 12}deg)`, offset: 0.5 },
         { transform: `scale(1) translateY(0) rotateY(${targetRot}deg) rotateZ(0deg)` }
       ], {
         duration: 540,
-        easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
-        fill: 'forwards'
+        easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
       });
+      flipAnim.onfinish = () => {
+        tazoDisc.style.transform = `rotateY(${targetRot}deg)`;
+      };
+    } else {
+      tazoDisc.style.transform = `rotateY(${targetRot}deg)`;
     }
 
     if (isFlipped) {
@@ -1284,14 +1315,17 @@ class HitTazosEngine {
         const newDisc = stage.querySelector('.tazo-physical, .tazo-disc');
         if (newDisc && typeof newDisc.animate === 'function') {
           // 2. Animación de entrada: el nuevo disco entra resbalando con rebote elástico
-          newDisc.animate([
+          const enterAnim = newDisc.animate([
             { transform: `translateX(${enterX}px) scale(0.85) rotateZ(${enterRot}deg)`, opacity: 0 },
             { transform: 'translateX(0) scale(1) rotateZ(0deg)', opacity: 1 }
           ], {
             duration: 320,
-            easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
-            fill: 'forwards'
+            easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
           });
+          enterAnim.onfinish = () => {
+            newDisc.style.transform = '';
+            newDisc.style.opacity = '';
+          };
         }
       };
     } else {
@@ -1348,28 +1382,10 @@ class HitTazosEngine {
     slice.forEach(card => {
       const cell = document.createElement('div');
       cell.className = 'catalog-card-cell';
-      cell.innerHTML = this.buildCardHTML(card, { isRevealed: false, id: '' });
+      cell.innerHTML = this.buildCardHTML(card, { showYear: true, hideRevealButton: true, isFlipped: false, id: '' });
 
       const tazoDisc = cell.querySelector('.tazo-disc');
       if (tazoDisc) {
-        const yearStage = tazoDisc.querySelector('.year-center-stage');
-        if (yearStage) {
-          yearStage.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isHidden = yearStage.classList.contains('is-hidden');
-            if (isHidden) {
-              yearStage.classList.remove('is-hidden');
-              yearStage.classList.add('is-revealed');
-              this.playAudioFeedback('hit');
-            } else {
-              yearStage.classList.remove('is-revealed');
-              yearStage.classList.add('is-hidden');
-              this.playAudioFeedback('flip');
-            }
-            this.refreshIcons();
-          });
-        }
-
         tazoDisc.addEventListener('click', () => {
           this.flipCard(tazoDisc);
           this.playAudioFeedback('flip');

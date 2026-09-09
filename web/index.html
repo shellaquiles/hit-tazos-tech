@@ -242,14 +242,6 @@
         <!-- HUD Superior -->
         <div class="hud-bar">
           <div class="hud-item">
-            <i data-lucide="disc"></i>
-            <span id="hud-group-label">Todos los Grupos</span>
-          </div>
-          <div class="hud-item">
-            <i data-lucide="calendar"></i>
-            Carta: <strong id="hud-card-counter">1</strong>
-          </div>
-          <div class="hud-item">
             <i data-lucide="target"></i>
             Puntos: <strong id="hud-score">0</strong>
           </div>
@@ -510,16 +502,20 @@
           </h3>
           <div class="shortcuts-table">
             <div class="shortcut-row">
-              <kbd class="key-cap">Espacio</kbd>
-              <span>Voltear la carta (Anverso / Reverso)</span>
+              <kbd class="key-cap">&larr;</kbd> <kbd class="key-cap">&rarr;</kbd>
+              <span>Anterior / Siguiente tazo</span>
             </div>
             <div class="shortcut-row">
-              <kbd class="key-cap">&larr;</kbd> <kbd class="key-cap">&rarr;</kbd>
-              <span>Ajustar año en &plusmn;1 año</span>
+              <kbd class="key-cap">+</kbd> <kbd class="key-cap">&minus;</kbd>
+              <span>Subir / Bajar año (&plusmn;1)</span>
             </div>
             <div class="shortcut-row">
               <kbd class="key-cap">Enter</kbd>
-              <span>Comprobar respuesta ingresada</span>
+              <span>Lanzar / Comprobar predicción</span>
+            </div>
+            <div class="shortcut-row">
+              <kbd class="key-cap">Espacio</kbd>
+              <span>Voltear la carta (Anverso / Reverso)</span>
             </div>
             <div class="shortcut-row">
               <kbd class="key-cap">R</kbd>
@@ -527,7 +523,7 @@
             </div>
             <div class="shortcut-row">
               <kbd class="key-cap">N</kbd> <kbd class="key-cap">P</kbd>
-              <span>Siguiente / Anterior carta</span>
+              <span>Navegación secundaria</span>
             </div>
             <div class="shortcut-row">
               <kbd class="key-cap">S</kbd>
