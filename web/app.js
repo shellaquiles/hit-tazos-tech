@@ -15,6 +15,7 @@ class HitTazosEngine {
     this.attemptCount = 0;   // intentos en la tarjeta actual
     this.maxAttempts = 3;    // máximo de intentos antes de revelar
     this.cardSolved = false; // si ya se acertó/resolvió la carta actual
+    this.revealedCards = new Set(); // IDs de tazos ya revelados/resueltos (persistidos en caché)
     this.fuse = null;        // instancia Fuse.js
     this.sfx = null;         // clips foley orgánicos Howler.js
 
@@ -886,17 +887,30 @@ class HitTazosEngine {
   renderActiveArenaCard() {
     if (!this.activeDeck.length) return;
     const card = this.activeDeck[this.currentIndex];
+    const isAlreadyRevealed = card?.id ? this.revealedCards.has(card.id) : false;
 
-    this.cardStage.innerHTML = this.buildCardHTML(card, { isRevealed: false });
+    this.cardStage.innerHTML = this.buildCardHTML(card, { isRevealed: isAlreadyRevealed, isFlipped: false });
     if (this.hudCardCounter) this.hudCardCounter.textContent = `${this.currentIndex + 1} / ${this.activeDeck.length}`;
-    this.guessResultPill.textContent = '';
-    this.updateRevealButtonState(false);
+    this.updateRevealButtonState(isAlreadyRevealed);
 
-    // Reset estado de intentos para la nueva carta
-    this.attemptCount = 0;
-    this.cardSolved = false;
-    this.renderAttemptTracker();
-    if (this.btnSubmitGuess) this.btnSubmitGuess.disabled = false;
+    if (isAlreadyRevealed) {
+      this.cardSolved = true;
+      this.attemptCount = this.maxAttempts;
+      this.renderAttemptTracker();
+      if (this.btnSubmitGuess) this.btnSubmitGuess.disabled = true;
+      if (this.guessResultPill) {
+        this.guessResultPill.innerHTML = `<span style="color:#64748b;display:inline-flex;align-items:center;gap:0.4rem;font-weight:600">
+          <i data-lucide="check-circle-2"></i> Tazo ya resuelto &mdash; Año: <strong style="color:#0f172a;background:#f1f5f9;padding:0.05rem 0.35rem;border-radius:6px;border:1px solid #cbd5e1">${card.year}</strong> (Tiro no disponible)
+        </span>`;
+      }
+    } else {
+      // Reset estado de intentos para la nueva carta no resuelta
+      this.attemptCount = 0;
+      this.cardSolved = false;
+      this.renderAttemptTracker();
+      if (this.btnSubmitGuess) this.btnSubmitGuess.disabled = false;
+      this.guessResultPill.textContent = '';
+    }
 
     // Update Ambient Aura glow with Card Pop Color
     if (this.ambientAura) {
@@ -941,6 +955,11 @@ class HitTazosEngine {
       yearStage.classList.add('is-revealed');
       this.updateRevealButtonState(true);
       this.refreshIcons();
+    }
+    const card = this.activeDeck[this.currentIndex];
+    if (card && card.id) {
+      this.revealedCards.add(card.id);
+      this.persistGameState();
     }
   }
 
@@ -990,6 +1009,9 @@ class HitTazosEngine {
         if (this.hudStreakBox) this.hudStreakBox.classList.remove('streak-hot');
 
         const card = this.activeDeck[this.currentIndex];
+        if (card && card.id) {
+          this.revealedCards.add(card.id);
+        }
         if (this.guessResultPill) {
           this.guessResultPill.innerHTML = `<span style="color:#dc2626;display:inline-flex;align-items:center;gap:0.4rem;font-weight:700">
             <i data-lucide="eye"></i> Año revelado (<strong style="color:#0f172a;background:#fee2e2;padding:0.05rem 0.35rem;border-radius:6px;border:1px solid #fecaca">${card?.year || ''}</strong>) &mdash; <strong>-5 Puntos</strong> (Tiro bloqueado)
@@ -1089,18 +1111,22 @@ class HitTazosEngine {
   renderAttemptTracker() {
     if (!this.attemptDots) return;
     const remaining = Math.max(0, this.maxAttempts - this.attemptCount);
+    const isSolved = this.cardSolved;
     const pips = Array.from({ length: this.maxAttempts }, (_, i) => {
-      const isAvailable = i < remaining;
+      const isAvailable = i < remaining && !isSolved;
       const isCritical = isAvailable && remaining === 1;
       const cls = isAvailable 
         ? (isCritical ? 'attempt-pip critical' : 'attempt-pip') 
         : 'attempt-pip used';
-      return `<span class="${cls}" title="${isAvailable ? 'Tiro disponible' : 'Tiro consumido'}"></span>`;
+      return `<span class="${cls}" title="${isAvailable ? 'Tiro disponible' : 'Tiro no disponible'}"></span>`;
     }).join('');
     this.attemptDots.innerHTML = pips;
     if (this.attemptTracker) {
-      this.attemptTracker.setAttribute('title', `${remaining} de ${this.maxAttempts} tiros disponibles`);
-      this.attemptTracker.setAttribute('aria-label', `${remaining} tiros restantes`);
+      const titleText = isSolved 
+        ? 'Tazo ya resuelto — tiros agotados' 
+        : `${remaining} de ${this.maxAttempts} tiros disponibles`;
+      this.attemptTracker.setAttribute('title', titleText);
+      this.attemptTracker.setAttribute('aria-label', titleText);
     }
   }
 
@@ -1246,25 +1272,29 @@ class HitTazosEngine {
   // 7. Persistencia Asíncrona con idb-keyval (con fallback a localStorage)
   async persistGameState() {
     try {
+      const revealedArray = Array.from(this.revealedCards);
       if (typeof idbKeyval !== 'undefined') {
         await idbKeyval.set('hittazos_shelf', this.playerShelf);
         await idbKeyval.set('hittazos_score', this.score);
         await idbKeyval.set('hittazos_streak', this.streak);
+        await idbKeyval.set('hittazos_revealed', revealedArray);
       } else if (window.localStorage) {
         localStorage.setItem('hittazos_shelf', JSON.stringify(this.playerShelf));
         localStorage.setItem('hittazos_score', String(this.score));
         localStorage.setItem('hittazos_streak', String(this.streak));
+        localStorage.setItem('hittazos_revealed', JSON.stringify(revealedArray));
       }
     } catch (_) { }
   }
 
   async loadSavedState() {
     try {
-      let savedShelf, savedScore, savedStreak;
+      let savedShelf, savedScore, savedStreak, savedRevealed;
       if (typeof idbKeyval !== 'undefined') {
         savedShelf = await idbKeyval.get('hittazos_shelf');
         savedScore = await idbKeyval.get('hittazos_score');
         savedStreak = await idbKeyval.get('hittazos_streak');
+        savedRevealed = await idbKeyval.get('hittazos_revealed');
       } else if (window.localStorage) {
         const rawShelf = localStorage.getItem('hittazos_shelf');
         if (rawShelf) savedShelf = JSON.parse(rawShelf);
@@ -1272,11 +1302,20 @@ class HitTazosEngine {
         if (rawScore !== null) savedScore = parseInt(rawScore, 10);
         const rawStreak = localStorage.getItem('hittazos_streak');
         if (rawStreak !== null) savedStreak = parseInt(rawStreak, 10);
+        const rawRevealed = localStorage.getItem('hittazos_revealed');
+        if (rawRevealed) savedRevealed = JSON.parse(rawRevealed);
       }
 
       if (Array.isArray(savedShelf) && savedShelf.length > 0) {
         this.playerShelf = savedShelf;
         this.renderShelf();
+        // Todas las cartas ganadas en el estante se consideran reveladas
+        this.playerShelf.forEach(c => {
+          if (c && c.id) this.revealedCards.add(c.id);
+        });
+      }
+      if (Array.isArray(savedRevealed)) {
+        savedRevealed.forEach(id => this.revealedCards.add(id));
       }
       if (typeof savedScore === 'number' && !isNaN(savedScore)) {
         this.score = Math.max(0, savedScore);
@@ -1291,6 +1330,11 @@ class HitTazosEngine {
           if (this.streak >= 2) this.hudStreakBox.classList.add('streak-hot');
           else this.hudStreakBox.classList.remove('streak-hot');
         }
+      }
+
+      // Si las cartas ya fueron cargadas y la carta actual ya estaba revelada, actualizar UI
+      if (this.activeDeck && this.activeDeck.length > 0) {
+        this.renderActiveArenaCard();
       }
     } catch (_) { }
   }
