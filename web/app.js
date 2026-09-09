@@ -89,7 +89,6 @@ class HitTazosEngine {
     this.counterTotal = document.getElementById('counter-total');
     this.attemptTracker = document.getElementById('attempt-tracker');
     this.attemptDots = document.getElementById('attempt-dots');
-    this.attemptLabel = document.getElementById('attempt-label');
 
 
     // Catalog elements
@@ -896,7 +895,7 @@ class HitTazosEngine {
     // Reset estado de intentos para la nueva carta
     this.attemptCount = 0;
     this.cardSolved = false;
-    this.renderAttemptTracker(false);
+    this.renderAttemptTracker();
     if (this.btnSubmitGuess) this.btnSubmitGuess.disabled = false;
 
     // Update Ambient Aura glow with Card Pop Color
@@ -1083,16 +1082,23 @@ class HitTazosEngine {
     }
   }
 
-  /** Renderiza los puntos de intento y la etiqueta de contador */
-  renderAttemptTracker(visible) {
-    if (!this.attemptTracker) return;
-    if (!visible) { this.attemptTracker.style.display = 'none'; return; }
-    this.attemptTracker.style.display = 'flex';
-    const dots = Array.from({ length: this.maxAttempts }, (_, i) =>
-      `<span class="attempt-dot ${i < this.attemptCount ? 'used' : ''}"></span>`
-    ).join('');
-    this.attemptDots.innerHTML = dots;
-    this.attemptLabel.textContent = `Intento ${Math.min(this.attemptCount + 1, this.maxAttempts)} / ${this.maxAttempts}`;
+  /** Renderiza los indicadores visuales de tiros/intentos disponibles en el HUD */
+  renderAttemptTracker() {
+    if (!this.attemptDots) return;
+    const remaining = Math.max(0, this.maxAttempts - this.attemptCount);
+    const pips = Array.from({ length: this.maxAttempts }, (_, i) => {
+      const isAvailable = i < remaining;
+      const isCritical = isAvailable && remaining === 1;
+      const cls = isAvailable 
+        ? (isCritical ? 'attempt-pip critical' : 'attempt-pip') 
+        : 'attempt-pip used';
+      return `<span class="${cls}" title="${isAvailable ? 'Tiro disponible' : 'Tiro consumido'}"></span>`;
+    }).join('');
+    this.attemptDots.innerHTML = pips;
+    if (this.attemptTracker) {
+      this.attemptTracker.setAttribute('title', `${remaining} de ${this.maxAttempts} tiros disponibles`);
+      this.attemptTracker.setAttribute('aria-label', `${remaining} tiros restantes`);
+    }
   }
 
   /** Devuelve mensaje de pista según diferencia y dirección */
@@ -1117,7 +1123,7 @@ class HitTazosEngine {
     if (isNaN(val)) return;
 
     this.attemptCount++;
-    this.renderAttemptTracker(true);
+    this.renderAttemptTracker();
 
     const diff = Math.abs(val - card.year);
     const theme = this.getCardTheme(card);
@@ -1153,7 +1159,6 @@ class HitTazosEngine {
       // 🔁 Incorrecto pero quedan intentos — mostrar pista
       this.guessResultPill.innerHTML = this.buildHint(diff, val, card.year);
       this.streak = 0;
-      this.attemptLabel.textContent = `Intento ${this.attemptCount + 1} / ${this.maxAttempts}`;
 
     } else {
       // ❌ Agotados los intentos — revelar sin puntos
@@ -1167,7 +1172,7 @@ class HitTazosEngine {
     }
 
     // Actualizar dots con estado final del intento
-    this.renderAttemptTracker(true);
+    this.renderAttemptTracker();
     if (this.hudScore) {
       this.hudScore.textContent = this.score;
     }
