@@ -1254,28 +1254,90 @@ class HitTazosEngine {
     this.persistGameState();
   }
 
+  // Transición animada al avanzar o retroceder disco
+  transitionToCard(targetIndex, direction = 'next') {
+    const stage = document.getElementById('card-stage');
+    const currentDisc = stage?.querySelector('.tazo-physical, .tazo-disc');
+
+    const exitX = direction === 'next' ? -260 : 260;
+    const enterX = direction === 'next' ? 260 : -260;
+    const exitRot = direction === 'next' ? -24 : 24;
+    const enterRot = direction === 'next' ? 24 : -24;
+
+    this.playAudioFeedback('flip');
+
+    if (currentDisc && typeof currentDisc.animate === 'function') {
+      // 1. Animación de salida: el disco sale rodando de la mesa
+      const exitAnim = currentDisc.animate([
+        { transform: 'translateX(0) scale(1) rotateZ(0deg)', opacity: 1 },
+        { transform: `translateX(${exitX}px) scale(0.85) rotateZ(${exitRot}deg)`, opacity: 0 }
+      ], {
+        duration: 180,
+        easing: 'cubic-bezier(0.4, 0, 1, 1)',
+        fill: 'forwards'
+      });
+
+      exitAnim.onfinish = () => {
+        this.currentIndex = targetIndex;
+        this.renderActiveArenaCard();
+
+        const newDisc = stage.querySelector('.tazo-physical, .tazo-disc');
+        if (newDisc && typeof newDisc.animate === 'function') {
+          // 2. Animación de entrada: el nuevo disco entra resbalando con rebote elástico
+          newDisc.animate([
+            { transform: `translateX(${enterX}px) scale(0.85) rotateZ(${enterRot}deg)`, opacity: 0 },
+            { transform: 'translateX(0) scale(1) rotateZ(0deg)', opacity: 1 }
+          ], {
+            duration: 320,
+            easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+            fill: 'forwards'
+          });
+        }
+      };
+    } else {
+      this.currentIndex = targetIndex;
+      this.renderActiveArenaCard();
+    }
+  }
+
   nextCard() {
     if (!this.activeDeck.length) return;
-    this.currentIndex = (this.currentIndex + 1) % this.activeDeck.length;
-    this.renderActiveArenaCard();
-    this.playAudioFeedback('flip');
+    const nextIdx = (this.currentIndex + 1) % this.activeDeck.length;
+    this.transitionToCard(nextIdx, 'next');
   }
 
   prevCard() {
     if (!this.activeDeck.length) return;
-    this.currentIndex = (this.currentIndex - 1 + this.activeDeck.length) % this.activeDeck.length;
-    this.renderActiveArenaCard();
-    this.playAudioFeedback('flip');
+    const prevIdx = (this.currentIndex - 1 + this.activeDeck.length) % this.activeDeck.length;
+    this.transitionToCard(prevIdx, 'prev');
   }
 
   shuffleCurrentDeck() {
+    const stage = document.getElementById('card-stage');
+    const currentDisc = stage?.querySelector('.tazo-physical, .tazo-disc');
+
+    this.playAudioFeedback('slam');
+
+    if (currentDisc && typeof currentDisc.animate === 'function') {
+      currentDisc.animate([
+        { transform: 'scale(1) rotateZ(0deg)' },
+        { transform: 'scale(0.8) rotateZ(180deg)', offset: 0.5 },
+        { transform: 'scale(1.05) rotateZ(360deg)', offset: 0.8 },
+        { transform: 'scale(1) rotateZ(360deg)' }
+      ], {
+        duration: 380,
+        easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)'
+      });
+    }
+
     for (let i = this.activeDeck.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [this.activeDeck[i], this.activeDeck[j]] = [this.activeDeck[j], this.activeDeck[i]];
     }
     this.currentIndex = 0;
-    this.renderActiveArenaCard();
-    this.playAudioFeedback('flip');
+    setTimeout(() => {
+      this.renderActiveArenaCard();
+    }, 180);
   }
 
 
