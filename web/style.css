@@ -676,6 +676,7 @@ main {
    ========================================================================== */
 
 /* Permite que el disco vuele hacia afuera sin recortarse con un scrollbar */
+.disc-arena-stage,
 .tazo-arena-stage {
   position: relative;
   display: flex;
@@ -687,7 +688,9 @@ main {
 }
 
 /* Escenario y Contenedor de Mesa */
+.disc-stage,
 .tazo-stage,
+.disc-container,
 .tazo-container,
 .card-perspective-stage {
   width: min(360px, 88vw);
@@ -709,18 +712,22 @@ main {
   overflow: visible !important;
 }
 
+.disc-stage:active,
 .tazo-stage:active,
 .card-perspective-stage:active {
   cursor: grabbing;
 }
 
+.disc-stage:hover,
 .tazo-stage:hover,
 .card-perspective-stage:hover {
   transform: translateY(-4px);
 }
 
 /* El disco tridimensional de inyección plástica */
+.disc-physical,
 .tazo-physical,
+.disc,
 .tazo-disc {
   width: 100%;
   height: 100%;
@@ -750,14 +757,18 @@ main {
     0 0 0 1px rgba(0, 0, 0, 0.06);
 }
 
+.disc-stage:active .disc-physical,
 .tazo-stage:active .tazo-physical,
+.disc-stage:active .hittazos-card-3d,
 .tazo-stage:active .hittazos-card-3d {
   box-shadow:
     0 8px 18px -4px rgba(15, 23, 42, 0.22),
     0 0 0 1px rgba(0, 0, 0, 0.06);
 }
 
+.disc-physical.is-flipped,
 .tazo-physical.is-flipped,
+.disc.is-flipped,
 .tazo-disc.is-flipped,
 .hittazos-card-3d.is-flipped {
   transform: rotateY(180deg);
@@ -787,6 +798,7 @@ main {
    ========================================================================== */
 
 /* 1. Base del Disco con Borde Grueso Prensado */
+.disc-face,
 .tazo-face {
   position: absolute;
   inset: 0;
@@ -809,12 +821,15 @@ main {
 }
 
 /* 2. Anverso: Surcos concéntricos con degradados contrastados (No planos) */
+.disc-front,
 .tazo-front,
+.disc-face-front,
 .tazo-face-front {
-  background: var(--tazo-c1, #00a651) !important;
+  background: var(--disc-c1, var(--tazo-c1, #00a651)) !important;
   transform: rotateY(0deg);
 }
 
+.disc-relief-ring,
 .tazo-relief-ring {
   position: absolute;
   border-radius: 50%;
@@ -823,12 +838,12 @@ main {
 
 .ring-outer {
   inset: 0;
-  background: var(--tazo-c1, #00d2d3);
+  background: var(--disc-c1, var(--tazo-c1, #00d2d3));
 }
 
 .ring-mid {
   inset: 46px;
-  background: radial-gradient(circle at 50% 35%, color-mix(in srgb, var(--tazo-c1) 85%, white) 0%, var(--tazo-c2, #0984e3) 100%);
+  background: radial-gradient(circle at 50% 35%, color-mix(in srgb, var(--disc-c1, var(--tazo-c1, #00a651)) 85%, white) 0%, var(--disc-c2, var(--tazo-c2, #0984e3)) 100%);
   box-shadow:
     inset 0 4px 8px rgba(0, 0, 0, 0.4),
     0 0 0 2px rgba(0, 0, 0, 0.3),
@@ -836,7 +851,9 @@ main {
 }
 
 /* 3. Reverso: Patrón Damero / Cuadros Sabritas Pac-Man */
+.disc-back,
 .tazo-back,
+.disc-face-back,
 .tazo-face-back {
   background-color: #3b1464 !important;
   background-image:
@@ -850,6 +867,7 @@ main {
 }
 
 /* 4. Muescas Físicas en el Borde Blanco (Simulan corte real hacia la mesa) */
+.disc-notches,
 .tazo-notches {
   position: absolute;
   inset: 0;
@@ -859,19 +877,24 @@ main {
   z-index: 25;
 }
 
+.disc-notches span,
 .tazo-notches span {
   position: absolute;
-  background: var(--bg-primary, #f8fafc) !important;
-  border: 2px solid #0f172a !important;
-  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.3) !important;
+  background: #0f172a;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.8);
 }
 
+.disc-notches span:nth-child(1),
 .tazo-notches span:nth-child(1) { top: -6px; left: calc(50% - 7px); width: 14px; height: 16px; border-radius: 4px; }
+.disc-notches span:nth-child(2),
 .tazo-notches span:nth-child(2) { bottom: -6px; left: calc(50% - 7px); width: 14px; height: 16px; border-radius: 4px; }
+.disc-notches span:nth-child(3),
 .tazo-notches span:nth-child(3) { left: -6px; top: calc(50% - 7px); width: 16px; height: 14px; border-radius: 4px; }
+.disc-notches span:nth-child(4),
 .tazo-notches span:nth-child(4) { right: -6px; top: calc(50% - 7px); width: 16px; height: 14px; border-radius: 4px; }
 
 /* 5. Textos curvados periféricos en SVG con legibilidad de grabado */
+.disc-ring-text,
 .tazo-ring-text {
   position: absolute;
   inset: 0;
@@ -895,6 +918,7 @@ main {
 }
 
 /* Área central de lectura frontal */
+.disc-core-front,
 .tazo-core-front {
   position: relative;
   z-index: 10;
@@ -908,6 +932,7 @@ main {
   padding: 0.6rem;
 }
 
+.disc-hito-prose,
 .tazo-hito-prose {
   font-family: var(--font-sans, 'Outfit', sans-serif);
   font-size: clamp(0.82rem, 2.5vw, 0.96rem);
@@ -920,12 +945,14 @@ main {
   max-width: 90%;
 }
 
+.disc-hito-prose strong,
 .tazo-hito-prose strong {
   color: #fde047; /* Amarillo para conceptos destacados */
   font-weight: 800;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 
+.disc-hito-prose code,
 .tazo-hito-prose code {
   font-family: var(--font-mono, monospace);
   background: rgba(0, 0, 0, 0.35);
@@ -937,6 +964,7 @@ main {
 }
 
 /* 2. Reverso: Distribución Vertical Espaciosa (Autor / Año / Trivia) */
+.disc-core-back,
 .tazo-core-back {
   position: relative;
   z-index: 10;
@@ -952,6 +980,7 @@ main {
 }
 
 /* Autor Arriba */
+.disc-back-author,
 .tazo-back-author {
   font-family: var(--font-sans, 'Outfit', sans-serif);
   font-size: clamp(0.84rem, 2.6vw, 0.96rem);
@@ -966,7 +995,9 @@ main {
   text-wrap: balance;
 }
 
+.disc-back-author em,
 .tazo-back-author em,
+.disc-back-author strong,
 .tazo-back-author strong {
   font-style: normal;
   font-weight: 700;
@@ -974,6 +1005,7 @@ main {
 }
 
 /* Año Hero en el Centro */
+.disc-year-hero,
 .tazo-year-hero {
   position: relative;
   display: flex;
@@ -986,10 +1018,12 @@ main {
   transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+.disc-year-hero:hover,
 .tazo-year-hero:hover {
   transform: scale(1.06);
 }
 
+.disc-year-hero:active,
 .tazo-year-hero:active {
   transform: scale(0.96);
 }
@@ -1007,6 +1041,7 @@ main {
     0 8px 18px rgba(0, 0, 0, 0.7);
 }
 
+.disc-year-hero.is-hidden .year-number-giant,
 .tazo-year-hero.is-hidden .year-number-giant {
   display: none !important;
 }
@@ -1039,20 +1074,24 @@ main {
   transform: scale(1.05);
 }
 
+.disc-year-hero.is-hidden .year-scratch-badge,
 .tazo-year-hero.is-hidden .year-scratch-badge {
   display: inline-flex !important;
 }
 
+.disc-year-hero.is-revealed .year-scratch-badge,
 .tazo-year-hero.is-revealed .year-scratch-badge {
   display: none !important;
 }
 
+.disc-year-hero.is-revealed .year-number-giant,
 .tazo-year-hero.is-revealed .year-number-giant {
   display: block !important;
   animation: revealPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
 /* Trivia / Lore Abajo */
+.disc-back-lore,
 .tazo-back-lore {
   font-family: var(--font-sans, 'Outfit', sans-serif);
   font-style: italic;
@@ -1065,6 +1104,7 @@ main {
   text-wrap: pretty;
 }
 
+.disc-back-lore strong,
 .tazo-back-lore strong {
   font-style: italic;
   color: #ffffff;
@@ -1072,11 +1112,13 @@ main {
 }
 
 /* Desactivar brillo especular que empañaba la lectura */
+.disc-foil-reflection,
 .tazo-foil-reflection {
   display: none !important;
 }
 
 /* Desactivar capas fantasma */
+.disc-physical-stack,
 .tazo-physical-stack {
   display: none !important;
 }
@@ -1535,6 +1577,7 @@ main {
   color: #64748b;
 }
 
+.disc-year-slider,
 .tazo-year-slider {
   flex: 1;
   -webkit-appearance: none;
@@ -1548,6 +1591,7 @@ main {
   cursor: ew-resize;
 }
 
+.disc-year-slider::-webkit-slider-thumb,
 .tazo-year-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -1563,6 +1607,7 @@ main {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
+.disc-year-slider::-webkit-slider-thumb:active,
 .tazo-year-slider::-webkit-slider-thumb:active {
   transform: scale(1.22);
   cursor: grabbing;
@@ -1571,6 +1616,7 @@ main {
     0 0 22px rgba(56, 189, 248, 0.95);
 }
 
+.disc-year-slider::-moz-range-thumb,
 .tazo-year-slider::-moz-range-thumb {
   width: 32px;
   height: 32px;
@@ -1636,6 +1682,7 @@ main {
   height: 18px;
 }
 
+.disc-nav-cluster,
 .tazo-nav-cluster {
   display: flex;
   justify-content: center;
@@ -1644,6 +1691,7 @@ main {
   margin: 0.5rem auto 1.2rem auto;
 }
 
+.btn-nav-disc,
 .btn-nav-tazo {
   padding: 0.42rem 0.85rem;
   font-size: 0.78rem;
@@ -1852,12 +1900,13 @@ main {
 }
 
 .shelf-card-chip,
+.shelf-disc-chip,
 .shelf-tazo-chip {
   flex-shrink: 0;
   width: 58px;
   height: 58px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, var(--tazo-color, #0ea5e9) 0%, #0369a1 85%);
+  background: radial-gradient(circle at 35% 30%, var(--disc-color, var(--tazo-color, #0ea5e9)) 0%, #0369a1 85%);
   border: 3px solid #ffffff;
   box-shadow: 
     0 4px 10px rgba(15, 23, 42, 0.18), 
@@ -1876,12 +1925,14 @@ main {
 }
 
 .shelf-card-chip:hover,
+.shelf-disc-chip:hover,
 .shelf-tazo-chip:hover {
   transform: translateY(-4px) scale(1.12);
   box-shadow: 0 8px 18px rgba(15, 23, 42, 0.28), 0 0 0 2px #0f172a;
 }
 
 .shelf-card-chip.active,
+.shelf-disc-chip.active,
 .shelf-tazo-chip.active {
   transform: translateY(-4px) scale(1.15);
   box-shadow: 
@@ -1891,6 +1942,7 @@ main {
 }
 
 .shelf-year,
+.shelf-disc-year,
 .shelf-tazo-year {
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
   font-size: 0.85rem;
@@ -1902,6 +1954,7 @@ main {
 }
 
 .shelf-id,
+.shelf-disc-id,
 .shelf-tazo-id {
   font-family: var(--font-mono, monospace);
   font-size: 0.52rem;
@@ -2048,10 +2101,12 @@ main {
   justify-content: center;
 }
 
+.catalog-card-cell .disc-year-hero,
 .catalog-card-cell .tazo-year-hero {
   cursor: inherit;
 }
 
+.catalog-card-cell .disc-year-hero:hover,
 .catalog-card-cell .tazo-year-hero:hover {
   transform: none;
 }
@@ -2931,11 +2986,13 @@ main {
     width: 100%;
   }
 
+  .disc-arena-stage,
   .tazo-arena-stage {
     order: 2;
     margin: 0.2rem auto 0.4rem auto;
   }
 
+  .disc-stage,
   .tazo-stage {
     width: var(--card-width) !important;
     height: var(--card-height) !important;
@@ -2943,12 +3000,14 @@ main {
   }
 
   /* Núcleo central del disco con más aire para el texto */
+  .disc-core-front,
   .tazo-core-front {
     width: 82% !important;
     height: 82% !important;
     padding: 0.45rem !important;
   }
 
+  .disc-hito-prose,
   .tazo-hito-prose {
     font-size: clamp(0.74rem, 2.7vw, 0.80rem) !important;
     line-height: 1.32 !important;
@@ -3082,10 +3141,12 @@ main {
     font-size: 0.72rem;
   }
 
+  .disc-year-slider,
   .tazo-year-slider {
     height: 10px;
   }
 
+  .disc-year-slider::-webkit-slider-thumb,
   .tazo-year-slider::-webkit-slider-thumb {
     width: 24px;
     height: 24px;
@@ -3151,6 +3212,7 @@ main {
   }
 
   .shelf-card-chip,
+  .shelf-disc-chip,
   .shelf-tazo-chip {
     width: 46px;
     height: 46px;
@@ -3160,12 +3222,14 @@ main {
   }
 
   .shelf-year,
+  .shelf-disc-year,
   .shelf-tazo-year {
     font-size: 0.75rem;
     line-height: 1;
   }
 
   .shelf-id,
+  .shelf-disc-id,
   .shelf-tazo-id {
     font-size: 0.50rem;
     line-height: 1;
@@ -3178,6 +3242,7 @@ main {
   }
 
   /* 6. CONTROLES RÁPIDOS INFERIORES EN UNA SOLA FILA */
+  .disc-nav-cluster,
   .tazo-nav-cluster {
     order: 6;
     margin: 0.15rem auto 0.4rem auto;
@@ -3189,6 +3254,7 @@ main {
     max-width: 350px;
   }
 
+  .btn-nav-disc,
   .btn-nav-tazo {
     padding: 0.28rem 0.45rem;
     font-size: 0.68rem;
@@ -3199,7 +3265,9 @@ main {
     white-space: nowrap;
   }
 
+  .btn-nav-disc i,
   .btn-nav-tazo i,
+  .btn-nav-disc svg,
   .btn-nav-tazo svg {
     width: 13px;
     height: 13px;

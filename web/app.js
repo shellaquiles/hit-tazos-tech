@@ -15,8 +15,9 @@ class HitTazosEngine {
     this.attemptCount = 0;   // intentos en la tarjeta actual
     this.maxAttempts = 3;    // máximo de intentos antes de revelar
     this.cardSolved = false; // si ya se acertó/resolvió la carta actual
-    this.revealedCards = new Set(); // IDs de tazos ya revelados/resueltos (persistidos en caché)
-    this.cardFormat = localStorage.getItem('hittazos_format') || 'tazo'; // 'tazo' | 'card'
+    this.revealedCards = new Set(); // IDs de cartas/discos ya revelados/resueltos (persistidos en caché)
+    const savedFormat = localStorage.getItem('hittazos_format');
+    this.cardFormat = (savedFormat === 'card' ? 'card' : 'disc'); // 'disc' | 'card'
     this.fuse = null;        // instancia Fuse.js
     this.sfx = null;         // clips foley orgánicos Howler.js
 
@@ -339,7 +340,7 @@ class HitTazosEngine {
     // Volteo al hacer clic en el disco/tarjeta (excepto si se toca el número de año)
     this.cardStage.addEventListener('click', (e) => {
       if (this.justHandledTouch) return;
-      if (e.target.closest('#year-target, .tazo-year-hero, .year-number-giant, .year-scratch-badge, .year-center-stage')) {
+      if (e.target.closest('#year-target, .disc-year-hero, .tazo-year-hero, .year-number-giant, .year-scratch-badge, .year-center-stage')) {
         return; // Clic consumido por el revelador de año
       }
       this.flipCurrentCard();
@@ -495,7 +496,7 @@ class HitTazosEngine {
       // Tap simple: Voltear la carta
       gesture.on('tap', (event) => {
         // Evita voltear si el usuario tocó el botón o área de revelado del año
-        if (event && event.target && event.target.closest('#year-target, .tazo-year-hero, .year-number-giant, .year-scratch-badge')) return;
+        if (event && event.target && event.target.closest('#year-target, .disc-year-hero, .tazo-year-hero, .year-number-giant, .year-scratch-badge')) return;
         this.justHandledTouch = true;
         setTimeout(() => { this.justHandledTouch = false; }, 350);
         if (navigator.vibrate) {
@@ -698,7 +699,7 @@ class HitTazosEngine {
     return map[domain] || 'cpu';
   }
 
-  getTazoPalette(card) {
+  getDiscPalette(card) {
     const domainPalettes = {
       'languages-runtimes': {
         c1: '#00d2d3', // Turquesa eléctrico
@@ -776,6 +777,10 @@ class HitTazosEngine {
     };
   }
 
+  getTazoPalette(card) {
+    return this.getDiscPalette(card);
+  }
+
   parseHito(hito) {
     const boldRegex = /\*\*(.*?)\*\*/;
     const match = hito.match(boldRegex);
@@ -789,7 +794,7 @@ class HitTazosEngine {
   }
 
   toggleCardFormat() {
-    this.cardFormat = this.cardFormat === 'card' ? 'tazo' : 'card';
+    this.cardFormat = this.cardFormat === 'card' ? 'disc' : 'card';
     try {
       localStorage.setItem('hittazos_format', this.cardFormat);
     } catch (_) {}
@@ -824,7 +829,7 @@ class HitTazosEngine {
     if (this.cardFormat === 'card') {
       return this.buildSquareCardHTML(card, options);
     }
-    return this.buildTazoHTML(card, options);
+    return this.buildDiscHTML(card, options);
   }
 
   buildSquareCardHTML(card, options = {}) {
@@ -914,7 +919,7 @@ class HitTazosEngine {
     `;
   }
 
-  buildTazoHTML(card, options = {}) {
+  buildDiscHTML(card, options = {}) {
     const isFlipped = options.isFlipped !== undefined 
       ? options.isFlipped === true 
       : (options.isRevealed === true);
@@ -931,7 +936,7 @@ class HitTazosEngine {
     const triviaFormatted = this.formatMarkdown(card.trivia);
     const creadorFormatted = this.formatMarkdown(card.autor);
 
-    const palette = this.getTazoPalette(card);
+    const palette = this.getDiscPalette(card);
 
     // Mismos metadatos exactos de la tarjeta cuadrada
     const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
@@ -950,28 +955,28 @@ class HitTazosEngine {
     const backBottomLabel = `shellaquiles.org`;
 
     const discId = options.id !== undefined ? (options.id ? `id="${options.id}"` : '') : 'id="active-card-3d"';
-    const uid = (card.id || 'tazo').replace(/[^a-zA-Z0-9]/g, '_') + '_' + Math.floor(Math.random() * 1000);
+    const uid = (card.id || 'disc').replace(/[^a-zA-Z0-9]/g, '_') + '_' + Math.floor(Math.random() * 1000);
     const topPathF = `curve-tf-${uid}`;
     const botPathF = `curve-bf-${uid}`;
     const topPathB = `curve-tb-${uid}`;
     const botPathB = `curve-bb-${uid}`;
 
     return `
-      <div class="tazo-physical tazo-disc ${isFlipped ? 'is-flipped' : ''}" ${discId} style="--tazo-c1: ${palette.c1}; --tazo-c2: ${palette.c2};">
+      <div class="disc-physical disc tazo-physical tazo-disc ${isFlipped ? 'is-flipped' : ''}" ${discId} style="--disc-c1: ${palette.c1}; --disc-c2: ${palette.c2}; --tazo-c1: ${palette.c1}; --tazo-c2: ${palette.c2};">
 
         <!-- ══════════════════════════════════════════════════════════════ -->
         <!-- ANVERSO: DOMINIO + TAG + CITA COMPLETA + ID                   -->
         <!-- ══════════════════════════════════════════════════════════════ -->
-        <div class="tazo-face tazo-front tazo-face-front">
-          <div class="tazo-notches" aria-hidden="true">
+        <div class="disc-face disc-front disc-face-front tazo-face tazo-front">
+          <div class="disc-notches tazo-notches" aria-hidden="true">
             <span></span><span></span><span></span><span></span>
           </div>
 
-          <div class="tazo-relief-ring ring-outer" aria-hidden="true"></div>
-          <div class="tazo-relief-ring ring-mid" aria-hidden="true"></div>
+          <div class="disc-relief-ring ring-outer tazo-relief-ring" aria-hidden="true"></div>
+          <div class="disc-relief-ring ring-mid tazo-relief-ring" aria-hidden="true"></div>
 
           <!-- Arco superior e inferior -->
-          <svg class="tazo-ring-text" viewBox="0 0 300 300" aria-hidden="true">
+          <svg class="disc-ring-text tazo-ring-text" viewBox="0 0 300 300" aria-hidden="true">
             <path id="${topPathF}" d="M 22,150 A 128,128 0 0,1 278,150" fill="none" />
             <path id="${botPathF}" d="M 22,150 A 128,128 0 0,0 278,150" fill="none" />
             <text class="ring-label"><textPath href="#${topPathF}" startOffset="50%" text-anchor="middle">${frontTopLabel}</textPath></text>
@@ -979,24 +984,24 @@ class HitTazosEngine {
           </svg>
 
           <!-- Centro: Texto del Hito (amplio, legible, sin marcos invasivos) -->
-          <div class="tazo-core-front">
-            <div class="tazo-hito-prose">
+          <div class="disc-core-front tazo-core-front">
+            <div class="disc-hito-prose tazo-hito-prose">
               ${hitoFormatted}
             </div>
           </div>
 
-          <div class="tazo-foil-reflection" aria-hidden="true"></div>
+          <div class="disc-foil-reflection tazo-foil-reflection" aria-hidden="true"></div>
         </div>
 
         <!-- ══════════════════════════════════════════════════════════════ -->
         <!-- REVERSO: AUTOR ARRIBA + AÑO GIGANTE + TRIVIA LORE ABAJO      -->
         <!-- ══════════════════════════════════════════════════════════════ -->
-        <div class="tazo-face tazo-back tazo-face-back">
-          <div class="tazo-notches" aria-hidden="true">
+        <div class="disc-face disc-back disc-face-back tazo-face tazo-back">
+          <div class="disc-notches tazo-notches" aria-hidden="true">
             <span></span><span></span><span></span><span></span>
           </div>
 
-          <svg class="tazo-ring-text" viewBox="0 0 300 300" aria-hidden="true">
+          <svg class="disc-ring-text tazo-ring-text" viewBox="0 0 300 300" aria-hidden="true">
             <path id="${topPathB}" d="M 22,150 A 128,128 0 0,1 278,150" fill="none" />
             <path id="${botPathB}" d="M 22,150 A 128,128 0 0,0 278,150" fill="none" />
             <text class="ring-label"><textPath href="#${topPathB}" startOffset="50%" text-anchor="middle">${backTopLabel}</textPath></text>
@@ -1004,12 +1009,12 @@ class HitTazosEngine {
           </svg>
 
           <!-- Distribución vertical pura: 1. Autor | 2. Año Hero | 3. Lore -->
-          <div class="tazo-core-back">
+          <div class="disc-core-back tazo-core-back">
             <!-- 1. Autor / Creador -->
-            <div class="tazo-back-author">${creadorFormatted}</div>
+            <div class="disc-back-author tazo-back-author">${creadorFormatted}</div>
 
             <!-- 2. Año Hero en el centro -->
-            <div class="tazo-year-hero ${yearStateClass}" ${hideRevealButton ? '' : 'id="year-target" title="Toca para revelar el año (-5 Pts) [R]"'}>
+            <div class="disc-year-hero tazo-year-hero ${yearStateClass}" ${hideRevealButton ? '' : 'id="year-target" title="Toca para revelar el año (-5 Pts) [R]"'}>
               <span class="year-number-giant">${card.year}</span>
               ${hideRevealButton ? '' : `
               <div class="year-scratch-badge">
@@ -1020,14 +1025,18 @@ class HitTazosEngine {
             </div>
 
             <!-- 3. Trivia / Lore en cursiva -->
-            <div class="tazo-back-lore">${triviaFormatted}</div>
+            <div class="disc-back-lore tazo-back-lore">${triviaFormatted}</div>
           </div>
 
-          <div class="tazo-foil-reflection" aria-hidden="true"></div>
+          <div class="disc-foil-reflection tazo-foil-reflection" aria-hidden="true"></div>
         </div>
 
       </div>
     `;
+  }
+
+  buildTazoHTML(card, options = {}) {
+    return this.buildDiscHTML(card, options);
   }
 
   renderActiveArenaCard() {
@@ -1076,7 +1085,7 @@ class HitTazosEngine {
 
     // Actualizar chip activo en el estante si coincide
     if (this.shelfCardsContainer) {
-      const chips = this.shelfCardsContainer.querySelectorAll('.shelf-tazo-chip');
+      const chips = this.shelfCardsContainer.querySelectorAll('.shelf-disc-chip, .shelf-tazo-chip');
       chips.forEach(chip => {
         if (chip.getAttribute('data-card-id') === card.id) {
           chip.classList.add('active');
@@ -1103,12 +1112,12 @@ class HitTazosEngine {
 
   revealActiveCardYear() {
     const stage = document.getElementById('card-stage');
-    const tazoDisc = stage?.querySelector('.tazo-physical, .tazo-disc, .hittazos-card-3d') || stage;
-    if (!tazoDisc) return;
-    if (!tazoDisc.classList.contains('is-flipped')) {
+    const disc = stage?.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d') || stage;
+    if (!disc) return;
+    if (!disc.classList.contains('is-flipped')) {
       this.flipCard(stage);
     }
-    const yearStage = tazoDisc.querySelector('#year-target, .tazo-year-hero, .tazo-year-stage, .year-hero-display, .year-center-stage');
+    const yearStage = disc.querySelector('#year-target, .disc-year-hero, .tazo-year-hero, .tazo-year-stage, .year-hero-display, .year-center-stage');
     if (yearStage && yearStage.classList.contains('is-hidden')) {
       yearStage.classList.remove('is-hidden');
       yearStage.classList.add('is-revealed');
@@ -1124,15 +1133,15 @@ class HitTazosEngine {
 
   toggleActiveCardYear() {
     const stage = document.getElementById('card-stage');
-    const tazoDisc = stage?.querySelector('.tazo-physical, .tazo-disc, .hittazos-card-3d') || stage;
-    if (!tazoDisc) return;
+    const disc = stage?.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d') || stage;
+    if (!disc) return;
 
-    // Si el tazo está de frente, voltearlo para ver el reverso
-    if (!tazoDisc.classList.contains('is-flipped')) {
+    // Si el disco está de frente, voltearlo para ver el reverso
+    if (!disc.classList.contains('is-flipped')) {
       this.flipCard(stage);
     }
 
-    const yearStage = tazoDisc.querySelector('#year-target, .tazo-year-hero, .tazo-year-stage, .year-hero-display, .year-center-stage');
+    const yearStage = disc.querySelector('#year-target, .disc-year-hero, .tazo-year-hero, .tazo-year-stage, .year-hero-display, .year-center-stage');
     if (!yearStage) return;
 
     const isHidden = yearStage.classList.contains('is-hidden');
@@ -1151,8 +1160,8 @@ class HitTazosEngine {
           return;
         }
 
-        // Si el tazo está de frente, voltearlo para ver el reverso
-        if (!tazoDisc.classList.contains('is-flipped')) {
+        // Si el disco está de frente, voltearlo para ver el reverso
+        if (!disc.classList.contains('is-flipped')) {
           this.flipCard(stage);
         }
 
@@ -1180,7 +1189,7 @@ class HitTazosEngine {
         this.persistGameState();
         this.playAudioFeedback('slam');
       } else {
-        if (!tazoDisc.classList.contains('is-flipped')) {
+        if (!disc.classList.contains('is-flipped')) {
           this.flipCard(stage);
         }
         this.playAudioFeedback('hit');
@@ -1201,14 +1210,14 @@ class HitTazosEngine {
   // Volteo del Tazo/Tarjeta 3D con tambaleo y física
   flipCard(containerEl) {
     if (!containerEl) return;
-    const tazoDisc = containerEl.querySelector('.tazo-disc, .hittazos-card-3d') || containerEl;
-    if (!tazoDisc) return;
+    const disc = containerEl.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d') || containerEl;
+    if (!disc) return;
 
-    const isFlipped = tazoDisc.classList.contains('is-flipped');
+    const isFlipped = disc.classList.contains('is-flipped');
     const targetRot = isFlipped ? 0 : 180;
 
-    if (typeof tazoDisc.animate === 'function') {
-      const flipAnim = tazoDisc.animate([
+    if (typeof disc.animate === 'function') {
+      const flipAnim = disc.animate([
         { transform: `scale(1) rotateY(${isFlipped ? 180 : 0}deg) rotateZ(0deg)` },
         { transform: `scale(1.14) translateY(-22px) rotateY(${isFlipped ? 90 : 90}deg) rotateZ(${isFlipped ? -12 : 12}deg)`, offset: 0.5 },
         { transform: `scale(1) translateY(0) rotateY(${targetRot}deg) rotateZ(0deg)` }
@@ -1217,16 +1226,16 @@ class HitTazosEngine {
         easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
       });
       flipAnim.onfinish = () => {
-        tazoDisc.style.transform = `rotateY(${targetRot}deg)`;
+        disc.style.transform = `rotateY(${targetRot}deg)`;
       };
     } else {
-      tazoDisc.style.transform = `rotateY(${targetRot}deg)`;
+      disc.style.transform = `rotateY(${targetRot}deg)`;
     }
 
     if (isFlipped) {
-      tazoDisc.classList.remove('is-flipped');
+      disc.classList.remove('is-flipped');
     } else {
-      tazoDisc.classList.add('is-flipped');
+      disc.classList.add('is-flipped');
     }
   }
 
@@ -1239,14 +1248,14 @@ class HitTazosEngine {
     }
   }
 
-  // Animación de impacto y giro plástico al comprobar el año (física de tazo/tarjeta)
-  slamTazo(isSuccess) {
+  // Animación de impacto y giro plástico al comprobar el año (física de disco/tarjeta)
+  slamDisc(isSuccess) {
     const stage = document.getElementById('card-stage');
-    const tazoDisc = stage?.querySelector('.tazo-disc, .hittazos-card-3d') || stage;
-    if (!tazoDisc) return;
+    const disc = stage?.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d') || stage;
+    if (!disc) return;
 
-    if (typeof tazoDisc.animate === 'function') {
-      tazoDisc.animate([
+    if (typeof disc.animate === 'function') {
+      disc.animate([
         { transform: 'scale(1) rotateY(0deg) rotateZ(0deg)' },
         { transform: 'scale(1.22) translateY(-38px) rotateY(180deg) rotateZ(16deg)', offset: 0.38 },
         { transform: 'scale(0.94) translateY(8px) rotateY(180deg) rotateZ(-7deg)', offset: 0.68 },
@@ -1257,13 +1266,17 @@ class HitTazosEngine {
         easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)',
         fill: 'forwards'
       });
-      tazoDisc.classList.add('is-flipped');
+      disc.classList.add('is-flipped');
     }
 
     // Efecto sonoro foley de impacto plástico
     if (this.soundEnabled) {
       this.playAudioFeedback(isSuccess ? 'hit' : 'slam');
     }
+  }
+
+  slamTazo(isSuccess) {
+    return this.slamDisc(isSuccess);
   }
 
   /** Renderiza los indicadores visuales de tiros/intentos disponibles en el HUD */
@@ -1316,7 +1329,7 @@ class HitTazosEngine {
     const theme = this.getCardTheme(card);
 
     // Animación física del Tazo (Slam / Wobble)
-    this.slamTazo(diff <= 2);
+    this.slamDisc(diff <= 2);
 
     // ─ Resultado ─────────────────────────────────────────────────────────────
     if (diff === 0) {
@@ -1507,7 +1520,8 @@ class HitTazosEngine {
       const chip = document.createElement('div');
       const theme = this.getCardTheme(c);
       const isSelected = currentCard && currentCard.id === c.id;
-      chip.className = `shelf-tazo-chip ${isSelected ? 'active' : ''}`;
+      chip.className = `shelf-disc-chip shelf-tazo-chip ${isSelected ? 'active' : ''}`;
+      chip.style.setProperty('--disc-color', theme.bg);
       chip.style.setProperty('--tazo-color', theme.bg);
       chip.setAttribute('data-card-id', c.id);
       const volId = c.id ? c.id.split('-')[0].replace('vol', '') : '0';
@@ -1518,8 +1532,8 @@ class HitTazosEngine {
       chip.setAttribute('tabindex', '0');
       chip.setAttribute('aria-label', `Ver Tazo del año ${c.year}: ${c.autor || ''}`);
       chip.innerHTML = `
-        <div class="shelf-tazo-year">${c.year}</div>
-        <div class="shelf-tazo-id">${chipNum}</div>
+        <div class="shelf-disc-year shelf-tazo-year">${c.year}</div>
+        <div class="shelf-disc-id shelf-tazo-id">${chipNum}</div>
       `;
 
       const viewWonCard = () => {
@@ -1576,7 +1590,7 @@ class HitTazosEngine {
     }
 
     if (this.shelfCardsContainer) {
-      const chips = this.shelfCardsContainer.querySelectorAll('.shelf-tazo-chip');
+      const chips = this.shelfCardsContainer.querySelectorAll('.shelf-disc-chip, .shelf-tazo-chip');
       chips.forEach(chip => {
         if (chip.getAttribute('data-card-id') === card.id) {
           chip.classList.add('active');
@@ -1609,7 +1623,7 @@ class HitTazosEngine {
   // Transición animada al avanzar o retroceder disco o tarjeta
   transitionToCard(targetIndex, direction = 'next') {
     const stage = document.getElementById('card-stage');
-    const currentDisc = stage?.querySelector('.tazo-physical, .tazo-disc, .hittazos-card-3d');
+    const currentDisc = stage?.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d');
 
     const exitX = direction === 'next' ? -260 : 260;
     const enterX = direction === 'next' ? 260 : -260;
@@ -1633,7 +1647,7 @@ class HitTazosEngine {
         this.currentIndex = targetIndex;
         this.renderActiveArenaCard();
 
-        const newDisc = stage.querySelector('.tazo-physical, .tazo-disc, .hittazos-card-3d');
+        const newDisc = stage.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d');
         if (newDisc && typeof newDisc.animate === 'function') {
           // 2. Animación de entrada: el nuevo elemento entra resbalando con rebote elástico
           const enterAnim = newDisc.animate([
@@ -1677,7 +1691,7 @@ class HitTazosEngine {
 
   shuffleCurrentDeck() {
     const stage = document.getElementById('card-stage');
-    const currentDisc = stage?.querySelector('.tazo-physical, .tazo-disc, .hittazos-card-3d');
+    const currentDisc = stage?.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d');
 
     this.playAudioFeedback('slam');
 
@@ -1757,7 +1771,7 @@ class HitTazosEngine {
       cell.className = 'catalog-card-cell';
       cell.innerHTML = this.buildCardHTML(card, { showYear: true, hideRevealButton: true, isFlipped: false, id: '' });
 
-      const cardElem = cell.querySelector('.tazo-disc, .hittazos-card-3d');
+      const cardElem = cell.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d');
       if (cardElem) {
         cardElem.addEventListener('click', () => {
           this.flipCard(cardElem);
