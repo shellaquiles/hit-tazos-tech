@@ -224,3 +224,45 @@ Para evitar el **síndrome NIH (Not Invented Here)** y no escribir código utili
    - **`snarkdown`:** Parser de Markdown a HTML estándar.
    - **`idb-keyval`:** Persistencia asíncrona en IndexedDB con API tipo clave-valor.
    - **`tinygesture`:** Reconocimiento de gestos táctiles móviles (`swipe`, `tap`) respetando el scroll vertical.
+
+---
+
+## 🕹️ 14. Mecánicas de Juego Web y Flujo Arcade (UX & State Machine Contract)
+
+La lógica del cliente web interactivo reside en `web/app.js` bajo la clase `HitTazosEngine` y debe satisfacer estrictamente el siguiente contrato de estados y reglas:
+
+### 1. Variables de Estado Centrales:
+- **`this.score`:** Entero $\ge 0$. **Regla de oro: No se permiten puntos negativos bajo ninguna circunstancia.**
+- **`this.streak`:** Entero de aciertos consecutivos. Cuando $\ge 2$, añade la clase visual `.streak-hot` al HUD (modo "On Fire"). Se reinicia a 0 ante cualquier tiro fallido o al revelar año.
+- **`this.attemptCount`:** Contador de tiros consumidos en la carta actual ($0$ a $3$).
+- **`this.maxAttempts`:** Límite de 3 intentos por tarjeta.
+- **`this.cardSolved`:** Booleano de bloqueo. Si es `true`, deshabilita el botón de tiro (`btnSubmitGuess.disabled = true`), desactiva el atajo `Enter` y marca los micro-tazos del HUD como agotados.
+- **`this.revealedCards`:** `Set<string>` con los IDs de tarjetas ya reveladas/resueltas. Se serializa en caché para evitar que una carta resuelta se vuelva a adivinar tras recargar o navegar.
+- **`this.playerShelf`:** Array ordenado cronológicamente con las tarjetas ganadas por el jugador (objetivo: 10 cartas).
+
+### 2. Tabla Canónica de Puntuación y Reglas:
+| Suceso en Turno | Puntos | Racha | Tarjeta a Estante | Estado del Tiro |
+| :--- | :---: | :---: | :---: | :--- |
+| **Acierto Exacto (`diff === 0`)** | **+3** | **+1** | ✅ Sí | Bloqueado (`cardSolved = true`) |
+| **Margen Cercano (`diff <= 2`)** | **+1** | **+1** | ✅ Sí | Bloqueado (`cardSolved = true`) |
+| **Fallo con intentos restantes** | **0** | **0** | ❌ No | Pista direccional/térmica sin spoiler |
+| **Agotar 3 intentos** | **0** | **0** | ❌ No | Voltea a reverso y bloquea tiro |
+| **Revelar Año (`score >= 5`)** | **-5** | **0** | ❌ No | Voltea a reverso y bloquea tiro |
+| **Revelar Año (`score < 5`)** | **0** | Inalterada | ❌ No | **No revela año.** Tiro sigue activo. |
+
+### 3. Pistas Cualitativas (Anti-Spoiler):
+* Al fallar un tiro dentro de los 3 intentos, la pista **NUNCA debe revelar la cantidad exacta de años de diferencia**.
+* Únicamente indica:
+  * **Dirección:** `↑ Más reciente` o `↓ Más antiguo`.
+  * **Temperatura:** `🔥 ¡Caliente!` ($\le 5$ años), `🌡️ Tibio` ($\le 15$ años) o `❄️ Frío` ($> 15$ años).
+
+### 4. Persistencia en Caché (Dual IDB + localStorage):
+Cualquier mutación de partida debe invocar `this.persistGameState()` para sincronizar:
+* `hittazos_shelf`: Tarjetas en la línea de tiempo.
+* `hittazos_score`: Puntuación actual ($\ge 0$).
+* `hittazos_streak`: Racha actual.
+* `hittazos_revealed`: Lista de IDs de cartas resueltas.
+
+### 5. Barajeo y Reinicio:
+* **Barajeo inicial:** `this.activeDeck` se mezcla aleatoriamente con Fisher-Yates al iniciar, al recargar o al cambiar de volumen.
+* **Reinicio (`resetGame()`):** Solicita confirmación, restablece puntos a 0, racha a 0, vacía estante y caché persistente, y barajea el mazo nuevamente. Accesible vía botón en header, estante o atajo <kbd>Shift</kbd>+<kbd>R</kbd>.

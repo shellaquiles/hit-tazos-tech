@@ -27,6 +27,52 @@ npm run serve
 * **🔍 Explorador y Catálogo:** Visualización en cuadrícula con el **"Orden del Mazo (Bloques de Color)"**, donde se aprecia la transición tonal continua de 10 en 10 de claro a oscuro, además de filtros por grupo y búsqueda en tiempo real.
 * **🔊 Audio y FX:** Efectos de sonido retro sintetizados con Web Audio API y confeti dinámico con la paleta de cada tarjeta al acertar.
 
+## 🕹️ Dinámica y Reglas del Juego Web (Modo Arcade)
+
+La aplicación web (`web/`) implementa un juego arcade interactivo de trivia cronológica técnica con físicas 3D de moneda, pistas térmicas y persistencia:
+
+### 🎯 Objetivo de la Partida
+Coleccionar **10 Tazos ganados** en tu Línea de Tiempo Personal adivinando los años de los hitos tecnológicos.
+
+### 🎲 Mecánica de Turno y Disparo
+1. **Lectura del Hito:** El Tazo se presenta en su anverso mostrando el hito histórico, autor(es) y tags temáticos (el año permanece oculto).
+2. **Ajuste de Año:** Usa el **Dial Cronológico** (deslizador retro), los botones de paso o los atajos de teclado (<kbd>+</kbd> / <kbd>-</kbd> / <kbd>&uarr;</kbd> / <kbd>&darr;</kbd>).
+3. **Lanzar Tiro:** Pulsa el botón **¡LANZAR TIRO!** o la tecla <kbd>Enter</kbd>.
+
+### 🏹 Tiros Disponibles (3 Intentos por Tarjeta)
+El HUD superior muestra **3 micro-tazos indicadores** que representan tus tiros disponibles para la tarjeta actual:
+* **Tiro Acertado:** Ganas la tarjeta y sumas puntos.
+* **Tiro Fallido:** Consume 1 tiro y muestra una pista cualitativa sin revelar la cifra:
+  * **Dirección:** `↑ Más reciente` (el año real es posterior) o `↓ Más antiguo` (el año real es anterior).
+  * **Temperatura:** `🔥 ¡Caliente!` ($\le 5$ años de diferencia), `🌡️ Tibio` ($\le 15$ años) o `❄️ Frío` ($> 15$ años).
+* **Último Tiro:** Cuando solo queda 1 intento, el indicador pulsa en color ámbar/fuego de advertencia.
+* **Agotar los 3 tiros:** Si fallas el tercer tiro, el Tazo se voltea automáticamente, revela su año sin sumar puntos y el tiro queda bloqueado.
+
+### 🏆 Sistema de Puntuación y Racha
+| Acontecimiento | Puntos | Racha | Línea de Tiempo |
+| :--- | :---: | :---: | :---: |
+| 🎯 **Año Exacto** | **+3 Puntos** | **+1 Racha** | Se agrega a Tazos Ganados |
+| 🟡 **Muy Cerca ($\pm 2$ años)** | **+1 Punto** | **+1 Racha** | Se agrega a Tazos Ganados |
+| ❄️ **Tiro Fallido** | **0 Puntos** | **Se reinicia a 0** | Quedan intentos restantes |
+| ❌ **3 Intentos Agotados** | **0 Puntos** | **Se reinicia a 0** | No se agrega al estante |
+| 👁️ **Revelar Año (Compra)** | **-5 Puntos** | **Se reinicia a 0** | Tiro bloqueado |
+
+* **Modo "On Fire" (`streak-hot`):** Al hilar **2 o más aciertos consecutivos**, la pastilla de Racha en el HUD emite un resplandor carmesí brillante.
+
+### 👁️ Revelar Año (-5 Puntos)
+* Puedes tocar la pastilla **REVELAR (-5 PTS)** en el reverso o el botón inferior para conocer la respuesta histórica.
+* **Regla estricta:** No se permiten puntos negativos. Si tienes menos de 5 puntos (`score < 5`), el año **no se revela** y el tiro sigue disponible.
+* Al revelar con éxito, se descuentan 5 puntos y el tiro se bloquea para ese Tazo.
+
+### 💾 Persistencia en Caché y Memoria de Tazos
+* Todo Tazo resuelto o revelado se guarda de forma persistente en **IndexedDB** (`idb-keyval`) con respaldo en `localStorage`.
+* Si vuelves a navegar a un Tazo ya resuelto, el juego recuerda su estado: el tiro permanece deshabilitado y no se puede volver a adivinar.
+* **Inspección de Tazos Ganados:** Haz clic sobre cualquier ficha de tu línea de tiempo para traerla al escenario 3D e inspeccionar su anverso, reverso y lore.
+
+### 🔀 Barajeo y Reinicio
+* **Barajeo automático:** Al iniciar la app, recargar la página o cambiar de mazo/volumen, la baraja se mezcla aleatoriamente mediante Fisher-Yates.
+* **Reiniciar Partida:** Puedes pulsar el botón de reinicio en el header, en el estante de Tazos Ganados o pulsar <kbd>Shift</kbd>+<kbd>R</kbd> para vaciar la línea de tiempo, resetear puntos/racha y limpiar la caché de tarjetas resueltas.
+
 ---
 
 ## 🎮 Reglas de Juego en Mesa
