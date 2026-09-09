@@ -927,6 +927,19 @@ class HitTazosEngine {
         this.toggleActiveCardYear();
       });
     }
+
+    // Actualizar chip activo en el estante si coincide
+    if (this.shelfCardsContainer) {
+      const chips = this.shelfCardsContainer.querySelectorAll('.shelf-tazo-chip');
+      chips.forEach(chip => {
+        if (chip.getAttribute('data-card-id') === card.id) {
+          chip.classList.add('active');
+        } else {
+          chip.classList.remove('active');
+        }
+      });
+    }
+
     this.refreshIcons();
   }
 
@@ -1342,19 +1355,39 @@ class HitTazosEngine {
   renderShelf() {
     if (!this.shelfCardsContainer) return;
     this.shelfCardsContainer.innerHTML = '';
+    const currentCard = this.activeDeck[this.currentIndex];
+
     this.playerShelf.forEach(c => {
       const chip = document.createElement('div');
       const theme = this.getCardTheme(c);
-      chip.className = 'shelf-tazo-chip';
+      const isSelected = currentCard && currentCard.id === c.id;
+      chip.className = `shelf-tazo-chip ${isSelected ? 'active' : ''}`;
       chip.style.setProperty('--tazo-color', theme.bg);
+      chip.setAttribute('data-card-id', c.id);
       const volId = c.id ? c.id.split('-')[0].replace('vol', '') : '0';
       const hexPart = c.id ? c.id.split('-')[1].substring(2) : '00';
       const chipNum = `${volId}x${hexPart}`;
-      chip.title = `${c.year} — ${c.autor || ''}`;
+      chip.title = `${c.year} — ${c.autor || ''} (Toca para ver Tazo)`;
+      chip.setAttribute('role', 'button');
+      chip.setAttribute('tabindex', '0');
+      chip.setAttribute('aria-label', `Ver Tazo del año ${c.year}: ${c.autor || ''}`);
       chip.innerHTML = `
         <div class="shelf-tazo-year">${c.year}</div>
         <div class="shelf-tazo-id">${chipNum}</div>
       `;
+
+      const viewWonCard = () => {
+        this.displayWonCard(c);
+      };
+
+      chip.addEventListener('click', viewWonCard);
+      chip.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          viewWonCard();
+        }
+      });
+
       this.shelfCardsContainer.appendChild(chip);
     });
 
@@ -1369,6 +1402,48 @@ class HitTazosEngine {
       } else {
         this.shelfCounter.textContent = `${this.playerShelf.length} / 10 tazos para ganar`;
       }
+    }
+  }
+
+  displayWonCard(card) {
+    if (!card) return;
+    if (this.currentView !== 'play') {
+      this.switchView('play');
+    }
+
+    let idx = this.activeDeck.findIndex(c => c.id === card.id);
+    if (idx === -1) {
+      if (card.volumen && this.catalog?.volumes?.[card.volumen]) {
+        this.selectActiveGroup(card.volumen);
+      } else {
+        this.selectActiveGroup('ALL');
+      }
+      idx = this.activeDeck.findIndex(c => c.id === card.id);
+    }
+
+    if (idx !== -1) {
+      this.transitionToCard(idx);
+    } else {
+      this.activeDeck.unshift(card);
+      this.currentIndex = 0;
+      this.renderActiveArenaCard();
+    }
+
+    if (this.shelfCardsContainer) {
+      const chips = this.shelfCardsContainer.querySelectorAll('.shelf-tazo-chip');
+      chips.forEach(chip => {
+        if (chip.getAttribute('data-card-id') === card.id) {
+          chip.classList.add('active');
+        } else {
+          chip.classList.remove('active');
+        }
+      });
+    }
+
+    this.playAudioFeedback('flip');
+
+    if (window.innerWidth <= 768 && this.cardStage) {
+      this.cardStage.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }
 
