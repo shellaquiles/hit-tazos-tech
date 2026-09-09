@@ -863,12 +863,12 @@ class HitTazosEngine {
             <div class="tazo-back-author">${creadorFormatted}</div>
 
             <!-- 2. Año Hero en el centro -->
-            <div class="tazo-year-hero ${yearStateClass}" ${hideRevealButton ? '' : 'id="year-target" title="Toca para revelar el año [R]"'}>
+            <div class="tazo-year-hero ${yearStateClass}" ${hideRevealButton ? '' : 'id="year-target" title="Toca para revelar el año (-5 Pts) [R]"'}>
               <span class="year-number-giant">${card.year}</span>
               ${hideRevealButton ? '' : `
               <div class="year-scratch-badge">
                 <i data-lucide="eye"></i>
-                <span>REVELAR AÑO</span>
+                <span>REVELAR (-5 PTS)</span>
               </div>
               `}
             </div>
@@ -923,7 +923,7 @@ class HitTazosEngine {
       this.btnReveal.innerHTML = `<i data-lucide="eye-off"></i> <span>Ocultar</span>`;
       this.btnReveal.classList.add('active');
     } else {
-      this.btnReveal.innerHTML = `<i data-lucide="eye"></i> <span>Revelar</span>`;
+      this.btnReveal.innerHTML = `<i data-lucide="eye"></i> <span>Revelar (-5 pts)</span>`;
       this.btnReveal.classList.remove('active');
     }
     this.refreshIcons();
@@ -960,7 +960,30 @@ class HitTazosEngine {
       yearStage.classList.remove('is-hidden');
       yearStage.classList.add('is-revealed');
       this.updateRevealButtonState(true);
-      this.playAudioFeedback('hit');
+
+      // Dinámica de juego: Revelar año cuesta 5 puntos y bloquea el tiro para esta carta
+      if (!this.cardSolved) {
+        this.score = Math.max(0, this.score - 5);
+        this.streak = 0;
+        this.cardSolved = true;
+        if (this.btnSubmitGuess) this.btnSubmitGuess.disabled = true;
+
+        if (this.hudScore) this.hudScore.textContent = this.score;
+        if (this.hudStreak) this.hudStreak.textContent = this.streak;
+        if (this.hudStreakBox) this.hudStreakBox.classList.remove('streak-hot');
+
+        const card = this.activeDeck[this.currentIndex];
+        if (this.guessResultPill) {
+          this.guessResultPill.innerHTML = `<span style="color:#f87171;display:inline-flex;align-items:center;gap:0.4rem">
+            <i data-lucide="eye"></i> Año revelado (${card?.year || ''}) &mdash; <strong>-5 Puntos</strong> (Tiro bloqueado)
+          </span>`;
+        }
+
+        this.persistGameState();
+        this.playAudioFeedback('slam');
+      } else {
+        this.playAudioFeedback('hit');
+      }
     } else {
       yearStage.classList.remove('is-revealed');
       yearStage.classList.add('is-hidden');
