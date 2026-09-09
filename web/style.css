@@ -831,28 +831,30 @@ main {
 .tazo-core-back {
   position: relative;
   z-index: 10;
-  width: 78%;
-  height: 78%;
+  width: 82%;
+  height: 82%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
+  justify-content: space-evenly;
   text-align: center;
   box-sizing: border-box;
-  padding: 0.3rem 0.2rem;
+  padding: 0.8rem 0.4rem;
 }
 
 /* Autor Arriba */
 .tazo-back-author {
   font-family: var(--font-sans, 'Outfit', sans-serif);
-  font-size: clamp(0.76rem, 2.3vw, 0.86rem);
+  font-size: clamp(0.84rem, 2.6vw, 0.96rem);
   font-weight: 700;
   color: #ffffff;
   letter-spacing: -0.01em;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
-  max-width: 76%;
-  line-height: 1.2;
+  text-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.95),
+    0 2px 6px rgba(0, 0, 0, 0.85);
+  max-width: 86%;
+  line-height: 1.25;
+  text-wrap: balance;
 }
 
 .tazo-back-author em,
@@ -870,21 +872,21 @@ main {
   justify-content: center;
   cursor: pointer;
   user-select: none;
-  margin: 0.1rem 0;
-  min-height: 2.7rem;
+  margin: 0.2rem 0;
+  min-height: 3.6rem;
 }
 
 .year-number-giant {
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: clamp(3.4rem, 11vw, 4.3rem);
+  font-size: clamp(3.8rem, 12vw, 4.8rem);
   font-weight: 900;
   color: #ffe600;
   line-height: 0.82;
   letter-spacing: -2px;
-  -webkit-text-stroke: 2px #000000;
+  -webkit-text-stroke: 2.2px #000000;
   text-shadow: 
-    3px 3px 0 #000000,
-    0 6px 16px rgba(0, 0, 0, 0.7);
+    3.5px 3.5px 0 #000000,
+    0 8px 18px rgba(0, 0, 0, 0.7);
 }
 
 .tazo-year-hero.is-hidden .year-number-giant {
@@ -895,24 +897,24 @@ main {
   display: none;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
+  gap: 0.45rem;
   background: #ff5722;
   color: #ffffff;
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: 0.74rem;
+  font-size: 0.80rem;
   font-weight: 900;
-  letter-spacing: 0.8px;
-  padding: 0.28rem 0.85rem;
+  letter-spacing: 1px;
+  padding: 0.38rem 1.1rem;
   border-radius: 999px;
   border: 2px solid #000000;
-  box-shadow: 0 3px 0 #000000;
+  box-shadow: 0 4px 0 #000000;
   cursor: pointer;
   transition: transform 0.15s ease;
 }
 
 .year-scratch-badge svg {
-  width: 13px;
-  height: 13px;
+  width: 14px;
+  height: 14px;
 }
 
 .year-scratch-badge:hover {
@@ -936,12 +938,13 @@ main {
 .tazo-back-lore {
   font-family: var(--font-sans, 'Outfit', sans-serif);
   font-style: italic;
-  font-size: clamp(0.66rem, 2vw, 0.74rem);
-  line-height: 1.28;
-  color: #f1f5f9;
+  font-size: clamp(0.72rem, 2.2vw, 0.82rem);
+  line-height: 1.34;
+  color: #f8fafc;
   font-weight: 500;
-  max-width: 86%;
+  max-width: 88%;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  text-wrap: pretty;
 }
 
 .tazo-back-lore strong {
@@ -950,19 +953,9 @@ main {
   font-weight: 700;
 }
 
-/* Brillo especular de acetato */
+/* Desactivar brillo especular que empañaba la lectura */
 .tazo-foil-reflection {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 35% 15%, 
-    rgba(255, 255, 255, 0.5) 0%, 
-    rgba(255, 255, 255, 0.05) 50%, 
-    transparent 65%
-  );
-  pointer-events: none;
-  z-index: 20;
+  display: none !important;
 }
 
 /* Desactivar capas fantasma */

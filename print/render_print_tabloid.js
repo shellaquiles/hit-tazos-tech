@@ -31,10 +31,10 @@ try {
 } catch (e) {
   try {
     APP_VERSION = require('../package.json').version;
-  } catch (_) {}
+  } catch (_) { }
 }
 
-const ORG_NAME = 'Shellaquiles Org';
+const ORG_NAME = 'shellaquiles.org';
 const ORG_URL = 'https://shellaquiles.org';
 const REPO_URL = 'https://github.com/shellaquiles/hit-tazos-tech';
 
@@ -401,8 +401,8 @@ function generateSvgSheets(cards, formatConfig, options) {
 
     const frontSvgContent = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${(pageWidthPt / MM_TO_PT).toFixed(1)}mm" height="${(pageHeightPt / MM_TO_PT).toFixed(1)}mm" viewBox="0 0 ${pageWidthPt} ${pageHeightPt}" style="background-color: #ffffff;">
-  <title>Hit-Tazos Tech v${APP_VERSION} — Pliego ${s + 1} (${paperLabel}) — Shellaquiles Org</title>
-  <desc>Juego de cartas de trivia cronológica técnica desarrollado por Shellaquiles Org (${ORG_URL}). Licencia MIT.</desc>
+  <title>Hit-Tazos Tech v${APP_VERSION} — Pliego ${s + 1} (${paperLabel}) — shellaquiles.org</title>
+  <desc>Juego de cartas de trivia cronológica técnica desarrollado por shellaquiles.org (${ORG_URL}). Licencia MIT.</desc>
   <metadata>
     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
       <rdf:Description>
@@ -530,8 +530,8 @@ ${frontCardsSvg}  </g>
 
     const backSvgContent = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${(pageWidthPt / MM_TO_PT).toFixed(1)}mm" height="${(pageHeightPt / MM_TO_PT).toFixed(1)}mm" viewBox="0 0 ${pageWidthPt} ${pageHeightPt}" style="background-color: #ffffff;">
-  <title>Hit-Tazos Tech v${APP_VERSION} — Pliego ${s + 1} (${paperLabel}) [Reversos] — Shellaquiles Org</title>
-  <desc>Juego de cartas de trivia cronológica técnica desarrollado por Shellaquiles Org (${ORG_URL}). Licencia MIT.</desc>
+  <title>Hit-Tazos Tech v${APP_VERSION} — Pliego ${s + 1} (${paperLabel}) [Reversos] — shellaquiles.org</title>
+  <desc>Juego de cartas de trivia cronológica técnica desarrollado por shellaquiles.org (${ORG_URL}). Licencia MIT.</desc>
   <metadata>
     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
       <rdf:Description>
@@ -603,7 +603,7 @@ function attachPdfMetadata(pdfPath, formatConfig, version, volumeInfo = null) {
     }
   } catch (err) {
     if (fs.existsSync(tempOut)) {
-      try { fs.unlinkSync(tempOut); } catch (_) {}
+      try { fs.unlinkSync(tempOut); } catch (_) { }
     }
     console.warn(`   ⚠️ Advertencia al incrustar metadatos: ${err.message}`);
   }
@@ -629,7 +629,7 @@ function compileEditablePdf(svgFiles, outputPdfPath, formatConfig, volumeInfo = 
     execSync(`pdfunite ${tempPdfs.map(p => `"${p}"`).join(' ')} "${outputPdfPath}"`);
     console.log(`   📄 Archivo distribuible compilado: ${path.basename(outputPdfPath)}`);
 
-    // Inyectar metadatos oficiales de Shellaquiles Org
+    // Inyectar metadatos oficiales de shellaquiles.org
     attachPdfMetadata(outputPdfPath, formatConfig, APP_VERSION, volumeInfo);
 
     console.log(`🎉 ¡PDF vectorial editable listo para distribución!\n   📂 ${outputPdfPath}`);
@@ -637,9 +637,9 @@ function compileEditablePdf(svgFiles, outputPdfPath, formatConfig, volumeInfo = 
     console.error('⚠️ Error al compilar PDF editable:', err.message);
   } finally {
     tempPdfs.forEach(p => {
-      try { fs.unlinkSync(p); } catch (_) {}
+      try { fs.unlinkSync(p); } catch (_) { }
     });
-    try { fs.rmdirSync(tempPdfDir); } catch (_) {}
+    try { fs.rmdirSync(tempPdfDir); } catch (_) { }
   }
 }
 

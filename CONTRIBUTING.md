@@ -1,8 +1,8 @@
 # Guía de Contribución 🤝
 
-¡Gracias por tu interés en colaborar con **Hit-Tazos Tech**! 
+¡Gracias por tu interés en colaborar con **Hit-Tazos Tech**!
 
-Este proyecto es parte del ecosistema de herramientas y aplicaciones de **Shellaquiles Org**. Para mantener la alta calidad editorial, rigor cronológico y precisión de imprenta de las cartas, te pedimos seguir estas directrices.
+Este proyecto es parte del ecosistema de herramientas y aplicaciones de **shellaquiles.org**. Para mantener la alta calidad editorial, rigor cronológico y precisión de imprenta de las cartas, te pedimos seguir estas directrices.
 
 ---
 

@@ -94,12 +94,12 @@ function generateMillar(millarIndex = 1, startNum = 1, endNum = 1000) {
   let version = '1.0.0-rc4';
   try {
     version = fs.readFileSync(path.join(__dirname, '..', 'VERSION'), 'utf8').trim();
-  } catch (_) {}
+  } catch (_) { }
 
   return {
     description: 'Hit-Tazos Tech - Paleta cromática oficial independiente por card_number',
     version: version,
-    author: 'Shellaquiles Org (https://shellaquiles.org)',
+    author: 'shellaquiles.org (https://shellaquiles.org)',
     website: 'https://shellaquiles.org',
     license: 'MIT',
     millar: millarIndex,

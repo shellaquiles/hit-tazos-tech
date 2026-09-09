@@ -35,11 +35,11 @@ class HitTazosEngine {
         this.sfx = {
           flip: new Howl({ src: ['assets/sfx/tazo_flip.mp3'], volume: 0.4 }),
           slam: new Howl({ src: ['assets/sfx/tazo_slam.mp3'], volume: 0.7 }),
-          hit:  new Howl({ src: ['assets/sfx/tazo_win.mp3'], volume: 0.5 }),
+          hit: new Howl({ src: ['assets/sfx/tazo_win.mp3'], volume: 0.5 }),
           miss: new Howl({ src: ['assets/sfx/tazo_miss.mp3'], volume: 0.4 }),
           tick: new Howl({ src: ['assets/sfx/tazo_tick.mp3'], volume: 0.25 })
         };
-      } catch (_) {}
+      } catch (_) { }
     }
   }
 
@@ -51,7 +51,7 @@ class HitTazosEngine {
         if (type === 'tick') this.sfx[type].stop();
         this.sfx[type].play();
       }
-    } catch (_) {}
+    } catch (_) { }
   }
 
   initDOM() {
@@ -88,8 +88,8 @@ class HitTazosEngine {
     this.shelfProgressFill = document.getElementById('shelf-progress-fill');
     this.counterTotal = document.getElementById('counter-total');
     this.attemptTracker = document.getElementById('attempt-tracker');
-    this.attemptDots    = document.getElementById('attempt-dots');
-    this.attemptLabel   = document.getElementById('attempt-label');
+    this.attemptDots = document.getElementById('attempt-dots');
+    this.attemptLabel = document.getElementById('attempt-label');
 
 
     // Catalog elements
@@ -119,7 +119,7 @@ class HitTazosEngine {
           "max-glare": 0.25,
           perspective: 1400
         });
-      } catch (_) {}
+      } catch (_) { }
     }
   }
 
@@ -133,7 +133,7 @@ class HitTazosEngine {
           origin: { y: 0.6 },
           colors: [accentColor, '#facc15', '#f472b6', '#34d399', '#ffffff']
         });
-      } catch (_) {}
+      } catch (_) { }
     }
   }
 
@@ -417,7 +417,7 @@ class HitTazosEngine {
         this.justHandledTouch = true;
         setTimeout(() => { this.justHandledTouch = false; }, 350);
         if (navigator.vibrate) {
-          try { navigator.vibrate(20); } catch (_) {}
+          try { navigator.vibrate(20); } catch (_) { }
         }
         this.nextCard();
         this.playAudioFeedback('flip');
@@ -428,7 +428,7 @@ class HitTazosEngine {
         this.justHandledTouch = true;
         setTimeout(() => { this.justHandledTouch = false; }, 350);
         if (navigator.vibrate) {
-          try { navigator.vibrate(20); } catch (_) {}
+          try { navigator.vibrate(20); } catch (_) { }
         }
         this.prevCard();
         this.playAudioFeedback('flip');
@@ -439,7 +439,7 @@ class HitTazosEngine {
         this.justHandledTouch = true;
         setTimeout(() => { this.justHandledTouch = false; }, 350);
         if (navigator.vibrate) {
-          try { navigator.vibrate(15); } catch (_) {}
+          try { navigator.vibrate(15); } catch (_) { }
         }
         this.toggleActiveCardYear();
       });
@@ -449,7 +449,7 @@ class HitTazosEngine {
         this.justHandledTouch = true;
         setTimeout(() => { this.justHandledTouch = false; }, 350);
         if (navigator.vibrate) {
-          try { navigator.vibrate(15); } catch (_) {}
+          try { navigator.vibrate(15); } catch (_) { }
         }
         this.flipCurrentCard();
       });
@@ -461,7 +461,7 @@ class HitTazosEngine {
         this.justHandledTouch = true;
         setTimeout(() => { this.justHandledTouch = false; }, 350);
         if (navigator.vibrate) {
-          try { navigator.vibrate(12); } catch (_) {}
+          try { navigator.vibrate(12); } catch (_) { }
         }
         this.flipCurrentCard();
       });
@@ -774,7 +774,7 @@ class HitTazosEngine {
     const frontTopLabel = `${domainName} • ${tagName}`;
     const frontBottomLabel = `${volName} • #${cardNumStr}`;
     const backTopLabel = `${volName} • #${cardNumStr}`;
-    const backBottomLabel = `SHELLAQUILES ORG`;
+    const backBottomLabel = `shellaquiles.org`;
 
     const discId = options.id !== undefined ? (options.id ? `id="${options.id}"` : '') : 'id="active-card-3d"';
     const uid = (card.id || 'tazo').replace(/[^a-zA-Z0-9]/g, '_') + '_' + Math.floor(Math.random() * 1000);
@@ -785,7 +785,7 @@ class HitTazosEngine {
 
     return `
       <div class="tazo-physical tazo-disc ${isRevealed ? 'is-flipped' : ''}" ${discId} style="--tazo-c1: ${palette.c1}; --tazo-c2: ${palette.c2};">
-        
+
         <!-- ══════════════════════════════════════════════════════════════ -->
         <!-- ANVERSO: DOMINIO + TAG + CITA COMPLETA + ID                   -->
         <!-- ══════════════════════════════════════════════════════════════ -->
@@ -866,7 +866,7 @@ class HitTazosEngine {
 
     // Reset estado de intentos para la nueva carta
     this.attemptCount = 0;
-    this.cardSolved   = false;
+    this.cardSolved = false;
     this.renderAttemptTracker(false);
     if (this.btnSubmitGuess) this.btnSubmitGuess.disabled = false;
 
@@ -1021,11 +1021,11 @@ class HitTazosEngine {
   /** Devuelve mensaje de pista según diferencia y dirección */
   buildHint(diff, val, correctYear) {
     const direction = val < correctYear ? '↑ más reciente' : '↓ más antiguo';
-    const dirColor  = val < correctYear ? '#60a5fa' : '#f97316';
+    const dirColor = val < correctYear ? '#60a5fa' : '#f97316';
     let temp, tempColor;
-    if (diff <= 5)  { temp = '🔥 ¡Caliente!';  tempColor = '#f97316'; }
-    else if (diff <= 15) { temp = '🌡️ Tibio';   tempColor = '#facc15'; }
-    else            { temp = '❄️ Frío';    tempColor = '#93c5fd'; }
+    if (diff <= 5) { temp = '🔥 ¡Caliente!'; tempColor = '#f97316'; }
+    else if (diff <= 15) { temp = '🌡️ Tibio'; tempColor = '#facc15'; }
+    else { temp = '❄️ Frío'; tempColor = '#93c5fd'; }
     return `<span style="display:inline-flex;align-items:center;gap:0.5rem;flex-wrap:wrap">
       <span style="color:${dirColor};font-weight:700">${direction}</span>
       <span style="color:${tempColor}">${temp}</span>
@@ -1036,7 +1036,7 @@ class HitTazosEngine {
   evaluateGuess() {
     if (this.cardSolved) return;
     const card = this.activeDeck[this.currentIndex];
-    const val  = parseInt(this.chronoDial ? this.chronoDial.value : (this.displaySelectedYear?.textContent || '1990'), 10);
+    const val = parseInt(this.chronoDial ? this.chronoDial.value : (this.displaySelectedYear?.textContent || '1990'), 10);
     if (isNaN(val)) return;
 
     this.attemptCount++;
@@ -1169,7 +1169,7 @@ class HitTazosEngine {
         localStorage.setItem('hittazos_score', String(this.score));
         localStorage.setItem('hittazos_streak', String(this.streak));
       }
-    } catch (_) {}
+    } catch (_) { }
   }
 
   async loadSavedState() {
@@ -1204,7 +1204,7 @@ class HitTazosEngine {
           else this.hudStreakBox.classList.remove('streak-hot');
         }
       }
-    } catch (_) {}
+    } catch (_) { }
   }
 
   renderShelf() {

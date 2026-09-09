@@ -71,10 +71,10 @@ npm run print:test:8x11       # Muestra de 1 pliego Carta (6 cartas)
 ```
 
 ### Salidas y Archivos de Distribución Oficial:
-* **[`print/v1.0.0/hit-tazos-tech-v1.0.0-tabloide.pdf`](./print/v1.0.0/hit-tazos-tech-v1.0.0-tabloide.pdf)**: Documento vectorial de 78 páginas ($11 \times 17\text{ pulg}$) con fuentes TrueType (`Noto Sans`, `WinAnsi`), sin rasterizado. Rejilla de $3 \times 5$ cartas por pliego con reversos espejados `[2, 1, 0]`, pie de autoría oficial de **Shellaquiles Org** y metadatos PDF completos.
+* **[`print/v1.0.0/hit-tazos-tech-v1.0.0-tabloide.pdf`](./print/v1.0.0/hit-tazos-tech-v1.0.0-tabloide.pdf)**: Documento vectorial de 78 páginas ($11 \times 17\text{ pulg}$) con fuentes TrueType (`Noto Sans`, `WinAnsi`), sin rasterizado. Rejilla de $3 \times 5$ cartas por pliego con reversos espejados `[2, 1, 0]`, pie de autoría oficial de **shellaquiles.org** y metadatos PDF completos.
 * **[`print/v1.0.0/hit-tazos-tech-v1.0.0-carta.pdf`](./print/v1.0.0/hit-tazos-tech-v1.0.0-carta.pdf)**: Documento vectorial de 192 páginas ($8.5 \times 11\text{ pulg}$) con fuentes TrueType (`Noto Sans`, `WinAnsi`). Rejilla de $2 \times 3$ cartas por pliego con reversos espejados `[1, 0]` para coincidencia milimétrica en cualquier impresora doméstica o de oficina.
 * **[`print/v1.0.0/hit-tazos-tech-v1.0.0-super-tabloide.pdf`](./print/v1.0.0/hit-tazos-tech-v1.0.0-super-tabloide.pdf)**: Documento vectorial de 64 páginas ($12 \times 18\text{ pulg}$) con rejilla de $3 \times 6$ cartas por pliego para prensas digitales de gran formato.
-* **[`print/v1.0.0/svg/`](./print/v1.0.0/svg/)**: Pliegos SVG individuales vectoriales organizados por formato (`tabloide/`, `carta/`, `super_tabloide/`) con capas editables y metadatos Dublin Core (`dc:creator = Shellaquiles Org`, `dc:relation = https://shellaquiles.org`).
+* **[`print/v1.0.0/svg/`](./print/v1.0.0/svg/)**: Pliegos SVG individuales vectoriales organizados por formato (`tabloide/`, `carta/`, `super_tabloide/`) con capas editables y metadatos Dublin Core (`dc:creator = shellaquiles.org`, `dc:relation = https://shellaquiles.org`).
 * **[`data/manifest.json`](./data/manifest.json):** Manifiesto JSON canónico del mazo con versión, autoría, rangos cronológicos y sumarios editoriales.
 
 ---
@@ -126,7 +126,7 @@ npm run version:sync
 
 ## 📄 Comunidad y Licencia
 
-Desarrollado bajo la licencia MIT como parte del ecosistema de proyectos de **Shellaquiles Org**.
+Desarrollado bajo la licencia MIT como parte del ecosistema de proyectos de **shellaquiles.org**.
 
 - 📜 [Licencia MIT](./LICENSE)
 - 📋 [Historial de Cambios (Changelog)](./CHANGELOG.md)

@@ -19,7 +19,7 @@ hit-tazos-tech/
 ├── CONTRIBUTING.md                      # Guía de contribución y flujo de auditoría editorial
 ├── CODE_OF_CONDUCT.md                   # Código de conducta de la comunidad Shellaquiles
 ├── SECURITY.md                          # Política de seguridad y reporte responsable
-├── LICENSE                              # Licencia de código abierto MIT (Shellaquiles Org)
+├── LICENSE                              # Licencia de código abierto MIT (shellaquiles.org)
 ├── VERSION                              # Archivo de versión semántica (1.0.0)
 ├── package.json                         # Manifiesto y scripts npm (test, validate, build, print)
 ├── server.js                            # Servidor local de desarrollo (sirve web/ y data/)
@@ -224,6 +224,3 @@ Para evitar el **síndrome NIH (Not Invented Here)** y no escribir código utili
    - **`snarkdown`:** Parser de Markdown a HTML estándar.
    - **`idb-keyval`:** Persistencia asíncrona en IndexedDB con API tipo clave-valor.
    - **`tinygesture`:** Reconocimiento de gestos táctiles móviles (`swipe`, `tap`) respetando el scroll vertical.
-
-
-
