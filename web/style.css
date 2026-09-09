@@ -20,16 +20,16 @@
 }
 
 :root {
-  --bg-primary: #12141a;
-  --bg-surface: #181b24;
-  --bg-surface-elevated: #202432;
-  --bg-card-front: #111524;
-  --bg-card-back: #0a0d16;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
+  --bg-primary: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #f1f5f9;
+  --bg-card-front: #ffffff;
+  --bg-card-back: #f8fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
   --text-muted: #64748b;
-  --border-subtle: rgba(255, 255, 255, 0.09);
-  --border-glow: rgba(255, 255, 255, 0.16);
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-glow: rgba(0, 0, 0, 0.14);
   
   --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: 'Space Grotesk', var(--font-sans);
@@ -67,10 +67,10 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
-  /* Iluminación cálida cenital sobre mesa de juego (estilo sobremesa/board game real, cero neón ni rejillas) */
+  /* Iluminación cálida y limpia de mesa de juego clara (estilo sobremesa/board game real) */
   background-image: 
-    radial-gradient(ellipse 75% 55% at 50% 20%, rgba(255, 248, 235, 0.04) 0%, transparent 80%),
-    radial-gradient(circle at 50% 0%, rgba(32, 38, 52, 0.5) 0%, transparent 60%);
+    radial-gradient(ellipse 75% 55% at 50% 15%, rgba(255, 255, 255, 0.95) 0%, transparent 80%),
+    radial-gradient(circle at 50% 0%, rgba(226, 232, 240, 0.65) 0%, transparent 60%);
   background-attachment: fixed;
 }
 
@@ -81,13 +81,13 @@ header {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--border-subtle);
-  background: rgba(18, 20, 26, 0.94);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
 }
 
 .brand {
@@ -114,7 +114,7 @@ header {
   font-size: 1.4rem;
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: #ffffff;
+  color: #0f172a;
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -127,22 +127,22 @@ header {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  background: rgba(255, 255, 255, 0.08);
+  background: #f1f5f9;
   padding: 0.2rem 0.6rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #e2e8f0;
+  border: 1px solid #cbd5e1;
+  color: #334155;
 }
 
 .brand-version-tag {
   font-size: 0.65rem;
   font-weight: 700;
   font-family: var(--font-mono);
-  background: rgba(14, 165, 233, 0.15);
-  color: #38bdf8;
+  background: #e0f2fe;
+  color: #0284c7;
   padding: 0.15rem 0.45rem;
   border-radius: 6px;
-  border: 1px solid rgba(14, 165, 233, 0.3);
+  border: 1px solid #bae6fd;
 }
 
 .brand-subline {
@@ -153,7 +153,7 @@ header {
 }
 
 .brand-org-link {
-  color: #38bdf8;
+  color: #0284c7;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.15s ease;
@@ -161,7 +161,7 @@ header {
 
 .brand-org-link:hover {
   text-decoration: underline;
-  color: #7dd3fc;
+  color: #0369a1;
 }
 
 .nav-actions {
@@ -174,17 +174,17 @@ header {
 .game-mode-switch {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.06);
+  background: #f1f5f9;
   padding: 3px;
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid #e2e8f0;
   position: relative;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 .tab-btn {
   background: transparent;
-  color: #94a3b8;
+  color: #64748b;
   border: none;
   padding: 0.48rem 1rem;
   border-radius: 11px;
@@ -199,7 +199,7 @@ header {
 }
 
 .tab-btn:hover {
-  color: #ffffff;
+  color: #0f172a;
 }
 
 .tab-btn:active {
@@ -207,12 +207,11 @@ header {
 }
 
 .tab-btn.active {
-  color: #ffffff;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #0f172a;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   font-weight: 700;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .utility-actions {
@@ -222,9 +221,9 @@ header {
 }
 
 .icon-btn {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #cbd5e1;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #334155;
   width: 38px;
   height: 38px;
   border-radius: 11px;
@@ -233,15 +232,15 @@ header {
   justify-content: center;
   cursor: pointer;
   transition: all 0.18s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 .icon-btn:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.3);
+  color: #0f172a;
+  background: #f8fafc;
+  border-color: #cbd5e1;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
 .icon-btn:active {
@@ -251,17 +250,17 @@ header {
 .icon-btn:focus-visible,
 .tab-btn:focus-visible,
 .ribbon-pill:focus-visible {
-  outline: 2px solid #38bdf8;
+  outline: 2px solid #0284c7;
   outline-offset: 2px;
 }
 
 /* Ribbon Scroll Container con Mascarilla de Desvanecimiento Suave */
 .ribbon-wrapper {
   position: relative;
-  background: rgba(10, 13, 22, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid #e2e8f0;
   width: 100%;
   overflow: hidden;
 }
@@ -296,9 +295,9 @@ header {
 
 /* Píldoras de Baraja (Tazo & Deck Selector Tactile Feel) */
 .ribbon-pill {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #94a3b8;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #475569;
   padding: 0.38rem 0.8rem;
   border-radius: 999px;
   font-size: 0.8rem;
@@ -309,7 +308,7 @@ header {
   gap: 0.5rem;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   user-select: none;
   flex-shrink: 0;
 }
@@ -321,9 +320,9 @@ header {
 }
 
 .ribbon-pill:hover {
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.25);
-  background: rgba(255, 255, 255, 0.08);
+  color: #0f172a;
+  border-color: #cbd5e1;
+  background: #f8fafc;
   transform: translateY(-1px);
 }
 
@@ -341,126 +340,126 @@ header {
   font-weight: 700;
   padding: 0.1rem 0.45rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #cbd5e1;
+  background: #f1f5f9;
+  color: #64748b;
   transition: all 0.2s ease;
 }
 
-/* Identidades Cromáticas Temáticas por Volumen */
+/* Identidades Cromáticas Temáticas por Volumen (Píldoras Activas en Modo Claro) */
 /* Mazo Maestro (Estuche Completo 576 Cartas) */
 .ribbon-pill.pill-master {
-  border-color: rgba(245, 158, 11, 0.25);
-  background: rgba(245, 158, 11, 0.08);
-  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.4);
+  background: #fffbeb;
+  color: #b45309;
 }
 .ribbon-pill.pill-master .pill-icon {
-  color: #f59e0b;
+  color: #d97706;
 }
 .ribbon-pill.pill-master.active {
-  background: #241e12;
+  background: #fef3c7;
   border-color: #f59e0b;
-  color: #fef08a;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  color: #78350f;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
 }
 .ribbon-pill.pill-master.active .pill-count {
   background: #f59e0b;
-  color: #000000;
+  color: #ffffff;
   font-weight: 800;
 }
 
 /* Vol 0: Kernel Foundations */
 .ribbon-pill.pill-vol0.active {
-  background: #112233;
+  background: #e0f2fe;
   border-color: #38bdf8;
-  color: #e0f2fe;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  color: #0369a1;
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.2);
 }
 .ribbon-pill.pill-vol0.active .pill-count {
-  background: #0ea5e9;
+  background: #0284c7;
   color: #ffffff;
 }
 
 /* Vol 1: Hacker Lore */
 .ribbon-pill.pill-vol1.active {
-  background: #0f291e;
+  background: #d1fae5;
   border-color: #34d399;
-  color: #d1fae5;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  color: #065f46;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
 }
 .ribbon-pill.pill-vol1.active .pill-count {
-  background: #10b981;
+  background: #059669;
   color: #ffffff;
 }
 
 /* Vol 2: Hardware */
 .ribbon-pill.pill-vol2.active {
-  background: #292010;
+  background: #fef3c7;
   border-color: #fbbf24;
-  color: #fef3c7;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  color: #92400e;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
 }
 .ribbon-pill.pill-vol2.active .pill-count {
-  background: #f59e0b;
-  color: #000000;
+  background: #d97706;
+  color: #ffffff;
 }
 
 /* Vol 3: Unix & Networks */
 .ribbon-pill.pill-vol3.active {
-  background: #1f1830;
+  background: #ede9fe;
   border-color: #a78bfa;
-  color: #ede9fe;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  color: #5b21b6;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.2);
 }
 .ribbon-pill.pill-vol3.active .pill-count {
-  background: #8b5cf6;
+  background: #7c3aed;
   color: #ffffff;
 }
 
 /* Vol 4: Backend */
 .ribbon-pill.pill-vol4.active {
-  background: #181930;
+  background: #e0e7ff;
   border-color: #818cf8;
-  color: #e0e7ff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  color: #3730a3;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
 }
 .ribbon-pill.pill-vol4.active .pill-count {
-  background: #6366f1;
+  background: #4f46e5;
   color: #ffffff;
 }
 
 /* Vol 5: Cloud & SRE */
 .ribbon-pill.pill-vol5.active {
-  background: #0e242b;
+  background: #cffafe;
   border-color: #22d3ee;
-  color: #cffafe;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  color: #155e75;
+  box-shadow: 0 2px 8px rgba(6, 182, 212, 0.2);
 }
 .ribbon-pill.pill-vol5.active .pill-count {
-  background: #06b6d4;
+  background: #0891b2;
   color: #ffffff;
 }
 
 /* Vol 6: Python Track */
 .ribbon-pill.pill-vol6.active {
-  background: #141f33;
+  background: #dbeafe;
   border-color: #60a5fa;
-  color: #dbeafe;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  color: #1e40af;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
 }
 .ribbon-pill.pill-vol6.active .pill-count {
-  background: #3b82f6;
+  background: #2563eb;
   color: #ffffff;
 }
 
 /* Vol 7: Sci-Fi & Pop Culture */
 .ribbon-pill.pill-vol7.active {
-  background: #2b1220;
+  background: #fce7f3;
   border-color: #f472b6;
-  color: #fce7f3;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  color: #9d174d;
+  box-shadow: 0 2px 8px rgba(236, 72, 153, 0.2);
 }
 .ribbon-pill.pill-vol7.active .pill-count {
-  background: #ec4899;
+  background: #db2777;
   color: #ffffff;
 }
 
@@ -495,18 +494,18 @@ main {
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  background: #171a24;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   padding: 0.5rem 1.5rem;
   border-radius: 999px;
   box-shadow: 
-    0 4px 14px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 4px 14px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .hud-item {
   font-size: 0.82rem;
-  color: #94a3b8;
+  color: #64748b;
   display: flex;
   align-items: center;
   gap: 0.45rem;
@@ -514,23 +513,23 @@ main {
 
 .hud-item strong {
   font-family: var(--font-mono);
-  color: #ffffff;
+  color: #0f172a;
 }
 
 .hud-streak-item {
-  color: #fbbf24;
-  background: rgba(251, 191, 36, 0.1);
+  color: #b45309;
+  background: #fef3c7;
   padding: 0.2rem 0.65rem;
   border-radius: 999px;
-  border: 1px solid rgba(251, 191, 36, 0.25);
+  border: 1px solid #fde68a;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hud-streak-item.streak-hot {
-  color: #f43f5e;
-  background: rgba(244, 63, 94, 0.16);
-  border-color: rgba(244, 63, 94, 0.4);
-  box-shadow: 0 0 12px rgba(244, 63, 94, 0.3);
+  color: #be123c;
+  background: #ffe4e6;
+  border-color: #fecdd3;
+  box-shadow: 0 0 12px rgba(244, 63, 94, 0.25);
 }
 
 /* Arena Stage & Mazo de Cartas de Sobremesa */
@@ -665,8 +664,8 @@ main {
   cursor: pointer;
   transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   box-shadow: 
-    0 24px 48px -15px rgba(0, 0, 0, 0.85),
-    0 0 0 1px rgba(255, 255, 255, 0.08);
+    0 20px 40px -12px rgba(15, 23, 42, 0.28),
+    0 0 0 1px rgba(0, 0, 0, 0.06);
 }
 
 .tazo-physical.is-flipped,
@@ -674,7 +673,7 @@ main {
   transform: rotateY(180deg);
 }
 
-/* Caras circulares del tazo: relieve de plástico prensado de 4mm */
+/* Caras circulares del tazo: relieve de inyección plástica prensada */
 .tazo-face {
   position: absolute;
   inset: 0;
@@ -689,29 +688,43 @@ main {
   justify-content: center;
   overflow: hidden;
   box-shadow: 
-    inset 0 2px 5px rgba(255, 255, 255, 0.35),
-    inset 0 -5px 8px rgba(0, 0, 0, 0.75),
-    0 0 0 6px #1e222d,
-    0 0 0 9px #101218;
+    inset 0 3px 6px rgba(255, 255, 255, 0.95),
+    inset 0 -4px 7px rgba(0, 0, 0, 0.25),
+    0 0 0 6px #ffffff,
+    0 0 0 8px #cbd5e1,
+    0 16px 36px -8px rgba(15, 23, 42, 0.22);
 }
 
-/* Frente Metálico Oscuro */
+/* CARA ANVERSO: ANILLOS HIPNÓTICOS CONCÉNTRICOS ESTILO LOONEY TUNES */
 .tazo-front,
 .tazo-face-front {
-  background: radial-gradient(circle at 40% 35%, #2a2f3d 0%, #12141a 75%);
-  border: 4px solid var(--tazo-color, #38bdf8);
+  background: repeating-radial-gradient(
+    circle at 50% 50%,
+    var(--tazo-c1, #06b6d4) 0px,
+    var(--tazo-c1, #06b6d4) 15px,
+    var(--tazo-c2, #10b981) 15px,
+    var(--tazo-c2, #10b981) 30px
+  );
+  border: 5px solid #ffffff;
   transform: rotateY(0deg);
 }
 
-/* Reverso Holográfico Tecnológico */
+/* CARA REVERSO: PIXEL CHECKERBOARD ESTILO PAC-MAN SABRITAS */
 .tazo-back,
 .tazo-face-back {
-  background: radial-gradient(circle at 50% 40%, #1e1b4b 0%, #09090b 80%);
-  border: 4px solid var(--tazo-accent, #a855f7);
+  background-color: #2a1b92;
+  background-image: 
+    linear-gradient(45deg, #3b2bb0 25%, transparent 25%), 
+    linear-gradient(-45deg, #3b2bb0 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #3b2bb0 75%), 
+    linear-gradient(-45deg, transparent 75%, #3b2bb0 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+  border: 5px solid #ffffff;
   transform: rotateY(180deg);
 }
 
-/* Muescas / Ranuras reales de plástico en 4 cuadrantes */
+/* Muescas / Ranuras físicas de plástico en 4 cuadrantes */
 .tazo-notches {
   position: absolute;
   inset: 0;
@@ -723,8 +736,9 @@ main {
 
 .tazo-notches span {
   position: absolute;
-  background: #0d0f17;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.85);
+  background: #cbd5e1;
+  border: 1px solid #94a3b8;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
   z-index: 10;
 }
 .tazo-notches span:nth-child(1) { top: -4px; left: calc(50% - 6px); width: 12px; height: 16px; border-radius: 4px; }
@@ -732,7 +746,7 @@ main {
 .tazo-notches span:nth-child(3) { left: -4px; top: calc(50% - 6px); width: 16px; height: 12px; border-radius: 4px; }
 .tazo-notches span:nth-child(4) { right: -4px; top: calc(50% - 6px); width: 16px; height: 12px; border-radius: 4px; }
 
-/* Texto Curvado Perimetral (SVG textPath) */
+/* Texto Curvado Perimetral (SVG textPath) con trazo oscuro para legibilidad total */
 .tazo-ring-text {
   position: absolute;
   inset: 0;
@@ -745,109 +759,158 @@ main {
 .ring-label, .ring-sub {
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
   font-size: 8.5px;
-  font-weight: 700;
-  letter-spacing: 1.8px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
   text-transform: uppercase;
+  fill: #ffffff;
+  stroke: #0f172a;
+  stroke-width: 0.8px;
+  paint-order: stroke fill;
 }
 
 .tazo-front .ring-label {
-  fill: var(--tazo-color, #38bdf8);
+  fill: #ffffff;
 }
 .tazo-front .ring-sub {
-  fill: #cbd5e1;
+  fill: #fef08a;
 }
 
 .tazo-back .ring-label {
-  fill: var(--tazo-accent, #c084fc);
+  fill: #ffd32a;
 }
 .tazo-back .ring-sub {
-  fill: #94a3b8;
+  fill: #ffffff;
 }
 
-/* Núcleo Central: Respira y da protagonismo visual */
+/* Núcleo Central: El arte y los colores inundan el disco completo (Cero oblea de papel blanca) */
 .tazo-core {
-  width: 72%;
-  height: 72%;
+  width: 80%;
+  height: 80%;
   border-radius: 50%;
-  background: rgba(15, 18, 26, 0.82);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  border: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 1.1rem 0.9rem;
+  padding: 0.4rem;
   box-sizing: border-box;
-  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.65);
+  box-shadow: none;
   z-index: 6;
   position: relative;
 }
 
 .tazo-core.back-layout {
-  padding: 0.95rem 0.85rem;
-  background: rgba(13, 15, 26, 0.86);
+  width: 82%;
+  height: 82%;
+  padding: 0.4rem;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
+/* Icono Central: Arte / Sticker Coleccionable Protagónico */
 .tazo-icon-badge {
-  width: 42px;
-  height: 42px;
-  min-height: 42px;
+  width: 58px;
+  height: 58px;
+  min-height: 58px;
   border-radius: 50%;
-  background: rgba(56, 189, 248, 0.15);
-  border: 1.5px solid var(--tazo-color, #38bdf8);
-  color: var(--tazo-color, #38bdf8);
+  background: var(--tazo-badge-bg, #ffd32a);
+  color: var(--tazo-badge-color, #0f172a);
+  border: 3.5px solid #0f172a;
+  box-shadow: 
+    0 4px 14px rgba(0, 0, 0, 0.45),
+    0 0 0 3px rgba(255, 255, 255, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.35rem;
-  box-shadow: 0 0 14px rgba(56, 189, 248, 0.25);
+  margin-bottom: 0.4rem;
+  transform: rotate(-2deg);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.tazo-stage:hover .tazo-icon-badge {
+  transform: rotate(3deg) scale(1.08);
 }
 
 .tazo-icon-badge i,
 .tazo-icon-badge svg {
-  width: 20px;
-  height: 20px;
+  width: 28px;
+  height: 28px;
 }
 
+/* Título: El HÉROE VISUAL Absoluto (Tipografía Arcade Cómic Súper Destacada) */
 .tazo-title {
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: clamp(0.95rem, 2.9vw, 1.15rem);
-  font-weight: 800;
-  color: #ffffff;
-  margin: 0 0 0.3rem 0;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  font-weight: 900;
+  color: #ffd32a;
+  margin: 0 0 0.35rem 0;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  -webkit-text-stroke: 1.8px #0f172a;
+  text-shadow: 
+    3px 3px 0 #0f172a,
+    0 0 16px rgba(0, 0, 0, 0.6);
+  max-width: 95%;
+  word-break: break-word;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.45));
 }
 
+/* Pista: Secundaria, concisa y encapsulada como píldora cómic */
 .tazo-clue {
-  font-size: clamp(0.72rem, 2.3vw, 0.82rem);
-  color: #cbd5e1;
-  line-height: 1.35;
+  font-size: clamp(0.68rem, 2.1vw, 0.76rem);
+  color: #0f172a;
+  line-height: 1.28;
   margin: 0;
-  font-weight: 500;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #0f172a;
+  box-shadow: 0 3px 0 #0f172a;
+  padding: 0.3rem 0.65rem;
+  border-radius: 12px;
+  max-width: 88%;
+  max-height: 2.85rem;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Tipografía de Año Hero y Metadatos del Reverso */
-.author-capsule {
-  font-size: 0.62rem;
-  font-weight: 700;
-  color: #c084fc;
-  letter-spacing: 0.8px;
-  background: rgba(168, 85, 247, 0.15);
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  padding: 0.2rem 0.6rem;
+/* Tipografía de Año Hero y Metadatos del Reverso Estilo Arcade Sabritas */
+.tazo-num-capsule {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 900;
+  background: #ffd32a;
+  color: #000000;
+  border: 2px solid #000000;
+  box-shadow: 0 2px 0 #000000;
+  padding: 0.15rem 0.65rem;
   border-radius: 999px;
-  margin-bottom: 0.35rem;
-  max-width: 90%;
+  letter-spacing: 0.8px;
+  margin-bottom: 0.25rem;
+}
+
+.tazo-author-box {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 0.62rem;
+  font-weight: 900;
+  background: #ff4757;
+  color: #ffd32a;
+  border: 2px solid #000000;
+  box-shadow: 0 2px 0 #000000;
+  padding: 0.18rem 0.6rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  max-width: 88%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-transform: uppercase;
+  margin-bottom: 0.25rem;
 }
 
 .year-hero-display {
@@ -857,18 +920,19 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 3.8rem;
+  min-height: 3.6rem;
   user-select: none;
 }
 
 .year-digits {
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: clamp(3.4rem, 10vw, 4.4rem);
+  font-size: clamp(3.2rem, 9.5vw, 4.2rem);
   font-weight: 900;
-  color: #ffffff;
+  color: #ffd32a;
   line-height: 0.85;
-  letter-spacing: -2px;
-  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.85);
+  letter-spacing: -1.5px;
+  -webkit-text-stroke: 1.5px #000000;
+  text-shadow: 2.5px 2.5px 0 #000000;
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -884,19 +948,19 @@ main {
   background: linear-gradient(135deg, #f59e0b, #d97706);
   color: #000000;
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   font-weight: 800;
-  letter-spacing: 1.5px;
-  padding: 0.35rem 0.95rem;
+  letter-spacing: 1.2px;
+  padding: 0.3rem 0.85rem;
   border-radius: 999px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  border: 2px solid #000000;
+  box-shadow: 0 3px 0 #000000;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .year-cover-tape:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.45);
 }
 
 .year-hero-display.is-hidden .year-cover-tape {
@@ -912,16 +976,35 @@ main {
   animation: revealPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-.lore-text {
-  font-size: clamp(0.68rem, 2.1vw, 0.76rem);
-  color: #94a3b8;
-  font-style: italic;
-  margin: 0.35rem 0 0 0;
+.lore-bubble {
+  background: #f8fafc;
+  color: #0f172a;
+  border: 2px solid #000000;
+  box-shadow: 0 2px 0 #000000;
+  border-radius: 8px;
+  padding: 0.35rem 0.6rem;
+  font-size: clamp(0.66rem, 2.1vw, 0.74rem);
   line-height: 1.35;
+  font-weight: 600;
+  margin-top: 0.3rem;
+  max-width: 90%;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.tazo-code-capsule {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.58rem;
+  font-weight: 800;
+  background: #ffffff;
+  color: #0f172a;
+  border: 1.5px solid #000000;
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+  margin-top: 0.25rem;
+  letter-spacing: 0.5px;
 }
 
 /* Brillo Plástico Especular al Rotar (Foil Reflection) */
@@ -932,8 +1015,8 @@ main {
   background: linear-gradient(
     115deg,
     transparent 35%,
-    rgba(255, 255, 255, 0.22) 48%,
-    rgba(255, 255, 255, 0.05) 55%,
+    rgba(255, 255, 255, 0.3) 48%,
+    rgba(255, 255, 255, 0.08) 55%,
     transparent 70%
   );
   pointer-events: none;
@@ -1361,20 +1444,20 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(15, 23, 42, 0.82);
-  border: 1px solid rgba(56, 189, 248, 0.35);
+  background: #ffffff;
+  border: 1.5px solid #0284c7;
   padding: 0.35rem 1.6rem;
   border-radius: 14px;
   box-shadow: 
-    0 4px 16px rgba(0, 0, 0, 0.4),
-    0 0 25px rgba(56, 189, 248, 0.2);
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    0 0 20px rgba(2, 132, 199, 0.12);
 }
 
 .badge-title {
   font-size: 0.64rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: var(--text-muted, #94a3b8);
+  color: var(--text-muted, #64748b);
   text-transform: uppercase;
 }
 
@@ -1382,10 +1465,9 @@ main {
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
   font-size: 2.3rem;
   font-weight: 900;
-  color: #38bdf8;
+  color: #0284c7;
   letter-spacing: -0.02em;
   line-height: 1.05;
-  text-shadow: 0 0 18px rgba(56, 189, 248, 0.6);
 }
 
 .dial-slider-container {
@@ -1408,10 +1490,10 @@ main {
   appearance: none;
   height: 12px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  background: linear-gradient(90deg, #e2e8f0 0%, #cbd5e1 50%, #e2e8f0 100%);
   outline: none;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.75);
+  border: 1px solid #cbd5e1;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
   cursor: ew-resize;
 }
 
@@ -1545,15 +1627,15 @@ main {
   align-items: center;
   gap: 0.5rem;
   flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
   border-radius: 20px;
   padding: 0.25rem 0.7rem;
 }
 
 #attempt-label {
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: #475569;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -1563,14 +1645,14 @@ main {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  background: #cbd5e1;
+  border: 1.5px solid #94a3b8;
   transition: all 0.3s ease;
 }
 .attempt-dot.used {
   background: #f87171;
-  border-color: #f87171;
-  box-shadow: 0 0 8px rgba(248, 113, 113, 0.6);
+  border-color: #ef4444;
+  box-shadow: 0 0 8px rgba(248, 113, 113, 0.4);
 }
 
 /* Control Buttons */
@@ -1596,18 +1678,18 @@ main {
   align-items: center;
   gap: 0.5rem;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.4);
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.6);
+  box-shadow: 0 8px 20px rgba(2, 132, 199, 0.45);
 }
 
 .btn-flip-cta {
-  background: #242838;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: #ffffff;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
   padding: 0.65rem 1.3rem;
   border-radius: 10px;
   font-family: var(--font-display);
@@ -1617,28 +1699,26 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  box-shadow: 
-    0 3px 8px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
   transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-flip-cta:hover {
-  background: #2f3448;
-  border-color: rgba(255, 255, 255, 0.28);
+  background: #ffffff;
+  border-color: #94a3b8;
   transform: translateY(-1px);
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }
 
 .btn-flip-cta:active {
   transform: translateY(1px);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #cbd5e1;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
   font-weight: 600;
   padding: 0.65rem 1.15rem;
   border-radius: 12px;
@@ -1648,15 +1728,16 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   user-select: none;
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.25);
-  color: #ffffff;
+  background: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a;
   transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
 .btn-secondary:active {
@@ -1667,13 +1748,13 @@ main {
 .timeline-shelf {
   width: 100%;
   max-width: 900px;
-  background: #161922;
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 16px;
   padding: 1.15rem 1.4rem;
   box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 4px 16px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
   position: relative;
 }
 
@@ -1683,7 +1764,7 @@ main {
   align-items: center;
   margin-bottom: 0.65rem;
   font-size: 0.84rem;
-  color: #94a3b8;
+  color: #64748b;
 }
 
 .shelf-title-wrap {
@@ -1759,16 +1840,16 @@ main {
   width: 58px;
   height: 58px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, var(--tazo-color, var(--theme-color, #38bdf8)) 0%, #0369a1 85%);
-  border: 4px solid rgba(0, 0, 0, 0.25);
+  background: radial-gradient(circle at 35% 30%, var(--tazo-color, #0ea5e9) 0%, #0369a1 85%);
+  border: 3px solid #ffffff;
   box-shadow: 
-    0 6px 14px rgba(0, 0, 0, 0.45), 
-    inset 0 0 0 2px rgba(255, 255, 255, 0.35);
+    0 4px 10px rgba(15, 23, 42, 0.18), 
+    0 0 0 2px #0f172a;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #0f172a;
+  color: #ffffff;
   text-align: center;
   transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
   position: relative;
@@ -1780,24 +1861,25 @@ main {
 .shelf-card-chip:hover,
 .shelf-tazo-chip:hover {
   transform: translateY(-4px) scale(1.12);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.28), 0 0 0 2px #0f172a;
 }
 
 .shelf-year,
 .shelf-tazo-year {
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 900;
-  color: #0f172a;
+  color: #ffffff;
   line-height: 1;
   letter-spacing: -0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 .shelf-id,
 .shelf-tazo-id {
   font-family: var(--font-mono, monospace);
   font-size: 0.52rem;
-  color: rgba(15, 23, 42, 0.8);
+  color: #fef08a;
   font-weight: 700;
   margin-top: 2px;
 }
@@ -1915,23 +1997,23 @@ main {
   }
 }
   
-/* Modal de Impresión */
+/* Modal de Impresión y Ayuda */
 .print-modal {
   margin: auto;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid #e2e8f0;
   border-radius: 20px;
-  background: #0f1422;
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(14, 165, 233, 0.15);
+  background: #ffffff;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.25);
   max-width: 540px;
   width: 90vw;
   padding: 0;
   outline: none;
-  color: #f1f5f9;
+  color: #0f172a;
 }
 
 .print-modal::backdrop {
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(6px);
 }
 
 .print-modal-content {
@@ -1941,7 +2023,7 @@ main {
 
 .print-modal-header {
   padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid #e2e8f0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1954,13 +2036,13 @@ main {
   font-family: var(--font-display);
   font-size: 1.15rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #0f172a;
 }
 
 .print-modal-title svg {
   width: 22px;
   height: 22px;
-  color: #38bdf8;
+  color: #0284c7;
 }
 
 .print-modal-close {
@@ -1974,7 +2056,7 @@ main {
 }
 
 .print-modal-close:hover {
-  color: #ffffff;
+  color: #0f172a;
 }
 
 .print-modal-body {
@@ -2539,14 +2621,14 @@ main {
 /* Application Footer */
 .app-footer {
   margin-top: auto;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(8, 11, 18, 0.85);
+  border-top: 1px solid #e2e8f0;
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 1.25rem 2rem;
   text-align: center;
   font-size: 0.8rem;
-  color: var(--text-secondary);
+  color: var(--text-secondary, #334155);
 }
 
 .footer-inner {
@@ -2558,26 +2640,25 @@ main {
 }
 
 .footer-version {
-  color: #38bdf8;
+  color: #0284c7;
   font-family: var(--font-mono);
   font-weight: 700;
 }
 
 .footer-link {
-  color: #f1f5f9;
+  color: #0f172a;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.15s ease;
 }
 
 .footer-link:hover {
-  color: #38bdf8;
-  text-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+  color: #0284c7;
   text-decoration: underline;
 }
 
 .footer-sep {
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(0, 0, 0, 0.2);
 }
 
 /* Guía táctil de gestos y atajos de teclado */

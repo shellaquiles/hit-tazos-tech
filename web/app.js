@@ -645,16 +645,94 @@ class HitTazosEngine {
     return map[domain] || 'cpu';
   }
 
+  getTazoPalette(card) {
+    const domainPalettes = {
+      'languages-runtimes': {
+        c1: '#00d2d3', // Electric Turquoise
+        c2: '#0984e3', // Vivid Azure
+        badgeBg: '#ffd32a', // Canary
+        badgeColor: '#0f172a'
+      },
+      'python-ecosystem': {
+        c1: '#3867d6', // Python Blue
+        c2: '#fed330', // Python Yellow
+        badgeBg: '#ffd32a',
+        badgeColor: '#1e3799'
+      },
+      'security-exploits': {
+        c1: '#ff4757', // Hot Crimson
+        c2: '#2ed573', // Neon Cyber Lime
+        badgeBg: '#ff4757',
+        badgeColor: '#ffffff'
+      },
+      'systems-kernels': {
+        c1: '#10ac84', // Coyote Kelly Green
+        c2: '#00d2d3', // Turquoise Cyan
+        badgeBg: '#00d2d3',
+        badgeColor: '#0f172a'
+      },
+      'hardware-chips': {
+        c1: '#ff9f43', // Tangerine Orange
+        c2: '#ee5253', // Warm Red
+        badgeBg: '#ffd32a',
+        badgeColor: '#b33939'
+      },
+      'networking-protocols': {
+        c1: '#5f27cd', // Deep Violet
+        c2: '#48dbfb', // Electric Aqua
+        badgeBg: '#48dbfb',
+        badgeColor: '#341f97'
+      },
+      'distributed-databases': {
+        c1: '#2e86de', // Royal Cobalt
+        c2: '#ff9f43', // Tangerine
+        badgeBg: '#ff9f43',
+        badgeColor: '#ffffff'
+      },
+      'devops-containers': {
+        c1: '#0abde3', // Sky Cyan
+        c2: '#10ac84', // Emerald
+        badgeBg: '#ffd32a',
+        badgeColor: '#0f172a'
+      },
+      'ai-data-science': {
+        c1: '#8854d0', // Amethyst Purple
+        c2: '#f368e0', // Neon Orchid
+        badgeBg: '#fed330',
+        badgeColor: '#4834d4'
+      },
+      'scifi-cinema': {
+        c1: '#f368e0', // Bubblegum Pink (Bugs Bunny style)
+        c2: '#00d2d3', // Cyan
+        badgeBg: '#fff200',
+        badgeColor: '#d63031'
+      },
+      'hacker-lore': {
+        c1: '#2ed573', // Cyber Lime
+        c2: '#1e272e', // Dark Noir
+        badgeBg: '#2ed573',
+        badgeColor: '#0f172a'
+      }
+    };
+
+    return domainPalettes[card.domain] || {
+      c1: '#00d2d3',
+      c2: '#10ac84',
+      badgeBg: '#ffd32a',
+      badgeColor: '#0f172a'
+    };
+  }
+
   parseHito(hito) {
     const boldRegex = /\*\*(.*?)\*\*/;
     const match = hito.match(boldRegex);
     if (match) {
-      const title = match[1].trim();
-      const cleanHito = hito.replace(/\*\*/g, '').trim();
+      const title = match[1].replace(/`/g, '').trim();
+      const cleanHito = hito.replace(/\*\*/g, '').replace(/`/g, '').trim();
       return { title, clue: cleanHito };
     }
     const parts = hito.split(/[,:.]/);
-    return { title: parts[0].trim(), clue: hito.replace(/\*\*/g, '').trim() };
+    return { title: parts[0].replace(/`/g, '').trim(), clue: hito.replace(/\*\*/g, '').replace(/`/g, '').trim() };
   }
 
   buildCardHTML(card, options = {}) {
@@ -665,14 +743,14 @@ class HitTazosEngine {
     const triviaFormatted = this.formatMarkdown(card.trivia);
 
     const groupIcon = this.getDomainIcon(card.domain);
+    const palette = this.getTazoPalette(card);
 
-    // Número de tazo consecutivo
+    // Número de tazo consecutivo y código de coleccionista
     const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
     const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
     const cardNumStr = `${volId}x${hexPart}`;
+    const collectorNum = String((card.index !== undefined ? card.index + 1 : 1)).padStart(3, '0');
 
-    // Tema cromático Hit-Tazos Tech
-    const theme = this.getCardTheme(card);
     const discId = options.id !== undefined ? (options.id ? `id="${options.id}"` : '') : 'id="active-card-3d"';
 
     const domainName = (this.catalog.domains[card.domain] || card.domain).toUpperCase();
@@ -680,8 +758,8 @@ class HitTazosEngine {
     const topLabel = `${domainName} • ${volName}`;
     const bottomLabel = `SHELLAQUILES ORG • #${cardNumStr}`;
 
-    const topBackLabel = `HIT-TAZOS TECH • TORNEO CRONOLÓGICO`;
-    const bottomBackLabel = `${volName} • #${cardNumStr}`;
+    const topBackLabel = `HIT-TAZOS TECH • COLECCIÓN OFICIAL`;
+    const bottomBackLabel = `PROHIBIDA SU VENTA • #${cardNumStr}`;
 
     const uid = (card.id || 'tazo').replace(/[^a-zA-Z0-9]/g, '_') + '_' + Math.floor(Math.random() * 1000);
     const topPathId = `curve-top-${uid}`;
@@ -690,12 +768,12 @@ class HitTazosEngine {
     const bottomBackPathId = `curve-bottom-b-${uid}`;
 
     return `
-      <!-- Tazo 3D Físico de Torneo: Disco Circular Coleccionable con Muescas y Relieve -->
-      <div class="tazo-physical tazo-disc ${isRevealed ? 'is-flipped' : ''}" ${discId} style="--tazo-color: ${theme.bg}; --tazo-accent: ${theme.accent};">
+      <!-- Tazo 3D Físico: Edición Coleccionable Noventera de Torneo -->
+      <div class="tazo-physical tazo-disc ${isRevealed ? 'is-flipped' : ''}" ${discId} style="--tazo-c1: ${palette.c1}; --tazo-c2: ${palette.c2}; --tazo-badge-bg: ${palette.badgeBg}; --tazo-badge-color: ${palette.badgeColor};">
         
-        <!-- CARA FRONTAL (ANVERSO) -->
-        <div class="tazo-face tazo-front tazo-face-front" style="--tazo-theme-bg: ${theme.bg};">
-          <!-- Bisel de 4 ranuras físicas de ensamble -->
+        <!-- CARA FRONTAL (ANVERSO: ANILLOS HIPNÓTICOS CONCÉNTRICOS ESTILO LOONEY TUNES) -->
+        <div class="tazo-face tazo-front tazo-face-front">
+          <!-- 4 Ranuras físicas de ensamble en bordes -->
           <div class="tazo-notches" aria-hidden="true">
             <span></span><span></span><span></span><span></span>
           </div>
@@ -708,7 +786,7 @@ class HitTazosEngine {
             <text class="ring-sub"><textPath href="#${bottomPathId}" startOffset="50%" text-anchor="middle">${bottomLabel}</textPath></text>
           </svg>
 
-          <!-- Núcleo Central: Ícono de relieve + Título Héroe + Pista Breve -->
+          <!-- Núcleo Central: Spotlight Blanco con Sticker Pop y Pista Breve -->
           <div class="tazo-core">
             <div class="tazo-icon-badge">
               <i data-lucide="${groupIcon}"></i>
@@ -721,9 +799,9 @@ class HitTazosEngine {
           <div class="tazo-foil-reflection" aria-hidden="true"></div>
         </div>
 
-        <!-- CARA TRASERA (REVERSO: EL AÑO HERO) -->
-        <div class="tazo-face tazo-back tazo-face-back" style="--tazo-color: ${theme.bg};">
-          <!-- Bisel de 4 ranuras físicas de ensamble -->
+        <!-- CARA TRASERA (REVERSO: ESTILO PAC-MAN SABRITAS CON CHECKERBOARD Y AÑO HERO) -->
+        <div class="tazo-face tazo-back tazo-face-back">
+          <!-- 4 Ranuras físicas de ensamble -->
           <div class="tazo-notches" aria-hidden="true">
             <span></span><span></span><span></span><span></span>
           </div>
@@ -736,19 +814,21 @@ class HitTazosEngine {
             <text class="ring-sub"><textPath href="#${bottomBackPathId}" startOffset="50%" text-anchor="middle">${bottomBackLabel}</textPath></text>
           </svg>
 
-          <!-- Núcleo Trasero: Autor + Año Hero Gigante + Lore -->
+          <!-- Núcleo Trasero Arcade: Número Amarillo + Bloque Rojo de Año + Lore -->
           <div class="tazo-core back-layout">
-            <span class="author-capsule">${card.autor.toUpperCase()}</span>
+            <div class="tazo-num-capsule">${collectorNum}/576</div>
+            <div class="tazo-author-box">${card.autor.toUpperCase()}</div>
             
             <div class="year-hero-display ${yearStateClass}" id="year-target" title="Toca para revelar el año [R]">
               <span class="year-digits">${card.year}</span>
               <div class="year-cover-tape">
-                <i data-lucide="eye"></i>
-                <span>???? REVELAR</span>
+                <i data-lucide="sparkles"></i>
+                <span>INGRESAR CÓDIGO</span>
               </div>
             </div>
 
-            <p class="lore-text">${triviaFormatted}</p>
+            <div class="lore-bubble">${triviaFormatted}</div>
+            <div class="tazo-code-capsule">TAZO • #${cardNumStr}</div>
           </div>
 
           <!-- Brillo plástico especular al rotar -->
