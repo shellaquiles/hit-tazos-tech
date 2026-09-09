@@ -957,18 +957,33 @@ class HitTazosEngine {
 
     const isHidden = yearStage.classList.contains('is-hidden');
     if (isHidden) {
-      yearStage.classList.remove('is-hidden');
-      yearStage.classList.add('is-revealed');
-      this.updateRevealButtonState(true);
-
-      // Dinámica de juego: Revelar año cuesta 5 puntos y bloquea el tiro para esta carta
+      // Dinámica de juego: Revelar año cuesta 5 puntos y bloquea el tiro para esta carta.
+      // Regla: No se permiten puntos negativos. Si no alcanzan los puntos (< 5), no se puede revelar el año.
       if (!this.cardSolved) {
-        this.score = Math.max(0, this.score - 5);
+        if (this.score < 5) {
+          if (this.guessResultPill) {
+            this.guessResultPill.innerHTML = `<span style="color:#f59e0b;display:inline-flex;align-items:center;gap:0.4rem;font-weight:600">
+              <i data-lucide="alert-triangle"></i> Puntos insuficientes: necesitas al menos 5 pts para revelar el año
+            </span>`;
+          }
+          this.playAudioFeedback('slam');
+          this.refreshIcons();
+          return;
+        }
+
+        // Si el tazo está de frente, voltearlo para ver el reverso
+        if (!tazoDisc.classList.contains('is-flipped')) {
+          this.flipCard(stage);
+        }
+
+        this.score -= 5;
         this.streak = 0;
         this.cardSolved = true;
         if (this.btnSubmitGuess) this.btnSubmitGuess.disabled = true;
 
-        if (this.hudScore) this.hudScore.textContent = this.score;
+        if (this.hudScore) {
+          this.hudScore.textContent = this.score;
+        }
         if (this.hudStreak) this.hudStreak.textContent = this.streak;
         if (this.hudStreakBox) this.hudStreakBox.classList.remove('streak-hot');
 
@@ -982,8 +997,15 @@ class HitTazosEngine {
         this.persistGameState();
         this.playAudioFeedback('slam');
       } else {
+        if (!tazoDisc.classList.contains('is-flipped')) {
+          this.flipCard(stage);
+        }
         this.playAudioFeedback('hit');
       }
+
+      yearStage.classList.remove('is-hidden');
+      yearStage.classList.add('is-revealed');
+      this.updateRevealButtonState(true);
     } else {
       yearStage.classList.remove('is-revealed');
       yearStage.classList.add('is-hidden');
@@ -1146,7 +1168,9 @@ class HitTazosEngine {
 
     // Actualizar dots con estado final del intento
     this.renderAttemptTracker(true);
-    if (this.hudScore) this.hudScore.textContent = this.score;
+    if (this.hudScore) {
+      this.hudScore.textContent = this.score;
+    }
     if (this.hudStreak) this.hudStreak.textContent = this.streak;
     if (this.hudStreakBox) {
       if (this.streak >= 2) this.hudStreakBox.classList.add('streak-hot');
@@ -1248,8 +1272,10 @@ class HitTazosEngine {
         this.renderShelf();
       }
       if (typeof savedScore === 'number' && !isNaN(savedScore)) {
-        this.score = savedScore;
-        if (this.hudScore) this.hudScore.textContent = this.score;
+        this.score = Math.max(0, savedScore);
+        if (this.hudScore) {
+          this.hudScore.textContent = this.score;
+        }
       }
       if (typeof savedStreak === 'number' && !isNaN(savedStreak)) {
         this.streak = savedStreak;
