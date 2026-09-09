@@ -2189,200 +2189,216 @@ main {
   gap: 1.25rem;
 }
 
-/* Bloque de Descargas Oficiales de PDFs Vectoriales */
-.official-pdf-section {
-  background: rgba(99, 102, 241, 0.08);
-  border: 1px solid rgba(99, 102, 241, 0.25);
-  border-radius: 14px;
-  padding: 1.1rem;
+/* ==========================================================================
+   MODAL DE IMPRESIÓN Y DESCARGAS (DISEÑO ESCANEABLE DE ALTO CONTRASTE)
+   ========================================================================== */
+
+.print-modal .print-modal-content {
+  max-width: 680px;
+}
+
+.print-modal-layout {
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 1.25rem;
+  padding: 1.2rem 1.5rem;
 }
 
-.official-pdf-heading {
+.print-section-wrap {
   display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  color: #f1f5f9;
+  flex-direction: column;
+  gap: 0.45rem;
 }
 
-.official-pdf-heading svg {
-  width: 22px;
-  height: 22px;
-  color: #818cf8;
-  flex-shrink: 0;
-  margin-top: 2px;
+.print-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-display, sans-serif);
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #0f172a;
 }
 
-.official-pdf-heading strong,
-.official-pdf-title {
-  display: block;
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: #e0e7ff;
-  margin: 0;
-  line-height: 1.3;
+.print-section-title svg {
+  width: 17px;
+  height: 17px;
+  color: #0284c7;
 }
 
-.official-pdf-heading span {
+.print-section-desc {
   font-size: 0.76rem;
-  color: #94a3b8;
-  line-height: 1.35;
+  color: #64748b;
+  margin-bottom: 0.25rem;
 }
 
-.official-pdf-grid {
+/* Grilla Compacta de Descarga de PDFs (2 columnas) */
+.pdf-compact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 0.85rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.55rem;
 }
 
-.pdf-dl-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-  padding: 0.85rem 0.95rem;
-  text-decoration: none;
-  color: #ffffff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.pdf-dl-card:hover {
-  border-color: #818cf8;
-  background: rgba(99, 102, 241, 0.12);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.25);
-}
-
-.pdf-dl-header {
+/* Fila de descarga individual con alto contraste */
+.pdf-compact-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.pdf-tag {
-  font-size: 0.68rem;
-  font-weight: 700;
-  padding: 0.15rem 0.5rem;
-  border-radius: 9999px;
-  letter-spacing: 0.02em;
-}
-
-.pdf-tag.format-carta {
-  background: rgba(16, 185, 129, 0.15);
-  color: #34d399;
-  border: 1px solid rgba(16, 185, 129, 0.3);
-}
-
-.pdf-tag.format-tabloid {
-  background: rgba(59, 130, 246, 0.15);
-  color: #60a5fa;
-  border: 1px solid rgba(59, 130, 246, 0.3);
-}
-
-.pdf-ver {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.68rem;
-  color: var(--text-muted);
-}
-
-.pdf-dl-title {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.74rem;
-  font-weight: 600;
-  color: #f1f5f9;
-  word-break: break-all;
-}
-
-.pdf-dl-specs {
-  font-size: 0.72rem;
-  color: #94a3b8;
-  line-height: 1.35;
-}
-
-.pdf-dl-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  margin-top: 0.3rem;
-  padding: 0.45rem 0.75rem;
-  border-radius: 7px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  font-size: 0.74rem;
-  font-weight: 600;
-  color: #a5b4fc;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.55rem 0.75rem;
+  text-decoration: none;
   transition: all 0.15s ease;
 }
 
-.pdf-dl-card:hover .pdf-dl-btn {
-  background: #4f46e5;
-  color: #ffffff;
-  border-color: #4f46e5;
+.pdf-compact-row:hover {
+  background: #f0f9ff;
+  border-color: #38bdf8;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(2, 132, 199, 0.08);
 }
 
-.pdf-dl-btn svg {
+.pdf-row-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.pdf-row-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.pdf-vol-pill {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  font-weight: 800;
+  background: #e0f2fe;
+  color: #0284c7;
+  padding: 0.08rem 0.35rem;
+  border-radius: 4px;
+}
+
+.pdf-specs-text {
+  font-size: 0.66rem;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+/* Título de volumen: Negro oscuro sobre fondo blanco, 100% legible */
+.pdf-row-title {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #0f172a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+
+.pdf-row-action {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0284c7;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.pdf-compact-row:hover .pdf-row-action {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+}
+
+.pdf-row-action svg {
   width: 14px;
   height: 14px;
 }
 
-.print-divider {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  margin: 0.2rem 0;
-}
-
-.print-divider::before,
-.print-divider::after {
-  content: '';
-  flex: 1;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.print-divider span {
-  padding: 0 0.75rem;
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-muted);
-}
-
-.print-form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.print-form-group label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #e2e8f0;
-}
-
-.print-instructions-box {
-  background: rgba(14, 165, 233, 0.08);
-  border: 1px solid rgba(14, 165, 233, 0.2);
+/* Sección de Opciones de Impresión Local */
+.print-options-panel {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
   border-radius: 12px;
   padding: 0.85rem 1rem;
-  font-size: 0.8rem;
-  color: #cbd5e1;
-  line-height: 1.5;
 }
 
-.print-instructions-box strong {
-  color: #38bdf8;
-  display: block;
-  margin-bottom: 0.35rem;
+.print-controls-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
 }
 
-.print-instructions-box ul {
-  padding-left: 1.2rem;
+.print-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.print-field label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.print-select-custom {
+  font-size: 0.78rem;
+  padding: 0.45rem 0.6rem;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #0f172a;
+}
+
+/* Checklist de Parámetros de Impresión en 3 Píldoras */
+.print-spec-checklist {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed #cbd5e1;
+}
+
+.spec-chip {
+  font-size: 0.7rem;
+  color: #475569;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+}
+
+.spec-chip strong {
+  color: #0284c7;
+}
+
+/* Adaptación para pantallas de smartphone */
+@media (max-width: 640px) {
+  .pdf-compact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .print-controls-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .print-spec-checklist {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
 }
 
 .print-modal-footer {

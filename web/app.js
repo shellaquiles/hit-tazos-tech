@@ -1,10 +1,21 @@
 // Hit-Tazos Tech — Main Application Orchestrator (ES Module)
-import { GAME_RULES, CHRONO_BOUNDS, STORAGE_KEYS, CARD_FORMATS } from './core/constants.js';
+import { 
+  GAME_RULES, 
+  CHRONO_BOUNDS, 
+  STORAGE_KEYS, 
+  CARD_FORMATS, 
+  CARD_SELECTORS, 
+  ANIM_CONFIG 
+} from './core/constants.js';
 import { evaluateGuess, calculateHint, formatCardIdNumber, formatCollectorNumber } from './core/rules.js';
 import { StorageAdapter } from './core/storage.js';
 import { GameState } from './core/state.js';
 import { AudioEngine } from './core/audio.js';
 import { CardRenderer } from './core/renderer.js';
+
+export const CARD_SELECTOR = CARD_SELECTORS.ACTIVE_CARD;
+export const YEAR_STAGE_SELECTOR = CARD_SELECTORS.YEAR_STAGE;
+export { ANIM_CONFIG };
 
 export class HitTazosApp {
   constructor() {
@@ -23,6 +34,8 @@ export class HitTazosApp {
     this.touchGestureInstance = null;
     this.justHandledTouch = false;
     this.isTransitioning = false;
+    this.pendingIconRefresh = false;
+    this.searchDebounceTimer = null;
 
     this.initDOM();
     this.bindStateEvents();
@@ -32,6 +45,39 @@ export class HitTazosApp {
     this.initTouchGestures();
     this.loadData();
     this.loadSavedState();
+  }
+
+  // ── Métodos Auxiliares de Consulta DOM y Utilidades (DRY) ──────────────────
+
+  getActiveCardElement(container = this.cardStage) {
+    if (!container) return null;
+    return container.querySelector(CARD_SELECTOR) || container;
+  }
+
+  getYearStageElement(cardEl = this.getActiveCardElement()) {
+    if (!cardEl) return null;
+    return cardEl.querySelector(YEAR_STAGE_SELECTOR);
+  }
+
+  setFeedbackPill(html) {
+    if (this.guessResultPill) {
+      this.guessResultPill.innerHTML = html;
+      this.refreshIcons();
+    }
+  }
+
+  setupDialog(dialogEl, openBtn, closeBtns = []) {
+    if (!dialogEl) return;
+    openBtn?.addEventListener('click', () => {
+      if (typeof dialogEl.showModal === 'function') {
+        dialogEl.showModal();
+        this.refreshIcons();
+      }
+    });
+    closeBtns.forEach(btn => btn?.addEventListener('click', () => dialogEl.close()));
+    dialogEl.addEventListener('click', (e) => {
+      if (e.target === dialogEl) dialogEl.close();
+    });
   }
 
   // ── Inicialización de Elementos del DOM ───────────────────────────────────
@@ -141,61 +187,51 @@ export class HitTazosApp {
       const badgeBorder = isExact ? '#bbf7d0' : '#fde68a';
       const textColor = isExact ? '#16a34a' : '#b45309';
 
-      if (this.guessResultPill) {
-        this.guessResultPill.innerHTML = `
-          <span style="color:${textColor};display:inline-flex;align-items:center;gap:0.4rem;font-weight:700">
-            <i data-lucide="${iconName}"></i> ${isExact ? '¡Exacto!' : '¡Muy cerca!'} Era <strong style="color:#0f172a;background:${badgeBg};padding:0.1rem 0.4rem;border-radius:6px;border:1px solid ${badgeBorder};margin:0 0.2rem">${card.year}</strong> &mdash; ${ptsText}
-          </span>
-        `;
-      }
+      this.setFeedbackPill(`
+        <span style="color:${textColor};display:inline-flex;align-items:center;gap:0.4rem;font-weight:700">
+          <i data-lucide="${iconName}"></i> ${isExact ? '¡Exacto!' : '¡Muy cerca!'} Era <strong style="color:#0f172a;background:${badgeBg};padding:0.1rem 0.4rem;border-radius:6px;border:1px solid ${badgeBorder};margin:0 0.2rem">${card.year}</strong> &mdash; ${ptsText}
+        </span>
+      `);
 
       const theme = this.renderer.getCardTheme(card);
       this.triggerCyberConfetti(theme.bg);
       this.revealActiveCardYear();
-      this.refreshIcons();
     });
 
     // 6. Feedback de tiro fallado con intentos restantes
     this.state.subscribe('GUESS_MISSED', ({ evalResult }) => {
-      if (this.guessResultPill && evalResult.hint) {
+      if (evalResult.hint) {
         const h = evalResult.hint;
         const dirColor = h.direction === 'MORE_RECENT' ? '#0284c7' : '#ea580c';
         const tempColor = h.temperature === 'HOT' ? '#ea580c' : (h.temperature === 'WARM' ? '#d97706' : '#0284c7');
 
-        this.guessResultPill.innerHTML = `
+        this.setFeedbackPill(`
           <span style="display:inline-flex;align-items:center;gap:0.6rem;flex-wrap:wrap">
             <span style="color:${dirColor};font-weight:700">${h.directionText}</span>
             <span style="color:${tempColor};font-weight:700">${h.tempText}</span>
           </span>
-        `;
+        `);
       }
-      this.refreshIcons();
     });
 
     // 7. Feedback de intentos agotados
     this.state.subscribe('GUESS_EXHAUSTED', ({ card }) => {
-      if (this.guessResultPill) {
-        this.guessResultPill.innerHTML = `
-          <span style="color:#dc2626;display:inline-flex;align-items:center;gap:0.4rem;font-weight:700">
-            <i data-lucide="x-circle"></i> Ocurrió en <strong style="color:#0f172a;background:#fee2e2;padding:0.1rem 0.4rem;border-radius:6px;border:1px solid #fecaca;margin:0 0.2rem">${card.year}</strong> &mdash; sin puntos
-          </span>
-        `;
-      }
+      this.setFeedbackPill(`
+        <span style="color:#dc2626;display:inline-flex;align-items:center;gap:0.4rem;font-weight:700">
+          <i data-lucide="x-circle"></i> Ocurrió en <strong style="color:#0f172a;background:#fee2e2;padding:0.1rem 0.4rem;border-radius:6px;border:1px solid #fecaca;margin:0 0.2rem">${card.year}</strong> &mdash; sin puntos
+        </span>
+      `);
       this.revealActiveCardYear();
-      this.refreshIcons();
     });
 
     // 8. Revelado de año con penalización
     this.state.subscribe('YEAR_REVEALED_WITH_PENALTY', ({ card }) => {
-      if (this.guessResultPill) {
-        this.guessResultPill.innerHTML = `
-          <span style="color:#dc2626;display:inline-flex;align-items:center;gap:0.4rem;font-weight:700">
-            <i data-lucide="eye"></i> Año revelado (<strong style="color:#0f172a;background:#fee2e2;padding:0.05rem 0.35rem;border-radius:6px;border:1px solid #fecaca">${card?.year || ''}</strong>) &mdash; <strong>-5 Puntos</strong> (Tiro bloqueado)
-          </span>
-        `;
-      }
+      this.setFeedbackPill(`
+        <span style="color:#dc2626;display:inline-flex;align-items:center;gap:0.4rem;font-weight:700">
+          <i data-lucide="eye"></i> Año revelado (<strong style="color:#0f172a;background:#fee2e2;padding:0.05rem 0.35rem;border-radius:6px;border:1px solid #fecaca">${card?.year || ''}</strong>) &mdash; <strong>-5 Puntos</strong> (Tiro bloqueado)
+        </span>
+      `);
       this.persistGameState();
-      this.refreshIcons();
     });
 
     // 9. Cambio de formato (Tazo 3D vs Tarjeta cuadrada)
@@ -212,15 +248,12 @@ export class HitTazosApp {
 
     // 10. Reinicio de partida
     this.state.subscribe('GAME_RESET', () => {
-      if (this.guessResultPill) {
-        this.guessResultPill.innerHTML = `
-          <span style="color:#0284c7;display:inline-flex;align-items:center;gap:0.4rem;font-weight:600">
-            <i data-lucide="rotate-ccw"></i> Partida reiniciada &mdash; ¡Mazo barajeado!
-          </span>
-        `;
-      }
+      this.setFeedbackPill(`
+        <span style="color:#0284c7;display:inline-flex;align-items:center;gap:0.4rem;font-weight:600">
+          <i data-lucide="rotate-ccw"></i> Partida reiniciada &mdash; ¡Mazo barajeado!
+        </span>
+      `);
       this.audio.play('slam');
-      this.refreshIcons();
     });
   }
 
@@ -248,26 +281,10 @@ export class HitTazosApp {
       }
     });
 
-    // Modales de Ayuda e Impresión
-    this.btnHelpToggle?.addEventListener('click', () => {
-      if (this.helpDialog && typeof this.helpDialog.showModal === 'function') {
-        this.helpDialog.showModal();
-        this.refreshIcons();
-      }
-    });
-    this.btnCloseHelpModal?.addEventListener('click', () => this.helpDialog?.close());
-    this.btnUnderstoodHelp?.addEventListener('click', () => this.helpDialog?.close());
+    // Modales de Ayuda e Impresión (DRY con cierre por backdrop nativo)
+    this.setupDialog(this.helpDialog, this.btnHelpToggle, [this.btnCloseHelpModal, this.btnUnderstoodHelp]);
+    this.setupDialog(this.printDialog, this.btnPrint, [this.btnClosePrintModal, this.btnCancelPrint]);
 
-    this.btnPrint?.addEventListener('click', () => {
-      if (this.printDialog && typeof this.printDialog.showModal === 'function') {
-        this.printDialog.showModal();
-        this.refreshIcons();
-      } else {
-        window.print();
-      }
-    });
-    this.btnClosePrintModal?.addEventListener('click', () => this.printDialog?.close());
-    this.btnCancelPrint?.addEventListener('click', () => this.printDialog?.close());
     this.btnExecutePrint?.addEventListener('click', () => {
       this.generatePrintSheets();
       this.printDialog?.close();
@@ -289,7 +306,7 @@ export class HitTazosApp {
     // Delegación de Eventos en la Arena: Clic en año vs Clic en disco para voltear
     this.cardStage?.addEventListener('click', (e) => {
       if (this.justHandledTouch) return;
-      const yearTrigger = e.target.closest('#year-target, .disc-year-hero, .tazo-year-hero, .year-scratch-badge');
+      const yearTrigger = e.target.closest(YEAR_STAGE_SELECTOR);
       if (yearTrigger) {
         e.stopPropagation();
         this.toggleActiveCardYear();
@@ -329,15 +346,18 @@ export class HitTazosApp {
 
     // Delegación de Eventos en el Catálogo
     this.catalogGrid?.addEventListener('click', (e) => {
-      const cellCard = e.target.closest('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d');
+      const cellCard = e.target.closest(CARD_SELECTOR);
       if (cellCard) {
         this.flipCard(cellCard);
         this.audio.play('flip');
       }
     });
 
-    // Búsqueda y Filtros del Catálogo
-    this.galleryQuery?.addEventListener('input', () => this.filterCatalog());
+    // Búsqueda y Filtros del Catálogo con Debounce Ligero (150ms)
+    this.galleryQuery?.addEventListener('input', () => {
+      clearTimeout(this.searchDebounceTimer);
+      this.searchDebounceTimer = setTimeout(() => this.filterCatalog(), 150);
+    });
     this.selectFilterGroup?.addEventListener('change', () => this.filterCatalog());
     this.selectSortOrder?.addEventListener('change', () => this.filterCatalog());
   }
@@ -454,7 +474,7 @@ export class HitTazosApp {
   }
 
   reset3DTilt() {
-    const card = document.getElementById('active-card-3d');
+    const card = this.getActiveCardElement();
     if (card) card.style.transform = '';
   }
 
@@ -476,13 +496,11 @@ export class HitTazosApp {
 
     if (isAlreadyRevealed) {
       if (this.btnSubmitGuess) this.btnSubmitGuess.disabled = true;
-      if (this.guessResultPill) {
-        this.guessResultPill.innerHTML = `
-          <span style="color:#64748b;display:inline-flex;align-items:center;gap:0.4rem;font-weight:600">
-            <i data-lucide="check-circle-2"></i> Tazo ya resuelto &mdash; Año: <strong style="color:#0f172a;background:#f1f5f9;padding:0.05rem 0.35rem;border-radius:6px;border:1px solid #cbd5e1">${card.year}</strong> (Tiro no disponible)
-          </span>
-        `;
-      }
+      this.setFeedbackPill(`
+        <span style="color:#64748b;display:inline-flex;align-items:center;gap:0.4rem;font-weight:600">
+          <i data-lucide="check-circle-2"></i> Tazo ya resuelto &mdash; Año: <strong style="color:#0f172a;background:#f1f5f9;padding:0.05rem 0.35rem;border-radius:6px;border:1px solid #cbd5e1">${card.year}</strong> (Tiro no disponible)
+        </span>
+      `);
     } else {
       if (this.btnSubmitGuess) this.btnSubmitGuess.disabled = false;
       if (this.guessResultPill) this.guessResultPill.textContent = '';
@@ -563,30 +581,26 @@ export class HitTazosApp {
   }
 
   toggleActiveCardYear() {
-    const stage = document.getElementById('card-stage');
-    const disc = stage?.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d') || stage;
+    const disc = this.getActiveCardElement();
     if (!disc) return;
 
     if (!disc.classList.contains('is-flipped')) {
-      this.flipCard(stage);
+      this.flipCard(this.cardStage);
     }
 
-    const yearStage = disc.querySelector('#year-target, .disc-year-hero, .tazo-year-hero, .tazo-year-stage, .year-hero-display, .year-center-stage');
+    const yearStage = this.getYearStageElement(disc);
     if (!yearStage) return;
 
     const isHidden = yearStage.classList.contains('is-hidden');
     if (isHidden) {
       if (!this.state.cardSolved) {
         if (this.state.score < GAME_RULES.MIN_REVEAL_SCORE) {
-          if (this.guessResultPill) {
-            this.guessResultPill.innerHTML = `
-              <span style="color:#f59e0b;display:inline-flex;align-items:center;gap:0.4rem;font-weight:600">
-                <i data-lucide="alert-triangle"></i> Puntos insuficientes: necesitas al menos 5 pts para revelar el año
-              </span>
-            `;
-          }
+          this.setFeedbackPill(`
+            <span style="color:#f59e0b;display:inline-flex;align-items:center;gap:0.4rem;font-weight:600">
+              <i data-lucide="alert-triangle"></i> Puntos insuficientes: necesitas al menos 5 pts para revelar el año
+            </span>
+          `);
           this.audio.play('slam');
-          this.refreshIcons();
           return;
         }
 
@@ -609,15 +623,14 @@ export class HitTazosApp {
   }
 
   revealActiveCardYear() {
-    const stage = document.getElementById('card-stage');
-    const disc = stage?.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d') || stage;
+    const disc = this.getActiveCardElement();
     if (!disc) return;
 
     if (!disc.classList.contains('is-flipped')) {
-      this.flipCard(stage);
+      this.flipCard(this.cardStage);
     }
 
-    const yearStage = disc.querySelector('#year-target, .disc-year-hero, .tazo-year-hero, .tazo-year-stage, .year-hero-display, .year-center-stage');
+    const yearStage = this.getYearStageElement(disc);
     if (yearStage && yearStage.classList.contains('is-hidden')) {
       yearStage.classList.remove('is-hidden');
       yearStage.classList.add('is-revealed');
@@ -627,8 +640,7 @@ export class HitTazosApp {
   }
 
   flipCard(containerEl) {
-    if (!containerEl) return;
-    const disc = containerEl.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d') || containerEl;
+    const disc = this.getActiveCardElement(containerEl);
     if (!disc) return;
 
     const isFlipped = disc.classList.contains('is-flipped');
@@ -640,8 +652,8 @@ export class HitTazosApp {
         { transform: `scale(1.14) translateY(-22px) rotateY(90deg) rotateZ(${isFlipped ? -12 : 12}deg)`, offset: 0.5 },
         { transform: `scale(1) translateY(0) rotateY(${targetRot}deg) rotateZ(0deg)` }
       ], {
-        duration: 540,
-        easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+        duration: ANIM_CONFIG.FLIP_DURATION,
+        easing: ANIM_CONFIG.EASE_ELASTIC
       });
       flipAnim.onfinish = () => {
         disc.style.transform = `rotateY(${targetRot}deg)`;
@@ -655,17 +667,15 @@ export class HitTazosApp {
   }
 
   flipCurrentCard() {
-    const stage = document.getElementById('card-stage');
-    if (stage) {
-      this.flipCard(stage);
+    if (this.cardStage) {
+      this.flipCard(this.cardStage);
       this.reset3DTilt();
       this.audio.play('flip');
     }
   }
 
   slamDisc(isSuccess) {
-    const stage = document.getElementById('card-stage');
-    const disc = stage?.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d') || stage;
+    const disc = this.getActiveCardElement();
     if (!disc) return;
 
     if (typeof disc.animate === 'function') {
@@ -676,8 +686,8 @@ export class HitTazosApp {
         { transform: 'scale(1.03) translateY(-3px) rotateY(180deg) rotateZ(3deg)', offset: 0.85 },
         { transform: 'scale(1) translateY(0) rotateY(180deg) rotateZ(0deg)' }
       ], {
-        duration: 750,
-        easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)',
+        duration: ANIM_CONFIG.SLAM_SUCCESS_DURATION,
+        easing: ANIM_CONFIG.EASE_SPIN,
         fill: 'forwards'
       });
       disc.classList.add('is-flipped');
@@ -694,8 +704,7 @@ export class HitTazosApp {
 
   transitionToCard(targetIndex, direction = 'next') {
     if (this.isTransitioning) return;
-    const stage = document.getElementById('card-stage');
-    const currentDisc = stage?.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d');
+    const currentDisc = this.getActiveCardElement();
 
     const exitX = direction === 'next' ? -260 : 260;
     const enterX = direction === 'next' ? 260 : -260;
@@ -711,23 +720,23 @@ export class HitTazosApp {
         { transform: 'translateX(0) scale(1) rotateZ(0deg)', opacity: 1 },
         { transform: `translateX(${exitX}px) scale(0.85) rotateZ(${exitRot}deg)`, opacity: 0 }
       ], {
-        duration: 180,
-        easing: 'cubic-bezier(0.4, 0, 1, 1)',
+        duration: ANIM_CONFIG.SLIDE_EXIT_DURATION,
+        easing: ANIM_CONFIG.EASE_EXIT,
         fill: 'forwards'
       });
 
       exitAnim.onfinish = () => {
         this.state.goToIndex(targetIndex);
 
-        const newDisc = stage.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d');
+        const newDisc = this.getActiveCardElement();
         if (newDisc && typeof newDisc.animate === 'function') {
           // 2. Animación de entrada: el nuevo elemento entra resbalando con rebote elástico
           const enterAnim = newDisc.animate([
             { transform: `translateX(${enterX}px) scale(0.85) rotateZ(${enterRot}deg)`, opacity: 0 },
             { transform: 'translateX(0) scale(1) rotateZ(0deg)', opacity: 1 }
           ], {
-            duration: 320,
-            easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+            duration: ANIM_CONFIG.SLIDE_ENTER_DURATION,
+            easing: ANIM_CONFIG.EASE_ELASTIC
           });
           enterAnim.onfinish = () => {
             newDisc.style.transform = '';
@@ -756,8 +765,7 @@ export class HitTazosApp {
   }
 
   shuffleCurrentDeck() {
-    const stage = document.getElementById('card-stage');
-    const currentDisc = stage?.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d');
+    const currentDisc = this.getActiveCardElement();
 
     this.audio.play('slam');
 
@@ -768,21 +776,21 @@ export class HitTazosApp {
         { transform: 'scale(1.05) rotateZ(360deg)', offset: 0.8 },
         { transform: 'scale(1) rotateZ(360deg)' }
       ], {
-        duration: 380,
-        easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)'
+        duration: ANIM_CONFIG.SPIN_DURATION,
+        easing: ANIM_CONFIG.EASE_SPIN
       });
     }
 
     setTimeout(() => {
       this.state.shuffleDeck();
-      const newDisc = stage?.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d');
+      const newDisc = this.getActiveCardElement();
       if (newDisc && typeof newDisc.animate === 'function') {
         newDisc.animate([
           { transform: 'scale(0.85) rotateZ(180deg)', opacity: 0.5 },
           { transform: 'scale(1) rotateZ(360deg)', opacity: 1 }
         ], {
-          duration: 220,
-          easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+          duration: ANIM_CONFIG.SPIN_SETTLE_DURATION,
+          easing: ANIM_CONFIG.EASE_ELASTIC
         });
       }
     }, 180);
@@ -915,8 +923,7 @@ export class HitTazosApp {
       ? [...this.cards]
       : this.cards.filter(c => c.volumen === groupSlug);
 
-    const stage = document.getElementById('card-stage');
-    const currentDisc = stage?.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d');
+    const currentDisc = this.getActiveCardElement();
 
     this.audio.play('flip');
 
@@ -930,14 +937,14 @@ export class HitTazosApp {
       });
       exitAnim.onfinish = () => {
         this.state.setActiveDeck(nextDeck);
-        const newDisc = stage?.querySelector('.disc-physical, .disc, .tazo-physical, .tazo-disc, .hittazos-card-3d');
+        const newDisc = this.getActiveCardElement();
         if (newDisc && typeof newDisc.animate === 'function') {
           newDisc.animate([
             { transform: 'scale(0.8) rotateY(-90deg)', opacity: 0 },
             { transform: 'scale(1) rotateY(0deg)', opacity: 1 }
           ], {
             duration: 260,
-            easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+            easing: ANIM_CONFIG.EASE_ELASTIC
           });
         }
       };
@@ -1120,27 +1127,33 @@ export class HitTazosApp {
     if (!manifest) return;
     const volumesGrid = document.getElementById('official-pdf-volumes-grid');
     if (!volumesGrid) return;
+
     volumesGrid.innerHTML = '';
 
     const volumes = manifest.volumes || [];
     volumes.forEach(vol => {
       const card = document.createElement('a');
-      card.className = 'pdf-dl-card';
+      card.className = 'pdf-compact-row';
       const filename = vol.pdfFilename || `hit-tazos-tech-${vol.id}-${vol.slug}.pdf`;
-      const url = `/assets/print/${filename}`;
+      const url = `assets/print/${filename}`;
       card.setAttribute('href', url);
       card.setAttribute('download', filename);
+
       card.innerHTML = `
-        <div class="pdf-dl-header">
-          <span class="pdf-tag format-carta">Carta (8.5 &times; 11 pulg)</span>
-          <span class="pdf-ver">${vol.id.toUpperCase()}</span>
+        <div class="pdf-row-info">
+          <div class="pdf-row-header">
+            <span class="pdf-vol-pill">${vol.id.toUpperCase()}</span>
+            <span class="pdf-specs-text">${vol.cardsCount} cartas &bull; ${vol.pagesCarta} págs dúplex</span>
+          </div>
+          <div class="pdf-row-title">${vol.title}</div>
         </div>
-        <div class="pdf-dl-title">${vol.title}</div>
-        <div class="pdf-dl-specs">${vol.cardsCount} cartas &bull; ${vol.pagesCarta} páginas dúplex (6 cartas/pliego)</div>
-        <div class="pdf-dl-btn"><i data-lucide="file-down"></i> Descargar ${vol.title}</div>
+        <div class="pdf-row-action" title="Descargar PDF imprimible">
+          <i data-lucide="download"></i>
+        </div>
       `;
       volumesGrid.appendChild(card);
     });
+
     this.refreshIcons();
   }
 
@@ -1191,9 +1204,14 @@ export class HitTazosApp {
   }
 
   refreshIcons() {
-    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-      window.lucide.createIcons();
-    }
+    if (this.pendingIconRefresh) return;
+    this.pendingIconRefresh = true;
+    requestAnimationFrame(() => {
+      this.pendingIconRefresh = false;
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+    });
   }
 }
 
