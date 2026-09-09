@@ -136,10 +136,6 @@ export class HitTazosApp {
     this.printDialog = document.getElementById('print-dialog');
     this.btnClosePrintModal = document.getElementById('btn-close-print-modal');
     this.btnCancelPrint = document.getElementById('btn-cancel-print');
-    this.btnExecutePrint = document.getElementById('btn-execute-print');
-    this.printSheetsContainer = document.getElementById('print-sheets-container');
-    this.printSelectRange = document.getElementById('print-select-range');
-    this.printCropMarks = document.getElementById('print-crop-marks');
   }
 
   // ── Conexión Reactiva Estado -> Interfaz (Observer Pattern) ───────────────
@@ -284,12 +280,6 @@ export class HitTazosApp {
     // Modales de Ayuda e Impresión (DRY con cierre por backdrop nativo)
     this.setupDialog(this.helpDialog, this.btnHelpToggle, [this.btnCloseHelpModal, this.btnUnderstoodHelp]);
     this.setupDialog(this.printDialog, this.btnPrint, [this.btnClosePrintModal, this.btnCancelPrint]);
-
-    this.btnExecutePrint?.addEventListener('click', () => {
-      this.generatePrintSheets();
-      this.printDialog?.close();
-      setTimeout(() => window.print(), 350);
-    });
 
     // Selección de Volumen vía Ribbon
     this.groupRibbon?.addEventListener('click', (e) => {
@@ -1010,56 +1000,7 @@ export class HitTazosApp {
     this.refreshIcons();
   }
 
-  // ── Generación de Pliegos de Impresión Dúplex ─────────────────────────────
 
-  generatePrintSheets() {
-    if (!this.printSheetsContainer) return;
-    this.printSheetsContainer.innerHTML = '';
-
-    const rangeOption = this.printSelectRange ? this.printSelectRange.value : 'SAMPLE_6';
-    const cropOption = this.printCropMarks ? this.printCropMarks.value : 'GUIDES';
-    const hasBorder = cropOption === 'GUIDES';
-
-    let targetCards = [...this.cards];
-    if (rangeOption === 'SAMPLE_6') targetCards = targetCards.slice(0, 6);
-    else if (rangeOption === 'SAMPLE_12') targetCards = targetCards.slice(0, 12);
-    else if (rangeOption.startsWith('VOL_')) {
-      const targetVolSlug = rangeOption.replace('VOL_', '');
-      targetCards = targetCards.filter(c => c.volumen === targetVolSlug);
-    }
-
-    const cardsPerSheet = 6;
-    const totalSheets = Math.ceil(targetCards.length / cardsPerSheet);
-
-    for (let sheetIdx = 0; sheetIdx < totalSheets; sheetIdx++) {
-      const batch = targetCards.slice(sheetIdx * cardsPerSheet, (sheetIdx + 1) * cardsPerSheet);
-      while (batch.length < cardsPerSheet) {
-        batch.push({
-          id: 'placeholder',
-          volumen: 'hit-tazos',
-          domain: 'languages-runtimes',
-          tag: 'placeholder',
-          hito: 'Tarjeta en blanco de compensación para imprenta.',
-          year: 1990,
-          autor: 'shellaquiles.org',
-          trivia: 'Tarjeta vacía para registro de rejilla.'
-        });
-      }
-
-      // Frente
-      const sheetFront = document.createElement('div');
-      sheetFront.className = 'print-duplex-sheet print-sheet-front';
-      sheetFront.innerHTML = batch.map(c => this.renderer.buildDuplexPrintFaceHTML(c, false, hasBorder)).join('');
-      this.printSheetsContainer.appendChild(sheetFront);
-
-      // Reverso Espejado [A, B] -> [B, A]
-      const mirroredBacks = [batch[1], batch[0], batch[3], batch[2], batch[5], batch[4]];
-      const sheetBack = document.createElement('div');
-      sheetBack.className = 'print-duplex-sheet print-sheet-back';
-      sheetBack.innerHTML = mirroredBacks.map(c => this.renderer.buildDuplexPrintFaceHTML(c, true, hasBorder)).join('');
-      this.printSheetsContainer.appendChild(sheetBack);
-    }
-  }
 
   // ── Carga de Datos y Persistencia ─────────────────────────────────────────
 

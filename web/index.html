@@ -395,8 +395,6 @@
       </div>
     </section>
 
-    <!-- VISTA 3: HOJAS DE IMPRESIÓN DÚPLEX (FRENTE Y REVERSO EN ESPEJO) -->
-    <div id="print-sheets-container" class="print-sheets-container"></div>
   </main>
 
   <!-- Modal de Impresión y Descarga de PDFs Vectoriales -->
@@ -405,13 +403,13 @@
       <div class="print-modal-header">
         <h2 class="print-modal-title">
           <i data-lucide="printer"></i>
-          <span>Impresión Dúplex y Descarga de PDFs</span>
+          <span>PDFs Oficiales de Impresión Dúplex</span>
         </h2>
         <button class="print-modal-close" id="btn-close-print-modal" aria-label="Cerrar">&times;</button>
       </div>
 
       <div class="print-modal-body print-modal-layout">
-        <!-- SECCIÓN 1: DESCARGA DE ARCHIVOS VECTORIALES OFICIALES (PRE-IMPRESOS) -->
+        <!-- SECCIÓN: DESCARGA DE ARCHIVOS VECTORIALES OFICIALES (PRE-IMPRESOS) -->
         <div class="print-section-wrap">
           <div class="print-section-title">
             <i data-lucide="file-check"></i>
@@ -424,48 +422,10 @@
             <!-- Inyectado dinámicamente desde data/manifest.json -->
           </div>
         </div>
-
-        <!-- SECCIÓN 2: GENERADOR EN NAVEGADOR & CONSEJOS DE CALIBRACIÓN -->
-        <div class="print-section-wrap print-options-panel">
-          <div class="print-section-title">
-            <i data-lucide="sliders"></i>
-            <span>Imprimir desde el Navegador</span>
-          </div>
-
-          <div class="print-controls-grid">
-            <div class="print-field">
-              <label for="print-select-range">Rango o Volumen:</label>
-              <select id="print-select-range" class="select-control print-select-custom">
-                <option value="SAMPLE_6" selected>Muestra de Calibración: 1 Pliego (6 cartas)</option>
-                <option value="SAMPLE_12">Muestra de Calibración: 2 Pliegos (12 cartas)</option>
-                <option value="CURRENT_GROUP">Volumen Activo en Pantalla</option>
-              </select>
-            </div>
-
-            <div class="print-field">
-              <label for="print-crop-marks">Marcas de Guía:</label>
-              <select id="print-crop-marks" class="select-control print-select-custom">
-                <option value="GUIDES" selected>Con líneas de corte finas (Recomendado)</option>
-                <option value="CLEAN">Borde limpio sin líneas</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- CHECKLIST TÉCNICO DE IMPRESIÓN -->
-          <div class="print-spec-checklist">
-            <div class="spec-chip"><span>Papel:</span> <strong>Carta (8.5 &times; 11 pulg)</strong></div>
-            <div class="spec-chip"><span>Escala:</span> <strong>100% / Real (Sin ajustar)</strong></div>
-            <div class="spec-chip"><span>Giro:</span> <strong>Voltear por borde largo</strong></div>
-          </div>
-        </div>
       </div>
 
       <div class="print-modal-footer">
         <button class="btn-secondary" id="btn-cancel-print">Cerrar</button>
-        <button class="btn-primary" id="btn-execute-print">
-          <i data-lucide="printer"></i>
-          Imprimir Muestra
-        </button>
       </div>
     </div>
   </dialog>
