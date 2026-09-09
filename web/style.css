@@ -2396,114 +2396,175 @@ main {
   border-bottom-right-radius: 20px;
 }
 
-/* Modal de Ayuda y Atajos de Teclado */
+/* Contenedor del modal de ayuda estilizado */
 .help-modal .print-modal-content {
-  max-width: 680px;
+  max-width: 620px;
 }
 
-.help-grid {
+.help-grid-modern {
   display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  gap: 1.5rem;
-  padding: 0.5rem 0;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 1.25rem;
+  padding: 1rem 1.4rem;
 }
 
-@media (max-width: 640px) {
-  .help-grid {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-}
-
-.help-section-title {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #0f172a;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.help-section-title i {
-  width: 18px;
-  height: 18px;
-  color: #0284c7;
-}
-
-.help-text {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  margin-bottom: 0.85rem;
-}
-
-.help-rules-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  font-size: 0.82rem;
-  color: var(--text-secondary);
-}
-
-.score-badge {
-  display: block;
-  padding: 0.3rem 0.6rem;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 0.75rem;
-  margin-top: 0.25rem;
-}
-
-.score-badge.exact {
-  background: rgba(16, 185, 129, 0.12);
-  color: #059669;
-  border: 1px solid rgba(16, 185, 129, 0.25);
-}
-
-.score-badge.close {
-  background: rgba(14, 165, 233, 0.12);
-  color: #0284c7;
-  border: 1px solid rgba(14, 165, 233, 0.25);
-}
-
-.score-badge.near {
-  background: rgba(245, 158, 11, 0.12);
-  color: #d97706;
-  border: 1px solid rgba(245, 158, 11, 0.25);
-}
-
-.shortcuts-table {
+.help-panel {
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
 }
 
-.shortcut-row {
+.help-section-tag {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #64748b;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.2rem;
+}
+
+/* Tarjetas de pasos 1, 2, 3 */
+.step-card {
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  padding: 0.25rem 0.4rem;
-  border-radius: 6px;
-  background: rgba(15, 23, 42, 0.02);
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 0.5rem 0.65rem;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: #334155;
 }
 
-.key-cap {
-  font-family: var(--font-mono);
+.step-card strong {
+  color: #0f172a;
+}
+
+.step-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #0284c7;
+  color: #ffffff;
+  font-family: var(--font-display);
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.key-inline {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.1rem 0.35rem;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+}
+
+/* Fila de píldoras de puntuación */
+.score-pills-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.35rem;
+}
+
+.score-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.4rem 0.2rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+
+.score-val {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.score-desc {
+  font-size: 0.65rem;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.score-chip.exact {
+  background: #dcfce7;
+  color: #15803d;
+  border-color: #bbf7d0;
+}
+
+.score-chip.near {
+  background: #fef3c7;
+  color: #b45309;
+  border-color: #fde68a;
+}
+
+.score-chip.cost {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+/* Grupo de atajos compacto */
+.shortcut-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.shortcut-compact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0.55rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  color: #334155;
+}
+
+.keys-box {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.keys-box kbd {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
   background: #ffffff;
   color: #0f172a;
-  padding: 0.15rem 0.45rem;
+  padding: 0.15rem 0.4rem;
   border-radius: 5px;
-  border: 1px solid rgba(15, 23, 42, 0.15);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 2px 0 rgba(15, 23, 42, 0.08);
-  min-width: 24px;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 1.5px 0 #cbd5e1;
+  min-width: 18px;
   text-align: center;
-  flex-shrink: 0;
+}
+
+.btn-play-understood {
+  width: 100%;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 640px) {
+  .help-grid-modern {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+    padding: 0.8rem 1rem;
+  }
 }
 
 /* Contenedor de hojas de impresión para vista en pantalla */
@@ -3348,7 +3409,8 @@ main {
     max-width: 100%;
   }
 
-  .help-grid {
+  .help-grid,
+  .help-grid-modern {
     grid-template-columns: 1fr !important;
     gap: 1rem;
   }

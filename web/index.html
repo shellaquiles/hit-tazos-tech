@@ -485,86 +485,104 @@
       <div class="print-modal-header">
         <h2 class="print-modal-title">
           <i data-lucide="gamepad-2"></i>
-          <span>Cómo Jugar y Atajos de Teclado</span>
+          <span>Guía Rápida de Juego</span>
         </h2>
-        <button class="print-modal-close" id="btn-close-help-modal" aria-label="Cerrar ventana de ayuda">&times;</button>
+        <button class="print-modal-close" id="btn-close-help-modal" aria-label="Cerrar">&times;</button>
       </div>
-      <div class="print-modal-body help-grid">
-        <div class="help-column">
-          <h3 class="help-section-title">
-            <i data-lucide="target"></i> Objetivo del Juego
-          </h3>
-          <p class="help-text">
-            <strong>Hit-Tazos Tech</strong> es un desafío cronológico técnico. Cada tarjeta presenta un <em>hito histórico</em> y sus <em>autores</em> sin revelar el año.
-          </p>
-          <ul class="help-rules-list">
-            <li><strong>Ajusta el año:</strong> Usa el dial cronológico o teclas <kbd>+</kbd> / <kbd>-</kbd> / <kbd>&uarr;</kbd> / <kbd>&darr;</kbd>.</li>
-            <li><strong>Puntuación y Tiros:</strong>
-              <span class="score-badge exact">🎯 Año Exacto: +3 pts + 1 Racha + Tazo a tu estante</span>
-              <span class="score-badge close">🟡 Muy cerca (&plusmn;2 años): +1 pt + 1 Racha + Tazo a tu estante</span>
-              <span class="score-badge near">🎯 3 Tiros por Tazo: Pistas de dirección y temperatura (🔥/🌡️/❄️)</span>
-            </li>
-            <li><strong>Revelar año:</strong> Cuesta <strong>5 puntos</strong> (requiere saldo &ge; 5 pts). Bloquea el tiro para ese Tazo.</li>
-            <li><strong>Meta de Victoria:</strong> ¡Colecciona <strong>10 Tazos ganados</strong> en tu línea de tiempo personal!</li>
-          </ul>
+
+      <div class="print-modal-body help-grid-modern">
+        <!-- COLUMNA 1: FLUJO DE JUEGO EN 3 PASOS -->
+        <div class="help-panel">
+          <div class="help-section-tag">Mecánica Central</div>
+          
+          <div class="step-card">
+            <span class="step-num">1</span>
+            <div>
+              <strong>Lee la pista:</strong> Analiza el hito técnico y sus autores en el anverso del tazo.
+            </div>
+          </div>
+
+          <div class="step-card">
+            <span class="step-num">2</span>
+            <div>
+              <strong>Estima el año:</strong> Ajusta el dial y presiona <kbd class="key-inline">Enter</kbd> o <strong>¡Lanzar Tiro!</strong>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <span class="step-num">3</span>
+            <div>
+              <strong>Completa la línea:</strong> Colecciona <strong>10 tazos</strong> en tu estante para ganar la partida.
+            </div>
+          </div>
+
+          <!-- PUNTUACIONES COMPACTAS -->
+          <div class="help-section-tag" style="margin-top: 0.6rem;">Puntuación por Tiro</div>
+          <div class="score-pills-row">
+            <div class="score-chip exact">
+              <span class="score-val">+3 pts</span>
+              <span class="score-desc">Año exacto</span>
+            </div>
+            <div class="score-chip near">
+              <span class="score-val">+1 pt</span>
+              <span class="score-desc">±2 años</span>
+            </div>
+            <div class="score-chip cost">
+              <span class="score-val">-5 pts</span>
+              <span class="score-desc">Revelar año</span>
+            </div>
+          </div>
         </div>
 
-        <div class="help-column">
-          <h3 class="help-section-title">
-            <i data-lucide="keyboard"></i> Atajos de Teclado (Pro Gamer)
-          </h3>
-          <div class="shortcuts-table">
-            <div class="shortcut-row">
-              <kbd class="key-cap">&larr;</kbd> <kbd class="key-cap">&rarr;</kbd>
-              <span>Anterior / Siguiente tazo</span>
+        <!-- COLUMNA 2: ATAJOS AGRUPADOS POR PROPÓSITO -->
+        <div class="help-panel">
+          <div class="help-section-tag">Controles de Partida</div>
+
+          <div class="shortcut-group">
+            <div class="shortcut-compact">
+              <div class="keys-box"><kbd>&larr;</kbd><kbd>&rarr;</kbd></div>
+              <span>Cambiar tazo</span>
             </div>
-            <div class="shortcut-row">
-              <kbd class="key-cap">+</kbd> <kbd class="key-cap">&minus;</kbd>
-              <span>Subir / Bajar año (&plusmn;1)</span>
+            <div class="shortcut-compact">
+              <div class="keys-box"><kbd>+</kbd><kbd>-</kbd></div>
+              <span>Subir / Bajar año</span>
             </div>
-            <div class="shortcut-row">
-              <kbd class="key-cap">Enter</kbd>
-              <span>Lanzar / Comprobar predicción</span>
+            <div class="shortcut-compact">
+              <div class="keys-box"><kbd>Enter</kbd></div>
+              <span>Lanzar predicción</span>
             </div>
-            <div class="shortcut-row">
-              <kbd class="key-cap">Espacio</kbd>
-              <span>Voltear la carta (Anverso / Reverso)</span>
+            <div class="shortcut-compact">
+              <div class="keys-box"><kbd>Espacio</kbd></div>
+              <span>Voltear (Anverso/Reverso)</span>
             </div>
-            <div class="shortcut-row">
-              <kbd class="key-cap">R</kbd>
-              <span>Revelar año sin sumar puntos</span>
+          </div>
+
+          <div class="help-section-tag" style="margin-top: 0.6rem;">Vistas y Modos</div>
+          <div class="shortcut-group">
+            <div class="shortcut-compact">
+              <div class="keys-box"><kbd>T</kbd></div>
+              <span>Alternar Tazo / Tarjeta</span>
             </div>
-            <div class="shortcut-row">
-              <kbd class="key-cap">N</kbd> <kbd class="key-cap">P</kbd>
-              <span>Navegación secundaria</span>
+            <div class="shortcut-compact">
+              <div class="keys-box"><kbd>R</kbd></div>
+              <span>Revelar año (-5 pts)</span>
             </div>
-            <div class="shortcut-row">
-              <kbd class="key-cap">T</kbd>
-              <span>Alternar vista Tazo 3D / Tarjeta cuadrada</span>
+            <div class="shortcut-compact">
+              <div class="keys-box"><kbd>Shift</kbd>+<kbd>R</kbd></div>
+              <span>Reiniciar partida</span>
             </div>
-            <div class="shortcut-row">
-              <kbd class="key-cap">S</kbd>
-              <span>Alternar sonido activado / silenciado</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd class="key-cap">Shift</kbd> + <kbd class="key-cap">R</kbd>
-              <span>Reiniciar partida completa</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd class="key-cap">0</kbd> ... <kbd class="key-cap">7</kbd>
-              <span>Cambiar al Mazo Maestro o Volúmenes 0 a 7</span>
-            </div>
-            <div class="shortcut-row">
-              <kbd class="key-cap">?</kbd>
-              <span>Abrir / Cerrar este menú de ayuda</span>
+            <div class="shortcut-compact">
+              <div class="keys-box"><kbd>0</kbd>...<kbd>7</kbd></div>
+              <span>Cambiar volumen</span>
             </div>
           </div>
         </div>
       </div>
+
       <div class="print-modal-footer">
-        <button class="btn-primary" id="btn-understood-help">
-          <i data-lucide="check"></i>
-          ¡Entendido, a jugar!
+        <button class="btn-primary btn-play-understood" id="btn-understood-help">
+          <i data-lucide="zap"></i>
+          ¡A jugar!
         </button>
       </div>
     </div>
