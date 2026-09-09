@@ -785,21 +785,17 @@ class HitTazosEngine {
       <!-- Disco Tazo Físico 3D -->
       <div class="tazo-physical tazo-disc ${isRevealed ? 'is-flipped' : ''}" ${discId} style="--tazo-c1: ${palette.c1}; --tazo-c2: ${palette.c2}; --tazo-badge-bg: ${palette.badgeBg};">
         
-        <!-- ══════════════════════════════════════════════════════════════ -->
-        <!-- ANVERSO (CARA FRONTAL: DIANA CONCÉNTRICA LOONEY TUNES 1994)  -->
-        <!-- ══════════════════════════════════════════════════════════════ -->
-        <div class="tazo-face tazo-front tazo-face-front">
-          <!-- 4 Ranuras físicas de ensamble que muerden el borde -->
-          <div class="tazo-notches" aria-hidden="true">
-            <span></span><span></span><span></span><span></span>
-          </div>
-
-          <!-- Surcos concéntricos de inyección plástica -->
+        <!-- ANVERSO LIMPIO -->
+        <div class="tazo-face tazo-front">
+          <!-- Muescas -->
+          <div class="tazo-notches" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          
+          <!-- Anillos concéntricos -->
           <div class="tazo-relief-ring ring-outer" aria-hidden="true"></div>
           <div class="tazo-relief-ring ring-mid" aria-hidden="true"></div>
           <div class="tazo-relief-ring ring-center" aria-hidden="true"></div>
 
-          <!-- Textos periféricos curvados en el aro exterior -->
+          <!-- Textos arqueados perimetrales -->
           <svg class="tazo-ring-text" viewBox="0 0 300 300" aria-hidden="true">
             <path id="${topPathId}" d="M 32,150 A 118,118 0 0,1 268,150" fill="none" />
             <path id="${bottomPathId}" d="M 32,150 A 118,118 0 0,0 268,150" fill="none" />
@@ -807,30 +803,21 @@ class HitTazosEngine {
             <text class="ring-sub"><textPath href="#${bottomPathId}" startOffset="50%" text-anchor="middle">${bottomLabel}</textPath></text>
           </svg>
 
-          <!-- Centro: Ícono + Título Sticker + Píldora Cómic -->
-          <div class="tazo-art-content">
-            <div class="tazo-mascot-badge">
+          <!-- CONTENIDO INTEGRADO (Sin pastillas rectangulares) -->
+          <div class="tazo-flow-content">
+            <div class="tazo-hero-icon">
               <i data-lucide="${groupIcon}"></i>
             </div>
-            
-            <div class="tazo-sticker-title">
-              <span>${title}</span>
-            </div>
-
-            <p class="tazo-comic-speech">${clue}</p>
+            <h2 class="tazo-hero-title">${title}</h2>
+            <p class="tazo-hero-clue">${clue}</p>
           </div>
 
-          <!-- Reflejo especular plástico de acetato -->
           <div class="tazo-foil-reflection" aria-hidden="true"></div>
         </div>
 
-        <!-- ══════════════════════════════════════════════════════════════ -->
-        <!-- REVERSO (CARA TRASERA: PAC-MAN SABRITAS CHECKERBOARD + AÑO)   -->
-        <!-- ══════════════════════════════════════════════════════════════ -->
-        <div class="tazo-face tazo-back tazo-face-back">
-          <div class="tazo-notches" aria-hidden="true">
-            <span></span><span></span><span></span><span></span>
-          </div>
+        <!-- REVERSO LIMPIO -->
+        <div class="tazo-face tazo-back">
+          <div class="tazo-notches" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
 
           <svg class="tazo-ring-text" viewBox="0 0 300 300" aria-hidden="true">
             <path id="${topBackPathId}" d="M 32,150 A 118,118 0 0,1 268,150" fill="none" />
@@ -839,28 +826,18 @@ class HitTazosEngine {
             <text class="ring-sub"><textPath href="#${bottomBackPathId}" startOffset="50%" text-anchor="middle">${bottomBackLabel}</textPath></text>
           </svg>
 
-          <div class="tazo-art-content back-layout">
-            <!-- Pastilla superior de numeración (Estilo 001/100) -->
-            <div class="sabritas-pill-num">${collectorNum}/576</div>
-            
-            <!-- Etiqueta de Autor -->
-            <div class="sabritas-author-tag">${(card.autor || '').toUpperCase()}</div>
+          <div class="tazo-flow-content back-mode">
+            <span class="tazo-collector-tag">#${collectorNum} &bull; ${(card.autor || '').toUpperCase()}</span>
 
-            <!-- Bloque del Año Hero / Tapa Interactiva -->
             <div class="year-hero-display ${yearStateClass}" id="year-target" title="Toca o pulsa [R] para revelar">
               <span class="year-digits">${card.year}</span>
               <div class="year-cover-tape">
                 <i data-lucide="sparkles"></i>
-                <span>INGRESAR CÓDIGO</span>
+                <span>REVELAR AÑO</span>
               </div>
             </div>
 
-            <!-- Tira blanca de trivia inferior -->
-            <div class="sabritas-trivia-strip">
-              <p>${triviaFormatted}</p>
-            </div>
-
-            <div class="sabritas-serial-code">TAZO • #${cardNumStr}</div>
+            <p class="tazo-back-trivia">${triviaFormatted}</p>
           </div>
 
           <div class="tazo-foil-reflection" aria-hidden="true"></div>

@@ -796,8 +796,8 @@ main {
   fill: #ffe600;
 }
 
-/* 6. Contenido Central Frontal (Tipografía de Historieta / Sticker) */
-.tazo-art-content {
+/* Contenedor central fluido que respeta el círculo */
+.tazo-flow-content {
   position: relative;
   z-index: 10;
   display: flex;
@@ -805,114 +805,98 @@ main {
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: 82%;
-  height: 82%;
-  padding: 0.2rem;
+  width: 76%;
+  height: 76%;
+  padding: 0;
   box-sizing: border-box;
 }
 
-.tazo-mascot-badge {
+/* 1. Ícono Central Hero */
+.tazo-hero-icon {
   width: 52px;
   height: 52px;
   border-radius: 50%;
   background: #ffe600;
-  color: #000000;
-  border: 3px solid #000000;
-  box-shadow: 
-    0 3px 0 #000000,
-    0 0 0 2px #ffffff;
+  color: #0f172a;
+  border: 3px solid #0f172a;
+  box-shadow: 0 4px 0 #0f172a;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 0.35rem;
-  transform: rotate(-3deg);
 }
 
-.tazo-mascot-badge svg {
-  width: 28px;
-  height: 28px;
+.tazo-hero-icon svg {
+  width: 26px;
+  height: 26px;
 }
 
-/* Sticker de Título: Borde negro grueso y relieve de etiqueta */
-.tazo-sticker-title {
-  background: #ff5722;
-  color: #ffe600;
+/* 2. Título: Letra de cartel noventero sin caja de fondo */
+.tazo-hero-title {
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: clamp(1.15rem, 3.8vw, 1.45rem);
+  font-size: clamp(1.2rem, 4.2vw, 1.55rem);
   font-weight: 900;
-  letter-spacing: 0.03em;
+  color: #ffe600;
   text-transform: uppercase;
-  padding: 0.2rem 0.8rem;
-  border-radius: 8px;
-  border: 3px solid #000000;
-  box-shadow: 
-    0 0 0 2px #ffffff,
-    0 3px 0 #000000;
-  text-shadow: 
-    -1.5px -1.5px 0 #000,
-     1.5px -1.5px 0 #000,
-    -1.5px  1.5px 0 #000,
-     1.5px  1.5px 0 #000;
-  margin-bottom: 0.45rem;
-  max-width: 90%;
+  letter-spacing: 0.03em;
+  line-height: 1.05;
+  margin: 0 0 0.4rem 0;
+  max-width: 92%;
   word-break: break-word;
+
+  /* Contorno negro tipo historieta */
+  -webkit-text-stroke: 1.5px #000000;
+  text-shadow: 
+    2.5px 2.5px 0 #000000,
+    -1px -1px 0 #000000,  
+     1px -1px 0 #000000,
+    -1px  1px 0 #000000;
 }
 
-/* Píldora cómic de la pista */
-.tazo-comic-speech {
-  background: #ffffff;
-  color: #0f172a;
+/* 3. Pista: Texto suelto y legible con contraste directo (Sin pastilla blanca) */
+.tazo-hero-clue {
   font-family: var(--font-sans, 'Outfit', sans-serif);
-  font-size: clamp(0.72rem, 2.2vw, 0.8rem);
+  font-size: clamp(0.72rem, 2.3vw, 0.8rem);
+  font-weight: 800;
+  color: #ffffff;
   line-height: 1.35;
-  font-weight: 700;
-  padding: 0.35rem 0.75rem;
-  border-radius: 12px;
-  border: 2.5px solid #000000;
-  box-shadow: 0 3px 0 #000000;
-  max-width: 88%;
   margin: 0;
+  max-width: 82%;
+  
+  /* Sombra sólida para que se lea sobre cualquier color sin tapar el fondo */
+  text-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.9),
+    0 2px 6px rgba(0, 0, 0, 0.8),
+    0 0 2px #000000;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* 7. Reverso Arcade (Pac-Man Sabritas) */
-.sabritas-pill-num {
-  background: #ffe600;
-  color: #000000;
-  font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: 0.95rem;
-  font-weight: 900;
-  padding: 0.15rem 0.9rem;
-  border-radius: 999px;
-  border: 2.5px solid #000000;
-  box-shadow: 0 2.5px 0 #000000;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.3rem;
+/* REVERSO */
+.tazo-flow-content.back-mode {
+  width: 80%;
+  height: 80%;
 }
 
-.sabritas-author-tag {
-  background: #ff5722;
-  color: #ffffff;
+.tazo-collector-tag {
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   font-weight: 900;
-  padding: 0.15rem 0.65rem;
-  border-radius: 6px;
-  border: 2px solid #000000;
-  box-shadow: 0 2px 0 #000000;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.3rem;
-  max-width: 88%;
+  color: #ffd32a;
+  letter-spacing: 1px;
+  margin-bottom: 0.2rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  max-width: 90%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Año gigante en sticker arcade */
+/* El año domina el centro */
 .year-hero-display {
+  margin: 0.3rem 0;
   position: relative;
   cursor: pointer;
   display: flex;
@@ -925,7 +909,7 @@ main {
 
 .year-digits {
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: clamp(3.4rem, 10vw, 4.4rem);
+  font-size: clamp(3.6rem, 11vw, 4.6rem);
   font-weight: 900;
   color: #ffe600;
   line-height: 0.85;
@@ -933,7 +917,7 @@ main {
   -webkit-text-stroke: 2px #000000;
   text-shadow: 
     3px 3px 0 #000000,
-    0 4px 10px rgba(0, 0, 0, 0.6);
+    0 6px 14px rgba(0, 0, 0, 0.7);
 }
 
 .year-hero-display.is-hidden .year-digits {
@@ -980,37 +964,21 @@ main {
   animation: revealPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-.sabritas-trivia-strip {
-  background: #ffffff;
-  color: #000000;
+.tazo-back-trivia {
   font-family: var(--font-sans, 'Outfit', sans-serif);
-  font-size: clamp(0.68rem, 2.1vw, 0.76rem);
-  line-height: 1.32;
-  font-weight: 600;
-  padding: 0.35rem 0.75rem;
-  border-radius: 10px;
-  border: 2px solid #000000;
-  box-shadow: 0 2.5px 0 #000000;
-  max-width: 86%;
-  margin-top: 0.35rem;
-}
-
-.sabritas-trivia-strip p {
-  margin: 0;
+  font-size: clamp(0.7rem, 2.2vw, 0.78rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.35;
+  margin: 0.3rem 0 0 0;
+  max-width: 84%;
+  text-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.9),
+    0 2px 8px rgba(0, 0, 0, 0.9);
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-
-.sabritas-serial-code {
-  font-family: var(--font-mono, monospace);
-  font-size: 0.58rem;
-  font-weight: 800;
-  color: #ffe600;
-  letter-spacing: 1px;
-  margin-top: 0.25rem;
-  text-shadow: 0 1px 2px #000000;
 }
 
 /* Brillo especular de acetato */
