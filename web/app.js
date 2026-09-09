@@ -326,10 +326,12 @@ class HitTazosEngine {
       this.btnUnderstoodHelp.addEventListener('click', () => this.helpDialog?.close());
     }
 
-    // 3D Card Click & Key Navigation
+    // Volteo al hacer clic en el disco (excepto si se toca el número de año)
     this.cardStage.addEventListener('click', (e) => {
       if (this.justHandledTouch) return;
-      if (e.target.closest('#year-target, .tazo-year-hero, .tazo-year-stage, .year-hero-display, .year-center-stage')) return;
+      if (e.target.closest('#year-target, .tazo-year-hero, .year-number-giant, .year-scratch-badge')) {
+        return; // Clic consumido por el revelador de año
+      }
       this.flipCurrentCard();
     });
     this.btnFlip.addEventListener('click', () => this.flipCurrentCard());
@@ -457,7 +459,7 @@ class HitTazosEngine {
       // Tap simple: Voltear la carta
       gesture.on('tap', (event) => {
         // Evita voltear si el usuario tocó el botón o área de revelado del año
-        if (event && event.target && event.target.closest('#year-target, .tazo-year-hero, .tazo-year-stage, .year-hero-display, .year-center-stage')) return;
+        if (event && event.target && event.target.closest('#year-target, .tazo-year-hero, .year-number-giant, .year-scratch-badge')) return;
         this.justHandledTouch = true;
         setTimeout(() => { this.justHandledTouch = false; }, 350);
         if (navigator.vibrate) {
@@ -878,11 +880,10 @@ class HitTazosEngine {
       document.documentElement.style.setProperty('--current-card-glow', `hsl(${hue}, 90%, 60%)`);
     }
 
-    // Interacción de clic en la zona del año para revelar/ocultar
-    const yearTarget = this.cardStage.querySelector('#year-target, .tazo-year-hero, .tazo-year-stage, .year-hero-display, .year-center-stage');
+    const yearTarget = this.cardStage.querySelector('#year-target');
     if (yearTarget) {
       yearTarget.addEventListener('click', (e) => {
-        e.stopPropagation(); // no voltear la tarjeta, solo revelar el año
+        e.stopPropagation(); // Evita que el disco se voltee al tocar el año
         this.toggleActiveCardYear();
       });
     }
