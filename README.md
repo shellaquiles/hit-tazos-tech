@@ -24,6 +24,7 @@ npm run serve
 
 ### Modos de la Aplicación Web:
 * **🕹️ Partida Interactiva:** Tarjeta 3D que se voltea con animación WAAPI o barra espaciadora, flujo multi-intento con pistas direccionales (más reciente / más antiguo) y temperatura (frío/tibio/caliente), chips de décadas, racha de aciertos y repisa cronológica para coleccionar 10 cartas.
+* **🔄 Formato Dual (Tazo vs. Tarjeta):** Alterna en tiempo real entre la vista retro de **Tazo Físico Circular** (con ranuras y notchings) y la de **Tarjeta Cuadrada** clásica usando el botón en cabecera o la tecla <kbd>T</kbd>.
 * **🔍 Explorador y Catálogo:** Visualización en cuadrícula con el **"Orden del Mazo (Bloques de Color)"**, donde se aprecia la transición tonal continua de 10 en 10 de claro a oscuro, además de filtros por grupo y búsqueda en tiempo real.
 * **🔊 Audio y FX:** Efectos de sonido retro sintetizados con Web Audio API y confeti dinámico con la paleta de cada tarjeta al acertar.
 
@@ -167,6 +168,27 @@ npm run version:check
 # Sincronizar automáticamente todos los archivos con VERSION:
 npm run version:sync
 ```
+
+### 🧪 Suite de Pruebas Automatizadas y Calidad de Código
+El proyecto cuenta con un pipeline de calidad integral y una suite de pruebas unitarias nativas (`node --test`) para garantizar la precisión factual de los datos, la estabilidad del motor y la prevención de regresiones:
+
+```bash
+# Ejecutar suite completa (Versión + Auditoría de 576 cartas + Pruebas unitarias + Sintaxis):
+npm test
+
+# Ejecutar únicamente pruebas unitarias (17 tests en ~160ms):
+npm run test:unit
+```
+
+#### Arquitectura Modular del Cliente Web (`web/core/`):
+La lógica del cliente opera con **ES Modules nativos sin empaquetadores (Zero-Bundler)** estructurados bajo el principio de responsabilidad única (SRP):
+- **`web/core/constants.js`:** Reglas canónicas (`GAME_RULES`), límites temporales y paletas cromáticas.
+- **`web/core/rules.js`:** Motor de cálculo con funciones puras para puntuación (+3 exacto, +1 cercano $\pm2$) y pistas térmicas anti-spoiler.
+- **`web/core/storage.js`:** `StorageAdapter` con persistencia dual asíncrona (IndexedDB + LocalStorage) y validación de esquemas en tiempo de ejecución.
+- **`web/core/state.js`:** `GameState` reactivo con patrón **Observer (Pub/Sub)** desacoplado de la interfaz gráfica.
+- **`web/core/audio.js`:** `AudioEngine` encapsulado con Howler para efectos de audio retro sin fugas de contexto.
+- **`web/core/renderer.js`:** `CardRenderer` para generación segura de Tazos circulares (arco seguro $r=112$) y tarjetas cuadradas.
+- **`web/app.js`:** Orquestador de vistas, atajos de teclado y gestos táctiles.
 
 ---
 

@@ -31,11 +31,22 @@ hit-tazos-tech/
 │   ├── manifest.json                    # Manifiesto canónico de baraja con metadatos
 │   └── volumes/                         # 8 archivos JSON fuente de volúmenes (vol0 a vol7)
 ├── web/                                 # Aplicación web interactiva (juego y catálogo)
-│   ├── index.html                       # Interfaz HTML5 principal
-│   ├── app.js                           # Lógica del cliente, animaciones WAAPI y audio
-│   ├── style.css                        # Hoja de estilos moderna
+│   ├── index.html                       # Interfaz HTML5 principal y modales
+│   ├── app.js                           # Orquestador del cliente web (HitTazosApp)
+│   ├── style.css                        # Hoja de estilos moderna y diseño responsivo
+│   ├── core/                            # Módulos desacoplados ES Modules (arquitectura limpia)
+│   │   ├── constants.js                 # Reglas, límites temporales, paletas y llaves de caché
+│   │   ├── rules.js                     # Funciones puras de puntuación, pistas anti-spoiler y estante
+│   │   ├── storage.js                   # StorageAdapter dual (IDB + LocalStorage) y validación de esquema
+│   │   ├── state.js                     # GameState reactivo con patrón Observer (Pub/Sub)
+│   │   ├── audio.js                     # AudioEngine encapsulado (Howler.js wrapper)
+│   │   └── renderer.js                  # CardRenderer (Tazos SVG r=112 y tarjetas cuadradas)
 │   └── assets/                          # Recursos gráficos, multimedia y fuentes
 │       └── fonts/                       # 6 tipografías locales TTF (Outfit y Space Grotesk para modo offline)
+├── tests/                               # Suite de pruebas unitarias automatizadas (Node.js test runner)
+│   ├── rules.test.js                    # Pruebas de reglas de puntuación, pistas y orden cronológico
+│   ├── state.test.js                    # Pruebas de transiciones de estado, penalizaciones y storage
+│   └── renderer.test.js                 # Pruebas de plantillas HTML, radio SVG seguro y Markdown
 ├── scripts/                             # Herramientas y scripts CLI canónicos
 │   ├── audit_deck.py                    # Validador integral en 4 niveles, presupuestos y anti-spoilers
 │   ├── build_cards.js                   # Compilador de la baraja maestra y manifest
@@ -161,15 +172,18 @@ Para garantizar que el juego enseñe hechos precisos y verificables sin sesgos n
 
 ---
 
-## 🔄 9. Flujo Canónico de Trabajo y Compilación (3 Pasos Obligatorios)
+## 🔄 9. Flujo Canónico de Trabajo, Pruebas y Compilación (3 Pasos Obligatorios)
 
-Cada vez que un agente o desarrollador modifique datos editoriales en `data/volumes/*.json` o código de renderizado, **debe ejecutar en orden estricto**:
+Cada vez que un agente o desarrollador modifique datos editoriales en `data/volumes/*.json` o código del cliente web, **debe ejecutar en orden estricto**:
 
 ```bash
-# Paso 1: Auditoría integral en 4 niveles (Data Contract, presupuestos, anti-spoilers y audit.json)
-npm run audit
-# o bien: python3 scripts/audit_deck.py
+# Paso 1: Verificación de paridad de versión, auditoría editorial en 4 niveles y suite de tests unitarios
 npm test
+
+# Scripts individuales si se requiere depuración granular:
+npm run version:check   # Comprueba coherencia de VERSION
+npm run audit           # Valida las 576 tarjetas contra Data Contract y anti-spoilers
+npm run test:unit       # Ejecuta los 17 tests unitarios en Node.js (tests/*.test.js)
 
 # Paso 2: Compilación de baraja maestra y actualización de manifest
 npm run build
@@ -227,11 +241,20 @@ Para evitar el **síndrome NIH (Not Invented Here)** y no escribir código utili
 
 ---
 
-## 🕹️ 14. Mecánicas de Juego Web y Flujo Arcade (UX & State Machine Contract)
+## 🕹️ 14. Mecánicas de Juego Web, Arquitectura Modular y Flujo Arcade (UX & State Machine Contract)
 
-La lógica del cliente web interactivo reside en `web/app.js` bajo la clase `HitTazosEngine` y debe satisfacer estrictamente el siguiente contrato de estados y reglas:
+La lógica del cliente web interactivo está estructurada bajo **ES Modules nativos sin bundlers (Zero-Bundler)** con estricta separación de responsabilidades (SRP, SoC):
 
-### 1. Variables de Estado Centrales:
+### 1. Desglose de Módulos (`web/core/` y `web/app.js`):
+- **`web/core/constants.js`:** Fuente única de verdad para constantes del juego (`GAME_RULES`, `CHRONO_BOUNDS`, `STORAGE_KEYS`, `CARD_FORMATS`, `DOMAIN_PALETTES`, etc.).
+- **`web/core/rules.js`:** Funciones puras e inmutables (`evaluateGuess`, `calculateHint`, `sortShelfChronological`, `checkVictory`, etc.).
+- **`web/core/storage.js`:** `StorageAdapter` con almacenamiento dual asíncrono (IndexedDB con fallback a `localStorage`) y validación estricta de esquemas de datos.
+- **`web/core/state.js`:** `GameState` reactivo implementando el patrón **Observer (Pub/Sub)** con eventos desacoplados del DOM (`SCORE_CHANGED`, `CARD_PREPARED`, `SHELF_UPDATED`, `GUESS_WON`, `YEAR_REVEALED_WITH_PENALTY`, etc.).
+- **`web/core/audio.js`:** `AudioEngine` encapsulado para sintetizar y disparar sonidos vía Howler (`flip`, `slam`, `hit`, `miss`, `tick`) con control de volumen y estado mudo.
+- **`web/core/renderer.js`:** `CardRenderer` para generar plantillas HTML seguras tanto para **Tazos circulares** (con radio SVG seguro $r=112$) como para **Tarjetas cuadradas**.
+- **`web/app.js`:** Coordinador `HitTazosApp` que enlaza el estado reactivo con el árbol DOM, delega eventos de usuario y gestiona gestos móviles y atajos de teclado.
+
+### 2. Variables de Estado Centrales (`GameState`):
 - **`this.score`:** Entero $\ge 0$. **Regla de oro: No se permiten puntos negativos bajo ninguna circunstancia.**
 - **`this.streak`:** Entero de aciertos consecutivos. Cuando $\ge 2$, añade la clase visual `.streak-hot` al HUD (modo "On Fire"). Se reinicia a 0 ante cualquier tiro fallido o al revelar año.
 - **`this.attemptCount`:** Contador de tiros consumidos en la carta actual ($0$ a $3$).
@@ -240,7 +263,7 @@ La lógica del cliente web interactivo reside en `web/app.js` bajo la clase `Hit
 - **`this.revealedCards`:** `Set<string>` con los IDs de tarjetas ya reveladas/resueltas. Se serializa en caché para evitar que una carta resuelta se vuelva a adivinar tras recargar o navegar.
 - **`this.playerShelf`:** Array ordenado cronológicamente con las tarjetas ganadas por el jugador (objetivo: 10 cartas).
 
-### 2. Tabla Canónica de Puntuación y Reglas:
+### 3. Tabla Canónica de Puntuación y Reglas:
 | Suceso en Turno | Puntos | Racha | Tarjeta a Estante | Estado del Tiro |
 | :--- | :---: | :---: | :---: | :--- |
 | **Acierto Exacto (`diff === 0`)** | **+3** | **+1** | ✅ Sí | Bloqueado (`cardSolved = true`) |
@@ -250,19 +273,24 @@ La lógica del cliente web interactivo reside en `web/app.js` bajo la clase `Hit
 | **Revelar Año (`score >= 5`)** | **-5** | **0** | ❌ No | Voltea a reverso y bloquea tiro |
 | **Revelar Año (`score < 5`)** | **0** | Inalterada | ❌ No | **No revela año.** Tiro sigue activo. |
 
-### 3. Pistas Cualitativas (Anti-Spoiler):
+### 4. Pistas Cualitativas (Anti-Spoiler):
 * Al fallar un tiro dentro de los 3 intentos, la pista **NUNCA debe revelar la cantidad exacta de años de diferencia**.
 * Únicamente indica:
   * **Dirección:** `↑ Más reciente` o `↓ Más antiguo`.
   * **Temperatura:** `🔥 ¡Caliente!` ($\le 5$ años), `🌡️ Tibio` ($\le 15$ años) o `❄️ Frío` ($> 15$ años).
 
-### 4. Persistencia en Caché (Dual IDB + localStorage):
+### 5. Formato Dual de Visualización (Tazo Circular vs. Tarjeta Cuadrada):
+* **Soporte Nativo:** La aplicación soporta alternar entre la visualización retro de **Tazo Físico Circular** (con ranuras y notchings perimetrales) y la vista clásica de **Tarjeta Cuadrada**.
+* **Activación:** Mediante el botón de cabecera `#btn-format-toggle` o el atajo de teclado <kbd>T</kbd>.
+* **Seguridad Tipográfica en Discos:** El texto circular en arco SVG utiliza un radio seguro de $r=112$ y márgenes perimetrales de protección (`disc-core`) para garantizar que las ranuras físicas no colisionen con las etiquetas tipográficas curvadas.
+
+### 6. Persistencia en Caché (Dual IDB + localStorage):
 Cualquier mutación de partida debe invocar `this.persistGameState()` para sincronizar:
 * `hittazos_shelf`: Tarjetas en la línea de tiempo.
 * `hittazos_score`: Puntuación actual ($\ge 0$).
 * `hittazos_streak`: Racha actual.
 * `hittazos_revealed`: Lista de IDs de cartas resueltas.
 
-### 5. Barajeo y Reinicio:
+### 7. Barajeo y Reinicio:
 * **Barajeo inicial:** `this.activeDeck` se mezcla aleatoriamente con Fisher-Yates al iniciar, al recargar o al cambiar de volumen.
 * **Reinicio (`resetGame()`):** Solicita confirmación, restablece puntos a 0, racha a 0, vacía estante y caché persistente, y barajea el mazo nuevamente. Accesible vía botón en header, estante o atajo <kbd>Shift</kbd>+<kbd>R</kbd>.
