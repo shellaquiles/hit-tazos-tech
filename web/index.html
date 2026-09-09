@@ -172,6 +172,9 @@
         <button class="icon-btn" id="btn-sound-toggle" title="Sonido [S]" aria-label="Alternar efectos de sonido">
           <i data-lucide="volume-2" id="icon-sound-state"></i>
         </button>
+        <button class="icon-btn" id="btn-reset-game" title="Reiniciar partida [Shift+R]" aria-label="Reiniciar partida">
+          <i data-lucide="rotate-ccw"></i>
+        </button>
         <button class="icon-btn" id="btn-print" title="Imprimir baraja [P]" aria-label="Imprimir cartas para recortar">
           <i data-lucide="printer"></i>
         </button>
@@ -331,7 +334,13 @@
               <i data-lucide="trophy"></i>
               <span>Tu Línea de Tiempo Personal</span>
             </h3>
-            <span id="shelf-counter">0 / 10 cartas para ganar</span>
+            <div class="shelf-header-actions">
+              <span id="shelf-counter">0 / 10 cartas para ganar</span>
+              <button class="btn-shelf-reset" id="btn-reset-shelf" title="Reiniciar partida y vaciar línea de tiempo" aria-label="Reiniciar partida">
+                <i data-lucide="rotate-ccw"></i>
+                <span>Reiniciar</span>
+              </button>
+            </div>
           </div>
           <div class="shelf-progress-track">
             <div class="shelf-progress-fill" id="shelf-progress-fill"></div>
@@ -528,6 +537,10 @@
             <div class="shortcut-row">
               <kbd class="key-cap">S</kbd>
               <span>Alternar sonido activado / silenciado</span>
+            </div>
+            <div class="shortcut-row">
+              <kbd class="key-cap">Shift</kbd> + <kbd class="key-cap">R</kbd>
+              <span>Reiniciar partida completa</span>
             </div>
             <div class="shortcut-row">
               <kbd class="key-cap">0</kbd> ... <kbd class="key-cap">7</kbd>

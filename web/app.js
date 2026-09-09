@@ -62,6 +62,8 @@ class HitTazosEngine {
     this.btnTabPlay = document.getElementById('btn-tab-play');
     this.btnTabGallery = document.getElementById('btn-tab-gallery');
     this.btnSound = document.getElementById('btn-sound-toggle');
+    this.btnResetGame = document.getElementById('btn-reset-game');
+    this.btnResetShelf = document.getElementById('btn-reset-shelf');
     this.btnPrint = document.getElementById('btn-print');
 
     // Ribbon
@@ -341,6 +343,12 @@ class HitTazosEngine {
     this.btnNext.addEventListener('click', () => this.nextCard());
     this.btnPrev.addEventListener('click', () => this.prevCard());
     this.btnShuffle.addEventListener('click', () => this.shuffleCurrentDeck());
+    if (this.btnResetGame) {
+      this.btnResetGame.addEventListener('click', () => this.resetGame());
+    }
+    if (this.btnResetShelf) {
+      this.btnResetShelf.addEventListener('click', () => this.resetGame());
+    }
 
     // Chrono-Dial time machine slider
     if (this.chronoDial) {
@@ -386,6 +394,7 @@ class HitTazosEngine {
       // Volteo y utilidades
       hotkeys('space', (e) => { e.preventDefault(); this.flipCurrentCard(); });
       hotkeys('r', (e) => { e.preventDefault(); this.toggleActiveCardYear(); });
+      hotkeys('shift+r', (e) => { e.preventDefault(); this.resetGame(); });
       hotkeys('s', () => this.btnSound?.click());
 
       const volumeKeys = [
@@ -410,6 +419,7 @@ class HitTazosEngine {
         else if (e.key === '+' || e.code === 'NumpadAdd' || e.key === '=') { e.preventDefault(); this.nudgeYear(1); }
         else if (e.key === '-' || e.code === 'NumpadSubtract') { e.preventDefault(); this.nudgeYear(-1); }
         else if (e.code === 'Space') { e.preventDefault(); this.flipCurrentCard(); }
+        else if (e.shiftKey && (e.code === 'KeyR' || e.key === 'R')) { e.preventDefault(); this.resetGame(); }
         else if (e.code === 'KeyR') { e.preventDefault(); this.toggleActiveCardYear(); }
         else if (e.code === 'KeyN') this.nextCard();
         else if (e.code === 'KeyP') this.prevCard();
@@ -1552,6 +1562,53 @@ class HitTazosEngine {
     setTimeout(() => {
       this.renderActiveArenaCard();
     }, 180);
+  }
+
+  async resetGame() {
+    const confirmed = window.confirm(
+      '¿Deseas reiniciar la partida?\n\nSe restablecerán tus puntos, racha, tazos ganados y tarjetas resueltas.'
+    );
+    if (!confirmed) return;
+
+    this.score = 0;
+    this.streak = 0;
+    this.attemptCount = 0;
+    this.cardSolved = false;
+    this.playerShelf = [];
+    this.revealedCards.clear();
+
+    if (this.hudScore) this.hudScore.textContent = '0';
+    if (this.hudStreak) this.hudStreak.textContent = '0';
+    if (this.hudStreakBox) this.hudStreakBox.classList.remove('streak-hot');
+
+    try {
+      if (typeof idbKeyval !== 'undefined') {
+        await idbKeyval.del('hittazos_shelf');
+        await idbKeyval.del('hittazos_score');
+        await idbKeyval.del('hittazos_streak');
+        await idbKeyval.del('hittazos_revealed');
+      }
+      if (window.localStorage) {
+        localStorage.removeItem('hittazos_shelf');
+        localStorage.removeItem('hittazos_score');
+        localStorage.removeItem('hittazos_streak');
+        localStorage.removeItem('hittazos_revealed');
+      }
+    } catch (_) { }
+
+    this.renderShelf();
+    this.shuffleArray(this.activeDeck);
+    this.currentIndex = 0;
+    this.renderActiveArenaCard();
+
+    if (this.guessResultPill) {
+      this.guessResultPill.innerHTML = `<span style="color:#0284c7;display:inline-flex;align-items:center;gap:0.4rem;font-weight:600">
+        <i data-lucide="rotate-ccw"></i> Partida reiniciada &mdash; ¡Mazo barajeado!
+      </span>`;
+    }
+
+    this.playAudioFeedback('slam');
+    this.refreshIcons();
   }
 
 
