@@ -198,61 +198,62 @@
     </div>
   </header>
 
-  <!-- Deck Selector Ribbon (Selector de Baraja con Identidad Cromática y Scroll Affordance) -->
-  <div class="ribbon-wrapper">
-    <nav class="category-ribbon" id="group-ribbon" aria-label="Seleccionar Baraja de Trivia">
-      <button class="ribbon-pill pill-master active" data-volumen="ALL" data-accent="master" title="Mazo Maestro: 576 cartas de todos los volúmenes">
-        <i data-lucide="crown" class="pill-icon"></i>
-        <span class="pill-label">Mazo Maestro</span>
-        <span class="pill-count">576</span>
-      </button>
-      <button class="ribbon-pill pill-vol0" data-volumen="kernel-foundations" data-accent="vol0" title="Volumen 0: Kernel Foundations">
-        <i data-lucide="cpu" class="pill-icon"></i>
-        <span class="pill-label">Vol 0: Kernel</span>
-        <span class="pill-count">128</span>
-      </button>
-      <button class="ribbon-pill pill-vol1" data-volumen="cypherpunks-hacker-lore" data-accent="vol1" title="Volumen 1: Hacker Lore">
-        <i data-lucide="shield-alert" class="pill-icon"></i>
-        <span class="pill-label">Vol 1: Hacker Lore</span>
-        <span class="pill-count">64</span>
-      </button>
-      <button class="ribbon-pill pill-vol2" data-volumen="embedded-silicon-hardware" data-accent="vol2" title="Volumen 2: Hardware">
-        <i data-lucide="microchip" class="pill-icon"></i>
-        <span class="pill-label">Vol 2: Hardware</span>
-        <span class="pill-count">64</span>
-      </button>
-      <button class="ribbon-pill pill-vol3" data-volumen="unix-sysadmin-networks" data-accent="vol3" title="Volumen 3: Unix & Networks">
-        <i data-lucide="terminal" class="pill-icon"></i>
-        <span class="pill-label">Vol 3: Unix & Nets</span>
-        <span class="pill-count">64</span>
-      </button>
-      <button class="ribbon-pill pill-vol4" data-volumen="backend-distributed-systems" data-accent="vol4" title="Volumen 4: Backend">
-        <i data-lucide="server" class="pill-icon"></i>
-        <span class="pill-label">Vol 4: Backend</span>
-        <span class="pill-count">64</span>
-      </button>
-      <button class="ribbon-pill pill-vol5" data-volumen="cloud-containers-sre" data-accent="vol5" title="Volumen 5: Cloud & SRE">
-        <i data-lucide="cloud" class="pill-icon"></i>
-        <span class="pill-label">Vol 5: Cloud & SRE</span>
-        <span class="pill-count">64</span>
-      </button>
-      <button class="ribbon-pill pill-vol6" data-volumen="python-track" data-accent="vol6" title="Volumen 6: Python Track">
-        <i data-lucide="code-2" class="pill-icon"></i>
-        <span class="pill-label">Vol 6: Python Track</span>
-        <span class="pill-count">64</span>
-      </button>
-      <button class="ribbon-pill pill-vol7" data-volumen="scifi-pop-culture-cinema" data-accent="vol7" title="Volumen 7: Sci-Fi & Pop Culture">
-        <i data-lucide="sparkles" class="pill-icon"></i>
-        <span class="pill-label">Vol 7: Sci-Fi & Pop</span>
-        <span class="pill-count">64</span>
-      </button>
-    </nav>
-  </div>
-
   <main>
     <!-- VISTA 1: MODO JUEGO INTERACTIVO -->
     <section id="view-play" class="view-section active" aria-labelledby="heading-view-play">
       <h2 id="heading-view-play" class="sr-only">Modo Juego de Trivia Cronológica Interactiva</h2>
+
+      <!-- Deck Selector Ribbon (Exclusivo de Modo Juego con Identidad Cromática) -->
+      <div class="ribbon-wrapper">
+        <nav class="category-ribbon" id="group-ribbon" aria-label="Seleccionar Baraja de Trivia">
+          <button class="ribbon-pill pill-master active" data-volumen="ALL" data-accent="master" title="Mazo Maestro: 576 cartas de todos los volúmenes">
+            <i data-lucide="crown" class="pill-icon"></i>
+            <span class="pill-label">Mazo Maestro</span>
+            <span class="pill-count">576</span>
+          </button>
+          <button class="ribbon-pill pill-vol0" data-volumen="kernel-foundations" data-accent="vol0" title="Volumen 0: Kernel Foundations">
+            <i data-lucide="cpu" class="pill-icon"></i>
+            <span class="pill-label">Vol 0: Kernel</span>
+            <span class="pill-count">128</span>
+          </button>
+          <button class="ribbon-pill pill-vol1" data-volumen="cypherpunks-hacker-lore" data-accent="vol1" title="Volumen 1: Hacker Lore">
+            <i data-lucide="shield-alert" class="pill-icon"></i>
+            <span class="pill-label">Vol 1: Hacker Lore</span>
+            <span class="pill-count">64</span>
+          </button>
+          <button class="ribbon-pill pill-vol2" data-volumen="embedded-silicon-hardware" data-accent="vol2" title="Volumen 2: Hardware">
+            <i data-lucide="microchip" class="pill-icon"></i>
+            <span class="pill-label">Vol 2: Hardware</span>
+            <span class="pill-count">64</span>
+          </button>
+          <button class="ribbon-pill pill-vol3" data-volumen="unix-sysadmin-networks" data-accent="vol3" title="Volumen 3: Unix & Networks">
+            <i data-lucide="terminal" class="pill-icon"></i>
+            <span class="pill-label">Vol 3: Unix & Nets</span>
+            <span class="pill-count">64</span>
+          </button>
+          <button class="ribbon-pill pill-vol4" data-volumen="backend-distributed-systems" data-accent="vol4" title="Volumen 4: Backend">
+            <i data-lucide="server" class="pill-icon"></i>
+            <span class="pill-label">Vol 4: Backend</span>
+            <span class="pill-count">64</span>
+          </button>
+          <button class="ribbon-pill pill-vol5" data-volumen="cloud-containers-sre" data-accent="vol5" title="Volumen 5: Cloud & SRE">
+            <i data-lucide="cloud" class="pill-icon"></i>
+            <span class="pill-label">Vol 5: Cloud & SRE</span>
+            <span class="pill-count">64</span>
+          </button>
+          <button class="ribbon-pill pill-vol6" data-volumen="python-track" data-accent="vol6" title="Volumen 6: Python Track">
+            <i data-lucide="code-2" class="pill-icon"></i>
+            <span class="pill-label">Vol 6: Python Track</span>
+            <span class="pill-count">64</span>
+          </button>
+          <button class="ribbon-pill pill-vol7" data-volumen="scifi-pop-culture-cinema" data-accent="vol7" title="Volumen 7: Sci-Fi & Pop Culture">
+            <i data-lucide="sparkles" class="pill-icon"></i>
+            <span class="pill-label">Vol 7: Sci-Fi & Pop</span>
+            <span class="pill-count">64</span>
+          </button>
+        </nav>
+      </div>
+
       <div class="arena-wrapper">
 
         <!-- HUD Superior -->

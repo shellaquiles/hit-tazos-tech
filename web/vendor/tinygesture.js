@@ -40,6 +40,26 @@
       this.element.addEventListener('touchmove', this._onTouchMove, { passive: true });
       this.element.addEventListener('touchend', this._onTouchEnd, { passive: true });
       this.element.addEventListener('touchcancel', this._onTouchEnd, { passive: true });
+
+      if (this.options.mouseSupport) {
+        this._onMouseDown = (e) => {
+          if (e.button !== 0) return;
+          this.isMouseDown = true;
+          this.onTouchStart(e);
+        };
+        this._onMouseMove = (e) => {
+          if (!this.isMouseDown) return;
+          this.onTouchMove(e);
+        };
+        this._onMouseUp = (e) => {
+          if (!this.isMouseDown) return;
+          this.isMouseDown = false;
+          this.onTouchEnd(e);
+        };
+        this.element.addEventListener('mousedown', this._onMouseDown);
+        window.addEventListener('mousemove', this._onMouseMove);
+        window.addEventListener('mouseup', this._onMouseUp);
+      }
     }
 
     on(type, fn) {
@@ -62,10 +82,10 @@
 
     onTouchStart(event) {
       const touch = event.touches ? event.touches[0] : event;
-      this.touchStartX = touch.screenX;
-      this.touchStartY = touch.screenY;
-      this.touchMoveX = touch.screenX;
-      this.touchMoveY = touch.screenY;
+      this.touchStartX = touch.clientX !== undefined ? touch.clientX : (touch.screenX || 0);
+      this.touchStartY = touch.clientY !== undefined ? touch.clientY : (touch.screenY || 0);
+      this.touchMoveX = this.touchStartX;
+      this.touchMoveY = this.touchStartY;
       this.touchStartTime = Date.now();
       this.swipingDirection = null;
       this.swipingHorizontal = false;
@@ -75,8 +95,8 @@
 
     onTouchMove(event) {
       const touch = event.touches ? event.touches[0] : event;
-      this.touchMoveX = touch.screenX;
-      this.touchMoveY = touch.screenY;
+      this.touchMoveX = touch.clientX !== undefined ? touch.clientX : (touch.screenX || 0);
+      this.touchMoveY = touch.clientY !== undefined ? touch.clientY : (touch.screenY || 0);
 
       const deltaX = this.touchMoveX - this.touchStartX;
       const deltaY = this.touchMoveY - this.touchStartY;
@@ -139,6 +159,11 @@
       this.element.removeEventListener('touchmove', this._onTouchMove);
       this.element.removeEventListener('touchend', this._onTouchEnd);
       this.element.removeEventListener('touchcancel', this._onTouchEnd);
+      if (this.options.mouseSupport && this._onMouseDown) {
+        this.element.removeEventListener('mousedown', this._onMouseDown);
+        window.removeEventListener('mousemove', this._onMouseMove);
+        window.removeEventListener('mouseup', this._onMouseUp);
+      }
       this.handlers = {};
     }
   }

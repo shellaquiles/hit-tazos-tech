@@ -1517,6 +1517,14 @@ main {
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: #3f3f46 #18181b;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.fanning-scroll-wrapper.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto !important;
 }
 
 .fanning-scroll-wrapper::-webkit-scrollbar {
@@ -1604,16 +1612,20 @@ main {
   justify-content: space-between;
 }
 
-.card-fan.is-flipped .card-fan-back {
+.card-fan .card-fan-front {
+  display: flex;
+}
+
+.card-fan .card-fan-back {
   display: none;
 }
 
 .card-fan.is-flipped .card-fan-front {
-  display: flex;
+  display: none;
 }
 
-.card-fan .card-fan-front {
-  display: none;
+.card-fan.is-flipped .card-fan-back {
+  display: flex;
 }
 
 .card-header-author {

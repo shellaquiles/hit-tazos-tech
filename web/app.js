@@ -33,6 +33,8 @@ export class HitTazosApp {
     this.currentView = 'play';
     this.fuse = null;
     this.touchGestureInstance = null;
+    this.fanningGestureInstance = null;
+    this.isFanningDragging = false;
     this.justHandledTouch = false;
     this.isTransitioning = false;
     this.pendingIconRefresh = false;
@@ -44,6 +46,7 @@ export class HitTazosApp {
     this.bindKeyboardShortcuts();
     this.initTilt();
     this.initTouchGestures();
+    this.initFanningDragToScroll();
     this.loadData();
     this.loadSavedState();
   }
@@ -433,6 +436,7 @@ export class HitTazosApp {
 
     // Interacción en la Pista de Abanico: Clic para voltear tarjeta
     this.fanningTrack?.addEventListener('click', (e) => {
+      if (this.isFanningDragging) return;
       const cardEl = e.target.closest('.card-fan');
       if (cardEl) {
         cardEl.classList.toggle('is-flipped');
@@ -456,8 +460,22 @@ export class HitTazosApp {
 
   bindKeyboardShortcuts() {
     if (typeof hotkeys === 'function') {
-      hotkeys('left,p', (e) => { e.preventDefault(); this.prevCard(); });
-      hotkeys('right,n', (e) => { e.preventDefault(); this.nextCard(); });
+      hotkeys('left,p', (e) => {
+        e.preventDefault();
+        if (this.currentView === 'gallery' && this.galleryLayout === 'fan' && this.fanningScrollWrapper) {
+          this.fanningScrollWrapper.scrollBy({ left: -320, behavior: 'smooth' });
+        } else {
+          this.prevCard();
+        }
+      });
+      hotkeys('right,n', (e) => {
+        e.preventDefault();
+        if (this.currentView === 'gallery' && this.galleryLayout === 'fan' && this.fanningScrollWrapper) {
+          this.fanningScrollWrapper.scrollBy({ left: 320, behavior: 'smooth' });
+        } else {
+          this.nextCard();
+        }
+      });
       hotkeys('up,+,=', (e) => { e.preventDefault(); this.nudgeYear(1); });
       hotkeys('down,-', (e) => { e.preventDefault(); this.nudgeYear(-1); });
       hotkeys('enter', (e) => { e.preventDefault(); this.handleGuessSubmission(); });
@@ -491,8 +509,22 @@ export class HitTazosApp {
       window.addEventListener('keydown', (e) => {
         if (document.activeElement?.tagName === 'INPUT' || document.activeElement === this.galleryQuery) return;
         if (e.code === 'Enter' || e.code === 'NumpadEnter') { e.preventDefault(); this.handleGuessSubmission(); }
-        else if (e.code === 'ArrowLeft') { e.preventDefault(); this.prevCard(); }
-        else if (e.code === 'ArrowRight') { e.preventDefault(); this.nextCard(); }
+        else if (e.code === 'ArrowLeft') {
+          e.preventDefault();
+          if (this.currentView === 'gallery' && this.galleryLayout === 'fan' && this.fanningScrollWrapper) {
+            this.fanningScrollWrapper.scrollBy({ left: -320, behavior: 'smooth' });
+          } else {
+            this.prevCard();
+          }
+        }
+        else if (e.code === 'ArrowRight') {
+          e.preventDefault();
+          if (this.currentView === 'gallery' && this.galleryLayout === 'fan' && this.fanningScrollWrapper) {
+            this.fanningScrollWrapper.scrollBy({ left: 320, behavior: 'smooth' });
+          } else {
+            this.nextCard();
+          }
+        }
         else if (e.key === '+' || e.code === 'NumpadAdd' || e.key === '=') { e.preventDefault(); this.nudgeYear(1); }
         else if (e.key === '-' || e.code === 'NumpadSubtract') { e.preventDefault(); this.nudgeYear(-1); }
         else if (e.code === 'Space') { e.preventDefault(); this.flipCurrentCard(); }
@@ -506,19 +538,26 @@ export class HitTazosApp {
     }
   }
 
-  // ── Gestos Táctiles con TinyGesture (Teardown Seguro) ──────────────────────
+  // ── Gestos Táctiles y Arrastre (TinyGesture + Drag-to-Scroll) ───────────────
 
   initTouchGestures() {
     if (this.touchGestureInstance && typeof this.touchGestureInstance.destroy === 'function') {
       this.touchGestureInstance.destroy();
       this.touchGestureInstance = null;
     }
+    if (this.fanningGestureInstance && typeof this.fanningGestureInstance.destroy === 'function') {
+      this.fanningGestureInstance.destroy();
+      this.fanningGestureInstance = null;
+    }
 
+    // Gestos en el Escenario Principal (Modo Juego)
     if (typeof TinyGesture === 'function' && this.cardStage) {
       try {
         this.touchGestureInstance = new TinyGesture(this.cardStage, {
-          threshold: (type) => Math.max(30, Math.floor(0.15 * (type === 'x' ? window.innerWidth : window.innerHeight))),
-          diagonalSwipes: false
+          threshold: () => 35,
+          velocityThreshold: 5,
+          diagonalSwipes: false,
+          mouseSupport: true
         });
 
         this.touchGestureInstance.on('swipeleft', () => {
@@ -543,6 +582,67 @@ export class HitTazosApp {
         });
       } catch (_) {}
     }
+
+    // Gestos táctiles en la Pista de Abanico (Modo Explorador)
+    if (typeof TinyGesture === 'function' && this.fanningScrollWrapper) {
+      try {
+        this.fanningGestureInstance = new TinyGesture(this.fanningScrollWrapper, {
+          threshold: () => 40,
+          velocityThreshold: 5,
+          diagonalSwipes: false,
+          mouseSupport: false
+        });
+
+        this.fanningGestureInstance.on('swipeleft', () => {
+          this.fanningScrollWrapper.scrollBy({ left: 320, behavior: 'smooth' });
+        });
+
+        this.fanningGestureInstance.on('swiperight', () => {
+          this.fanningScrollWrapper.scrollBy({ left: -320, behavior: 'smooth' });
+        });
+      } catch (_) {}
+    }
+  }
+
+  initFanningDragToScroll() {
+    if (!this.fanningScrollWrapper) return;
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+    let hasDragged = false;
+
+    this.fanningScrollWrapper.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return;
+      isDown = true;
+      hasDragged = false;
+      this.fanningScrollWrapper.classList.add('is-dragging');
+      startX = e.pageX - this.fanningScrollWrapper.offsetLeft;
+      scrollLeft = this.fanningScrollWrapper.scrollLeft;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      const x = e.pageX - this.fanningScrollWrapper.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      if (Math.abs(walk) > 6) {
+        hasDragged = true;
+        this.isFanningDragging = true;
+      }
+      this.fanningScrollWrapper.scrollLeft = scrollLeft - walk;
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!isDown) return;
+      isDown = false;
+      this.fanningScrollWrapper.classList.remove('is-dragging');
+      if (hasDragged) {
+        setTimeout(() => {
+          this.isFanningDragging = false;
+        }, 80);
+      } else {
+        this.isFanningDragging = false;
+      }
+    });
   }
 
   triggerTouch(action, vibrateMs = 15) {
@@ -1003,7 +1103,9 @@ export class HitTazosApp {
 
   switchView(view) {
     this.currentView = view;
+    const ribbonWrapper = document.querySelector('.ribbon-wrapper');
     if (view === 'play') {
+      if (ribbonWrapper) ribbonWrapper.style.display = '';
       this.viewPlay?.classList.add('active');
       this.viewGallery?.classList.remove('active');
       this.btnTabPlay?.classList.add('active');
@@ -1011,6 +1113,7 @@ export class HitTazosApp {
       this.btnTabGallery?.classList.remove('active');
       this.btnTabGallery?.setAttribute('aria-selected', 'false');
     } else {
+      if (ribbonWrapper) ribbonWrapper.style.display = 'none';
       this.viewPlay?.classList.remove('active');
       this.viewGallery?.classList.add('active');
       this.btnTabPlay?.classList.remove('active');
