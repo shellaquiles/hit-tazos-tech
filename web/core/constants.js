@@ -22,12 +22,32 @@ export const STORAGE_KEYS = {
   SCORE: 'hittazos_score',
   STREAK: 'hittazos_streak',
   REVEALED: 'hittazos_revealed',
-  FORMAT: 'hittazos_format'
+  FORMAT: 'hittazos_format',
+  VERSION_CHOSEN: 'hittazos_version_chosen'
 };
 
 export const CARD_FORMATS = {
   DISC: 'disc',
   CARD: 'card'
+};
+
+export const GAME_VERSIONS = {
+  TAZO: {
+    id: 'tazo',
+    format: CARD_FORMATS.DISC,
+    name: 'HIT-TAZOS',
+    title: 'Hit-Tazo Tech',
+    badge: 'Tech',
+    icon: 'disc'
+  },
+  CARDS: {
+    id: 'cards',
+    format: CARD_FORMATS.CARD,
+    name: 'HIT-CARDS',
+    title: 'Hit-Cards Tech',
+    badge: 'Tech',
+    icon: 'layers'
+  }
 };
 
 // Selectores Canónicos del DOM (DRY)

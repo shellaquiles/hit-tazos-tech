@@ -1,4 +1,7 @@
 /* Soporte Tipográfico Local Offline (con fallback automático a Google Fonts) */
+@import url('css/tazo.css');
+@import url('css/cards.css');
+
 @font-face {
   font-family: 'Outfit';
   font-style: normal;
@@ -107,6 +110,27 @@ header {
   color: white;
   box-shadow: 0 2px 8px rgba(225, 29, 72, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, background 0.3s ease;
+  user-select: none;
+}
+
+.brand-icon:hover {
+  transform: translateY(-2px) scale(1.06);
+  box-shadow: 0 6px 16px rgba(225, 29, 72, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.brand-icon:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.brand-icon.version-cards {
+  background: linear-gradient(135deg, #0284c7, #0369a1);
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.brand-icon.version-cards:hover {
+  box-shadow: 0 6px 16px rgba(2, 132, 199, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .brand-title {
@@ -724,1003 +748,10 @@ main {
   transform: translateY(-4px);
 }
 
-/* El disco tridimensional de inyección plástica */
-.disc-physical,
-.tazo-physical,
-.disc,
-.tazo-disc {
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 1 / 1;
-  position: relative;
-  border-radius: 50%;
-  transform-style: preserve-3d;
-  cursor: pointer;
-  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
-  box-shadow:
-    0 20px 40px -12px rgba(15, 23, 42, 0.28),
-    0 0 0 1px rgba(0, 0, 0, 0.06);
-}
-
-/* La tarjeta cuadrada clásica Hit-Tazos Tech (65x65mm) */
-.hittazos-card-3d {
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 1 / 1;
-  position: relative;
-  border-radius: var(--card-radius, 18px);
-  transform-style: preserve-3d;
-  cursor: pointer;
-  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
-  box-shadow:
-    0 20px 40px -12px rgba(15, 23, 42, 0.28),
-    0 0 0 1px rgba(0, 0, 0, 0.06);
-}
-
-.disc-stage:active .disc-physical,
-.tazo-stage:active .tazo-physical,
-.disc-stage:active .hittazos-card-3d,
-.tazo-stage:active .hittazos-card-3d {
-  box-shadow:
-    0 8px 18px -4px rgba(15, 23, 42, 0.22),
-    0 0 0 1px rgba(0, 0, 0, 0.06);
-}
-
-.disc-physical.is-flipped,
-.tazo-physical.is-flipped,
-.disc.is-flipped,
-.tazo-disc.is-flipped,
-.hittazos-card-3d.is-flipped {
-  transform: rotateY(180deg);
-}
-
-.hittazos-card-3d .card-sheet {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: var(--card-radius, 18px);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  box-sizing: border-box;
-}
-
-.hittazos-card-3d .sheet-front {
-  transform: rotateY(0deg);
-}
-
-.hittazos-card-3d .sheet-back {
-  transform: rotateY(180deg);
-}
-
 /* ==========================================================================
-   ANATOMÍA REAL DE TAZOS (LOONEY TUNES 1994 + PAC-MAN SABRITAS)
+   ANATOMÍA Y RENDERIZADO MODULAR: HIT-TAZO Y HIT-CARDS
+   Los estilos dedicados residen en web/css/tazo.css y web/css/cards.css
    ========================================================================== */
-
-/* ==========================================================================
-   ANATOMÍA MODERNA DE TAZOS (NEOFROST GLASSO-TITANIO 2026)
-   ========================================================================== */
-
-/* 1. Base del Disco: Acrílico mate pulido con bisel de titanio y neofrost */
-.disc-face,
-.tazo-face {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  background: radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.12), rgba(15, 23, 42, 0.88)) !important;
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  box-shadow:
-    /* Sombra de apoyo en mesa */
-    0 24px 48px -12px rgba(0, 0, 0, 0.6),
-    /* Bisel exterior maquinado */
-    inset 0 1px 1px rgba(255, 255, 255, 0.35),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.7),
-    /* Rebaje del surco circular interior */
-    inset 0 0 0 12px rgba(0, 0, 0, 0.25) !important;
-}
-
-/* Destello especular diagonal (Cristal zafiro) */
-.disc-face::after,
-.tazo-face::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.03) 40%,
-    transparent 60%
-  );
-  pointer-events: none;
-  z-index: 15;
-}
-
-/* 2. Anverso: Neofrost con gradiente radial oscuro de 4 capas */
-.disc-front,
-.tazo-front,
-.disc-face-front,
-.tazo-face-front {
-  background: radial-gradient(
-    circle at 35% 30%,
-    color-mix(in srgb, var(--disc-c2, #0e7490) 45%, #050811) 0%,
-    var(--disc-c1, #0f172a) 65%,
-    #050811 100%
-  ) !important;
-  transform: rotateY(0deg);
-}
-
-.disc-relief-ring,
-.tazo-relief-ring {
-  position: absolute;
-  border-radius: 50%;
-  box-sizing: border-box;
-  pointer-events: none;
-}
-
-.ring-outer {
-  inset: 0;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  background: transparent;
-}
-
-.ring-mid {
-  inset: 44px;
-  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.04) 0%, rgba(0, 0, 0, 0.3) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow:
-    inset 0 2px 8px rgba(0, 0, 0, 0.45),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
-}
-
-/* 3. Reverso: Superficie oscura de obsidiana mate con micro-gradiente de dominio */
-.disc-back,
-.tazo-back,
-.disc-face-back,
-.tazo-face-back {
-  background: radial-gradient(
-    circle at 35% 25%,
-    color-mix(in srgb, var(--disc-c1, #0f172a) 35%, #050811) 0%,
-    #0b0f19 65%,
-    #020617 100%
-  ) !important;
-  transform: rotateY(180deg);
-}
-
-/* ── Escalas de Edición y Rareza (Coleccionables Especiales) ─────────────── */
-
-/* Edición Plata: Bisel plateado cromado satinado */
-.disc-physical.edition-silver .disc-face {
-  border: 1.5px solid rgba(226, 232, 240, 0.45) !important;
-  box-shadow:
-    0 24px 48px -12px rgba(0, 0, 0, 0.65),
-    inset 0 1px 2px rgba(255, 255, 255, 0.6),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.8),
-    inset 0 0 0 12px rgba(203, 213, 225, 0.08) !important;
-}
-
-.disc-physical.edition-silver .ring-outer {
-  border-color: rgba(226, 232, 240, 0.25);
-}
-
-.disc-physical.edition-silver .ring-label,
-.disc-physical.edition-silver .ring-sub {
-  fill: #f1f5f9;
-}
-
-.disc-physical.edition-silver::after {
-  opacity: 0.95;
-  mix-blend-mode: color-dodge;
-  background: conic-gradient(
-    from var(--tilt-angle, 0deg),
-    transparent 0deg,
-    rgba(255, 255, 255, 0.55) 45deg,
-    transparent 90deg,
-    rgba(226, 232, 240, 0.35) 135deg,
-    transparent 180deg,
-    rgba(255, 255, 255, 0.55) 225deg,
-    transparent 270deg,
-    rgba(226, 232, 240, 0.35) 315deg,
-    transparent 360deg
-  );
-}
-
-/* Edición Oro: Bisel de latón pulido / oro satinado con reflejo cálido */
-.disc-physical.edition-gold .disc-face {
-  border: 1.5px solid rgba(250, 204, 21, 0.55) !important;
-  box-shadow:
-    0 24px 48px -12px rgba(0, 0, 0, 0.7),
-    0 0 24px -4px rgba(245, 158, 11, 0.3),
-    inset 0 1px 2px rgba(254, 240, 138, 0.65),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.85),
-    inset 0 0 0 12px rgba(245, 158, 11, 0.12) !important;
-}
-
-.disc-physical.edition-gold .ring-outer {
-  border-color: rgba(250, 204, 21, 0.3);
-}
-
-.disc-physical.edition-gold .disc-notches span {
-  background: rgba(250, 204, 21, 0.85);
-  box-shadow: 0 0 6px rgba(245, 158, 11, 0.65);
-}
-
-.disc-physical.edition-gold .ring-label,
-.disc-physical.edition-gold .ring-sub {
-  fill: #fef08a;
-}
-
-.disc-physical.edition-gold .year-number-giant {
-  background: linear-gradient(180deg, #fef08a 15%, #d97706 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 14px rgba(217, 119, 6, 0.5));
-}
-
-.disc-physical.edition-gold::after {
-  opacity: 0.95;
-  mix-blend-mode: color-dodge;
-  background: conic-gradient(
-    from var(--tilt-angle, 0deg),
-    transparent 0deg,
-    rgba(254, 240, 138, 0.55) 45deg,
-    transparent 90deg,
-    rgba(245, 158, 11, 0.35) 135deg,
-    transparent 180deg,
-    rgba(254, 240, 138, 0.55) 225deg,
-    transparent 270deg,
-    rgba(245, 158, 11, 0.35) 315deg,
-    transparent 360deg
-  );
-}
-
-/* Edición Black Chrome (Edición limitada): Acabado negro azabache y bisel de cromo pulido */
-.disc-physical.edition-holographic .disc-face {
-  border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
-  background: radial-gradient(
-    circle at 35% 25%,
-    rgba(255, 255, 255, 0.08) 0%,
-    #050811 75%,
-    #000000 100%
-  ) !important;
-  box-shadow:
-    0 24px 48px -12px rgba(0, 0, 0, 0.95),
-    0 0 20px -2px rgba(255, 255, 255, 0.15),
-    inset 0 1px 3px rgba(255, 255, 255, 0.65),
-    inset 0 -2px 5px rgba(0, 0, 0, 0.95),
-    inset 0 0 0 12px rgba(255, 255, 255, 0.05) !important;
-}
-
-.disc-physical.edition-holographic::after {
-  opacity: 0.95;
-  mix-blend-mode: color-dodge;
-  background: conic-gradient(
-    from var(--tilt-angle, 0deg),
-    transparent 0deg,
-    rgba(255, 255, 255, 0.6) 35deg,
-    rgba(226, 232, 240, 0.28) 65deg,
-    transparent 120deg,
-    rgba(255, 255, 255, 0.55) 215deg,
-    rgba(203, 213, 225, 0.25) 245deg,
-    transparent 300deg
-  );
-}
-
-.disc-physical.edition-holographic .ring-label,
-.disc-physical.edition-holographic .ring-sub {
-  fill: #e2e8f0;
-  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
-}
-
-.disc-physical.edition-holographic .year-number-giant {
-  background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 50%, #64748b 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.8));
-}
-
-/* 4. Marcas de precisión CNC / Micro-grabado láser minimalista */
-.disc-notches,
-.tazo-notches {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 25;
-}
-
-.disc-notches span,
-.tazo-notches span {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.45);
-  box-shadow: 0 0 4px rgba(56, 189, 248, 0.4);
-  border-radius: 1px;
-}
-
-.disc-notches span:nth-child(1),
-.tazo-notches span:nth-child(1) { top: 3px; left: calc(50% - 1px); width: 2px; height: 7px; }
-.disc-notches span:nth-child(2),
-.tazo-notches span:nth-child(2) { bottom: 3px; left: calc(50% - 1px); width: 2px; height: 7px; }
-.disc-notches span:nth-child(3),
-.tazo-notches span:nth-child(3) { left: 3px; top: calc(50% - 1px); width: 7px; height: 2px; }
-.disc-notches span:nth-child(4),
-.tazo-notches span:nth-child(4) { right: 3px; top: calc(50% - 1px); width: 7px; height: 2px; }
-
-/* 5. Reflejo metálico maquinado / Anisotrópico reactivo al puntero */
-.disc-physical::after,
-.tazo-physical::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: conic-gradient(
-    from var(--tilt-angle, 0deg),
-    transparent 0deg,
-    rgba(255, 255, 255, 0.42) 45deg,
-    transparent 90deg,
-    rgba(203, 213, 225, 0.25) 135deg,
-    transparent 180deg,
-    rgba(255, 255, 255, 0.42) 225deg,
-    transparent 270deg,
-    rgba(203, 213, 225, 0.25) 315deg,
-    transparent 360deg
-  );
-  mix-blend-mode: color-dodge;
-  pointer-events: none;
-  opacity: 0.85;
-  transition: opacity 0.25s ease;
-  z-index: 20;
-}
-
-/* 6. Textos curvados periféricos en SVG con grabado nítido */
-.disc-ring-text,
-.tazo-ring-text {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.ring-label, .ring-sub {
-  font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: 7.2px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  fill: #a5f3fc;
-  stroke: none !important;
-  opacity: 0.85;
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));
-}
-
-/* Área central de lectura frontal */
-.disc-core-front,
-.tazo-core-front {
-  position: relative;
-  z-index: 10;
-  width: 74%;
-  height: 74%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  box-sizing: border-box;
-  padding: 0.6rem;
-}
-
-.disc-hito-prose,
-.tazo-hito-prose {
-  font-family: var(--font-sans, 'Outfit', sans-serif);
-  font-size: clamp(0.84rem, 2.5vw, 0.98rem);
-  line-height: 1.45;
-  font-weight: 500;
-  color: #f1f5f9;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
-  max-width: 90%;
-}
-
-.disc-hito-prose strong,
-.tazo-hito-prose strong {
-  color: #38bdf8; /* Azul cyan moderno */
-  font-weight: 800;
-  text-shadow: 0 2px 8px rgba(2, 132, 199, 0.5);
-}
-
-.disc-hito-prose code,
-.tazo-hito-prose code {
-  font-family: var(--font-mono, monospace);
-  background: rgba(0, 0, 0, 0.4);
-  color: #38bdf8;
-  padding: 0.14rem 0.45rem;
-  border-radius: 5px;
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  font-size: 0.9em;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-/* 7. Reverso: Distribución Vertical Editorial (Autor / Año / Trivia) */
-.disc-core-back,
-.tazo-core-back {
-  position: relative;
-  z-index: 10;
-  width: 72%;
-  height: 72%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  text-align: center;
-  box-sizing: border-box;
-  padding: 0.5rem 0.3rem;
-}
-
-/* Autor Arriba */
-.disc-back-author,
-.tazo-back-author {
-  font-family: var(--font-sans, 'Outfit', sans-serif);
-  font-size: clamp(0.85rem, 2.6vw, 0.98rem);
-  font-weight: 700;
-  color: #f1f5f9;
-  letter-spacing: -0.01em;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-  max-width: 86%;
-  line-height: 1.25;
-  text-wrap: balance;
-}
-
-.disc-back-author em,
-.tazo-back-author em,
-.disc-back-author strong,
-.tazo-back-author strong {
-  font-style: normal;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-/* Año Hero en el Centro: Escultura metálica con gradiente puro */
-.disc-year-hero,
-.tazo-year-hero {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  user-select: none;
-  margin: 0.2rem 0;
-  min-height: 4.2rem;
-  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.disc-year-hero:hover,
-.tazo-year-hero:hover {
-  transform: scale(1.06);
-}
-
-.disc-year-hero:active,
-.tazo-year-hero:active {
-  transform: scale(0.96);
-}
-
-.year-number-giant {
-  font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: clamp(3.4rem, 11vw, 4.4rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 0.88;
-  background: linear-gradient(180deg, #ffffff 20%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.45));
-  -webkit-text-stroke: 0 !important;
-  text-shadow: none !important;
-}
-
-.disc-year-hero.is-hidden .year-number-giant,
-.tazo-year-hero.is-hidden .year-number-giant {
-  display: none !important;
-}
-
-.year-scratch-badge {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
-  background: rgba(2, 132, 199, 0.85);
-  color: #ffffff;
-  font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.8px;
-  padding: 0.38rem 1.05rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
-  cursor: pointer;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: all 0.15s ease;
-}
-
-.year-scratch-badge svg {
-  width: 14px;
-  height: 14px;
-}
-
-.year-scratch-badge:hover {
-  transform: scale(1.05);
-  background: #0284c7;
-  box-shadow: 0 6px 18px rgba(2, 132, 199, 0.5);
-}
-
-.disc-year-hero.is-hidden .year-scratch-badge,
-.tazo-year-hero.is-hidden .year-scratch-badge {
-  display: inline-flex !important;
-}
-
-.disc-year-hero.is-revealed .year-scratch-badge,
-.tazo-year-hero.is-revealed .year-scratch-badge {
-  display: none !important;
-}
-
-.disc-year-hero.is-revealed .year-number-giant,
-.tazo-year-hero.is-revealed .year-number-giant {
-  display: block !important;
-  animation: revealPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-/* Trivia / Lore Abajo */
-.disc-back-lore,
-.tazo-back-lore {
-  font-family: var(--font-sans, 'Outfit', sans-serif);
-  font-style: italic;
-  font-size: clamp(0.74rem, 2.2vw, 0.84rem);
-  line-height: 1.36;
-  color: #cbd5e1;
-  font-weight: 400;
-  max-width: 88%;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-  text-wrap: pretty;
-}
-
-.disc-back-lore strong,
-.tazo-back-lore strong {
-  font-style: italic;
-  color: #f1f5f9;
-  font-weight: 600;
-}
-
-.disc-foil-reflection,
-.tazo-foil-reflection {
-  display: none !important;
-}
-
-/* Desactivar capas fantasma */
-.disc-physical-stack,
-.tazo-physical-stack {
-  display: none !important;
-}
-
-/* ==========================================================================
-   HIT-TAZOS TECH: CARTAS MATE DE SOBREMESA (Tacto 350g, Sombras Reales)
-   ========================================================================== */
-
-.hittazos-matte-card {
-  background: var(--card-bg-gradient, var(--hittazos-bg, var(--card-bg, #e86328))) !important;
-  color: #111111;
-  padding: 1.25rem 1.3rem 1.0rem 1.3rem;
-  border-radius: var(--card-radius, 28px);
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.15),
-    0 8px 24px rgba(0, 0, 0, 0.3),
-    0 24px 48px -12px rgba(0, 0, 0, 0.5) !important;
-  box-sizing: border-box;
-  position: relative;
-  overflow: hidden;
-}
-
-.hittazos-matte-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  filter: url(#paper-grain);
-  opacity: 0.13;
-  pointer-events: none;
-  mix-blend-mode: multiply;
-  border-radius: inherit;
-  z-index: 1;
-}
-
-/* 1. FRONT FACE: Editorial limpia (Header + Divider + Centered Clue + Corner Meta) */
-.sheet-front.hittazos-matte-card {
-  background: var(--hittazos-front-bg, var(--card-front-bg, #111524)) !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.13) !important;
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.2),
-    0 8px 24px rgba(0, 0, 0, 0.35),
-    0 24px 48px -12px rgba(0, 0, 0, 0.55) !important;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.card-topbar-minimal {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
-  position: relative;
-  z-index: 2;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  padding-bottom: 0.5rem;
-  width: 100%;
-}
-
-.group-badge-tiny {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  text-transform: uppercase;
-  color: var(--hittazos-bg, var(--card-bg, #38bdf8));
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-}
-
-.group-badge-tiny svg {
-  width: 13px;
-  height: 13px;
-}
-
-.category-badge-tiny {
-  color: #a0aec0;
-  font-family: var(--font-sans);
-  font-weight: 400;
-  font-size: 0.7rem;
-  line-height: 1.3;
-  text-align: left;
-  white-space: normal;
-  display: block;
-}
-
-.clue-stage-pure {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: left;
-  padding: 1.0rem 0.2rem;
-  position: relative;
-  z-index: 2;
-}
-
-.clue-quote {
-  font-family: var(--font-sans);
-  font-size: 1.08rem;
-  font-weight: 400;
-  line-height: 1.55;
-  color: #ffffff;
-  letter-spacing: -0.01em;
-  text-align: left;
-  width: 100%;
-}
-
-.clue-quote strong {
-  color: #ffffff;
-  font-weight: 700;
-}
-
-.clue-quote em {
-  font-style: italic;
-  color: inherit;
-}
-
-.clue-quote code {
-  font-family: var(--font-mono);
-  background: rgba(255, 255, 255, 0.12);
-  padding: 0.15rem 0.45rem;
-  border-radius: 5px;
-  font-size: 0.88em;
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* Footbar en ambas caras */
-.card-footbar-minimal {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  position: relative;
-  z-index: 2;
-  padding-top: 0.35rem;
-  width: 100%;
-}
-
-.sheet-front .corner-meta-left {
-  font-family: var(--font-sans);
-  font-size: 0.45rem;
-  font-weight: 400;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.15) !important;
-}
-
-.sheet-front .corner-meta-right {
-  font-family: var(--font-display);
-  font-size: 0.45rem;
-  font-weight: 400;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.15) !important;
-}
-
-.flip-pill {
-  font-size: 0.68rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.85);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  user-select: none;
-}
-
-.flip-pill:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
-  transform: scale(1.04);
-}
-
-.flip-pill svg {
-  width: 11px;
-  height: 11px;
-}
-
-/* 2. BACK FACE: Pure Harmonic Proportions */
-.sheet-back.hittazos-matte-card {
-  background: var(--card-bg-gradient, var(--hittazos-bg, var(--card-bg, #e86328))) !important;
-  color: #111111 !important;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-/* Autor / Creador: Centrado, peso 600, sin cursiva (como 'Flans' en la tarjeta original) */
-.card-back-top {
-  text-align: center;
-  position: relative;
-  z-index: 2;
-  min-height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.1rem 0.4rem;
-}
-
-.back-author-title {
-  font-family: var(--font-sans);
-  font-size: 1.05rem;
-  font-weight: 600;
-  line-height: 1.25;
-  color: #111111 !important;
-  letter-spacing: -0.01em;
-  font-style: normal;
-  max-width: 95%;
-}
-
-.back-author-title em {
-  font-style: normal;
-  font-weight: 600;
-}
-
-/* Año: Centro absoluto, interactivo (oculto por defecto para adivinar), negro puro */
-.year-center-stage {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 10;
-  margin: 0;
-  cursor: pointer;
-  user-select: none;
-  pointer-events: auto !important;
-  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.year-center-stage:hover {
-  transform: scale(1.035);
-}
-
-.year-digits-hero {
-  font-family: var(--font-display);
-  font-size: 5.6rem;
-  font-weight: 900;
-  letter-spacing: -1.8px;
-  line-height: 0.85;
-  color: #111111 !important;
-  text-align: center;
-  pointer-events: none;
-}
-
-/* Estado Oculto (Misterio) */
-.year-center-stage.is-hidden .year-digits-hero {
-  display: none !important;
-}
-
-.year-mystery-box {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  pointer-events: none;
-}
-
-.year-center-stage.is-hidden .year-mystery-box {
-  display: flex;
-  animation: pulseMystery 2.8s infinite ease-in-out;
-}
-
-.year-mystery-digits {
-  font-family: var(--font-display);
-  font-size: 5.2rem;
-  font-weight: 900;
-  letter-spacing: 2px;
-  line-height: 0.85;
-  color: #111111 !important;
-  text-align: center;
-  opacity: 0.88;
-  pointer-events: none;
-}
-
-.year-reveal-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  background: rgba(17, 17, 17, 0.9);
-  color: #ffffff;
-  padding: 0.28rem 0.85rem;
-  pointer-events: none;
-  border-radius: 9999px;
-  font-family: var(--font-sans);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  transition: all 0.2s ease;
-}
-
-.year-center-stage:hover .year-reveal-badge {
-  background: #000000;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
-}
-
-.year-reveal-badge i,
-.year-reveal-badge svg {
-  width: 12px;
-  height: 12px;
-}
-
-/* Animación de Revelado */
-.year-center-stage.is-revealed .year-digits-hero {
-  display: block;
-  animation: revealPop 0.42s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-@keyframes revealPop {
-  0% {
-    opacity: 0;
-    transform: scale(0.7) rotate(-3deg);
-  }
-  70% {
-    transform: scale(1.08) rotate(1deg);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-  }
-}
-
-@keyframes pulseMystery {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.92;
-  }
-  50% {
-    transform: scale(1.03);
-    opacity: 1;
-  }
-}
-
-/* Curiosidad / Lore: Abajo, centrado, cursiva elegante, negro puro */
-.card-back-bottom {
-  text-align: center;
-  padding: 0 0.5rem 0.2rem 0.5rem;
-  position: relative;
-  z-index: 2;
-  min-height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.back-trivia-phrase {
-  font-family: var(--font-sans);
-  font-style: italic;
-  font-size: 0.88rem;
-  line-height: 1.42;
-  color: #111111 !important;
-  font-weight: 400;
-  text-align: center;
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.back-trivia-phrase strong {
-  font-weight: 700;
-  font-style: italic;
-  color: inherit;
-}
-
-.back-trivia-phrase em {
-  font-style: italic;
-  color: inherit;
-}
-
-.back-trivia-phrase code {
-  font-family: var(--font-mono);
-  font-style: normal;
-  font-size: 0.85em;
-  background: rgba(0, 0, 0, 0.08);
-  padding: 0.1rem 0.35rem;
-  border-radius: 4px;
-}
-
-/* Metadatos de esquinas reverso: discretos, sutiles y sin protagonismo */
-.sheet-back .corner-meta-left {
-  font-family: var(--font-sans);
-  color: rgba(0, 0, 0, 0.25) !important;
-  font-size: 0.45rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.sheet-back .corner-meta-right {
-  font-family: var(--font-display);
-  color: rgba(0, 0, 0, 0.25) !important;
-  font-size: 0.45rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
 
 /* ==========================================================================
    CHRONO-DIAL & LANZADOR DE TIRO (CONTROL LÚDICO SIN FORMULARIOS)
@@ -3140,6 +2171,212 @@ main {
     gap: 0.9rem;
     padding: 0.8rem 1rem;
   }
+}
+
+/* ==========================================================================
+   MODAL DE SELECCIÓN DE VERSIÓN: HIT-TAZO VS HIT-CARDS
+   ========================================================================== */
+
+.version-modal .print-modal-content {
+  max-width: 680px;
+  background: #0b0f19;
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 35px rgba(56, 189, 248, 0.15);
+}
+
+.version-modal .print-modal-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.25rem 1.5rem;
+}
+
+.version-modal .print-modal-title {
+  color: #f8fafc;
+  font-size: 1.25rem;
+}
+
+.version-modal-intro {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #94a3b8;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.version-options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 620px) {
+  .version-options-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.version-option-card {
+  position: relative;
+  background: rgba(30, 41, 59, 0.65);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(12px);
+  user-select: none;
+}
+
+.version-option-card:hover {
+  transform: translateY(-4px);
+  background: rgba(30, 41, 59, 0.95);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 14px 28px -6px rgba(0, 0, 0, 0.5);
+}
+
+.version-option-card.active-version {
+  border-color: #38bdf8;
+  background: rgba(14, 116, 144, 0.22);
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.28), 0 10px 24px rgba(0, 0, 0, 0.4);
+}
+
+.version-option-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.version-option-card.active-version .version-option-badge {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #38bdf8;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+}
+
+.version-option-icon {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.version-option-card:hover .version-option-icon {
+  transform: scale(1.1) rotate(6deg);
+}
+
+.version-icon-tazo {
+  background: linear-gradient(135deg, #e11d48, #be123c);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(225, 29, 72, 0.4);
+}
+
+.version-icon-cards {
+  border-radius: 16px;
+  background: linear-gradient(135deg, #0284c7, #0369a1);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(2, 132, 199, 0.4);
+}
+
+.version-option-icon svg {
+  width: 34px;
+  height: 34px;
+}
+
+.version-option-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.3rem;
+  letter-spacing: -0.02em;
+}
+
+.version-option-subtitle {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+  margin-bottom: 0.65rem;
+}
+
+.version-option-desc {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  line-height: 1.45;
+  margin-bottom: 1.2rem;
+  flex: 1;
+}
+
+.version-option-btn {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.btn-choose-tazo {
+  background: linear-gradient(135deg, #e11d48, #be123c);
+  color: white;
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.35);
+}
+
+.btn-choose-tazo:hover {
+  background: linear-gradient(135deg, #f43f5e, #e11d48);
+  box-shadow: 0 6px 18px rgba(225, 29, 72, 0.5);
+}
+
+.btn-choose-cards {
+  background: linear-gradient(135deg, #0284c7, #0369a1);
+  color: white;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+}
+
+.btn-choose-cards:hover {
+  background: linear-gradient(135deg, #38bdf8, #0284c7);
+  box-shadow: 0 6px 18px rgba(2, 132, 199, 0.5);
+}
+
+.version-modal-footer-note {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-top: 0.5rem;
+}
+
+.version-modal-footer-note strong {
+  color: #94a3b8;
 }
 
 /* Contenedor de hojas de impresión para vista en pantalla */

@@ -4,6 +4,7 @@ import {
   CHRONO_BOUNDS, 
   STORAGE_KEYS, 
   CARD_FORMATS, 
+  GAME_VERSIONS,
   CARD_SELECTORS, 
   ANIM_CONFIG 
 } from './core/constants.js';
@@ -83,6 +84,22 @@ export class HitTazosApp {
   // ── Inicialización de Elementos del DOM ───────────────────────────────────
 
   initDOM() {
+    // Branding y Versiones de Juego
+    this.btnBrandVersion = document.getElementById('btn-brand-version');
+    this.brandIconGlyph = document.getElementById('brand-icon-glyph');
+    this.brandTitleText = document.getElementById('brand-title-text');
+    this.brandBadgeText = document.getElementById('brand-badge-text');
+
+    // Modal de Selección de Versión (Hit-Tazo vs Hit-Cards)
+    this.versionDialog = document.getElementById('version-select-dialog');
+    this.btnCloseVersionModal = document.getElementById('btn-close-version-modal');
+    this.optionSelectTazo = document.getElementById('option-select-tazo');
+    this.optionSelectCards = document.getElementById('option-select-cards');
+    this.btnChooseTazoAction = document.getElementById('btn-choose-tazo-action');
+    this.btnChooseCardsAction = document.getElementById('btn-choose-cards-action');
+    this.badgeStatusTazo = document.getElementById('badge-status-tazo');
+    this.badgeStatusCards = document.getElementById('badge-status-cards');
+
     // Vistas y Navegación
     this.viewPlay = document.getElementById('view-play');
     this.viewGallery = document.getElementById('view-gallery');
@@ -248,6 +265,7 @@ export class HitTazosApp {
     // 9. Cambio de formato (Tazo 3D vs Tarjeta cuadrada)
     this.state.subscribe('FORMAT_CHANGED', ({ format }) => {
       this.updateFormatToggleUI(format);
+      this.applyVersionUI(format === CARD_FORMATS.CARD ? GAME_VERSIONS.CARDS : GAME_VERSIONS.TAZO);
       const card = this.state.getCurrentCard();
       if (card) {
         this.renderActiveArenaCard(card, this.state.isCurrentCardRevealed());
@@ -274,6 +292,40 @@ export class HitTazosApp {
     // Vistas principales
     this.btnTabPlay?.addEventListener('click', () => this.switchView('play'));
     this.btnTabGallery?.addEventListener('click', () => this.switchView('gallery'));
+
+    // Selector de Versión desde Ícono de Marca en Header
+    this.btnBrandVersion?.addEventListener('click', () => this.openVersionModal());
+    this.btnBrandVersion?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.openVersionModal();
+      }
+    });
+
+    // Modal de Selección de Versión (Opciones Interactivas)
+    this.setupDialog(this.versionDialog, null, [this.btnCloseVersionModal]);
+    this.optionSelectTazo?.addEventListener('click', () => this.selectGameVersion('tazo'));
+    this.optionSelectCards?.addEventListener('click', () => this.selectGameVersion('cards'));
+    this.btnChooseTazoAction?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.selectGameVersion('tazo');
+    });
+    this.btnChooseCardsAction?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.selectGameVersion('cards');
+    });
+    this.optionSelectTazo?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.selectGameVersion('tazo');
+      }
+    });
+    this.optionSelectCards?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.selectGameVersion('cards');
+      }
+    });
 
     // Alternar Formato
     this.btnFormatToggle?.addEventListener('click', () => {
@@ -415,6 +467,10 @@ export class HitTazosApp {
         this.state.toggleFormat();
         this.audio.play('tick');
       });
+      hotkeys('v', (e) => {
+        e.preventDefault();
+        this.openVersionModal();
+      });
       hotkeys('r', (e) => { e.preventDefault(); this.toggleActiveCardYear(); });
       hotkeys('shift+r', (e) => { e.preventDefault(); this.confirmResetGame(); });
       hotkeys('s', () => this.btnSound?.click());
@@ -441,6 +497,7 @@ export class HitTazosApp {
         else if (e.key === '-' || e.code === 'NumpadSubtract') { e.preventDefault(); this.nudgeYear(-1); }
         else if (e.code === 'Space') { e.preventDefault(); this.flipCurrentCard(); }
         else if (e.code === 'KeyT') { e.preventDefault(); this.state.toggleFormat(); this.audio.play('tick'); }
+        else if (e.code === 'KeyV') { e.preventDefault(); this.openVersionModal(); }
         else if (e.shiftKey && (e.code === 'KeyR' || e.key === 'R')) { e.preventDefault(); this.confirmResetGame(); }
         else if (e.code === 'KeyR') { e.preventDefault(); this.toggleActiveCardYear(); }
         else if (e.code === 'KeyN') this.nextCard();
@@ -1261,20 +1318,97 @@ export class HitTazosApp {
     this.refreshIcons();
   }
 
+  // ── Gestión de Versiones de Juego (Hit-Tazo vs Hit-Cards) ─────────────────
+
+  openVersionModal() {
+    if (!this.versionDialog) return;
+    this.updateVersionModalOptions();
+    if (typeof this.versionDialog.showModal === 'function') {
+      this.versionDialog.showModal();
+      this.refreshIcons();
+    }
+  }
+
+  closeVersionModal() {
+    if (this.versionDialog?.open) {
+      this.versionDialog.close();
+    }
+  }
+
+  selectGameVersion(versionId) {
+    const isCards = versionId === 'cards' || versionId === CARD_FORMATS.CARD;
+    const targetFormat = isCards ? CARD_FORMATS.CARD : CARD_FORMATS.DISC;
+    const versionObj = isCards ? GAME_VERSIONS.CARDS : GAME_VERSIONS.TAZO;
+
+    this.state.setFormat(targetFormat);
+    this.storage.set(STORAGE_KEYS.FORMAT, targetFormat);
+    this.storage.set(STORAGE_KEYS.VERSION_CHOSEN, true);
+
+    this.applyVersionUI(versionObj);
+    this.audio.play(isCards ? 'tick' : 'slam');
+
+    this.closeVersionModal();
+  }
+
+  updateVersionModalOptions() {
+    const isCards = this.state.cardFormat === CARD_FORMATS.CARD;
+    if (this.optionSelectTazo) {
+      this.optionSelectTazo.classList.toggle('active-version', !isCards);
+    }
+    if (this.optionSelectCards) {
+      this.optionSelectCards.classList.toggle('active-version', isCards);
+    }
+    if (this.badgeStatusTazo) {
+      this.badgeStatusTazo.textContent = !isCards ? '✓ Versión Activa' : 'Retro 3D';
+    }
+    if (this.badgeStatusCards) {
+      this.badgeStatusCards.textContent = isCards ? '✓ Versión Activa' : 'Clean Table';
+    }
+  }
+
+  applyVersionUI(version = GAME_VERSIONS.TAZO) {
+    if (this.brandTitleText) {
+      this.brandTitleText.textContent = version.name;
+    }
+    if (this.brandIconGlyph) {
+      this.brandIconGlyph.setAttribute('data-lucide', version.icon);
+    }
+    if (this.btnBrandVersion) {
+      if (version.id === 'cards') {
+        this.btnBrandVersion.classList.add('version-cards');
+      } else {
+        this.btnBrandVersion.classList.remove('version-cards');
+      }
+    }
+    document.title = `${version.title} — Trivia Cronológica Open Source (576 Tarjetas)`;
+    this.updateVersionModalOptions();
+    this.refreshIcons();
+  }
+
   async loadSavedState() {
     const savedShelf = await this.storage.get(STORAGE_KEYS.SHELF, [], StorageAdapter.validateShelf);
     const savedScore = await this.storage.get(STORAGE_KEYS.SCORE, 0, StorageAdapter.validateScore);
     const savedStreak = await this.storage.get(STORAGE_KEYS.STREAK, 0, StorageAdapter.validateStreak);
     const savedRevealed = await this.storage.get(STORAGE_KEYS.REVEALED, [], StorageAdapter.validateRevealed);
-    const savedFormat = await this.storage.get(STORAGE_KEYS.FORMAT, CARD_FORMATS.DISC);
+    const savedFormat = await this.storage.get(STORAGE_KEYS.FORMAT, null);
+    const versionChosen = await this.storage.get(STORAGE_KEYS.VERSION_CHOSEN, false);
+
+    const activeFormat = savedFormat || CARD_FORMATS.DISC;
 
     this.state.hydrate({
       score: savedScore,
       streak: savedStreak,
       shelf: savedShelf,
       revealed: savedRevealed,
-      format: savedFormat
+      format: activeFormat
     });
+
+    this.applyVersionUI(activeFormat === CARD_FORMATS.CARD ? GAME_VERSIONS.CARDS : GAME_VERSIONS.TAZO);
+
+    // Al cargar por primera vez la página, debe preguntar qué versión desea
+    if (!versionChosen && !savedFormat) {
+      setTimeout(() => this.openVersionModal(), 300);
+    }
   }
 
   async persistGameState() {

@@ -1,5 +1,9 @@
-// Hit-Tazos Tech — Modular Card & Disc Renderer (Single Responsibility Principle)
+// Hit-Tazos Tech — Modular Card & Disc Renderer Orchestrator
+// Coordina los renderers especializados TazoRenderer (Hit-Tazo) y CardsRenderer (Hit-Cards)
+
 import { DOMAIN_PALETTES, DEFAULT_PALETTE, CARD_FORMATS } from './constants.js';
+import { TazoRenderer } from './tazo-renderer.js';
+import { CardsRenderer } from './cards-renderer.js';
 
 export class CardRenderer {
   constructor(catalog = null, cardColors = null) {
@@ -110,312 +114,44 @@ export class CardRenderer {
   }
 
   buildDiscHTML(card, options = {}) {
-    const isFlipped = options.isFlipped !== undefined 
-      ? options.isFlipped === true 
-      : (options.isRevealed === true);
-    const showYear = options.showYear !== undefined 
-      ? options.showYear === true 
-      : (options.isRevealed === true);
-    const hideRevealButton = options.hideRevealButton !== undefined 
-      ? options.hideRevealButton === true 
-      : (options.showYear === true);
-
-    const yearStateClass = showYear ? 'is-revealed' : 'is-hidden';
-
-    const hitoFormatted = this.formatMarkdown(card.hito);
-    const triviaFormatted = this.formatMarkdown(card.trivia);
-    const creadorFormatted = this.formatMarkdown(card.autor);
-
-    const palette = this.getDiscPalette(card);
-
-    const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
-    const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
-    const cardNumStr = `${volId}x${hexPart}`;
-
-    // Determinación de Edición / Rareza
-    let rarityClass = 'edition-standard';
-    const cardIdx = card.index !== undefined ? card.index : parseInt(hexPart, 16);
-    if (card.id === 'vol1-0x00' || card.id === 'vol7-0x00' || cardIdx === 63) {
-      rarityClass = 'edition-holographic';
-    } else if (cardIdx === 0 || card.id === 'vol0-0x00' || card.id === 'vol3-0x00') {
-      rarityClass = 'edition-gold';
-    } else if (cardIdx <= 2) {
-      rarityClass = 'edition-silver';
-    }
-
-    const domainName = (this.catalog?.domains?.[card.domain] || card.domain || '').toUpperCase();
-    const tagName = (this.catalog?.tags?.[card.tag] || card.tag || '').toUpperCase();
-    const volName = (this.catalog?.volumes?.[card.volumen] || card.volumen || '').toUpperCase();
-
-    const frontTopLabel = `${domainName} • ${tagName}`;
-    const frontBottomLabel = `${volName} • #${cardNumStr}`;
-    const backTopLabel = `${volName} • #${cardNumStr}`;
-    const backBottomLabel = `shellaquiles.org`;
-
-    const discId = options.id !== undefined ? (options.id ? `id="${options.id}"` : '') : 'id="active-card-3d"';
-    const uid = (card.id || 'disc').replace(/[^a-zA-Z0-9]/g, '_') + '_' + Math.floor(Math.random() * 1000);
-    const topPathF = `curve-tf-${uid}`;
-    const botPathF = `curve-bf-${uid}`;
-    const topPathB = `curve-tb-${uid}`;
-    const botPathB = `curve-bb-${uid}`;
-
-    const accentColor = palette.accent || '#38bdf8';
-    const glowColor = palette.glow || 'rgba(56, 189, 248, 0.4)';
-
-    return `
-      <div class="disc-physical disc tazo-physical tazo-disc ${rarityClass} ${isFlipped ? 'is-flipped' : ''}" ${discId} style="--disc-c1: ${palette.c1}; --disc-c2: ${palette.c2}; --disc-accent: ${accentColor}; --disc-glow: ${glowColor}; --tazo-c1: ${palette.c1}; --tazo-c2: ${palette.c2};">
-
-        <!-- ANVERSO: DOMINIO + TAG + CITA COMPLETA + ID -->
-        <div class="disc-face disc-front disc-face-front tazo-face tazo-front">
-          <div class="disc-notches tazo-notches" aria-hidden="true">
-            <span></span><span></span><span></span><span></span>
-          </div>
-
-          <div class="disc-relief-ring ring-outer tazo-relief-ring" aria-hidden="true"></div>
-          <div class="disc-relief-ring ring-mid tazo-relief-ring" aria-hidden="true"></div>
-
-          <!-- Arco superior e inferior con radio protegido r=112 -->
-          <svg class="disc-ring-text tazo-ring-text" viewBox="0 0 300 300" aria-hidden="true">
-            <path id="${topPathF}" d="M 38,150 A 112,112 0 0,1 262,150" fill="none" />
-            <path id="${botPathF}" d="M 38,150 A 112,112 0 0,0 262,150" fill="none" />
-            <text class="ring-label"><textPath href="#${topPathF}" startOffset="50%" text-anchor="middle">${frontTopLabel}</textPath></text>
-            <text class="ring-sub"><textPath href="#${botPathF}" startOffset="50%" text-anchor="middle">${frontBottomLabel}</textPath></text>
-          </svg>
-
-          <!-- Centro: Texto del Hito -->
-          <div class="disc-core-front tazo-core-front">
-            <div class="disc-hito-prose tazo-hito-prose">
-              ${hitoFormatted}
-            </div>
-          </div>
-
-          <div class="disc-foil-reflection tazo-foil-reflection" aria-hidden="true"></div>
-        </div>
-
-        <!-- REVERSO: AUTOR ARRIBA + AÑO GIGANTE + TRIVIA LORE ABAJO -->
-        <div class="disc-face disc-back disc-face-back tazo-face tazo-back">
-          <div class="disc-notches tazo-notches" aria-hidden="true">
-            <span></span><span></span><span></span><span></span>
-          </div>
-
-          <svg class="disc-ring-text tazo-ring-text" viewBox="0 0 300 300" aria-hidden="true">
-            <path id="${topPathB}" d="M 38,150 A 112,112 0 0,1 262,150" fill="none" />
-            <path id="${botPathB}" d="M 38,150 A 112,112 0 0,0 262,150" fill="none" />
-            <text class="ring-label"><textPath href="#${topPathB}" startOffset="50%" text-anchor="middle">${backTopLabel}</textPath></text>
-            <text class="ring-sub"><textPath href="#${botPathB}" startOffset="50%" text-anchor="middle">${backBottomLabel}</textPath></text>
-          </svg>
-
-          <div class="disc-core-back tazo-core-back">
-            <div class="disc-back-author tazo-back-author">${creadorFormatted}</div>
-
-            <div class="disc-year-hero tazo-year-hero ${yearStateClass}" ${hideRevealButton ? '' : 'id="year-target" title="Toca para revelar el año (-5 Pts) [R]"'}>
-              <span class="year-number-giant">${card.year}</span>
-              ${hideRevealButton ? '' : `
-              <div class="year-scratch-badge">
-                <i data-lucide="eye"></i>
-                <span>REVELAR (-5 PTS)</span>
-              </div>
-              `}
-            </div>
-
-            <div class="disc-back-lore tazo-back-lore">${triviaFormatted}</div>
-          </div>
-
-          <div class="disc-foil-reflection tazo-foil-reflection" aria-hidden="true"></div>
-        </div>
-
-      </div>
-    `;
+    return TazoRenderer.renderDisc(
+      card,
+      options,
+      this.catalog,
+      (t) => this.formatMarkdown(t),
+      (c) => this.getDiscPalette(c)
+    );
   }
 
   buildSquareCardHTML(card, options = {}) {
-    const isFlipped = options.isFlipped !== undefined 
-      ? options.isFlipped === true 
-      : (options.isRevealed === true);
-    const showYear = options.showYear !== undefined 
-      ? options.showYear === true 
-      : (options.isRevealed === true);
-    const hideRevealButton = options.hideRevealButton !== undefined 
-      ? options.hideRevealButton === true 
-      : (options.showYear === true);
-
-    const yearStateClass = showYear ? 'is-revealed' : 'is-hidden';
-
-    const hitoFormatted = this.formatMarkdown(card.hito);
-    const triviaFormatted = this.formatMarkdown(card.trivia);
-    const creadorFormatted = this.formatMarkdown(card.autor);
-
-    const theme = this.getCardTheme(card);
-
-    const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
-    const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
-    const cardNumStr = `${volId}x${hexPart}`;
-
-    const domainName = (this.catalog?.domains?.[card.domain] || card.domain || '').toUpperCase();
-    const tagName = this.catalog?.tags?.[card.tag] || card.tag || '';
-    const volName = this.catalog?.volumes?.[card.volumen] || card.volumen || '';
-
-    const cardIdAttr = options.id !== undefined ? (options.id ? `id="${options.id}"` : '') : 'id="active-card-3d"';
-
-    return `
-      <div class="hittazos-card-3d ${isFlipped ? 'is-flipped' : ''}" ${cardIdAttr} style="--hittazos-bg: ${theme.bg}; --card-bg: ${theme.bg}; --card-bg-gradient: ${theme.bgGradient}; --card-top-hex: ${theme.topHex || theme.bgHex}; --card-bottom-hex: ${theme.bottomHex || theme.bgHex}; --hittazos-front-bg: ${theme.frontBg}; --card-front-bg: ${theme.frontBg}; --card-text: ${theme.text}; --card-subtext: ${theme.subText}; --card-accent: ${theme.accent};">
-        <div class="card-sheet sheet-front hittazos-matte-card">
-          <div class="card-topbar-minimal">
-            <span class="group-badge-tiny">
-              <i data-lucide="layers"></i>
-              ${domainName}
-            </span>
-            <span class="category-badge-tiny">${tagName}</span>
-          </div>
-
-          <div class="clue-stage-pure">
-            <p class="clue-quote">${hitoFormatted}</p>
-          </div>
-
-          <div class="card-footbar-minimal">
-            <span class="corner-meta-left">${volName}</span>
-            <span class="flip-pill"><i data-lucide="rotate-cw"></i> Voltear</span>
-            <span class="corner-meta-right">#${cardNumStr}</span>
-          </div>
-        </div>
-
-        <div class="card-sheet sheet-back hittazos-matte-card">
-          <div class="card-back-top">
-            <div class="back-author-title">${creadorFormatted}</div>
-          </div>
-
-          <div class="year-center-stage ${yearStateClass}" ${hideRevealButton ? '' : 'id="year-target" title="Toca para revelar el año (-5 Pts) [R]"'}>
-            ${hideRevealButton ? `
-              <div class="year-digits-hero">${card.year}</div>
-            ` : `
-              <div class="year-mystery-box">
-                <div class="year-mystery-digits">????</div>
-                <div class="year-reveal-badge">
-                  <i data-lucide="eye"></i>
-                  <span>Revelar (-5 Pts)</span>
-                </div>
-              </div>
-              <div class="year-digits-hero">${card.year}</div>
-            `}
-          </div>
-
-          <div class="card-back-bottom">
-            <div class="back-trivia-phrase">${triviaFormatted}</div>
-          </div>
-
-          <div class="card-footbar-minimal">
-            <span class="corner-meta-left">${volName}</span>
-            <span class="corner-meta-right">#${cardNumStr}</span>
-          </div>
-        </div>
-      </div>
-    `;
+    return CardsRenderer.renderSquareCard(
+      card,
+      options,
+      this.catalog,
+      (t) => this.formatMarkdown(t),
+      (c) => this.getCardTheme(c)
+    );
   }
 
   buildFanCardHTML(card, options = {}) {
-    const theme = this.getCardTheme(card);
-    const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
-    const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
-    const cardNum = card.globalIndex || (card.index !== undefined ? card.index + 1 : 1);
-    const hexId = `#${cardNum.toString(16).toUpperCase().padStart(4, '0')}`;
-    const volName = (this.catalog?.volumes?.[card.volumen] || card.volumen || `VOL ${volId}`).toUpperCase();
-    const creador = this.formatMarkdown(card.autor || '');
-    const trivia = this.formatMarkdown(card.trivia || card.hito || '');
-    const hito = this.formatMarkdown(card.hito || '');
-    const domainName = (this.catalog?.domains?.[card.domain] || card.domain || '').toUpperCase();
-    const tagName = this.catalog?.tags?.[card.tag] || card.tag || '';
-    const mode = options.mode || 'gradient';
-    const isFlipped = options.isFlipped === true;
-
-    let activeBg = theme.bgGradient;
-    if (mode === 'solid') activeBg = theme.bg;
-    if (mode === 'hybrid') activeBg = (theme.hue > 65 && theme.hue < 210) ? theme.bg : theme.bgGradient;
-
-    return `
-      <div class="card card-fan hittazos-fan-card ${isFlipped ? 'is-flipped' : ''}" data-card-id="${card.id}" data-card-num="${cardNum}" style="--fan-card-bg: ${activeBg}; background: ${activeBg}; z-index: ${options.zIndex || cardNum};" tabindex="0" role="button" aria-label="Tarjeta ${card.year}: ${card.autor}">
-        <div class="card-fan-inner">
-          <div class="card-fan-face card-fan-back">
-            <div class="card-header-author">${creador}</div>
-            <div class="card-year-center">${card.year}</div>
-            <div class="card-fan-bottom-area">
-              <div class="card-description">“${trivia}”</div>
-              <div class="card-meta-footer">
-                <span>${volName}</span>
-                <span>${hexId}</span>
-              </div>
-            </div>
-          </div>
-          <div class="card-fan-face card-fan-front">
-            <div class="card-fan-front-top">
-              <span class="group-badge-tiny">${domainName}</span>
-              <span class="category-badge-tiny">${tagName}</span>
-            </div>
-            <div class="card-fan-clue">${hito}</div>
-            <div class="card-meta-footer">
-              <span>${volName}</span>
-              <span>#${volId}x${hexPart}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
+    return CardsRenderer.renderFanCard(
+      card,
+      options,
+      this.catalog,
+      (t) => this.formatMarkdown(t),
+      (c) => this.getCardTheme(c)
+    );
   }
 
   buildDuplexPrintFaceHTML(card, isBack = false, hasBorder = true) {
-    const theme = this.getCardTheme(card);
-    const borderCls = hasBorder ? 'has-cut-border' : '';
-    const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
-    const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
-    const cardNumStr = `${volId}x${hexPart}`;
-    const volName = this.catalog?.volumes?.[card.volumen] || card.volumen || '';
-
-    if (isBack) {
-      const creadorFormatted = this.formatMarkdown(card.autor);
-      const triviaFormatted = this.formatMarkdown(card.trivia);
-      return `
-        <div class="print-card-face print-card-back ${borderCls}" style="--card-bg: ${theme.bg}; --card-bg-gradient: ${theme.bgGradient}; --card-text: ${theme.text}; --card-subtext: ${theme.subText}; --card-accent: ${theme.accent};">
-          <div class="card-sheet sheet-back hittazos-matte-card">
-            <div class="card-back-top">
-              <div class="back-author-title">${creadorFormatted}</div>
-            </div>
-            <div class="year-center-stage is-revealed">
-              <div class="year-digits-hero">${card.year}</div>
-            </div>
-            <div class="card-back-bottom">
-              <div class="back-trivia-phrase">${triviaFormatted}</div>
-            </div>
-            <div class="card-footbar-minimal">
-              <span class="corner-meta-left">${volName}</span>
-              <span class="corner-meta-right">#${cardNumStr}</span>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    const hitoFormatted = this.formatMarkdown(card.hito);
-    const domainName = (this.catalog?.domains?.[card.domain] || card.domain || '').toUpperCase();
-    const tagName = this.catalog?.tags?.[card.tag] || card.tag || '';
-
-    return `
-      <div class="print-card-face print-card-front ${borderCls}" style="--card-bg: ${theme.bg}; --card-front-bg: ${theme.frontBg}; --card-text: ${theme.text}; --card-subtext: ${theme.subText}; --card-accent: ${theme.accent};">
-        <div class="card-sheet sheet-front hittazos-matte-card">
-          <div class="card-topbar-minimal">
-            <span class="group-badge-tiny">
-              <i data-lucide="layers"></i>
-              ${domainName}
-            </span>
-            <span class="category-badge-tiny">${tagName}</span>
-          </div>
-          <div class="clue-stage-pure">
-            <p class="clue-quote">${hitoFormatted}</p>
-          </div>
-          <div class="card-footbar-minimal">
-            <span class="corner-meta-left">${volName}</span>
-            <span class="corner-meta-right">#${cardNumStr}</span>
-          </div>
-        </div>
-      </div>
-    `;
+    return CardsRenderer.renderDuplexPrintFace(
+      card,
+      isBack,
+      hasBorder,
+      this.catalog,
+      (t) => this.formatMarkdown(t),
+      (c) => this.getCardTheme(c)
+    );
   }
 }
+export { TazoRenderer, CardsRenderer };

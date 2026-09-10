@@ -133,6 +133,8 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/tazo.css">
+  <link rel="stylesheet" href="css/cards.css">
 </head>
 <body>
 
@@ -147,13 +149,13 @@
   <!-- Header -->
   <header>
     <div class="brand">
-      <div class="brand-icon">
-        <i data-lucide="layers"></i>
+      <div class="brand-icon" id="btn-brand-version" role="button" tabindex="0" title="Seleccionar versión del juego (Hit-Tazo / Hit-Cards) [V]" aria-label="Seleccionar versión del juego: Hit-Tazo o Hit-Cards">
+        <i data-lucide="disc" id="brand-icon-glyph"></i>
       </div>
       <div>
         <h1 class="brand-title">
-          HIT-TAZOS
-          <span class="brand-badge">Tech</span>
+          <span id="brand-title-text">HIT-TAZOS</span>
+          <span class="brand-badge" id="brand-badge-text">Tech</span>
           <span class="brand-version-tag">v1.0.0-rc4</span>
         </h1>
         <div class="brand-subline">
@@ -447,6 +449,66 @@
     </section>
 
   </main>
+
+  <!-- Modal Interactivo de Selección de Versión: Hit-Tazo vs Hit-Cards -->
+  <dialog id="version-select-dialog" class="print-modal version-modal" aria-labelledby="version-modal-title">
+    <div class="print-modal-content">
+      <div class="print-modal-header">
+        <h2 class="print-modal-title" id="version-modal-title">
+          <i data-lucide="sparkles"></i>
+          <span>Elige tu Versión de Juego</span>
+        </h2>
+        <button class="print-modal-close" id="btn-close-version-modal" aria-label="Cerrar modal de versiones">&times;</button>
+      </div>
+
+      <div class="print-modal-body">
+        <p class="version-modal-intro">
+          Selecciona tu experiencia preferida para jugar. Ambas versiones comparten las 576 cartas de trivia, reglas de puntuación y línea de tiempo.
+        </p>
+
+        <div class="version-options-grid">
+          <!-- Opción 1: Hit-Tazo -->
+          <div class="version-option-card active-version" id="option-select-tazo" role="button" tabindex="0" aria-label="Seleccionar versión Hit-Tazo">
+            <span class="version-option-badge" id="badge-status-tazo">Retro 3D</span>
+            <div class="version-option-icon version-icon-tazo">
+              <i data-lucide="disc"></i>
+            </div>
+            <h3 class="version-option-title">Hit-Tazo</h3>
+            <div class="version-option-subtitle">Tazos Físicos Coleccionables</div>
+            <p class="version-option-desc">
+              Estilo disco coleccionable noventero, ranuras perimetrales de ensamble (notchings), física de impacto 3D y biseles de titanio.
+            </p>
+            <button class="version-option-btn btn-choose-tazo" id="btn-choose-tazo-action">
+              <i data-lucide="disc"></i>
+              <span>Jugar Hit-Tazo</span>
+            </button>
+          </div>
+
+          <!-- Opción 2: Hit-Cards -->
+          <div class="version-option-card" id="option-select-cards" role="button" tabindex="0" aria-label="Seleccionar versión Hit-Cards">
+            <span class="version-option-badge" id="badge-status-cards">Clean Table</span>
+            <div class="version-option-icon version-icon-cards">
+              <i data-lucide="layers"></i>
+            </div>
+            <h3 class="version-option-title">Hit-Cards</h3>
+            <div class="version-option-subtitle">Tarjetas de Sobremesa</div>
+            <p class="version-option-desc">
+              Estilo baraja cuadrada 65&times;65mm contemporánea, diagramación editorial limpia de mesa y ficha técnica estructurada.
+            </p>
+            <button class="version-option-btn btn-choose-cards" id="btn-choose-cards-action">
+              <i data-lucide="layers"></i>
+              <span>Jugar Hit-Cards</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="version-modal-footer-note">
+          <i data-lucide="info"></i>
+          <span>Tip: Puedes cambiar de versión en cualquier momento dando <strong>clic al ícono en la cabecera</strong> o pulsando <kbd>V</kbd>.</span>
+        </div>
+      </div>
+    </div>
+  </dialog>
 
   <!-- Modal de Impresión y Descarga de PDFs Vectoriales -->
   <dialog id="print-dialog" class="print-modal">
