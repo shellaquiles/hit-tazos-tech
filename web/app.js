@@ -146,6 +146,7 @@ export class HitTazosApp {
     this.shelfProgressFill = document.getElementById('shelf-progress-fill');
     this.counterTotal = document.getElementById('counter-total');
     this.attemptTracker = document.getElementById('attempt-tracker');
+    this.hudAttempts = document.getElementById('hud-attempts');
     this.attemptDots = document.getElementById('attempt-dots');
 
     // Catálogo y Explorador
@@ -953,18 +954,24 @@ export class HitTazosApp {
   }
 
   renderAttemptTracker(remaining, isSolved) {
-    if (!this.attemptDots) return;
-    const pips = Array.from({ length: GAME_RULES.MAX_ATTEMPTS }, (_, i) => {
-      const isAvailable = i < remaining && !isSolved;
-      const isCritical = isAvailable && remaining === 1;
-      const cls = isAvailable ? (isCritical ? 'attempt-pip critical' : 'attempt-pip') : 'attempt-pip used';
-      return `<span class="${cls}" title="${isAvailable ? 'Tiro disponible' : 'Tiro no disponible'}"></span>`;
-    }).join('');
-    this.attemptDots.innerHTML = pips;
+    if (this.hudAttempts) {
+      this.hudAttempts.textContent = isSolved ? '0' : remaining;
+    }
+    if (this.attemptDots) {
+      const pips = Array.from({ length: GAME_RULES.MAX_ATTEMPTS }, (_, i) => {
+        const isAvailable = i < remaining && !isSolved;
+        const isCritical = isAvailable && remaining === 1;
+        const cls = isAvailable ? (isCritical ? 'attempt-pip critical' : 'attempt-pip') : 'attempt-pip used';
+        return `<span class="${cls}" title="${isAvailable ? 'Tiro disponible' : 'Tiro no disponible'}"></span>`;
+      }).join('');
+      this.attemptDots.innerHTML = pips;
+    }
 
     if (this.attemptTracker) {
+      const isCards = this.state.cardFormat === CARD_FORMATS.CARD;
+      const itemNoun = isCards ? 'Tarjeta' : 'Tazo';
       const titleText = isSolved 
-        ? 'Tazo ya resuelto — tiros agotados' 
+        ? `${itemNoun} ya resuelto — tiros agotados` 
         : `${remaining} de ${GAME_RULES.MAX_ATTEMPTS} tiros disponibles`;
       this.attemptTracker.setAttribute('title', titleText);
       this.attemptTracker.setAttribute('aria-label', titleText);

@@ -569,6 +569,15 @@ main {
   transition: all 0.25s ease;
 }
 
+.hud-attempts-item strong {
+  font-family: var(--font-mono);
+  color: #0284c7;
+  font-weight: 800;
+  min-width: 9px;
+  display: inline-block;
+  text-align: center;
+}
+
 .attempt-visual-dots {
   display: inline-flex;
   align-items: center;

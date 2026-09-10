@@ -92,6 +92,11 @@ export class GameState {
     }
 
     this.emit('CARD_PREPARED', { card, isAlreadyRevealed });
+    this.emit('ATTEMPTS_UPDATED', {
+      attemptCount: this.attemptCount,
+      remaining: Math.max(0, GAME_RULES.MAX_ATTEMPTS - this.attemptCount),
+      cardSolved: this.cardSolved
+    });
   }
 
   applyGuessEvaluation(evalResult, card) {
