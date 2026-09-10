@@ -29,7 +29,7 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
   - Animaciones fluidas mediante Web Animations API (WAAPI) y transiciones elásticas.
 - **Mecánica Interactiva de Revelado de Año (-5 Puntos)**:
   - Pastilla interactiva de revelado con validación de saldo mínimo (5 puntos) y penalización canónica de -5 pts con bloqueo de tiro.
-  - Consistencia tipográfica y visual entre anversos de tazos y naipes con resaltado homogéneo en entidades clave.
+  - Consistencia tipográfica y visual entre anversos de tazos y cartas con resaltado homogéneo en entidades clave.
 - **Arquitectura Modular ES Modules Nativos (`web/core/`)**:
   - `web/core/constants.js`: Constantes canónicas centralizadas (`GAME_RULES`, `CHRONO_BOUNDS`, `STORAGE_KEYS`, paletas y taxonomía).
   - `web/core/rules.js`: Funciones puras de puntuación (+3 exacto, +1 cercano), pistas cualitativas direccionales/térmicas anti-spoiler y ordenamiento cronológico.
@@ -45,3 +45,7 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
   - Generador de pliegos (`render_print_tabloid.js`) para formatos Tabloide (11×17"), Carta (8.5×11") y Super Tabloide (12×18") con reversos espejados, sangrado de 3 mm y calles de 6 mm.
 - **Sistema Cromático Desacoplado**:
   - Paletas HSL continuas por millar con gradientes tonales y equivalencias CMYK para imprenta en `data/card_colors.json`.
+- **Canales de Preventa Física de Cartas y Filosofía Open Source**:
+  - Puntos de contacto dedicados en cabecera (`#btn-preorder-header`), modal de impresión, selector de versión y guía rápida.
+  - Enlaces directos preconfigurados para WhatsApp (+52 55 4272 2156) y Correo (`preventa@shellaquiles.org`) sin intermediarios ni pasarelas de pago.
+  - Reafirmación del compromiso 100% libre bajo licencia MIT y Print & Play junto con la opción de adquirir cartas físicas de imprenta profesional (65×65 mm, 350g).

@@ -29,7 +29,9 @@ Este proyecto es parte del ecosistema de herramientas y aplicaciones de **shella
 
 5. **Compilación del mazo maestro:**
    ```bash
-   node build_cards.js
+   npm run build
+   # o bien:
+   node scripts/build_cards.js
    ```
 
 6. **Validación de pruebas y sintaxis:**

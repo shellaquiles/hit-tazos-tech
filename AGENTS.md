@@ -34,19 +34,25 @@ hit-tazos-tech/
 │   ├── index.html                       # Interfaz HTML5 principal y modales
 │   ├── app.js                           # Orquestador del cliente web (HitTazosApp)
 │   ├── style.css                        # Hoja de estilos moderna y diseño responsivo
+│   ├── css/                             # Hojas de estilo desacopladas por versión
+│   │   ├── tazo.css                     # Estilos dedicados de Hit-Tazo (disco 3D y notches)
+│   │   └── cards.css                    # Estilos dedicados de Hit-Cards (tarjetas 65×65 mm)
 │   ├── core/                            # Módulos desacoplados ES Modules (arquitectura limpia)
 │   │   ├── constants.js                 # Reglas, límites temporales, paletas y llaves de caché
 │   │   ├── rules.js                     # Funciones puras de puntuación, pistas anti-spoiler y estante
 │   │   ├── storage.js                   # StorageAdapter dual (IDB + LocalStorage) y validación de esquema
 │   │   ├── state.js                     # GameState reactivo con patrón Observer (Pub/Sub)
 │   │   ├── audio.js                     # AudioEngine encapsulado (Howler.js wrapper)
-│   │   └── renderer.js                  # CardRenderer (Tazos SVG r=112 y tarjetas cuadradas)
+│   │   ├── renderer.js                  # CardRenderer orquestador unificado
+│   │   ├── tazo-renderer.js             # Renderizado SVG y 3D de tazos circulares (r=112)
+│   │   └── cards-renderer.js            # Renderizado de tarjetas de sobremesa 65×65 mm
 │   └── assets/                          # Recursos gráficos, multimedia y fuentes
 │       └── fonts/                       # 6 tipografías locales TTF (Outfit y Space Grotesk para modo offline)
 ├── tests/                               # Suite de pruebas unitarias automatizadas (Node.js test runner)
 │   ├── rules.test.js                    # Pruebas de reglas de puntuación, pistas y orden cronológico
 │   ├── state.test.js                    # Pruebas de transiciones de estado, penalizaciones y storage
-│   └── renderer.test.js                 # Pruebas de plantillas HTML, radio SVG seguro y Markdown
+│   ├── renderer.test.js                 # Pruebas de plantillas HTML, radio SVG seguro y Markdown
+│   └── version_select.test.js           # Pruebas de separación de versiones y archivos dedicados
 ├── scripts/                             # Herramientas y scripts CLI canónicos
 │   ├── audit_deck.py                    # Validador integral en 4 niveles, presupuestos y anti-spoilers
 │   ├── build_cards.js                   # Compilador de la baraja maestra y manifest
@@ -183,7 +189,7 @@ npm test
 # Scripts individuales si se requiere depuración granular:
 npm run version:check   # Comprueba coherencia de VERSION
 npm run audit           # Valida las 576 tarjetas contra Data Contract y anti-spoilers
-npm run test:unit       # Ejecuta los 17 tests unitarios en Node.js (tests/*.test.js)
+npm run test:unit       # Ejecuta los 24 tests unitarios en Node.js (tests/*.test.js)
 
 # Paso 2: Compilación de baraja maestra y actualización de manifest
 npm run build
@@ -279,9 +285,9 @@ La lógica del cliente web interactivo está estructurada bajo **ES Modules nati
   * **Dirección:** `↑ Más reciente` o `↓ Más antiguo`.
   * **Temperatura:** `🔥 ¡Caliente!` ($\le 5$ años), `🌡️ Tibio` ($\le 15$ años) o `❄️ Frío` ($> 15$ años).
 
-### 5. Formato Dual de Visualización (Tazo Circular vs. Tarjeta Cuadrada):
-* **Soporte Nativo:** La aplicación soporta alternar entre la visualización retro de **Tazo Físico Circular** (con ranuras y notchings perimetrales) y la vista clásica de **Tarjeta Cuadrada**.
-* **Activación:** Mediante el botón de cabecera `#btn-format-toggle` o el atajo de teclado <kbd>T</kbd>.
+### 5. Formato Dual de Visualización (Hit-Tazo vs. Hit-Cards):
+* **Soporte Nativo:** La aplicación soporta alternar entre la visualización retro de **Hit-Tazo** (disco físico circular 3D con ranuras y notchings perimetrales) y la experiencia de **Hit-Cards** (tarjeta cuadrada de sobremesa 65×65 mm).
+* **Activación:** Mediante el selector modal de bienvenida (`#version-select-dialog`), el isotipo interactivo en cabecera (`#btn-brand-version`) o los atajos de teclado <kbd>V</kbd> (modal) y <kbd>T</kbd> (toggle directo).
 * **Seguridad Tipográfica en Discos:** El texto circular en arco SVG utiliza un radio seguro de $r=112$ y márgenes perimetrales de protección (`disc-core`) para garantizar que las ranuras físicas no colisionen con las etiquetas tipográficas curvadas.
 
 ### 6. Persistencia en Caché (Dual IDB + localStorage):
@@ -309,6 +315,14 @@ Cualquier mutación de partida debe invocar `this.persistGameState()` para sincr
   * **Black Chrome (Edición Limitada):** Acabado negro azabache ultra-oscuro con bisel de cromo pulido de alto contraste.
 
 ### 9. Descargas Oficiales de Imprenta (Modal de Alto Contraste):
-* Cuadrícula compacta de 2 columnas de alto contraste dentro de `#print-modal`, orientada a la descarga directa de los PDFs vectoriales oficiales por volumen generados desde el pipeline CLI (`npm run print`).
+* Cuadrícula compacta de 2 columnas de alto contraste dentro de `#print-dialog`, orientada a la descarga directa de los PDFs vectoriales oficiales por volumen generados desde el pipeline CLI (`npm run print`).
 * La generación duplicada en canvas de navegador (`printDuplexInBrowser`) ha sido removida en favor de la fidelidad tipográfica y de corte garantizada por los pliegos oficiales.
+
+### 10. Canales de Preventa Física y Filosofía Open Source:
+* **Compromiso Open Source:** El juego es 100% libre bajo licencia MIT y descargable en PDFs vectoriales para impresión personal (*Print & Play*).
+* **Edición Física Profesional:** Para usuarios que deseen la baraja física producida en fábrica (cartas 65×65 mm en cartulina de 350g, barniz mate anti-reflejante, caja rígida y estuche), se ofrecen canales de preventa directa sin pasarelas de pago intermedias:
+  * **WhatsApp:** `+52 55 4272 2156` con mensaje prellenado automático.
+  * **Correo Electrónico:** `preventa@shellaquiles.org` con asunto y cuerpo estructurados.
+* **Puntos de Integración en UI:** Botón destacado en cabecera (`#btn-preorder-header`), tarjeta de llamada en modal de impresión (`.preorder-callout-card`), cintillo en selector de versiones (`.version-preorder-banner`) y nota al pie en modal de ayuda (`.help-preorder-note`).
+
 

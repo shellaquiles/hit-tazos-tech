@@ -179,16 +179,20 @@
 
       <!-- Cluster de Acciones y Utilidades -->
       <div class="utility-actions">
-        <button class="icon-btn" id="btn-format-toggle" title="Cambiar a Tarjetas Cuadradas [T]" aria-label="Alternar diseño Tazo / Tarjetas">
-          <i data-lucide="square" id="icon-format-state"></i>
-        </button>
+        <!-- Botón de Preventa Física Destacado -->
+        <a href="https://wa.me/525542722156?text=Hola%20shellaquiles.org%2C%20me%20interesa%20apartar%20la%20edici%C3%B3n%20f%C3%ADsica%20de%20Hit-Cards%20Tech%20en%20preventa" target="_blank" rel="noopener noreferrer" class="btn-preorder-header" id="btn-preorder-header" title="Apartar cartas físicas en preventa por WhatsApp (+52 55 4272 2156)">
+          <i data-lucide="shopping-bag"></i>
+          <span class="preorder-label">Preventa Cartas</span>
+          <span class="preorder-badge">Físico</span>
+        </a>
+
         <button class="icon-btn" id="btn-sound-toggle" title="Sonido [S]" aria-label="Alternar efectos de sonido">
           <i data-lucide="volume-2" id="icon-sound-state"></i>
         </button>
         <button class="icon-btn" id="btn-reset-game" title="Reiniciar partida [Shift+R]" aria-label="Reiniciar partida">
           <i data-lucide="rotate-ccw"></i>
         </button>
-        <button class="icon-btn" id="btn-print" title="Imprimir baraja [P]" aria-label="Imprimir cartas para recortar">
+        <button class="icon-btn" id="btn-print" title="Imprimir cartas o comprar en preventa [P]" aria-label="Imprimir cartas o comprar en preventa">
           <i data-lucide="printer"></i>
         </button>
         <button class="icon-btn" id="btn-help-toggle" title="Reglas y atajos de teclado [?]" aria-label="Ver reglas y atajos">
@@ -528,6 +532,26 @@
           </div>
         </div>
 
+        <div class="version-preorder-banner">
+          <div class="version-preorder-icon">
+            <i data-lucide="package-check"></i>
+          </div>
+          <div class="version-preorder-info">
+            <strong>Edición física de cartas en preventa</strong>
+            <span>El juego completo es de libre impresión, pero ya puedes apartar las cartas físicas producidas en fábrica.</span>
+          </div>
+          <div class="version-preorder-actions">
+            <a href="https://wa.me/525542722156?text=Hola%20shellaquiles.org%2C%20me%20interesa%20apartar%20la%20edici%C3%B3n%20f%C3%ADsica%20de%20Hit-Cards%20Tech%20en%20preventa" target="_blank" rel="noopener noreferrer" class="btn-version-preorder btn-version-wa" title="Apartar por WhatsApp (+52 55 4272 2156)">
+              <i data-lucide="message-circle"></i>
+              <span>WhatsApp</span>
+            </a>
+            <a href="mailto:preventa@shellaquiles.org?subject=Preventa%20Hit-Cards%20Tech%20-%20Edici%C3%B3n%20F%C3%ADsica&amp;body=Hola%20equipo%20de%20shellaquiles.org%2C%0A%0AMe%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20para%20apartar%20las%20cartas%20f%C3%ADsicas%20en%20preventa.%0A%0ASaludos." class="btn-version-preorder btn-version-email" title="Apartar por Correo Electrónico (preventa@shellaquiles.org)">
+              <i data-lucide="mail"></i>
+              <span>Correo</span>
+            </a>
+          </div>
+        </div>
+
         <div class="version-modal-footer-note">
           <i data-lucide="info"></i>
           <span>Tip: Puedes cambiar de versión en cualquier momento dando <strong>clic al ícono en la cabecera</strong> o pulsando <kbd>V</kbd>.</span>
@@ -548,6 +572,39 @@
       </div>
 
       <div class="print-modal-body print-modal-layout">
+        <!-- BANNER DESTACADO: JUEGO LIBRE + PREVENTA EDICIÓN FÍSICA -->
+        <div class="preorder-callout-card">
+          <div class="callout-header">
+            <div class="callout-badge-open">
+              <i data-lucide="unlock"></i> 100% LIBRE Y PRINT & PLAY
+            </div>
+            <span class="callout-tag">Edición Coleccionista</span>
+          </div>
+          
+          <h3 class="callout-title">Juega gratis o llévate las cartas físicas de imprenta</h3>
+          
+          <p class="callout-desc">
+            <strong>Hit-Tazos / Hit-Cards Tech</strong> es un proyecto libre bajo licencia MIT. Puedes descargar libremente los PDFs vectoriales oficiales con marcas de corte milimétricas para imprimirlos en casa o en tu centro de copiado favorito.
+          </p>
+          
+          <div class="callout-preorder-box">
+            <div class="preorder-box-text">
+              <strong>¿Prefieres la versión física profesional?</strong>
+              <span>Cartas 65&times;65mm en cartulina de 350g, barniz mate anti-reflejante, caja rígida coleccionable y estuche de archivo.</span>
+            </div>
+            <div class="preorder-channel-btns">
+              <a href="https://wa.me/525542722156?text=Hola%20shellaquiles.org%2C%20me%20interesa%20apartar%20la%20edici%C3%B3n%20f%C3%ADsica%20de%20Hit-Cards%20Tech%20en%20preventa" target="_blank" rel="noopener noreferrer" class="btn-preorder-cta btn-preorder-wa" title="Apartar por WhatsApp (+52 55 4272 2156)">
+                <i data-lucide="message-circle"></i>
+                <span>WhatsApp</span>
+              </a>
+              <a href="mailto:preventa@shellaquiles.org?subject=Preventa%20Hit-Cards%20Tech%20-%20Edici%C3%B3n%20F%C3%ADsica&amp;body=Hola%20equipo%20de%20shellaquiles.org%2C%0A%0AMe%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20para%20apartar%20las%20cartas%20f%C3%ADsicas%20en%20preventa.%0A%0ASaludos." class="btn-preorder-cta btn-preorder-email" title="Apartar por Correo Electrónico (preventa@shellaquiles.org)">
+                <i data-lucide="mail"></i>
+                <span>Correo</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
         <!-- SECCIÓN: DESCARGA DE ARCHIVOS VECTORIALES OFICIALES (PRE-IMPRESOS) -->
         <div class="print-section-wrap">
           <div class="print-section-title">
@@ -669,7 +726,11 @@
         </div>
       </div>
 
-      <div class="print-modal-footer">
+      <div class="print-modal-footer help-footer-actions">
+        <div class="help-preorder-note">
+          <i data-lucide="package"></i>
+          <span>¿Prefieres las cartas físicas? Aparta por <a href="https://wa.me/525542722156?text=Hola%20shellaquiles.org%2C%20me%20interesa%20apartar%20la%20edici%C3%B3n%20f%C3%ADsica%20de%20Hit-Cards%20Tech%20en%20preventa" target="_blank" rel="noopener noreferrer" class="help-preorder-link">WhatsApp</a> o <a href="mailto:preventa@shellaquiles.org?subject=Preventa%20Hit-Cards%20Tech%20-%20Edici%C3%B3n%20F%C3%ADsica&amp;body=Hola%20equipo%20de%20shellaquiles.org%2C%0A%0AMe%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20para%20apartar%20las%20cartas%20f%C3%ADsicas%20en%20preventa.%0A%0ASaludos." class="help-preorder-link">Correo</a></span>
+        </div>
         <button class="btn-primary btn-play-understood" id="btn-understood-help">
           <i data-lucide="zap"></i>
           ¡A jugar!

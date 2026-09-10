@@ -109,6 +109,7 @@ export class HitTazosApp {
     this.viewGallery = document.getElementById('view-gallery');
     this.btnTabPlay = document.getElementById('btn-tab-play');
     this.btnTabGallery = document.getElementById('btn-tab-gallery');
+    this.btnPreorderHeader = document.getElementById('btn-preorder-header');
     this.btnFormatToggle = document.getElementById('btn-format-toggle');
     this.iconFormatState = document.getElementById('icon-format-state');
     this.btnSound = document.getElementById('btn-sound-toggle');

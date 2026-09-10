@@ -178,7 +178,7 @@ El proyecto cuenta con un pipeline de calidad integral y una suite de pruebas un
 # Ejecutar suite completa (Versión + Auditoría de 576 cartas + Pruebas unitarias + Sintaxis):
 npm test
 
-# Ejecutar únicamente pruebas unitarias (17 tests en ~160ms):
+# Ejecutar únicamente pruebas unitarias (24 tests en ~300ms):
 npm run test:unit
 ```
 
