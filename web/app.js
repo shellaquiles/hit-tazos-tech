@@ -1726,7 +1726,7 @@ export class HitTazosApp {
       this.optionSelectCards.classList.toggle('active-version', isCards);
     }
     if (this.badgeStatusTazo) {
-      this.badgeStatusTazo.textContent = !isCards ? '✓ Versión Activa' : 'Retro 3D';
+      this.badgeStatusTazo.textContent = !isCards ? '✓ Versión Activa' : 'Dial 3D';
     }
     if (this.badgeStatusCards) {
       this.badgeStatusCards.textContent = isCards ? '✓ Versión Activa' : 'Clean Table';
