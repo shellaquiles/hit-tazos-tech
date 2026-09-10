@@ -766,6 +766,7 @@ export class HitTazosApp {
     const isDisc = this.state.cardFormat === CARD_FORMATS.DISC;
 
     // 1. Pila Izquierda (Cartas Anteriores / Descarte)
+    const totalPast = currentIndex;
     const pastCards = [];
     const startPast = Math.max(0, currentIndex - N);
     for (let i = startPast; i < currentIndex; i++) {
@@ -773,10 +774,10 @@ export class HitTazosApp {
     }
 
     if (this.pileLeftCount) {
-      this.pileLeftCount.textContent = pastCards.length;
+      this.pileLeftCount.textContent = totalPast;
     }
     if (this.pileLeft) {
-      if (pastCards.length === 0) {
+      if (totalPast === 0) {
         this.pileLeft.classList.add('is-empty');
         this.pileLeft.setAttribute('aria-disabled', 'true');
         this.pileLeft.removeAttribute('title');
@@ -784,7 +785,7 @@ export class HitTazosApp {
         this.pileLeft.classList.remove('is-empty');
         this.pileLeft.removeAttribute('aria-disabled');
         const lastCard = pastCards[pastCards.length - 1];
-        this.pileLeft.setAttribute('title', `Carta anterior: ${lastCard.autor} [P / ←]`);
+        this.pileLeft.setAttribute('title', `Carta anterior: ${lastCard?.autor || 'Anterior'} (${totalPast} anteriores) [P / ←]`);
       }
     }
 
@@ -801,6 +802,7 @@ export class HitTazosApp {
     }
 
     // 2. Pila Derecha (Próximas Cartas / Robo)
+    const totalUpcoming = Math.max(0, deck.length - 1 - currentIndex);
     const upcomingCards = [];
     const endUpcoming = Math.min(deck.length, currentIndex + 1 + N);
     for (let i = currentIndex + 1; i < endUpcoming; i++) {
@@ -808,10 +810,10 @@ export class HitTazosApp {
     }
 
     if (this.pileRightCount) {
-      this.pileRightCount.textContent = upcomingCards.length;
+      this.pileRightCount.textContent = totalUpcoming;
     }
     if (this.pileRight) {
-      if (upcomingCards.length === 0) {
+      if (totalUpcoming === 0) {
         this.pileRight.classList.add('is-empty');
         this.pileRight.setAttribute('aria-disabled', 'true');
         this.pileRight.removeAttribute('title');
@@ -819,7 +821,7 @@ export class HitTazosApp {
         this.pileRight.classList.remove('is-empty');
         this.pileRight.removeAttribute('aria-disabled');
         const nextCard = upcomingCards[0];
-        this.pileRight.setAttribute('title', `Siguiente carta: ${nextCard.autor} [N / →]`);
+        this.pileRight.setAttribute('title', `Siguiente carta: ${nextCard?.autor || 'Siguiente'} (${totalUpcoming} por jugar) [N / →]`);
       }
     }
 
