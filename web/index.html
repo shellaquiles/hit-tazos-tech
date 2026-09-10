@@ -274,12 +274,34 @@
 
         <!-- Escenario 3D del Tazo Físico Coleccionable con Aura Ambiental -->
         <div class="disc-arena-stage">
+          <!-- Pila Izquierda: Cartas Anteriores (Escritorio, N=5) -->
+          <aside class="desktop-card-pile pile-left" id="pile-left" role="button" tabindex="0" title="Cartas anteriores [P / ←]" aria-label="Pila de cartas anteriores">
+            <div class="pile-badge">
+              <span class="pile-badge-text">ANTERIORES</span>
+              <span class="pile-badge-count" id="pile-left-count">0</span>
+            </div>
+            <div class="pile-cards-wrapper" id="pile-left-cards">
+              <!-- N=5 cartas apiladas -->
+            </div>
+          </aside>
+
           <div class="ambient-card-aura" id="ambient-card-aura"></div>
 
           <!-- Escenario del Tazo Disco 3D -->
           <div class="disc-stage" id="card-stage" title="Toca o pulsa Espacio para voltear el Tazo">
             <!-- Tazo inyectado dinámicamente -->
           </div>
+
+          <!-- Pila Derecha: Siguientes Cartas (Escritorio, N=5) -->
+          <aside class="desktop-card-pile pile-right" id="pile-right" role="button" tabindex="0" title="Siguientes cartas del mazo [N / →]" aria-label="Pila de siguientes cartas">
+            <div class="pile-badge">
+              <span class="pile-badge-text">POR JUGAR</span>
+              <span class="pile-badge-count" id="pile-right-count">0</span>
+            </div>
+            <div class="pile-cards-wrapper" id="pile-right-cards">
+              <!-- N=5 cartas apiladas -->
+            </div>
+          </aside>
         </div>
 
         <!-- Guía de Gestos Táctiles para Móvil -->

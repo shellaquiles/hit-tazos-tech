@@ -121,6 +121,12 @@ export class HitTazosApp {
     // Escenario y Arena de Juego
     this.cardStage = document.getElementById('card-stage');
     this.ambientAura = document.getElementById('ambient-card-aura');
+    this.pileLeft = document.getElementById('pile-left');
+    this.pileLeftCards = document.getElementById('pile-left-cards');
+    this.pileLeftCount = document.getElementById('pile-left-count');
+    this.pileRight = document.getElementById('pile-right');
+    this.pileRightCards = document.getElementById('pile-right-cards');
+    this.pileRightCount = document.getElementById('pile-right-count');
     this.hudGroupLabel = document.getElementById('hud-group-label');
     this.hudCardCounter = document.getElementById('hud-card-counter');
     this.hudScore = document.getElementById('hud-score');
@@ -381,6 +387,27 @@ export class HitTazosApp {
     this.btnNext?.addEventListener('click', () => this.nextCard());
     this.btnPrev?.addEventListener('click', () => this.prevCard());
     this.btnShuffle?.addEventListener('click', () => this.shuffleCurrentDeck());
+
+    // Interacción con Pilas de Cartas Laterales de Escritorio (N=5)
+    this.pileLeft?.addEventListener('click', () => {
+      if (this.state.currentIndex > 0) this.prevCard();
+    });
+    this.pileLeft?.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && this.state.currentIndex > 0) {
+        e.preventDefault();
+        this.prevCard();
+      }
+    });
+
+    this.pileRight?.addEventListener('click', () => {
+      if (this.state.currentIndex < this.state.activeDeck.length - 1) this.nextCard();
+    });
+    this.pileRight?.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && this.state.currentIndex < this.state.activeDeck.length - 1) {
+        e.preventDefault();
+        this.nextCard();
+      }
+    });
 
     // Botones de Reinicio
     this.btnResetGame?.addEventListener('click', () => this.confirmResetGame());
@@ -726,7 +753,201 @@ export class HitTazosApp {
     }
 
     this.highlightActiveShelfChip(card.id);
+    this.renderDeckPiles();
     this.refreshIcons();
+  }
+
+  renderDeckPiles() {
+    if (!this.pileLeftCards || !this.pileRightCards) return;
+
+    const N = 5;
+    const currentIndex = this.state.currentIndex;
+    const deck = this.state.activeDeck || [];
+    const isDisc = this.state.cardFormat === CARD_FORMATS.DISC;
+
+    // 1. Pila Izquierda (Cartas Anteriores / Descarte)
+    const pastCards = [];
+    const startPast = Math.max(0, currentIndex - N);
+    for (let i = startPast; i < currentIndex; i++) {
+      pastCards.push(deck[i]);
+    }
+
+    if (this.pileLeftCount) {
+      this.pileLeftCount.textContent = pastCards.length;
+    }
+    if (this.pileLeft) {
+      if (pastCards.length === 0) {
+        this.pileLeft.classList.add('is-empty');
+        this.pileLeft.setAttribute('aria-disabled', 'true');
+        this.pileLeft.removeAttribute('title');
+      } else {
+        this.pileLeft.classList.remove('is-empty');
+        this.pileLeft.removeAttribute('aria-disabled');
+        const lastCard = pastCards[pastCards.length - 1];
+        this.pileLeft.setAttribute('title', `Carta anterior: ${lastCard.autor} [P / ←]`);
+      }
+    }
+
+    this.pileLeftCards.className = `pile-cards-wrapper ${isDisc ? 'is-disc' : 'is-card'}`;
+    if (pastCards.length === 0) {
+      this.pileLeftCards.innerHTML = `
+        <div class="pile-empty-slot">
+          <i data-lucide="inbox"></i>
+          <span>Inicio</span>
+        </div>
+      `;
+    } else {
+      this.pileLeftCards.innerHTML = this.buildPileCardsHTML(pastCards, false, isDisc);
+    }
+
+    // 2. Pila Derecha (Próximas Cartas / Robo)
+    const upcomingCards = [];
+    const endUpcoming = Math.min(deck.length, currentIndex + 1 + N);
+    for (let i = currentIndex + 1; i < endUpcoming; i++) {
+      upcomingCards.push(deck[i]);
+    }
+
+    if (this.pileRightCount) {
+      this.pileRightCount.textContent = upcomingCards.length;
+    }
+    if (this.pileRight) {
+      if (upcomingCards.length === 0) {
+        this.pileRight.classList.add('is-empty');
+        this.pileRight.setAttribute('aria-disabled', 'true');
+        this.pileRight.removeAttribute('title');
+      } else {
+        this.pileRight.classList.remove('is-empty');
+        this.pileRight.removeAttribute('aria-disabled');
+        const nextCard = upcomingCards[0];
+        this.pileRight.setAttribute('title', `Siguiente carta: ${nextCard.autor} [N / →]`);
+      }
+    }
+
+    this.pileRightCards.className = `pile-cards-wrapper ${isDisc ? 'is-disc' : 'is-card'}`;
+    if (upcomingCards.length === 0) {
+      this.pileRightCards.innerHTML = `
+        <div class="pile-empty-slot">
+          <i data-lucide="check-circle-2"></i>
+          <span>Final</span>
+        </div>
+      `;
+    } else {
+      // In upcoming cards, upcomingCards[0] is the very next card to draw, so it sits on top
+      const upcomingOrdered = [...upcomingCards].reverse();
+      this.pileRightCards.innerHTML = this.buildPileCardsHTML(upcomingOrdered, true, isDisc);
+    }
+  }
+
+  buildPileCardsHTML(cards, isUpcoming, isDisc) {
+    const M = cards.length;
+
+    // Desfase físico escalonado pronunciado (Efecto Mazo Físico Apilado)
+    const LEFT_OFFSETS = [
+      { tx: -44, ty: 22, rot: -10.0, htx: -62, hty: 28, hrot: -15.0 },
+      { tx: -33, ty: 16, rot: -7.5,  htx: -46, hty: 21, hrot: -11.0 },
+      { tx: -22, ty: 11, rot: -5.0,  htx: -31, hty: 14, hrot: -7.5 },
+      { tx: -11, ty: 5,  rot: -2.5,  htx: -15, hty: 7,  hrot: -3.5 },
+      { tx: 0,   ty: 0,  rot: 0,     htx: 0,   hty: -10, hrot: 0 }
+    ];
+
+    const RIGHT_OFFSETS = [
+      { tx: 44, ty: 22, rot: 10.0, htx: 62, hty: 28, hrot: 15.0 },
+      { tx: 33, ty: 16, rot: 7.5,  htx: 46, hty: 21, hrot: 11.0 },
+      { tx: 22, ty: 11, rot: 5.0,  htx: 31, hty: 14, hrot: 7.5 },
+      { tx: 11, ty: 5,  rot: 2.5,  htx: 15, hty: 7,  hrot: 3.5 },
+      { tx: 0,  ty: 0,  rot: 0,    htx: 0,  hty: -10, hrot: 0 }
+    ];
+
+    const DISC_OFFSETS = [
+      { tx: 0, ty: 44, rot: -5.0, htx: 0, hty: 58, hrot: -8.0 },
+      { tx: 0, ty: 33, rot: 4.0,  htx: 0, hty: 44, hrot: 6.0 },
+      { tx: 0, ty: 22, rot: -3.0, htx: 0, hty: 29, hrot: -4.0 },
+      { tx: 0, ty: 11, rot: 1.8,  htx: 0, hty: 14, hrot: 2.5 },
+      { tx: 0, ty: 0,  rot: 0,    htx: 0, hty: -10, hrot: 0 }
+    ];
+
+    const offsetTable = isDisc ? DISC_OFFSETS : (isUpcoming ? RIGHT_OFFSETS : LEFT_OFFSETS);
+
+    return cards.map((card, r) => {
+      const slot = 5 - M + r;
+      const tf = offsetTable[slot] || offsetTable[r] || offsetTable[4];
+      const z = (r + 1) * 3;
+      const cssVars = `--tx: ${tf.tx}px; --ty: ${tf.ty}px; --rot: ${tf.rot}deg; --z: ${z}px; --htx: ${tf.htx}px; --hty: ${tf.hty}px; --hrot: ${tf.hrot}deg; z-index: ${r + 1};`;
+      const theme = this.renderer.getCardTheme(card);
+      const isTop = (r === M - 1);
+
+      if (!isTop) {
+        const bg = isDisc
+          ? `radial-gradient(circle at 35% 30%, ${theme.topHex || '#334155'}, ${theme.bottomHex || '#1e293b'} 70%, #050811 100%)`
+          : (theme.bgGradient || theme.bg || '#1e293b');
+        return `
+          <div class="pile-card pile-card-under" style="${cssVars} background: ${bg};">
+            <div class="pile-card-under-edge"></div>
+            ${isDisc ? '<div class="pile-tazoback-rim"></div>' : '<div class="pile-under-deck-line"></div>'}
+            ${!isDisc ? `<div class="pile-under-tag">${card.domain ? card.domain.substring(0, 8) : ''}</div>` : ''}
+          </div>
+        `;
+      }
+
+      // Tarjeta Superior (Top Card)
+      if (isUpcoming) {
+        // Reverso de mazo (Facedown)
+        if (isDisc) {
+          const discBg = `radial-gradient(circle at 35% 30%, ${theme.topHex || '#334155'}, ${theme.bottomHex || '#1e293b'} 70%, #050811 100%)`;
+          return `
+            <div class="pile-card pile-card-top pile-card-tazoback" style="${cssVars} background: ${discBg};">
+              <div class="pile-tazoback-rim"></div>
+              <div class="pile-tazoback-core">
+                <i data-lucide="disc" class="pile-tazo-icon"></i>
+                <span class="pile-tazo-text">HIT-TAZO</span>
+              </div>
+            </div>
+          `;
+        } else {
+          return `
+            <div class="pile-card pile-card-top pile-card-deckback" style="${cssVars}">
+              <div class="pile-deckback-inner">
+                <div class="pile-deckback-border">
+                  <i data-lucide="layers" class="pile-deckback-icon"></i>
+                  <span class="pile-deckback-text">HIT-CARDS</span>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+      } else {
+        // Carta anterior (Faceup mini con autor y detalles)
+        const isRevealed = this.state.revealedCards.has(card.id);
+        if (isDisc) {
+          const discBg = `radial-gradient(circle at 35% 30%, ${theme.topHex || '#334155'}, ${theme.bottomHex || '#1e293b'} 70%, #050811 100%)`;
+          return `
+            <div class="pile-card pile-card-top pile-card-tazofaceup" style="${cssVars} background: ${discBg};">
+              <div class="pile-tazoback-rim"></div>
+              <div class="pile-tazofaceup-core">
+                <span class="pile-tazofaceup-author">${card.autor || ''}</span>
+                ${isRevealed ? `<span class="pile-tazo-year">${card.year}</span>` : `<span class="pile-tazo-id">${card.id}</span>`}
+              </div>
+            </div>
+          `;
+        } else {
+          const cardBg = theme.bgGradient || theme.bg || '#38bdf8';
+          return `
+            <div class="pile-card pile-card-top pile-card-faceup" style="${cssVars} background: ${cardBg};">
+              <div class="pile-faceup-inner">
+                <div class="pile-faceup-top">
+                  <span class="pile-faceup-domain">${card.domain ? card.domain.substring(0, 14) : 'TECH'}</span>
+                  <span class="pile-faceup-id">${card.id ? card.id.replace('vol', 'v') : ''}</span>
+                </div>
+                <div class="pile-faceup-author">${card.autor || ''}</div>
+                <div class="pile-faceup-footer">
+                  ${isRevealed ? `<span class="pile-faceup-year">${card.year}</span>` : `<i data-lucide="clock" class="pile-clock-icon"></i>`}
+                </div>
+              </div>
+            </div>
+          `;
+        }
+      }
+    }).join('');
   }
 
   renderAttemptTracker(remaining, isSolved) {
