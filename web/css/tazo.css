@@ -53,42 +53,28 @@
   justify-content: center;
   overflow: hidden;
 
-  /* Cuerpo del disco teñido con el color de la tarjeta */
+  /* Cuerpo del disco: Tono profundo y saturado que hace resaltar el texto blanco */
   background: radial-gradient(
-    circle at 38% 30%,
-    color-mix(in srgb, var(--tazo-color, #e86328) 85%, #ffffff) 0%,
-    var(--tazo-color, #e86328) 50%,
-    color-mix(in srgb, var(--tazo-color, #e86328) 80%, #000000) 88%,
-    #0f172a 100%
+    circle at 50% 45%,
+    color-mix(in srgb, var(--tazo-color, #e86328) 85%, #000000 15%) 0%,
+    color-mix(in srgb, var(--tazo-color, #e86328) 95%, #000000 5%) 55%,
+    color-mix(in srgb, var(--tazo-color, #e86328) 60%, #000000 40%) 100%
   ) !important;
 
-  /* Bisel exterior de plástico prensado */
-  border: 4px solid color-mix(in srgb, var(--tazo-color, #e86328) 45%, #ffffff) !important;
+  /* Bisel exterior maquinado con profundidad física */
+  border: 4px solid color-mix(in srgb, var(--tazo-color, #e86328) 65%, #000000 35%) !important;
   box-shadow:
     0 22px 42px -8px rgba(0, 0, 0, 0.45),
     0 4px 12px rgba(0, 0, 0, 0.25),
-    inset 0 2.5px 5px rgba(255, 255, 255, 0.6),
-    inset 0 -4px 8px rgba(0, 0, 0, 0.5),
-    /* Surco concéntrico para apilar */
-    inset 0 0 0 14px color-mix(in srgb, var(--tazo-color, #e86328) 75%, #000000),
-    inset 0 0 0 16px rgba(255, 255, 255, 0.35) !important;
+    inset 0 1.5px 3px rgba(255, 255, 255, 0.4),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.3) !important;
 }
 
-/* Destello especular diagonal */
+/* En el dial corregido no se aplica destello diagonal para no empañar el texto */
 .disc-face::after,
 .tazo-face::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.4) 0%,
-    rgba(255, 255, 255, 0.08) 40%,
-    transparent 60%
-  );
-  pointer-events: none;
-  z-index: 15;
+  display: none !important;
 }
 
 /* 2. Anverso */
@@ -252,7 +238,7 @@
 
 .disc-physical.edition-gold .ring-label,
 .disc-physical.edition-gold .ring-sub {
-  fill: #fef08a;
+  fill: #ffffff !important;
 }
 
 .disc-physical.edition-gold .year-number-giant {
@@ -374,7 +360,7 @@
   pointer-events: none;
   opacity: 0.65;
   transition: opacity 0.25s ease;
-  z-index: 20;
+  z-index: 8;
 }
 
 .disc-physical.is-flipped::after,
@@ -382,7 +368,7 @@
   display: none !important;
 }
 
-/* 6. Textos curvados periféricos en SVG con grabado nítido */
+/* 6. Textos curvados periféricos en SVG con grabado nítido por encima de reflejos */
 .disc-ring-text,
 .tazo-ring-text {
   position: absolute;
@@ -390,51 +376,28 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 15;
+  z-index: 50 !important;
   transform: scale(1.10);
   transform-origin: center center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+  shape-rendering: geometricPrecision;
 }
 
-/* 4. Textos en arco perimetral: posicionados sobre el anillo exterior */
+/* 4. Textos en arco perimetral: Rediseño exacto del nuevo dial (Blanco puro, negrita, micro-relieve) */
 .ring-label, .ring-sub {
-  font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: 8.2px !important;
-  font-weight: 800 !important;
-  letter-spacing: 1.3px !important;
-  filter: none !important;
-}
-
-/* En el anverso: texto blanco nítido con contorno fino de contraste (sin blur) */
-.disc-face-front .ring-label,
-.disc-face-front .ring-sub,
-.tazo-face-front .ring-label,
-.tazo-face-front .ring-sub {
+  font-family: var(--font-sans, 'Outfit', sans-serif) !important;
+  font-size: 9.2px !important;
+  font-weight: 700 !important;
   fill: #ffffff !important;
-  stroke: rgba(0, 0, 0, 0.75) !important;
-  stroke-width: 0.6px !important;
-  paint-order: stroke fill !important;
-  filter: none !important;
-}
-
-/* En el reverso: grabado de tinta oscura nítido sin sombras ni contornos borrosos */
-.disc-face-back .ring-label,
-.disc-face-back .ring-sub,
-.tazo-face-back .ring-label,
-.tazo-face-back .ring-sub,
-.disc-face-back svg text,
-.tazo-face-back svg text {
-  fill: var(--tazo-text, #111111) !important;
   stroke: none !important;
   stroke-width: 0 !important;
   paint-order: normal !important;
-  filter: none !important;
+  letter-spacing: 0.25px !important;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.75)) !important;
   text-shadow: none !important;
-  font-family: var(--font-display, 'Space Grotesk', sans-serif) !important;
-  font-size: 7.6px !important;
-  letter-spacing: 1.6px !important;
-  text-transform: uppercase !important;
-  opacity: 0.86 !important;
-  font-weight: 700 !important;
+  opacity: 1 !important;
 }
 
 /* 2. Núcleo Anverso: superficie oscura de alto contraste con margen respecto al arco */

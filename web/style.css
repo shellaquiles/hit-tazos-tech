@@ -3247,8 +3247,11 @@ main {
 
   /* Texto en el aro curvado */
   .ring-label, .ring-sub {
-    font-size: 7.8px !important;
-    letter-spacing: 1.2px !important;
+    font-family: var(--font-sans, 'Outfit', sans-serif) !important;
+    font-size: 8.2px !important;
+    letter-spacing: 0.35px !important;
+    font-weight: 700 !important;
+    fill: #ffffff !important;
   }
 
   .kbd-shortcut-hint {
