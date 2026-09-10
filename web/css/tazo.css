@@ -526,6 +526,98 @@
   display: inline-flex !important;
 }
 
+/* Badge Interactivo de Revelado de Año en el Reverso del Tazo */
+.year-scratch-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.92);
+  color: #f8fafc;
+  padding: 0.55rem 1.15rem;
+  border-radius: 9999px;
+  border: 1.5px solid var(--disc-accent, #38bdf8);
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.7),
+    0 0 16px rgba(56, 189, 248, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.disc-year-hero:hover .year-scratch-badge,
+.tazo-year-hero:hover .year-scratch-badge {
+  background: #0f172a;
+  border-color: #7dd3fc;
+  color: #ffffff;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.8),
+    0 0 24px rgba(56, 189, 248, 0.6),
+    inset 0 1px 2px rgba(255, 255, 255, 0.45);
+}
+
+.disc-year-hero:active .year-scratch-badge,
+.tazo-year-hero:active .year-scratch-badge {
+  transform: translateY(0) scale(0.97);
+}
+
+.year-scratch-badge i,
+.year-scratch-badge svg {
+  width: 15px;
+  height: 15px;
+  color: var(--disc-accent, #38bdf8);
+  stroke: var(--disc-accent, #38bdf8);
+  filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.8));
+}
+
+.year-scratch-badge span {
+  display: inline-flex;
+  align-items: center;
+  color: #f8fafc;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* Variantes por Rareza / Edición del Tazo */
+.disc-physical.edition-gold .year-scratch-badge {
+  border-color: rgba(250, 204, 21, 0.8);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7), 0 0 16px rgba(245, 158, 11, 0.4);
+}
+.disc-physical.edition-gold .year-scratch-badge i,
+.disc-physical.edition-gold .year-scratch-badge svg {
+  color: #fde047;
+  stroke: #fde047;
+  filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.8));
+}
+
+.disc-physical.edition-silver .year-scratch-badge {
+  border-color: rgba(226, 232, 240, 0.7);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7), 0 0 16px rgba(226, 232, 240, 0.35);
+}
+.disc-physical.edition-silver .year-scratch-badge i,
+.disc-physical.edition-silver .year-scratch-badge svg {
+  color: #f8fafc;
+  stroke: #f8fafc;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+}
+
+.disc-physical.edition-holographic .year-scratch-badge {
+  border-color: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.85), 0 0 18px rgba(255, 255, 255, 0.4);
+}
+.disc-physical.edition-holographic .year-scratch-badge i,
+.disc-physical.edition-holographic .year-scratch-badge svg {
+  color: #ffffff;
+  stroke: #ffffff;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9));
+}
+
 .disc-year-hero.is-revealed .year-scratch-badge,
 .tazo-year-hero.is-revealed .year-scratch-badge {
   display: none !important;
