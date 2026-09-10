@@ -1,205 +1,139 @@
 # Hit-Tazos Tech 🕹️💻
 
-[![Version](https://img.shields.io/badge/version-1.0.0-orange.svg?style=flat-square)](./CHANGELOG.md) [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](./LICENSE) [![Python](https://img.shields.io/badge/python-3.8%2B-3776AB.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/) [![Node](https://img.shields.io/badge/node-%3E%3D18-339933.svg?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/) [![Ecosystem](https://img.shields.io/badge/shellaquiles-ecosystem-9D2449.svg?style=flat-square)](https://github.com/shellaquiles)
+[![Version](https://img.shields.io/badge/version-1.0.0-orange.svg?style=flat-square)](./CHANGELOG.md)
+[![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](./LICENSE)
+[![Python](https://img.shields.io/badge/python-3.8%2B-3776AB.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![Node](https://img.shields.io/badge/node-%3E%3D18-339933.svg?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Ecosystem](https://img.shields.io/badge/shellaquiles-ecosystem-9D2449.svg?style=flat-square)](https://github.com/shellaquiles)
 
-Juego original e independiente de trivia cronológica técnica centrado en el ecosistema de **Tecnología, Desarrollo de Software, Infraestructura, Inteligencia Artificial y Cultura Hacker**, con un marcado énfasis en el **Universo Python**.
+Juego original e independiente de trivia cronológica técnica centrado en la historia de la computación, software libre, sistemas operativos, arquitectura de computadoras, IA y el ecosistema Python.
 
-El juego comprende un **mazo exhaustivo de tarjetas de trivia cronológica técnica** rigurosamente verificadas, listas para jugar en mesa o explorar interactivamente en la web.
+Funciona como aplicación web interactiva en el navegador y como juego de cartas físico con una **baraja maestra de 576 tarjetas coleccionables** rigurosamente investigadas y auditadas en 4 niveles.
 
 ---
 
-## 🚀 Inicio Rápido (Jugar en el Navegador)
+## 🎮 Jugar en línea
 
-La aplicación web funciona sin dependencias pesadas de frontend (Vanilla JS + CSS moderno + HTML5):
+Pruébalo directo en el navegador sin instalar nada:
+
+🌐 **[shellaquiles.github.io/hit-tazos-tech](https://shellaquiles.github.io/hit-tazos-tech/)**
+
+La versión web incluye:
+* **Experiencia dual dedicada:** Alterna entre el **Tazo circular 3D** (con bisel maquinado CNC y ranuras *notchings*) y la **Carta cuadrada de sobremesa** ($65 \times 65\text{ mm}$).
+* **Partida interactiva:** Dial cronológico retro, pistas cualitativas anti-spoiler por proximidad (frío/tibio/caliente), racha de aciertos y sonido sintetizado vía Web Audio API.
+* **Pilas 3D laterales ($N=5$):** Montones interactivos escalonados a izquierda (historial) y derecha (mazo) con cantos visibles de papel 350g y expansión en abanico al pasar el cursor.
+* **Catálogo y explorador:** Buscador tolerante a fallas en tiempo real y vista en abanico interactiva (*Fanning Mode*).
+
+---
+
+## 🕹️ Cómo se juega
+
+### En la web (Modo Arcade)
+* **Objetivo:** Acertar el año de 10 tarjetas para armar tu línea de tiempo personal.
+* **Mecánica de turno:** Lees el hito y su autoría en el anverso (el año permanece oculto). Ajustas el dial temporal con el ratón o con las teclas <kbd>+</kbd> / <kbd>-</kbd> / <kbd>&uarr;</kbd> / <kbd>&darr;</kbd> y lanzas tu predicción con <kbd>Enter</kbd>.
+* **Intentos y pistas (3 tiros por tarjeta):** Si fallas, el juego te indica la dirección (`↑ Más reciente` / `↓ Más antiguo`) y qué tan cerca estás (🔥 caliente $\le 5$ años, 🌡️ tibio $\le 15$, ❄️ frío $> 15$) sin revelar la cifra exacta.
+* **Puntuación y penalización:**
+  * **Año exacto:** +3 puntos y +1 a la racha.
+  * **Margen cercano ($\pm 2$ años):** +1 punto y +1 a la racha.
+  * **Revelar año:** Cuesta 5 puntos acumulados y bloquea el tiro de la tarjeta.
+
+### En mesa (Juego de cartas)
+* **Objetivo:** Ser el primer jugador en armar una línea de tiempo con 10 cartas ordenadas cronológicamente de la más antigua a la más reciente.
+* **Preparación:** Cada jugador recibe 1 carta inicial boca arriba (año visible) en su estante y 3 fichas de apuesta.
+* **Turno:**
+  1. El jugador a la izquierda toma una carta del mazo central y lee únicamente el hito histórico del anverso (sin revelar el año ni el autor).
+  2. El jugador en turno decide en qué posición de su línea temporal colocarla (antes, después o entre dos cartas que ya posea).
+  3. Los rivales pueden apostar una ficha a otra posición si consideran que la colocación es errónea.
+  4. Se voltea la carta: quien haya acertado la posición cronológica correcta se la queda en su línea de tiempo.
+
+---
+
+## 🖨️ Impresión y Cartas Físicas
+
+El proyecto es **100% libre bajo licencia MIT** y descargable en PDFs vectoriales con imposición milimétrica (*Print & Play*). 
+
+Las cartas físicas están diseñadas en formato cuadrado de **$65 \times 65\text{ mm}$** con esquinas redondeadas ($r=3\text{ mm}$), pensadas para imprimirse en cartulina de **$350\text{ g}$** con barniz mate anti-reflejante y guardarse en caja rígida coleccionable.
+
+### Archivo PDF oficial para imprenta (Formato Carta)
+Los PDFs vectoriales ya incluyen imposición de páginas, marcas de corte de 3 mm, calles de separación de 6 mm y reversos espejados automáticos:
+
+* 📄 **[Formato Carta (8.5 × 11 pulg)](./print/v1.0.0/hit-tazos-tech-v1.0.0-carta.pdf):** Rejilla estándar de $2 \times 3$ cartas (6 cartas por pliego, 192 páginas dúplex para el mazo completo de 576 cartas).
+* 🎨 Pliegos vectoriales editables disponibles en [`print/v1.0.0/svg/`](./print/v1.0.0/svg/).
+
+### Adquirir las cartas físicas en preventa
+Si prefieres adquirir la edición física profesional producida en fábrica (cartas suajadas de 350g, barniz mate y caja rígida de colección):
+* 💬 **WhatsApp directo:** [+52 55 4272 2156](https://wa.me/525542722156?text=Hola%20shellaquiles.org%2C%20me%20interesa%20apartar%20la%20edici%C3%B3n%20f%C3%ADsica%20de%20Hit-Cards%20Tech%20en%20preventa)
+* ✉️ **Correo electrónico:** [preventa@shellaquiles.org](mailto:preventa@shellaquiles.org?subject=Preventa%20Hit-Cards%20Tech%20-%20Edici%C3%B3n%20F%C3%ADsica&body=Hola%20equipo%20de%20shellaquiles.org%2C%0A%0AMe%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20para%20apartar%20las%20cartas%20f%C3%ADsicas%20en%20preventa.%0A%0ASaludos.)
+* 🌐 **Sitio oficial y comunidad:** [shellaquiles.org](https://shellaquiles.org)
+
+---
+
+## 📑 Contenido del Mazo (576 Cartas)
+
+La baraja maestra se divide en 8 volúmenes temáticos rigurosamente auditados:
+
+| Vol | Identificador | Cartas | Temas principales |
+| :---: | :--- | :---: | :--- |
+| **0** | `kernel-foundations` | 128 | Arquitectura Von Neumann, lógica booleana, teoría de la información, primeros compiladores y algoritmos fundacionales. |
+| **1** | `cypherpunks-hacker-lore` | 64 | Criptografía asimétrica, PGP, manifiestos cypherpunk, FOSS, redes P2P y cultura hacker histórica. |
+| **2** | `embedded-silicon-hardware` | 64 | Microprocesadores clásicos, microcontroladores, arquitecturas CISC/RISC, buses y litografía de silicio. |
+| **3** | `unix-sysadmin-networks` | 64 | Filosofía Unix, sockets BSD, TCP/IP, DNS, protocolos de red y administración de servidores. |
+| **4** | `backend-distributed-systems` | 64 | Motores de bases de datos, colas de mensajes, consenso distribuido y patrones de arquitectura backend. |
+| **5** | `cloud-containers-sre` | 64 | Contenedores cgroups/namespaces, orquestación con Kubernetes, nubes públicas y prácticas SRE. |
+| **6** | `python-track` | 64 | PEPs históricos, evolución de CPython, GIL, tipado estático, asyncio y ecosistema científico. |
+| **7** | `scifi-pop-culture-cinema` | 64 | Cine hacker de culto, literatura cyberpunk, ciencia ficción dura y mitología tecnológica pop. |
+
+---
+
+## 💻 Desarrollo y Arquitectura Técnica
+
+### Levantar el cliente web localmente
+El cliente web está construido en **Vanilla JS + CSS moderno + HTML5** sin empaquetadores (*Zero-Bundler*):
 
 ```bash
-# Iniciar servidor local
+# Con Node.js:
 npm run serve
-# o bien:
-# python3 -m http.server 3333
+
+# O directamente con Python:
+python3 -m http.server 3333
 
 # Abrir en el navegador:
 # http://localhost:3333/
 ```
 
-### Modos de la Aplicación Web:
-* **🕹️ Partida Interactiva:** Tarjeta 3D que se voltea con animación WAAPI o barra espaciadora, flujo multi-intento con pistas direccionales (más reciente / más antiguo) y temperatura (frío/tibio/caliente), chips de décadas, racha de aciertos y repisa cronológica para coleccionar 10 cartas.
-* **🔄 Experiencias Dedicadas (Hit-Tazo vs. Hit-Cards):** Pantalla de selección inicial y botón en cabecera para alternar entre el formato de **Tazo Físico Circular 3D** (con bisel CNC y ranuras *notchings*) y el de **Tarjeta Cuadrada de Sobremesa** clásica ($65 \times 65\text{ mm}$).
-* **📖 Guía Rápida de Juego Adaptativa:** Despliegue guiado automático en la primera visita con reglas, atajos de teclado y terminología adaptada al modo seleccionado.
-* **🃏 Pilas Físicas Laterales para Escritorio ($N=5$):** Montones tridimensionales a izquierda (descarte/historial) y derecha (mazo por jugar) con cantos visibles de papel marfil 350g, rotaciones orgánicas y navegación con clic o teclado.
-* **🔍 Explorador y Catálogo en Abanico:** Visualización en cuadrícula o abanico interactivo (*Fanning Mode*) con el **"Orden del Mazo (Bloques de Color)"**, filtros por grupo y búsqueda tolerante a fallas en tiempo real.
-* **🔊 Audio y FX:** Efectos de sonido retro sintetizados con Web Audio API y confeti dinámico con la paleta de cada tarjeta al acertar.
-
-## 🕹️ Dinámica y Reglas del Juego Web (Modo Arcade)
-
-La aplicación web (`web/`) implementa un juego arcade interactivo de trivia cronológica técnica con físicas 3D de moneda, pistas térmicas y persistencia:
-
-### 🎯 Objetivo de la Partida
-Coleccionar **10 Tazos ganados** en tu Línea de Tiempo Personal adivinando los años de los hitos tecnológicos.
-
-### 🎲 Mecánica de Turno y Disparo
-1. **Lectura del Hito:** El Tazo se presenta en su anverso mostrando el hito histórico, autor(es) y tags temáticos (el año permanece oculto).
-2. **Ajuste de Año:** Usa el **Dial Cronológico** (deslizador retro), los botones de paso o los atajos de teclado (<kbd>+</kbd> / <kbd>-</kbd> / <kbd>&uarr;</kbd> / <kbd>&darr;</kbd>).
-3. **Lanzar Tiro:** Pulsa el botón **¡LANZAR TIRO!** o la tecla <kbd>Enter</kbd>.
-
-### 🏹 Tiros Disponibles (3 Intentos por Tarjeta)
-El HUD superior muestra **3 micro-tazos indicadores** que representan tus tiros disponibles para la tarjeta actual:
-* **Tiro Acertado:** Ganas la tarjeta y sumas puntos.
-* **Tiro Fallido:** Consume 1 tiro y muestra una pista cualitativa sin revelar la cifra:
-  * **Dirección:** `↑ Más reciente` (el año real es posterior) o `↓ Más antiguo` (el año real es anterior).
-  * **Temperatura:** `🔥 ¡Caliente!` ($\le 5$ años de diferencia), `🌡️ Tibio` ($\le 15$ años) o `❄️ Frío` ($> 15$ años).
-* **Último Tiro:** Cuando solo queda 1 intento, el indicador pulsa en color ámbar/fuego de advertencia.
-* **Agotar los 3 tiros:** Si fallas el tercer tiro, el Tazo se voltea automáticamente, revela su año sin sumar puntos y el tiro queda bloqueado.
-
-### 🏆 Sistema de Puntuación y Racha
-| Acontecimiento | Puntos | Racha | Línea de Tiempo |
-| :--- | :---: | :---: | :---: |
-| 🎯 **Año Exacto** | **+3 Puntos** | **+1 Racha** | Se agrega a Tazos Ganados |
-| 🟡 **Muy Cerca ($\pm 2$ años)** | **+1 Punto** | **+1 Racha** | Se agrega a Tazos Ganados |
-| ❄️ **Tiro Fallido** | **0 Puntos** | **Se reinicia a 0** | Quedan intentos restantes |
-| ❌ **3 Intentos Agotados** | **0 Puntos** | **Se reinicia a 0** | No se agrega al estante |
-| 👁️ **Revelar Año (Compra)** | **-5 Puntos** | **Se reinicia a 0** | Tiro bloqueado |
-
-* **Modo "On Fire" (`streak-hot`):** Al hilar **2 o más aciertos consecutivos**, la pastilla de Racha en el HUD emite un resplandor carmesí brillante.
-
-### 👁️ Revelar Año (-5 Puntos)
-* Puedes tocar la pastilla **REVELAR (-5 PTS)** en el reverso o el botón inferior para conocer la respuesta histórica.
-* **Regla estricta:** No se permiten puntos negativos. Si tienes menos de 5 puntos (`score < 5`), el año **no se revela** y el tiro sigue disponible.
-* Al revelar con éxito, se descuentan 5 puntos y el tiro se bloquea para ese Tazo.
-
-### 💾 Persistencia en Caché y Memoria de Tazos
-* Todo Tazo resuelto o revelado se guarda de forma persistente en **IndexedDB** (`idb-keyval`) con respaldo en `localStorage`.
-* Si vuelves a navegar a un Tazo ya resuelto, el juego recuerda su estado: el tiro permanece deshabilitado y no se puede volver a adivinar.
-* **Inspección de Tazos Ganados:** Haz clic sobre cualquier ficha de tu línea de tiempo para traerla al escenario 3D e inspeccionar su anverso, reverso y lore.
-
-### 🔀 Barajeo y Reinicio
-* **Barajeo automático:** Al iniciar la app, recargar la página o cambiar de mazo/volumen, la baraja se mezcla aleatoriamente mediante Fisher-Yates.
-* **Reiniciar Partida:** Puedes pulsar el botón de reinicio en el header, en el estante de Tazos Ganados o pulsar <kbd>Shift</kbd>+<kbd>R</kbd> para vaciar la línea de tiempo, resetear puntos/racha y limpiar la caché de tarjetas resueltas.
-
----
-
-## 🎮 Reglas de Juego en Mesa
-
-### Objetivo
-Ser el primer jugador o equipo en construir una **Línea de Tiempo cronológicamente correcta de 10 tarjetas**.
-
-### Preparación
-1. Toma el mazo barajado [`cards.json`](./data/cards.json) (o las tarjetas impresas con su numeración correlativa).
-2. Cada jugador recibe **1 tarjeta inicial boca arriba** (con el año visible), marcando el inicio de su línea temporal personal.
-3. Cada jugador recibe **3 tokens** (fichas o monedas de juego).
-
-### Mecánica del Turno
-1. **El Lector:** El jugador a la izquierda toma la carta superior del mazo y lee en voz alta **únicamente** el texto del frente (`hito`), sin mostrar el reverso ni revelar el año ni el creador.
-2. **La Apuesta Cronológica:** El jugador en turno decide dónde encaja ese hito en su línea de tiempo actual (antes, entre dos cartas existentes, o después).
-3. **El Desafío (Opcional):** Antes de revelar la carta, cualquier rival puede levantar un token y colocarlo en la posición donde considere que va, si cree que el jugador activo se equivocó.
-4. **La Revelación:** Se voltea la tarjeta para verificar el año (`year`):
-   - Si el jugador activo acertó: conserva la carta en su línea de tiempo.
-   - Si falló y un rival colocó su token en la posición correcta: ese rival se queda con la carta.
-5. **Puntos Bonus:** Si el jugador adivina con exactitud el año o el creador antes de voltearla, gana un token adicional.
-6. **Victoria:** El primer jugador en acumular 10 tarjetas en orden cronológico estricto gana la partida.
-
----
-
-## 🖨️ Impresión Profesional (Tabloide, Carta y Super Tabloide)
-
-El repositorio incluye un motor de imposición profesional para imprenta optimizado para hojas estándar **Tabloide (11 × 17 pulg)**, **Carta (8.5 × 11 pulg)** y **Super Tabloide (12 × 18 pulg)** para tarjetas cuadradas de **$65 \times 65\text{ mm}$**:
-
+### Pipeline de Verificación y Compilación
 ```bash
-# Compilar baraja completa para los 3 formatos (Tabloide, Carta y Super Tabloide)
-npm run print
-
-# Compilar un formato específico:
-npm run print:tabloide        # 11x17 pulg (15 cartas/pliego)
-npm run print:8x11            # 8.5x11 pulg (6 cartas/pliego)
-npm run print:carta           # Alias de 8x11
-
-# Generar muestras de prueba:
-npm run print:test            # Muestra para los 3 formatos
-npm run print:test:tabloide   # Muestra de 1 pliego Tabloide (15 cartas)
-npm run print:test:8x11       # Muestra de 1 pliego Carta (6 cartas)
-```
-
-### Salidas y Archivos de Distribución Oficial:
-* **[`print/v1.0.0/hit-tazos-tech-v1.0.0-tabloide.pdf`](./print/v1.0.0/hit-tazos-tech-v1.0.0-tabloide.pdf)**: Documento vectorial de 78 páginas ($11 \times 17\text{ pulg}$) con fuentes TrueType (`Noto Sans`, `WinAnsi`), sin rasterizado. Rejilla de $3 \times 5$ cartas por pliego con reversos espejados `[2, 1, 0]`, pie de autoría oficial de **shellaquiles.org** y metadatos PDF completos.
-* **[`print/v1.0.0/hit-tazos-tech-v1.0.0-carta.pdf`](./print/v1.0.0/hit-tazos-tech-v1.0.0-carta.pdf)**: Documento vectorial de 192 páginas ($8.5 \times 11\text{ pulg}$) con fuentes TrueType (`Noto Sans`, `WinAnsi`). Rejilla de $2 \times 3$ cartas por pliego con reversos espejados `[1, 0]` para coincidencia milimétrica en cualquier impresora doméstica o de oficina.
-* **[`print/v1.0.0/hit-tazos-tech-v1.0.0-super-tabloide.pdf`](./print/v1.0.0/hit-tazos-tech-v1.0.0-super-tabloide.pdf)**: Documento vectorial de 64 páginas ($12 \times 18\text{ pulg}$) con rejilla de $3 \times 6$ cartas por pliego para prensas digitales de gran formato.
-* **[`print/v1.0.0/svg/`](./print/v1.0.0/svg/)**: Pliegos SVG individuales vectoriales organizados por formato (`tabloide/`, `carta/`, `super_tabloide/`) con capas editables y metadatos Dublin Core (`dc:creator = shellaquiles.org`, `dc:relation = https://shellaquiles.org`).
-* **[`data/manifest.json`](./data/manifest.json):** Manifiesto JSON canónico del mazo con versión, autoría, rangos cronológicos y sumarios editoriales.
-
----
-
-## 📚 Taxonomía de la Baraja (8 Volúmenes / 576 Cartas)
-
-La baraja completa consta de **576 cartas** rigurosamente investigadas y estructuradas en 8 volúmenes canónicos:
-
-| Volumen | Slug | Cartas | Descripción y Enfoque Temático |
-| :--- | :--- | :---: | :--- |
-| **Vol 0** | `kernel-foundations` | 128 | Bases de la computación, arquitectura von Neumann, lógica binaria, teoría de la información y algoritmos madre. |
-| **Vol 1** | `cypherpunks-hacker-lore` | 64 | Criptografía asimétrica, manifiestos cypherpunk, ciberseguridad, FOSS, P2P y leyendas de la red. |
-| **Vol 2** | `embedded-silicon-hardware` | 64 | Microprocesadores clásicos, silicio, microcontroladores, arquitecturas RISC/CISC, GPUs y hardware embebido. |
-| **Vol 3** | `unix-sysadmin-networks` | 64 | Filosofía UNIX, protocolos de red (TCP/IP, DNS, HTTP), administración de sistemas y software libre. |
-| **Vol 4** | `backend-distributed-systems` | 64 | Arquitecturas distribuidas, motores de bases de datos, paradigmas backend, colas de mensajes y concurrencia. |
-| **Vol 5** | `cloud-containers-sre` | 64 | Contenedores, orquestación con Kubernetes, nubes públicas, observabilidad, CI/CD e ingeniería SRE. |
-| **Vol 6** | `python-track` | 64 | Historia de Python, PEPs emblemáticos, GIL, runtimes, ecosistemas web/asíncronos y herramientas modernas. |
-| **Vol 7** | `scifi-pop-culture-cinema` | 64 | Literatura especulativa, clásicos ciberpunk, cine hacker, efectos visuales (CGI/VFX) y cultura pop técnica. |
-
----
-
-## 🛠️ Especificaciones Técnicas y Desarrollo
-
-Para desarrolladores, diseñadores y agentes de inteligencia artificial:
-* Consulta [**`AGENTS.md`**](./AGENTS.md) para la **especificación técnica maestra**, incluyendo el contrato JSON de datos, presupuestos estrictos de caracteres ($\le 45$ autor, $\le 145$ hito, $\le 150$ trivia), matemáticas del sistema cromático HSL, fórmulas de imposición y flujo obligatorio de compilación.
-
-### 🔤 Soporte Offline y Tipografías Locales
-La aplicación web utiliza por defecto las familias tipográficas modernas **Outfit** y **Space Grotesk**. Para garantizar una experiencia óptima y totalmente funcional en entornos desconectados (sin acceso a internet / air-gapped):
-1. **Directivas `@font-face` locales:** El repositorio incluye los 6 archivos TrueType (`.ttf`) oficiales en [`web/assets/fonts/`](./web/assets/fonts/), configurados en [`web/style.css`](./web/style.css) como respaldo local automático en caso de que Google Fonts no esté disponible.
-2. **Instalación en el sistema operativo (opcional para imprenta):** Para desarrolladores que generen pliegos de imprenta mediante Cairo (`rsvg-convert`) sin dependencias de red, estas fuentes pueden instalarse directamente en el sistema:
-   ```bash
-   # En distribuciones Linux:
-   mkdir -p ~/.local/share/fonts
-   cp web/assets/fonts/*.ttf ~/.local/share/fonts/
-   fc-cache -f -v
-   ```
-
-### 🏷️ Gobernanza y Sincronización de Versión
-La versión canónica del proyecto reside exclusivamente en el archivo [`VERSION`](./VERSION). Para evitar inconsistencias entre metadatos (`package.json`, `data/manifest.json`, `README.md`, `index.html`, `og-cover.svg`), se incluye un verificador automático:
-```bash
-# Validar paridad de versión:
-npm run version:check
-
-# Sincronizar automáticamente todos los archivos con VERSION:
-npm run version:sync
-```
-
-### 🧪 Suite de Pruebas Automatizadas y Calidad de Código
-El proyecto cuenta con un pipeline de calidad integral y una suite de pruebas unitarias nativas (`node --test`) para garantizar la precisión factual de los datos, la estabilidad del motor y la prevención de regresiones:
-
-```bash
-# Ejecutar suite completa (Versión + Auditoría de 576 cartas + Pruebas unitarias + Sintaxis):
+# 1. Ejecutar suite de calidad integral (Paridad de versión + Auditoría 4 niveles + 24 tests unitarios):
 npm test
 
-# Ejecutar únicamente pruebas unitarias (24 tests en ~300ms):
-npm run test:unit
+# 2. Compilar mazo maestro y manifiesto oficial tras editar volúmenes:
+npm run build
+
+# 3. Generar pliegos y PDFs oficiales de imprenta:
+npm run print
 ```
 
-#### Arquitectura Modular del Cliente Web (`web/core/`):
-La lógica del cliente opera con **ES Modules nativos sin empaquetadores (Zero-Bundler)** estructurados bajo el principio de responsabilidad única (SRP):
-- **`web/core/constants.js`:** Reglas canónicas (`GAME_RULES`), límites temporales y paletas cromáticas.
-- **`web/core/rules.js`:** Motor de cálculo con funciones puras para puntuación (+3 exacto, +1 cercano $\pm2$) y pistas térmicas anti-spoiler.
-- **`web/core/storage.js`:** `StorageAdapter` con persistencia dual asíncrona (IndexedDB + LocalStorage) y validación de esquemas en tiempo de ejecución.
-- **`web/core/state.js`:** `GameState` reactivo con patrón **Observer (Pub/Sub)** desacoplado de la interfaz gráfica.
-- **`web/core/audio.js`:** `AudioEngine` encapsulado con Howler para efectos de audio retro sin fugas de contexto.
-- **`web/core/renderer.js`:** `CardRenderer` para generación segura de Tazos circulares (arco seguro $r=112$) y tarjetas cuadradas.
-- **`web/app.js`:** Orquestador de vistas, atajos de teclado y gestos táctiles.
+### Arquitectura Modular (`web/core/`):
+- **`web/core/constants.js`:** Constantes canónicas (`GAME_RULES`), límites temporales y paletas cromáticas.
+- **`web/core/rules.js`:** Funciones puras de puntuación (+3 exacto, +1 cercano $\pm2$) y pistas térmicas anti-spoiler.
+- **`web/core/storage.js`:** `StorageAdapter` con almacenamiento dual asíncrono (IndexedDB + LocalStorage) y validación de esquemas.
+- **`web/core/state.js`:** `GameState` reactivo con patrón **Observer (Pub/Sub)** desacoplado de la interfaz.
+- **`web/core/audio.js`:** `AudioEngine` encapsulado para sintetizar efectos retro con Web Audio API.
+- **`web/core/renderer.js`:** Orquestador unificado con soporte dual:
+  - `web/core/tazo-renderer.js`: Disco físico circular 3D y texto curvado SVG ($r=112$).
+  - `web/core/cards-renderer.js`: Tarjetas cuadradas de sobremesa ($65 \times 65\text{ mm}$).
+- **`web/app.js`:** Orquestador del cliente web, gestor de eventos DOM, gestos táctiles y atajos de teclado.
+
+Para especificaciones avanzadas de datos, consulta [**`AGENTS.md`**](./AGENTS.md).
 
 ---
 
 ## 📄 Comunidad y Licencia
 
-Desarrollado bajo la licencia MIT como parte del ecosistema de proyectos de **shellaquiles.org**.
+Desarrollado bajo licencia MIT como parte del ecosistema de herramientas libres de **shellaquiles.org**.
 
-- 📜 [Licencia MIT](./LICENSE)
-- 📋 [Historial de Cambios (Changelog)](./CHANGELOG.md)
-- 🤝 [Guía de Contribución](./CONTRIBUTING.md)
-- 🛡️ [Política de Seguridad](./SECURITY.md)
-- 📜 [Código de Conducta](./CODE_OF_CONDUCT.md)
+* 📜 [Licencia MIT](./LICENSE)
+* 📋 [Historial de Versiones (Changelog)](./CHANGELOG.md)
+* 🤝 [Guía de Contribución](./CONTRIBUTING.md)
+* 🛡️ [Política de Seguridad](./SECURITY.md)
+* 📜 [Código de Conducta](./CODE_OF_CONDUCT.md)
