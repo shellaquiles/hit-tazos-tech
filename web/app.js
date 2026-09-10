@@ -15,6 +15,7 @@ import { StorageAdapter } from './core/storage.js';
 import { GameState } from './core/state.js';
 import { AudioEngine } from './core/audio.js';
 import { CardRenderer } from './core/renderer.js';
+import { ArcChronoDial } from './core/arc-dial.js';
 
 export const CARD_SELECTOR = CARD_SELECTORS.ACTIVE_CARD;
 export const YEAR_STAGE_SELECTOR = CARD_SELECTORS.YEAR_STAGE;
@@ -34,6 +35,9 @@ export class HitTazosApp {
     this.filteredCatalog = [];
     this.currentView = 'play';
     this.fuse = null;
+    this.arcDial = null;
+    this.chronoArcContainer = null;
+    this.hudStreakFire = null;
     this.touchGestureInstance = null;
     this.fanningGestureInstance = null;
     this.isFanningDragging = false;
@@ -44,6 +48,7 @@ export class HitTazosApp {
     this.isFirstTimeOnboarding = false;
 
     this.initDOM();
+    this.initArcDial();
     this.bindStateEvents();
     this.bindDOMEvents();
     this.bindKeyboardShortcuts();
@@ -151,7 +156,9 @@ export class HitTazosApp {
     this.hudScore = document.getElementById('hud-score');
     this.hudStreak = document.getElementById('hud-streak');
     this.hudStreakBox = document.getElementById('hud-streak-box');
+    this.hudStreakFire = document.getElementById('hud-streak-fire');
     this.chronoDial = document.getElementById('chrono-dial');
+    this.chronoArcContainer = document.getElementById('chrono-arc-container');
     this.displaySelectedYear = document.getElementById('display-selected-year');
     this.btnSubmitGuess = document.getElementById('btn-submit-guess');
     this.guessResultPill = document.getElementById('guess-result-pill');
@@ -202,6 +209,21 @@ export class HitTazosApp {
     this.btnCancelPrint = document.getElementById('btn-cancel-print');
   }
 
+  initArcDial() {
+    if (!this.chronoArcContainer) return;
+    this.arcDial = new ArcChronoDial({
+      container: this.chronoArcContainer,
+      syncInput: this.chronoDial,
+      minYear: CHRONO_BOUNDS.MIN_YEAR,
+      maxYear: CHRONO_BOUNDS.MAX_YEAR,
+      initialYear: CHRONO_BOUNDS.DEFAULT_YEAR,
+      onChange: (year) => {
+        if (this.displaySelectedYear) this.displaySelectedYear.textContent = year;
+        this.audio.play('tick');
+      }
+    });
+  }
+
   // ── Conexión Reactiva Estado -> Interfaz (Observer Pattern) ───────────────
 
   bindStateEvents() {
@@ -212,8 +234,10 @@ export class HitTazosApp {
       if (this.hudStreakBox) {
         if (streak >= GAME_RULES.HOT_STREAK_THRESHOLD) {
           this.hudStreakBox.classList.add('streak-hot');
+          if (this.hudStreakFire) this.hudStreakFire.style.display = 'inline';
         } else {
           this.hudStreakBox.classList.remove('streak-hot');
+          if (this.hudStreakFire) this.hudStreakFire.style.display = 'none';
         }
       }
       this.persistGameState();
@@ -441,7 +465,9 @@ export class HitTazosApp {
 
     if (this.chronoDial) {
       this.chronoDial.addEventListener('input', (e) => {
-        if (this.displaySelectedYear) this.displaySelectedYear.textContent = e.target.value;
+        const val = parseInt(e.target.value, 10);
+        if (this.displaySelectedYear) this.displaySelectedYear.textContent = val;
+        if (this.arcDial) this.arcDial.setYear(val, false);
         this.audio.play('tick');
       });
     }
@@ -924,12 +950,14 @@ export class HitTazosApp {
             </div>
           `;
         } else {
+          const totalUpcoming = Math.max(0, this.state.activeDeck.length - 1 - this.state.currentIndex);
           return `
-            <div class="pile-card pile-card-top pile-card-deckback" style="${cssVars}">
+            <div class="pile-card pile-card-top pile-card-deckback pile-card-arcade" style="${cssVars}">
               <div class="pile-deckback-inner">
                 <div class="pile-deckback-border">
-                  <i data-lucide="layers" class="pile-deckback-icon"></i>
-                  <span class="pile-deckback-text">HIT-CARDS</span>
+                  <span class="pile-arcade-title">TECH</span>
+                  <span class="pile-arcade-subtitle">TRIVIA</span>
+                  <span class="pile-arcade-count">${totalUpcoming} cartas rest.</span>
                 </div>
               </div>
             </div>
@@ -1274,10 +1302,11 @@ export class HitTazosApp {
   }
 
   nudgeYear(delta) {
-    if (!this.chronoDial) return;
-    const cur = parseInt(this.chronoDial.value, 10) || CHRONO_BOUNDS.DEFAULT_YEAR;
+    if (!this.chronoDial && !this.displaySelectedYear) return;
+    const cur = parseInt(this.chronoDial?.value || this.displaySelectedYear?.textContent, 10) || CHRONO_BOUNDS.DEFAULT_YEAR;
     const nextVal = Math.max(CHRONO_BOUNDS.MIN_YEAR, Math.min(CHRONO_BOUNDS.MAX_YEAR, cur + delta));
-    this.chronoDial.value = nextVal;
+    if (this.chronoDial) this.chronoDial.value = nextVal;
+    if (this.arcDial) this.arcDial.setYear(nextVal, false);
     if (this.displaySelectedYear) this.displaySelectedYear.textContent = nextVal;
     this.audio.play('tick');
   }
@@ -1293,18 +1322,22 @@ export class HitTazosApp {
       const chip = document.createElement('div');
       const theme = this.renderer.getCardTheme(c);
       const isSelected = currentCard && currentCard.id === c.id;
-      chip.className = `shelf-disc-chip shelf-tazo-chip ${isSelected ? 'active' : ''}`;
+      const chipNum = formatCardIdNumber(c.id);
+
+      const boldMatch = c.hito ? c.hito.match(/\*\*([^*]+)\*\*/) : null;
+      const title = boldMatch ? boldMatch[1] : (c.autor || c.domain || 'Tecnología');
+
+      chip.className = `shelf-rack-card shelf-disc-chip shelf-tazo-chip ${isSelected ? 'active' : ''}`;
       chip.style.setProperty('--disc-color', theme.bg);
       chip.style.setProperty('--tazo-color', theme.bg);
       chip.setAttribute('data-card-id', c.id);
-      const chipNum = formatCardIdNumber(c.id);
-      chip.title = `${c.year} — ${c.autor || ''} (Toca para ver Tazo)`;
+      chip.title = `${c.year} — ${c.autor || ''}: ${title} (#${chipNum})`;
       chip.setAttribute('role', 'button');
       chip.setAttribute('tabindex', '0');
-      chip.setAttribute('aria-label', `Ver Tazo del año ${c.year}: ${c.autor || ''}`);
+      chip.setAttribute('aria-label', `Ver tarjeta del año ${c.year}: ${title}`);
       chip.innerHTML = `
-        <div class="shelf-disc-year shelf-tazo-year">${c.year}</div>
-        <div class="shelf-disc-id shelf-tazo-id">${chipNum}</div>
+        <div class="shelf-rack-year-badge shelf-disc-year shelf-tazo-year">${c.year}</div>
+        <div class="shelf-rack-title">${title}</div>
       `;
       this.shelfCardsContainer.appendChild(chip);
     });
