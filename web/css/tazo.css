@@ -37,7 +37,7 @@
     0 0 0 1px rgba(0, 0, 0, 0.06);
 }
 
-/* 1. Base del Disco: Acrílico mate pulido con bisel de titanio y neofrost */
+/* 1. Base del Tazo con el color real de la tarjeta */
 .disc-face,
 .tazo-face {
   position: absolute;
@@ -52,18 +52,29 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  /* Cuerpo del disco teñido con el color de la tarjeta */
+  background: radial-gradient(
+    circle at 38% 30%,
+    color-mix(in srgb, var(--tazo-color, #e86328) 85%, #ffffff) 0%,
+    var(--tazo-color, #e86328) 50%,
+    color-mix(in srgb, var(--tazo-color, #e86328) 80%, #000000) 88%,
+    #0f172a 100%
+  ) !important;
+
+  /* Bisel exterior de plástico prensado */
+  border: 4px solid color-mix(in srgb, var(--tazo-color, #e86328) 45%, #ffffff) !important;
   box-shadow:
-    /* Sombra de apoyo en mesa */
-    0 24px 48px -12px rgba(0, 0, 0, 0.6),
-    /* Bisel exterior maquinado */
-    inset 0 1px 1px rgba(255, 255, 255, 0.35),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.7),
-    /* Rebaje del surco circular interior */
-    inset 0 0 0 12px rgba(0, 0, 0, 0.25);
+    0 22px 42px -8px rgba(0, 0, 0, 0.45),
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    inset 0 2.5px 5px rgba(255, 255, 255, 0.6),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.5),
+    /* Surco concéntrico para apilar */
+    inset 0 0 0 14px color-mix(in srgb, var(--tazo-color, #e86328) 75%, #000000),
+    inset 0 0 0 16px rgba(255, 255, 255, 0.35) !important;
 }
 
-/* Destello especular diagonal (Cristal zafiro) */
+/* Destello especular diagonal */
 .disc-face::after,
 .tazo-face::after {
   content: '';
@@ -72,25 +83,19 @@
   border-radius: 50%;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.03) 40%,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.08) 40%,
     transparent 60%
   );
   pointer-events: none;
   z-index: 15;
 }
 
-/* 2. Anverso: Neofrost con gradiente radial oscuro de 4 capas */
+/* 2. Anverso */
 .disc-front,
 .tazo-front,
 .disc-face-front,
 .tazo-face-front {
-  background: radial-gradient(
-    circle at 35% 30%,
-    color-mix(in srgb, var(--disc-c2, #0e7490) 45%, #050811) 0%,
-    var(--disc-c1, #0f172a) 65%,
-    #050811 100%
-  ) !important;
   transform: rotateY(0deg);
 }
 
@@ -104,31 +109,37 @@
 
 .ring-outer {
   inset: 0;
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   background: transparent;
 }
 
+/* 2. Surco intermedio (ring-mid): sutil integrado */
 .ring-mid {
   inset: 44px;
-  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.04) 0%, rgba(0, 0, 0, 0.3) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow:
-    inset 0 2px 8px rgba(0, 0, 0, 0.45),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
 }
 
-/* 3. Reverso: Superficie oscura de obsidiana mate con micro-gradiente de dominio */
+/* 3. Reverso: Superficie limpia del color de la tarjeta */
 .disc-back,
 .tazo-back,
 .disc-face-back,
 .tazo-face-back {
-  background: radial-gradient(
-    circle at 35% 25%,
-    color-mix(in srgb, var(--disc-c1, #0f172a) 35%, #050811) 0%,
-    #0b0f19 65%,
-    #020617 100%
-  ) !important;
   transform: rotateY(180deg);
+  background: var(--tazo-gradient, var(--tazo-color, #e86328)) !important;
+  box-shadow:
+    0 22px 42px -8px rgba(0, 0, 0, 0.45),
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    inset 0 1.5px 3px rgba(255, 255, 255, 0.5),
+    inset 0 -1.5px 3px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 10px rgba(255, 255, 255, 0.12) !important;
+}
+
+/* En el reverso desactivamos el destello especular para máxima nitidez */
+.disc-face-back::after,
+.tazo-face-back::after {
+  display: none !important;
 }
 
 /* Capas 3D y Compatibilidad Universal de Flip (Firefox / Safari / Chromium) */
@@ -323,11 +334,12 @@
   z-index: 25;
 }
 
+/* 5. Muescas perimetrales */
 .disc-notches span,
 .tazo-notches span {
   position: absolute;
-  background: rgba(255, 255, 255, 0.45);
-  box-shadow: 0 0 4px rgba(56, 189, 248, 0.4);
+  background: #0f172a !important;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.8);
   border-radius: 1px;
 }
 
@@ -378,94 +390,129 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 5;
+  z-index: 15;
+  transform: scale(1.10);
+  transform-origin: center center;
 }
 
+/* 4. Textos en arco perimetral: posicionados sobre el anillo exterior */
 .ring-label, .ring-sub {
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: 7.2px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  fill: #a5f3fc;
-  stroke: none !important;
-  opacity: 0.85;
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95));
+  font-size: 8.2px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1.3px !important;
+  filter: none !important;
 }
 
-/* Área central de lectura frontal */
+/* En el anverso: texto blanco nítido con contorno fino de contraste (sin blur) */
+.disc-face-front .ring-label,
+.disc-face-front .ring-sub,
+.tazo-face-front .ring-label,
+.tazo-face-front .ring-sub {
+  fill: #ffffff !important;
+  stroke: rgba(0, 0, 0, 0.75) !important;
+  stroke-width: 0.6px !important;
+  paint-order: stroke fill !important;
+  filter: none !important;
+}
+
+/* En el reverso: grabado de tinta oscura nítido sin sombras ni contornos borrosos */
+.disc-face-back .ring-label,
+.disc-face-back .ring-sub,
+.tazo-face-back .ring-label,
+.tazo-face-back .ring-sub,
+.disc-face-back svg text,
+.tazo-face-back svg text {
+  fill: var(--tazo-text, #111111) !important;
+  stroke: none !important;
+  stroke-width: 0 !important;
+  paint-order: normal !important;
+  filter: none !important;
+  text-shadow: none !important;
+  font-family: var(--font-display, 'Space Grotesk', sans-serif) !important;
+  font-size: 7.6px !important;
+  letter-spacing: 1.6px !important;
+  text-transform: uppercase !important;
+  opacity: 0.86 !important;
+  font-weight: 700 !important;
+}
+
+/* 2. Núcleo Anverso: superficie oscura de alto contraste con margen respecto al arco */
 .disc-core-front,
 .tazo-core-front {
   position: relative;
   z-index: 10;
-  width: 74%;
-  height: 74%;
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background: var(--tazo-front-bg, #111524) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.75), 0 2px 8px rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 0.75rem;
   box-sizing: border-box;
-  padding: 0.6rem;
 }
 
 .disc-hito-prose,
 .tazo-hito-prose {
   font-family: var(--font-sans, 'Outfit', sans-serif);
   font-size: clamp(0.84rem, 2.5vw, 0.98rem);
-  line-height: 1.45;
-  font-weight: 500;
-  color: #f1f5f9;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important;
   max-width: 90%;
 }
 
 .disc-hito-prose strong,
 .tazo-hito-prose strong {
-  color: #38bdf8; /* Azul cyan moderno */
-  font-weight: 800;
-  text-shadow: 0 2px 8px rgba(2, 132, 199, 0.5);
+  color: var(--tazo-accent, #38bdf8) !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
 }
 
 .disc-hito-prose code,
 .tazo-hito-prose code {
   font-family: var(--font-mono, monospace);
-  background: rgba(0, 0, 0, 0.4);
-  color: #38bdf8;
-  padding: 0.14rem 0.45rem;
-  border-radius: 5px;
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  font-size: 0.9em;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid color-mix(in srgb, var(--tazo-accent, #38bdf8) 60%, transparent) !important;
+  color: var(--tazo-accent, #38bdf8) !important;
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--tazo-accent, #38bdf8) 25%, transparent) !important;
 }
 
-/* 7. Reverso: Distribución Vertical Editorial (Autor / Año / Trivia) */
+/* 3. Reverso: Todo el color de la tarjeta + año gigante con holgura respecto a los arcos */
 .disc-core-back,
 .tazo-core-back {
   position: relative;
   z-index: 10;
   width: 72%;
-  height: 60%;
-  max-height: 60%;
+  height: 72%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   text-align: center;
+  padding: 0.45rem 0.5rem;
   box-sizing: border-box;
-  padding: 0.15rem 0.3rem;
 }
 
 /* Autor Arriba con zona de seguridad tipográfica respecto al arco superior */
 .disc-back-author,
 .tazo-back-author {
   font-family: var(--font-sans, 'Outfit', sans-serif);
-  font-size: clamp(0.78rem, 2.3vw, 0.90rem);
+  font-size: clamp(0.88rem, 2.6vw, 1.02rem);
   font-weight: 700;
-  color: #ffffff;
+  color: var(--tazo-text, #111111) !important;
   letter-spacing: -0.01em;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+  text-shadow: none !important;
+  filter: none !important;
   max-width: 90%;
-  line-height: 1.22;
+  line-height: 1.25;
   text-wrap: balance;
   margin-top: 0.1rem;
 }
@@ -475,8 +522,10 @@
 .disc-back-author strong,
 .tazo-back-author strong {
   font-style: normal;
-  font-weight: 700;
-  color: #ffffff;
+  font-weight: 800;
+  color: var(--tazo-text, #111111) !important;
+  text-shadow: none !important;
+  filter: none !important;
 }
 
 /* Año Hero en el Centro: Escultura metálica con gradiente puro */
@@ -505,17 +554,15 @@
 
 .year-number-giant {
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: clamp(3.4rem, 11vw, 4.4rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 0.88;
-  background: linear-gradient(180deg, #ffffff 20%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.45));
-  -webkit-text-stroke: 0 !important;
+  font-size: clamp(3.8rem, 13vw, 4.8rem);
+  font-weight: 900;
+  color: var(--tazo-text, #111111) !important;
+  line-height: 0.85;
+  letter-spacing: -2px;
+  filter: none !important;
   text-shadow: none !important;
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
 }
 
 .disc-year-hero.is-hidden .year-number-giant,
@@ -636,12 +683,13 @@
 .tazo-back-lore {
   font-family: var(--font-sans, 'Outfit', sans-serif);
   font-style: italic;
-  font-size: clamp(0.72rem, 2.1vw, 0.82rem);
-  line-height: 1.34;
-  color: #cbd5e1;
-  font-weight: 400;
-  max-width: 88%;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  font-size: clamp(0.76rem, 2.2vw, 0.86rem);
+  line-height: 1.38;
+  color: var(--tazo-text, #111111) !important;
+  font-weight: 500;
+  max-width: 90%;
+  text-shadow: none !important;
+  filter: none !important;
   text-wrap: pretty;
   margin-bottom: 0.1rem;
 }
@@ -649,6 +697,8 @@
 .disc-back-lore strong,
 .tazo-back-lore strong {
   font-style: italic;
-  color: #f1f5f9;
-  font-weight: 600;
+  color: var(--tazo-text, #111111) !important;
+  font-weight: 700;
+  text-shadow: none !important;
+  filter: none !important;
 }

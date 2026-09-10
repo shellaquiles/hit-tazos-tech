@@ -7,7 +7,7 @@ export class TazoRenderer {
    * Cuenta con radio seguro r=112 en el arco SVG, ranuras perimetrales (notchings)
    * y estructura física en capas (bisel CNC, face plate y foil reflection).
    */
-  static renderDisc(card, options = {}, catalog = null, formatMarkdown = (t) => t, getDiscPalette = () => ({})) {
+  static renderDisc(card, options = {}, catalog = null, formatMarkdown = (t) => t, getDiscPalette = () => ({}), getCardTheme = null) {
     const isFlipped = options.isFlipped !== undefined 
       ? options.isFlipped === true 
       : (options.isRevealed === true);
@@ -25,6 +25,13 @@ export class TazoRenderer {
     const creadorFormatted = formatMarkdown(card.autor);
 
     const palette = getDiscPalette(card) || {};
+    const theme = (typeof getCardTheme === 'function' ? getCardTheme(card) : (options.theme || null)) || {};
+
+    const tazoColor = theme.bg || palette.c1 || '#e86328';
+    const tazoGradient = theme.bgGradient || theme.bg || `linear-gradient(180deg, ${tazoColor} 0%, ${tazoColor} 100%)`;
+    const tazoAccent = theme.accent || palette.accent || '#38bdf8';
+    const tazoFrontBg = theme.frontBg || 'hsl(220, 35%, 10%)';
+    const tazoText = theme.text || '#111111';
 
     const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
     const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
@@ -48,7 +55,7 @@ export class TazoRenderer {
     const frontTopLabel = `${domainName} • ${tagName}`;
     const frontBottomLabel = `${volName} • #${cardNumStr}`;
     const backTopLabel = `${volName} • #${cardNumStr}`;
-    const backBottomLabel = `shellaquiles.org`;
+    const backBottomLabel = `SHELLAQUILES.ORG`;
 
     const discId = options.id !== undefined ? (options.id ? `id="${options.id}"` : '') : 'id="active-card-3d"';
     const uid = (card.id || 'disc').replace(/[^a-zA-Z0-9]/g, '_') + '_' + Math.floor(Math.random() * 1000);
@@ -57,11 +64,10 @@ export class TazoRenderer {
     const topPathB = `curve-tb-${uid}`;
     const botPathB = `curve-bb-${uid}`;
 
-    const accentColor = palette.accent || '#38bdf8';
     const glowColor = palette.glow || 'rgba(56, 189, 248, 0.4)';
 
     return `
-      <div class="disc-physical disc tazo-physical tazo-disc ${rarityClass} ${isFlipped ? 'is-flipped' : ''}" ${discId} style="--disc-c1: ${palette.c1 || '#0f172a'}; --disc-c2: ${palette.c2 || '#1e293b'}; --disc-accent: ${accentColor}; --disc-glow: ${glowColor}; --tazo-c1: ${palette.c1 || '#0f172a'}; --tazo-c2: ${palette.c2 || '#1e293b'};">
+      <div class="disc-physical disc tazo-physical tazo-disc ${rarityClass} ${isFlipped ? 'is-flipped' : ''}" ${discId} style="--tazo-color: ${tazoColor}; --tazo-gradient: ${tazoGradient}; --tazo-accent: ${tazoAccent}; --tazo-front-bg: ${tazoFrontBg}; --tazo-text: ${tazoText}; --disc-c1: ${palette.c1 || tazoColor}; --disc-c2: ${palette.c2 || '#1e293b'}; --disc-accent: ${tazoAccent}; --disc-glow: ${glowColor};">
 
         <!-- ANVERSO: DOMINIO + TAG + CITA COMPLETA + ID -->
         <div class="disc-face disc-front disc-face-front tazo-face tazo-front">

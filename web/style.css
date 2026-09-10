@@ -689,29 +689,31 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(18, 18, 22, 0.9);
+  background: rgba(15, 23, 42, 0.85) !important;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  padding: 0.35rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 0.28rem 0.75rem;
   border-radius: 999px;
   font-family: 'Space Grotesk', var(--font-display);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  color: #ffffff !important;
+  font-size: 0.72rem !important;
 }
 
 .pile-badge-text {
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 1px;
+  font-size: 0.72rem !important;
+  font-weight: 700;
+  letter-spacing: 0.8px;
   color: #94a3b8;
   text-transform: uppercase;
 }
 
 .pile-badge-count {
-  font-size: 0.76rem;
+  font-size: 0.72rem !important;
   font-weight: 800;
-  color: #f8fafc;
-  background: rgba(255, 255, 255, 0.18);
-  padding: 0.08rem 0.45rem;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.16);
+  padding: 0.05rem 0.45rem;
   border-radius: 6px;
   min-width: 20px;
   text-align: center;
@@ -776,15 +778,30 @@ main {
   pointer-events: none;
 }
 
-/* Formato Circular si es Hit-Tazo */
+/* Formato Circular si es Hit-Tazo (Piezas de polímero/cerámica real) */
+.deck-stack-disc,
 .pile-cards-wrapper.is-disc .pile-card {
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.35);
-  border-bottom: 5px solid #0f172a;
-  border-right: 3.5px solid #334155;
+  border-radius: 50% !important;
+  /* Color del tazo según la tarjeta física de la pila */
+  background: radial-gradient(
+    circle at 38% 30%,
+    color-mix(in srgb, var(--tazo-color, var(--card-bg, #e86328)) 85%, #ffffff) 0%,
+    var(--tazo-color, var(--card-bg, #e86328)) 50%,
+    color-mix(in srgb, var(--tazo-color, var(--card-bg, #e86328)) 80%, #000000) 88%,
+    #0f172a 100%
+  ) !important;
+  border: 2px solid color-mix(in srgb, var(--tazo-color, var(--card-bg, #e86328)) 45%, #ffffff) !important;
   box-shadow:
-    0 8px 22px rgba(0, 0, 0, 0.65),
-    inset 0 0 0 4px rgba(0, 0, 0, 0.4);
+    0 4px 10px rgba(15, 23, 42, 0.25),
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.5),
+    inset 0 -1.5px 2px rgba(0, 0, 0, 0.35) !important;
+}
+
+.pile-cards-wrapper.is-disc .pile-card-under {
+  border-color: color-mix(in srgb, var(--tazo-color, var(--card-bg, #e86328)) 40%, #ffffff) !important;
+  box-shadow:
+    0 2px 5px rgba(15, 23, 42, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4) !important;
 }
 
 /* Expansión física al pasar el cursor (Hover Stack Effect) */
@@ -820,6 +837,10 @@ main {
 
 .pile-cards-wrapper.is-disc .pile-empty-slot {
   border-radius: 50%;
+  background: rgba(241, 245, 249, 0.55) !important;
+  border: 2px dashed #cbd5e1 !important;
+  color: #94a3b8 !important;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.03) !important;
 }
 
 .pile-empty-slot i {
@@ -872,7 +893,7 @@ main {
   position: absolute;
   inset: 5px;
   border-radius: 50%;
-  border: 2px dashed rgba(255, 255, 255, 0.18);
+  border: 1.5px dashed rgba(100, 116, 139, 0.35);
   pointer-events: none;
 }
 
@@ -889,7 +910,7 @@ main {
 .pile-tazo-icon {
   width: 28px;
   height: 28px;
-  color: #38bdf8;
+  color: #0284c7;
 }
 
 .pile-tazo-text {
@@ -898,6 +919,7 @@ main {
   font-weight: 800;
   letter-spacing: 1.2px;
   color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 /* Cara Anterior Mini (Hit-Cards) */
@@ -982,6 +1004,7 @@ main {
   font-size: 0.68rem;
   font-weight: 800;
   color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
   line-height: 1.15;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -991,16 +1014,18 @@ main {
 
 .pile-tazo-year {
   font-family: 'Space Grotesk', var(--font-display);
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   font-weight: 800;
-  color: #38bdf8;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .pile-tazo-id {
-  font-family: 'Space Grotesk', var(--font-display);
-  font-size: 0.65rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 /* Permite que el disco vuele hacia afuera sin recortarse con un scrollbar */
@@ -1038,6 +1063,22 @@ main {
   -webkit-touch-callout: none;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: visible !important;
+}
+
+/* Sombra de contacto elíptica centrada y localizada bajo la pieza física */
+.disc-stage::after,
+.tazo-stage::after {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 74%;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.16) 0%, rgba(15, 23, 42, 0.04) 50%, transparent 72%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .disc-stage:active,

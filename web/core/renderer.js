@@ -119,7 +119,8 @@ export class CardRenderer {
       options,
       this.catalog,
       (t) => this.formatMarkdown(t),
-      (c) => this.getDiscPalette(c)
+      (c) => this.getDiscPalette(c),
+      (c) => this.getCardTheme(c)
     );
   }
 

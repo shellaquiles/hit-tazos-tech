@@ -875,16 +875,15 @@ export class HitTazosApp {
       const slot = 5 - M + r;
       const tf = offsetTable[slot] || offsetTable[r] || offsetTable[4];
       const z = (r + 1) * 3;
-      const cssVars = `--tx: ${tf.tx}px; --ty: ${tf.ty}px; --rot: ${tf.rot}deg; --z: ${z}px; --htx: ${tf.htx}px; --hty: ${tf.hty}px; --hrot: ${tf.hrot}deg; z-index: ${r + 1};`;
       const theme = this.renderer.getCardTheme(card);
+      const cardColor = theme.bg || theme.accent || '#0284c7';
+      const cssVars = `--tx: ${tf.tx}px; --ty: ${tf.ty}px; --rot: ${tf.rot}deg; --z: ${z}px; --htx: ${tf.htx}px; --hty: ${tf.hty}px; --hrot: ${tf.hrot}deg; --tazo-color: ${theme.bg || cardColor}; --card-bg: ${cardColor}; --disc-accent: ${theme.accent || cardColor}; z-index: ${r + 1};`;
       const isTop = (r === M - 1);
 
       if (!isTop) {
-        const bg = isDisc
-          ? `radial-gradient(circle at 35% 30%, ${theme.topHex || '#334155'}, ${theme.bottomHex || '#1e293b'} 70%, #050811 100%)`
-          : (theme.bgGradient || theme.bg || '#1e293b');
+        const bg = isDisc ? '' : (theme.bgGradient || theme.bg || '#1e293b');
         return `
-          <div class="pile-card pile-card-under" style="${cssVars} background: ${bg};">
+          <div class="pile-card pile-card-under ${isDisc ? 'deck-stack-disc' : ''}" style="${cssVars} ${bg ? `background: ${bg};` : ''}">
             <div class="pile-card-under-edge"></div>
             ${isDisc ? '<div class="pile-tazoback-rim"></div>' : '<div class="pile-under-deck-line"></div>'}
             ${!isDisc ? `<div class="pile-under-tag">${card.domain ? card.domain.substring(0, 8) : ''}</div>` : ''}
@@ -896,12 +895,11 @@ export class HitTazosApp {
       if (isUpcoming) {
         // Reverso de mazo (Facedown)
         if (isDisc) {
-          const discBg = `radial-gradient(circle at 35% 30%, ${theme.topHex || '#334155'}, ${theme.bottomHex || '#1e293b'} 70%, #050811 100%)`;
           return `
-            <div class="pile-card pile-card-top pile-card-tazoback" style="${cssVars} background: ${discBg};">
+            <div class="pile-card pile-card-top pile-card-tazoback deck-stack-disc" style="${cssVars}">
               <div class="pile-tazoback-rim"></div>
               <div class="pile-tazoback-core">
-                <i data-lucide="disc" class="pile-tazo-icon"></i>
+                <i data-lucide="disc" class="pile-tazo-icon" style="color: #ffffff; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.6));"></i>
                 <span class="pile-tazo-text">HIT-TAZO</span>
               </div>
             </div>
@@ -922,13 +920,12 @@ export class HitTazosApp {
         // Carta anterior (Faceup mini con autor y detalles)
         const isRevealed = this.state.revealedCards.has(card.id);
         if (isDisc) {
-          const discBg = `radial-gradient(circle at 35% 30%, ${theme.topHex || '#334155'}, ${theme.bottomHex || '#1e293b'} 70%, #050811 100%)`;
           return `
-            <div class="pile-card pile-card-top pile-card-tazofaceup" style="${cssVars} background: ${discBg};">
+            <div class="pile-card pile-card-top pile-card-tazofaceup deck-stack-disc" style="${cssVars}">
               <div class="pile-tazoback-rim"></div>
               <div class="pile-tazofaceup-core">
                 <span class="pile-tazofaceup-author">${card.autor || ''}</span>
-                ${isRevealed ? `<span class="pile-tazo-year">${card.year}</span>` : `<span class="pile-tazo-id">${card.id}</span>`}
+                ${isRevealed ? `<span class="pile-tazo-year" style="color: ${cardColor};">${card.year}</span>` : `<span class="pile-tazo-id">${card.id}</span>`}
               </div>
             </div>
           `;
