@@ -18,10 +18,28 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
   - 17 tests unitarios en Node.js (`tests/rules.test.js`, `tests/state.test.js`, `tests/renderer.test.js`) integrados en el comando canónico `npm test` y `npm run test:unit`.
 - **Soporte de Formato Dual (Tazo circular vs. Tarjeta cuadrada)**:
   - Alternador interactivo mediante botón en cabecera y atajo de teclado <kbd>T</kbd>.
+- **Estética Cyber-Industrial y Estructura Física en 4 Capas (Tazos Neofrost 2026)**:
+  - Bisel exterior maquinado CNC en titanio con rebaje circular concéntrico de 12 mm y reflejo especular satinado.
+  - Núcleo central (face plate) con gradientes radiales oscuros profundos (`radial-gradient`) que preservan el fondo oscuro.
+  - Paletas de tonos joya oscuros por volumen/dominio: Kernel (petróleo/cian glacial), Python (índigo profundo/azul eléctrico/oro), Hacker Lore (carbón/verde fósforo/carmesí), Silicon Hardware (cobre ahumado/ámbar), Cloud (azul espacial/turquesa), AI (amatista/magenta láser) y Sci-Fi (obsidiana cósmica/púrpura).
+  - Micro-marcas láser de corte en cuadrantes y chips traslúcidos para tags y sintaxis.
+  - Reflejo metálico maquinado / anisotrópico reactivo al puntero (`mix-blend-mode: color-dodge`) en escalas metálicas puras (sin gradientes arcoíris).
+- **Sistema de Escalas de Edición y Rarezas Coleccionables**:
+  - `edition-standard`: Acabado policarbonato oscuro mate con tonalidad de dominio.
+  - `edition-silver`: Bisel plateado cromado con reflejo platino.
+  - `edition-gold`: Hitos fundacionales históricos con bisel latón pulido y reflejo ámbar/dorado satinado.
+  - `edition-holographic` (Black Chrome): Edición limitada en negro azabache con bisel de cromo pulido de alto contraste.
+- **Barajeo inicial y por volumen garantizado**:
+  - Algoritmo Fisher-Yates integrado en `setActiveDeck(deck, resetIndex, shuffle)` activado por defecto en la carga inicial (`init`) y al alternar entre volúmenes.
+- **Vista de Galería en Abanico (Fanning Card Gallery)**:
+  - Visualización en abanico interactivo con selector de modos cromáticos y navegación fluida.
 - **Rediseño modular de la Guía Rápida de Juego (`#help-dialog`)**:
   - 3 pasos gráficos escaneables, pastillas de puntuación claras y atajos de teclado agrupados por función.
 
 ### Cambiado
+- **Rediseño de Modal de Descarga e Impresión**:
+  - Cuadrícula compacta de 2 columnas de alto contraste para descarga de PDFs vectoriales oficiales por volumen.
+  - Retiro de la sección redundante de impresión directa en navegador (`printDuplexInBrowser`), centralizando la producción en los pliegos oficiales de imprenta.
 - **Ajuste de seguridad tipográfica en discos circulares**:
   - Radio SVG de texto curvado ajustado a $r=112$ y márgenes perimetrales en `disc-core` para evitar colisión con las ranuras físicas perimetrales.
 - **Limpieza de dependencias duplicadas**:

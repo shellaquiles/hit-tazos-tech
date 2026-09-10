@@ -292,5 +292,23 @@ Cualquier mutación de partida debe invocar `this.persistGameState()` para sincr
 * `hittazos_revealed`: Lista de IDs de cartas resueltas.
 
 ### 7. Barajeo y Reinicio:
-* **Barajeo inicial:** `this.activeDeck` se mezcla aleatoriamente con Fisher-Yates al iniciar, al recargar o al cambiar de volumen.
+* **Barajeo inicial:** `this.activeDeck` se mezcla aleatoriamente con Fisher-Yates al iniciar, al recargar o al cambiar de volumen mediante `setActiveDeck(deck, resetIndex, shuffle = true)`.
 * **Reinicio (`resetGame()`):** Solicita confirmación, restablece puntos a 0, racha a 0, vacía estante y caché persistente, y barajea el mazo nuevamente. Accesible vía botón en header, estante o atajo <kbd>Shift</kbd>+<kbd>R</kbd>.
+
+### 8. Estructura Física del Disco en 4 Capas y Sistema de Rarezas Coleccionables:
+* **Estructura en 4 Capas:**
+  1. **Bisel Exterior Maquinado (Aro CNC):** Bisel en titanio (`#334155` a `#475569`) con rebaje concéntrico de 12 mm (`inset 0 0 0 12px rgba(0,0,0,0.35)`).
+  2. **Núcleo Central (Face Plate):** Gradiente radial oscuro profundo (`radial-gradient(circle at 35% 30%, var(--disc-c2) 0%, var(--disc-c1) 70%, #050811 100%)`) organizado por familias cromáticas de tonos joya según el dominio técnico.
+  3. **Micro-marcas de precisión y tipografía periférica:** Marcas de corte láser en los cuatro cuadrantes y textos curvados SVG con radio seguro $r=112$ en blanco satinado/cian glacial.
+  4. **Chips de Sintaxis y Badges:** Superficies traslúcidas oscuras (`rgba(0,0,0,0.45)`) con borde al 25% del color de acento y tipografía emisora de luz.
+* **Reflejo Metálico Anisotrópico:** Simulación de reflexión de moneda/torno CNC mediante gradiente cónico con `mix-blend-mode: color-dodge` en escalas metálicas puras (sin gradientes arcoíris ni prismas multicolor).
+* **Escala de Rarezas:**
+  * **Standard (Core):** Acabado mate de policarbonato oscuro con el tono temático del dominio.
+  * **Silver Edition:** Bisel cromado con reflejo plata platino.
+  * **Gold Foil:** Hitos fundacionales históricos (ej. primer compilador, lanzamiento de UNIX, nacimiento de Linux) con bisel latón pulido y destellos ámbar/dorado.
+  * **Black Chrome (Edición Limitada):** Acabado negro azabache ultra-oscuro con bisel de cromo pulido de alto contraste.
+
+### 9. Descargas Oficiales de Imprenta (Modal de Alto Contraste):
+* Cuadrícula compacta de 2 columnas de alto contraste dentro de `#print-modal`, orientada a la descarga directa de los PDFs vectoriales oficiales por volumen generados desde el pipeline CLI (`npm run print`).
+* La generación duplicada en canvas de navegador (`printDuplexInBrowser`) ha sido removida en favor de la fidelidad tipográfica y de corte garantizada por los pliegos oficiales.
+
