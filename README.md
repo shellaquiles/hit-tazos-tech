@@ -24,8 +24,10 @@ npm run serve
 
 ### Modos de la Aplicación Web:
 * **🕹️ Partida Interactiva:** Tarjeta 3D que se voltea con animación WAAPI o barra espaciadora, flujo multi-intento con pistas direccionales (más reciente / más antiguo) y temperatura (frío/tibio/caliente), chips de décadas, racha de aciertos y repisa cronológica para coleccionar 10 cartas.
-* **🔄 Formato Dual (Tazo vs. Tarjeta):** Alterna en tiempo real entre la vista retro de **Tazo Físico Circular** (con ranuras y notchings) y la de **Tarjeta Cuadrada** clásica usando el botón en cabecera o la tecla <kbd>T</kbd>.
-* **🔍 Explorador y Catálogo:** Visualización en cuadrícula con el **"Orden del Mazo (Bloques de Color)"**, donde se aprecia la transición tonal continua de 10 en 10 de claro a oscuro, además de filtros por grupo y búsqueda en tiempo real.
+* **🔄 Experiencias Dedicadas (Hit-Tazo vs. Hit-Cards):** Pantalla de selección inicial y botón en cabecera para alternar entre el formato de **Tazo Físico Circular 3D** (con bisel CNC y ranuras *notchings*) y el de **Tarjeta Cuadrada de Sobremesa** clásica ($65 \times 65\text{ mm}$).
+* **📖 Guía Rápida de Juego Adaptativa:** Despliegue guiado automático en la primera visita con reglas, atajos de teclado y terminología adaptada al modo seleccionado.
+* **🃏 Pilas Físicas Laterales para Escritorio ($N=5$):** Montones tridimensionales a izquierda (descarte/historial) y derecha (mazo por jugar) con cantos visibles de papel marfil 350g, rotaciones orgánicas y navegación con clic o teclado.
+* **🔍 Explorador y Catálogo en Abanico:** Visualización en cuadrícula o abanico interactivo (*Fanning Mode*) con el **"Orden del Mazo (Bloques de Color)"**, filtros por grupo y búsqueda tolerante a fallas en tiempo real.
 * **🔊 Audio y FX:** Efectos de sonido retro sintetizados con Web Audio API y confeti dinámico con la paleta de cada tarjeta al acertar.
 
 ## 🕹️ Dinámica y Reglas del Juego Web (Modo Arcade)

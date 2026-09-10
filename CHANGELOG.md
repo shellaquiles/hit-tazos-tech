@@ -8,9 +8,13 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 
 ### Añadido
 - **Separación de Experiencias Dedicadas (Hit-Tazo vs. Hit-Cards)**:
-  - Selector inicial de versión (`#version-dialog`) con elección explícita entre Hit-Tazo (Tazos 3D físicos) y Hit-Cards (Tarjetas cuadradas de sobremesa 65×65 mm).
-  - Acceso directo para alternar versión en cualquier momento desde el isotipo de la cabecera.
+  - Selector inicial de versión (`#version-select-dialog`) con elección explícita entre Hit-Tazo (Tazos 3D físicos) y Hit-Cards (Tarjetas cuadradas de sobremesa 65×65 mm).
+  - Acceso directo para alternar versión en cualquier momento desde el isotipo de la cabecera (`#btn-brand-version`).
   - Hojas de estilo desacopladas (`web/css/tazo.css` y `web/css/cards.css`) y renderers especializados (`TazoRenderer` y `CardsRenderer`) sobre el motor lógico unificado.
+- **Flujo de Onboarding y Guía Rápida de Juego Adaptativa**:
+  - Despliegue automático de la "Guía Rápida de Juego" (`#help-dialog`) inmediatamente después de elegir por primera vez el modo de juego en la pantalla de bienvenida.
+  - Adaptación contextual y reactiva de los términos en el modal de ayuda según el formato activo (*"del tazo"* / *"10 tazos"* frente a *"de la tarjeta"* / *"10 cartas"*).
+  - Control de primera visita (`isFirstTimeOnboarding`), garantizando que la guía no interrumpa en visitas subsecuentes ni al cambiar de modo desde la cabecera.
 - **Pilas de Cartas Laterales para Escritorio ($N=5$)**:
   - Pilas físicas a la izquierda (cartas jugadas / línea de tiempo) y derecha (próximas por jugar en el mazo).
   - Efecto de apilado escalonado tridimensional con cantos visibles de papel marfil 350g, rotaciones angulares orgánicas y micro-tags identificadores.
@@ -23,6 +27,9 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
   - Renderizado 3D de disco físico con bisel CNC, ranuras perimetrales (*notchings*), gradiente oscuro neofrost y reflejo especular.
   - Compatibilidad total garantizada en Chromium, Safari y Firefox Gecko mediante directivas optimizadas de matriz 3D y descarte de caras.
   - Animaciones fluidas mediante Web Animations API (WAAPI) y transiciones elásticas.
+- **Mecánica Interactiva de Revelado de Año (-5 Puntos)**:
+  - Pastilla interactiva de revelado con validación de saldo mínimo (5 puntos) y penalización canónica de -5 pts con bloqueo de tiro.
+  - Consistencia tipográfica y visual entre anversos de tazos y naipes con resaltado homogéneo en entidades clave.
 - **Arquitectura Modular ES Modules Nativos (`web/core/`)**:
   - `web/core/constants.js`: Constantes canónicas centralizadas (`GAME_RULES`, `CHRONO_BOUNDS`, `STORAGE_KEYS`, paletas y taxonomía).
   - `web/core/rules.js`: Funciones puras de puntuación (+3 exacto, +1 cercano), pistas cualitativas direccionales/térmicas anti-spoiler y ordenamiento cronológico.
