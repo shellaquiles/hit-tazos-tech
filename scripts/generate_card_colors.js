@@ -13,16 +13,16 @@ const path = require('path');
 const TOTAL_CARDS = 1000;
 
 const PALETTE_BLOCKS = [
-  { id: 0, name: 'Rojo / Carmín cálido', h1: 350, h2: 356, s1: 72, s2: 88, l1: 70, l2: 54 },
-  { id: 1, name: 'Violeta / Morado medio', h1: 268, h2: 276, s1: 58, s2: 78, l1: 72, l2: 56 },
-  { id: 2, name: 'Naranja cálido', h1: 22, h2: 28, s1: 78, s2: 92, l1: 70, l2: 54 },
-  { id: 3, name: 'Lavanda / Malva suave', h1: 280, h2: 290, s1: 45, s2: 65, l1: 74, l2: 58 },
-  { id: 4, name: 'Amarillo / Ámbar dorado', h1: 42, h2: 48, s1: 82, s2: 96, l1: 72, l2: 56 },
-  { id: 5, name: 'Lila pálido / Azul pastel', h1: 245, h2: 258, s1: 48, s2: 70, l1: 75, l2: 58 },
-  { id: 6, name: 'Lima / Verde fresco', h1: 68, h2: 82, s1: 72, s2: 85, l1: 72, l2: 56 },
-  { id: 7, name: 'Turquesa / Cian oceánico', h1: 172, h2: 192, s1: 62, s2: 82, l1: 72, l2: 54 },
-  { id: 8, name: 'Rosa coral / Fucsia suave', h1: 335, h2: 345, s1: 68, s2: 86, l1: 72, l2: 56 },
-  { id: 9, name: 'Ocre / Canela tostado', h1: 32, h2: 38, s1: 65, s2: 82, l1: 70, l2: 54 }
+  { id: 0, name: 'Naranja Cobre / Ámbar', h1: 25, h2: 36, s1: 94, s2: 86, l1: 62, l2: 52 },
+  { id: 1, name: 'Lavanda / Malva', h1: 265, h2: 275, s1: 65, s2: 55, l1: 74, l2: 62 },
+  { id: 2, name: 'Rojo Carmín Vivo', h1: 348, h2: 358, s1: 84, s2: 76, l1: 60, l2: 50 },
+  { id: 3, name: 'Lila Pastel', h1: 282, h2: 292, s1: 45, s2: 35, l1: 76, l2: 66 },
+  { id: 4, name: 'Amarillo Dorado', h1: 44, h2: 54, s1: 95, s2: 88, l1: 66, l2: 52 },
+  { id: 5, name: 'Azul Glaciar', h1: 198, h2: 208, s1: 72, s2: 60, l1: 72, l2: 58 },
+  { id: 6, name: 'Verde Lima / Pistache', h1: 78, h2: 92, s1: 74, s2: 62, l1: 70, l2: 56 },
+  { id: 7, name: 'Turquesa / Océano', h1: 174, h2: 186, s1: 78, s2: 68, l1: 66, l2: 52 },
+  { id: 8, name: 'Rosa Coral Fucsia', h1: 330, h2: 342, s1: 84, s2: 74, l1: 68, l2: 54 },
+  { id: 9, name: 'Morado Índigo', h1: 248, h2: 258, s1: 62, s2: 52, l1: 65, l2: 52 }
 ];
 
 function hslToHex(h, s, l) {
@@ -47,6 +47,17 @@ function generateMillar(millarIndex = 1, startNum = 1, endNum = 1000) {
     const hue = Math.round((block.h1 + (block.h2 - block.h1) * subStep) * 10) / 10;
     const saturation = Math.round(block.s1 + (block.s2 - block.s1) * subStep);
     const lightness = Math.round(block.l1 + (block.l2 - block.l1) * subStep);
+
+    const topS = Math.max(saturation - 6, 20);
+    const topL = Math.min(lightness + 6, 85);
+    const botS = Math.min(saturation + 6, 100);
+    const botL = Math.max(lightness - 6, 40);
+
+    const topHex = hslToHex(hue, topS, topL);
+    const botHex = hslToHex(hue, botS, botL);
+    const topHsl = `hsl(${hue}, ${topS}%, ${topL}%)`;
+    const botHsl = `hsl(${hue}, ${botS}%, ${botL}%)`;
+    const bgGradient = `linear-gradient(180deg, ${topHsl} 0%, ${botHsl} 100%)`;
 
     const bgHex = hslToHex(hue, saturation, lightness);
     const frontBgHex = hslToHex(hue, 35, 10);
@@ -82,6 +93,11 @@ function generateMillar(millarIndex = 1, startNum = 1, endNum = 1000) {
       bg_hsl: `hsl(${hue}, ${saturation}%, ${lightness}%)`,
       bg_hex: bgHex,
       bg_cmyk: bgCmyk.string,
+      top_hex: topHex,
+      bottom_hex: botHex,
+      top_hsl: topHsl,
+      bottom_hsl: botHsl,
+      bg_gradient: bgGradient,
       front_bg_hsl: `hsl(${hue}, 35%, 10%)`,
       front_bg_hex: frontBgHex,
       front_bg_cmyk: frontBgCmyk.string,
@@ -94,12 +110,12 @@ function generateMillar(millarIndex = 1, startNum = 1, endNum = 1000) {
   let version = '1.0.0';
   try {
     version = fs.readFileSync(path.join(__dirname, '..', 'VERSION'), 'utf8').trim();
-  } catch (_) {}
+  } catch (_) { }
 
   return {
     description: 'Hit-Tazos Tech - Paleta cromática oficial independiente por card_number',
     version: version,
-    author: 'Shellaquiles Org (https://shellaquiles.org)',
+    author: 'shellaquiles.org (https://shellaquiles.org)',
     website: 'https://shellaquiles.org',
     license: 'MIT',
     millar: millarIndex,

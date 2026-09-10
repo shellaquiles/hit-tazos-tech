@@ -31,10 +31,10 @@ try {
 } catch (e) {
   try {
     APP_VERSION = require('../package.json').version;
-  } catch (_) {}
+  } catch (_) { }
 }
 
-const ORG_NAME = 'Shellaquiles Org';
+const ORG_NAME = 'shellaquiles.org';
 const ORG_URL = 'https://shellaquiles.org';
 const REPO_URL = 'https://github.com/shellaquiles/hit-tazos-tech';
 
@@ -77,6 +77,9 @@ function getCardTheme(card) {
       frontBg: c.front_bg_hsl,
       bgHex: c.bg_hex,
       frontBgHex: c.front_bg_hex,
+      topHex: c.top_hex || c.bg_hex,
+      bottomHex: c.bottom_hex || c.bg_hex,
+      bgGradient: c.bg_gradient || `linear-gradient(180deg, ${c.top_hex || c.bg_hex} 0%, ${c.bottom_hex || c.bg_hex} 100%)`,
       bgCmyk: c.bg_cmyk || 'cmyk(0%, 0%, 0%, 0%)',
       frontBgCmyk: c.front_bg_cmyk || 'cmyk(0%, 0%, 0%, 90%)',
       accentHex: c.accent_hex,
@@ -89,16 +92,16 @@ function getCardTheme(card) {
   const subStep = ((cardNum - 1) % 10) / 9;
 
   const paletteBlocks = [
-    { h1: 350, h2: 356, s1: 72, s2: 88, l1: 70, l2: 54 }, // 01-10: Rojo
-    { h1: 268, h2: 276, s1: 58, s2: 78, l1: 72, l2: 56 }, // 11-20: Violeta
-    { h1: 22, h2: 28, s1: 78, s2: 92, l1: 70, l2: 54 },   // 21-30: Naranja
-    { h1: 280, h2: 290, s1: 45, s2: 65, l1: 74, l2: 58 }, // 31-40: Lavanda
-    { h1: 42, h2: 48, s1: 82, s2: 96, l1: 72, l2: 56 },   // 41-50: Amarillo
-    { h1: 245, h2: 258, s1: 48, s2: 70, l1: 75, l2: 58 }, // 51-60: Lila
-    { h1: 68, h2: 82, s1: 72, s2: 85, l1: 72, l2: 56 },   // 61-70: Lima
-    { h1: 172, h2: 192, s1: 62, s2: 82, l1: 72, l2: 54 }, // 71-80: Turquesa
-    { h1: 335, h2: 345, s1: 68, s2: 86, l1: 72, l2: 56 }, // 81-90: Rosa
-    { h1: 32, h2: 38, s1: 65, s2: 82, l1: 70, l2: 54 }    // 91-100: Ocre
+    { h1: 25, h2: 36, s1: 94, s2: 86, l1: 62, l2: 52 },
+    { h1: 265, h2: 275, s1: 65, s2: 55, l1: 74, l2: 62 },
+    { h1: 348, h2: 358, s1: 84, s2: 76, l1: 60, l2: 50 },
+    { h1: 282, h2: 292, s1: 45, s2: 35, l1: 76, l2: 66 },
+    { h1: 44, h2: 54, s1: 95, s2: 88, l1: 66, l2: 52 },
+    { h1: 198, h2: 208, s1: 72, s2: 60, l1: 72, l2: 58 },
+    { h1: 78, h2: 92, s1: 74, s2: 62, l1: 70, l2: 56 },
+    { h1: 174, h2: 186, s1: 78, s2: 68, l1: 66, l2: 52 },
+    { h1: 330, h2: 342, s1: 84, s2: 74, l1: 68, l2: 54 },
+    { h1: 248, h2: 258, s1: 62, s2: 52, l1: 65, l2: 52 }
   ];
 
   const currentBlock = paletteBlocks[blockIndex] || paletteBlocks[0];
@@ -117,6 +120,13 @@ function getCardTheme(card) {
     return `#${f(0)}${f(8)}${f(4)}`;
   }
 
+  const topS = Math.max(saturation - 6, 20);
+  const topL = Math.min(lightness + 6, 85);
+  const botS = Math.min(saturation + 6, 100);
+  const botL = Math.max(lightness - 6, 40);
+
+  const topHex = hslToHex(hue, topS, topL);
+  const botHex = hslToHex(hue, botS, botL);
   const bgHex = hslToHex(hue, saturation, lightness);
   const frontBgHex = hslToHex(hue, 35, 10);
 
@@ -125,6 +135,9 @@ function getCardTheme(card) {
     frontBg: `hsl(${hue.toFixed(1)}, 35%, 10%)`,
     bgHex: bgHex,
     frontBgHex: frontBgHex,
+    topHex: topHex,
+    bottomHex: botHex,
+    bgGradient: `linear-gradient(180deg, ${topHex} 0%, ${botHex} 100%)`,
     accentHex: bgHex,
     textColor: '#111111',
     cornerColor: 'rgba(255, 255, 255, 0.7)'
@@ -401,8 +414,8 @@ function generateSvgSheets(cards, formatConfig, options) {
 
     const frontSvgContent = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${(pageWidthPt / MM_TO_PT).toFixed(1)}mm" height="${(pageHeightPt / MM_TO_PT).toFixed(1)}mm" viewBox="0 0 ${pageWidthPt} ${pageHeightPt}" style="background-color: #ffffff;">
-  <title>Hit-Tazos Tech v${APP_VERSION} — Pliego ${s + 1} (${paperLabel}) — Shellaquiles Org</title>
-  <desc>Juego de cartas de trivia cronológica técnica desarrollado por Shellaquiles Org (${ORG_URL}). Licencia MIT.</desc>
+  <title>Hit-Tazos Tech v${APP_VERSION} — Pliego ${s + 1} (${paperLabel}) — shellaquiles.org</title>
+  <desc>Juego de cartas de trivia cronológica técnica desarrollado por shellaquiles.org (${ORG_URL}). Licencia MIT.</desc>
   <metadata>
     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
       <rdf:Description>
@@ -499,9 +512,15 @@ ${frontCardsSvg}  </g>
 
         backCardsSvg += `    <!-- Tarjeta ${cleanCardNum} Reverso -->
     <g id="carta_${volId}_${hexPart}_reverso">
+      <defs>
+        <linearGradient id="grad_card_${volId}_${hexPart}_s${s + 1}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="${theme.topHex}" />
+          <stop offset="100%" stop-color="${theme.bottomHex}" />
+        </linearGradient>
+      </defs>
       ${marksSvg}
-      <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
-      <rect x="${bleedX}" y="${bleedY}" width="${bleedW}" height="${bleedH}" fill="${theme.bgHex}" />
+      <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) con degradado vertical oficial -->
+      <rect x="${bleedX}" y="${bleedY}" width="${bleedW}" height="${bleedH}" fill="url(#grad_card_${volId}_${hexPart}_s${s + 1})" />
 
       <!-- Contenido dentro del área de corte (65x65 mm) con margen de seguridad >= 8mm -->
       <g transform="translate(${cutX.toFixed(2)}, ${cutY.toFixed(2)})">
@@ -530,8 +549,8 @@ ${frontCardsSvg}  </g>
 
     const backSvgContent = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${(pageWidthPt / MM_TO_PT).toFixed(1)}mm" height="${(pageHeightPt / MM_TO_PT).toFixed(1)}mm" viewBox="0 0 ${pageWidthPt} ${pageHeightPt}" style="background-color: #ffffff;">
-  <title>Hit-Tazos Tech v${APP_VERSION} — Pliego ${s + 1} (${paperLabel}) [Reversos] — Shellaquiles Org</title>
-  <desc>Juego de cartas de trivia cronológica técnica desarrollado por Shellaquiles Org (${ORG_URL}). Licencia MIT.</desc>
+  <title>Hit-Tazos Tech v${APP_VERSION} — Pliego ${s + 1} (${paperLabel}) [Reversos] — shellaquiles.org</title>
+  <desc>Juego de cartas de trivia cronológica técnica desarrollado por shellaquiles.org (${ORG_URL}). Licencia MIT.</desc>
   <metadata>
     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
       <rdf:Description>
@@ -603,7 +622,7 @@ function attachPdfMetadata(pdfPath, formatConfig, version, volumeInfo = null) {
     }
   } catch (err) {
     if (fs.existsSync(tempOut)) {
-      try { fs.unlinkSync(tempOut); } catch (_) {}
+      try { fs.unlinkSync(tempOut); } catch (_) { }
     }
     console.warn(`   ⚠️ Advertencia al incrustar metadatos: ${err.message}`);
   }
@@ -629,7 +648,7 @@ function compileEditablePdf(svgFiles, outputPdfPath, formatConfig, volumeInfo = 
     execSync(`pdfunite ${tempPdfs.map(p => `"${p}"`).join(' ')} "${outputPdfPath}"`);
     console.log(`   📄 Archivo distribuible compilado: ${path.basename(outputPdfPath)}`);
 
-    // Inyectar metadatos oficiales de Shellaquiles Org
+    // Inyectar metadatos oficiales de shellaquiles.org
     attachPdfMetadata(outputPdfPath, formatConfig, APP_VERSION, volumeInfo);
 
     console.log(`🎉 ¡PDF vectorial editable listo para distribución!\n   📂 ${outputPdfPath}`);
@@ -637,9 +656,9 @@ function compileEditablePdf(svgFiles, outputPdfPath, formatConfig, volumeInfo = 
     console.error('⚠️ Error al compilar PDF editable:', err.message);
   } finally {
     tempPdfs.forEach(p => {
-      try { fs.unlinkSync(p); } catch (_) {}
+      try { fs.unlinkSync(p); } catch (_) { }
     });
-    try { fs.rmdirSync(tempPdfDir); } catch (_) {}
+    try { fs.rmdirSync(tempPdfDir); } catch (_) { }
   }
 }
 

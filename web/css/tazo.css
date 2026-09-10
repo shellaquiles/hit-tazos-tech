@@ -1,0 +1,667 @@
+/* ==========================================================================
+   HIT-TAZOS TECH: ESTILOS DEDICADOS PARA HIT-TAZO (DISCOS 3D FÍSICOS)
+   Anatomía Neofrost Glasso-Titanio, Bisel CNC, Ranuras Perimetrales (Notchings)
+   ========================================================================== */
+
+/* El disco tridimensional de inyección plástica */
+.disc-physical,
+.tazo-physical,
+.disc,
+.tazo-disc {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+  box-shadow:
+    0 20px 40px -12px rgba(15, 23, 42, 0.28),
+    0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.disc-physical.is-flipped,
+.tazo-physical.is-flipped,
+.disc.is-flipped,
+.tazo-disc.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.disc-stage:active .disc-physical,
+.tazo-stage:active .tazo-physical,
+.disc-stage:active .disc,
+.tazo-stage:active .tazo-disc {
+  box-shadow:
+    0 8px 18px -4px rgba(15, 23, 42, 0.22),
+    0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+/* 1. Base del Tazo con el color real de la tarjeta */
+.disc-face,
+.tazo-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  /* Cuerpo del disco: Tono profundo y saturado que hace resaltar el texto blanco */
+  background: radial-gradient(
+    circle at 50% 45%,
+    color-mix(in srgb, var(--tazo-color, #e86328) 85%, #000000 15%) 0%,
+    color-mix(in srgb, var(--tazo-color, #e86328) 95%, #000000 5%) 55%,
+    color-mix(in srgb, var(--tazo-color, #e86328) 60%, #000000 40%) 100%
+  ) !important;
+
+  /* Bisel exterior maquinado con profundidad física */
+  border: 4px solid color-mix(in srgb, var(--tazo-color, #e86328) 65%, #000000 35%) !important;
+  box-shadow:
+    0 22px 42px -8px rgba(0, 0, 0, 0.45),
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    inset 0 1.5px 3px rgba(255, 255, 255, 0.4),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* En el dial corregido no se aplica destello diagonal para no empañar el texto */
+.disc-face::after,
+.tazo-face::after {
+  display: none !important;
+}
+
+/* 2. Anverso */
+.disc-front,
+.tazo-front,
+.disc-face-front,
+.tazo-face-front {
+  transform: rotateY(0deg);
+}
+
+.disc-relief-ring,
+.tazo-relief-ring {
+  position: absolute;
+  border-radius: 50%;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.ring-outer {
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+}
+
+/* 2. Surco intermedio (ring-mid): sutil integrado */
+.ring-mid {
+  inset: 44px;
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 3. Reverso: Superficie limpia del color de la tarjeta */
+.disc-back,
+.tazo-back,
+.disc-face-back,
+.tazo-face-back {
+  transform: rotateY(180deg);
+  background: var(--tazo-gradient, var(--tazo-color, #e86328)) !important;
+  box-shadow:
+    0 22px 42px -8px rgba(0, 0, 0, 0.45),
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    inset 0 1.5px 3px rgba(255, 255, 255, 0.5),
+    inset 0 -1.5px 3px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 10px rgba(255, 255, 255, 0.12) !important;
+}
+
+/* En el reverso desactivamos el destello especular para máxima nitidez */
+.disc-face-back::after,
+.tazo-face-back::after {
+  display: none !important;
+}
+
+/* Capas 3D y Compatibilidad Universal de Flip (Firefox / Safari / Chromium) */
+.disc-physical .disc-front,
+.tazo-physical .tazo-front {
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+
+.disc-physical .disc-back,
+.tazo-physical .tazo-back {
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+.disc-physical.is-flipped .disc-front,
+.tazo-physical.is-flipped .tazo-front {
+  z-index: 1;
+}
+
+.disc-physical.is-flipped .disc-back,
+.tazo-physical.is-flipped .tazo-back {
+  z-index: 2;
+}
+
+/* Soporte específico Firefox Gecko para flip 3D */
+@supports (-moz-appearance: none) {
+  .disc-physical.is-flipped .disc-front,
+  .tazo-physical.is-flipped .tazo-front {
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+  .disc-physical:not(.is-flipped) .disc-back,
+  .tazo-physical:not(.is-flipped) .tazo-back {
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+  .disc-physical.is-flipped .disc-back,
+  .tazo-physical.is-flipped .tazo-back {
+    visibility: visible !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    z-index: 10 !important;
+  }
+  .disc-physical:not(.is-flipped) .disc-front,
+  .tazo-physical:not(.is-flipped) .tazo-front {
+    visibility: visible !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    z-index: 10 !important;
+  }
+}
+
+/* ── Escalas de Edición y Rareza (Coleccionables Especiales) ─────────────── */
+
+/* Edición Plata: Bisel plateado cromado satinado */
+.disc-physical.edition-silver .disc-face {
+  border: 1.5px solid rgba(226, 232, 240, 0.45) !important;
+  box-shadow:
+    0 24px 48px -12px rgba(0, 0, 0, 0.65),
+    inset 0 1px 2px rgba(255, 255, 255, 0.6),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.8),
+    inset 0 0 0 12px rgba(203, 213, 225, 0.08) !important;
+}
+
+.disc-physical.edition-silver .ring-outer {
+  border-color: rgba(226, 232, 240, 0.25);
+}
+
+.disc-physical.edition-silver .ring-label,
+.disc-physical.edition-silver .ring-sub {
+  fill: #f1f5f9;
+}
+
+.disc-physical.edition-silver::after {
+  opacity: 0.55;
+  background: conic-gradient(
+    from var(--tilt-angle, 0deg),
+    transparent 0deg,
+    rgba(255, 255, 255, 0.4) 45deg,
+    transparent 90deg,
+    rgba(226, 232, 240, 0.25) 135deg,
+    transparent 180deg,
+    rgba(255, 255, 255, 0.4) 225deg,
+    transparent 270deg,
+    rgba(226, 232, 240, 0.25) 315deg,
+    transparent 360deg
+  );
+}
+
+/* Edición Oro: Bisel de latón pulido / oro satinado con reflejo cálido */
+.disc-physical.edition-gold .disc-face {
+  border: 1.5px solid rgba(250, 204, 21, 0.55) !important;
+  box-shadow:
+    0 24px 48px -12px rgba(0, 0, 0, 0.7),
+    0 0 24px -4px rgba(245, 158, 11, 0.3),
+    inset 0 1px 2px rgba(254, 240, 138, 0.65),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.85),
+    inset 0 0 0 12px rgba(245, 158, 11, 0.12) !important;
+}
+
+.disc-physical.edition-gold .ring-outer {
+  border-color: rgba(250, 204, 21, 0.3);
+}
+
+.disc-physical.edition-gold .disc-notches span {
+  background: rgba(250, 204, 21, 0.85);
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.65);
+}
+
+.disc-physical.edition-gold .ring-label,
+.disc-physical.edition-gold .ring-sub {
+  fill: #ffffff !important;
+}
+
+.disc-physical.edition-gold .year-number-giant {
+  background: linear-gradient(180deg, #fef08a 15%, #d97706 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 14px rgba(217, 119, 6, 0.5));
+}
+
+.disc-physical.edition-gold::after {
+  opacity: 0.55;
+  background: conic-gradient(
+    from var(--tilt-angle, 0deg),
+    transparent 0deg,
+    rgba(254, 240, 138, 0.4) 45deg,
+    transparent 90deg,
+    rgba(245, 158, 11, 0.25) 135deg,
+    transparent 180deg,
+    rgba(254, 240, 138, 0.4) 225deg,
+    transparent 270deg,
+    rgba(245, 158, 11, 0.25) 315deg,
+    transparent 360deg
+  );
+}
+
+/* Edición Black Chrome (Edición limitada): Acabado negro azabache y bisel de cromo pulido */
+.disc-physical.edition-holographic .disc-face {
+  border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
+  background: radial-gradient(
+    circle at 35% 25%,
+    rgba(255, 255, 255, 0.08) 0%,
+    #050811 75%,
+    #000000 100%
+  ) !important;
+  box-shadow:
+    0 24px 48px -12px rgba(0, 0, 0, 0.95),
+    0 0 20px -2px rgba(255, 255, 255, 0.15),
+    inset 0 1px 3px rgba(255, 255, 255, 0.65),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.95),
+    inset 0 0 0 12px rgba(255, 255, 255, 0.05) !important;
+}
+
+.disc-physical.edition-holographic::after {
+  opacity: 0.6;
+  background: conic-gradient(
+    from var(--tilt-angle, 0deg),
+    transparent 0deg,
+    rgba(255, 255, 255, 0.45) 35deg,
+    rgba(226, 232, 240, 0.2) 65deg,
+    transparent 120deg,
+    rgba(255, 255, 255, 0.4) 215deg,
+    rgba(203, 213, 225, 0.18) 245deg,
+    transparent 300deg
+  );
+}
+
+.disc-physical.edition-holographic .ring-label,
+.disc-physical.edition-holographic .ring-sub {
+  fill: #f8fafc;
+}
+
+.disc-physical.edition-holographic .year-number-giant {
+  background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 50%, #64748b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.8));
+}
+
+/* 4. Marcas de precisión CNC / Micro-grabado láser minimalista */
+.disc-notches,
+.tazo-notches {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 25;
+}
+
+/* 5. Muescas perimetrales */
+.disc-notches span,
+.tazo-notches span {
+  position: absolute;
+  background: #0f172a !important;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.8);
+  border-radius: 1px;
+}
+
+.disc-notches span:nth-child(1),
+.tazo-notches span:nth-child(1) { top: 3px; left: calc(50% - 1px); width: 2px; height: 7px; }
+.disc-notches span:nth-child(2),
+.tazo-notches span:nth-child(2) { bottom: 3px; left: calc(50% - 1px); width: 2px; height: 7px; }
+.disc-notches span:nth-child(3),
+.tazo-notches span:nth-child(3) { left: 3px; top: calc(50% - 1px); width: 7px; height: 2px; }
+.disc-notches span:nth-child(4),
+.tazo-notches span:nth-child(4) { right: 3px; top: calc(50% - 1px); width: 7px; height: 2px; }
+
+/* 5. Reflejo metálico maquinado / Anisotrópico reactivo al puntero */
+.disc-physical::after,
+.tazo-physical::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from var(--tilt-angle, 0deg),
+    transparent 0deg,
+    rgba(255, 255, 255, 0.25) 45deg,
+    transparent 90deg,
+    rgba(203, 213, 225, 0.12) 135deg,
+    transparent 180deg,
+    rgba(255, 255, 255, 0.25) 225deg,
+    transparent 270deg,
+    rgba(203, 213, 225, 0.12) 315deg,
+    transparent 360deg
+  );
+  pointer-events: none;
+  opacity: 0.65;
+  transition: opacity 0.25s ease;
+  z-index: 8;
+}
+
+.disc-physical.is-flipped::after,
+.tazo-physical.is-flipped::after {
+  display: none !important;
+}
+
+/* 6. Textos curvados periféricos en SVG con grabado nítido por encima de reflejos */
+.disc-ring-text,
+.tazo-ring-text {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50 !important;
+  transform: scale(1.10);
+  transform-origin: center center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+  shape-rendering: geometricPrecision;
+}
+
+/* 4. Textos en arco perimetral: Rediseño exacto del nuevo dial (Blanco puro, negrita, micro-relieve) */
+.ring-label, .ring-sub {
+  font-family: var(--font-sans, 'Outfit', sans-serif) !important;
+  font-size: 9.2px !important;
+  font-weight: 700 !important;
+  fill: #ffffff !important;
+  stroke: none !important;
+  stroke-width: 0 !important;
+  paint-order: normal !important;
+  letter-spacing: 0.25px !important;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.75)) !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+/* 2. Núcleo Anverso: superficie oscura de alto contraste con margen respecto al arco */
+.disc-core-front,
+.tazo-core-front {
+  position: relative;
+  z-index: 10;
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background: var(--tazo-front-bg, #111524) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.75), 0 2px 8px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.75rem;
+  box-sizing: border-box;
+}
+
+.disc-hito-prose,
+.tazo-hito-prose {
+  font-family: var(--font-sans, 'Outfit', sans-serif);
+  font-size: clamp(0.84rem, 2.5vw, 0.98rem);
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important;
+  max-width: 90%;
+}
+
+.disc-hito-prose strong,
+.tazo-hito-prose strong {
+  color: var(--tazo-accent, #38bdf8) !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
+}
+
+.disc-hito-prose code,
+.tazo-hito-prose code {
+  font-family: var(--font-mono, monospace);
+  background: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid color-mix(in srgb, var(--tazo-accent, #38bdf8) 60%, transparent) !important;
+  color: var(--tazo-accent, #38bdf8) !important;
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--tazo-accent, #38bdf8) 25%, transparent) !important;
+}
+
+/* 3. Reverso: Todo el color de la tarjeta + año gigante con holgura respecto a los arcos */
+.disc-core-back,
+.tazo-core-back {
+  position: relative;
+  z-index: 10;
+  width: 72%;
+  height: 72%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 0.45rem 0.5rem;
+  box-sizing: border-box;
+}
+
+/* Autor Arriba con zona de seguridad tipográfica respecto al arco superior */
+.disc-back-author,
+.tazo-back-author {
+  font-family: var(--font-sans, 'Outfit', sans-serif);
+  font-size: clamp(0.88rem, 2.6vw, 1.02rem);
+  font-weight: 700;
+  color: var(--tazo-text, #111111) !important;
+  letter-spacing: -0.01em;
+  text-shadow: none !important;
+  filter: none !important;
+  max-width: 90%;
+  line-height: 1.25;
+  text-wrap: balance;
+  margin-top: 0.1rem;
+}
+
+.disc-back-author em,
+.tazo-back-author em,
+.disc-back-author strong,
+.tazo-back-author strong {
+  font-style: normal;
+  font-weight: 800;
+  color: var(--tazo-text, #111111) !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+/* Año Hero en el Centro: Escultura metálica con gradiente puro */
+.disc-year-hero,
+.tazo-year-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  margin: 0.1rem 0;
+  min-height: 3.6rem;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.disc-year-hero:hover,
+.tazo-year-hero:hover {
+  transform: scale(1.06);
+}
+
+.disc-year-hero:active,
+.tazo-year-hero:active {
+  transform: scale(0.96);
+}
+
+.year-number-giant {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: clamp(3.8rem, 13vw, 4.8rem);
+  font-weight: 900;
+  color: var(--tazo-text, #111111) !important;
+  line-height: 0.85;
+  letter-spacing: -2px;
+  filter: none !important;
+  text-shadow: none !important;
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+}
+
+.disc-year-hero.is-hidden .year-number-giant,
+.tazo-year-hero.is-hidden .year-number-giant {
+  display: none !important;
+}
+
+.disc-year-hero.is-hidden .year-scratch-badge,
+.tazo-year-hero.is-hidden .year-scratch-badge {
+  display: inline-flex !important;
+}
+
+/* Badge Interactivo de Revelado de Año en el Reverso del Tazo */
+.year-scratch-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.92);
+  color: #f8fafc;
+  padding: 0.55rem 1.15rem;
+  border-radius: 9999px;
+  border: 1.5px solid var(--disc-accent, #38bdf8);
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.7),
+    0 0 16px rgba(56, 189, 248, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.disc-year-hero:hover .year-scratch-badge,
+.tazo-year-hero:hover .year-scratch-badge {
+  background: #0f172a;
+  border-color: #7dd3fc;
+  color: #ffffff;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.8),
+    0 0 24px rgba(56, 189, 248, 0.6),
+    inset 0 1px 2px rgba(255, 255, 255, 0.45);
+}
+
+.disc-year-hero:active .year-scratch-badge,
+.tazo-year-hero:active .year-scratch-badge {
+  transform: translateY(0) scale(0.97);
+}
+
+.year-scratch-badge i,
+.year-scratch-badge svg {
+  width: 15px;
+  height: 15px;
+  color: var(--disc-accent, #38bdf8);
+  stroke: var(--disc-accent, #38bdf8);
+  filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.8));
+}
+
+.year-scratch-badge span {
+  display: inline-flex;
+  align-items: center;
+  color: #f8fafc;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* Variantes por Rareza / Edición del Tazo */
+.disc-physical.edition-gold .year-scratch-badge {
+  border-color: rgba(250, 204, 21, 0.8);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7), 0 0 16px rgba(245, 158, 11, 0.4);
+}
+.disc-physical.edition-gold .year-scratch-badge i,
+.disc-physical.edition-gold .year-scratch-badge svg {
+  color: #fde047;
+  stroke: #fde047;
+  filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.8));
+}
+
+.disc-physical.edition-silver .year-scratch-badge {
+  border-color: rgba(226, 232, 240, 0.7);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7), 0 0 16px rgba(226, 232, 240, 0.35);
+}
+.disc-physical.edition-silver .year-scratch-badge i,
+.disc-physical.edition-silver .year-scratch-badge svg {
+  color: #f8fafc;
+  stroke: #f8fafc;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+}
+
+.disc-physical.edition-holographic .year-scratch-badge {
+  border-color: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.85), 0 0 18px rgba(255, 255, 255, 0.4);
+}
+.disc-physical.edition-holographic .year-scratch-badge i,
+.disc-physical.edition-holographic .year-scratch-badge svg {
+  color: #ffffff;
+  stroke: #ffffff;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9));
+}
+
+.disc-year-hero.is-revealed .year-scratch-badge,
+.tazo-year-hero.is-revealed .year-scratch-badge {
+  display: none !important;
+}
+
+.disc-year-hero.is-revealed .year-number-giant,
+.tazo-year-hero.is-revealed .year-number-giant {
+  display: block !important;
+  animation: revealPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Trivia / Lore Abajo */
+.disc-back-lore,
+.tazo-back-lore {
+  font-family: var(--font-sans, 'Outfit', sans-serif);
+  font-style: italic;
+  font-size: clamp(0.76rem, 2.2vw, 0.86rem);
+  line-height: 1.38;
+  color: var(--tazo-text, #111111) !important;
+  font-weight: 500;
+  max-width: 90%;
+  text-shadow: none !important;
+  filter: none !important;
+  text-wrap: pretty;
+  margin-bottom: 0.1rem;
+}
+
+.disc-back-lore strong,
+.tazo-back-lore strong {
+  font-style: italic;
+  color: var(--tazo-text, #111111) !important;
+  font-weight: 700;
+  text-shadow: none !important;
+  filter: none !important;
+}
