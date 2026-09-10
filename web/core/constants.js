@@ -177,3 +177,41 @@ export const DOMAIN_ICONS = {
   'scifi-cinema': 'sparkles',
   'hacker-lore': 'terminal'
 };
+
+// Configuración Canónica de URLs Externas y Analítica UTM
+export const UTM_CONFIG = {
+  SOURCE: 'webapp',
+  CAMPAIGN: 'hit-tazos-tech',
+  MEDIUM: {
+    HEADER: 'header',
+    FOOTER: 'footer',
+    MODAL: 'modal',
+    HELP: 'help'
+  }
+};
+
+/**
+ * Construye o decora una URL con parámetros analíticos UTM estandarizados
+ * @param {string} url - URL base o completa
+ * @param {Object} [options] - Parámetros opcionales
+ * @returns {string} URL con query string UTM
+ */
+export function buildUtmUrl(url, { source = UTM_CONFIG.SOURCE, medium = 'web', campaign = UTM_CONFIG.CAMPAIGN } = {}) {
+  try {
+    const parsed = new URL(url);
+    parsed.searchParams.set('utm_source', source);
+    if (medium) parsed.searchParams.set('utm_medium', medium);
+    if (campaign) parsed.searchParams.set('utm_campaign', campaign);
+    return parsed.toString();
+  } catch {
+    const sep = url.includes('?') ? '&' : '?';
+    return `${url}${sep}utm_source=${encodeURIComponent(source)}&utm_medium=${encodeURIComponent(medium)}&utm_campaign=${encodeURIComponent(campaign)}`;
+  }
+}
+
+export const EXTERNAL_URLS = {
+  GITHUB_REPO: buildUtmUrl('https://github.com/shellaquiles/hit-tazos-tech', { medium: UTM_CONFIG.MEDIUM.FOOTER }),
+  GITHUB_RELEASE: buildUtmUrl('https://github.com/shellaquiles/hit-tazos-tech/releases/latest', { medium: UTM_CONFIG.MEDIUM.FOOTER, campaign: 'release' }),
+  ORG_HEADER: buildUtmUrl('https://shellaquiles.org', { medium: UTM_CONFIG.MEDIUM.HEADER }),
+  ORG_FOOTER: buildUtmUrl('https://shellaquiles.org', { medium: UTM_CONFIG.MEDIUM.FOOTER })
+};

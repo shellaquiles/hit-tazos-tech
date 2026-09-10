@@ -9,7 +9,7 @@ import {
   formatCardIdNumber,
   formatCollectorNumber 
 } from '../web/core/rules.js';
-import { GAME_RULES } from '../web/core/constants.js';
+import { GAME_RULES, UTM_CONFIG, buildUtmUrl, EXTERNAL_URLS } from '../web/core/constants.js';
 
 describe('Hit-Tazos Tech — Game Rules & Scoring Engine', () => {
 
@@ -104,6 +104,20 @@ describe('Hit-Tazos Tech — Game Rules & Scoring Engine', () => {
     assert.equal(formatCardIdNumber('vol5-0x12'), '5x12');
     assert.equal(formatCollectorNumber({ globalIndex: 7 }), '007');
     assert.equal(formatCollectorNumber({ index: 41 }), '042');
+  });
+
+  test('Configuración analítica y constructor de URLs UTM', () => {
+    assert.equal(UTM_CONFIG.SOURCE, 'webapp');
+    assert.equal(UTM_CONFIG.CAMPAIGN, 'hit-tazos-tech');
+
+    const testUrl = buildUtmUrl('https://github.com/shellaquiles/hit-tazos-tech', { medium: 'footer' });
+    assert.match(testUrl, /utm_source=webapp/);
+    assert.match(testUrl, /utm_medium=footer/);
+    assert.match(testUrl, /utm_campaign=hit-tazos-tech/);
+
+    assert.ok(EXTERNAL_URLS.GITHUB_RELEASE.includes('utm_source=webapp'));
+    assert.ok(EXTERNAL_URLS.ORG_HEADER.includes('utm_source=webapp'));
+    assert.ok(EXTERNAL_URLS.ORG_FOOTER.includes('utm_source=webapp'));
   });
 
 });
