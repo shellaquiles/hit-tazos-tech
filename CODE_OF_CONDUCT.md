@@ -14,4 +14,4 @@ Ejemplos de comportamiento que contribuyen a crear un ambiente positivo:
 
 ## Licencia y Organización
 
-Administrado bajo los lineamientos del ecosistema de **Shellaquiles Org**.
+Administrado bajo los lineamientos del ecosistema de **shellaquiles.org**.

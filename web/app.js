@@ -1,109 +1,140 @@
-// Hit-Tazos Tech - Application Core Engine with Curated Lucide Icons
+// Hit-Tazos Tech — Main Application Orchestrator (ES Module)
+import { 
+  GAME_RULES, 
+  CHRONO_BOUNDS, 
+  STORAGE_KEYS, 
+  CARD_FORMATS, 
+  GAME_VERSIONS,
+  CARD_SELECTORS, 
+  ANIM_CONFIG 
+} from './core/constants.js';
+import { evaluateGuess, calculateHint, formatCardIdNumber, formatCollectorNumber } from './core/rules.js';
+import { StorageAdapter } from './core/storage.js';
+import { GameState } from './core/state.js';
+import { AudioEngine } from './core/audio.js';
+import { CardRenderer } from './core/renderer.js';
 
-class HitTazosEngine {
+export const CARD_SELECTOR = CARD_SELECTORS.ACTIVE_CARD;
+export const YEAR_STAGE_SELECTOR = CARD_SELECTORS.YEAR_STAGE;
+export { ANIM_CONFIG };
+
+export class HitTazosApp {
   constructor() {
+    this.state = new GameState();
+    this.audio = new AudioEngine();
+    this.renderer = new CardRenderer();
+    this.storage = StorageAdapter;
+
     this.cards = [];
+    this.catalog = { domains: {}, tags: {}, volumes: {} };
     this.cardColors = {};
-    this.activeDeck = [];
+    this.manifest = null;
     this.filteredCatalog = [];
-    this.playerShelf = [];
-    this.currentIndex = 0;
-    this.score = 0;
-    this.streak = 0;
-    this.activeGroup = 'ALL';
-    this.soundEnabled = true;
-    this.audioCtx = null;
-    this.attemptCount = 0;   // intentos en la tarjeta actual
-    this.maxAttempts = 3;    // máximo de intentos antes de revelar
-    this.cardSolved = false; // si ya se acertó/resolvió la carta actual
+    this.currentView = 'play';
+    this.fuse = null;
+    this.touchGestureInstance = null;
+    this.fanningGestureInstance = null;
+    this.isFanningDragging = false;
+    this.justHandledTouch = false;
+    this.isTransitioning = false;
+    this.pendingIconRefresh = false;
+    this.searchDebounceTimer = null;
+    this.isFirstTimeOnboarding = false;
 
-    this.initAudio();
     this.initDOM();
-    this.initFX();
-    this.bindEvents();
+    this.bindStateEvents();
+    this.bindDOMEvents();
+    this.bindKeyboardShortcuts();
+    this.initTilt();
+    this.initTouchGestures();
+    this.initFanningDragToScroll();
     this.loadData();
+    this.loadSavedState();
   }
 
-  initAudio() {
-    try {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      this.audioCtx = new AudioCtx();
-    } catch (e) {
-      console.warn('AudioContext not supported.');
+  // ── Métodos Auxiliares de Consulta DOM y Utilidades (DRY) ──────────────────
+
+  getActiveCardElement(container = this.cardStage) {
+    if (!container) return null;
+    return container.querySelector(CARD_SELECTOR) || container;
+  }
+
+  getYearStageElement(cardEl = this.getActiveCardElement()) {
+    if (!cardEl) return null;
+    return cardEl.querySelector(YEAR_STAGE_SELECTOR);
+  }
+
+  setFeedbackPill(html) {
+    if (this.guessResultPill) {
+      this.guessResultPill.innerHTML = html;
+      this.refreshIcons();
     }
   }
 
-  playAudioFeedback(type) {
-    if (!this.soundEnabled || !this.audioCtx) return;
-    if (this.audioCtx.state === 'suspended') {
-      this.audioCtx.resume();
-    }
-
-    const now = this.audioCtx.currentTime;
-
-    if (type === 'flip') {
-      const osc = this.audioCtx.createOscillator();
-      const gain = this.audioCtx.createGain();
-      osc.connect(gain);
-      gain.connect(this.audioCtx.destination);
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(260, now);
-      osc.frequency.exponentialRampToValueAtTime(540, now + 0.15);
-      gain.gain.setValueAtTime(0.14, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
-      osc.start(now);
-      osc.stop(now + 0.15);
-    } else if (type === 'hit') {
-      // Lush multi-oscillator chord (Maj7 arpeggio)
-      const freqs = [523.25, 659.25, 783.99, 987.77];
-      freqs.forEach((f, idx) => {
-        const osc = this.audioCtx.createOscillator();
-        const gain = this.audioCtx.createGain();
-        osc.connect(gain);
-        gain.connect(this.audioCtx.destination);
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(f, now + idx * 0.06);
-        gain.gain.setValueAtTime(0.14, now + idx * 0.06);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5 + idx * 0.05);
-        osc.start(now + idx * 0.06);
-        osc.stop(now + 0.5 + idx * 0.05);
-      });
-    } else if (type === 'miss') {
-      const osc = this.audioCtx.createOscillator();
-      const gain = this.audioCtx.createGain();
-      osc.connect(gain);
-      gain.connect(this.audioCtx.destination);
-      osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(170, now);
-      osc.frequency.linearRampToValueAtTime(95, now + 0.25);
-      gain.gain.setValueAtTime(0.15, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
-      osc.start(now);
-      osc.stop(now + 0.25);
-    }
+  setupDialog(dialogEl, openBtn, closeBtns = []) {
+    if (!dialogEl) return;
+    openBtn?.addEventListener('click', () => {
+      if (typeof dialogEl.showModal === 'function') {
+        dialogEl.showModal();
+        this.refreshIcons();
+      }
+    });
+    closeBtns.forEach(btn => btn?.addEventListener('click', () => dialogEl.close()));
+    dialogEl.addEventListener('click', (e) => {
+      if (e.target === dialogEl) dialogEl.close();
+    });
   }
+
+  // ── Inicialización de Elementos del DOM ───────────────────────────────────
 
   initDOM() {
-    // Views
+    // Branding y Versiones de Juego
+    this.btnBrandVersion = document.getElementById('btn-brand-version');
+    this.brandIconGlyph = document.getElementById('brand-icon-glyph');
+    this.brandTitleText = document.getElementById('brand-title-text');
+    this.brandBadgeText = document.getElementById('brand-badge-text');
+
+    // Modal de Selección de Versión (Hit-Tazo vs Hit-Cards)
+    this.versionDialog = document.getElementById('version-select-dialog');
+    this.btnCloseVersionModal = document.getElementById('btn-close-version-modal');
+    this.optionSelectTazo = document.getElementById('option-select-tazo');
+    this.optionSelectCards = document.getElementById('option-select-cards');
+    this.btnChooseTazoAction = document.getElementById('btn-choose-tazo-action');
+    this.btnChooseCardsAction = document.getElementById('btn-choose-cards-action');
+    this.badgeStatusTazo = document.getElementById('badge-status-tazo');
+    this.badgeStatusCards = document.getElementById('badge-status-cards');
+
+    // Vistas y Navegación
     this.viewPlay = document.getElementById('view-play');
     this.viewGallery = document.getElementById('view-gallery');
     this.btnTabPlay = document.getElementById('btn-tab-play');
     this.btnTabGallery = document.getElementById('btn-tab-gallery');
+    this.btnPreorderHeader = document.getElementById('btn-preorder-header');
+    this.btnFormatToggle = document.getElementById('btn-format-toggle');
+    this.iconFormatState = document.getElementById('icon-format-state');
     this.btnSound = document.getElementById('btn-sound-toggle');
+    this.btnResetGame = document.getElementById('btn-reset-game');
+    this.btnResetShelf = document.getElementById('btn-reset-shelf');
     this.btnPrint = document.getElementById('btn-print');
 
-    // Ribbon
+    // Ribbon de Volúmenes
     this.groupRibbon = document.getElementById('group-ribbon');
 
-    // Arena elements
+    // Escenario y Arena de Juego
     this.cardStage = document.getElementById('card-stage');
-    this.ambientAura = document.getElementById('ambient-card-aura');
+    this.pileLeft = document.getElementById('pile-left');
+    this.pileLeftCards = document.getElementById('pile-left-cards');
+    this.pileLeftCount = document.getElementById('pile-left-count');
+    this.pileRight = document.getElementById('pile-right');
+    this.pileRightCards = document.getElementById('pile-right-cards');
+    this.pileRightCount = document.getElementById('pile-right-count');
     this.hudGroupLabel = document.getElementById('hud-group-label');
     this.hudCardCounter = document.getElementById('hud-card-counter');
     this.hudScore = document.getElementById('hud-score');
     this.hudStreak = document.getElementById('hud-streak');
     this.hudStreakBox = document.getElementById('hud-streak-box');
-    this.inputYear = document.getElementById('input-year');
+    this.chronoDial = document.getElementById('chrono-dial');
+    this.displaySelectedYear = document.getElementById('display-selected-year');
     this.btnSubmitGuess = document.getElementById('btn-submit-guess');
     this.guessResultPill = document.getElementById('guess-result-pill');
     this.btnFlip = document.getElementById('btn-flip');
@@ -116,627 +147,930 @@ class HitTazosEngine {
     this.shelfProgressFill = document.getElementById('shelf-progress-fill');
     this.counterTotal = document.getElementById('counter-total');
     this.attemptTracker = document.getElementById('attempt-tracker');
-    this.attemptDots    = document.getElementById('attempt-dots');
-    this.attemptLabel   = document.getElementById('attempt-label');
+    this.hudAttempts = document.getElementById('hud-attempts');
+    this.attemptDots = document.getElementById('attempt-dots');
 
-    // Decade quick picker
-    this.decadeChips = document.querySelectorAll('.decade-chip');
-
-    // Nudge buttons
-    this.btnNudgeMinus5 = document.getElementById('btn-nudge-minus5');
-    this.btnNudgeMinus1 = document.getElementById('btn-nudge-minus1');
-    this.btnNudgePlus1 = document.getElementById('btn-nudge-plus1');
-    this.btnNudgePlus5 = document.getElementById('btn-nudge-plus5');
-
-    // Catalog elements
+    // Catálogo y Explorador
     this.galleryQuery = document.getElementById('gallery-query');
     this.selectFilterGroup = document.getElementById('select-filter-group');
     this.selectSortOrder = document.getElementById('select-sort-order');
     this.catalogGrid = document.getElementById('catalog-grid');
-  }
 
-  initFX() {
-    this.fxCanvas = document.getElementById('fx-canvas');
-    if (!this.fxCanvas) return;
-    this.fxCtx = this.fxCanvas.getContext('2d');
-    this.particles = [];
+    // Modo Abanico y Canto Apilado
+    this.btnGalleryViewFan = document.getElementById('btn-gallery-view-fan');
+    this.btnGalleryViewGrid = document.getElementById('btn-gallery-view-grid');
+    this.galleryFanSection = document.getElementById('gallery-fan-section');
+    this.cantoBar = document.getElementById('canto-bar');
+    this.cantoCount = document.getElementById('canto-count');
+    this.fanningScrollWrapper = document.getElementById('fanning-scroll-wrapper');
+    this.fanningTrack = document.getElementById('fanning-track');
+    this.btnModeGradient = document.getElementById('btn-mode-gradient');
+    this.btnModeSolid = document.getElementById('btn-mode-solid');
+    this.btnModeHybrid = document.getElementById('btn-mode-hybrid');
 
-    const resizeCanvas = () => {
-      this.fxCanvas.width = window.innerWidth;
-      this.fxCanvas.height = window.innerHeight;
-    };
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    this.galleryLayout = 'fan';
+    this.fanColorMode = 'gradient';
 
-    const loop = () => {
-      if (this.particles.length > 0) {
-        this.fxCtx.clearRect(0, 0, this.fxCanvas.width, this.fxCanvas.height);
-        for (let i = this.particles.length - 1; i >= 0; i--) {
-          const p = this.particles[i];
-          p.x += p.vx;
-          p.y += p.vy;
-          p.vy += 0.18; // gravity
-          p.rot += p.vRot;
-          p.alpha -= 0.015;
-
-          if (p.alpha <= 0) {
-            this.particles.splice(i, 1);
-            continue;
-          }
-
-          this.fxCtx.save();
-          this.fxCtx.translate(p.x, p.y);
-          this.fxCtx.rotate(p.rot);
-          this.fxCtx.globalAlpha = p.alpha;
-          this.fxCtx.fillStyle = p.color;
-          this.fxCtx.shadowColor = p.color;
-          this.fxCtx.shadowBlur = 8;
-          this.fxCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
-          this.fxCtx.restore();
-        }
-      }
-      requestAnimationFrame(loop);
-    };
-    requestAnimationFrame(loop);
-  }
-
-  triggerCyberConfetti(color = '#38bdf8') {
-    if (!this.fxCanvas) return;
-    const originX = window.innerWidth / 2;
-    const originY = window.innerHeight / 2 - 40;
-    const palette = [color, '#facc15', '#f472b6', '#34d399', '#ffffff'];
-
-    for (let i = 0; i < 70; i++) {
-      const angle = (Math.PI * 2 * i) / 70 + (Math.random() - 0.5) * 0.4;
-      const speed = Math.random() * 9 + 4;
-      this.particles.push({
-        x: originX,
-        y: originY,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed - 3,
-        size: Math.random() * 8 + 4,
-        color: palette[Math.floor(Math.random() * palette.length)],
-        rot: Math.random() * Math.PI,
-        vRot: (Math.random() - 0.5) * 0.2,
-        alpha: 1
-      });
-    }
-  }
-
-  refreshIcons() {
-    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-      window.lucide.createIcons();
-    }
-  }
-
-  async fetchFirst(urls) {
-    for (const url of urls) {
-      try {
-        const res = await fetch(url);
-        if (res.ok) return await res.json();
-      } catch (e) {
-        // Intentar siguiente ruta candidata
-      }
-    }
-    return null;
-  }
-
-  async loadData() {
-    try {
-      const [cards, colorsData, catalogData, manifestData] = await Promise.all([
-        this.fetchFirst(['../data/cards.json', 'data/cards.json', '/data/cards.json', 'cards.json']),
-        this.fetchFirst(['../data/card_colors.json', 'data/card_colors.json', '/data/card_colors.json', 'card_colors.json']),
-        this.fetchFirst(['../data/catalog.json', 'data/catalog.json', '/data/catalog.json', 'catalog.json']),
-        this.fetchFirst(['../data/manifest.json', 'data/manifest.json', '/data/manifest.json', 'manifest.json'])
-      ]);
-
-      if (cards) {
-        this.cards = cards;
-      } else {
-        throw new Error('Could not load cards.json from data/cards.json or fallbacks');
-      }
-
-      if (catalogData) {
-        this.catalog = catalogData;
-      } else {
-        this.catalog = { domains: {}, tags: {}, volumes: {} };
-      }
-
-      if (colorsData) {
-        this.cardColors = colorsData.cards || colorsData;
-      }
-
-      if (manifestData) {
-        this.manifest = manifestData;
-        this.updatePrintPdfLinks(manifestData);
-      }
-
-      // Asignar índice global continuo (1..N) para la correspondencia de color idéntica al mazo de 100 cartas
-      this.cards.forEach((c, idx) => {
-        c.globalIndex = idx + 1;
-      });
-      this.activeDeck = [...this.cards];
-      this.filteredCatalog = [...this.cards];
-      if (this.counterTotal) {
-        this.counterTotal.textContent = this.cards.length;
-      }
-
-      this.renderActiveArenaCard();
-      this.renderCatalog();
-      this.refreshIcons();
-    } catch (err) {
-      console.error('Error fetching cards or colors:', err);
-    }
-  }
-
-  updatePrintPdfLinks(manifest) {
-    if (!manifest) return;
-    const version = manifest.version || '1.0.0-rc3';
-    const volumesGrid = document.getElementById('official-pdf-volumes-grid');
-    if (!volumesGrid) return;
-
-    volumesGrid.innerHTML = '';
-
-    const volumes = manifest.volumes || [];
-    volumes.forEach(vol => {
-      const card = document.createElement('a');
-      card.className = 'pdf-dl-card';
-      const filename = vol.pdfFilename || `hit-tazos-tech-${vol.id}-${vol.slug}.pdf`;
-      const url = `/assets/print/${filename}`;
-      card.setAttribute('href', url);
-      card.setAttribute('download', filename);
-
-      card.innerHTML = `
-        <div class="pdf-dl-header">
-          <span class="pdf-tag format-carta">Carta (8.5 &times; 11 pulg)</span>
-          <span class="pdf-ver">${vol.id.toUpperCase()}</span>
-        </div>
-        <div class="pdf-dl-title">${vol.title}</div>
-        <div class="pdf-dl-specs">${vol.cardsCount} cartas &bull; ${vol.pagesCarta} páginas dúplex (6 cartas/pliego)</div>
-        <div class="pdf-dl-btn">
-          <i data-lucide="file-down"></i> Descargar ${vol.title}
-        </div>
-      `;
-      volumesGrid.appendChild(card);
-    });
-
-    this.refreshIcons();
-  }
-
-  bindEvents() {
-    // Tab toggle
-    this.btnTabPlay.addEventListener('click', () => this.switchView('play'));
-    this.btnTabGallery.addEventListener('click', () => this.switchView('gallery'));
-
-    // Sound
-    this.btnSound.addEventListener('click', () => {
-      this.soundEnabled = !this.soundEnabled;
-      const icon = document.getElementById('icon-sound-state');
-      if (icon) {
-        icon.setAttribute('data-lucide', this.soundEnabled ? 'volume-2' : 'volume-x');
-        this.refreshIcons();
-      }
-    });
-
-    // Print Modal & Duplex Generator
+    // Diálogos Modales (Ayuda e Impresión)
+    this.btnHelpToggle = document.getElementById('btn-help-toggle');
+    this.helpDialog = document.getElementById('help-dialog');
+    this.btnCloseHelpModal = document.getElementById('btn-close-help-modal');
+    this.btnUnderstoodHelp = document.getElementById('btn-understood-help');
+    this.helpCardTerm = document.getElementById('help-card-term');
+    this.helpTargetTerm = document.getElementById('help-target-term');
+    this.helpNavTerm = document.getElementById('help-nav-term');
     this.printDialog = document.getElementById('print-dialog');
     this.btnClosePrintModal = document.getElementById('btn-close-print-modal');
     this.btnCancelPrint = document.getElementById('btn-cancel-print');
-    this.btnExecutePrint = document.getElementById('btn-execute-print');
-    this.printSheetsContainer = document.getElementById('print-sheets-container');
-    this.printSelectRange = document.getElementById('print-select-range');
-    this.printCropMarks = document.getElementById('print-crop-marks');
+  }
 
-    this.btnPrint.addEventListener('click', () => {
-      if (this.printDialog && typeof this.printDialog.showModal === 'function') {
-        this.printDialog.showModal();
-        this.refreshIcons();
-      } else {
-        window.print();
+  // ── Conexión Reactiva Estado -> Interfaz (Observer Pattern) ───────────────
+
+  bindStateEvents() {
+    // 1. Cambios en puntuación y racha
+    this.state.subscribe('SCORE_CHANGED', ({ score, streak }) => {
+      if (this.hudScore) this.hudScore.textContent = score;
+      if (this.hudStreak) this.hudStreak.textContent = streak;
+      if (this.hudStreakBox) {
+        if (streak >= GAME_RULES.HOT_STREAK_THRESHOLD) {
+          this.hudStreakBox.classList.add('streak-hot');
+        } else {
+          this.hudStreakBox.classList.remove('streak-hot');
+        }
+      }
+      this.persistGameState();
+    });
+
+    // 2. Preparación de tarjeta en arena
+    this.state.subscribe('CARD_PREPARED', ({ card, isAlreadyRevealed }) => {
+      this.renderActiveArenaCard(card, isAlreadyRevealed);
+    });
+
+    // 3. Actualización de intentos / tiros
+    this.state.subscribe('ATTEMPTS_UPDATED', ({ remaining, cardSolved }) => {
+      this.renderAttemptTracker(remaining, cardSolved);
+      if (this.btnSubmitGuess) {
+        this.btnSubmitGuess.disabled = cardSolved;
       }
     });
 
-    if (this.btnClosePrintModal) {
-      this.btnClosePrintModal.addEventListener('click', () => this.printDialog.close());
-    }
-    if (this.btnCancelPrint) {
-      this.btnCancelPrint.addEventListener('click', () => this.printDialog.close());
-    }
-    if (this.btnExecutePrint) {
-      this.btnExecutePrint.addEventListener('click', () => {
-        this.generatePrintSheets();
-        this.printDialog.close();
-        setTimeout(() => {
-          window.print();
-        }, 350);
-      });
-    }
-
-    // Ribbon Group Selection
-    this.groupRibbon.querySelectorAll('.ribbon-pill').forEach(pill => {
-      pill.addEventListener('click', () => {
-        this.groupRibbon.querySelectorAll('.ribbon-pill').forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-        const grp = pill.getAttribute('data-volumen');
-        this.selectActiveGroup(grp);
-      });
+    // 4. Actualización del estante de cartas ganadas
+    this.state.subscribe('SHELF_UPDATED', ({ shelf, isVictory }) => {
+      this.renderShelf(shelf, isVictory);
+      this.persistGameState();
     });
 
-    // 3D Card Click & Key Navigation
-    this.cardStage.addEventListener('click', (e) => {
-      if (e.target.closest('.year-center-stage')) return;
-      this.flipCurrentCard();
-    });
-    this.btnFlip.addEventListener('click', () => this.flipCurrentCard());
-    if (this.btnReveal) {
-      this.btnReveal.addEventListener('click', () => this.toggleActiveCardYear());
-    }
-    this.btnNext.addEventListener('click', () => this.nextCard());
-    this.btnPrev.addEventListener('click', () => this.prevCard());
-    this.btnShuffle.addEventListener('click', () => this.shuffleCurrentDeck());
+    // 5. Feedback de tiro acertado
+    this.state.subscribe('GUESS_WON', ({ evalResult, card }) => {
+      const isExact = evalResult.outcome === 'EXACT';
+      const ptsText = isExact ? '+3 Puntos' : '+1 Punto';
+      const iconName = isExact ? 'check-circle-2' : 'sparkles';
+      const badgeBg = isExact ? '#dcfce7' : '#fef3c7';
+      const badgeBorder = isExact ? '#bbf7d0' : '#fde68a';
+      const textColor = isExact ? '#16a34a' : '#b45309';
 
-    // Keyboard Space, R & Arrow support
-    window.addEventListener('keydown', (e) => {
-      if (document.activeElement === this.inputYear || document.activeElement === this.galleryQuery) {
+      this.setFeedbackPill(`
+        <span style="color:${textColor};display:inline-flex;align-items:center;gap:0.4rem;font-weight:700">
+          <i data-lucide="${iconName}"></i> ${isExact ? '¡Exacto!' : '¡Muy cerca!'} Era <strong style="color:#0f172a;background:${badgeBg};padding:0.1rem 0.4rem;border-radius:6px;border:1px solid ${badgeBorder};margin:0 0.2rem">${card.year}</strong> &mdash; ${ptsText}
+        </span>
+      `);
+
+      const theme = this.renderer.getCardTheme(card);
+      this.triggerCyberConfetti(theme.bg);
+      this.revealActiveCardYear();
+    });
+
+    // 6. Feedback de tiro fallado con intentos restantes
+    this.state.subscribe('GUESS_MISSED', ({ evalResult }) => {
+      if (evalResult.hint) {
+        const h = evalResult.hint;
+        const dirColor = h.direction === 'MORE_RECENT' ? '#0284c7' : '#ea580c';
+        const tempColor = h.temperature === 'HOT' ? '#ea580c' : (h.temperature === 'WARM' ? '#d97706' : '#0284c7');
+
+        this.setFeedbackPill(`
+          <span style="display:inline-flex;align-items:center;gap:0.6rem;flex-wrap:wrap">
+            <span style="color:${dirColor};font-weight:700">${h.directionText}</span>
+            <span style="color:${tempColor};font-weight:700">${h.tempText}</span>
+          </span>
+        `);
+      }
+    });
+
+    // 7. Feedback de intentos agotados
+    this.state.subscribe('GUESS_EXHAUSTED', ({ card }) => {
+      this.setFeedbackPill(`
+        <span style="color:#dc2626;display:inline-flex;align-items:center;gap:0.4rem;font-weight:700">
+          <i data-lucide="x-circle"></i> Ocurrió en <strong style="color:#0f172a;background:#fee2e2;padding:0.1rem 0.4rem;border-radius:6px;border:1px solid #fecaca;margin:0 0.2rem">${card.year}</strong> &mdash; sin puntos
+        </span>
+      `);
+      this.revealActiveCardYear();
+    });
+
+    // 8. Revelado de año con penalización
+    this.state.subscribe('YEAR_REVEALED_WITH_PENALTY', ({ card }) => {
+      this.setFeedbackPill(`
+        <span style="color:#dc2626;display:inline-flex;align-items:center;gap:0.4rem;font-weight:700">
+          <i data-lucide="eye"></i> Año revelado (<strong style="color:#0f172a;background:#fee2e2;padding:0.05rem 0.35rem;border-radius:6px;border:1px solid #fecaca">${card?.year || ''}</strong>) &mdash; <strong>-5 Puntos</strong> (Tiro bloqueado)
+        </span>
+      `);
+      this.persistGameState();
+    });
+
+    // 9. Cambio de formato (Tazo 3D vs Tarjeta cuadrada)
+    this.state.subscribe('FORMAT_CHANGED', ({ format }) => {
+      this.updateFormatToggleUI(format);
+      this.applyVersionUI(format === CARD_FORMATS.CARD ? GAME_VERSIONS.CARDS : GAME_VERSIONS.TAZO);
+      const card = this.state.getCurrentCard();
+      if (card) {
+        this.renderActiveArenaCard(card, this.state.isCurrentCardRevealed());
+      }
+      if (this.currentView === 'gallery') {
+        this.renderCatalog();
+      }
+    });
+
+    // 10. Reinicio de partida
+    this.state.subscribe('GAME_RESET', () => {
+      this.setFeedbackPill(`
+        <span style="color:#0284c7;display:inline-flex;align-items:center;gap:0.4rem;font-weight:600">
+          <i data-lucide="rotate-ccw"></i> Partida reiniciada &mdash; ¡Mazo barajeado!
+        </span>
+      `);
+      this.audio.play('slam');
+    });
+  }
+
+  // ── Delegación de Eventos en Contenedores Padre ────────────────────────────
+
+  bindDOMEvents() {
+    // Vistas principales
+    this.btnTabPlay?.addEventListener('click', () => this.switchView('play'));
+    this.btnTabGallery?.addEventListener('click', () => this.switchView('gallery'));
+
+    // Selector de Versión desde Ícono de Marca en Header
+    this.btnBrandVersion?.addEventListener('click', () => this.openVersionModal());
+    this.btnBrandVersion?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.openVersionModal();
+      }
+    });
+
+    // Modal de Selección de Versión (Opciones Interactivas)
+    this.setupDialog(this.versionDialog, null, [this.btnCloseVersionModal]);
+    this.optionSelectTazo?.addEventListener('click', () => this.selectGameVersion('tazo'));
+    this.optionSelectCards?.addEventListener('click', () => this.selectGameVersion('cards'));
+    this.btnChooseTazoAction?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.selectGameVersion('tazo');
+    });
+    this.btnChooseCardsAction?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.selectGameVersion('cards');
+    });
+    this.optionSelectTazo?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.selectGameVersion('tazo');
+      }
+    });
+    this.optionSelectCards?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.selectGameVersion('cards');
+      }
+    });
+
+    // Alternar Formato
+    this.btnFormatToggle?.addEventListener('click', () => {
+      this.state.toggleFormat();
+      this.audio.play('tick');
+      this.storage.set(STORAGE_KEYS.FORMAT, this.state.cardFormat);
+    });
+
+    // Sonido
+    this.btnSound?.addEventListener('click', () => {
+      const enabled = this.audio.toggleSound();
+      const icon = document.getElementById('icon-sound-state');
+      if (icon) {
+        icon.setAttribute('data-lucide', enabled ? 'volume-2' : 'volume-x');
+        this.refreshIcons();
+      }
+    });
+
+    // Modales de Ayuda e Impresión (DRY con cierre por backdrop nativo)
+    this.setupDialog(this.helpDialog, this.btnHelpToggle, [this.btnCloseHelpModal, this.btnUnderstoodHelp]);
+    this.setupDialog(this.printDialog, this.btnPrint, [this.btnClosePrintModal, this.btnCancelPrint]);
+
+    // Selección de Volumen vía Ribbon
+    this.groupRibbon?.addEventListener('click', (e) => {
+      const pill = e.target.closest('.ribbon-pill');
+      if (!pill) return;
+      this.groupRibbon.querySelectorAll('.ribbon-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      pill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      const grp = pill.getAttribute('data-volumen');
+      this.audio.play('flip');
+      this.selectActiveGroup(grp);
+    });
+
+    // Delegación de Eventos en la Arena: Clic en año vs Clic en disco para voltear
+    this.cardStage?.addEventListener('click', (e) => {
+      if (this.justHandledTouch) return;
+      const yearTrigger = e.target.closest(YEAR_STAGE_SELECTOR);
+      if (yearTrigger) {
+        e.stopPropagation();
+        this.toggleActiveCardYear();
         return;
       }
-      if (e.code === 'Space') {
+      this.flipCurrentCard();
+    });
+
+    // Botones de Acción en la Arena
+    this.btnFlip?.addEventListener('click', () => this.flipCurrentCard());
+    this.btnReveal?.addEventListener('click', () => this.toggleActiveCardYear());
+    this.btnNext?.addEventListener('click', () => this.nextCard());
+    this.btnPrev?.addEventListener('click', () => this.prevCard());
+    this.btnShuffle?.addEventListener('click', () => this.shuffleCurrentDeck());
+
+    // Interacción con Pilas de Cartas Laterales de Escritorio (N=5)
+    this.pileLeft?.addEventListener('click', () => {
+      if (this.state.currentIndex > 0) this.prevCard();
+    });
+    this.pileLeft?.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && this.state.currentIndex > 0) {
         e.preventDefault();
-        this.flipCurrentCard();
-      } else if (e.code === 'KeyR') {
-        e.preventDefault();
-        this.toggleActiveCardYear();
-      } else if (e.code === 'ArrowRight') {
-        this.nextCard();
-      } else if (e.code === 'ArrowLeft') {
         this.prevCard();
       }
     });
 
-    // Decade Quick Picker
-    this.decadeChips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        const decade = chip.getAttribute('data-decade');
-        this.inputYear.value = decade;
-        this.inputYear.focus();
-        this.playAudioFeedback('flip');
+    this.pileRight?.addEventListener('click', () => {
+      if (this.state.currentIndex < this.state.activeDeck.length - 1) this.nextCard();
+    });
+    this.pileRight?.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && this.state.currentIndex < this.state.activeDeck.length - 1) {
+        e.preventDefault();
+        this.nextCard();
+      }
+    });
+
+    // Botones de Reinicio
+    this.btnResetGame?.addEventListener('click', () => this.confirmResetGame());
+    this.btnResetShelf?.addEventListener('click', () => this.confirmResetGame());
+
+    // Botón de Tiro y Dial Cronológico
+    this.btnSubmitGuess?.addEventListener('click', () => this.handleGuessSubmission());
+
+    if (this.chronoDial) {
+      this.chronoDial.addEventListener('input', (e) => {
+        if (this.displaySelectedYear) this.displaySelectedYear.textContent = e.target.value;
+        this.audio.play('tick');
       });
+    }
+
+    // Delegación de Eventos en el Estante (Tocar ficha para revisitar tarjeta)
+    this.shelfCardsContainer?.addEventListener('click', (e) => {
+      const chip = e.target.closest('.shelf-disc-chip, .shelf-tazo-chip, .shelf-card-chip');
+      if (!chip) return;
+      const cardId = chip.getAttribute('data-card-id');
+      if (cardId) this.displayWonCardById(cardId);
     });
 
-    // 3D Tilt Parallax on Mousemove
-    this.cardStage.addEventListener('mousemove', (e) => this.handle3DTilt(e));
-    this.cardStage.addEventListener('mouseleave', () => this.reset3DTilt());
-
-    // Guess submission
-    this.btnSubmitGuess.addEventListener('click', () => this.evaluateGuess());
-    this.inputYear.addEventListener('keyup', (e) => {
-      if (e.key === 'Enter') this.evaluateGuess();
+    // Delegación de Eventos en el Catálogo
+    this.catalogGrid?.addEventListener('click', (e) => {
+      const cellCard = e.target.closest(CARD_SELECTOR);
+      if (cellCard) {
+        this.flipCard(cellCard);
+        this.audio.play('flip');
+      }
     });
 
-    // Nudge buttons
-    this.btnNudgeMinus5.addEventListener('click', () => this.nudgeYear(-5));
-    this.btnNudgeMinus1.addEventListener('click', () => this.nudgeYear(-1));
-    this.btnNudgePlus1.addEventListener('click', () => this.nudgeYear(1));
-    this.btnNudgePlus5.addEventListener('click', () => this.nudgeYear(5));
+    // Búsqueda y Filtros del Catálogo con Debounce Ligero (150ms)
+    this.galleryQuery?.addEventListener('input', () => {
+      clearTimeout(this.searchDebounceTimer);
+      this.searchDebounceTimer = setTimeout(() => this.filterCatalog(), 150);
+    });
+    this.selectFilterGroup?.addEventListener('change', () => this.filterCatalog());
+    this.selectSortOrder?.addEventListener('change', () => this.filterCatalog());
 
-    // Gallery search and filter
-    this.galleryQuery.addEventListener('input', () => this.filterCatalog());
-    this.selectFilterGroup.addEventListener('change', () => this.filterCatalog());
-    this.selectSortOrder.addEventListener('change', () => this.filterCatalog());
+    // Alternancia de Disposición en Catálogo (Abanico vs Cuadrícula)
+    this.btnGalleryViewFan?.addEventListener('click', () => {
+      this.setGalleryLayout('fan');
+    });
+    this.btnGalleryViewGrid?.addEventListener('click', () => {
+      this.setGalleryLayout('grid');
+    });
+
+    // Modos de Acabado Cromático en Abanico
+    this.btnModeGradient?.addEventListener('click', () => this.setFanColorMode('gradient'));
+    this.btnModeSolid?.addEventListener('click', () => this.setFanColorMode('solid'));
+    this.btnModeHybrid?.addEventListener('click', () => this.setFanColorMode('hybrid'));
+
+    // Interacción en la Pista de Abanico: Clic para voltear tarjeta
+    this.fanningTrack?.addEventListener('click', (e) => {
+      if (this.isFanningDragging) return;
+      const cardEl = e.target.closest('.card-fan');
+      if (cardEl) {
+        cardEl.classList.toggle('is-flipped');
+        this.audio.play('flip');
+      }
+    });
+
+    this.fanningTrack?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const cardEl = e.target.closest('.card-fan');
+        if (cardEl) {
+          e.preventDefault();
+          cardEl.classList.toggle('is-flipped');
+          this.audio.play('flip');
+        }
+      }
+    });
   }
 
-  handle3DTilt(e) {
-    const card = document.getElementById('active-card-3d');
-    if (!card) return;
+  // ── Mapeo Declarativo de Teclado (hotkeys-js con fallback) ────────────────
 
-    const rect = this.cardStage.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+  bindKeyboardShortcuts() {
+    if (typeof hotkeys === 'function') {
+      hotkeys('left,p', (e) => {
+        e.preventDefault();
+        if (this.currentView === 'gallery' && this.galleryLayout === 'fan' && this.fanningScrollWrapper) {
+          this.fanningScrollWrapper.scrollBy({ left: -320, behavior: 'smooth' });
+        } else {
+          this.prevCard();
+        }
+      });
+      hotkeys('right,n', (e) => {
+        e.preventDefault();
+        if (this.currentView === 'gallery' && this.galleryLayout === 'fan' && this.fanningScrollWrapper) {
+          this.fanningScrollWrapper.scrollBy({ left: 320, behavior: 'smooth' });
+        } else {
+          this.nextCard();
+        }
+      });
+      hotkeys('up,+,=', (e) => { e.preventDefault(); this.nudgeYear(1); });
+      hotkeys('down,-', (e) => { e.preventDefault(); this.nudgeYear(-1); });
+      hotkeys('enter', (e) => { e.preventDefault(); this.handleGuessSubmission(); });
+      hotkeys('space', (e) => { e.preventDefault(); this.flipCurrentCard(); });
+      hotkeys('t', (e) => {
+        e.preventDefault();
+        this.state.toggleFormat();
+        this.audio.play('tick');
+      });
+      hotkeys('v', (e) => {
+        e.preventDefault();
+        this.openVersionModal();
+      });
+      hotkeys('r', (e) => { e.preventDefault(); this.toggleActiveCardYear(); });
+      hotkeys('shift+r', (e) => { e.preventDefault(); this.confirmResetGame(); });
+      hotkeys('s', () => this.btnSound?.click());
 
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
+      const volumeKeys = [
+        'ALL', 'kernel-foundations', 'cypherpunks-hacker-lore',
+        'embedded-silicon-hardware', 'unix-sysadmin-networks',
+        'backend-distributed-systems', 'cloud-containers-sre',
+        'python-track', 'scifi-pop-culture-cinema'
+      ];
+      for (let i = 0; i <= 8; i++) {
+        hotkeys(`${i}`, () => {
+          const pill = this.groupRibbon?.querySelector(`[data-volumen="${volumeKeys[i]}"]`);
+          if (pill) pill.click();
+        });
+      }
+    } else {
+      window.addEventListener('keydown', (e) => {
+        if (document.activeElement?.tagName === 'INPUT' || document.activeElement === this.galleryQuery) return;
+        if (e.code === 'Enter' || e.code === 'NumpadEnter') { e.preventDefault(); this.handleGuessSubmission(); }
+        else if (e.code === 'ArrowLeft') {
+          e.preventDefault();
+          if (this.currentView === 'gallery' && this.galleryLayout === 'fan' && this.fanningScrollWrapper) {
+            this.fanningScrollWrapper.scrollBy({ left: -320, behavior: 'smooth' });
+          } else {
+            this.prevCard();
+          }
+        }
+        else if (e.code === 'ArrowRight') {
+          e.preventDefault();
+          if (this.currentView === 'gallery' && this.galleryLayout === 'fan' && this.fanningScrollWrapper) {
+            this.fanningScrollWrapper.scrollBy({ left: 320, behavior: 'smooth' });
+          } else {
+            this.nextCard();
+          }
+        }
+        else if (e.key === '+' || e.code === 'NumpadAdd' || e.key === '=') { e.preventDefault(); this.nudgeYear(1); }
+        else if (e.key === '-' || e.code === 'NumpadSubtract') { e.preventDefault(); this.nudgeYear(-1); }
+        else if (e.code === 'Space') { e.preventDefault(); this.flipCurrentCard(); }
+        else if (e.code === 'KeyT') { e.preventDefault(); this.state.toggleFormat(); this.audio.play('tick'); }
+        else if (e.code === 'KeyV') { e.preventDefault(); this.openVersionModal(); }
+        else if (e.shiftKey && (e.code === 'KeyR' || e.key === 'R')) { e.preventDefault(); this.confirmResetGame(); }
+        else if (e.code === 'KeyR') { e.preventDefault(); this.toggleActiveCardYear(); }
+        else if (e.code === 'KeyN') this.nextCard();
+        else if (e.code === 'KeyP') this.prevCard();
+      });
+    }
+  }
 
-    // No aplicar tilt durante el flip
-    if (card.dataset.flipping === '1') return;
+  // ── Gestos Táctiles y Arrastre (TinyGesture + Drag-to-Scroll) ───────────────
 
-    const rotateX = ((y - centerY) / centerY) * -12;
-    const rotateY = ((x - centerX) / centerX) * 12;
+  initTouchGestures() {
+    if (this.touchGestureInstance && typeof this.touchGestureInstance.destroy === 'function') {
+      this.touchGestureInstance.destroy();
+      this.touchGestureInstance = null;
+    }
+    if (this.fanningGestureInstance && typeof this.fanningGestureInstance.destroy === 'function') {
+      this.fanningGestureInstance.destroy();
+      this.fanningGestureInstance = null;
+    }
 
-    // Con WAAPI el contenedor no rota — solo aplicar el tilt suave del mouse
-    card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+    // Gestos en el Escenario Principal (Modo Juego)
+    if (typeof TinyGesture === 'function' && this.cardStage) {
+      try {
+        this.touchGestureInstance = new TinyGesture(this.cardStage, {
+          threshold: () => 35,
+          velocityThreshold: 5,
+          diagonalSwipes: false,
+          mouseSupport: true
+        });
 
-    const glareX = (x / rect.width) * 100;
-    const glareY = (y / rect.height) * 100;
-    card.style.setProperty('--glare-x', `${glareX}%`);
-    card.style.setProperty('--glare-y', `${glareY}%`);
-    card.style.setProperty('--glare-opacity', '0.9');
+        this.touchGestureInstance.on('swipeleft', () => {
+          this.triggerTouch(() => this.nextCard(), 20);
+        });
+
+        this.touchGestureInstance.on('swiperight', () => {
+          this.triggerTouch(() => this.prevCard(), 20);
+        });
+
+        this.touchGestureInstance.on('swipeup', () => {
+          this.triggerTouch(() => this.toggleActiveCardYear(), 15);
+        });
+
+        this.touchGestureInstance.on('swipedown', () => {
+          this.triggerTouch(() => this.flipCurrentCard(), 15);
+        });
+
+        this.touchGestureInstance.on('tap', (event) => {
+          if (event?.target?.closest('#year-target, .disc-year-hero, .tazo-year-hero, .year-scratch-badge')) return;
+          this.triggerTouch(() => this.flipCurrentCard(), 12);
+        });
+      } catch (_) {}
+    }
+
+    // Gestos táctiles en la Pista de Abanico (Modo Explorador)
+    if (typeof TinyGesture === 'function' && this.fanningScrollWrapper) {
+      try {
+        this.fanningGestureInstance = new TinyGesture(this.fanningScrollWrapper, {
+          threshold: () => 40,
+          velocityThreshold: 5,
+          diagonalSwipes: false,
+          mouseSupport: false
+        });
+
+        this.fanningGestureInstance.on('swipeleft', () => {
+          this.fanningScrollWrapper.scrollBy({ left: 320, behavior: 'smooth' });
+        });
+
+        this.fanningGestureInstance.on('swiperight', () => {
+          this.fanningScrollWrapper.scrollBy({ left: -320, behavior: 'smooth' });
+        });
+      } catch (_) {}
+    }
+  }
+
+  initFanningDragToScroll() {
+    if (!this.fanningScrollWrapper) return;
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+    let hasDragged = false;
+
+    this.fanningScrollWrapper.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return;
+      isDown = true;
+      hasDragged = false;
+      this.fanningScrollWrapper.classList.add('is-dragging');
+      startX = e.pageX - this.fanningScrollWrapper.offsetLeft;
+      scrollLeft = this.fanningScrollWrapper.scrollLeft;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      const x = e.pageX - this.fanningScrollWrapper.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      if (Math.abs(walk) > 6) {
+        hasDragged = true;
+        this.isFanningDragging = true;
+      }
+      this.fanningScrollWrapper.scrollLeft = scrollLeft - walk;
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!isDown) return;
+      isDown = false;
+      this.fanningScrollWrapper.classList.remove('is-dragging');
+      if (hasDragged) {
+        setTimeout(() => {
+          this.isFanningDragging = false;
+        }, 80);
+      } else {
+        this.isFanningDragging = false;
+      }
+    });
+  }
+
+  triggerTouch(action, vibrateMs = 15) {
+    this.justHandledTouch = true;
+    setTimeout(() => { this.justHandledTouch = false; }, 350);
+    if (navigator.vibrate) {
+      try { navigator.vibrate(vibrateMs); } catch (_) {}
+    }
+    action();
+  }
+
+  initTilt() {
+    if (typeof VanillaTilt !== 'undefined' && this.cardStage) {
+      try {
+        VanillaTilt.init(this.cardStage, {
+          max: 12,
+          speed: 400,
+          glare: true,
+          "max-glare": 0.25,
+          perspective: 1400
+        });
+
+        this.cardStage.addEventListener('tiltChange', (event) => {
+          const detail = event.detail;
+          if (detail && detail.angle !== undefined) {
+            this.cardStage.style.setProperty('--tilt-angle', `${detail.angle.toFixed(1)}deg`);
+          }
+        });
+
+        this.cardStage.addEventListener('pointermove', (e) => {
+          const rect = this.cardStage.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const rad = Math.atan2(e.clientY - cy, e.clientX - cx);
+          const deg = (rad * (180 / Math.PI) + 360 + 90) % 360;
+          this.cardStage.style.setProperty('--tilt-angle', `${deg.toFixed(1)}deg`);
+        });
+      } catch (_) {}
+    }
   }
 
   reset3DTilt() {
-    const card = document.getElementById('active-card-3d');
-    if (!card) return;
-    // Con WAAPI el contenedor no rota — solo limpiar glare
-    card.style.transform = '';
-    card.style.setProperty('--glare-opacity', '0');
+    const card = this.getActiveCardElement();
+    if (card) card.style.transform = '';
   }
 
-  nudgeYear(delta) {
-    const cur = parseInt(this.inputYear.value, 10) || 2000;
-    this.inputYear.value = cur + delta;
-  }
+  // ── Renderizado y Animaciones de la Arena ──────────────────────────────────
 
-  switchView(mode) {
-    if (mode === 'play') {
-      this.viewPlay.classList.add('active');
-      this.viewGallery.classList.remove('active');
-      this.btnTabPlay.classList.add('active');
-      this.btnTabGallery.classList.remove('active');
+  renderActiveArenaCard(card, isAlreadyRevealed) {
+    if (!card || !this.cardStage) return;
+
+    this.cardStage.innerHTML = this.renderer.buildCardHTML(card, {
+      isRevealed: isAlreadyRevealed,
+      isFlipped: false
+    }, this.state.cardFormat);
+
+    if (this.hudCardCounter) {
+      this.hudCardCounter.textContent = `${this.state.currentIndex + 1} / ${this.state.activeDeck.length}`;
+    }
+
+    this.updateRevealButtonState(isAlreadyRevealed);
+
+    if (isAlreadyRevealed) {
+      if (this.btnSubmitGuess) this.btnSubmitGuess.disabled = true;
+      this.setFeedbackPill(`
+        <span style="color:#64748b;display:inline-flex;align-items:center;gap:0.4rem;font-weight:600">
+          <i data-lucide="check-circle-2"></i> Tazo ya resuelto &mdash; Año: <strong style="color:#0f172a;background:#f1f5f9;padding:0.05rem 0.35rem;border-radius:6px;border:1px solid #cbd5e1">${card.year}</strong> (Tiro no disponible)
+        </span>
+      `);
     } else {
-      this.viewGallery.classList.add('active');
-      this.viewPlay.classList.remove('active');
-      this.btnTabGallery.classList.add('active');
-      this.btnTabPlay.classList.remove('active');
-      this.refreshIcons();
+      if (this.btnSubmitGuess) this.btnSubmitGuess.disabled = false;
+      if (this.guessResultPill) this.guessResultPill.textContent = '';
     }
+
+    // Actualizar brillo ambiental de color
+    const theme = this.renderer.getCardTheme(card);
+    const hue = theme.hue !== undefined ? theme.hue : 215;
+    document.documentElement.style.setProperty('--current-card-glow', `hsl(${hue}, 90%, 60%)`);
+
+    this.highlightActiveShelfChip(card.id);
+    this.renderDeckPiles();
+    this.refreshIcons();
   }
 
-  selectActiveGroup(grp) {
-    this.activeGroup = grp;
-    if (grp === 'ALL') {
-      this.activeDeck = [...this.cards];
-      this.hudGroupLabel.textContent = 'Todos los Grupos';
+  renderDeckPiles() {
+    if (!this.pileLeftCards || !this.pileRightCards) return;
+
+    const N = 5;
+    const currentIndex = this.state.currentIndex;
+    const deck = this.state.activeDeck || [];
+    const isDisc = this.state.cardFormat === CARD_FORMATS.DISC;
+
+    // 1. Pila Izquierda (Cartas Anteriores / Descarte)
+    const totalPast = currentIndex;
+    const pastCards = [];
+    const startPast = Math.max(0, currentIndex - N);
+    for (let i = startPast; i < currentIndex; i++) {
+      pastCards.push(deck[i]);
+    }
+
+    if (this.pileLeftCount) {
+      this.pileLeftCount.textContent = totalPast;
+    }
+    if (this.pileLeft) {
+      if (totalPast === 0) {
+        this.pileLeft.classList.add('is-empty');
+        this.pileLeft.setAttribute('aria-disabled', 'true');
+        this.pileLeft.removeAttribute('title');
+      } else {
+        this.pileLeft.classList.remove('is-empty');
+        this.pileLeft.removeAttribute('aria-disabled');
+        const lastCard = pastCards[pastCards.length - 1];
+        this.pileLeft.setAttribute('title', `Carta anterior: ${lastCard?.autor || 'Anterior'} (${totalPast} anteriores) [P / ←]`);
+      }
+    }
+
+    this.pileLeftCards.className = `pile-cards-wrapper ${isDisc ? 'is-disc' : 'is-card'}`;
+    if (pastCards.length === 0) {
+      this.pileLeftCards.innerHTML = `
+        <div class="pile-empty-slot">
+          <i data-lucide="inbox"></i>
+          <span>Inicio</span>
+        </div>
+      `;
     } else {
-      this.activeDeck = this.cards.filter(c => c.volumen === grp);
-      const name = (this.catalog?.volumes?.[grp] || this.activeDeck[0]?.volumen || `Volumen ${grp}`).toUpperCase();
-      this.hudGroupLabel.textContent = grp === 'ALL' ? 'Todos los Volúmenes' : name;
-    }
-    this.currentIndex = 0;
-    this.renderActiveArenaCard();
-  }
-
-  formatMarkdown(str) {
-    if (!str) return '';
-    return str
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em>$1</em>')
-      .replace(/`([^`]+)`/g, '<code>$1</code>');
-  }
-
-  getDomainIconName(domain) {
-    const map = {
-      'A': 'terminal',
-      'B': 'code-2',
-      'C': 'server',
-      'D': 'cpu',
-      'E': 'shield-alert'
-    };
-    return 'layers'; // simplify for now
-  }
-
-  getEraLabel(year) {
-    if (year < 1970) return 'Era Pioneros & Mainframes';
-    if (year < 1980) return 'Era UNIX & Arpanet';
-    if (year < 1990) return 'Era Microordenadores & C';
-    if (year < 2000) return 'Era Web & Python';
-    if (year < 2008) return 'Era Burbuja .COM & Open Source';
-    if (year < 2015) return 'Era Cloud Native & Smartphones';
-    if (year < 2022) return 'Era Deep Learning & Contenedores';
-    return 'Era LLMs & IA Generativa';
-  }
-
-
-
-  // Generador cromático estructurado en bloques de 10 cartas para Hit-Tazos Tech:
-  // Fila 1:
-  //  - 01..10: Rosa / Coral cálido
-  //  - 11..20: Lavanda / Lila pastel
-  //  - 21..30: Salmón / Naranja melocotón
-  // Fila 2:
-  //  - 31..40: Violeta / Púrpura medio
-  //  - 41..50: Arena / Caramelo / Mostaza suave
-  //  - 51..60: Amarillo girasol vibrante
-  //  - 61..66: Azul cerúleo / Cian brillante
-  // Fila 3:
-  //  - 67..76: Amarillo canario puro
-  //  - 77..86: Verde lima / Menta fresco
-  //  - 87..96: Turquesa / Cian cielo
-  //  - 97..100+: Rojo carmín / Magenta intenso y morados profundos
-  getCardTheme(card) {
-    let cardNum = card.globalIndex !== undefined ? card.globalIndex : (card.index !== undefined ? card.index + 1 : 1);
-    if (!cardNum || isNaN(cardNum)) {
-      const matchNum = (card.id || '').match(/(\d+)$/);
-      cardNum = card.index !== undefined ? card.index + 1 : 1;
-    }
-    if (!cardNum || isNaN(cardNum)) cardNum = 1;
-
-    // Si existe en la configuración desacoplada card_colors.json, usarla directamente
-    if (this.cardColors && this.cardColors[cardNum]) {
-      const c = this.cardColors[cardNum];
-      return {
-        hue: c.h,
-        bg: c.bg_hsl,
-        frontBg: c.front_bg_hsl,
-        text: c.text_color,
-        subText: c.text_color === '#ffffff' ? 'rgba(255, 255, 255, 0.75)' : 'rgba(17, 17, 17, 0.75)',
-        accent: c.accent_hex
-      };
+      this.pileLeftCards.innerHTML = this.buildPileCardsHTML(pastCards, false, isDisc);
     }
 
-    // Bloques de 10 en 10 (0 a 9 repetidos cada 100 cartas)
-    const blockIndex = Math.floor(((cardNum - 1) % 100) / 10);
-    // Subpaso de 0 a 1 dentro del bloque de 10 cartas (carta 1 es la más clara, carta 10 es la más oscura/saturada)
-    const subStep = ((cardNum - 1) % 10) / 9;
+    // 2. Pila Derecha (Próximas Cartas / Robo)
+    const totalUpcoming = Math.max(0, deck.length - 1 - currentIndex);
+    const upcomingCards = [];
+    const endUpcoming = Math.min(deck.length, currentIndex + 1 + N);
+    for (let i = currentIndex + 1; i < endUpcoming; i++) {
+      upcomingCards.push(deck[i]);
+    }
 
-    // Familias cromáticas por bloque de 10 oficial de Hit-Tazos Tech:
-    // Cada bloque progresa de un tono claro y suave (l1 ~ 72-74%) a un tono más saturado y profundo (l2 ~ 48-52%)
-    const paletteBlocks = [
-      // 01-10: Bloque Rojo / Carmín cálido (foto: cartas 167-170)
-      { h1: 350, h2: 356, s1: 72, s2: 88, l1: 68, l2: 50 },
-      // 11-20: Bloque Violeta / Morado medio (foto: cartas 171-175)
-      { h1: 268, h2: 276, s1: 58, s2: 78, l1: 72, l2: 52 },
-      // 21-30: Bloque Naranja cálido (foto: cartas 177-180)
-      { h1: 22, h2: 28, s1: 78, s2: 92, l1: 68, l2: 52 },
-      // 31-40: Bloque Lavanda / Malva suave (foto: cartas 181-186)
-      { h1: 280, h2: 290, s1: 45, s2: 65, l1: 74, l2: 55 },
-      // 41-50: Bloque Amarillo / Ámbar dorado (foto: cartas 187-192)
-      { h1: 42, h2: 48, s1: 82, s2: 96, l1: 72, l2: 54 },
-      // 51-60: Bloque Lila pálido / Azul pastel (foto: cartas 193-198)
-      { h1: 245, h2: 258, s1: 48, s2: 70, l1: 75, l2: 55 },
-      // 61-70: Bloque Lima / Verde amarillento fresco
-      { h1: 68, h2: 82, s1: 72, s2: 85, l1: 70, l2: 54 },
-      // 71-80: Bloque Turquesa / Cian oceánico
-      { h1: 172, h2: 192, s1: 62, s2: 82, l1: 70, l2: 52 },
-      // 81-90: Bloque Rosa coral / Fucsia suave
-      { h1: 335, h2: 345, s1: 68, s2: 86, l1: 72, l2: 52 },
-      // 91-100: Bloque Ocre / Canela tostado
-      { h1: 32, h2: 38, s1: 65, s2: 82, l1: 70, l2: 52 }
+    if (this.pileRightCount) {
+      this.pileRightCount.textContent = totalUpcoming;
+    }
+    if (this.pileRight) {
+      if (totalUpcoming === 0) {
+        this.pileRight.classList.add('is-empty');
+        this.pileRight.setAttribute('aria-disabled', 'true');
+        this.pileRight.removeAttribute('title');
+      } else {
+        this.pileRight.classList.remove('is-empty');
+        this.pileRight.removeAttribute('aria-disabled');
+        const nextCard = upcomingCards[0];
+        this.pileRight.setAttribute('title', `Siguiente carta: ${nextCard?.autor || 'Siguiente'} (${totalUpcoming} por jugar) [N / →]`);
+      }
+    }
+
+    this.pileRightCards.className = `pile-cards-wrapper ${isDisc ? 'is-disc' : 'is-card'}`;
+    if (upcomingCards.length === 0) {
+      this.pileRightCards.innerHTML = `
+        <div class="pile-empty-slot">
+          <i data-lucide="check-circle-2"></i>
+          <span>Final</span>
+        </div>
+      `;
+    } else {
+      // In upcoming cards, upcomingCards[0] is the very next card to draw, so it sits on top
+      const upcomingOrdered = [...upcomingCards].reverse();
+      this.pileRightCards.innerHTML = this.buildPileCardsHTML(upcomingOrdered, true, isDisc);
+    }
+  }
+
+  buildPileCardsHTML(cards, isUpcoming, isDisc) {
+    const M = cards.length;
+
+    // Desfase físico escalonado pronunciado (Efecto Mazo Físico Apilado)
+    const LEFT_OFFSETS = [
+      { tx: -44, ty: 22, rot: -10.0, htx: -62, hty: 28, hrot: -15.0 },
+      { tx: -33, ty: 16, rot: -7.5,  htx: -46, hty: 21, hrot: -11.0 },
+      { tx: -22, ty: 11, rot: -5.0,  htx: -31, hty: 14, hrot: -7.5 },
+      { tx: -11, ty: 5,  rot: -2.5,  htx: -15, hty: 7,  hrot: -3.5 },
+      { tx: 0,   ty: 0,  rot: 0,     htx: 0,   hty: -10, hrot: 0 }
     ];
 
-    const currentBlock = paletteBlocks[blockIndex] || paletteBlocks[0];
+    const RIGHT_OFFSETS = [
+      { tx: 44, ty: 22, rot: 10.0, htx: 62, hty: 28, hrot: 15.0 },
+      { tx: 33, ty: 16, rot: 7.5,  htx: 46, hty: 21, hrot: 11.0 },
+      { tx: 22, ty: 11, rot: 5.0,  htx: 31, hty: 14, hrot: 7.5 },
+      { tx: 11, ty: 5,  rot: 2.5,  htx: 15, hty: 7,  hrot: 3.5 },
+      { tx: 0,  ty: 0,  rot: 0,    htx: 0,  hty: -10, hrot: 0 }
+    ];
 
-    const hue = currentBlock.h1 + (currentBlock.h2 - currentBlock.h1) * subStep;
-    const saturation = currentBlock.s1 + (currentBlock.s2 - currentBlock.s1) * subStep;
-    const lightness = currentBlock.l1 + (currentBlock.l2 - currentBlock.l1) * subStep;
+    const DISC_OFFSETS = [
+      { tx: 0, ty: 44, rot: -5.0, htx: 0, hty: 58, hrot: -8.0 },
+      { tx: 0, ty: 33, rot: 4.0,  htx: 0, hty: 44, hrot: 6.0 },
+      { tx: 0, ty: 22, rot: -3.0, htx: 0, hty: 29, hrot: -4.0 },
+      { tx: 0, ty: 11, rot: 1.8,  htx: 0, hty: 14, hrot: 2.5 },
+      { tx: 0, ty: 0,  rot: 0,    htx: 0, hty: -10, hrot: 0 }
+    ];
 
-    const bg = `hsl(${hue.toFixed(1)}, ${saturation.toFixed(0)}%, ${lightness.toFixed(0)}%)`;
-    const accent = `hsl(${hue.toFixed(1)}, ${saturation.toFixed(0)}%, ${Math.min(88, lightness + 16).toFixed(0)}%)`;
-    const frontBg = `hsl(${hue.toFixed(1)}, 35%, 10%)`;
-    const textColor = lightness > 62 ? '#151217' : '#ffffff';
+    const offsetTable = isDisc ? DISC_OFFSETS : (isUpcoming ? RIGHT_OFFSETS : LEFT_OFFSETS);
 
-    return {
-      hue: hue,
-      bg: bg,
-      frontBg: frontBg,
-      text: textColor,
-      subText: textColor === '#ffffff' ? 'rgba(255, 255, 255, 0.75)' : 'rgba(17, 17, 17, 0.75)',
-      accent: accent
-    };
-  }
+    return cards.map((card, r) => {
+      const slot = 5 - M + r;
+      const tf = offsetTable[slot] || offsetTable[r] || offsetTable[4];
+      const z = (r + 1) * 3;
+      const theme = this.renderer.getCardTheme(card);
+      const cardColor = theme.bg || theme.accent || '#0284c7';
+      const cssVars = `--tx: ${tf.tx}px; --ty: ${tf.ty}px; --rot: ${tf.rot}deg; --z: ${z}px; --htx: ${tf.htx}px; --hty: ${tf.hty}px; --hrot: ${tf.hrot}deg; --tazo-color: ${theme.bg || cardColor}; --card-bg: ${cardColor}; --disc-accent: ${theme.accent || cardColor}; z-index: ${r + 1};`;
+      const isTop = (r === M - 1);
 
-  buildCardHTML(card, options = {}) {
-    const isRevealed = options.isRevealed === true;
-    const yearStateClass = isRevealed ? 'is-revealed' : 'is-hidden';
-
-    const hitoFormatted = this.formatMarkdown(card.hito);
-    const creadorFormatted = this.formatMarkdown(card.autor);
-    const triviaFormatted = this.formatMarkdown(card.trivia);
-
-    const groupIcon = 'layers';
-
-    // Número de carta consecutivo (#001..#N)
-    const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
-    const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
-    const cardNumStr = `${volId}x${hexPart}`;
-
-    // Tema cromático Hit-Tazos Tech
-    const theme = this.getCardTheme(card);
-
-    return `
-      <!-- FRONT (Hit-Tazos / Pure Color Matte Face) -->
-      <div class="card-sheet sheet-front hittazos-matte-card" style="--hittazos-bg: ${theme.bg}; --card-bg: ${theme.bg}; --hittazos-front-bg: ${theme.frontBg}; --card-front-bg: ${theme.frontBg}; --card-text: ${theme.text}; --card-subtext: ${theme.subText}; --card-accent: ${theme.accent};">
-        <div class="card-topbar-minimal">
-          <span class="group-badge-tiny">
-            <i data-lucide="${groupIcon}"></i>
-            ${(this.catalog.domains[card.domain] || card.domain).toUpperCase()}
-          </span>
-          <span class="category-badge-tiny">${this.catalog.tags[card.tag] || card.tag}</span>
-        </div>
-
-        <div class="clue-stage-pure">
-          <p class="clue-quote">${hitoFormatted}</p>
-        </div>
-
-        <div class="card-footbar-minimal">
-          <span class="corner-meta-left">${this.catalog.volumes[card.volumen] || card.volumen}</span>
-          <span class="flip-pill"><i data-lucide="rotate-cw"></i> Voltear</span>
-          <span class="corner-meta-right">${cardNumStr}</span>
-        </div>
-      </div>
-
-      <!-- BACK (Hit-Tazos Solid Matte Reveal: Author Top, Year Center, Lore Bottom) -->
-      <div class="card-sheet sheet-back hittazos-matte-card" style="--hittazos-bg: ${theme.bg}; --card-bg: ${theme.bg}; --card-text: ${theme.text}; --card-subtext: ${theme.subText}; --card-accent: ${theme.accent};">
-        <div class="card-back-top">
-          <div class="back-author-title">${creadorFormatted}</div>
-        </div>
-
-        <div class="year-center-stage ${yearStateClass}" title="Haz clic para revelar el año [R]">
-          <div class="year-mystery-box">
-            <div class="year-mystery-digits">????</div>
-            <div class="year-reveal-badge">
-              <i data-lucide="eye"></i>
-              <span>Revelar año</span>
-            </div>
+      if (!isTop) {
+        const bg = isDisc ? '' : (theme.bgGradient || theme.bg || '#1e293b');
+        return `
+          <div class="pile-card pile-card-under ${isDisc ? 'deck-stack-disc' : ''}" style="${cssVars} ${bg ? `background: ${bg};` : ''}">
+            <div class="pile-card-under-edge"></div>
+            ${isDisc ? '<div class="pile-tazoback-rim"></div>' : '<div class="pile-under-deck-line"></div>'}
+            ${!isDisc ? `<div class="pile-under-tag">${card.domain ? card.domain.substring(0, 8) : ''}</div>` : ''}
           </div>
-          <div class="year-digits-hero">${card.year}</div>
-        </div>
+        `;
+      }
 
-        <div class="card-back-bottom">
-          <div class="back-trivia-phrase">${triviaFormatted}</div>
-        </div>
-
-        <div class="card-footbar-minimal">
-          <span class="corner-meta-left">${this.catalog.volumes[card.volumen] || card.volumen}</span>
-          <span class="corner-meta-right">${volId}x${hexPart}</span>
-        </div>
-      </div>
-    `;
+      // Tarjeta Superior (Top Card)
+      if (isUpcoming) {
+        // Reverso de mazo (Facedown)
+        if (isDisc) {
+          return `
+            <div class="pile-card pile-card-top pile-card-tazoback deck-stack-disc" style="${cssVars}">
+              <div class="pile-tazoback-rim"></div>
+              <div class="pile-tazoback-core">
+                <i data-lucide="disc" class="pile-tazo-icon" style="color: #ffffff; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.6));"></i>
+                <span class="pile-tazo-text">HIT-TAZO</span>
+              </div>
+            </div>
+          `;
+        } else {
+          return `
+            <div class="pile-card pile-card-top pile-card-deckback" style="${cssVars}">
+              <div class="pile-deckback-inner">
+                <div class="pile-deckback-border">
+                  <i data-lucide="layers" class="pile-deckback-icon"></i>
+                  <span class="pile-deckback-text">HIT-CARDS</span>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+      } else {
+        // Carta anterior (Faceup mini con autor y detalles)
+        const isRevealed = this.state.revealedCards.has(card.id);
+        if (isDisc) {
+          return `
+            <div class="pile-card pile-card-top pile-card-tazofaceup deck-stack-disc" style="${cssVars}">
+              <div class="pile-tazoback-rim"></div>
+              <div class="pile-tazofaceup-core">
+                <span class="pile-tazofaceup-author">${card.autor || ''}</span>
+                ${isRevealed ? `<span class="pile-tazo-year" style="color: ${cardColor};">${card.year}</span>` : `<span class="pile-tazo-id">${card.id}</span>`}
+              </div>
+            </div>
+          `;
+        } else {
+          const cardBg = theme.bgGradient || theme.bg || '#38bdf8';
+          return `
+            <div class="pile-card pile-card-top pile-card-faceup" style="${cssVars} background: ${cardBg};">
+              <div class="pile-faceup-inner">
+                <div class="pile-faceup-top">
+                  <span class="pile-faceup-domain">${card.domain ? card.domain.substring(0, 14) : 'TECH'}</span>
+                  <span class="pile-faceup-id">${card.id ? card.id.replace('vol', 'v') : ''}</span>
+                </div>
+                <div class="pile-faceup-author">${card.autor || ''}</div>
+                <div class="pile-faceup-footer">
+                  ${isRevealed ? `<span class="pile-faceup-year">${card.year}</span>` : `<i data-lucide="clock" class="pile-clock-icon"></i>`}
+                </div>
+              </div>
+            </div>
+          `;
+        }
+      }
+    }).join('');
   }
 
-  renderActiveArenaCard() {
-    if (!this.activeDeck.length) return;
-    const card = this.activeDeck[this.currentIndex];
-
-    this.cardStage.innerHTML = '';
-    const cardEl = document.createElement('div');
-    cardEl.id = 'active-card-3d';
-    cardEl.className = `hittazos-card-3d theme-${this.catalog.domains[card.domain] || card.domain}`;
-    cardEl.innerHTML = this.buildCardHTML(card, { isRevealed: false });
-
-    this.cardStage.appendChild(cardEl);
-    this.hudCardCounter.textContent = `${this.currentIndex + 1} / ${this.activeDeck.length}`;
-    this.inputYear.value = '';
-    this.guessResultPill.textContent = '';
-    this.updateRevealButtonState(false);
-
-    // Reset estado de intentos para la nueva carta
-    this.attemptCount = 0;
-    this.cardSolved   = false;
-    this.renderAttemptTracker(false);
-    this.btnSubmitGuess.disabled = false;
-
-    // Update Ambient Aura glow with Card Pop Color
-    if (this.ambientAura) {
-      const theme = this.getCardTheme(card);
-      this.ambientAura.style.background = `radial-gradient(circle, ${theme.bg}55 0%, transparent 70%)`;
+  renderAttemptTracker(remaining, isSolved) {
+    if (this.hudAttempts) {
+      this.hudAttempts.textContent = isSolved ? '0' : remaining;
+    }
+    if (this.attemptDots) {
+      const pips = Array.from({ length: GAME_RULES.MAX_ATTEMPTS }, (_, i) => {
+        const isAvailable = i < remaining && !isSolved;
+        const isCritical = isAvailable && remaining === 1;
+        const cls = isAvailable ? (isCritical ? 'attempt-pip critical' : 'attempt-pip') : 'attempt-pip used';
+        return `<span class="${cls}" title="${isAvailable ? 'Tiro disponible' : 'Tiro no disponible'}"></span>`;
+      }).join('');
+      this.attemptDots.innerHTML = pips;
     }
 
-    // Interacción de clic en la zona del año para revelar/ocultar
-    const yearStage = cardEl.querySelector('.year-center-stage');
-    if (yearStage) {
-      yearStage.addEventListener('click', (e) => {
-        e.stopPropagation(); // no voltear la tarjeta, solo revelar el año
-        this.toggleActiveCardYear();
-      });
+    if (this.attemptTracker) {
+      const isCards = this.state.cardFormat === CARD_FORMATS.CARD;
+      const itemNoun = isCards ? 'Tarjeta' : 'Tazo';
+      const titleText = isSolved 
+        ? `${itemNoun} ya resuelto — tiros agotados` 
+        : `${remaining} de ${GAME_RULES.MAX_ATTEMPTS} tiros disponibles`;
+      this.attemptTracker.setAttribute('title', titleText);
+      this.attemptTracker.setAttribute('aria-label', titleText);
     }
-    this.refreshIcons();
   }
 
   updateRevealButtonState(isRevealed) {
     if (!this.btnReveal) return;
     if (isRevealed) {
-      this.btnReveal.innerHTML = `<i data-lucide="eye-off"></i> <span>Ocultar Año</span>`;
+      this.btnReveal.innerHTML = `<i data-lucide="eye-off"></i> <span>Ocultar</span>`;
       this.btnReveal.classList.add('active');
     } else {
-      this.btnReveal.innerHTML = `<i data-lucide="eye"></i> <span>Revelar Año</span>`;
+      this.btnReveal.innerHTML = `<i data-lucide="eye"></i> <span>Revelar (-5 pts)</span>`;
       this.btnReveal.classList.remove('active');
     }
     this.refreshIcons();
   }
 
+  updateFormatToggleUI(format = this.state.cardFormat) {
+    if (!this.btnFormatToggle) return;
+    const isCard = format === CARD_FORMATS.CARD;
+    const titleText = isCard ? 'Cambiar a vista de Tazo 3D [T]' : 'Cambiar a vista de Tarjeta cuadrada [T]';
+    this.btnFormatToggle.setAttribute('title', titleText);
+    this.btnFormatToggle.setAttribute('aria-label', titleText);
+
+    if (this.iconFormatState) {
+      this.iconFormatState.setAttribute('data-lucide', isCard ? 'disc' : 'square');
+      this.refreshIcons();
+    }
+  }
+
+  // ── Lógica de Tiro y Revelado ──────────────────────────────────────────────
+
+  handleGuessSubmission() {
+    if (this.state.cardSolved) return;
+    const card = this.state.getCurrentCard();
+    if (!card) return;
+
+    const val = parseInt(this.chronoDial ? this.chronoDial.value : (this.displaySelectedYear?.textContent || '1990'), 10);
+    if (isNaN(val)) return;
+
+    const nextAttempt = this.state.attemptCount + 1;
+    const evalResult = evaluateGuess(val, card.year, nextAttempt);
+
+    // Animación física de impacto y giro
+    const shouldFlip = evalResult.wonCard || evalResult.outcome === 'EXHAUSTED';
+    this.slamDisc(evalResult.wonCard, shouldFlip);
+    this.state.applyGuessEvaluation(evalResult, card);
+  }
+
+  toggleActiveCardYear() {
+    const disc = this.getActiveCardElement();
+    if (!disc) return;
+
+    if (!disc.classList.contains('is-flipped')) {
+      this.flipCard(this.cardStage);
+    }
+
+    const yearStage = this.getYearStageElement(disc);
+    if (!yearStage) return;
+
+    const isHidden = yearStage.classList.contains('is-hidden');
+    if (isHidden) {
+      if (!this.state.cardSolved) {
+        if (this.state.score < GAME_RULES.MIN_REVEAL_SCORE) {
+          this.setFeedbackPill(`
+            <span style="color:#f59e0b;display:inline-flex;align-items:center;gap:0.4rem;font-weight:600">
+              <i data-lucide="alert-triangle"></i> Puntos insuficientes: necesitas al menos 5 pts para revelar el año
+            </span>
+          `);
+          this.audio.play('slam');
+          return;
+        }
+
+        this.state.revealYearWithPenalty();
+        this.audio.play('slam');
+      } else {
+        this.audio.play('hit');
+      }
+
+      yearStage.classList.remove('is-hidden');
+      yearStage.classList.add('is-revealed');
+      this.updateRevealButtonState(true);
+    } else {
+      yearStage.classList.remove('is-revealed');
+      yearStage.classList.add('is-hidden');
+      this.updateRevealButtonState(false);
+      this.audio.play('flip');
+    }
+    this.refreshIcons();
+  }
+
   revealActiveCardYear() {
-    const cardEl = document.getElementById('active-card-3d');
-    if (!cardEl) return;
-    const yearStage = cardEl.querySelector('.year-center-stage');
+    const disc = this.getActiveCardElement();
+    if (!disc) return;
+
+    if (!disc.classList.contains('is-flipped')) {
+      this.flipCard(this.cardStage);
+    }
+
+    const yearStage = this.getYearStageElement(disc);
     if (yearStage && yearStage.classList.contains('is-hidden')) {
       yearStage.classList.remove('is-hidden');
       yearStage.classList.add('is-revealed');
@@ -745,521 +1079,778 @@ class HitTazosEngine {
     }
   }
 
-  toggleActiveCardYear() {
-    const cardEl = document.getElementById('active-card-3d');
-    if (!cardEl) return;
+  flipCard(containerEl) {
+    const disc = this.getActiveCardElement(containerEl);
+    if (!disc) return;
 
-    // Si la carta está en el frente, voltearla primero para ver el reverso
-    if (!cardEl.classList.contains('is-flipped') && !cardEl.classList.contains('is-unflipping')) {
-      this.flipCard(cardEl);
-      this.reset3DTilt();
-    }
+    const isFlipped = disc.classList.contains('is-flipped');
+    const targetRot = isFlipped ? 0 : 180;
 
-    const yearStage = cardEl.querySelector('.year-center-stage');
-    if (!yearStage) return;
-
-    const isHidden = yearStage.classList.contains('is-hidden');
-    if (isHidden) {
-      yearStage.classList.remove('is-hidden');
-      yearStage.classList.add('is-revealed');
-      this.updateRevealButtonState(true);
-      this.playAudioFeedback('hit');
-    } else {
-      yearStage.classList.remove('is-revealed');
-      yearStage.classList.add('is-hidden');
-      this.updateRevealButtonState(false);
-      this.playAudioFeedback('flip');
-    }
-    this.refreshIcons();
-  }
-
-
-
-  /** Flip de tarjeta. Usa WAAPI (element.animate) para compatibilidad
-   *  total Firefox ESR + Chrome + Safari.
-   *  Patrón: animate → onfinish → commitStyles() → cancel()
-   *  Los inline styles resultantes siempre ganan en la cascade. */
-  flipCard(cardEl) {
-    if (!cardEl) return;
-    const front = cardEl.querySelector('.sheet-front');
-    const back  = cardEl.querySelector('.sheet-back');
-    if (!front || !back) return;
-
-    const HALF = 260; // ms — cada mitad del flip
-    const EASE = 'cubic-bezier(0.4, 0, 0.6, 1)';
-    const P = 'perspective(1400px)';
-    cardEl.dataset.flipping = '1';
-    cardEl.style.transform = ''; // limpiar tilt del hover
-
-    const commitAndCancel = (anim, el) => {
-      try { anim.commitStyles(); } catch(e) {
-        // fallback si commitStyles no disponible (no debería pasar en FF ESR 140)
-        const kf = anim.effect.getKeyframes();
-        if (kf.length) {
-          const last = kf[kf.length - 1];
-          if (last.opacity !== undefined) el.style.opacity = String(last.opacity);
-          if (last.transform !== undefined) el.style.transform = last.transform;
-        }
-      }
-      anim.cancel();
-    };
-
-    if (cardEl.classList.contains('is-flipped')) {
-      // ── Reverso → Frente ──────────────────────────────────────────────
-      const animBack = back.animate([
-        { transform: `${P} rotateY(0deg)`,   opacity: 1 },
-        { transform: `${P} rotateY(-90deg)`, opacity: 0 }
-      ], { duration: HALF, easing: EASE, fill: 'forwards' });
-
-      animBack.onfinish = () => {
-        commitAndCancel(animBack, back);
-        back.style.pointerEvents = 'none';
-
-        const animFront = front.animate([
-          { transform: `${P} rotateY(-90deg)`, opacity: 0 },
-          { transform: `${P} rotateY(0deg)`,   opacity: 1 }
-        ], { duration: HALF, easing: EASE, fill: 'forwards' });
-
-        animFront.onfinish = () => {
-          commitAndCancel(animFront, front);
-          // Limpiar transform residual del frente
-          front.style.transform = '';
-          front.style.pointerEvents = 'auto';
-          cardEl.classList.remove('is-flipped');
-          cardEl.dataset.flipping = '0';
-        };
+    if (typeof disc.animate === 'function') {
+      const flipAnim = disc.animate([
+        { transform: `scale(1) rotateY(${isFlipped ? 180 : 0}deg) rotateZ(0deg)` },
+        { transform: `scale(1.14) translateY(-22px) rotateY(90deg) rotateZ(${isFlipped ? -12 : 12}deg)`, offset: 0.5 },
+        { transform: `scale(1) translateY(0) rotateY(${targetRot}deg) rotateZ(0deg)` }
+      ], {
+        duration: ANIM_CONFIG.FLIP_DURATION,
+        easing: ANIM_CONFIG.EASE_ELASTIC
+      });
+      flipAnim.onfinish = () => {
+        disc.style.transform = `rotateY(${targetRot}deg)`;
       };
-
     } else {
-      // ── Frente → Reverso ──────────────────────────────────────────────
-      cardEl.classList.add('is-flipped');
-
-      const animFront = front.animate([
-        { transform: `${P} rotateY(0deg)`,   opacity: 1 },
-        { transform: `${P} rotateY(-90deg)`, opacity: 0 }
-      ], { duration: HALF, easing: EASE, fill: 'forwards' });
-
-      animFront.onfinish = () => {
-        commitAndCancel(animFront, front);
-        front.style.pointerEvents = 'none';
-
-        const animBack = back.animate([
-          { transform: `${P} rotateY(-90deg)`, opacity: 0 },
-          { transform: `${P} rotateY(0deg)`,   opacity: 1 }
-        ], { duration: HALF, easing: EASE, fill: 'forwards' });
-
-        animBack.onfinish = () => {
-          commitAndCancel(animBack, back);
-          // Limpiar transform residual del reverso
-          back.style.transform = '';
-          back.style.pointerEvents = 'auto';
-          cardEl.dataset.flipping = '0';
-        };
-      };
+      disc.style.transform = `rotateY(${targetRot}deg)`;
     }
+
+    if (isFlipped) disc.classList.remove('is-flipped');
+    else disc.classList.add('is-flipped');
   }
 
   flipCurrentCard() {
-    const cardEl = document.getElementById('active-card-3d');
-    if (cardEl) {
-      this.flipCard(cardEl);
+    if (this.cardStage) {
+      this.flipCard(this.cardStage);
       this.reset3DTilt();
-      this.playAudioFeedback('flip');
+      this.audio.play('flip');
     }
   }
 
-  /** Renderiza los puntos de intento y la etiqueta de contador */
-  renderAttemptTracker(visible) {
-    if (!this.attemptTracker) return;
-    if (!visible) { this.attemptTracker.style.display = 'none'; return; }
-    this.attemptTracker.style.display = 'flex';
-    // Puntos: ● usado, ○ disponible
-    const dots = Array.from({ length: this.maxAttempts }, (_, i) =>
-      `<span class="attempt-dot ${i < this.attemptCount ? 'used' : ''}"></span>`
-    ).join('');
-    this.attemptDots.innerHTML = dots;
-    this.attemptLabel.textContent = `Intento ${Math.min(this.attemptCount + 1, this.maxAttempts)} / ${this.maxAttempts}`;
-  }
+  slamDisc(isSuccess, shouldFlip = true) {
+    const disc = this.getActiveCardElement();
+    if (!disc) return;
 
-  /** Devuelve mensaje de pista según diferencia y dirección */
-  buildHint(diff, val, correctYear) {
-    const direction = val < correctYear ? '↑ más reciente' : '↓ más antiguo';
-    const dirColor  = val < correctYear ? '#60a5fa' : '#f97316';
-    let temp, tempColor;
-    if (diff <= 5)  { temp = '🔥 ¡Caliente!';  tempColor = '#f97316'; }
-    else if (diff <= 15) { temp = '🌡️ Tibio';   tempColor = '#facc15'; }
-    else            { temp = '❄️ Frío';    tempColor = '#93c5fd'; }
-    return `<span style="display:inline-flex;align-items:center;gap:0.5rem;flex-wrap:wrap">
-      <span style="color:${dirColor};font-weight:700">${direction}</span>
-      <span style="color:${tempColor}">${temp}</span>
-      <span style="color:rgba(255,255,255,0.55);font-size:0.82em">(${diff} año${diff !== 1 ? 's' : ''} de diferencia)</span>
-    </span>`;
-  }
-
-  evaluateGuess() {
-    if (this.cardSolved) return; // ya resuelta, no procesar
-    const card = this.activeDeck[this.currentIndex];
-    const val  = parseInt(this.inputYear.value, 10);
-    if (isNaN(val)) {
-      this.guessResultPill.innerHTML = `<span style="color:#f87171">Ingresa un año válido (ej. 1995)</span>`;
-      return;
-    }
-
-    // Voltear la carta si aún está en el frente
-    const cardEl = document.getElementById('active-card-3d');
-    if (cardEl && !cardEl.classList.contains('is-flipped')) {
-      this.flipCard(cardEl);
-      this.reset3DTilt();
-    }
-
-    this.attemptCount++;
-    this.renderAttemptTracker(true);
-
-    const diff = Math.abs(val - card.year);
-    const theme = this.getCardTheme(card);
-
-    // ─ Resultado ─────────────────────────────────────────────────────────────
-    if (diff === 0) {
-      // ✅ Exacto
-      this.guessResultPill.innerHTML = `<span style="color:#4ade80;display:inline-flex;align-items:center;gap:0.4rem">
-        <i data-lucide="check-circle-2"></i> ¡Exacto! Era ${card.year} &mdash; +3 Puntos
-      </span>`;
-      this.score += 3; this.streak += 1;
-      this.cardSolved = true;
-      this.playAudioFeedback('hit');
-      this.triggerCyberConfetti(theme.bg);
-      this.addToShelf(card);
-      this.revealActiveCardYear();
-      this.btnSubmitGuess.disabled = true;
-
-    } else if (diff <= 2) {
-      // 🟡 Muy cerca (±2 años)
-      this.guessResultPill.innerHTML = `<span style="color:#facc15;display:inline-flex;align-items:center;gap:0.4rem">
-        <i data-lucide="sparkles"></i> ¡Muy cerca! Era ${card.year} &mdash; +1 Punto
-      </span>`;
-      this.score += 1; this.streak += 1;
-      this.cardSolved = true;
-      this.playAudioFeedback('hit');
-      this.addToShelf(card);
-      this.revealActiveCardYear();
-      this.btnSubmitGuess.disabled = true;
-
-    } else if (this.attemptCount < this.maxAttempts) {
-      // 🔁 Incorrecto pero quedan intentos — mostrar pista
-      this.guessResultPill.innerHTML = this.buildHint(diff, val, card.year);
-      this.streak = 0;
-      this.playAudioFeedback('miss');
-      // Actualizar el label al siguiente intento
-      this.attemptLabel.textContent = `Intento ${this.attemptCount + 1} / ${this.maxAttempts}`;
-
+    if (shouldFlip) {
+      if (typeof disc.animate === 'function') {
+        const anim = disc.animate([
+          { transform: 'scale(1) rotateY(0deg) rotateZ(0deg)' },
+          { transform: 'scale(1.22) translateY(-38px) rotateY(180deg) rotateZ(16deg)', offset: 0.38 },
+          { transform: 'scale(0.94) translateY(8px) rotateY(180deg) rotateZ(-7deg)', offset: 0.68 },
+          { transform: 'scale(1.03) translateY(-3px) rotateY(180deg) rotateZ(3deg)', offset: 0.85 },
+          { transform: 'scale(1) translateY(0) rotateY(180deg) rotateZ(0deg)' }
+        ], {
+          duration: ANIM_CONFIG.SLAM_SUCCESS_DURATION,
+          easing: ANIM_CONFIG.EASE_SPIN
+        });
+        anim.onfinish = () => {
+          disc.style.transform = 'rotateY(180deg)';
+        };
+      } else {
+        disc.style.transform = 'rotateY(180deg)';
+      }
+      disc.classList.add('is-flipped');
     } else {
-      // ❌ Agotados los intentos — revelar sin puntos
-      this.guessResultPill.innerHTML = `<span style="color:#f87171;display:inline-flex;align-items:center;gap:0.4rem">
-        <i data-lucide="x-circle"></i> Ocurrió en <strong style="color:#fff;margin:0 0.2rem">${card.year}</strong> &mdash; sin puntos
-      </span>`;
-      this.streak = 0;
-      this.cardSolved = true;
-      this.playAudioFeedback('miss');
-      this.revealActiveCardYear();
-      this.btnSubmitGuess.disabled = true;
+      // Tiro fallido con intentos restantes: impacto elástico en mesa sin voltear cara
+      if (typeof disc.animate === 'function') {
+        disc.animate([
+          { transform: 'scale(1) rotateZ(0deg)' },
+          { transform: 'scale(1.06) translateY(-12px) rotateZ(-5deg)', offset: 0.3 },
+          { transform: 'scale(0.96) translateY(4px) rotateZ(3deg)', offset: 0.65 },
+          { transform: 'scale(1) translateY(0) rotateZ(0deg)' }
+        ], {
+          duration: 380,
+          easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+        });
+      }
     }
 
-    // Actualizar dots con estado final del intento
-    this.renderAttemptTracker(true);
-    this.hudScore.textContent = this.score;
-    if (this.hudStreak) this.hudStreak.textContent = this.streak;
-    if (this.hudStreakBox) {
-      if (this.streak >= 2) this.hudStreakBox.classList.add('streak-hot');
-      else this.hudStreakBox.classList.remove('streak-hot');
-    }
-    this.refreshIcons();
+    this.audio.play(isSuccess ? 'hit' : 'slam');
   }
 
-  addToShelf(card) {
-    if (this.playerShelf.some(c => c.globalIndex === card.globalIndex)) return;
-    this.playerShelf.push(card);
-    this.playerShelf.sort((a, b) => a.year - b.year);
+  slamTazo(isSuccess, shouldFlip = true) {
+    return this.slamDisc(isSuccess, shouldFlip);
+  }
 
+  // ── Transición Animada entre Tarjetas (Slide WAAPI + Rebote Elástico) ──────
+
+  transitionToCard(targetIndex, direction = 'next') {
+    if (this.isTransitioning) return;
+    const currentDisc = this.getActiveCardElement();
+
+    const exitX = direction === 'next' ? -260 : 260;
+    const enterX = direction === 'next' ? 260 : -260;
+    const exitRot = direction === 'next' ? -24 : 24;
+    const enterRot = direction === 'next' ? 24 : -24;
+
+    this.audio.play('flip');
+
+    if (currentDisc && typeof currentDisc.animate === 'function') {
+      this.isTransitioning = true;
+      // 1. Animación de salida: el elemento actual sale de la mesa con desvanecimiento y rotación
+      const exitAnim = currentDisc.animate([
+        { transform: 'translateX(0) scale(1) rotateZ(0deg)', opacity: 1 },
+        { transform: `translateX(${exitX}px) scale(0.85) rotateZ(${exitRot}deg)`, opacity: 0 }
+      ], {
+        duration: ANIM_CONFIG.SLIDE_EXIT_DURATION,
+        easing: ANIM_CONFIG.EASE_EXIT,
+        fill: 'forwards'
+      });
+
+      exitAnim.onfinish = () => {
+        this.state.goToIndex(targetIndex);
+
+        const newDisc = this.getActiveCardElement();
+        if (newDisc && typeof newDisc.animate === 'function') {
+          // 2. Animación de entrada: el nuevo elemento entra resbalando con rebote elástico
+          const enterAnim = newDisc.animate([
+            { transform: `translateX(${enterX}px) scale(0.85) rotateZ(${enterRot}deg)`, opacity: 0 },
+            { transform: 'translateX(0) scale(1) rotateZ(0deg)', opacity: 1 }
+          ], {
+            duration: ANIM_CONFIG.SLIDE_ENTER_DURATION,
+            easing: ANIM_CONFIG.EASE_ELASTIC
+          });
+          enterAnim.onfinish = () => {
+            newDisc.style.transform = '';
+            newDisc.style.opacity = '';
+            this.isTransitioning = false;
+          };
+        } else {
+          this.isTransitioning = false;
+        }
+      };
+    } else {
+      this.state.goToIndex(targetIndex);
+    }
+  }
+
+  nextCard() {
+    if (!this.state.activeDeck.length) return;
+    const nextIdx = (this.state.currentIndex + 1) % this.state.activeDeck.length;
+    this.transitionToCard(nextIdx, 'next');
+  }
+
+  prevCard() {
+    if (!this.state.activeDeck.length) return;
+    const prevIdx = (this.state.currentIndex - 1 + this.state.activeDeck.length) % this.state.activeDeck.length;
+    this.transitionToCard(prevIdx, 'prev');
+  }
+
+  shuffleCurrentDeck() {
+    const currentDisc = this.getActiveCardElement();
+
+    this.audio.play('slam');
+
+    if (currentDisc && typeof currentDisc.animate === 'function') {
+      currentDisc.animate([
+        { transform: 'scale(1) rotateZ(0deg)' },
+        { transform: 'scale(0.8) rotateZ(180deg)', offset: 0.5 },
+        { transform: 'scale(1.05) rotateZ(360deg)', offset: 0.8 },
+        { transform: 'scale(1) rotateZ(360deg)' }
+      ], {
+        duration: ANIM_CONFIG.SPIN_DURATION,
+        easing: ANIM_CONFIG.EASE_SPIN
+      });
+    }
+
+    setTimeout(() => {
+      this.state.shuffleDeck();
+      const newDisc = this.getActiveCardElement();
+      if (newDisc && typeof newDisc.animate === 'function') {
+        newDisc.animate([
+          { transform: 'scale(0.85) rotateZ(180deg)', opacity: 0.5 },
+          { transform: 'scale(1) rotateZ(360deg)', opacity: 1 }
+        ], {
+          duration: ANIM_CONFIG.SPIN_SETTLE_DURATION,
+          easing: ANIM_CONFIG.EASE_ELASTIC
+        });
+      }
+    }, 180);
+  }
+
+  nudgeYear(delta) {
+    if (!this.chronoDial) return;
+    const cur = parseInt(this.chronoDial.value, 10) || CHRONO_BOUNDS.DEFAULT_YEAR;
+    const nextVal = Math.max(CHRONO_BOUNDS.MIN_YEAR, Math.min(CHRONO_BOUNDS.MAX_YEAR, cur + delta));
+    this.chronoDial.value = nextVal;
+    if (this.displaySelectedYear) this.displaySelectedYear.textContent = nextVal;
+    this.audio.play('tick');
+  }
+
+  // ── Renderizado del Estante y Línea de Tiempo ─────────────────────────────
+
+  renderShelf(shelf, isVictory) {
+    if (!this.shelfCardsContainer) return;
     this.shelfCardsContainer.innerHTML = '';
-    this.playerShelf.forEach(c => {
+    const currentCard = this.state.getCurrentCard();
+
+    shelf.forEach(c => {
       const chip = document.createElement('div');
-      const theme = this.getCardTheme(c);
-      chip.className = 'shelf-card-chip';
-      chip.style.setProperty('--theme-color', theme.bg);
-      const volId = c.id ? c.id.split('-')[0].replace('vol', '') : '0';
-      const hexPart = c.id ? c.id.split('-')[1].substring(2) : '00';
-      const chipNum = `${volId}x${hexPart}`;
+      const theme = this.renderer.getCardTheme(c);
+      const isSelected = currentCard && currentCard.id === c.id;
+      chip.className = `shelf-disc-chip shelf-tazo-chip ${isSelected ? 'active' : ''}`;
+      chip.style.setProperty('--disc-color', theme.bg);
+      chip.style.setProperty('--tazo-color', theme.bg);
+      chip.setAttribute('data-card-id', c.id);
+      const chipNum = formatCardIdNumber(c.id);
+      chip.title = `${c.year} — ${c.autor || ''} (Toca para ver Tazo)`;
+      chip.setAttribute('role', 'button');
+      chip.setAttribute('tabindex', '0');
+      chip.setAttribute('aria-label', `Ver Tazo del año ${c.year}: ${c.autor || ''}`);
       chip.innerHTML = `
-        <div class="shelf-year">${c.year}</div>
-        <div class="shelf-id">${chipNum}</div>
+        <div class="shelf-disc-year shelf-tazo-year">${c.year}</div>
+        <div class="shelf-disc-id shelf-tazo-id">${chipNum}</div>
       `;
       this.shelfCardsContainer.appendChild(chip);
     });
 
     if (this.shelfProgressFill) {
-      const pct = Math.min(100, (this.playerShelf.length / 10) * 100);
+      const pct = Math.min(100, (shelf.length / GAME_RULES.VICTORY_SHELF_SIZE) * 100);
       this.shelfProgressFill.style.width = `${pct}%`;
     }
 
-    this.shelfCounter.textContent = `${this.playerShelf.length} / 10 cartas para ganar`;
-    if (this.playerShelf.length >= 10) {
-      this.shelfCounter.innerHTML = `<strong style="color: #4ade80; display: inline-flex; align-items: center; gap: 0.35rem;"><i data-lucide="trophy"></i> ¡Línea de Tiempo Completada! Victoria</strong>`;
-      this.triggerCyberConfetti('#facc15');
+    if (this.shelfCounter) {
+      if (isVictory) {
+        this.shelfCounter.innerHTML = `<strong style="color: #4ade80; display: inline-flex; align-items: center; gap: 0.35rem;"><i data-lucide="trophy"></i> ¡Línea de Tiempo Completada! Victoria</strong>`;
+        this.triggerCyberConfetti('#facc15');
+      } else {
+        const itemNoun = this.state.cardFormat === CARD_FORMATS.CARD ? 'cartas' : 'tazos';
+        this.shelfCounter.textContent = `${shelf.length} / ${GAME_RULES.VICTORY_SHELF_SIZE} ${itemNoun} para ganar`;
+      }
+    }
+    this.refreshIcons();
+  }
+
+  highlightActiveShelfChip(cardId) {
+    if (!this.shelfCardsContainer) return;
+    const chips = this.shelfCardsContainer.querySelectorAll('.shelf-disc-chip, .shelf-tazo-chip');
+    chips.forEach(chip => {
+      if (chip.getAttribute('data-card-id') === cardId) {
+        chip.classList.add('active');
+      } else {
+        chip.classList.remove('active');
+      }
+    });
+  }
+
+  displayWonCardById(cardId) {
+    let idx = this.state.activeDeck.findIndex(c => c.id === cardId);
+    if (idx === -1) {
+      const cardObj = this.cards.find(c => c.id === cardId);
+      if (cardObj) {
+        if (cardObj.volumen && this.catalog?.volumes?.[cardObj.volumen]) {
+          this.selectActiveGroup(cardObj.volumen);
+        } else {
+          this.selectActiveGroup('ALL');
+        }
+        idx = this.state.activeDeck.findIndex(c => c.id === cardId);
+      }
+    }
+
+    if (this.currentView !== 'play') {
+      this.switchView('play');
+    }
+
+    if (idx !== -1) {
+      this.transitionToCard(idx, idx >= this.state.currentIndex ? 'next' : 'prev');
+    } else {
+      this.audio.play('flip');
+    }
+    if (window.innerWidth <= 768 && this.cardStage) {
+      this.cardStage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  // ── Navegación y Vistas ───────────────────────────────────────────────────
+
+  switchView(view) {
+    this.currentView = view;
+    const ribbonWrapper = document.querySelector('.ribbon-wrapper');
+    if (view === 'play') {
+      if (ribbonWrapper) ribbonWrapper.style.display = '';
+      this.viewPlay?.classList.add('active');
+      this.viewGallery?.classList.remove('active');
+      this.btnTabPlay?.classList.add('active');
+      this.btnTabPlay?.setAttribute('aria-selected', 'true');
+      this.btnTabGallery?.classList.remove('active');
+      this.btnTabGallery?.setAttribute('aria-selected', 'false');
+    } else {
+      if (ribbonWrapper) ribbonWrapper.style.display = 'none';
+      this.viewPlay?.classList.remove('active');
+      this.viewGallery?.classList.add('active');
+      this.btnTabPlay?.classList.remove('active');
+      this.btnTabPlay?.setAttribute('aria-selected', 'false');
+      this.btnTabGallery?.classList.add('active');
+      this.btnTabGallery?.setAttribute('aria-selected', 'true');
+      this.filterCatalog();
+    }
+    this.audio.play('tick');
+    this.refreshIcons();
+  }
+
+  selectActiveGroup(groupSlug) {
+    this.state.activeGroup = groupSlug;
+    if (this.hudGroupLabel) {
+      if (groupSlug === 'ALL') {
+        this.hudGroupLabel.textContent = 'Mazo Maestro Completo';
+      } else {
+        const volTitle = this.catalog?.volumes?.[groupSlug]?.title || groupSlug;
+        this.hudGroupLabel.textContent = volTitle;
+      }
+    }
+
+    let nextDeck = groupSlug === 'ALL'
+      ? [...this.cards]
+      : this.cards.filter(c => c.volumen === groupSlug);
+
+    const currentDisc = this.getActiveCardElement();
+
+    this.audio.play('flip');
+
+    if (currentDisc && typeof currentDisc.animate === 'function') {
+      const exitAnim = currentDisc.animate([
+        { transform: 'scale(1) rotateY(0deg)', opacity: 1 },
+        { transform: 'scale(0.8) rotateY(90deg)', opacity: 0 }
+      ], {
+        duration: 160,
+        easing: 'ease-in'
+      });
+      exitAnim.onfinish = () => {
+        this.state.setActiveDeck(nextDeck, true, true);
+        const newDisc = this.getActiveCardElement();
+        if (newDisc && typeof newDisc.animate === 'function') {
+          newDisc.animate([
+            { transform: 'scale(0.8) rotateY(-90deg)', opacity: 0 },
+            { transform: 'scale(1) rotateY(0deg)', opacity: 1 }
+          ], {
+            duration: 260,
+            easing: ANIM_CONFIG.EASE_ELASTIC
+          });
+        }
+      };
+    } else {
+      this.state.setActiveDeck(nextDeck, true, true);
+    }
+  }
+
+  // ── Catálogo, Búsqueda y Filtros ──────────────────────────────────────────
+
+  setupSearchIndex() {
+    if (typeof Fuse === 'function' && this.cards.length) {
+      this.fuse = new Fuse(this.cards, {
+        keys: [
+          { name: 'hito', weight: 0.5 },
+          { name: 'autor', weight: 0.3 },
+          { name: 'trivia', weight: 0.1 },
+          { name: 'tag', weight: 0.05 },
+          { name: 'id', weight: 0.05 }
+        ],
+        threshold: 0.38,
+        ignoreLocation: true
+      });
+    }
+  }
+
+  filterCatalog() {
+    const q = this.galleryQuery ? this.galleryQuery.value.trim() : '';
+    const grp = this.selectFilterGroup ? this.selectFilterGroup.value : 'ALL';
+    const sort = this.selectSortOrder ? this.selectSortOrder.value : 'DEFAULT';
+
+    let results = q && this.fuse ? this.fuse.search(q).map(res => res.item) : [...this.cards];
+
+    if (grp !== 'ALL') {
+      results = results.filter(c => c.volumen === grp);
+    }
+
+    if (sort === 'YEAR_ASC') results.sort((a, b) => a.year - b.year);
+    else if (sort === 'YEAR_DESC') results.sort((a, b) => b.year - a.year);
+    else if (sort === 'AUTHOR_ASC') results.sort((a, b) => (a.autor || '').localeCompare(b.autor || ''));
+
+    this.filteredCatalog = results;
+    this.renderCatalog();
+  }
+
+  setGalleryLayout(layout) {
+    this.galleryLayout = layout;
+    if (layout === 'fan') {
+      this.btnGalleryViewFan?.classList.add('active');
+      this.btnGalleryViewGrid?.classList.remove('active');
+      if (this.galleryFanSection) this.galleryFanSection.style.display = 'flex';
+      if (this.catalogGrid) this.catalogGrid.style.display = 'none';
+    } else {
+      this.btnGalleryViewFan?.classList.remove('active');
+      this.btnGalleryViewGrid?.classList.add('active');
+      if (this.galleryFanSection) this.galleryFanSection.style.display = 'none';
+      if (this.catalogGrid) this.catalogGrid.style.display = 'grid';
+    }
+    this.audio.play('tick');
+    this.renderCatalog();
+  }
+
+  setFanColorMode(mode) {
+    this.fanColorMode = mode;
+    [this.btnModeGradient, this.btnModeSolid, this.btnModeHybrid].forEach(b => {
+      if (!b) return;
+      if (b.getAttribute('data-mode') === mode) {
+        b.classList.add('active');
+      } else {
+        b.classList.remove('active');
+      }
+    });
+    this.audio.play('tick');
+    this.renderFanningTrack(this.filteredCatalog);
+  }
+
+  renderCantoBar(cards) {
+    if (!this.cantoBar) return;
+    this.cantoBar.innerHTML = '';
+    if (this.cantoCount) this.cantoCount.textContent = cards.length;
+
+    const frag = document.createDocumentFragment();
+    cards.forEach(card => {
+      const theme = this.renderer.getCardTheme(card);
+      const slice = document.createElement('div');
+      slice.className = 'canto-slice';
+      slice.style.backgroundColor = theme.topHex || theme.bgHex || theme.bg;
+      const hexPart = card.id ? card.id.split('-')[1] : '';
+      slice.title = `#${hexPart} | ${card.year} — ${card.autor || ''}`;
+      slice.setAttribute('role', 'button');
+      slice.setAttribute('tabindex', '0');
+      slice.setAttribute('aria-label', `Ir a tarjeta ${card.year}: ${card.autor || ''}`);
+
+      const scrollToTarget = () => {
+        const cardEl = this.fanningTrack?.querySelector(`[data-card-id="${card.id}"]`);
+        if (cardEl && this.fanningScrollWrapper) {
+          const leftPos = cardEl.offsetLeft - (this.fanningScrollWrapper.clientWidth / 2) + (cardEl.clientWidth / 2);
+          this.fanningScrollWrapper.scrollTo({ left: Math.max(0, leftPos), behavior: 'smooth' });
+          cardEl.focus();
+        }
+      };
+
+      slice.addEventListener('click', scrollToTarget);
+      slice.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          scrollToTarget();
+        }
+      });
+
+      frag.appendChild(slice);
+    });
+    this.cantoBar.appendChild(frag);
+  }
+
+  renderFanningTrack(cards) {
+    if (!this.fanningTrack) return;
+    this.fanningTrack.innerHTML = '';
+    const frag = document.createDocumentFragment();
+
+    cards.forEach((card, idx) => {
+      const tmp = document.createElement('div');
+      tmp.innerHTML = this.renderer.buildFanCardHTML(card, {
+        mode: this.fanColorMode,
+        zIndex: idx + 1
+      });
+      if (tmp.firstElementChild) {
+        frag.appendChild(tmp.firstElementChild);
+      }
+    });
+
+    this.fanningTrack.appendChild(frag);
+    this.refreshIcons();
+  }
+
+  renderCatalog() {
+    if (this.galleryLayout === 'fan') {
+      this.renderCantoBar(this.filteredCatalog);
+      this.renderFanningTrack(this.filteredCatalog);
+    } else {
+      if (!this.catalogGrid) return;
+      this.catalogGrid.innerHTML = '';
+      const slice = this.filteredCatalog.slice(0, 100);
+
+      slice.forEach(card => {
+        const cell = document.createElement('div');
+        cell.className = 'catalog-card-cell';
+        cell.innerHTML = this.renderer.buildCardHTML(card, {
+          showYear: true,
+          hideRevealButton: true,
+          isFlipped: false,
+          id: ''
+        }, this.state.cardFormat);
+        this.catalogGrid.appendChild(cell);
+      });
+
       this.refreshIcons();
     }
   }
 
-  nextCard() {
-    if (this.currentIndex < this.activeDeck.length - 1) {
-      this.currentIndex++;
-      this.renderActiveArenaCard();
-      this.playAudioFeedback('flip');
+
+
+  // ── Carga de Datos y Persistencia ─────────────────────────────────────────
+
+  async fetchFirst(urls) {
+    for (const url of urls) {
+      try {
+        const res = await fetch(url);
+        if (res.ok) return await res.json();
+      } catch (_) {}
+    }
+    return null;
+  }
+
+  async loadData() {
+    try {
+      let cards = window.HIT_DECK_DATA?.cards || null;
+      let colorsData = window.HIT_DECK_DATA?.cardColors || null;
+      let catalogData = window.HIT_DECK_DATA?.catalog || null;
+      let manifestData = window.HIT_DECK_DATA?.manifest || null;
+
+      if (!cards) {
+        const [fCards, fColors, fCatalog, fManifest] = await Promise.all([
+          this.fetchFirst(['../data/cards.json', 'data/cards.json', '/data/cards.json', 'cards.json']),
+          this.fetchFirst(['../data/card_colors.json', 'data/card_colors.json', '/data/card_colors.json', 'card_colors.json']),
+          this.fetchFirst(['../data/catalog.json', 'data/catalog.json', '/data/catalog.json', 'catalog.json']),
+          this.fetchFirst(['../data/manifest.json', 'data/manifest.json', '/data/manifest.json', 'manifest.json'])
+        ]);
+        cards = fCards;
+        colorsData = fColors;
+        catalogData = fCatalog;
+        manifestData = fManifest;
+      }
+
+      if (!cards) throw new Error('No se pudo cargar data/cards.json');
+
+      this.cards = cards;
+      this.cards.forEach((c, idx) => { c.globalIndex = idx + 1; });
+
+      if (catalogData) {
+        this.catalog = catalogData;
+        this.renderer.setCatalog(catalogData);
+      }
+      if (colorsData) {
+        this.cardColors = colorsData.cards || colorsData;
+        this.renderer.setCardColors(this.cardColors);
+      }
+      if (manifestData) {
+        this.manifest = manifestData;
+        this.updatePrintPdfLinks(manifestData);
+      }
+
+      if (this.counterTotal) this.counterTotal.textContent = this.cards.length;
+
+      this.state.setActiveDeck(this.cards, true, true);
+      this.filteredCatalog = [...this.cards];
+      this.setupSearchIndex();
+      this.renderCatalog();
+      this.refreshIcons();
+    } catch (err) {
+      console.error('Error cargando datos:', err);
     }
   }
 
-  prevCard() {
-    if (this.currentIndex > 0) {
-      this.currentIndex--;
-      this.renderActiveArenaCard();
-      this.playAudioFeedback('flip');
-    }
-  }
+  updatePrintPdfLinks(manifest) {
+    if (!manifest) return;
+    const volumesGrid = document.getElementById('official-pdf-volumes-grid');
+    if (!volumesGrid) return;
 
-  shuffleCurrentDeck() {
-    for (let i = this.activeDeck.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [this.activeDeck[i], this.activeDeck[j]] = [this.activeDeck[j], this.activeDeck[i]];
-    }
-    this.currentIndex = 0;
-    this.renderActiveArenaCard();
-    this.playAudioFeedback('flip');
-  }
+    volumesGrid.innerHTML = '';
 
-  filterCatalog() {
-    const q = this.galleryQuery.value.toLowerCase().trim();
-    const grp = this.selectFilterGroup.value;
-    const sort = this.selectSortOrder.value;
+    const volumes = manifest.volumes || [];
+    volumes.forEach(vol => {
+      const card = document.createElement('a');
+      card.className = 'pdf-compact-row';
+      const filename = vol.pdfFilename || `hit-tazos-tech-${vol.id}-${vol.slug}.pdf`;
+      const url = `assets/print/${filename}`;
+      card.setAttribute('href', url);
+      card.setAttribute('download', filename);
 
-    this.filteredCatalog = this.cards.filter(c => {
-      const matchGrp = grp === 'ALL' || c.volumen === grp;
-      const numStr = c.index !== undefined ? String(c.index) : '';
-      const matchQ = !q ||
-        c.hito.toLowerCase().includes(q) ||
-        c.autor.toLowerCase().includes(q) ||
-        c.trivia.toLowerCase().includes(q) ||
-        numStr.includes(q) ||
-        `#${numStr}`.includes(q);
-      return matchGrp && matchQ;
+      card.innerHTML = `
+        <div class="pdf-row-info">
+          <div class="pdf-row-header">
+            <span class="pdf-vol-pill">${vol.id.toUpperCase()}</span>
+            <span class="pdf-specs-text">${vol.cardsCount} cartas &bull; ${vol.pagesCarta} págs dúplex</span>
+          </div>
+          <div class="pdf-row-title">${vol.title}</div>
+        </div>
+        <div class="pdf-row-action" title="Descargar PDF imprimible">
+          <i data-lucide="download"></i>
+        </div>
+      `;
+      volumesGrid.appendChild(card);
     });
 
-    if (sort === 'YEAR_ASC') {
-      this.filteredCatalog.sort((a, b) => a.year - b.year);
-    } else if (sort === 'YEAR_DESC') {
-      this.filteredCatalog.sort((a, b) => b.year - a.year);
-    } else if (sort === 'DECK_ORDER') {
-      this.filteredCatalog.sort((a, b) => (a.index !== undefined ? a.index : 0) - (b.index !== undefined ? b.index : 0));
-    }
-
-    this.renderCatalog();
+    this.refreshIcons();
   }
 
-  renderCatalog() {
-    this.catalogGrid.innerHTML = '';
-    const slice = this.filteredCatalog.slice(0, 100);
+  // ── Gestión de Versiones de Juego (Hit-Tazo vs Hit-Cards) ─────────────────
 
-    slice.forEach(card => {
-      const cell = document.createElement('div');
-      cell.className = 'catalog-card-cell';
+  openVersionModal() {
+    if (!this.versionDialog) return;
+    this.updateVersionModalOptions();
+    if (typeof this.versionDialog.showModal === 'function') {
+      this.versionDialog.showModal();
+      this.refreshIcons();
+    }
+  }
 
-      const cardEl = document.createElement('div');
-      cardEl.className = `hittazos-card-3d theme-${this.catalog.domains[card.domain] || card.domain}`;
-      cardEl.innerHTML = this.buildCardHTML(card, { isRevealed: false });
+  closeVersionModal() {
+    if (this.versionDialog?.open) {
+      this.versionDialog.close();
+    }
+  }
 
-      const yearStage = cardEl.querySelector('.year-center-stage');
-      if (yearStage) {
-        yearStage.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const isHidden = yearStage.classList.contains('is-hidden');
-          if (isHidden) {
-            yearStage.classList.remove('is-hidden');
-            yearStage.classList.add('is-revealed');
-            this.playAudioFeedback('hit');
-          } else {
-            yearStage.classList.remove('is-revealed');
-            yearStage.classList.add('is-hidden');
-            this.playAudioFeedback('flip');
-          }
-          this.refreshIcons();
+  openHelpModal() {
+    if (!this.helpDialog) return;
+    if (typeof this.helpDialog.showModal === 'function') {
+      this.helpDialog.showModal();
+      this.refreshIcons();
+    }
+  }
+
+  selectGameVersion(versionId) {
+    const isCards = versionId === 'cards' || versionId === CARD_FORMATS.CARD;
+    const targetFormat = isCards ? CARD_FORMATS.CARD : CARD_FORMATS.DISC;
+    const versionObj = isCards ? GAME_VERSIONS.CARDS : GAME_VERSIONS.TAZO;
+
+    const isFirstTime = Boolean(this.isFirstTimeOnboarding);
+    this.isFirstTimeOnboarding = false;
+
+    this.state.setFormat(targetFormat);
+    this.storage.set(STORAGE_KEYS.FORMAT, targetFormat);
+    this.storage.set(STORAGE_KEYS.VERSION_CHOSEN, true);
+
+    this.applyVersionUI(versionObj);
+    this.audio.play(isCards ? 'tick' : 'slam');
+
+    this.closeVersionModal();
+    if (isFirstTime) {
+      setTimeout(() => {
+        this.openHelpModal();
+      }, 280);
+    }
+  }
+
+  updateVersionModalOptions() {
+    const isCards = this.state.cardFormat === CARD_FORMATS.CARD;
+    if (this.optionSelectTazo) {
+      this.optionSelectTazo.classList.toggle('active-version', !isCards);
+    }
+    if (this.optionSelectCards) {
+      this.optionSelectCards.classList.toggle('active-version', isCards);
+    }
+    if (this.badgeStatusTazo) {
+      this.badgeStatusTazo.textContent = !isCards ? '✓ Versión Activa' : 'Dial 3D';
+    }
+    if (this.badgeStatusCards) {
+      this.badgeStatusCards.textContent = isCards ? '✓ Versión Activa' : 'Clean Table';
+    }
+  }
+
+  applyVersionUI(version = GAME_VERSIONS.TAZO) {
+    const isCards = version.id === 'cards';
+    const itemNoun = isCards ? 'cartas' : 'tazos';
+    const itemNounSingular = isCards ? 'tarjeta' : 'tazo';
+
+    if (this.brandTitleText) {
+      this.brandTitleText.textContent = version.name;
+    }
+    if (this.brandIconGlyph) {
+      this.brandIconGlyph.setAttribute('data-lucide', version.icon);
+    }
+    if (this.btnBrandVersion) {
+      if (isCards) {
+        this.btnBrandVersion.classList.add('version-cards');
+      } else {
+        this.btnBrandVersion.classList.remove('version-cards');
+      }
+    }
+    if (this.attemptTracker) {
+      this.attemptTracker.title = `Tiros disponibles (3 por ${itemNounSingular})`;
+    }
+    if (this.cardStage) {
+      this.cardStage.title = `Toca o pulsa Espacio para voltear el ${isCards ? 'Naipe' : 'Tazo'}`;
+    }
+    if (this.shelfCounter) {
+      const currentShelf = this.state.playerShelf || [];
+      const isVictory = currentShelf.length >= GAME_RULES.VICTORY_SHELF_SIZE;
+      if (!isVictory) {
+        this.shelfCounter.textContent = `${currentShelf.length} / ${GAME_RULES.VICTORY_SHELF_SIZE} ${itemNoun} para ganar`;
+      }
+    }
+    if (this.helpCardTerm) {
+      this.helpCardTerm.textContent = isCards ? 'de la tarjeta' : 'del tazo';
+    }
+    if (this.helpTargetTerm) {
+      this.helpTargetTerm.textContent = `${GAME_RULES.VICTORY_SHELF_SIZE} ${itemNoun}`;
+    }
+    if (this.helpNavTerm) {
+      this.helpNavTerm.textContent = `Cambiar ${itemNounSingular}`;
+    }
+    document.title = `${version.title} — Trivia Cronológica Open Source (576 Tarjetas)`;
+    this.updateVersionModalOptions();
+    this.refreshIcons();
+  }
+
+  async loadSavedState() {
+    const savedShelf = await this.storage.get(STORAGE_KEYS.SHELF, [], StorageAdapter.validateShelf);
+    const savedScore = await this.storage.get(STORAGE_KEYS.SCORE, 0, StorageAdapter.validateScore);
+    const savedStreak = await this.storage.get(STORAGE_KEYS.STREAK, 0, StorageAdapter.validateStreak);
+    const savedRevealed = await this.storage.get(STORAGE_KEYS.REVEALED, [], StorageAdapter.validateRevealed);
+    const savedFormat = await this.storage.get(STORAGE_KEYS.FORMAT, null);
+    const versionChosen = await this.storage.get(STORAGE_KEYS.VERSION_CHOSEN, false);
+
+    const activeFormat = savedFormat || CARD_FORMATS.DISC;
+
+    this.state.hydrate({
+      score: savedScore,
+      streak: savedStreak,
+      shelf: savedShelf,
+      revealed: savedRevealed,
+      format: activeFormat
+    });
+
+    this.applyVersionUI(activeFormat === CARD_FORMATS.CARD ? GAME_VERSIONS.CARDS : GAME_VERSIONS.TAZO);
+
+    // Al cargar por primera vez la página, debe preguntar qué versión desea
+    if (!versionChosen && !savedFormat) {
+      this.isFirstTimeOnboarding = true;
+      setTimeout(() => this.openVersionModal(), 300);
+    } else {
+      this.isFirstTimeOnboarding = false;
+    }
+  }
+
+  async persistGameState() {
+    const serialized = this.state.serialize();
+    await this.storage.set(STORAGE_KEYS.SHELF, serialized.shelf);
+    await this.storage.set(STORAGE_KEYS.SCORE, serialized.score);
+    await this.storage.set(STORAGE_KEYS.STREAK, serialized.streak);
+    await this.storage.set(STORAGE_KEYS.REVEALED, serialized.revealed);
+  }
+
+  async confirmResetGame() {
+    const confirmed = window.confirm(
+      '¿Deseas reiniciar la partida?\n\nSe restablecerán tus puntos, racha, tazos ganados y tarjetas resueltas.'
+    );
+    if (!confirmed) return;
+    await this.storage.clearAllGameState();
+    this.state.resetGame();
+  }
+
+  triggerCyberConfetti(accentColor = '#38bdf8') {
+    if (typeof confetti === 'function') {
+      try {
+        confetti({
+          particleCount: 70,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: [accentColor, '#facc15', '#f472b6', '#34d399', '#ffffff']
         });
-      }
-
-      cardEl.addEventListener('click', () => {
-        this.flipCard(cardEl);
-        this.playAudioFeedback('flip');
-      });
-
-      cell.appendChild(cardEl);
-      this.catalogGrid.appendChild(cell);
-    });
-
-    this.refreshIcons();
+      } catch (_) {}
+    }
   }
 
-  /**
-   * Generación Milimétrica de Pliegos Dúplex en Tamaño Carta (8.5 x 11 pulg / 215.9 x 279.4 mm)
-   * 6 cartas por pliego en rejilla de 2 columnas x 3 filas (65mm x 65mm).
-   * Regla de correspondencia Dúplex al voltear por el borde largo:
-   *  - Cada fila [A, B] en el Frente se espeja horizontalmente en el Reverso como [B, A].
-   */
-  generatePrintSheets() {
-    if (!this.printSheetsContainer) return;
-    this.printSheetsContainer.innerHTML = '';
-
-    const rangeOption = this.printSelectRange ? this.printSelectRange.value : 'SAMPLE_6';
-    const cropOption = this.printCropMarks ? this.printCropMarks.value : 'GUIDES';
-    const hasBorder = cropOption === 'GUIDES';
-
-    let targetCards = [...this.cards];
-
-    if (rangeOption === 'SAMPLE_6') {
-      targetCards = targetCards.slice(0, 6);
-    } else if (rangeOption === 'SAMPLE_12') {
-      targetCards = targetCards.slice(0, 12);
-    } else if (rangeOption.startsWith('VOL_')) {
-      const targetVolSlug = rangeOption.replace('VOL_', '');
-      targetCards = targetCards.filter(c => c.volumen === targetVolSlug);
-    } else if (rangeOption === 'CURRENT_GROUP') {
-      const currentActivePill = this.groupRibbon.querySelector('.ribbon-pill.active');
-      const activeGrp = currentActivePill ? (currentActivePill.getAttribute('data-volumen') || currentActivePill.getAttribute('data-group')) : 'ALL';
-      if (activeGrp && activeGrp !== 'ALL') {
-        targetCards = targetCards.filter(c => c.volumen === activeGrp);
+  refreshIcons() {
+    if (this.pendingIconRefresh) return;
+    this.pendingIconRefresh = true;
+    requestAnimationFrame(() => {
+      this.pendingIconRefresh = false;
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
       }
-    }
-    // Si es 'ALL' toma todas las cartas de la baraja completa
-
-    const CARDS_PER_SHEET = 6;
-    const totalSheets = Math.ceil(targetCards.length / CARDS_PER_SHEET);
-
-    for (let sheetIdx = 0; sheetIdx < totalSheets; sheetIdx++) {
-      const sheetCards = targetCards.slice(sheetIdx * CARDS_PER_SHEET, (sheetIdx + 1) * CARDS_PER_SHEET);
-      // Rellenar hasta 6 si el último pliego tiene menos
-      while (sheetCards.length < CARDS_PER_SHEET) {
-        sheetCards.push(null);
-      }
-
-      // --- PLIEGO IMPAR: FRENTES (Orden natural 0..5, 2x3) ---
-      const frontSheet = document.createElement('div');
-      frontSheet.className = 'print-sheet print-sheet-fronts';
-      frontSheet.innerHTML = `
-        <div class="sheet-meta-header">
-          <span>HIT-TAZOS TECH — CARTA ${sheetIdx + 1} DE ${totalSheets} [CARA A: FRENTES]</span>
-          <span>8.5x11 PULG — 6 CARTAS (65x65mm) — CORTE MILIMÉTRICO</span>
-        </div>
-      `;
-
-      const frontGrid = document.createElement('div');
-      frontGrid.className = 'print-grid-6';
-
-      sheetCards.forEach((card) => {
-        const box = document.createElement('div');
-        box.className = `print-card-box ${hasBorder ? 'print-crop-border' : ''}`;
-
-        if (card) {
-          const theme = this.getCardTheme(card);
-          const groupIcon = 'layers';
-          const hitoFormatted = this.formatMarkdown(card.hito);
-          const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
-          const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
-          const cardNumStr = `${volId}x${hexPart}`;
-
-          box.innerHTML = `
-            <div class="print-card-face print-face-front" style="--hittazos-bg: ${theme.bg}; --card-bg: ${theme.bg}; --hittazos-front-bg: ${theme.frontBg}; --card-front-bg: ${theme.frontBg};">
-              <div class="card-topbar-minimal">
-                <span class="group-badge-tiny">
-                  <i data-lucide="${groupIcon}"></i>
-                  ${this.catalog.domains[card.domain] || card.domain}
-                </span>
-                <span class="category-badge-tiny">${this.catalog.tags[card.tag] || card.tag}</span>
-              </div>
-              <div class="clue-stage-pure">
-                <p class="clue-quote">${hitoFormatted}</p>
-              </div>
-              <div class="card-footbar-minimal">
-                <span class="corner-meta-left">${this.catalog.volumes[card.volumen] || card.volumen}</span>
-                <span class="corner-meta-right">${cardNumStr}</span>
-              </div>
-            </div>
-          `;
-        }
-        frontGrid.appendChild(box);
-      });
-
-      frontSheet.appendChild(frontGrid);
-      this.printSheetsContainer.appendChild(frontSheet);
-
-      // --- PLIEGO PAR: REVERSOS (Espejado Horizontal Fila por Fila en 2 columnas: [c1, c0]) ---
-      const backSheet = document.createElement('div');
-      backSheet.className = 'print-sheet print-sheet-backs';
-      backSheet.innerHTML = `
-        <div class="sheet-meta-header">
-          <span>HIT-TAZOS TECH — CARTA ${sheetIdx + 1} DE ${totalSheets} [CARA B: REVERSOS ESPEJADOS]</span>
-          <span>VOLTEAR POR EL BORDE LARGO (LONG EDGE DUPLEX)</span>
-        </div>
-      `;
-
-      const backGrid = document.createElement('div');
-      backGrid.className = 'print-grid-6';
-
-      // 3 filas de 2 columnas: fila 0 -> [1, 0], fila 1 -> [3, 2], fila 2 -> [5, 4]
-      const mirroredIndices = [];
-      for (let r = 0; r < 3; r++) {
-        const base = r * 2;
-        mirroredIndices.push(base + 1, base);
-      }
-
-      mirroredIndices.forEach(idx => {
-        const card = sheetCards[idx];
-        const box = document.createElement('div');
-        box.className = `print-card-box ${hasBorder ? 'print-crop-border' : ''}`;
-
-        if (card) {
-          const theme = this.getCardTheme(card);
-          const creadorFormatted = this.formatMarkdown(card.autor);
-          const triviaFormatted = this.formatMarkdown(card.trivia);
-          const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
-          const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
-          const cardNumStr = `${volId}x${hexPart}`;
-
-          box.innerHTML = `
-            <div class="print-card-face print-face-back" style="--hittazos-bg: ${theme.bg}; --card-bg: ${theme.bg};">
-              <div class="card-back-top">
-                <div class="back-author-title">${creadorFormatted}</div>
-              </div>
-              <div class="year-center-stage">
-                <div class="year-digits-hero">${card.year}</div>
-              </div>
-              <div class="card-back-bottom">
-                <div class="back-trivia-phrase">${triviaFormatted}</div>
-              </div>
-              <div class="card-footbar-minimal">
-                <span class="corner-meta-left">${this.catalog.volumes[card.volumen] || card.volumen}</span>
-                <span class="corner-meta-right">${cardNumStr}</span>
-              </div>
-            </div>
-          `;
-        }
-        backGrid.appendChild(box);
-      });
-
-      backSheet.appendChild(backGrid);
-      this.printSheetsContainer.appendChild(backSheet);
-    }
-
-    this.refreshIcons();
+    });
   }
 }
 
-// Start on DOM Ready
-window.addEventListener('DOMContentLoaded', () => {
-  window.hitTazos = new HitTazosEngine();
+// Inicialización automática de la aplicación
+document.addEventListener('DOMContentLoaded', () => {
+  window.app = new HitTazosApp();
 });

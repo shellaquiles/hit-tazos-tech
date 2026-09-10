@@ -16,6 +16,9 @@ const MIME_TYPES = {
   '.ico': 'image/x-icon',
   '.xml': 'application/xml; charset=utf-8',
   '.webmanifest': 'application/manifest+json; charset=utf-8',
+  '.mp3': 'audio/mpeg',
+  '.ogg': 'audio/ogg',
+  '.wav': 'audio/wav',
   '.txt': 'text/plain; charset=utf-8'
 };
 
@@ -50,7 +53,9 @@ const server = http.createServer((req, res) => {
     const contentType = MIME_TYPES[ext] || 'application/octet-stream';
     res.writeHead(200, {
       'Content-Type': contentType,
-      'Cache-Control': 'no-cache',
+      'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+      'Pragma': 'no-cache',
+      'Expires': '0',
       'Access-Control-Allow-Origin': '*'
     });
     fs.createReadStream(safePath).pipe(res);
