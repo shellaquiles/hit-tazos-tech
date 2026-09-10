@@ -39,6 +39,7 @@ export class HitTazosApp {
     this.isTransitioning = false;
     this.pendingIconRefresh = false;
     this.searchDebounceTimer = null;
+    this.isFirstTimeOnboarding = false;
 
     this.initDOM();
     this.bindStateEvents();
@@ -173,6 +174,9 @@ export class HitTazosApp {
     this.helpDialog = document.getElementById('help-dialog');
     this.btnCloseHelpModal = document.getElementById('btn-close-help-modal');
     this.btnUnderstoodHelp = document.getElementById('btn-understood-help');
+    this.helpCardTerm = document.getElementById('help-card-term');
+    this.helpTargetTerm = document.getElementById('help-target-term');
+    this.helpNavTerm = document.getElementById('help-nav-term');
     this.printDialog = document.getElementById('print-dialog');
     this.btnClosePrintModal = document.getElementById('btn-close-print-modal');
     this.btnCancelPrint = document.getElementById('btn-cancel-print');
@@ -1676,10 +1680,21 @@ export class HitTazosApp {
     }
   }
 
+  openHelpModal() {
+    if (!this.helpDialog) return;
+    if (typeof this.helpDialog.showModal === 'function') {
+      this.helpDialog.showModal();
+      this.refreshIcons();
+    }
+  }
+
   selectGameVersion(versionId) {
     const isCards = versionId === 'cards' || versionId === CARD_FORMATS.CARD;
     const targetFormat = isCards ? CARD_FORMATS.CARD : CARD_FORMATS.DISC;
     const versionObj = isCards ? GAME_VERSIONS.CARDS : GAME_VERSIONS.TAZO;
+
+    const isFirstTime = Boolean(this.isFirstTimeOnboarding);
+    this.isFirstTimeOnboarding = false;
 
     this.state.setFormat(targetFormat);
     this.storage.set(STORAGE_KEYS.FORMAT, targetFormat);
@@ -1689,6 +1704,11 @@ export class HitTazosApp {
     this.audio.play(isCards ? 'tick' : 'slam');
 
     this.closeVersionModal();
+    if (isFirstTime) {
+      setTimeout(() => {
+        this.openHelpModal();
+      }, 280);
+    }
   }
 
   updateVersionModalOptions() {
@@ -1738,6 +1758,15 @@ export class HitTazosApp {
         this.shelfCounter.textContent = `${currentShelf.length} / ${GAME_RULES.VICTORY_SHELF_SIZE} ${itemNoun} para ganar`;
       }
     }
+    if (this.helpCardTerm) {
+      this.helpCardTerm.textContent = isCards ? 'de la tarjeta' : 'del tazo';
+    }
+    if (this.helpTargetTerm) {
+      this.helpTargetTerm.textContent = `${GAME_RULES.VICTORY_SHELF_SIZE} ${itemNoun}`;
+    }
+    if (this.helpNavTerm) {
+      this.helpNavTerm.textContent = `Cambiar ${itemNounSingular}`;
+    }
     document.title = `${version.title} — Trivia Cronológica Open Source (576 Tarjetas)`;
     this.updateVersionModalOptions();
     this.refreshIcons();
@@ -1765,7 +1794,10 @@ export class HitTazosApp {
 
     // Al cargar por primera vez la página, debe preguntar qué versión desea
     if (!versionChosen && !savedFormat) {
+      this.isFirstTimeOnboarding = true;
       setTimeout(() => this.openVersionModal(), 300);
+    } else {
+      this.isFirstTimeOnboarding = false;
     }
   }
 
