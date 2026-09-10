@@ -86,8 +86,6 @@ export class TazoRenderer {
               ${hitoFormatted}
             </div>
           </div>
-
-          <div class="disc-foil-reflection tazo-foil-reflection" aria-hidden="true"></div>
         </div>
 
         <!-- REVERSO: AUTOR ARRIBA + AÑO GIGANTE + TRIVIA LORE ABAJO -->

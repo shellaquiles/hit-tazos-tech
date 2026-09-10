@@ -120,7 +120,6 @@ export class HitTazosApp {
 
     // Escenario y Arena de Juego
     this.cardStage = document.getElementById('card-stage');
-    this.ambientAura = document.getElementById('ambient-card-aura');
     this.pileLeft = document.getElementById('pile-left');
     this.pileLeftCards = document.getElementById('pile-left-cards');
     this.pileLeftCount = document.getElementById('pile-left-count');
@@ -744,13 +743,10 @@ export class HitTazosApp {
       if (this.guessResultPill) this.guessResultPill.textContent = '';
     }
 
-    // Actualizar Aura Ambiental de Color
-    if (this.ambientAura) {
-      const theme = this.renderer.getCardTheme(card);
-      const hue = theme.hue !== undefined ? theme.hue : 215;
-      this.ambientAura.style.background = `radial-gradient(circle, hsla(${hue}, 90%, 65%, 0.35) 0%, hsla(${hue}, 80%, 55%, 0.15) 45%, transparent 75%)`;
-      document.documentElement.style.setProperty('--current-card-glow', `hsl(${hue}, 90%, 60%)`);
-    }
+    // Actualizar brillo ambiental de color
+    const theme = this.renderer.getCardTheme(card);
+    const hue = theme.hue !== undefined ? theme.hue : 215;
+    document.documentElement.style.setProperty('--current-card-glow', `hsl(${hue}, 90%, 60%)`);
 
     this.highlightActiveShelfChip(card.id);
     this.renderDeckPiles();

@@ -8,36 +8,33 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 
 ### Añadido
 - **Separación de Experiencias Dedicadas (Hit-Tazo vs. Hit-Cards)**:
-  - Selector modal de entrada (`#version-dialog`) con elección explícita entre Hit-Tazo (Tazos 3D físicos) y Hit-Cards (Tarjetas cuadradas de mesa 65×65 mm).
-  - Acceso directo para alternar versión en cualquier momento haciendo clic en el isotipo de la cabecera.
-  - Hojas de estilo desacopladas (`web/css/tazo.css` y `web/css/cards.css`) y renderers especializados (`TazoRenderer` y `CardsRenderer`) preservando el motor lógico compartido.
+  - Selector inicial de versión (`#version-dialog`) con elección explícita entre Hit-Tazo (Tazos 3D físicos) y Hit-Cards (Tarjetas cuadradas de sobremesa 65×65 mm).
+  - Acceso directo para alternar versión en cualquier momento desde el isotipo de la cabecera.
+  - Hojas de estilo desacopladas (`web/css/tazo.css` y `web/css/cards.css`) y renderers especializados (`TazoRenderer` y `CardsRenderer`) sobre el motor lógico unificado.
 - **Pilas de Cartas Laterales para Escritorio ($N=5$)**:
-  - Pilas físicas a izquierda (cartas jugadas / timeline) y derecha (próximas por jugar) visibles exclusivamente en escritorio.
+  - Pilas físicas a la izquierda (cartas jugadas / línea de tiempo) y derecha (próximas por jugar en el mazo).
   - Efecto de apilado escalonado tridimensional con cantos visibles de papel marfil 350g, rotaciones angulares orgánicas y micro-tags identificadores.
-  - Expansión interactiva en abanico 3D al pasar el cursor (*hover fan-out*) y navegación con clic o teclas <kbd>P</kbd> / <kbd>N</kbd>.
+  - Expansión interactiva en abanico 3D al pasar el cursor (*hover fan-out*) y navegación rápida con clic o teclado (<kbd>P</kbd> / <kbd>N</kbd>).
 - **Vista de Galería en Abanico (Modo Explorador)**:
-  - Navegación táctil completa con arrastre (*drag*) y gestos swipe izquierda/derecha.
-  - Visualización del anverso de las cartas con volteo interactivo al reverso.
-  - Ribbons de juego ocultos en el explorador para centrar la experiencia en la lectura editorial.
-- **Arquitectura modular desacoplada en ES Modules nativos (`web/core/`)**:
-  - `web/core/constants.js`: Constantes centralizadas (`GAME_RULES`, `CHRONO_BOUNDS`, `STORAGE_KEYS`, paletas y taxonomía).
-  - `web/core/rules.js`: Motor de cálculo con funciones puras para puntuación (+3 exacto, +1 cercano), pistas térmicas y ordenamiento cronológico.
-  - `web/core/storage.js`: `StorageAdapter` con almacenamiento dual asíncrono (IndexedDB + fallback a `localStorage`) y validación estricta de esquemas.
+  - Navegación táctil y de ratón con arrastre (*drag*) y gestos swipe izquierda/derecha.
+  - Visualización predeterminada del anverso de las cartas con volteo interactivo al reverso.
+  - Interfaz depurada sin controles de juego en el modo explorador para una lectura editorial inmersiva.
+- **Motor Físico y Renderizado 3D Multi-Plataforma**:
+  - Renderizado 3D de disco físico con bisel CNC, ranuras perimetrales (*notchings*), gradiente oscuro neofrost y reflejo especular.
+  - Compatibilidad total garantizada en Chromium, Safari y Firefox Gecko mediante directivas optimizadas de matriz 3D y descarte de caras.
+  - Animaciones fluidas mediante Web Animations API (WAAPI) y transiciones elásticas.
+- **Arquitectura Modular ES Modules Nativos (`web/core/`)**:
+  - `web/core/constants.js`: Constantes canónicas centralizadas (`GAME_RULES`, `CHRONO_BOUNDS`, `STORAGE_KEYS`, paletas y taxonomía).
+  - `web/core/rules.js`: Funciones puras de puntuación (+3 exacto, +1 cercano), pistas cualitativas direccionales/térmicas anti-spoiler y ordenamiento cronológico.
+  - `web/core/storage.js`: `StorageAdapter` con persistencia dual asíncrona (IndexedDB + fallback a `localStorage`) y validación estricta de esquemas.
   - `web/core/state.js`: `GameState` reactivo con patrón Observer (Pub/Sub) desacoplado del DOM.
-  - `web/core/audio.js`: `AudioEngine` encapsulado con Howler para efectos retro (`flip`, `slam`, `hit`, `miss`, `tick`).
+  - `web/core/audio.js`: `AudioEngine` encapsulado para retroalimentación sonora retro (`flip`, `slam`, `hit`, `miss`, `tick`).
   - `web/core/renderer.js`: Orquestador `CardRenderer` para generación de plantillas seguras.
-- **Suite de pruebas unitarias automatizadas (`tests/`)**:
-  - 24 tests unitarios en Node.js integrados en el comando canónico `npm test`.
-- **Mazo canónico de 576 tarjetas de trivia cronológica técnica** distribuidas en 8 volúmenes temáticos (`vol0` a `vol7`), rigurosamente investigadas y auditadas en 4 niveles (factual, fuente, pedagógico, editorial).
-- **Motor de imposición multiformato para imprenta** (`render_print_tabloid.js`): Tabloide (11×17"), Carta (8.5×11") y Super Tabloide (12×18") con reversos espejados, sangrado de 3 mm, calles de 6 mm y fuentes TrueType incrustadas.
-- **Sistema cromático desacoplado** (`card_colors.json`): Paletas HSL por millar con gradiente tonal y coordenadas CMYK para imprenta.
-- **Especificación canónica para agentes de IA** (`AGENTS.md`) e infraestructura de gobernanza (`CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `.github/`).
-
-### Corregido
-- **Compatibilidad de giro 3D en Firefox Gecko**:
-  - Resuelto el bug de *backface-culling* en Firefox mediante reglas `@supports (-moz-appearance: none)` con `backface-visibility: visible !important` en estado `.is-flipped` y ocultamiento seguro de la cara opuesta.
-  - Eliminado `transform-style: preserve-3d` de elementos hoja con `overflow: hidden`, evitando el aplanamiento ilegal del contexto 3D en Gecko.
-  - Eliminado `fill: 'forwards'` de las animaciones WAAPI (`slamDisc`) para evitar que Firefox bloquee la capa de aceleración por hardware.
-  - Incorporadas propiedades estándar `background-clip: text` para renderizado fiel del año metálico.
-- **Lógica de volteo en tiros fallidos**:
-  - Tiros errados con intentos restantes (`MISS_RETRY`) ejecutan rebote elástico sobre la mesa manteniendo la cara visible (anverso) sin revelar prematuramente el año.
+- **Suite de Pruebas Unitarias Automatizadas (`tests/`)**:
+  - 24 pruebas unitarias en Node.js integradas en el pipeline de verificación `npm test`.
+- **Baraja Canónica de 576 Tarjetas Verificadas**:
+  - 8 volúmenes temáticos canónicos (`vol0` a `vol7`) rigurosamente investigados y auditados en 4 niveles (factual, fuente, pedagógico, editorial).
+- **Motor de Imposición Multiformato para Imprenta**:
+  - Generador de pliegos (`render_print_tabloid.js`) para formatos Tabloide (11×17"), Carta (8.5×11") y Super Tabloide (12×18") con reversos espejados, sangrado de 3 mm y calles de 6 mm.
+- **Sistema Cromático Desacoplado**:
+  - Paletas HSL continuas por millar con gradientes tonales y equivalencias CMYK para imprenta en `data/card_colors.json`.

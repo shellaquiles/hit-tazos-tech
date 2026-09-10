@@ -622,78 +622,7 @@ main {
   50% { transform: scale(1.22); opacity: 0.85; }
 }
 
-/* Arena Stage & Mazo de Cartas de Sobremesa */
-.arena-stage-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0.75rem 0;
-  perspective: 1200px;
-}
 
-/* Sin auras de neón artificiales */
-.ambient-card-aura {
-  display: none !important;
-}
-
-/* Mazo Físico Apilado: Simula un mazo real de cartas de 350g con núcleo de papel marfil */
-.deck-physical-stack {
-  position: absolute;
-  width: var(--card-width);
-  height: var(--card-height);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.deck-stack-card {
-  position: absolute;
-  inset: 0;
-  border-radius: var(--card-radius);
-  background: #121520;
-  /* El borde derecho e inferior emula las cartas apiladas de 350g vistas de canto */
-  border-right: 2.5px solid #eae6dc;
-  border-bottom: 2.5px solid #ded9cd;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.deck-stack-card.layer-1 {
-  transform: translate3d(3px, 4px, -6px) rotate(0.8deg);
-  opacity: 0.95;
-  border-right-color: #ded9cc;
-  border-bottom-color: #d5cfc1;
-}
-
-.deck-stack-card.layer-2 {
-  transform: translate3d(6px, 8px, -12px) rotate(1.6deg);
-  opacity: 0.85;
-  border-right-color: #d2ccbf;
-  border-bottom-color: #c7c1b3;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
-}
-
-.deck-stack-card.layer-3 {
-  transform: translate3d(9px, 12px, -18px) rotate(2.4deg);
-  opacity: 0.72;
-  border-right-color: #c4bea8;
-  border-bottom-color: #b8b2a3;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55);
-}
-
-.arena-stage-container:hover .deck-stack-card.layer-1 {
-  transform: translate3d(4px, 5px, -6px) rotate(1.1deg);
-}
-.arena-stage-container:hover .deck-stack-card.layer-2 {
-  transform: translate3d(8px, 10px, -12px) rotate(2.2deg);
-}
-.arena-stage-container:hover .deck-stack-card.layer-3 {
-  transform: translate3d(12px, 15px, -18px) rotate(3.3deg);
-}
 
 /* ==========================================================================
    HIT-TAZOS TECH: ARQUITECTURA TAZO CIRCULAR 3D (DISCO NOVENTERO COLECCIONABLE)
@@ -3272,24 +3201,8 @@ main {
     letter-spacing: 1.2px !important;
   }
 
-  .arena-stage-container {
-    margin: 0.1rem 0;
-    touch-action: pan-y;
-  }
-
   .kbd-shortcut-hint {
     display: none;
-  }
-
-  /* Compactar el mazo físico para no desbordar en pantallas pequeñas */
-  .deck-stack-card.layer-1 {
-    transform: translate3d(2px, 3px, -4px) rotate(0.6deg);
-  }
-  .deck-stack-card.layer-2 {
-    transform: translate3d(4px, 6px, -8px) rotate(1.2deg);
-  }
-  .deck-stack-card.layer-3 {
-    transform: translate3d(6px, 9px, -12px) rotate(1.8deg);
   }
 
   /* Tipografía y márgenes internos en cartas */
