@@ -177,8 +177,9 @@
 }
 
 .clue-quote strong {
-  color: #ffffff;
-  font-weight: 700;
+  color: #38bdf8; /* Azul cyan moderno idéntico a tazos */
+  font-weight: 800;
+  text-shadow: 0 2px 8px rgba(2, 132, 199, 0.5);
 }
 
 .clue-quote em {
@@ -187,13 +188,14 @@
 }
 
 .clue-quote code {
-  font-family: var(--font-mono);
-  background: rgba(255, 255, 255, 0.12);
-  padding: 0.15rem 0.45rem;
+  font-family: var(--font-mono, monospace);
+  background: rgba(0, 0, 0, 0.4);
+  color: #38bdf8;
+  padding: 0.14rem 0.45rem;
   border-radius: 5px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
   font-size: 0.88em;
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* Footbar en ambas caras */
