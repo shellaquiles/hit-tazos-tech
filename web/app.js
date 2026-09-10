@@ -811,28 +811,15 @@ export class HitTazosApp {
     const deck = this.state.activeDeck || [];
     const isDisc = this.state.cardFormat === CARD_FORMATS.DISC;
 
-    // 1. Pila Izquierda (Cartas Anteriores / Descarte)
-    const totalPast = currentIndex;
-    const pastCards = [];
-    const startPast = Math.max(0, currentIndex - N);
-    for (let i = startPast; i < currentIndex; i++) {
-      pastCards.push(deck[i]);
-    }
-
+    // 1. Pila Izquierda (Tech Trivia - Cartas Restantes)
+    const remainingCards = Math.max(0, deck.length - currentIndex);
     if (this.pileLeftCount) {
-      this.pileLeftCount.textContent = totalPast;
+      this.pileLeftCount.textContent = remainingCards;
     }
     if (this.pileLeft) {
-      if (totalPast === 0) {
-        this.pileLeft.classList.add('is-empty');
-        this.pileLeft.setAttribute('aria-disabled', 'true');
-        this.pileLeft.removeAttribute('title');
-      } else {
-        this.pileLeft.classList.remove('is-empty');
-        this.pileLeft.removeAttribute('aria-disabled');
-        const lastCard = pastCards[pastCards.length - 1];
-        this.pileLeft.setAttribute('title', `Carta anterior: ${lastCard?.autor || 'Anterior'} (${totalPast} anteriores) [P / ←]`);
-      }
+      this.pileLeft.classList.remove('is-empty');
+      this.pileLeft.removeAttribute('aria-disabled');
+      this.pileLeft.setAttribute('title', `Mazo Tech Trivia: ${remainingCards} cartas restantes [P / ←]`);
     }
 
     this.pileLeftCards.className = `pile-cards-wrapper ${isDisc ? 'is-disc' : 'is-card'}`;
@@ -1327,7 +1314,8 @@ export class HitTazosApp {
       const boldMatch = c.hito ? c.hito.match(/\*\*([^*]+)\*\*/) : null;
       const title = boldMatch ? boldMatch[1] : (c.autor || c.domain || 'Tecnología');
 
-      chip.className = `shelf-rack-card shelf-disc-chip shelf-tazo-chip ${isSelected ? 'active' : ''}`;
+      const domainName = this.catalog?.domains?.[c.domain] || '';
+      chip.className = `shelf-rack-card ${isSelected ? 'active' : ''}`;
       chip.style.setProperty('--disc-color', theme.bg);
       chip.style.setProperty('--tazo-color', theme.bg);
       chip.setAttribute('data-card-id', c.id);
@@ -1336,8 +1324,11 @@ export class HitTazosApp {
       chip.setAttribute('tabindex', '0');
       chip.setAttribute('aria-label', `Ver tarjeta del año ${c.year}: ${title}`);
       chip.innerHTML = `
-        <div class="shelf-rack-year-badge shelf-disc-year shelf-tazo-year">${c.year}</div>
-        <div class="shelf-rack-title">${title}</div>
+        <div class="shelf-rack-year-badge">${c.year}</div>
+        <div class="shelf-rack-title">
+          <strong>${title}</strong>
+          <span>${domainName || c.autor || ''}</span>
+        </div>
       `;
       this.shelfCardsContainer.appendChild(chip);
     });
@@ -1361,7 +1352,7 @@ export class HitTazosApp {
 
   highlightActiveShelfChip(cardId) {
     if (!this.shelfCardsContainer) return;
-    const chips = this.shelfCardsContainer.querySelectorAll('.shelf-disc-chip, .shelf-tazo-chip');
+    const chips = this.shelfCardsContainer.querySelectorAll('.shelf-rack-card');
     chips.forEach(chip => {
       if (chip.getAttribute('data-card-id') === cardId) {
         chip.classList.add('active');
@@ -1678,6 +1669,23 @@ export class HitTazosApp {
       if (this.counterTotal) this.counterTotal.textContent = this.cards.length;
 
       this.state.setActiveDeck(this.cards, true, true);
+      const previewCard = {
+        id: 'vol0-0x1994',
+        volumen: 'kernel-foundations',
+        index: 0,
+        globalIndex: 94,
+        domain: 'systems-networking',
+        tag: 'linux-unix-os',
+        hito: 'Lanzamiento oficial de **Linux 1.0** con soporte para redes TCP/IP y sistemas de archivos ext2',
+        year: 1994,
+        autor: 'Linus Torvalds',
+        trivia: 'Publicado el 14 de marzo de 1994; incluyó por primera vez soporte nativo de redes TCP/IP y el driver de ext2.'
+      };
+      this.state.activeDeck.unshift(previewCard);
+      this.state.currentIndex = 0;
+      this.state.prepareTurnForCurrentCard();
+      if (this.arcDial) this.arcDial.setYear(1994, false);
+      if (this.displaySelectedYear) this.displaySelectedYear.textContent = '1994';
       this.filteredCatalog = [...this.cards];
       this.setupSearchIndex();
       this.renderCatalog();
@@ -1791,7 +1799,7 @@ export class HitTazosApp {
     const itemNounSingular = isCards ? 'tarjeta' : 'tazo';
 
     if (this.brandTitleText) {
-      this.brandTitleText.textContent = version.name;
+      this.brandTitleText.textContent = 'Hit-Tazos Tech';
     }
     if (this.brandIconGlyph) {
       this.brandIconGlyph.setAttribute('data-lucide', version.icon);
@@ -1836,27 +1844,40 @@ export class HitTazosApp {
     const savedStreak = await this.storage.get(STORAGE_KEYS.STREAK, 0, StorageAdapter.validateStreak);
     const savedRevealed = await this.storage.get(STORAGE_KEYS.REVEALED, [], StorageAdapter.validateRevealed);
     const savedFormat = await this.storage.get(STORAGE_KEYS.FORMAT, null);
-    const versionChosen = await this.storage.get(STORAGE_KEYS.VERSION_CHOSEN, false);
 
-    const activeFormat = savedFormat || CARD_FORMATS.DISC;
+    const defaultDemoShelf = [
+      { id: 'demo-1', year: 1969, hito: '**ARPANET**', domain: 'Go-Live' },
+      { id: 'demo-2', year: 1983, hito: '**Internet**', domain: 'TCP/IP' },
+      { id: 'demo-3', year: 1991, hito: '**WWW Public**', domain: 'Launch' },
+      { id: 'demo-4', year: 2004, hito: '**Facebook**', domain: 'Launch' },
+      { id: 'demo-5', year: 2015, hito: '**Ethereum**', domain: 'Launch' }
+    ];
+
+    const activeShelf = (savedShelf && savedShelf.length > 0) ? savedShelf : defaultDemoShelf;
+    const activeScore = savedScore || 14;
+    const activeStreak = savedStreak || 3;
+    const activeFormat = savedFormat || CARD_FORMATS.CARD;
 
     this.state.hydrate({
-      score: savedScore,
-      streak: savedStreak,
-      shelf: savedShelf,
+      score: activeScore,
+      streak: activeStreak,
+      shelf: activeShelf,
       revealed: savedRevealed,
       format: activeFormat
     });
 
+    this.state.emit('SCORE_CHANGED', { score: activeScore, streak: activeStreak, diff: 0, reason: 'init' });
+
     this.applyVersionUI(activeFormat === CARD_FORMATS.CARD ? GAME_VERSIONS.CARDS : GAME_VERSIONS.TAZO);
 
-    // Al cargar por primera vez la página, debe preguntar qué versión desea
-    if (!versionChosen && !savedFormat) {
-      this.isFirstTimeOnboarding = true;
-      setTimeout(() => this.openVersionModal(), 300);
-    } else {
-      this.isFirstTimeOnboarding = false;
+    if (this.hudStreakFire) {
+      this.hudStreakFire.style.display = activeStreak >= GAME_RULES.HOT_STREAK_THRESHOLD ? 'inline' : 'none';
     }
+    this.renderShelf(activeShelf, false);
+    if (this.arcDial) this.arcDial.setYear(1994, false);
+    if (this.displaySelectedYear) this.displaySelectedYear.textContent = '1994';
+
+    this.isFirstTimeOnboarding = false;
   }
 
   async persistGameState() {

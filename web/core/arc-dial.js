@@ -1,8 +1,9 @@
 /**
  * arc-dial.js — Componente interactivo de Dial Curvo en Arco (Gauge Retro-Futurista)
  * 
- * Implementa el control temporal arqueado con ticks luminiscentes de neón (cian / ámbar / gris),
- * perilla tipo cápsula luminosa, soporte táctil/puntero y sincronización accesible con <input type="range">.
+ * Implementa el control temporal arqueado idéntico al diseño de web-ui-preview.jpg:
+ * Ticks gruesos tipo cápsula con neón cian/ámbar, perilla vertical luminosa,
+ * etiquetas de años curvadas y sincronización accesible con <input type="range">.
  */
 
 import { CHRONO_BOUNDS } from './constants.js';
@@ -14,7 +15,7 @@ export class ArcChronoDial {
    * @param {HTMLInputElement} [options.syncInput] - Input tipo range nativo a sincronizar
    * @param {number} [options.minYear] - Año mínimo (default CHRONO_BOUNDS.MIN_YEAR = 1940)
    * @param {number} [options.maxYear] - Año máximo (default CHRONO_BOUNDS.MAX_YEAR = 2026)
-   * @param {number} [options.initialYear] - Año inicial (default 1990)
+   * @param {number} [options.initialYear] - Año inicial (default 1994)
    * @param {Function} [options.onChange] - Callback (year) => void
    */
   constructor(options = {}) {
@@ -22,21 +23,19 @@ export class ArcChronoDial {
     this.syncInput = options.syncInput || null;
     this.minYear = options.minYear || CHRONO_BOUNDS.MIN_YEAR;
     this.maxYear = options.maxYear || CHRONO_BOUNDS.MAX_YEAR;
-    this.currentYear = options.initialYear || 1990;
+    this.currentYear = options.initialYear || 1994;
     this.onChange = options.onChange || null;
 
-    this.numTicks = 42; // Ticks a lo largo del arco
-    this.isDragging = false;
+    this.numTicks = 38; // Ticks gruesos a lo largo del arco como en la imagen
 
-    // Parámetros geométricos del arco (ViewBox 600 x 140)
-    this.viewBoxWidth = 600;
-    this.viewBoxHeight = 135;
-    this.centerX = 300;
-    this.centerY = 440;
-    this.radius = 370;
+    // Parámetros geométricos del arco (ViewBox 640 x 170)
+    this.viewBoxWidth = 640;
+    this.viewBoxHeight = 170;
+    this.centerX = 320;
+    this.centerY = 460;
+    this.radius = 360;
 
-    // Ángulos en radianes (arco convexo hacia arriba, centrado en el meridiano superior)
-    // -PI/2 es la cima (270deg). El arco va de ~232deg a ~308deg.
+    // Ángulos en radianes (arco convexo hacia arriba)
     this.startAngle = (230 * Math.PI) / 180;
     this.endAngle = (310 * Math.PI) / 180;
 
@@ -60,12 +59,12 @@ export class ArcChronoDial {
       const t = i / (this.numTicks - 1);
       const angle = this.startAngle + t * (this.endAngle - this.startAngle);
       
-      // Coordenadas a lo largo del radio
       const cosA = Math.cos(angle);
       const sinA = Math.sin(angle);
 
-      const rInner = this.radius - 12;
-      const rOuter = this.radius + 12;
+      // Ticks gruesos tipo cápsula (~16px de largo)
+      const rInner = this.radius - 10;
+      const rOuter = this.radius + 10;
 
       const x1 = this.centerX + rInner * cosA;
       const y1 = this.centerY + rInner * sinA;
@@ -93,47 +92,46 @@ export class ArcChronoDial {
     svg.setAttribute('class', 'arc-dial-svg');
     svg.setAttribute('role', 'presentation');
 
-    // Filtros para resplandor de neón (Cyan y Amber)
     svg.innerHTML = `
       <defs>
-        <filter id="neon-glow-cyan" x="-30%" y="-30%" width="160%" height="160%">
-          <feGaussianBlur stdDeviation="3.5" result="blur1" />
-          <feGaussianBlur stdDeviation="1.5" result="blur2" />
+        <filter id="neon-cyan-glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur1" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur2" />
           <feMerge>
             <feMergeNode in="blur1" />
             <feMergeNode in="blur2" />
             <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
-        <filter id="neon-glow-amber" x="-40%" y="-40%" width="180%" height="180%">
-          <feGaussianBlur stdDeviation="4.5" result="blur1" />
-          <feGaussianBlur stdDeviation="2" result="blur2" />
+        <filter id="neon-amber-glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur1" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur2" />
           <feMerge>
             <feMergeNode in="blur1" />
             <feMergeNode in="blur2" />
             <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
-        <linearGradient id="knob-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id="amber-knob-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stop-color="#fef08a" />
-          <stop offset="45%" stop-color="#f59e0b" />
-          <stop offset="100%" stop-color="#d97706" />
+          <stop offset="50%" stop-color="#f59e0b" />
+          <stop offset="100%" stop-color="#ea580c" />
         </linearGradient>
       </defs>
       
-      <!-- Carril de fondo tenue del arco -->
+      <!-- Carril de soporte curvo -->
       <path class="arc-rail-bg" d="${this.buildRailPath()}" />
 
-      <!-- Grupo de marcas / ticks -->
+      <!-- Grupo de marcas / ticks tipo cápsula -->
       <g class="arc-ticks-group"></g>
 
-      <!-- Grupo de etiquetas de años -->
+      <!-- Grupo de etiquetas numéricas guía -->
       <g class="arc-labels-group"></g>
 
-      <!-- Perilla / Thumb tipo cápsula -->
+      <!-- Perilla / Thumb Cápsula vertical luminosa -->
       <g class="arc-knob-group" cursor="grab">
-        <rect class="arc-knob-pill" rx="6" ry="6" width="14" height="34" />
-        <line class="arc-knob-centerline" x1="0" y1="-8" x2="0" y2="8" />
+        <rect class="arc-knob-pill" rx="7" ry="7" width="16" height="34" />
+        <line class="arc-knob-notch" x1="0" y1="-8" x2="0" y2="8" />
       </g>
     `;
 
@@ -141,9 +139,8 @@ export class ArcChronoDial {
     this.elements.ticksGroup = svg.querySelector('.arc-ticks-group');
     this.elements.labelsGroup = svg.querySelector('.arc-labels-group');
     this.elements.knobGroup = svg.querySelector('.arc-knob-group');
-    this.elements.knobPill = svg.querySelector('.arc-knob-pill');
 
-    // Generar elementos de ticks
+    // Generar elementos de ticks gruesos
     this.tickElements = this.ticksData.map(d => {
       const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
       line.setAttribute('x1', d.x1.toFixed(1));
@@ -155,9 +152,7 @@ export class ArcChronoDial {
       return line;
     });
 
-    // Generar etiquetas de año (marcas guía a lo largo de la curva)
     this.renderYearLabels();
-
     this.container.appendChild(svg);
   }
 
@@ -169,16 +164,24 @@ export class ArcChronoDial {
 
   renderYearLabels() {
     this.elements.labelsGroup.innerHTML = '';
-    // Marcadores clave espaciados: 1940, 1960, 1980, 2000, 2026
-    const keyYears = [1940, 1960, 1980, 2000, 2026];
     
-    keyYears.forEach(y => {
-      const t = (y - this.minYear) / (this.maxYear - this.minYear);
+    // Generar marcas de año espaciadas a lo largo de la curva como en la imagen
+    // Por ejemplo: 1990, 1991, 1992, 1994, 1995, 1996 o rangos contextuales
+    const cur = this.currentYear;
+    const labelOffsets = [-4, -3, -2, -1, 1, 2, 3];
+    
+    // Tomar 6 puntos a lo largo de la curva para situar etiquetas
+    const labelSteps = [0.08, 0.22, 0.36, 0.64, 0.78, 0.92];
+    
+    labelSteps.forEach((t, idx) => {
       const angle = this.startAngle + t * (this.endAngle - this.startAngle);
-      // Radio exterior para etiquetas
-      const rLabel = this.radius + 28;
+      const rLabel = this.radius + 32;
       const lx = this.centerX + rLabel * Math.cos(angle);
       const ly = this.centerY + rLabel * Math.sin(angle);
+
+      // Calcular año contextual para la etiqueta
+      const offsetYear = cur + (labelOffsets[idx] || 0);
+      const displayYear = Math.max(this.minYear, Math.min(this.maxYear, offsetYear));
 
       const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       text.setAttribute('x', lx.toFixed(1));
@@ -186,44 +189,51 @@ export class ArcChronoDial {
       text.setAttribute('class', 'arc-rail-label');
       text.setAttribute('text-anchor', 'middle');
       text.setAttribute('dominant-baseline', 'middle');
-      text.textContent = y;
+      text.textContent = displayYear;
       this.elements.labelsGroup.appendChild(text);
     });
   }
 
   setYear(year, emit = true) {
     const clamped = Math.max(this.minYear, Math.min(this.maxYear, Math.round(year)));
+    const changed = (this.currentYear !== clamped);
     this.currentYear = clamped;
 
     const t = (clamped - this.minYear) / (this.maxYear - this.minYear);
     const angle = this.startAngle + t * (this.endAngle - this.startAngle);
 
-    // Posición del knob
+    // Posición del knob centrado sobre la curvatura
     const kx = this.centerX + this.radius * Math.cos(angle);
     const ky = this.centerY + this.radius * Math.sin(angle);
-    const deg = (angle * 180) / Math.PI + 90; // Orientar normal a la tangente
+    const deg = (angle * 180) / Math.PI + 90;
 
     if (this.elements.knobGroup) {
       this.elements.knobGroup.setAttribute(
         'transform',
-        `translate(${kx.toFixed(1)}, ${ky.toFixed(1)}) rotate(${deg.toFixed(1)}) translate(-7, -17)`
+        `translate(${kx.toFixed(1)}, ${ky.toFixed(1)}) rotate(${deg.toFixed(1)}) translate(-8, -17)`
       );
     }
 
-    // Colorear ticks dinámicamente según la posición del cursor
+    // Colorear ticks exactamente como en web-ui-preview.jpg:
+    // - Izquierda: Cian brillante con resplandor
+    // - En el centro (cercano al knob): Ámbar brillante con resplandor
+    // - Derecha: Pizarra oscura / inactiva
     const activeIndex = Math.round(t * (this.numTicks - 1));
     this.tickElements.forEach((el, idx) => {
       el.classList.remove('tick-cyan', 'tick-amber', 'tick-inactive');
       if (idx < activeIndex - 1) {
         el.classList.add('tick-cyan');
-      } else if (Math.abs(idx - activeIndex) <= 1) {
+      } else if (Math.abs(idx - activeIndex) <= 2) {
         el.classList.add('tick-amber');
       } else {
         el.classList.add('tick-inactive');
       }
     });
 
-    // Sincronizar input range subyacente si existe
+    if (changed) {
+      this.renderYearLabels();
+    }
+
     if (this.syncInput && parseInt(this.syncInput.value, 10) !== clamped) {
       this.syncInput.value = clamped;
     }
@@ -239,19 +249,16 @@ export class ArcChronoDial {
 
     const handlePointer = (clientX, clientY) => {
       const rect = svg.getBoundingClientRect();
-      // Mapear coordenadas de pantalla a espacio de ViewBox (600 x 140)
       const scaleX = this.viewBoxWidth / rect.width;
       const scaleY = this.viewBoxHeight / rect.height;
       const px = (clientX - rect.left) * scaleX;
       const py = (clientY - rect.top) * scaleY;
 
-      // Calcular ángulo respecto al centro geométrico del arco
       const dx = px - this.centerX;
       const dy = py - this.centerY;
       let angle = Math.atan2(dy, dx);
       if (angle < 0) angle += 2 * Math.PI;
 
-      // Normalizar t entre startAngle y endAngle
       let t = (angle - this.startAngle) / (this.endAngle - this.startAngle);
       t = Math.max(0, Math.min(1, t));
 
@@ -285,14 +292,12 @@ export class ArcChronoDial {
     svg.addEventListener('pointerup', endDrag);
     svg.addEventListener('pointercancel', endDrag);
 
-    // Rueda del ratón sobre el dial
     svg.addEventListener('wheel', (e) => {
       e.preventDefault();
       const delta = e.deltaY < 0 ? 1 : -1;
       this.setYear(this.currentYear + delta, true);
     }, { passive: false });
 
-    // Si el input range nativo cambia externamente, sincronizar
     if (this.syncInput) {
       this.syncInput.addEventListener('input', (e) => {
         const val = parseInt(e.target.value, 10);
