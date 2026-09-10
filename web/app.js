@@ -140,6 +140,25 @@ export class HitTazosApp {
     this.btnResetShelf = document.getElementById('btn-reset-shelf');
     this.btnPrint = document.getElementById('btn-print');
 
+    // Drawer y Backdrop
+    this.drawerBackdrop = document.getElementById('drawer-backdrop');
+    this.arcadeDrawer = document.getElementById('arcade-tools-drawer');
+    this.btnMoreOptions = document.getElementById('btn-more-options');
+    this.btnCloseDrawer = document.getElementById('btn-close-drawer');
+    this.btnDrawerTabPlay = document.getElementById('btn-drawer-tab-play');
+    this.btnDrawerTabGallery = document.getElementById('btn-drawer-tab-gallery');
+    this.btnDrawerVersion = document.getElementById('btn-drawer-version');
+    this.btnDrawerPreorder = document.getElementById('btn-drawer-preorder');
+    this.btnDrawerPrint = document.getElementById('btn-drawer-print');
+    this.btnDrawerHelp = document.getElementById('btn-drawer-help');
+    this.btnDrawerReset = document.getElementById('btn-drawer-reset');
+    this.btnGalleryBackPlay = document.getElementById('btn-gallery-back-play');
+
+    // Desplegable de Volumen en Header
+    this.btnVolumeDropdown = document.getElementById('btn-volume-dropdown');
+    this.volumeDropdownMenu = document.getElementById('volume-dropdown-menu');
+    this.volumeDropdownLabel = document.getElementById('volume-dropdown-label');
+
     // Ribbon de Volúmenes
     this.groupRibbon = document.getElementById('group-ribbon');
 
@@ -404,6 +423,61 @@ export class HitTazosApp {
     this.setupDialog(this.helpDialog, this.btnHelpToggle, [this.btnCloseHelpModal, this.btnUnderstoodHelp]);
     this.setupDialog(this.printDialog, this.btnPrint, [this.btnClosePrintModal, this.btnCancelPrint]);
 
+    // Drawer de Navegación y Herramientas Secundarias
+    this.btnMoreOptions?.addEventListener('click', () => this.toggleDrawer(true));
+    this.btnCloseDrawer?.addEventListener('click', () => this.toggleDrawer(false));
+    this.drawerBackdrop?.addEventListener('click', () => this.toggleDrawer(false));
+
+    this.btnDrawerTabPlay?.addEventListener('click', () => {
+      this.switchView('play');
+      this.toggleDrawer(false);
+    });
+    this.btnDrawerTabGallery?.addEventListener('click', () => {
+      this.switchView('gallery');
+      this.toggleDrawer(false);
+    });
+    this.btnDrawerVersion?.addEventListener('click', () => {
+      this.openVersionModal();
+      this.toggleDrawer(false);
+    });
+    this.btnDrawerPrint?.addEventListener('click', () => {
+      this.printDialog?.showModal();
+      this.toggleDrawer(false);
+    });
+    this.btnDrawerHelp?.addEventListener('click', () => {
+      this.helpDialog?.showModal();
+      this.toggleDrawer(false);
+    });
+    this.btnDrawerReset?.addEventListener('click', () => {
+      this.toggleDrawer(false);
+      this.confirmResetGame();
+    });
+
+    // Botón Volver a Mesa de Juego desde el Explorador
+    this.btnGalleryBackPlay?.addEventListener('click', () => {
+      this.switchView('play');
+    });
+
+    // Selector Desplegable de Volumen en Header
+    this.btnVolumeDropdown?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.volumeDropdownMenu?.classList.toggle('show');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!this.btnVolumeDropdown?.contains(e.target) && !this.volumeDropdownMenu?.contains(e.target)) {
+        this.volumeDropdownMenu?.classList.remove('show');
+      }
+    });
+
+    this.volumeDropdownMenu?.addEventListener('click', (e) => {
+      const item = e.target.closest('.volume-menu-item');
+      if (!item) return;
+      const vol = item.getAttribute('data-volumen');
+      this.volumeDropdownMenu.classList.remove('show');
+      this.selectActiveGroup(vol);
+    });
+
     // Selección de Volumen vía Ribbon
     this.groupRibbon?.addEventListener('click', (e) => {
       const pill = e.target.closest('.ribbon-pill');
@@ -536,7 +610,7 @@ export class HitTazosApp {
 
   bindKeyboardShortcuts() {
     if (typeof hotkeys === 'function') {
-      hotkeys('left,p', (e) => {
+      hotkeys('left,a', (e) => {
         e.preventDefault();
         if (this.currentView === 'gallery' && this.galleryLayout === 'fan' && this.fanningScrollWrapper) {
           this.fanningScrollWrapper.scrollBy({ left: -320, behavior: 'smooth' });
@@ -544,13 +618,17 @@ export class HitTazosApp {
           this.prevCard();
         }
       });
-      hotkeys('right,n', (e) => {
+      hotkeys('right,d,n', (e) => {
         e.preventDefault();
         if (this.currentView === 'gallery' && this.galleryLayout === 'fan' && this.fanningScrollWrapper) {
           this.fanningScrollWrapper.scrollBy({ left: 320, behavior: 'smooth' });
         } else {
           this.nextCard();
         }
+      });
+      hotkeys('p', (e) => {
+        e.preventDefault();
+        this.printDialog?.showModal();
       });
       hotkeys('up,+,=', (e) => { e.preventDefault(); this.nudgeYear(1); });
       hotkeys('down,-', (e) => { e.preventDefault(); this.nudgeYear(-1); });
@@ -568,6 +646,10 @@ export class HitTazosApp {
       hotkeys('r', (e) => { e.preventDefault(); this.toggleActiveCardYear(); });
       hotkeys('shift+r', (e) => { e.preventDefault(); this.confirmResetGame(); });
       hotkeys('s', () => this.btnSound?.click());
+      hotkeys('?,h', () => this.helpDialog?.showModal());
+      hotkeys('esc', () => this.toggleDrawer(false));
+      hotkeys('j', () => this.switchView('play'));
+      hotkeys('g', () => this.switchView('gallery'));
 
       const volumeKeys = [
         'ALL', 'kernel-foundations', 'cypherpunks-hacker-lore',
@@ -609,7 +691,11 @@ export class HitTazosApp {
         else if (e.shiftKey && (e.code === 'KeyR' || e.key === 'R')) { e.preventDefault(); this.confirmResetGame(); }
         else if (e.code === 'KeyR') { e.preventDefault(); this.toggleActiveCardYear(); }
         else if (e.code === 'KeyN') this.nextCard();
-        else if (e.code === 'KeyP') this.prevCard();
+        else if (e.code === 'KeyP') { e.preventDefault(); this.printDialog?.showModal(); }
+        else if (e.key === '?' || e.key === 'h' || e.key === 'H') { e.preventDefault(); this.helpDialog?.showModal(); }
+        else if (e.key === 'Escape') { this.toggleDrawer(false); }
+        else if (e.key === 'j' || e.key === 'J') { this.switchView('play'); }
+        else if (e.key === 'g' || e.key === 'G') { this.switchView('gallery'); }
       });
     }
   }
@@ -1403,6 +1489,10 @@ export class HitTazosApp {
       this.btnTabPlay?.setAttribute('aria-selected', 'true');
       this.btnTabGallery?.classList.remove('active');
       this.btnTabGallery?.setAttribute('aria-selected', 'false');
+      this.btnDrawerTabPlay?.classList.add('active');
+      this.btnDrawerTabPlay?.setAttribute('aria-selected', 'true');
+      this.btnDrawerTabGallery?.classList.remove('active');
+      this.btnDrawerTabGallery?.setAttribute('aria-selected', 'false');
     } else {
       if (ribbonWrapper) ribbonWrapper.style.display = 'none';
       this.viewPlay?.classList.remove('active');
@@ -1411,7 +1501,24 @@ export class HitTazosApp {
       this.btnTabPlay?.setAttribute('aria-selected', 'false');
       this.btnTabGallery?.classList.add('active');
       this.btnTabGallery?.setAttribute('aria-selected', 'true');
+      this.btnDrawerTabPlay?.classList.remove('active');
+      this.btnDrawerTabPlay?.setAttribute('aria-selected', 'false');
+      this.btnDrawerTabGallery?.classList.add('active');
+      this.btnDrawerTabGallery?.setAttribute('aria-selected', 'true');
       this.filterCatalog();
+    }
+    this.audio.play('tick');
+    this.refreshIcons();
+  }
+
+  toggleDrawer(open) {
+    const shouldOpen = open !== undefined ? open : !this.arcadeDrawer?.classList.contains('is-open');
+    if (shouldOpen) {
+      this.arcadeDrawer?.classList.add('is-open');
+      this.drawerBackdrop?.classList.add('is-open');
+    } else {
+      this.arcadeDrawer?.classList.remove('is-open');
+      this.drawerBackdrop?.classList.remove('is-open');
     }
     this.audio.play('tick');
     this.refreshIcons();
@@ -1426,6 +1533,21 @@ export class HitTazosApp {
         const volTitle = this.catalog?.volumes?.[groupSlug]?.title || groupSlug;
         this.hudGroupLabel.textContent = volTitle;
       }
+    }
+
+    if (this.volumeDropdownLabel) {
+      if (groupSlug === 'ALL') {
+        this.volumeDropdownLabel.textContent = 'Volumen';
+      } else {
+        const volTitle = this.catalog?.volumes?.[groupSlug]?.title || groupSlug;
+        this.volumeDropdownLabel.textContent = volTitle.length > 9 ? volTitle.slice(0, 8) + '…' : volTitle;
+      }
+    }
+
+    if (this.volumeDropdownMenu) {
+      this.volumeDropdownMenu.querySelectorAll('.volume-menu-item').forEach(el => {
+        el.classList.toggle('active', el.getAttribute('data-volumen') === groupSlug);
+      });
     }
 
     let nextDeck = groupSlug === 'ALL'

@@ -149,7 +149,7 @@
   <!-- Header -->
   <header class="arcade-header">
     <div class="brand arcade-brand">
-      <div class="brand-icon sr-only" id="btn-brand-version" role="button" tabindex="0" title="Seleccionar versión del juego (Hit-Tazo / Hit-Cards) [V]" aria-label="Seleccionar versión del juego: Hit-Tazo o Hit-Cards">
+      <div class="brand-icon" id="btn-brand-version" role="button" tabindex="0" title="Seleccionar versión del juego (Hit-Tazo / Hit-Cards) [V]" aria-label="Seleccionar versión del juego: Hit-Tazo o Hit-Cards">
         <i data-lucide="disc" id="brand-icon-glyph"></i>
       </div>
       <h1 class="brand-title arcade-title-clean">
@@ -158,27 +158,38 @@
       <span class="brand-version-tag">v1.0.0</span>
     </div>
 
-    <div class="header-hud arcade-hud-center" id="header-hud">
-      <div class="hud-stat-item hud-score-item">
-        <span class="hud-label-clean">Puntuación:</span>
-        <strong id="hud-score">0</strong>
+    <div class="arcade-nav-center">
+      <!-- Selector de Modo de Vista (Modo Juego vs Explorador) -->
+      <div class="game-mode-switch arcade-mode-switch" role="tablist" aria-label="Modo de vista">
+        <button class="tab-btn active" id="btn-tab-play" data-view="play" role="tab" aria-selected="true" title="Modo Juego de Trivia (Mesa 3D Arcade)">
+          <i data-lucide="gamepad-2"></i>
+          <span>Juego</span>
+        </button>
+        <button class="tab-btn" id="btn-tab-gallery" data-view="gallery" role="tab" aria-selected="false" title="Explorador y Catálogo de 576 Hitos">
+          <i data-lucide="layout-grid"></i>
+          <span>Explorador</span>
+        </button>
       </div>
-      <div class="hud-stat-item hud-streak-item" id="hud-streak-box">
-        <span class="hud-label-clean">Racha:</span>
-        <strong id="hud-streak">0</strong>
-        <span id="hud-streak-fire" class="streak-badge-fire" style="display: none;">(On Fire 🔥)</span>
-      </div>
-      <div class="sr-only" id="attempt-tracker">
-        <strong id="hud-attempts">3</strong>
-        <div id="attempt-dots"></div>
+
+      <!-- HUD de Puntuación y Racha -->
+      <div class="header-hud arcade-hud-center" id="header-hud">
+        <div class="hud-stat-item hud-score-item" title="Puntuación acumulada">
+          <span class="hud-label-clean">Puntuación:</span>
+          <strong id="hud-score">0</strong>
+        </div>
+        <div class="hud-stat-item hud-streak-item" id="hud-streak-box" title="Racha consecutiva actual">
+          <span class="hud-label-clean">Racha:</span>
+          <strong id="hud-streak">0</strong>
+          <span id="hud-streak-fire" class="streak-badge-fire" style="display: none;">(On Fire 🔥)</span>
+        </div>
+        <div class="sr-only" id="attempt-tracker">
+          <strong id="hud-attempts">3</strong>
+          <div id="attempt-dots"></div>
+        </div>
       </div>
     </div>
 
     <div class="header-right-arcade">
-      <button class="icon-btn-arcade" id="btn-sound-toggle" title="Sonido [S]" aria-label="Alternar efectos de sonido">
-        <i data-lucide="volume-2" id="icon-sound-state"></i>
-      </button>
-
       <!-- Selector Desplegable de Volumen (Estilo Volumen ▾ de la imagen) -->
       <div class="volume-dropdown-wrapper">
         <button class="btn-volume-dropdown" id="btn-volume-dropdown" title="Seleccionar Volumen del Mazo">
@@ -198,50 +209,110 @@
         </div>
       </div>
 
-      <!-- Menú Secundario de Opciones (Explorador, Preventa, Imprimir, Reset, Ayuda) -->
+      <!-- Botón de Preventa / Comprar Baraja Física -->
+      <a href="https://wa.me/525542722156?text=Hola%20shellaquiles.org%2C%20me%20interesa%20apartar%20la%20edici%C3%B3n%20f%C3%ADsica%20de%20Hit-Cards%20Tech%20en%20preventa" target="_blank" rel="noopener noreferrer" class="btn-preorder-header" id="btn-preorder-header" title="Apartar cartas físicas en preventa por WhatsApp (+52 55 4272 2156)">
+        <i data-lucide="shopping-bag"></i>
+        <span class="preorder-label">Preventa</span>
+        <span class="preorder-badge">Físico</span>
+      </a>
+
+      <!-- Acciones de Utilidad Rápidas -->
+      <button class="icon-btn-arcade" id="btn-print" title="Imprimir cartas o descargar PDF [P]" aria-label="Imprimir cartas">
+        <i data-lucide="printer"></i>
+      </button>
+
+      <button class="icon-btn-arcade" id="btn-help-toggle" title="Reglas y atajos de teclado [?]" aria-label="Ver reglas y atajos">
+        <i data-lucide="help-circle"></i>
+      </button>
+
+      <button class="icon-btn-arcade" id="btn-sound-toggle" title="Sonido [S]" aria-label="Alternar efectos de sonido">
+        <i data-lucide="volume-2" id="icon-sound-state"></i>
+      </button>
+
+      <button class="icon-btn-arcade" id="btn-reset-game" title="Reiniciar partida [Shift+R]" aria-label="Reiniciar partida">
+        <i data-lucide="rotate-ccw"></i>
+      </button>
+
+      <!-- Menú Drawer para Navegación Móvil y Opciones Extendidas -->
       <button class="icon-btn-arcade" id="btn-more-options" title="Menú de Navegación y Herramientas" aria-label="Más opciones">
         <i data-lucide="menu"></i>
       </button>
     </div>
+  </header>
 
-    <!-- Menú Drawer Desplegable para Herramientas Secundarias -->
-    <div class="arcade-tools-drawer" id="arcade-tools-drawer">
+  <!-- Backdrop oscurecido para el Drawer -->
+  <div class="drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
+
+  <!-- Menú Drawer Desplegable para Herramientas Secundarias -->
+  <aside class="arcade-tools-drawer" id="arcade-tools-drawer" aria-label="Panel de navegación y herramientas">
       <div class="drawer-header">
-        <span class="drawer-title">Opciones y Modos</span>
-        <button class="icon-btn" id="btn-close-drawer" aria-label="Cerrar menú"><i data-lucide="x"></i></button>
+        <div class="drawer-title-group">
+          <i data-lucide="sliders" class="drawer-header-icon"></i>
+          <span class="drawer-title">Opciones & Herramientas</span>
+        </div>
+        <button class="icon-btn-arcade" id="btn-close-drawer" title="Cerrar menú [Esc]" aria-label="Cerrar menú">
+          <i data-lucide="x"></i>
+        </button>
       </div>
       <div class="drawer-content">
-        <div class="game-mode-switch" role="tablist" aria-label="Modo de vista">
-          <button class="tab-btn active" id="btn-tab-play" data-view="play" role="tab" aria-selected="true">
+        <div class="drawer-section-label">MODO DE VISTA</div>
+        <div class="game-mode-switch drawer-mode-switch" role="tablist" aria-label="Modo de vista">
+          <button class="tab-btn active" id="btn-drawer-tab-play" data-view="play" role="tab" aria-selected="true">
             <i data-lucide="gamepad-2"></i>
-            <span>Modo Juego</span>
+            <span>Modo Juego 3D</span>
           </button>
-          <button class="tab-btn" id="btn-tab-gallery" data-view="gallery" role="tab" aria-selected="false">
+          <button class="tab-btn" id="btn-drawer-tab-gallery" data-view="gallery" role="tab" aria-selected="false">
             <i data-lucide="layout-grid"></i>
-            <span>Explorador</span>
+            <span>Explorador (576)</span>
           </button>
         </div>
+
+        <div class="drawer-section-label">FORMATO Y EDICIÓN</div>
+        <button class="drawer-action-btn" id="btn-drawer-version">
+          <i data-lucide="disc"></i>
+          <div class="drawer-action-text">
+            <span class="drawer-action-primary">Cambiar Versión [V]</span>
+            <span class="drawer-action-sub">Hit-Tazo circular vs Hit-Cards 65×65mm</span>
+          </div>
+        </button>
+
+        <div class="drawer-section-label">HERRAMIENTAS</div>
         <div class="drawer-actions-list">
-          <a href="https://wa.me/525542722156?text=Hola%20shellaquiles.org%2C%20me%20interesa%20apartar%20la%20edici%C3%B3n%20f%C3%ADsica%20de%20Hit-Cards%20Tech%20en%20preventa" target="_blank" rel="noopener noreferrer" class="drawer-action-btn" id="btn-preorder-header">
+          <a href="https://wa.me/525542722156?text=Hola%20shellaquiles.org%2C%20me%20interesa%20apartar%20la%20edici%C3%B3n%20f%C3%ADsica%20de%20Hit-Cards%20Tech%20en%20preventa" target="_blank" rel="noopener noreferrer" class="drawer-action-btn preorder-highlight" id="btn-drawer-preorder">
             <i data-lucide="shopping-bag"></i>
-            <span>Preventa Baraja Físico</span>
+            <div class="drawer-action-text">
+              <span class="drawer-action-primary">Comprar / Preventa Baraja</span>
+              <span class="drawer-action-sub">Cartas físicas producidas en imprenta</span>
+            </div>
+            <span class="drawer-badge-highlight">WhatsApp</span>
           </a>
-          <button class="drawer-action-btn" id="btn-print">
+
+          <button class="drawer-action-btn" id="btn-drawer-print">
             <i data-lucide="printer"></i>
-            <span>Imprimir Cartas (PDF) [P]</span>
+            <div class="drawer-action-text">
+              <span class="drawer-action-primary">Imprimir Cartas (PDF) [P]</span>
+              <span class="drawer-action-sub">Descarga gratuita en Carta y Tabloide</span>
+            </div>
           </button>
-          <button class="drawer-action-btn" id="btn-help-toggle">
+
+          <button class="drawer-action-btn" id="btn-drawer-help">
             <i data-lucide="help-circle"></i>
-            <span>Reglas y Atajos [?]</span>
+            <div class="drawer-action-text">
+              <span class="drawer-action-primary">Reglas y Atajos [?]</span>
+              <span class="drawer-action-sub">Instrucciones de juego y puntuación</span>
+            </div>
           </button>
-          <button class="drawer-action-btn btn-danger" id="btn-reset-game">
+
+          <button class="drawer-action-btn btn-danger" id="btn-drawer-reset">
             <i data-lucide="rotate-ccw"></i>
-            <span>Reiniciar Partida [Shift+R]</span>
+            <div class="drawer-action-text">
+              <span class="drawer-action-primary">Reiniciar Partida [Shift+R]</span>
+              <span class="drawer-action-sub">Restablecer puntos, racha y estante</span>
+            </div>
           </button>
         </div>
       </div>
-    </div>
-  </header>
+    </aside>
 
   <main>
     <!-- VISTA 1: MODO JUEGO INTERACTIVO (MESA DARK ARCADE 3D) -->
@@ -365,6 +436,10 @@
     <section id="view-gallery" class="view-section" aria-labelledby="heading-view-gallery">
       <h2 id="heading-view-gallery" class="sr-only">Explorador y Catálogo Completo de Hitos Tecnológicos</h2>
       <div class="gallery-toolbar">
+        <button type="button" class="btn-gallery-back-play" id="btn-gallery-back-play" title="Volver a la Mesa de Juego Arcade">
+          <i data-lucide="gamepad-2"></i>
+          <span>Volver al Juego</span>
+        </button>
         <div class="search-field-wrap">
           <span class="search-icon-slot">
             <i data-lucide="search"></i>
