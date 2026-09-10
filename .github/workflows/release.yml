@@ -35,15 +35,7 @@ jobs:
         run: |
           VERSION=$(cat VERSION | tr -d '[:space:]')
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-          python3 -c '
-import re, pathlib
-version = pathlib.Path("VERSION").read_text().strip()
-changelog = pathlib.Path("CHANGELOG.md").read_text()
-pattern = rf"## \[{re.escape(version)}\][^\n]*\n(.*?)(?=\n## \[|\Z)"
-match = re.search(pattern, changelog, re.DOTALL)
-notes = match.group(1).strip() if match else f"Hit-Tazos Tech versión {version}"
-pathlib.Path("RELEASE_NOTES.md").write_text(notes)
-'
+          python3 scripts/extract_release_notes.py
 
       - name: Instalar herramientas de imprenta (librsvg, poppler, ghostscript)
         run: |
