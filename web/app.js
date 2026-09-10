@@ -1008,7 +1008,8 @@ export class HitTazosApp {
     const evalResult = evaluateGuess(val, card.year, nextAttempt);
 
     // Animación física de impacto y giro
-    this.slamDisc(evalResult.wonCard);
+    const shouldFlip = evalResult.wonCard || evalResult.outcome === 'EXHAUSTED';
+    this.slamDisc(evalResult.wonCard, shouldFlip);
     this.state.applyGuessEvaluation(evalResult, card);
   }
 
@@ -1106,30 +1107,49 @@ export class HitTazosApp {
     }
   }
 
-  slamDisc(isSuccess) {
+  slamDisc(isSuccess, shouldFlip = true) {
     const disc = this.getActiveCardElement();
     if (!disc) return;
 
-    if (typeof disc.animate === 'function') {
-      disc.animate([
-        { transform: 'scale(1) rotateY(0deg) rotateZ(0deg)' },
-        { transform: 'scale(1.22) translateY(-38px) rotateY(180deg) rotateZ(16deg)', offset: 0.38 },
-        { transform: 'scale(0.94) translateY(8px) rotateY(180deg) rotateZ(-7deg)', offset: 0.68 },
-        { transform: 'scale(1.03) translateY(-3px) rotateY(180deg) rotateZ(3deg)', offset: 0.85 },
-        { transform: 'scale(1) translateY(0) rotateY(180deg) rotateZ(0deg)' }
-      ], {
-        duration: ANIM_CONFIG.SLAM_SUCCESS_DURATION,
-        easing: ANIM_CONFIG.EASE_SPIN,
-        fill: 'forwards'
-      });
+    if (shouldFlip) {
+      if (typeof disc.animate === 'function') {
+        const anim = disc.animate([
+          { transform: 'scale(1) rotateY(0deg) rotateZ(0deg)' },
+          { transform: 'scale(1.22) translateY(-38px) rotateY(180deg) rotateZ(16deg)', offset: 0.38 },
+          { transform: 'scale(0.94) translateY(8px) rotateY(180deg) rotateZ(-7deg)', offset: 0.68 },
+          { transform: 'scale(1.03) translateY(-3px) rotateY(180deg) rotateZ(3deg)', offset: 0.85 },
+          { transform: 'scale(1) translateY(0) rotateY(180deg) rotateZ(0deg)' }
+        ], {
+          duration: ANIM_CONFIG.SLAM_SUCCESS_DURATION,
+          easing: ANIM_CONFIG.EASE_SPIN
+        });
+        anim.onfinish = () => {
+          disc.style.transform = 'rotateY(180deg)';
+        };
+      } else {
+        disc.style.transform = 'rotateY(180deg)';
+      }
       disc.classList.add('is-flipped');
+    } else {
+      // Tiro fallido con intentos restantes: impacto elástico en mesa sin voltear cara
+      if (typeof disc.animate === 'function') {
+        disc.animate([
+          { transform: 'scale(1) rotateZ(0deg)' },
+          { transform: 'scale(1.06) translateY(-12px) rotateZ(-5deg)', offset: 0.3 },
+          { transform: 'scale(0.96) translateY(4px) rotateZ(3deg)', offset: 0.65 },
+          { transform: 'scale(1) translateY(0) rotateZ(0deg)' }
+        ], {
+          duration: 380,
+          easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+        });
+      }
     }
 
     this.audio.play(isSuccess ? 'hit' : 'slam');
   }
 
-  slamTazo(isSuccess) {
-    return this.slamDisc(isSuccess);
+  slamTazo(isSuccess, shouldFlip = true) {
+    return this.slamDisc(isSuccess, shouldFlip);
   }
 
   // ── Transición Animada entre Tarjetas (Slide WAAPI + Rebote Elástico) ──────

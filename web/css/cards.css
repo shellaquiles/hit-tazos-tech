@@ -49,6 +49,30 @@
   transform: rotateY(180deg);
 }
 
+/* Soporte específico Firefox Gecko para flip 3D en Hit-Cards */
+@supports (-moz-appearance: none) {
+  .hittazos-card-3d.is-flipped .sheet-front {
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+  .hittazos-card-3d:not(.is-flipped) .sheet-back {
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+  .hittazos-card-3d.is-flipped .sheet-back {
+    visibility: visible !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    z-index: 10 !important;
+  }
+  .hittazos-card-3d:not(.is-flipped) .sheet-front {
+    visibility: visible !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    z-index: 10 !important;
+  }
+}
+
 .hittazos-matte-card {
   background: var(--card-bg-gradient, var(--hittazos-bg, var(--card-bg, #e86328))) !important;
   color: #111111;
