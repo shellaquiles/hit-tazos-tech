@@ -1,8 +1,8 @@
-name: Release PDFs (Carta por Volumen)
+name: Release Oficial y PDFs (Carta por Volumen)
 
 on:
-  release:
-    types: [published]
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -13,11 +13,13 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build-and-attach-release-assets:
+  build-and-release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout código
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Configurar Node.js
         uses: actions/setup-node@v4
@@ -28,6 +30,20 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
+      - name: Leer versión canónica y extraer notas de release
+        run: |
+          VERSION=$(cat VERSION | tr -d '[:space:]')
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          python3 -c '
+import re, pathlib
+version = pathlib.Path("VERSION").read_text().strip()
+changelog = pathlib.Path("CHANGELOG.md").read_text()
+pattern = rf"## \[{re.escape(version)}\][^\n]*\n(.*?)(?=\n## \[|\Z)"
+match = re.search(pattern, changelog, re.DOTALL)
+notes = match.group(1).strip() if match else f"Hit-Tazos Tech versión {version}"
+pathlib.Path("RELEASE_NOTES.md").write_text(notes)
+'
 
       - name: Instalar herramientas de imprenta (librsvg, poppler, ghostscript)
         run: |
@@ -40,8 +56,10 @@ jobs:
       - name: Generar PDFs por volumen en tamaño Carta (nombres canónicos)
         run: npm run print:carta:volumes
 
-      - name: Adjuntar PDFs a la Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: |
-            print/v*/carta/hit-tazos-tech-vol*.pdf
+      - name: Publicar GitHub Release y adjuntar PDFs con gh CLI
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "v${VERSION}" print/v*/carta/hit-tazos-tech-vol*.pdf \
+            --title "Hit-Tazos Tech v${VERSION}" \
+            --notes-file RELEASE_NOTES.md
