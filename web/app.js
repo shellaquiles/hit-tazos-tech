@@ -6,7 +6,9 @@ import {
   CARD_FORMATS, 
   GAME_VERSIONS,
   CARD_SELECTORS, 
-  ANIM_CONFIG 
+  ANIM_CONFIG,
+  UTM_CONFIG,
+  buildUtmUrl
 } from './core/constants.js';
 import { evaluateGuess, calculateHint, formatCardIdNumber, formatCollectorNumber } from './core/rules.js';
 import { StorageAdapter } from './core/storage.js';
@@ -48,11 +50,27 @@ export class HitTazosApp {
     this.initTilt();
     this.initTouchGestures();
     this.initFanningDragToScroll();
+    this.initUtmTracking();
     this.loadData();
     this.loadSavedState();
   }
 
   // ── Métodos Auxiliares de Consulta DOM y Utilidades (DRY) ──────────────────
+
+  initUtmTracking() {
+    const outboundLinks = document.querySelectorAll('a[href*="github.com"], a[href*="shellaquiles.org"]');
+    outboundLinks.forEach(link => {
+      try {
+        const url = new URL(link.href);
+        if (!url.searchParams.has('utm_source')) {
+          const medium = link.closest('.app-footer') ? UTM_CONFIG.MEDIUM.FOOTER :
+                         link.closest('header') ? UTM_CONFIG.MEDIUM.HEADER :
+                         link.closest('dialog') ? UTM_CONFIG.MEDIUM.MODAL : 'web';
+          link.href = buildUtmUrl(link.href, { medium });
+        }
+      } catch (_) {}
+    });
+  }
 
   getActiveCardElement(container = this.cardStage) {
     if (!container) return null;

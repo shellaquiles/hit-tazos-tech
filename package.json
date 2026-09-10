@@ -19,6 +19,7 @@
     "test": "python3 scripts/sync_version.py --check && python3 scripts/audit_deck.py && node --test tests/*.test.js && node --check web/app.js && node --check web/core/constants.js && node --check web/core/rules.js && node --check web/core/storage.js && node --check web/core/state.js && node --check web/core/audio.js && node --check web/core/renderer.js && node --check web/core/tazo-renderer.js && node --check web/core/cards-renderer.js && node --check scripts/build_cards.js && node --check print/render_print_tabloid.js && node --check scripts/generate_card_colors.js && node --check server.js",
     "test:syntax": "node --check web/app.js && node --check web/core/constants.js && node --check web/core/rules.js && node --check web/core/storage.js && node --check web/core/state.js && node --check web/core/audio.js && node --check web/core/renderer.js && node --check web/core/tazo-renderer.js && node --check web/core/cards-renderer.js && node --check scripts/build_cards.js && node --check print/render_print_tabloid.js && node --check scripts/generate_card_colors.js && node --check server.js",
     "validate": "npm test && npm run build",
+    "screenshots": "node scripts/capture_screenshots.mjs",
     "print": "node print/render_print_tabloid.js",
     "print:all": "node print/render_print_tabloid.js --format=all",
     "print:carta": "node print/render_print_tabloid.js --format=8x11",
