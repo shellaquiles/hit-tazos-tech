@@ -1290,7 +1290,8 @@ export class HitTazosApp {
         this.shelfCounter.innerHTML = `<strong style="color: #4ade80; display: inline-flex; align-items: center; gap: 0.35rem;"><i data-lucide="trophy"></i> ¡Línea de Tiempo Completada! Victoria</strong>`;
         this.triggerCyberConfetti('#facc15');
       } else {
-        this.shelfCounter.textContent = `${shelf.length} / ${GAME_RULES.VICTORY_SHELF_SIZE} tazos para ganar`;
+        const itemNoun = this.state.cardFormat === CARD_FORMATS.CARD ? 'cartas' : 'tazos';
+        this.shelfCounter.textContent = `${shelf.length} / ${GAME_RULES.VICTORY_SHELF_SIZE} ${itemNoun} para ganar`;
       }
     }
     this.refreshIcons();
@@ -1707,6 +1708,10 @@ export class HitTazosApp {
   }
 
   applyVersionUI(version = GAME_VERSIONS.TAZO) {
+    const isCards = version.id === 'cards';
+    const itemNoun = isCards ? 'cartas' : 'tazos';
+    const itemNounSingular = isCards ? 'tarjeta' : 'tazo';
+
     if (this.brandTitleText) {
       this.brandTitleText.textContent = version.name;
     }
@@ -1714,10 +1719,23 @@ export class HitTazosApp {
       this.brandIconGlyph.setAttribute('data-lucide', version.icon);
     }
     if (this.btnBrandVersion) {
-      if (version.id === 'cards') {
+      if (isCards) {
         this.btnBrandVersion.classList.add('version-cards');
       } else {
         this.btnBrandVersion.classList.remove('version-cards');
+      }
+    }
+    if (this.attemptTracker) {
+      this.attemptTracker.title = `Tiros disponibles (3 por ${itemNounSingular})`;
+    }
+    if (this.cardStage) {
+      this.cardStage.title = `Toca o pulsa Espacio para voltear el ${isCards ? 'Naipe' : 'Tazo'}`;
+    }
+    if (this.shelfCounter) {
+      const currentShelf = this.state.playerShelf || [];
+      const isVictory = currentShelf.length >= GAME_RULES.VICTORY_SHELF_SIZE;
+      if (!isVictory) {
+        this.shelfCounter.textContent = `${currentShelf.length} / ${GAME_RULES.VICTORY_SHELF_SIZE} ${itemNoun} para ganar`;
       }
     }
     document.title = `${version.title} — Trivia Cronológica Open Source (576 Tarjetas)`;
