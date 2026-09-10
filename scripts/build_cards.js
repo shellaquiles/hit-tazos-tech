@@ -31,7 +31,7 @@ if (allCards.length !== 576) {
 // Generate compiled output
 fs.writeFileSync(CARDS_FILE, JSON.stringify(allCards, null, 2), 'utf8');
 
-let appVersion = '1.0.0-rc4';
+let appVersion = '1.0.0';
 try {
   appVersion = fs.readFileSync(path.join(__dirname, '../VERSION'), 'utf8').trim();
 } catch (_) {}
