@@ -149,7 +149,7 @@ npm test
 # Compilar mazo maestro y actualizar manifest tras editar tarjetas:
 npm run build
 
-# Generar capturas de pantalla de alta fidelidad para documentación:
+# Generar capturas de pantalla de alta fidelidad (solo al final del desarrollo antes de liberar a producción):
 npm run screenshots
 
 # Generar pliegos de imprenta (Formato Carta):

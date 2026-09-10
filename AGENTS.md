@@ -179,9 +179,10 @@ Para garantizar que el juego enseñe hechos precisos y verificables sin sesgos n
 
 ---
 
-## 🔄 9. Flujo Canónico de Trabajo, Pruebas y Compilación (3 Pasos Obligatorios)
+## 🔄 9. Flujo Canónico de Trabajo, Pruebas y Compilación
 
-Cada vez que un agente o desarrollador modifique datos editoriales en `data/volumes/*.json` o código del cliente web, **debe ejecutar en orden estricto**:
+### A. Ciclo Diario de Desarrollo (Iterativo)
+Durante la codificación diaria o edición de tarjetas, **NO generar capturas de pantalla** para evitar diffs binarios repetitivos y ahorrar tiempo. Ejecutar en orden estricto:
 
 ```bash
 # Paso 1: Verificación de paridad de versión, auditoría editorial en 4 niveles y suite de tests unitarios
@@ -194,9 +195,23 @@ npm run test:unit       # Ejecuta los 24 tests unitarios en Node.js (tests/*.tes
 
 # Paso 2: Compilación de baraja maestra y actualización de manifest
 npm run build
+```
 
-# Paso 3: Regeneración de pliegos y PDFs oficiales de distribución
-npm run print
+### B. Checklist Final de Pre-Release (Antes de Liberar a Producción)
+Únicamente al terminar todo el desarrollo de una versión, antes de fusionar el Pull Request a `main` o publicar una release en producción:
+
+```bash
+# 1. Validación estricta y pruebas unitarias completas
+npm test
+
+# 2. Compilación final de baraja y offline bundle
+npm run build
+
+# 3. Regeneración de capturas de pantalla oficiales para el README (Chromium Headless / CDP)
+npm run screenshots
+
+# 4. Regeneración de pliegos de imprenta (si se modificaron tarjetas o geometrías)
+npm run print:carta
 ```
 
 ---

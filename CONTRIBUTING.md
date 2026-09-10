@@ -39,13 +39,20 @@ Este proyecto es parte del ecosistema de herramientas y aplicaciones de **shella
    npm test
    ```
 
-7. Si modificaste parámetros de imposición o maquetación, regenera los pliegos:
+7. **Regeneración de capturas de pantalla (Exclusivo para Pre-Release a Producción):**
+   > [!NOTE]
+   > **Regla de oro:** La generación de capturas **NUNCA se ejecuta durante el desarrollo iterativo diario**, sino únicamente al final del ciclo de desarrollo, justo antes de liberar a producción o fusionar el Pull Request de release:
    ```bash
-   npm run print:test   # pliego de prueba
-   npm run print        # baraja completa
+   npm run screenshots   # Actualiza docs/screenshots/ con Chromium Headless
    ```
 
-8. Haz commit de tus cambios y envía un **Pull Request**.
+8. Si modificaste parámetros de imposición o maquetación, regenera los pliegos:
+   ```bash
+   npm run print:test:carta   # pliego de prueba
+   npm run print:carta        # baraja completa en formato Carta
+   ```
+
+9. Haz commit de tus cambios y envía un **Pull Request**.
 
 ---
 
