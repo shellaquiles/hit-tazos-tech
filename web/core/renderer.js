@@ -36,33 +36,40 @@ export class CardRenderer {
     let cardNum = card.globalIndex !== undefined ? card.globalIndex : (card.index !== undefined ? card.index + 1 : 1);
     if (!cardNum || isNaN(cardNum)) cardNum = 1;
 
-    if (this.cardColors && this.cardColors[cardNum]) {
-      const c = this.cardColors[cardNum];
+    if (this.cardColors && (this.cardColors[cardNum] || (this.cardColors.cards && this.cardColors.cards[cardNum]))) {
+      const c = this.cardColors[cardNum] || this.cardColors.cards[cardNum];
+      const topHex = c.top_hex || c.bg_hex;
+      const botHex = c.bottom_hex || c.bg_hex;
+      const bgGrad = c.bg_gradient || `linear-gradient(180deg, ${topHex} 0%, ${botHex} 100%)`;
       return {
         hue: c.h,
         bg: c.bg_hsl,
+        bgHex: c.bg_hex,
+        topHex: topHex,
+        bottomHex: botHex,
+        bgGradient: bgGrad,
         frontBg: c.front_bg_hsl,
-        text: c.text_color,
+        text: c.text_color || '#111111',
         subText: c.text_color === '#ffffff' ? 'rgba(255, 255, 255, 0.75)' : 'rgba(17, 17, 17, 0.75)',
         accent: c.accent_hex
       };
     }
 
-    // Bloques tonales de 10 en 10
+    // Bloques tonales de 10 en 10 (fallback)
     const blockIndex = Math.floor(((cardNum - 1) % 100) / 10);
     const subStep = ((cardNum - 1) % 10) / 9;
 
     const paletteBlocks = [
-      { h1: 350, h2: 356, s1: 72, s2: 88, l1: 68, l2: 50 },
-      { h1: 268, h2: 276, s1: 58, s2: 78, l1: 72, l2: 52 },
-      { h1: 22, h2: 28, s1: 78, s2: 92, l1: 68, l2: 52 },
-      { h1: 280, h2: 290, s1: 45, s2: 65, l1: 74, l2: 55 },
-      { h1: 42, h2: 48, s1: 82, s2: 96, l1: 72, l2: 54 },
-      { h1: 245, h2: 258, s1: 48, s2: 70, l1: 75, l2: 55 },
-      { h1: 68, h2: 82, s1: 72, s2: 85, l1: 70, l2: 54 },
-      { h1: 172, h2: 192, s1: 62, s2: 82, l1: 70, l2: 52 },
-      { h1: 335, h2: 345, s1: 68, s2: 86, l1: 72, l2: 52 },
-      { h1: 32, h2: 38, s1: 65, s2: 82, l1: 70, l2: 52 }
+      { h1: 25, h2: 36, s1: 94, s2: 86, l1: 62, l2: 52 },
+      { h1: 265, h2: 275, s1: 65, s2: 55, l1: 74, l2: 62 },
+      { h1: 348, h2: 358, s1: 84, s2: 76, l1: 60, l2: 50 },
+      { h1: 282, h2: 292, s1: 45, s2: 35, l1: 76, l2: 66 },
+      { h1: 44, h2: 54, s1: 95, s2: 88, l1: 66, l2: 52 },
+      { h1: 198, h2: 208, s1: 72, s2: 60, l1: 72, l2: 58 },
+      { h1: 78, h2: 92, s1: 74, s2: 62, l1: 70, l2: 56 },
+      { h1: 174, h2: 186, s1: 78, s2: 68, l1: 66, l2: 52 },
+      { h1: 330, h2: 342, s1: 84, s2: 74, l1: 68, l2: 54 },
+      { h1: 248, h2: 258, s1: 62, s2: 52, l1: 65, l2: 52 }
     ];
 
     const currentBlock = paletteBlocks[blockIndex] || paletteBlocks[0];
@@ -70,17 +77,27 @@ export class CardRenderer {
     const saturation = currentBlock.s1 + (currentBlock.s2 - currentBlock.s1) * subStep;
     const lightness = currentBlock.l1 + (currentBlock.l2 - currentBlock.l1) * subStep;
 
+    const topS = Math.max(saturation - 6, 20);
+    const topL = Math.min(lightness + 6, 85);
+    const botS = Math.min(saturation + 6, 100);
+    const botL = Math.max(lightness - 6, 40);
+
+    const topHsl = `hsl(${hue.toFixed(1)}, ${topS.toFixed(0)}%, ${topL.toFixed(0)}%)`;
+    const botHsl = `hsl(${hue.toFixed(1)}, ${botS.toFixed(0)}%, ${botL.toFixed(0)}%)`;
+    const bgGradient = `linear-gradient(180deg, ${topHsl} 0%, ${botHsl} 100%)`;
+
     const bg = `hsl(${hue.toFixed(1)}, ${saturation.toFixed(0)}%, ${lightness.toFixed(0)}%)`;
     const accent = `hsl(${hue.toFixed(1)}, ${saturation.toFixed(0)}%, ${Math.min(88, lightness + 16).toFixed(0)}%)`;
     const frontBg = `hsl(${hue.toFixed(1)}, 35%, 10%)`;
-    const textColor = lightness > 62 ? '#151217' : '#ffffff';
+    const textColor = '#111111';
 
     return {
       hue,
       bg,
+      bgGradient,
       frontBg,
       text: textColor,
-      subText: textColor === '#ffffff' ? 'rgba(255, 255, 255, 0.75)' : 'rgba(17, 17, 17, 0.75)',
+      subText: 'rgba(17, 17, 17, 0.75)',
       accent
     };
   }
@@ -241,7 +258,7 @@ export class CardRenderer {
     const cardIdAttr = options.id !== undefined ? (options.id ? `id="${options.id}"` : '') : 'id="active-card-3d"';
 
     return `
-      <div class="hittazos-card-3d ${isFlipped ? 'is-flipped' : ''}" ${cardIdAttr} style="--hittazos-bg: ${theme.bg}; --card-bg: ${theme.bg}; --hittazos-front-bg: ${theme.frontBg}; --card-front-bg: ${theme.frontBg}; --card-text: ${theme.text}; --card-subtext: ${theme.subText}; --card-accent: ${theme.accent};">
+      <div class="hittazos-card-3d ${isFlipped ? 'is-flipped' : ''}" ${cardIdAttr} style="--hittazos-bg: ${theme.bg}; --card-bg: ${theme.bg}; --card-bg-gradient: ${theme.bgGradient}; --card-top-hex: ${theme.topHex || theme.bgHex}; --card-bottom-hex: ${theme.bottomHex || theme.bgHex}; --hittazos-front-bg: ${theme.frontBg}; --card-front-bg: ${theme.frontBg}; --card-text: ${theme.text}; --card-subtext: ${theme.subText}; --card-accent: ${theme.accent};">
         <div class="card-sheet sheet-front hittazos-matte-card">
           <div class="card-topbar-minimal">
             <span class="group-badge-tiny">
@@ -295,6 +312,55 @@ export class CardRenderer {
     `;
   }
 
+  buildFanCardHTML(card, options = {}) {
+    const theme = this.getCardTheme(card);
+    const volId = card.id ? card.id.split('-')[0].replace('vol', '') : '0';
+    const hexPart = card.id ? card.id.split('-')[1].substring(2) : '00';
+    const cardNum = card.globalIndex || (card.index !== undefined ? card.index + 1 : 1);
+    const hexId = `#${cardNum.toString(16).toUpperCase().padStart(4, '0')}`;
+    const volName = (this.catalog?.volumes?.[card.volumen] || card.volumen || `VOL ${volId}`).toUpperCase();
+    const creador = this.formatMarkdown(card.autor || '');
+    const trivia = this.formatMarkdown(card.trivia || card.hito || '');
+    const hito = this.formatMarkdown(card.hito || '');
+    const domainName = (this.catalog?.domains?.[card.domain] || card.domain || '').toUpperCase();
+    const tagName = this.catalog?.tags?.[card.tag] || card.tag || '';
+    const mode = options.mode || 'gradient';
+    const isFlipped = options.isFlipped === true;
+
+    let activeBg = theme.bgGradient;
+    if (mode === 'solid') activeBg = theme.bg;
+    if (mode === 'hybrid') activeBg = (theme.hue > 65 && theme.hue < 210) ? theme.bg : theme.bgGradient;
+
+    return `
+      <div class="card card-fan hittazos-fan-card ${isFlipped ? 'is-flipped' : ''}" data-card-id="${card.id}" data-card-num="${cardNum}" style="--fan-card-bg: ${activeBg}; background: ${activeBg}; z-index: ${options.zIndex || cardNum};" tabindex="0" role="button" aria-label="Tarjeta ${card.year}: ${card.autor}">
+        <div class="card-fan-inner">
+          <div class="card-fan-face card-fan-back">
+            <div class="card-header-author">${creador}</div>
+            <div class="card-year-center">${card.year}</div>
+            <div class="card-fan-bottom-area">
+              <div class="card-description">“${trivia}”</div>
+              <div class="card-meta-footer">
+                <span>${volName}</span>
+                <span>${hexId}</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-fan-face card-fan-front">
+            <div class="card-fan-front-top">
+              <span class="group-badge-tiny">${domainName}</span>
+              <span class="category-badge-tiny">${tagName}</span>
+            </div>
+            <div class="card-fan-clue">${hito}</div>
+            <div class="card-meta-footer">
+              <span>${volName}</span>
+              <span>#${volId}x${hexPart}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
   buildDuplexPrintFaceHTML(card, isBack = false, hasBorder = true) {
     const theme = this.getCardTheme(card);
     const borderCls = hasBorder ? 'has-cut-border' : '';
@@ -307,7 +373,7 @@ export class CardRenderer {
       const creadorFormatted = this.formatMarkdown(card.autor);
       const triviaFormatted = this.formatMarkdown(card.trivia);
       return `
-        <div class="print-card-face print-card-back ${borderCls}" style="--card-bg: ${theme.bg}; --card-text: ${theme.text}; --card-subtext: ${theme.subText}; --card-accent: ${theme.accent};">
+        <div class="print-card-face print-card-back ${borderCls}" style="--card-bg: ${theme.bg}; --card-bg-gradient: ${theme.bgGradient}; --card-text: ${theme.text}; --card-subtext: ${theme.subText}; --card-accent: ${theme.accent};">
           <div class="card-sheet sheet-back hittazos-matte-card">
             <div class="card-back-top">
               <div class="back-author-title">${creadorFormatted}</div>

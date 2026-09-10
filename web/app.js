@@ -128,6 +128,21 @@ export class HitTazosApp {
     this.selectSortOrder = document.getElementById('select-sort-order');
     this.catalogGrid = document.getElementById('catalog-grid');
 
+    // Modo Abanico y Canto Apilado
+    this.btnGalleryViewFan = document.getElementById('btn-gallery-view-fan');
+    this.btnGalleryViewGrid = document.getElementById('btn-gallery-view-grid');
+    this.galleryFanSection = document.getElementById('gallery-fan-section');
+    this.cantoBar = document.getElementById('canto-bar');
+    this.cantoCount = document.getElementById('canto-count');
+    this.fanningScrollWrapper = document.getElementById('fanning-scroll-wrapper');
+    this.fanningTrack = document.getElementById('fanning-track');
+    this.btnModeGradient = document.getElementById('btn-mode-gradient');
+    this.btnModeSolid = document.getElementById('btn-mode-solid');
+    this.btnModeHybrid = document.getElementById('btn-mode-hybrid');
+
+    this.galleryLayout = 'fan';
+    this.fanColorMode = 'gradient';
+
     // Diálogos Modales (Ayuda e Impresión)
     this.btnHelpToggle = document.getElementById('btn-help-toggle');
     this.helpDialog = document.getElementById('help-dialog');
@@ -350,6 +365,39 @@ export class HitTazosApp {
     });
     this.selectFilterGroup?.addEventListener('change', () => this.filterCatalog());
     this.selectSortOrder?.addEventListener('change', () => this.filterCatalog());
+
+    // Alternancia de Disposición en Catálogo (Abanico vs Cuadrícula)
+    this.btnGalleryViewFan?.addEventListener('click', () => {
+      this.setGalleryLayout('fan');
+    });
+    this.btnGalleryViewGrid?.addEventListener('click', () => {
+      this.setGalleryLayout('grid');
+    });
+
+    // Modos de Acabado Cromático en Abanico
+    this.btnModeGradient?.addEventListener('click', () => this.setFanColorMode('gradient'));
+    this.btnModeSolid?.addEventListener('click', () => this.setFanColorMode('solid'));
+    this.btnModeHybrid?.addEventListener('click', () => this.setFanColorMode('hybrid'));
+
+    // Interacción en la Pista de Abanico: Clic para voltear tarjeta
+    this.fanningTrack?.addEventListener('click', (e) => {
+      const cardEl = e.target.closest('.card-fan');
+      if (cardEl) {
+        cardEl.classList.toggle('is-flipped');
+        this.audio.play('flip');
+      }
+    });
+
+    this.fanningTrack?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const cardEl = e.target.closest('.card-fan');
+        if (cardEl) {
+          e.preventDefault();
+          cardEl.classList.toggle('is-flipped');
+          this.audio.play('flip');
+        }
+      }
+    });
   }
 
   // ── Mapeo Declarativo de Teclado (hotkeys-js con fallback) ────────────────
@@ -899,15 +947,19 @@ export class HitTazosApp {
   switchView(view) {
     this.currentView = view;
     if (view === 'play') {
-      this.viewPlay?.classList.remove('hidden');
-      this.viewGallery?.classList.add('hidden');
+      this.viewPlay?.classList.add('active');
+      this.viewGallery?.classList.remove('active');
       this.btnTabPlay?.classList.add('active');
+      this.btnTabPlay?.setAttribute('aria-selected', 'true');
       this.btnTabGallery?.classList.remove('active');
+      this.btnTabGallery?.setAttribute('aria-selected', 'false');
     } else {
-      this.viewPlay?.classList.add('hidden');
-      this.viewGallery?.classList.remove('hidden');
+      this.viewPlay?.classList.remove('active');
+      this.viewGallery?.classList.add('active');
       this.btnTabPlay?.classList.remove('active');
+      this.btnTabPlay?.setAttribute('aria-selected', 'false');
       this.btnTabGallery?.classList.add('active');
+      this.btnTabGallery?.setAttribute('aria-selected', 'true');
       this.filterCatalog();
     }
     this.audio.play('tick');
@@ -996,24 +1048,119 @@ export class HitTazosApp {
     this.renderCatalog();
   }
 
-  renderCatalog() {
-    if (!this.catalogGrid) return;
-    this.catalogGrid.innerHTML = '';
-    const slice = this.filteredCatalog.slice(0, 100);
+  setGalleryLayout(layout) {
+    this.galleryLayout = layout;
+    if (layout === 'fan') {
+      this.btnGalleryViewFan?.classList.add('active');
+      this.btnGalleryViewGrid?.classList.remove('active');
+      if (this.galleryFanSection) this.galleryFanSection.style.display = 'flex';
+      if (this.catalogGrid) this.catalogGrid.style.display = 'none';
+    } else {
+      this.btnGalleryViewFan?.classList.remove('active');
+      this.btnGalleryViewGrid?.classList.add('active');
+      if (this.galleryFanSection) this.galleryFanSection.style.display = 'none';
+      if (this.catalogGrid) this.catalogGrid.style.display = 'grid';
+    }
+    this.audio.play('tick');
+    this.renderCatalog();
+  }
 
-    slice.forEach(card => {
-      const cell = document.createElement('div');
-      cell.className = 'catalog-card-cell';
-      cell.innerHTML = this.renderer.buildCardHTML(card, {
-        showYear: true,
-        hideRevealButton: true,
-        isFlipped: false,
-        id: ''
-      }, this.state.cardFormat);
-      this.catalogGrid.appendChild(cell);
+  setFanColorMode(mode) {
+    this.fanColorMode = mode;
+    [this.btnModeGradient, this.btnModeSolid, this.btnModeHybrid].forEach(b => {
+      if (!b) return;
+      if (b.getAttribute('data-mode') === mode) {
+        b.classList.add('active');
+      } else {
+        b.classList.remove('active');
+      }
+    });
+    this.audio.play('tick');
+    this.renderFanningTrack(this.filteredCatalog);
+  }
+
+  renderCantoBar(cards) {
+    if (!this.cantoBar) return;
+    this.cantoBar.innerHTML = '';
+    if (this.cantoCount) this.cantoCount.textContent = cards.length;
+
+    const frag = document.createDocumentFragment();
+    cards.forEach(card => {
+      const theme = this.renderer.getCardTheme(card);
+      const slice = document.createElement('div');
+      slice.className = 'canto-slice';
+      slice.style.backgroundColor = theme.topHex || theme.bgHex || theme.bg;
+      const hexPart = card.id ? card.id.split('-')[1] : '';
+      slice.title = `#${hexPart} | ${card.year} — ${card.autor || ''}`;
+      slice.setAttribute('role', 'button');
+      slice.setAttribute('tabindex', '0');
+      slice.setAttribute('aria-label', `Ir a tarjeta ${card.year}: ${card.autor || ''}`);
+
+      const scrollToTarget = () => {
+        const cardEl = this.fanningTrack?.querySelector(`[data-card-id="${card.id}"]`);
+        if (cardEl && this.fanningScrollWrapper) {
+          const leftPos = cardEl.offsetLeft - (this.fanningScrollWrapper.clientWidth / 2) + (cardEl.clientWidth / 2);
+          this.fanningScrollWrapper.scrollTo({ left: Math.max(0, leftPos), behavior: 'smooth' });
+          cardEl.focus();
+        }
+      };
+
+      slice.addEventListener('click', scrollToTarget);
+      slice.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          scrollToTarget();
+        }
+      });
+
+      frag.appendChild(slice);
+    });
+    this.cantoBar.appendChild(frag);
+  }
+
+  renderFanningTrack(cards) {
+    if (!this.fanningTrack) return;
+    this.fanningTrack.innerHTML = '';
+    const frag = document.createDocumentFragment();
+
+    cards.forEach((card, idx) => {
+      const tmp = document.createElement('div');
+      tmp.innerHTML = this.renderer.buildFanCardHTML(card, {
+        mode: this.fanColorMode,
+        zIndex: idx + 1
+      });
+      if (tmp.firstElementChild) {
+        frag.appendChild(tmp.firstElementChild);
+      }
     });
 
+    this.fanningTrack.appendChild(frag);
     this.refreshIcons();
+  }
+
+  renderCatalog() {
+    if (this.galleryLayout === 'fan') {
+      this.renderCantoBar(this.filteredCatalog);
+      this.renderFanningTrack(this.filteredCatalog);
+    } else {
+      if (!this.catalogGrid) return;
+      this.catalogGrid.innerHTML = '';
+      const slice = this.filteredCatalog.slice(0, 100);
+
+      slice.forEach(card => {
+        const cell = document.createElement('div');
+        cell.className = 'catalog-card-cell';
+        cell.innerHTML = this.renderer.buildCardHTML(card, {
+          showYear: true,
+          hideRevealButton: true,
+          isFlipped: false,
+          id: ''
+        }, this.state.cardFormat);
+        this.catalogGrid.appendChild(cell);
+      });
+
+      this.refreshIcons();
+    }
   }
 
 

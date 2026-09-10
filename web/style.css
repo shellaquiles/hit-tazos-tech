@@ -1319,16 +1319,30 @@ main {
    ========================================================================== */
 
 .hittazos-matte-card {
-  background: var(--hittazos-bg, var(--card-bg, #e86328)) !important;
+  background: var(--card-bg-gradient, var(--hittazos-bg, var(--card-bg, #e86328))) !important;
   color: #111111;
   padding: 1.25rem 1.3rem 1.0rem 1.3rem;
-  border-radius: var(--card-radius);
+  border-radius: var(--card-radius, 28px);
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.15),
     0 8px 24px rgba(0, 0, 0, 0.3),
     0 24px 48px -12px rgba(0, 0, 0, 0.5) !important;
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.hittazos-matte-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  filter: url(#paper-grain);
+  opacity: 0.13;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  border-radius: inherit;
+  z-index: 1;
 }
 
 /* 1. FRONT FACE: Editorial limpia (Header + Divider + Centered Clue + Corner Meta) */
@@ -1485,7 +1499,7 @@ main {
 
 /* 2. BACK FACE: Pure Harmonic Proportions */
 .sheet-back.hittazos-matte-card {
-  background: var(--hittazos-bg, var(--card-bg, #e86328)) !important;
+  background: var(--card-bg-gradient, var(--hittazos-bg, var(--card-bg, #e86328))) !important;
   color: #111111 !important;
   display: flex;
   flex-direction: column;
@@ -2275,6 +2289,429 @@ main {
 .select-control:focus {
   border-color: #38bdf8;
   box-shadow: 0 0 14px rgba(56, 189, 248, 0.25);
+}
+
+/* ==========================================================================
+   HIT-TAZOS TECH: MODO ABANICO Y CANTO APILADO (FANNING TRACK & CANTO BAR)
+   ========================================================================== */
+
+:root {
+  --fan-card-size: 260px;
+}
+
+/* Toggle de Disposición (Abanico vs Cuadrícula) */
+.gallery-layout-toggle {
+  display: inline-flex;
+  align-items: center;
+  background: #18181b;
+  border: 1px solid #27272a;
+  border-radius: 10px;
+  padding: 3px;
+  gap: 3px;
+}
+
+.gallery-layout-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: transparent;
+  border: none;
+  color: #a1a1aa;
+  padding: 6px 14px;
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.gallery-layout-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.gallery-layout-btn.active {
+  background: #27272a;
+  color: #38bdf8;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-layout-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Sección de Abanico */
+.gallery-fan-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* Barra Panorámica del Canto Apilado */
+.canto-preview {
+  width: 100%;
+  background: #18181b;
+  border: 1px solid #27272a;
+  border-radius: 14px;
+  padding: 1.25rem 1.4rem;
+  box-sizing: border-box;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.canto-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 0.85rem;
+}
+
+.canto-label-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.canto-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #e4e4e7;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+}
+
+.canto-label svg {
+  width: 15px;
+  height: 15px;
+  color: #38bdf8;
+}
+
+.canto-sublabel {
+  font-size: 0.72rem;
+  color: #71717a;
+  font-family: var(--font-sans);
+}
+
+.fan-color-controls {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+  background: #121214;
+  padding: 4px 8px;
+  border-radius: 9px;
+  border: 1px solid #27272a;
+}
+
+.fan-controls-caption {
+  font-size: 0.72rem;
+  color: #71717a;
+  font-weight: 600;
+  margin-right: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-fan-mode {
+  background: transparent;
+  border: none;
+  color: #a1a1aa;
+  padding: 5px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+}
+
+.btn-fan-mode:hover {
+  color: #ffffff;
+}
+
+.btn-fan-mode.active {
+  background: #27272a;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.canto-bar {
+  display: flex;
+  width: 100%;
+  height: 42px;
+  border-radius: 7px;
+  overflow: hidden;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.6);
+  border: 1px solid #3f3f46;
+  background: #09090b;
+}
+
+.canto-slice {
+  flex: 1;
+  height: 100%;
+  transition: transform 0.12s ease, filter 0.12s ease;
+  cursor: pointer;
+  min-width: 1px;
+}
+
+.canto-slice:hover {
+  transform: scaleY(1.3);
+  filter: brightness(1.25);
+  z-index: 20;
+}
+
+.canto-slice.active-canto-target {
+  filter: brightness(1.4) drop-shadow(0 0 6px #fff);
+  transform: scaleY(1.35);
+  z-index: 25;
+}
+
+/* Pista Horizontal en Abanico ("Fanning Track") */
+.fanning-scroll-wrapper {
+  background: #18181b;
+  border: 1px solid #27272a;
+  border-radius: 16px;
+  padding: 3.5rem 1.5rem 4.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #3f3f46 #18181b;
+}
+
+.fanning-scroll-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.fanning-scroll-wrapper::-webkit-scrollbar-track {
+  background: #18181b;
+  border-radius: 4px;
+}
+
+.fanning-scroll-wrapper::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 4px;
+}
+
+.fanning-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+.fanning-track {
+  display: flex;
+  align-items: flex-end;
+  height: calc(var(--fan-card-size, 260px) + 70px);
+  padding-left: 30px;
+  padding-right: 140px;
+  width: max-content;
+}
+
+/* Tarjeta Cuadrada en Abanico */
+.card.card-fan {
+  width: var(--fan-card-size, 260px);
+  height: var(--fan-card-size, 260px);
+  border-radius: 28px;
+  margin-left: -215px;
+  padding: 1.4rem 1.3rem 1.1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), -4px 0 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), margin 0.22s ease, box-shadow 0.22s ease;
+  user-select: none;
+  overflow: hidden;
+  flex-shrink: 0;
+  outline: none;
+}
+
+.card.card-fan:hover,
+.card.card-fan:focus-visible {
+  transform: translateY(-40px) scale(1.04);
+  margin-right: 90px;
+  z-index: 99999 !important;
+  box-shadow: 0 28px 50px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Textura micro-rugosa de papel mate 350g */
+.card.card-fan::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  filter: url(#paper-grain);
+  opacity: 0.13;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+.card-fan-inner {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-fan-face {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-fan.is-flipped .card-fan-back {
+  display: none;
+}
+
+.card-fan.is-flipped .card-fan-front {
+  display: flex;
+}
+
+.card-fan .card-fan-front {
+  display: none;
+}
+
+.card-header-author {
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #111111;
+  text-align: center;
+  letter-spacing: -0.2px;
+  line-height: 1.2;
+}
+
+.card-year-center {
+  font-family: 'Space Grotesk', var(--font-display);
+  font-size: 4.4rem;
+  font-weight: 800;
+  color: #111111;
+  text-align: center;
+  letter-spacing: -2px;
+  line-height: 0.9;
+  margin: auto 0;
+}
+
+.card-fan-bottom-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-description {
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: 0.8rem;
+  font-style: italic;
+  font-weight: 500;
+  color: #1a1a1a;
+  text-align: center;
+  line-height: 1.35;
+  padding: 0 0.3rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-meta-footer {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Space Grotesk', var(--font-display);
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: rgba(17, 17, 17, 0.6);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-top: 0.55rem;
+}
+
+.card-fan-front-top {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.15);
+  padding-bottom: 0.4rem;
+}
+
+.card-fan-front-top .group-badge-tiny {
+  color: #111111;
+  font-weight: 800;
+  font-size: 0.68rem;
+}
+
+.card-fan-front-top .category-badge-tiny {
+  color: #333333;
+  font-size: 0.64rem;
+}
+
+.card-fan-clue {
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #111111;
+  margin: auto 0;
+  text-align: left;
+}
+
+.card-fan-clue strong {
+  font-weight: 800;
+  color: #000000;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --fan-card-size: 220px;
+  }
+  .card.card-fan {
+    margin-left: -175px;
+    padding: 1.1rem 1.0rem 0.9rem;
+  }
+  .card.card-fan:hover {
+    margin-right: 75px;
+  }
+  .card-year-center {
+    font-size: 3.6rem;
+  }
+  .card-header-author {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --fan-card-size: 190px;
+  }
+  .card.card-fan {
+    margin-left: -145px;
+    padding: 0.9rem 0.8rem 0.7rem;
+    border-radius: 20px;
+  }
+  .card.card-fan:hover {
+    margin-right: 60px;
+  }
+  .card-year-center {
+    font-size: 3.0rem;
+  }
+  .card-header-author {
+    font-size: 0.78rem;
+  }
+  .card-description {
+    font-size: 0.72rem;
+    -webkit-line-clamp: 2;
+  }
 }
 
 .cards-catalog-grid {

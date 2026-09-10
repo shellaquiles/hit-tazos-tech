@@ -127,7 +127,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,600;0,700;0,800;1,500;1,600&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
 
   <!-- Curated Icon Library: Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -135,6 +135,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- Filtro SVG de textura micro-rugosa de papel mate 350g (acabado táctil) -->
+  <svg style="display: none;" aria-hidden="true">
+    <filter id="paper-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" result="noise" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" />
+    </filter>
+  </svg>
 
   <!-- Header -->
   <header>
@@ -387,10 +395,53 @@
             <option value="YEAR_ASC">Año: Cronológico (Más antiguo a más reciente)</option>
             <option value="YEAR_DESC">Año: Reciente (Más reciente a más antiguo)</option>
           </select>
+
+          <!-- Selector de Modo de Disposición: Abanico vs Cuadrícula -->
+          <div class="gallery-layout-toggle" role="group" aria-label="Disposición de vista">
+            <button type="button" class="gallery-layout-btn active" id="btn-gallery-view-fan" data-layout="fan" title="Vista Abanico y Canto de Mazo">
+              <i data-lucide="layers"></i>
+              <span>Abanico</span>
+            </button>
+            <button type="button" class="gallery-layout-btn" id="btn-gallery-view-grid" data-layout="grid" title="Vista Cuadrícula Clásica">
+              <i data-lucide="layout-grid"></i>
+              <span>Cuadrícula</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      <div class="cards-catalog-grid" id="catalog-grid">
+      <!-- SECCIÓN VISTA ABANICO Y CANTO APILADO -->
+      <div class="gallery-fan-section" id="gallery-fan-section">
+        <!-- Visualización panorámica del canto lateral apilado -->
+        <div class="canto-preview">
+          <div class="canto-header-row">
+            <div class="canto-label-group">
+              <div class="canto-label">
+                <i data-lucide="align-justify"></i>
+                <span>Canto del mazo apilado (<span id="canto-count">576</span> tarjetas continuas)</span>
+              </div>
+              <div class="canto-sublabel">Toca cualquier punto del canto para navegar al instante en el abanico</div>
+            </div>
+            <div class="fan-color-controls">
+              <span class="fan-controls-caption">Acabado:</span>
+              <button type="button" class="btn-fan-mode active" data-mode="gradient" id="btn-mode-gradient">Con Degradado</button>
+              <button type="button" class="btn-fan-mode" data-mode="solid" id="btn-mode-solid">Sólido</button>
+              <button type="button" class="btn-fan-mode" data-mode="hybrid" id="btn-mode-hybrid">Híbrido</button>
+            </div>
+          </div>
+          <div class="canto-bar" id="canto-bar" title="Haz clic en cualquier punto del canto para desplazarte a la tarjeta"></div>
+        </div>
+
+        <!-- Pista horizontal interactiva en abanico con solapamiento -->
+        <div class="fanning-scroll-wrapper" id="fanning-scroll-wrapper">
+          <div class="fanning-track" id="fanning-track">
+            <!-- Inyectado dinámicamente -->
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN VISTA CUADRÍCULA (Oculta por defecto cuando el modo abanico está activo) -->
+      <div class="cards-catalog-grid" id="catalog-grid" style="display: none;">
         <!-- Tarjetas del catálogo -->
       </div>
     </section>
