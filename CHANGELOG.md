@@ -11,6 +11,14 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
   - Selector inicial de versión (`#version-select-dialog`) con elección explícita entre Hit-Tazo (Tazos 3D físicos) y Hit-Cards (Tarjetas cuadradas de sobremesa 65×65 mm).
   - Acceso directo para alternar versión en cualquier momento desde el isotipo de la cabecera (`#btn-brand-version`).
   - Hojas de estilo desacopladas (`web/css/tazo.css` y `web/css/cards.css`) y renderers especializados (`TazoRenderer` y `CardsRenderer`) sobre el motor lógico unificado.
+- **Capturas de Pantalla y Previsualización Visual**:
+  - Incorporación de galería visual en `README.md` con capturas de alta resolución de la app web (`docs/screenshots/`): selector de versión, dial 3D de Hit-Tazo, sobremesa de Hit-Cards y guía rápida de juego.
+  - Script automatizado `scripts/capture_screenshots.mjs` vía Chrome DevTools Protocol (`npm run screenshots`).
+- **Actualización y Expansión Integral de Documentación**:
+  - `README.md`: Nueva sección de arquitectura de software desacoplada (`web/core/`), especificación técnica de la experiencia dual (Hit-Tazo 3D vs Hit-Cards), catálogo detallado de los 8 volúmenes canónicos con enlaces de descarga directa a los PDFs de imprenta oficial, y tabla exhaustiva de controles y atajos de teclado.
+  - `AGENTS.md`: Documentación formal del flujo de publicación y release automatizado con `gh` CLI (`.github/workflows/release.yml`), script extractor [`scripts/extract_release_notes.py`](file:///home/kubrick/www/hitster/scripts/extract_release_notes.py), y directrices actualizadas para agentes de IA.
+  - `CONTRIBUTING.md` & `CODE_OF_CONDUCT.md`: Guías de contribución técnica y editorial enriquecidas con el protocolo de auditoría en 4 niveles (factual, fuente primaria, pedagógico y sobriedad editorial).
+  - Modal de Ayuda Web (`#help-dialog`): Guía rápida enriquecida con diagramas conceptuales de los dos modos de juego, reglas de penalización de revelado de año (-5 pts) y navegación por teclado (<kbd>P</kbd>/<kbd>N</kbd>, <kbd>V</kbd>/<kbd>T</kbd>, <kbd>Enter</kbd>, <kbd>Shift+R</kbd>).
 - **Flujo de Onboarding y Guía Rápida de Juego Adaptativa**:
   - Despliegue automático de la "Guía Rápida de Juego" (`#help-dialog`) inmediatamente después de elegir por primera vez el modo de juego en la pantalla de bienvenida.
   - Adaptación contextual y reactiva de los términos en el modal de ayuda según el formato activo (*"del tazo"* / *"10 tazos"* frente a *"de la tarjeta"* / *"10 cartas"*).
