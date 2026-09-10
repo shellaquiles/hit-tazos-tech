@@ -51,10 +51,20 @@ Este proyecto es parte del ecosistema de herramientas y aplicaciones de **shella
 
 ## 📝 Convenciones de Código y Editorial
 
-- **Límites de Caracteres Físicos:**
-  - `creador`: $\le 45$ caracteres (usar `*Autor Principal* et al.` si hay más de 2 autores).
-  - `hito`: $\le 145$ caracteres (claro, directo, sin spoilers del año).
-  - `dato_curioso`: $\le 150$ caracteres (trivia compacta para lectura ágil).
-- **JavaScript**: Estándar moderno Vanilla ECMAScript (sin frameworks pesados ni dependencias superfluas en el cliente).
-- **Node / Scripts**: Validar con `node --check <archivo>.js`.
-- **Git y PRs**: Todo cambio se somete a `main` a través de un Pull Request completando la plantilla correspondiente.
+- **Data Contract Canónico (data/volumes/*.json):**
+  - **`autor`:** $\le 45$ caracteres (usar `*Autor Principal* et al.` o siglas institucionales como `NASA`, `MIT`, `CERN`).
+  - **`hito` (Anverso):** $\le 145$ caracteres (hecho clave en **negritas**, **estrictamente prohibido revelar el año**).
+  - **`trivia` (Reverso):** $\le 150$ caracteres (contexto o anécdota técnica en 3-4 líneas compactas).
+- **Protocolo de Auditoría en 4 Niveles (`data/audit.json`):**
+  1. **Factual:** Precisión de fechas, nombres de software/hardware y causalidad sin anacronismos.
+  2. **Fuente Primaria:** Respaldado por RFCs, PEPs, papers o repositorios oficiales en `sources`.
+  3. **Pedagógico:** "Una carta = una sola idea principal" sin simplificaciones engañosas.
+  4. **Editorial:** Tono sobrio y profesional (cero hipérboles como *"revolucionó para siempre"* o *"el mejor del mundo"*).
+- **JavaScript & Arquitectura Frontend:**
+  - Estándar nativo **ES Modules (Zero-Bundler)** bajo `web/core/` (`constants.js`, `rules.js`, `storage.js`, `state.js`, `audio.js`, `renderer.js`).
+  - Prohibido agregar dependencias pesadas o bundlers obligatorios.
+- **Node / Scripts:**
+  - Validar sintaxis con `npm test` (incluye `node --check` y pruebas unitarias con Node.js Test Runner).
+- **Git y Flujo de Trabajo:**
+  - Todo cambio se integra mediante Pull Request utilizando la plantilla oficial de `.github/pull_request_template.md`.
+

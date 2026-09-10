@@ -24,6 +24,20 @@ La versión web incluye:
 
 ---
 
+## 📸 Capturas de Pantalla (Preview)
+
+| Selector de Experiencia | Modo Hit-Tazo (Dial 3D) |
+| :---: | :---: |
+| [![Selector de Versión](./docs/screenshots/01-selector-version.png)](./docs/screenshots/01-selector-version.png) | [![Modo Hit-Tazo](./docs/screenshots/02-gameplay-hit-tazo.png)](./docs/screenshots/02-gameplay-hit-tazo.png) |
+| *Modal inicial de bienvenida y formato* | *Dial táctil retro con muescas CNC y estante* |
+
+| Modo Hit-Cards (65×65 mm) | Guía Rápida y Atajos |
+| :---: | :---: |
+| [![Modo Hit-Cards](./docs/screenshots/03-gameplay-hit-cards.png)](./docs/screenshots/03-gameplay-hit-cards.png) | [![Guía Rápida de Juego](./docs/screenshots/04-guia-rapida-juego.png)](./docs/screenshots/04-guia-rapida-juego.png) |
+| *Tarjeta de sobremesa contemporánea* | *Pistas anti-spoiler y atajos de teclado* |
+
+---
+
 ## 🕹️ Cómo se juega
 
 ### En la web (Modo Arcade)
@@ -52,11 +66,12 @@ El juego es libre bajo licencia MIT y puedes descargar los archivos listos para 
 
 Las cartas están diseñadas en formato cuadrado de **$65 \times 65\text{ mm}$** con esquinas redondeadas ($r=3\text{ mm}$), pensadas para imprimirse en cartulina de **$350\text{ g}$** con barniz mate anti-reflejante.
 
-### Archivo PDF oficial para imprenta (Tamaño Carta)
-El PDF vectorial incluye imposición de páginas, marcas de corte y reversos listos para impresión dúplex:
+### Archivos PDF oficiales para imprenta (Print & Play)
+Los PDFs vectoriales oficiales con marcas de corte, sangrado de +3 mm y reversos espejados están disponibles para descarga directa en la [**Última Release Oficial (v1.0.0)**](https://github.com/shellaquiles/hit-tazos-tech/releases/latest):
 
-* 📄 **[Descargar PDF Formato Carta (8.5 × 11 pulg)](./print/v1.0.0/hit-tazos-tech-v1.0.0-carta.pdf):** 6 cartas por pliego (192 páginas dúplex para las 576 cartas).
-* 🎨 Pliegos vectoriales editables disponibles en [`print/v1.0.0/svg/`](./print/v1.0.0/svg/).
+* 📦 **[Descarga de los 8 Volúmenes en PDF (Tamaño Carta)](https://github.com/shellaquiles/hit-tazos-tech/releases/latest)**: 6 cartas por pliego (65×65 mm c/u), optimizados para impresión dúplex.
+* 📐 Formatos profesionales multi-pliego disponibles para compilación local:
+  - **Carta (8.5 × 11 pulg):** Rejilla $2 \times 3$ (6 cartas/pliego, 192 páginas dúplex).
 
 ### Adquirir las cartas en preventa
 Si prefieres tener el juego físico ya impreso y en caja rígida:
@@ -66,20 +81,50 @@ Si prefieres tener el juego físico ya impreso y en caja rígida:
 
 ---
 
-## 📑 Contenido del mazo (576 cartas)
+## 📑 Contenido del mazo (576 cartas en 8 volúmenes)
 
-El mazo se divide en 8 volúmenes temáticos:
+El mazo se divide en 8 volúmenes canónicos con taxonomía cerrada:
 
-| Vol | Identificador | Cartas | Temas principales |
-| :---: | :--- | :---: | :--- |
-| **0** | `kernel-foundations` | 128 | Von Neumann, lógica booleana, teoría de la información y primeros algoritmos. |
-| **1** | `cypherpunks-hacker-lore` | 64 | Criptografía asimétrica, manifiestos, FOSS, P2P y cultura hacker. |
-| **2** | `embedded-silicon-hardware` | 64 | Microprocesadores clásicos, microcontroladores, arquitecturas CISC/RISC y silicio. |
-| **3** | `unix-sysadmin-networks` | 64 | Filosofía Unix, TCP/IP, DNS, protocolos de red y administración de servidores. |
-| **4** | `backend-distributed-systems` | 64 | Bases de datos, colas de mensajes, concurrencia y patrones backend. |
-| **5** | `cloud-containers-sre` | 64 | Contenedores, Kubernetes, nubes públicas y prácticas SRE. |
-| **6** | `python-track` | 64 | PEPs históricos, runtimes, GIL y evolución del lenguaje Python. |
-| **7** | `scifi-pop-culture-cinema` | 64 | Cine hacker, ciencia ficción dura y cultura pop tecnológica. |
+| Vol | Slug Oficial | Cartas | Rango Hex | Archivo PDF Oficial | Temas principales |
+| :---: | :--- | :---: | :---: | :--- | :--- |
+| **0** | `kernel-foundations` | 128 | `0x00–0x7F` | [`hit-tazos-tech-vol0-kernel-foundations.pdf`](https://github.com/shellaquiles/hit-tazos-tech/releases/latest/download/hit-tazos-tech-vol0-kernel-foundations.pdf) | Von Neumann, lógica booleana, teoría de la información, Linux, C y papers de IA. |
+| **1** | `cypherpunks-hacker-lore` | 64 | `0x00–0x3F` | [`hit-tazos-tech-vol1-cypherpunks-hacker-lore.pdf`](https://github.com/shellaquiles/hit-tazos-tech/releases/latest/download/hit-tazos-tech-vol1-cypherpunks-hacker-lore.pdf) | Criptografía asimétrica, manifiestos, FOSS, P2P, malware y cultura hacker. |
+| **2** | `embedded-silicon-hardware` | 64 | `0x00–0x3F` | [`hit-tazos-tech-vol2-embedded-silicon-hardware.pdf`](https://github.com/shellaquiles/hit-tazos-tech/releases/latest/download/hit-tazos-tech-vol2-embedded-silicon-hardware.pdf) | Microprocesadores clásicos, microcontroladores, arquitecturas CISC/RISC y silicio. |
+| **3** | `unix-sysadmin-networks` | 64 | `0x00–0x3F` | [`hit-tazos-tech-vol3-unix-sysadmin-networks.pdf`](https://github.com/shellaquiles/hit-tazos-tech/releases/latest/download/hit-tazos-tech-vol3-unix-sysadmin-networks.pdf) | Filosofía Unix, TCP/IP, DNS, protocolos RFC de red y administración de servidores. |
+| **4** | `backend-distributed-systems` | 64 | `0x00–0x3F` | [`hit-tazos-tech-vol4-backend-distributed-systems.pdf`](https://github.com/shellaquiles/hit-tazos-tech/releases/latest/download/hit-tazos-tech-vol4-backend-distributed-systems.pdf) | Bases de datos, colas de mensajes, concurrencia y patrones de backend distribuido. |
+| **5** | `cloud-containers-sre` | 64 | `0x00–0x3F` | [`hit-tazos-tech-vol5-cloud-containers-sre.pdf`](https://github.com/shellaquiles/hit-tazos-tech/releases/latest/download/hit-tazos-tech-vol5-cloud-containers-sre.pdf) | Contenedores (Docker, k8s), IaC, nubes públicas y prácticas de observabilidad SRE. |
+| **6** | `python-track` | 64 | `0x00–0x3F` | [`hit-tazos-tech-vol6-python-track.pdf`](https://github.com/shellaquiles/hit-tazos-tech/releases/latest/download/hit-tazos-tech-vol6-python-track.pdf) | PEPs históricos, runtimes, GIL, stack científico y evolución del lenguaje Python. |
+| **7** | `scifi-pop-culture-cinema` | 64 | `0x00–0x3F` | [`hit-tazos-tech-vol7-scifi-pop-culture-cinema.pdf`](https://github.com/shellaquiles/hit-tazos-tech/releases/latest/download/hit-tazos-tech-vol7-scifi-pop-culture-cinema.pdf) | Cine hacker, ciencia ficción dura, literatura especulativa y cultura pop tech. |
+
+---
+
+## ⌨️ Controles y Atajos de Teclado
+
+| Atajo | Acción en la Aplicación Web |
+| :---: | :--- |
+| <kbd>+</kbd> / <kbd>-</kbd> o <kbd>↑</kbd> / <kbd>↓</kbd> | Ajustar el año del tiro en el dial interactivo. |
+| <kbd>Enter</kbd> | Disparar tiro o confirmar intento. |
+| <kbd>Espacio</kbd> | Voltear la tarjeta activa (anverso $\leftrightarrow$ reverso). |
+| <kbd>P</kbd> / <kbd>N</kbd> | Navegar a la tarjeta Previa (<kbd>P</kbd>) o Siguiente (<kbd>N</kbd>) en las pilas. |
+| <kbd>V</kbd> | Abrir el modal de selección de formato (Hit-Tazo 3D vs. Hit-Cards). |
+| <kbd>T</kbd> | Alternar directamente entre formato Tazo y formato Tarjeta. |
+| <kbd>?</kbd> / <kbd>H</kbd> | Abrir la Guía Rápida de Juego (#help-dialog). |
+| <kbd>Shift</kbd> + <kbd>R</kbd> | Reiniciar partida completa (restablece puntos, racha y estante con confirmación). |
+
+---
+
+## 🏛️ Arquitectura del Motor Web (Zero-Bundler ES Modules)
+
+El código fuente del frontend reside bajo una arquitectura modular limpia en `web/core/` sin requerir herramientas de empaquetado (Zero-Bundler):
+
+* **`web/core/constants.js`:** Constantes canónicas inmutables (reglas, paletas HSL, límites cronológicos y almacenamiento).
+* **`web/core/rules.js`:** Funciones puras de puntuación (+3 exacto, +1 cercano), cálculo de pistas cualitativas y ordenamiento del estante.
+* **`web/core/storage.js`:** Adaptador de persistencia asíncrona dual (IndexedDB con fallback a `localStorage`).
+* **`web/core/state.js`:** Máquina de estado reactiva `GameState` con patrón Observer (Pub/Sub) desacoplado del DOM.
+* **`web/core/audio.js`:** Motor de efectos sonoros retro sintetizados con control de volumen y mute.
+* **`web/core/tazo-renderer.js`:** Renderizado 3D de disco retro con bisel CNC, notches y radio seguro $r=112$.
+* **`web/core/cards-renderer.js`:** Renderizado de tarjetas de colección cuadradas de $65 \times 65\text{ mm}$.
+* **`web/app.js`:** Coordinador reactivo `HitTazosApp` enlazando eventos, gestos táctiles y teclado.
 
 ---
 
@@ -98,17 +143,20 @@ python3 -m http.server 3333
 
 ### Pruebas y compilación
 ```bash
-# Ejecutar suite de pruebas (24 tests unitarios, paridad de versión y auditoría):
+# Ejecutar suite de pruebas (24 tests unitarios, paridad de versión y auditoría en 4 niveles):
 npm test
 
-# Compilar mazo maestro tras editar tarjetas:
+# Compilar mazo maestro y actualizar manifest tras editar tarjetas:
 npm run build
 
-# Generar pliegos de imprenta:
-npm run print
+# Generar capturas de pantalla de alta fidelidad para documentación:
+npm run screenshots
+
+# Generar pliegos de imprenta (Formato Carta):
+npm run print:carta
 ```
 
-Para especificaciones avanzadas de datos y reglas de auditoría editorial, consulta [**`AGENTS.md`**](./AGENTS.md).
+Para especificaciones avanzadas de datos, Data Contract y reglas editoriales en 4 niveles, consulta [**`AGENTS.md`**](./AGENTS.md).
 
 ---
 

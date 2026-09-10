@@ -56,6 +56,7 @@ hit-tazos-tech/
 ├── scripts/                             # Herramientas y scripts CLI canónicos
 │   ├── audit_deck.py                    # Validador integral en 4 niveles, presupuestos y anti-spoilers
 │   ├── build_cards.js                   # Compilador de la baraja maestra y manifest
+│   ├── extract_release_notes.py         # Extractor canónico de notas de release para GitHub CLI
 │   ├── generate_card_colors.js          # Generador CLI de configuración cromática por millar
 │   └── sync_version.py                  # Sincronizador y verificador de paridad de versión canónica
 ├── print/                               # Motor de imposición y salidas para imprenta (Tabloide, Carta, Super Tabloide)
