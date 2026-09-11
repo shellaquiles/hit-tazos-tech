@@ -478,6 +478,13 @@ export class HitTazosApp {
       this.selectActiveGroup(vol);
     });
 
+    // Selector de Volumen en Drawer (Móvil / Accesible)
+    const drawerVolSelect = document.getElementById('drawer-volume-select');
+    drawerVolSelect?.addEventListener('change', (e) => {
+      this.selectActiveGroup(e.target.value);
+      this.closeToolsDrawer?.();
+    });
+
     // Selección de Volumen vía Ribbon
     this.groupRibbon?.addEventListener('click', (e) => {
       const pill = e.target.closest('.ribbon-pill');
@@ -1578,6 +1585,11 @@ export class HitTazosApp {
       this.volumeDropdownMenu.querySelectorAll('.volume-menu-item').forEach(el => {
         el.classList.toggle('active', el.getAttribute('data-volumen') === groupSlug);
       });
+    }
+
+    const drawerVolSelect = document.getElementById('drawer-volume-select');
+    if (drawerVolSelect) {
+      drawerVolSelect.value = groupSlug;
     }
 
     let nextDeck = groupSlug === 'ALL'

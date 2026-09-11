@@ -668,3 +668,105 @@
   text-shadow: none !important;
   filter: none !important;
 }
+
+/* ==========================================================================
+   OPTIMIZACIONES MÓVILES (SMARTPHONES Y PANTALLAS PEQUEÑAS)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .disc-physical,
+  .tazo-physical,
+  .disc,
+  .tazo-disc {
+    width: min(250px, 72vw, 32vh) !important;
+    height: min(250px, 72vw, 32vh) !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+  }
+
+  .disc-core-front,
+  .tazo-core-front {
+    width: 78% !important;
+    height: 78% !important;
+    padding: 0.35rem 0.45rem !important;
+  }
+
+  .disc-hito-prose,
+  .tazo-hito-prose {
+    font-size: clamp(0.72rem, 2.7vw, 0.82rem) !important;
+    line-height: 1.32 !important;
+    max-width: 96% !important;
+  }
+
+  .disc-core-back,
+  .tazo-core-back {
+    width: 80% !important;
+    height: 80% !important;
+    padding: 0.35rem 0.45rem !important;
+  }
+
+  .disc-author-label,
+  .tazo-author-label {
+    font-size: 0.72rem !important;
+  }
+
+  .disc-year-giant,
+  .tazo-year-giant {
+    font-size: 2.2rem !important;
+    margin: 0.1rem 0 !important;
+  }
+
+  .disc-trivia-text,
+  .tazo-trivia-text {
+    font-size: 0.68rem !important;
+    line-height: 1.25 !important;
+  }
+}
+
+@media (max-height: 640px) and (max-width: 768px) {
+  .disc-physical,
+  .tazo-physical,
+  .disc,
+  .tazo-disc,
+  .arcade-card-stage.is-disc-mode,
+  .arcade-card-stage:has(.disc-physical),
+  .arcade-card-stage:has(.tazo-disc),
+  .disc-stage,
+  .tazo-stage {
+    width: min(180px, 50vw, 26vh) !important;
+    height: min(180px, 50vw, 26vh) !important;
+  }
+
+  .disc-core-front,
+  .tazo-core-front {
+    width: 82% !important;
+    height: 82% !important;
+    padding: 0.2rem 0.3rem !important;
+  }
+
+  .disc-hito-prose,
+  .tazo-hito-prose {
+    font-size: clamp(0.62rem, 2.1vh, 0.72rem) !important;
+    line-height: 1.22 !important;
+    max-width: 94% !important;
+  }
+
+  .disc-core-back,
+  .tazo-core-back {
+    width: 82% !important;
+    height: 82% !important;
+    padding: 0.2rem 0.3rem !important;
+  }
+
+  .disc-year-giant,
+  .tazo-year-giant {
+    font-size: 1.7rem !important;
+    margin: 0 !important;
+  }
+
+  .disc-trivia-text,
+  .tazo-trivia-text {
+    font-size: 0.62rem !important;
+    line-height: 1.18 !important;
+  }
+}
+

@@ -547,3 +547,76 @@
   font-weight: 800 !important;
   text-shadow: 0 0 16px color-mix(in srgb, var(--card-accent, var(--hittazos-bg, #38bdf8)) 50%, transparent) !important;
 }
+
+/* ==========================================================================
+   OPTIMIZACIONES MÓVILES PARA HIT-CARDS (<= 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .arcade-card-stage,
+  .arcade-card-stage .hittazos-card-3d {
+    width: min(340px, 92vw) !important;
+    max-width: 92vw !important;
+    height: min(200px, 30vh) !important;
+    min-height: 150px !important;
+    border-radius: 18px !important;
+  }
+
+  .arcade-card-stage .card-sheet {
+    border-radius: 18px !important;
+  }
+
+  .arcade-card-stage .sheet-front.hittazos-matte-card {
+    padding: 0.75rem 1rem !important;
+    border-radius: 18px !important;
+  }
+
+  .arcade-card-stage .clue-quote {
+    font-size: clamp(0.84rem, 3.2vw, 1.05rem) !important;
+    line-height: 1.32 !important;
+    max-width: 96% !important;
+  }
+
+  .arcade-card-stage .sheet-back.hittazos-matte-card {
+    padding: 0.75rem 1rem !important;
+    border-radius: 18px !important;
+  }
+
+  .arcade-card-stage .back-author-title {
+    font-size: 0.82rem !important;
+  }
+
+  .arcade-card-stage .year-digits-hero {
+    font-size: 2.3rem !important;
+  }
+
+  .arcade-card-stage .year-mystery-digits {
+    font-size: 2rem !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  .arcade-card-stage .back-trivia-phrase {
+    font-size: 0.74rem !important;
+    line-height: 1.25 !important;
+  }
+}
+
+@media (max-height: 640px) and (max-width: 768px) {
+  .arcade-card-stage,
+  .arcade-card-stage .hittazos-card-3d {
+    width: min(340px, 92vw) !important;
+    max-width: 92vw !important;
+    height: min(155px, 26vh) !important;
+    min-height: 130px !important;
+  }
+
+  .arcade-card-stage .sheet-front.hittazos-matte-card,
+  .arcade-card-stage .sheet-back.hittazos-matte-card {
+    padding: 0.55rem 0.85rem !important;
+  }
+
+  .arcade-card-stage .clue-quote {
+    font-size: clamp(0.78rem, 2.7vw, 0.95rem) !important;
+    line-height: 1.28 !important;
+  }
+}
+

@@ -235,6 +235,21 @@
           </button>
         </div>
 
+        <div class="drawer-section-label">SELECCIONAR VOLUMEN</div>
+        <div class="drawer-volume-selector" style="padding: 0 0.5rem; margin-bottom: 0.5rem;">
+          <select id="drawer-volume-select" class="drawer-volume-dropdown" aria-label="Seleccionar Volumen de Trivia" style="width: 100%; background: #0c1527; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; color: #f8fafc; padding: 0.55rem 0.75rem; font-size: 0.85rem; font-weight: 600; cursor: pointer; outline: none;">
+            <option value="ALL">👑 Mazo Maestro (576)</option>
+            <option value="kernel-foundations">Vol 0: Kernel Foundations (128)</option>
+            <option value="cypherpunks-hacker-lore">Vol 1: Hacker Lore (64)</option>
+            <option value="embedded-silicon-hardware">Vol 2: Hardware (64)</option>
+            <option value="unix-sysadmin-networks">Vol 3: Unix & Nets (64)</option>
+            <option value="backend-distributed-systems">Vol 4: Backend (64)</option>
+            <option value="cloud-containers-sre">Vol 5: Cloud & SRE (64)</option>
+            <option value="python-track">Vol 6: Python Track (64)</option>
+            <option value="scifi-pop-culture-cinema">Vol 7: Sci-Fi & Pop (64)</option>
+          </select>
+        </div>
+
         <div class="drawer-section-label">FORMATO Y EDICIÓN</div>
         <button class="drawer-action-btn" id="btn-drawer-version">
           <i data-lucide="disc"></i>
@@ -386,7 +401,7 @@
         </div>
 
         <!-- Bandeja de Línea de Tiempo del Jugador (3D Shelf Rack) -->
-        <div class="timeline-shelf-arcade" id="timeline-shelf">
+        <div class="timeline-shelf timeline-shelf-arcade" id="timeline-shelf">
           <div class="shelf-rack-rail">
             <div class="shelf-rack-lip"></div>
             <div class="shelf-cards-row shelf-rack-row" id="shelf-cards-container">

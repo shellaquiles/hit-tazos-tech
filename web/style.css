@@ -1129,14 +1129,51 @@ body:has(#view-play.active) main {
 }
 
 @media (max-width: 768px) {
+  .arcade-header {
+    height: 48px;
+    padding: 0 0.5rem;
+    gap: 0.35rem;
+  }
+  .arcade-brand {
+    gap: 0;
+    flex-shrink: 0;
+  }
+  .arcade-brand .brand-title,
+  .arcade-brand .brand-version-tag {
+    display: none !important;
+  }
+  .arcade-brand .brand-icon {
+    width: 32px;
+    height: 32px;
+  }
+  .arcade-hud-center {
+    font-size: 0.78rem;
+    gap: 0.45rem;
+    margin: 0 auto;
+    padding: 0 0.2rem;
+  }
+  .arcade-hud-center .hud-stat-item {
+    gap: 0.2rem;
+  }
+  .arcade-hud-center .hud-label-clean {
+    font-size: 0.70rem;
+    color: #94a3b8;
+  }
+  .header-right-arcade {
+    gap: 0.3rem;
+    flex-shrink: 0;
+  }
+  .header-right-arcade .volume-dropdown-wrapper {
+    display: none !important;
+  }
+  .header-right-arcade .icon-btn-arcade {
+    width: 32px;
+    height: 32px;
+  }
   #btn-print,
   #btn-help-toggle,
   .btn-preorder-header {
-    display: none;
-  }
-  .arcade-hud-center {
-    font-size: 0.95rem;
-    gap: 0.85rem;
+    display: none !important;
   }
 }
 
@@ -2633,21 +2670,19 @@ body.version-tazo-mode .deck-blueprint-lines,
   min-height: 120px;
   align-items: center;
   position: relative;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(56, 189, 248, 0.3) transparent;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 
-/* Riel de línea de tiempo detrás de las cartas */
+.shelf-cards-row::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Riel de línea de tiempo detrás de las cartas (oculto para no interferir con las fichas) */
 .shelf-cards-row::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: rgba(56, 189, 248, 0.2);
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
-  z-index: 0;
+  display: none !important;
 }
 
 /* Tarjeta Vertical en Rack 3D (Estilo web-ui-preview.jpg) */
@@ -4579,48 +4614,129 @@ body.version-tazo-mode .deck-blueprint-lines,
   }
 
   /* 3. ESCENARIO DEL DISCO Y PROPORCIONES */
+  .arcade-table-mat {
+    height: auto !important;
+    min-height: calc(100dvh - 48px) !important;
+    padding: 0.35rem 0.5rem 0.6rem 0.5rem !important;
+    justify-content: flex-start !important;
+    gap: 0.3rem !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+  }
+
   .arena-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.55rem;
-    min-height: auto;
-    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.3rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   .disc-arena-stage,
-  .tazo-arena-stage {
-    order: 2;
-    margin: 0.2rem auto 0.4rem auto;
+  .tazo-arena-stage,
+  .arcade-arena-stage {
+    order: 1 !important;
+    margin: 0 auto !important;
+    gap: 0 !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
 
+  .arcade-deck-3d,
+  .desktop-card-pile {
+    display: none !important;
+  }
+
+  /* Tamaño adaptable del escenario del disco / carta en móvil */
+  .arcade-card-stage.is-disc-mode,
+  .arcade-card-stage:has(.disc-physical),
+  .arcade-card-stage:has(.tazo-disc),
   .disc-stage,
   .tazo-stage {
-    width: var(--card-width) !important;
-    height: var(--card-height) !important;
-    margin: 0 auto;
+    width: min(250px, 72vw, 32vh) !important;
+    height: min(250px, 72vw, 32vh) !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .arcade-card-stage .disc-physical,
+  .arcade-card-stage .tazo-physical,
+  .arcade-card-stage .tazo-disc,
+  .arcade-card-stage .disc,
+  .disc-physical,
+  .tazo-physical,
+  .disc,
+  .tazo-disc {
+    width: min(250px, 72vw, 32vh) !important;
+    height: min(250px, 72vw, 32vh) !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+  }
+
+  /* Modo Hit-Cards rectangular en móvil */
+  .arcade-card-stage:not(.is-disc-mode):not(:has(.disc-physical)):not(:has(.tazo-disc)) {
+    width: min(340px, 92vw) !important;
+    height: min(210px, 28vh) !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+  }
+
+  .arcade-card-stage .sheet-front.hittazos-matte-card,
+  .arcade-card-stage .sheet-back.hittazos-matte-card {
+    padding: 0.85rem 1rem !important;
+  }
+
+  .arcade-card-stage .clue-quote {
+    font-size: clamp(0.92rem, 3.6vw, 1.1rem) !important;
+    line-height: 1.32 !important;
+  }
+
+  .arcade-card-stage .back-author-title {
+    font-size: 0.82rem !important;
+  }
+
+  .arcade-card-stage .year-digits-hero {
+    font-size: 2.5rem !important;
+  }
+
+  .arcade-card-stage .year-mystery-digits {
+    font-size: 2.2rem !important;
+  }
+
+  .arcade-card-stage .back-trivia-phrase {
+    font-size: 0.78rem !important;
+    line-height: 1.28 !important;
   }
 
   /* Núcleo central del disco con más aire para el texto */
   .disc-core-front,
   .tazo-core-front {
-    width: 82% !important;
-    height: 82% !important;
-    padding: 0.45rem !important;
+    width: 78% !important;
+    height: 78% !important;
+    padding: 0.35rem 0.45rem !important;
   }
 
   .disc-hito-prose,
   .tazo-hito-prose {
-    font-size: clamp(0.74rem, 2.7vw, 0.80rem) !important;
+    font-size: clamp(0.72rem, 2.7vw, 0.82rem) !important;
     line-height: 1.32 !important;
-    max-width: 95% !important;
+    max-width: 96% !important;
   }
 
   /* Texto en el aro curvado */
   .ring-label, .ring-sub {
     font-family: var(--font-sans, 'Outfit', sans-serif) !important;
-    font-size: 8.2px !important;
-    letter-spacing: 0.35px !important;
+    font-size: 8px !important;
+    letter-spacing: 0.3px !important;
     font-weight: 700 !important;
     fill: #ffffff !important;
   }
@@ -4629,218 +4745,297 @@ body.version-tazo-mode .deck-blueprint-lines,
     display: none;
   }
 
-  /* Tipografía y márgenes internos en cartas */
-  .hittazos-matte-card {
-    padding: 0.85rem 0.95rem 0.7rem 0.95rem !important;
-  }
-
-  .card-topbar-minimal {
-    padding-bottom: 0.3rem;
-  }
-
-  .group-badge-tiny {
-    font-size: 0.6rem;
-  }
-
-  .category-badge-tiny {
-    font-size: 0.62rem;
-  }
-
-  .clue-quote {
-    font-size: clamp(0.78rem, 3.5vw, 0.96rem) !important;
-    line-height: 1.35 !important;
-  }
-
-  .clue-stage-pure {
-    padding: 0.3rem 0;
-  }
-
-  .year-digits-hero {
-    font-size: clamp(3.2rem, 15vw, 4.4rem) !important;
-  }
-
-  .year-mystery-digits {
-    font-size: clamp(2.8rem, 13vw, 4.0rem) !important;
-  }
-
-  .back-author-title {
-    font-size: clamp(0.85rem, 3.6vw, 0.98rem) !important;
-  }
-
-  .back-trivia-phrase {
-    font-size: clamp(0.74rem, 3.0vw, 0.82rem) !important;
-    line-height: 1.32 !important;
-    -webkit-line-clamp: 4;
-  }
-
-  /* Feedback de intento y guía de gestos como separador natural */
-  .mobile-gesture-guide {
-    order: 3;
+  /* 4. CHRONO-DIAL Y LANZADOR MÓVIL */
+  .dial-launcher-wrapper,
+  .arc-dial-wrapper {
+    order: 2 !important;
+    width: 100% !important;
+    max-width: 340px !important;
     display: flex !important;
-    align-items: center;
-    justify-content: center;
-    gap: 0.55rem;
-    font-size: 0.65rem;
-    color: #64748b;
-    padding: 0.15rem 0.5rem;
-    margin: 0.1rem auto 0.45rem auto;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.12rem !important;
+    margin: -6px auto 0.2rem auto !important;
+    padding: 0 0.4rem !important;
+    box-sizing: border-box !important;
   }
 
-  /* 4. CHRONO-DIAL Y LANZADOR MÓVIL (Con holgura para evitar solapamientos) */
-  .dial-launcher-wrapper {
-    order: 4;
-    max-width: 320px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8rem;
-    margin: 0.25rem auto 0.6rem auto;
-    padding: 0 0.5rem;
-    box-sizing: border-box;
+  .chrono-arc-container {
+    width: 100% !important;
+    max-width: 320px !important;
+    height: 84px !important;
+    position: relative !important;
   }
 
-  .dial-value-badge {
-    padding: 0.25rem 1.2rem;
-    border-radius: 12px;
-    box-shadow:
-      0 2px 8px rgba(0, 0, 0, 0.06),
-      0 0 12px rgba(2, 132, 199, 0.1);
+  .chrono-arc-container .arc-dial-svg {
+    max-width: 310px !important;
+    height: auto !important;
+    margin: 0 auto !important;
   }
 
-  .badge-title {
-    font-size: 0.55rem;
-    letter-spacing: 0.1em;
+  .arc-rail-label {
+    font-size: 14px !important;
   }
 
-  .badge-year {
-    font-size: 1.65rem;
-    line-height: 1.05;
+  .arc-year-display-wrap {
+    margin-top: -16px !important;
+    margin-bottom: 0.1rem !important;
+    display: flex !important;
+    justify-content: center !important;
+    position: relative !important;
+    z-index: 5 !important;
   }
 
-  .dial-slider-container {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    width: 100%;
-    padding: 0.2rem 0;
+  .arc-selected-year {
+    font-size: 1.85rem !important;
   }
 
-  .slider-boundary-year {
-    font-size: 0.72rem;
+  .dial-action-row,
+  .arc-action-bottom {
+    margin-top: 0.15rem !important;
+    margin-bottom: 0.1rem !important;
+    z-index: 10 !important;
   }
 
-  .disc-year-slider,
-  .tazo-year-slider {
-    height: 10px;
-  }
-
-  .disc-year-slider::-webkit-slider-thumb,
-  .tazo-year-slider::-webkit-slider-thumb {
-    width: 24px;
-    height: 24px;
-  }
-
-  .btn-slam {
-    width: 100%;
-    padding: 0.65rem 1rem;
-    font-size: 0.90rem;
-    border-radius: 12px;
+  .btn-slam,
+  .btn-slam-arc {
+    width: auto !important;
+    min-width: 175px !important;
+    max-width: 240px !important;
+    padding: 0.44rem 1.6rem !important;
+    font-size: 0.88rem !important;
+    border-radius: 9999px !important;
   }
 
   .guess-feedback-row {
-    min-height: 20px;
+    min-height: 20px !important;
+    margin-top: 2px !important;
   }
 
-  /* 5. BANDEJA DE FICHAS GANADAS (LÍNEA DE TIEMPO) VISIBLE SIN SCROLL */
-  .timeline-shelf {
-    order: 5;
-    width: 100%;
-    max-width: 350px;
-    padding: 0.45rem 0.75rem;
-    border-radius: 12px;
-    box-sizing: border-box;
-    margin: 0.4rem auto 0.6rem auto;
-    background: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  .guess-result-pill {
+    font-size: 0.78rem !important;
+    padding: 0.2rem 0.65rem !important;
+  }
+
+  /* 5. BANDEJA DE LÍNEA DE TIEMPO (ESTANTE INFERIOR) */
+  .timeline-shelf,
+  .timeline-shelf-arcade,
+  #timeline-shelf {
+    order: 3 !important;
+    width: 100% !important;
+    max-width: 350px !important;
+    padding: 0.4rem 0.6rem !important;
+    border-radius: 14px !important;
+    box-sizing: border-box !important;
+    margin: 0.35rem auto 0.6rem auto !important;
+    background: rgba(11, 19, 41, 0.78) !important;
+    border: 1px solid rgba(56, 189, 248, 0.22) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
   }
 
   .shelf-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.25rem;
-    font-size: 0.72rem;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 0.25rem !important;
+    font-size: 0.72rem !important;
   }
 
   .shelf-title-wrap {
-    font-size: 0.76rem;
-    gap: 0.35rem;
-  }
-
-  .shelf-title-wrap span {
-    font-weight: 700;
+    font-size: 0.76rem !important;
+    gap: 0.35rem !important;
   }
 
   #shelf-counter {
     font-size: 0.70rem !important;
-    color: #0f172a !important;
-  }
-
-  /* Ajuste de profundidad de muescas para no pisar el nuevo radio del texto */
-  .disc-notches span:nth-child(1),
-  .tazo-notches span:nth-child(1) {
-    top: -5px;
-    height: 12px;
-  }
-  .disc-notches span:nth-child(2),
-  .tazo-notches span:nth-child(2) {
-    bottom: -5px;
-    height: 12px;
+    color: #38bdf8 !important;
   }
 
   .shelf-progress-track {
-    height: 3.5px;
-    margin-bottom: 0.35rem;
+    display: none !important;
   }
 
   .shelf-cards-row {
-    min-height: 52px;
-    padding: 0.2rem 0;
-    gap: 0.45rem;
-    -webkit-overflow-scrolling: touch;
-    touch-action: pan-x;
+    min-height: 64px !important;
+    padding: 0.35rem 0.75rem !important;
+    gap: 0.55rem !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
   }
 
-  .shelf-card-chip,
-  .shelf-disc-chip,
-  .shelf-tazo-chip {
-    width: 46px;
-    height: 46px;
-    min-width: 46px;
-    border: 2px solid #ffffff;
-    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.2);
+  .shelf-cards-row::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
   }
 
-  .shelf-year,
-  .shelf-disc-year,
-  .shelf-tazo-year {
-    font-size: 0.75rem;
-    line-height: 1;
+  .shelf-cards-row::before {
+    display: none !important;
   }
 
-  .shelf-id,
-  .shelf-disc-id,
-  .shelf-tazo-id {
-    font-size: 0.50rem;
-    line-height: 1;
+  /* Fichas Tazo en estante móvil */
+  .shelf-tazo-disc-chip {
+    flex: 0 0 58px !important;
+    width: 58px !important;
+    height: 58px !important;
+    min-width: 58px !important;
+    max-width: 58px !important;
+    max-height: 58px !important;
+    border-width: 2px !important;
+    padding: 0.15rem !important;
   }
 
-  .shelf-empty-prompt {
-    font-size: 0.66rem;
-    padding: 0.25rem;
-    line-height: 1.25;
+  .shelf-tazo-year-badge {
+    font-size: 0.72rem !important;
+    padding: 1px 4px !important;
+    margin-bottom: 2px !important;
+    border-radius: 4px !important;
   }
+
+  .shelf-tazo-title {
+    font-size: 0.52rem !important;
+    line-height: 1.1 !important;
+  }
+
+  .shelf-tazo-domain {
+    display: none !important;
+  }
+
+  /* Fichas Tarjeta en estante móvil */
+  .shelf-rack-card {
+    flex: 0 0 68px !important;
+    width: 68px !important;
+    height: 76px !important;
+    min-width: 68px !important;
+    padding: 0.3rem 0.2rem !important;
+  }
+
+  .shelf-rack-year-badge {
+    font-size: 0.76rem !important;
+    padding: 1px 4px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .shelf-rack-title {
+    font-size: 0.54rem !important;
+    line-height: 1.15 !important;
+  }
+}
+
+/* Teléfonos y vistas de baja altura (<= 640px de altura, como 455x554 o landscape) */
+@media (max-height: 640px) and (max-width: 768px) {
+  .arcade-header {
+    height: 42px !important;
+  }
+
+  .arcade-table-mat {
+    padding: 0.25rem 0.4rem 0.4rem !important;
+    gap: 0.2rem !important;
+    justify-content: space-between !important;
+  }
+
+  .arcade-card-stage.is-disc-mode,
+  .arcade-card-stage:has(.disc-physical),
+  .arcade-card-stage:has(.tazo-disc),
+  .disc-stage,
+  .tazo-stage,
+  .arcade-card-stage .disc-physical,
+  .arcade-card-stage .tazo-physical,
+  .arcade-card-stage .tazo-disc,
+  .arcade-card-stage .disc,
+  .disc-physical,
+  .tazo-physical,
+  .disc,
+  .tazo-disc {
+    width: min(190px, 54vw, 28vh) !important;
+    height: min(190px, 54vw, 28vh) !important;
+  }
+
+  .arcade-card-stage,
+  .arcade-card-stage .hittazos-card-3d {
+    height: min(150px, 25vh) !important;
+    min-height: 130px !important;
+  }
+
+  .arcade-card-stage .clue-quote {
+    font-size: clamp(0.76rem, 2.5vh, 0.92rem) !important;
+    line-height: 1.25 !important;
+  }
+
+  .disc-hito-prose,
+  .tazo-hito-prose {
+    font-size: clamp(0.64rem, 2.2vh, 0.74rem) !important;
+    line-height: 1.24 !important;
+    max-width: 96% !important;
+  }
+
+  .chrono-arc-container {
+    height: 68px !important;
+  }
+
+  .chrono-arc-container .arc-dial-svg {
+    max-width: 270px !important;
+  }
+
+  .arc-year-display-wrap {
+    margin-top: -14px !important;
+  }
+
+  .arc-selected-year {
+    font-size: 1.6rem !important;
+  }
+
+  .btn-slam,
+  .btn-slam-arc {
+    padding: 0.35rem 1.4rem !important;
+    font-size: 0.82rem !important;
+  }
+
+  .guess-feedback-row {
+    min-height: 18px !important;
+    margin-top: 1px !important;
+  }
+
+  .timeline-shelf,
+  .timeline-shelf-arcade,
+  #timeline-shelf {
+    margin: 0.2rem auto 0.35rem auto !important;
+    padding: 0.25rem 0.4rem !important;
+  }
+
+  .shelf-cards-row {
+    min-height: 52px !important;
+  }
+
+  .shelf-tazo-disc-chip {
+    flex: 0 0 50px !important;
+    width: 50px !important;
+    height: 50px !important;
+    min-width: 50px !important;
+    max-width: 50px !important;
+    max-height: 50px !important;
+  }
+
+  .shelf-rack-card {
+    flex: 0 0 58px !important;
+    width: 58px !important;
+    height: 60px !important;
+    min-width: 58px !important;
+    padding: 0.2rem 0.15rem !important;
+  }
+
+  .shelf-rack-title span {
+    display: none !important;
+  }
+
+  .shelf-rack-title strong {
+    font-size: 0.55rem !important;
+    line-height: 1.15 !important;
+    -webkit-line-clamp: 2 !important;
+  }
+}
 
   /* 6. CONTROLES RÁPIDOS INFERIORES EN UNA SOLA FILA */
   .disc-nav-cluster,
