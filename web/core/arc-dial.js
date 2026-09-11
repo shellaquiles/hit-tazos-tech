@@ -62,9 +62,9 @@ export class ArcChronoDial {
       const cosA = Math.cos(angle);
       const sinA = Math.sin(angle);
 
-      // Ticks gruesos tipo cápsula (~16px de largo)
-      const rInner = this.radius - 10;
-      const rOuter = this.radius + 10;
+      // Ticks gruesos tipo cápsula (~24px de largo)
+      const rInner = this.radius - 12;
+      const rOuter = this.radius + 12;
 
       const x1 = this.centerX + rInner * cosA;
       const y1 = this.centerY + rInner * sinA;
@@ -165,17 +165,17 @@ export class ArcChronoDial {
   renderYearLabels() {
     this.elements.labelsGroup.innerHTML = '';
     
-    // Generar marcas de año espaciadas a lo largo de la curva como en la imagen
-    // Por ejemplo: 1990, 1991, 1992, 1994, 1995, 1996 o rangos contextuales
+    // Generar marcas de año espaciadas a lo largo de la curva como en un velocímetro
+    // Por ejemplo: 1990, 1992, etc. o rangos contextuales simétricos
     const cur = this.currentYear;
-    const labelOffsets = [-4, -3, -2, -1, 1, 2, 3];
+    const labelOffsets = [-6, -4, -2, 2, 4, 6];
     
-    // Tomar 6 puntos a lo largo de la curva para situar etiquetas
-    const labelSteps = [0.08, 0.22, 0.36, 0.64, 0.78, 0.92];
+    // Tomar 6 puntos a lo largo de la curva para situar etiquetas bien visibles
+    const labelSteps = [0.08, 0.23, 0.38, 0.62, 0.77, 0.92];
     
     labelSteps.forEach((t, idx) => {
       const angle = this.startAngle + t * (this.endAngle - this.startAngle);
-      const rLabel = this.radius + 32;
+      const rLabel = this.radius + 34;
       const lx = this.centerX + rLabel * Math.cos(angle);
       const ly = this.centerY + rLabel * Math.sin(angle);
 

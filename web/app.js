@@ -872,6 +872,7 @@ export class HitTazosApp {
       isRevealed: isAlreadyRevealed,
       isFlipped: false
     }, this.state.cardFormat);
+    this.cardStage.classList.toggle('is-disc-mode', this.state.cardFormat === CARD_FORMATS.DISC);
 
     if (this.hudCardCounter) {
       this.hudCardCounter.textContent = `${this.state.currentIndex + 1} / ${this.state.activeDeck.length}`;
@@ -1933,6 +1934,7 @@ export class HitTazosApp {
     }
     if (this.cardStage) {
       this.cardStage.title = `Toca o pulsa Espacio para voltear el ${isCards ? 'Naipe' : 'Tazo'}`;
+      this.cardStage.classList.toggle('is-disc-mode', !isCards);
     }
     if (this.shelfCounter) {
       const currentShelf = this.state.playerShelf || [];

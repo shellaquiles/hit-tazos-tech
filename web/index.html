@@ -345,12 +345,6 @@
 
         <!-- Selector Chrono Arc Dial con Botón LANZAR TIRO Integrado -->
         <div class="dial-launcher-wrapper arc-dial-wrapper">
-          <div class="dial-action-row arc-action-top">
-            <button class="btn-slam btn-slam-arc" id="btn-submit-guess" title="Disparar tiro con el año seleccionado [Enter]">
-              <span>LANZAR TIRO</span>
-            </button>
-          </div>
-
           <!-- Contenedor del Dial Curvo en Arco SVG -->
           <div class="chrono-arc-container" id="chrono-arc-container">
             <!-- ArcChronoDial inyecta el SVG interactivo aquí -->
@@ -368,6 +362,13 @@
               class="disc-year-slider sr-only"
               aria-label="Seleccionar año con el dial cronológico"
             >
+          </div>
+
+          <!-- Botón de Confirmación LANZAR TIRO (Flujo cognitivo: Elegir año en dial -> Lanzar tiro) -->
+          <div class="dial-action-row arc-action-bottom">
+            <button class="btn-slam btn-slam-arc" id="btn-submit-guess" title="Disparar tiro con el año seleccionado [Enter]">
+              <span>LANZAR TIRO</span>
+            </button>
           </div>
 
           <div class="guess-feedback-row">
