@@ -1564,6 +1564,65 @@ body.version-tazo-mode .deck-blueprint-lines,
   letter-spacing: 0.05em !important;
 }
 
+.arcade-card-stage .year-mystery-box {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  margin: 0.2rem 0;
+}
+
+.arcade-card-stage .year-center-stage.is-hidden .year-mystery-box {
+  display: flex !important;
+  animation: pulseMystery 2.6s infinite ease-in-out;
+}
+
+.arcade-card-stage .year-mystery-digits {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif) !important;
+  font-size: 3.6rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.16em !important;
+  line-height: 1 !important;
+  color: #38bdf8 !important;
+  text-shadow: 
+    0 0 18px rgba(56, 189, 248, 0.85),
+    0 0 36px rgba(56, 189, 248, 0.45) !important;
+  text-align: center !important;
+  opacity: 0.95 !important;
+  margin-left: 0.16em;
+}
+
+.arcade-card-stage .year-reveal-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+  background: rgba(15, 23, 42, 0.94) !important;
+  color: #f8fafc !important;
+  padding: 0.32rem 0.95rem !important;
+  border-radius: 9999px !important;
+  border: 1.5px solid #38bdf8 !important;
+  font-family: var(--font-sans, 'Outfit', sans-serif) !important;
+  font-size: 0.74rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  box-shadow: 
+    0 0 16px rgba(56, 189, 248, 0.4),
+    0 4px 12px rgba(0, 0, 0, 0.5) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.arcade-card-stage .year-center-stage:hover .year-reveal-badge {
+  background: #0284c7 !important;
+  border-color: #7dd3fc !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 
+    0 0 24px rgba(56, 189, 248, 0.85),
+    0 6px 16px rgba(0, 0, 0, 0.7) !important;
+}
+
 .arcade-card-stage .back-trivia-phrase {
   font-size: 0.95rem !important;
   line-height: 1.4 !important;
