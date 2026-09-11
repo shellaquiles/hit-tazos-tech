@@ -25,7 +25,7 @@ const PRINT_DIR = path.resolve(__dirname);
 const ROOT_DIR = path.resolve(__dirname, '..');
 const CARDS_JSON_PATH = path.join(ROOT_DIR, 'data', 'cards.json');
 
-let APP_VERSION = '1.0.0';
+let APP_VERSION = '1.1.0';
 try {
   APP_VERSION = fs.readFileSync(path.join(ROOT_DIR, 'VERSION'), 'utf8').trim();
 } catch (e) {
