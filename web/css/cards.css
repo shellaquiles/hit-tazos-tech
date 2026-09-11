@@ -521,6 +521,7 @@
 }
 
 .arcade-card-stage .clue-quote strong {
-  color: #ffffff !important;
+  color: var(--card-accent, var(--hittazos-bg, #38bdf8)) !important;
   font-weight: 800 !important;
+  text-shadow: 0 0 16px color-mix(in srgb, var(--card-accent, var(--hittazos-bg, #38bdf8)) 50%, transparent) !important;
 }

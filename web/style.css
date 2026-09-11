@@ -671,6 +671,53 @@ body:has(#view-play.active) main {
   text-shadow: 0 0 10px rgba(251, 146, 60, 0.45);
 }
 
+.hud-attempts-item strong {
+  color: #38bdf8;
+  font-weight: 800;
+  font-size: 1.15rem;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.45);
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.hud-attempts-item strong.attempts-critical {
+  color: #ef4444 !important;
+  text-shadow: 0 0 12px rgba(239, 68, 68, 0.75) !important;
+}
+
+.attempt-dots-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 4.5px;
+  margin-left: 0.2rem;
+}
+
+.attempt-pip {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.75);
+  transition: all 0.25s ease;
+  display: inline-block;
+}
+
+.attempt-pip.used {
+  background: rgba(148, 163, 184, 0.25);
+  box-shadow: none;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.attempt-pip.critical {
+  background: #ef4444;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.9);
+  animation: pulseCritical 1s infinite alternate ease-in-out;
+}
+
+@keyframes pulseCritical {
+  0% { transform: scale(1); filter: brightness(1); }
+  100% { transform: scale(1.18); filter: brightness(1.35); }
+}
+
 .streak-badge-fire {
   color: #fb923c;
   font-weight: 800;
@@ -1235,6 +1282,22 @@ body:has(#view-play.active) main {
   z-index: 1;
 }
 
+.pile-left.is-empty .deck-paper-edge-layers,
+.pile-right.is-empty .deck-paper-edge-layers {
+  display: none !important;
+}
+
+.pile-left.is-empty .deck-top-card-face,
+.pile-right.is-empty .deck-top-card-face {
+  opacity: 0.35;
+  border-style: dashed;
+}
+
+#pile-left-cards,
+#pile-right-cards {
+  display: none !important;
+}
+
 /* 5. Chasis de la Tarjeta Central Horizontal Biselada */
 .arcade-card-stage {
   width: 580px;
@@ -1311,8 +1374,9 @@ body:has(#view-play.active) main {
 }
 
 .arcade-card-stage .clue-quote strong {
-  color: #ffffff !important;
+  color: var(--card-accent, var(--hittazos-bg, #38bdf8)) !important;
   font-weight: 800 !important;
+  text-shadow: 0 0 16px color-mix(in srgb, var(--card-accent, var(--hittazos-bg, #38bdf8)) 50%, transparent) !important;
 }
 
 .arcade-card-stage .sheet-back.hittazos-matte-card {
@@ -1351,6 +1415,11 @@ body:has(#view-play.active) main {
   color: #cbd5e1 !important;
   text-align: center !important;
   max-width: 480px !important;
+}
+
+.arcade-card-stage .back-trivia-phrase strong {
+  color: var(--card-accent, var(--hittazos-bg, #38bdf8)) !important;
+  font-weight: 700 !important;
 }
 
 /* 6. Arc Chrono Dial & Botón LANZAR TIRO */

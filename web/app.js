@@ -510,23 +510,25 @@ export class HitTazosApp {
     this.btnShuffle?.addEventListener('click', () => this.shuffleCurrentDeck());
 
     // Interacción con Pilas de Cartas Laterales de Escritorio (N=5)
+    // Pila Izquierda: Tech Trivia (Draw pile / avanzar a siguiente tarjeta)
     this.pileLeft?.addEventListener('click', () => {
-      if (this.state.currentIndex > 0) this.prevCard();
-    });
-    this.pileLeft?.addEventListener('keydown', (e) => {
-      if ((e.key === 'Enter' || e.key === ' ') && this.state.currentIndex > 0) {
-        e.preventDefault();
-        this.prevCard();
-      }
-    });
-
-    this.pileRight?.addEventListener('click', () => {
       if (this.state.currentIndex < this.state.activeDeck.length - 1) this.nextCard();
     });
-    this.pileRight?.addEventListener('keydown', (e) => {
+    this.pileLeft?.addEventListener('keydown', (e) => {
       if ((e.key === 'Enter' || e.key === ' ') && this.state.currentIndex < this.state.activeDeck.length - 1) {
         e.preventDefault();
         this.nextCard();
+      }
+    });
+
+    // Pila Derecha: Discard (Pila de descarte / revisar tarjeta anterior)
+    this.pileRight?.addEventListener('click', () => {
+      if (this.state.currentIndex > 0) this.prevCard();
+    });
+    this.pileRight?.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && this.state.currentIndex > 0) {
+        e.preventDefault();
+        this.prevCard();
       }
     });
 
@@ -548,10 +550,20 @@ export class HitTazosApp {
 
     // Delegación de Eventos en el Estante (Tocar ficha para revisitar tarjeta)
     this.shelfCardsContainer?.addEventListener('click', (e) => {
-      const chip = e.target.closest('.shelf-disc-chip, .shelf-tazo-chip, .shelf-card-chip');
+      const chip = e.target.closest('.shelf-rack-card, .shelf-disc-chip, .shelf-tazo-chip, .shelf-card-chip');
       if (!chip) return;
       const cardId = chip.getAttribute('data-card-id');
       if (cardId) this.displayWonCardById(cardId);
+    });
+
+    this.shelfCardsContainer?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const chip = e.target.closest('.shelf-rack-card, .shelf-disc-chip, .shelf-tazo-chip, .shelf-card-chip');
+        if (!chip) return;
+        e.preventDefault();
+        const cardId = chip.getAttribute('data-card-id');
+        if (cardId) this.displayWonCardById(cardId);
+      }
     });
 
     // Delegación de Eventos en el Catálogo
@@ -890,72 +902,54 @@ export class HitTazosApp {
   }
 
   renderDeckPiles() {
-    if (!this.pileLeftCards || !this.pileRightCards) return;
-
-    const N = 5;
     const currentIndex = this.state.currentIndex;
     const deck = this.state.activeDeck || [];
-    const isDisc = this.state.cardFormat === CARD_FORMATS.DISC;
 
-    // 1. Pila Izquierda (Tech Trivia - Cartas Restantes)
+    // 1. Pila Izquierda (Tech Trivia - Cartas Restantes en Mazo de Robo)
     const remainingCards = Math.max(0, deck.length - currentIndex);
+
     if (this.pileLeftCount) {
       this.pileLeftCount.textContent = remainingCards;
     }
     if (this.pileLeft) {
-      this.pileLeft.classList.remove('is-empty');
-      this.pileLeft.removeAttribute('aria-disabled');
-      this.pileLeft.setAttribute('title', `Mazo Tech Trivia: ${remainingCards} cartas restantes [P / ←]`);
-    }
-
-    this.pileLeftCards.className = `pile-cards-wrapper ${isDisc ? 'is-disc' : 'is-card'}`;
-    if (pastCards.length === 0) {
-      this.pileLeftCards.innerHTML = `
-        <div class="pile-empty-slot">
-          <i data-lucide="inbox"></i>
-          <span>Inicio</span>
-        </div>
-      `;
-    } else {
-      this.pileLeftCards.innerHTML = this.buildPileCardsHTML(pastCards, false, isDisc);
-    }
-
-    // 2. Pila Derecha (Próximas Cartas / Robo)
-    const totalUpcoming = Math.max(0, deck.length - 1 - currentIndex);
-    const upcomingCards = [];
-    const endUpcoming = Math.min(deck.length, currentIndex + 1 + N);
-    for (let i = currentIndex + 1; i < endUpcoming; i++) {
-      upcomingCards.push(deck[i]);
-    }
-
-    if (this.pileRightCount) {
-      this.pileRightCount.textContent = totalUpcoming;
-    }
-    if (this.pileRight) {
-      if (totalUpcoming === 0) {
-        this.pileRight.classList.add('is-empty');
-        this.pileRight.setAttribute('aria-disabled', 'true');
-        this.pileRight.removeAttribute('title');
+      if (remainingCards === 0) {
+        this.pileLeft.classList.add('is-empty');
+        this.pileLeft.setAttribute('aria-disabled', 'true');
+        this.pileLeft.removeAttribute('title');
       } else {
-        this.pileRight.classList.remove('is-empty');
-        this.pileRight.removeAttribute('aria-disabled');
-        const nextCard = upcomingCards[0];
-        this.pileRight.setAttribute('title', `Siguiente carta: ${nextCard?.autor || 'Siguiente'} (${totalUpcoming} por jugar) [N / →]`);
+        this.pileLeft.classList.remove('is-empty');
+        this.pileLeft.removeAttribute('aria-disabled');
+        this.pileLeft.setAttribute('title', `Mazo Tech Trivia: ${remainingCards} cartas restantes [N / →]`);
       }
     }
 
-    this.pileRightCards.className = `pile-cards-wrapper ${isDisc ? 'is-disc' : 'is-card'}`;
-    if (upcomingCards.length === 0) {
-      this.pileRightCards.innerHTML = `
-        <div class="pile-empty-slot">
-          <i data-lucide="check-circle-2"></i>
-          <span>Final</span>
-        </div>
-      `;
-    } else {
-      // In upcoming cards, upcomingCards[0] is the very next card to draw, so it sits on top
-      const upcomingOrdered = [...upcomingCards].reverse();
-      this.pileRightCards.innerHTML = this.buildPileCardsHTML(upcomingOrdered, true, isDisc);
+    if (this.pileLeftCards) {
+      this.pileLeftCards.className = 'sr-only';
+      this.pileLeftCards.innerHTML = '';
+    }
+
+    // 2. Pila Derecha (Discard - Cartas Jugadas / Descarte)
+    const totalDiscarded = currentIndex;
+
+    if (this.pileRightCount) {
+      this.pileRightCount.textContent = totalDiscarded;
+    }
+    if (this.pileRight) {
+      if (totalDiscarded === 0) {
+        this.pileRight.classList.add('is-empty');
+        this.pileRight.setAttribute('aria-disabled', 'true');
+        this.pileRight.setAttribute('title', 'Pila de descarte vacía');
+      } else {
+        this.pileRight.classList.remove('is-empty');
+        this.pileRight.removeAttribute('aria-disabled');
+        const prevCard = deck[currentIndex - 1];
+        this.pileRight.setAttribute('title', `Pila de descarte: ${totalDiscarded} descartadas (Última: ${prevCard?.autor || 'Descarte'}) [P / ←]`);
+      }
+    }
+
+    if (this.pileRightCards) {
+      this.pileRightCards.className = 'sr-only';
+      this.pileRightCards.innerHTML = '';
     }
   }
 
@@ -1073,6 +1067,7 @@ export class HitTazosApp {
   renderAttemptTracker(remaining, isSolved) {
     if (this.hudAttempts) {
       this.hudAttempts.textContent = isSolved ? '0' : remaining;
+      this.hudAttempts.className = (remaining === 1 && !isSolved) ? 'attempts-critical' : '';
     }
     if (this.attemptDots) {
       const pips = Array.from({ length: GAME_RULES.MAX_ATTEMPTS }, (_, i) => {

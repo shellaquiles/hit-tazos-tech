@@ -158,39 +158,31 @@
       <span class="brand-version-tag">v1.0.0</span>
     </div>
 
-    <div class="arcade-nav-center">
-      <!-- Selector de Modo de Vista (Modo Juego vs Explorador) -->
-      <div class="game-mode-switch arcade-mode-switch" role="tablist" aria-label="Modo de vista">
-        <button class="tab-btn active" id="btn-tab-play" data-view="play" role="tab" aria-selected="true" title="Modo Juego de Trivia (Mesa 3D Arcade)">
-          <i data-lucide="gamepad-2"></i>
-          <span>Juego</span>
-        </button>
-        <button class="tab-btn" id="btn-tab-gallery" data-view="gallery" role="tab" aria-selected="false" title="Explorador y Catálogo de 576 Hitos">
-          <i data-lucide="layout-grid"></i>
-          <span>Explorador</span>
-        </button>
+    <!-- HUD Central Limpio: Puntuación, Racha y Tiros -->
+    <div class="header-hud arcade-hud-center" id="header-hud">
+      <div class="hud-stat-item hud-score-item" title="Puntuación acumulada">
+        <span class="hud-label-clean">Puntuación:</span>
+        <strong id="hud-score">0</strong>
       </div>
-
-      <!-- HUD de Puntuación y Racha -->
-      <div class="header-hud arcade-hud-center" id="header-hud">
-        <div class="hud-stat-item hud-score-item" title="Puntuación acumulada">
-          <span class="hud-label-clean">Puntuación:</span>
-          <strong id="hud-score">0</strong>
-        </div>
-        <div class="hud-stat-item hud-streak-item" id="hud-streak-box" title="Racha consecutiva actual">
-          <span class="hud-label-clean">Racha:</span>
-          <strong id="hud-streak">0</strong>
-          <span id="hud-streak-fire" class="streak-badge-fire" style="display: none;">(On Fire 🔥)</span>
-        </div>
-        <div class="sr-only" id="attempt-tracker">
-          <strong id="hud-attempts">3</strong>
-          <div id="attempt-dots"></div>
-        </div>
+      <div class="hud-stat-item hud-streak-item" id="hud-streak-box" title="Racha consecutiva actual">
+        <span class="hud-label-clean">Racha:</span>
+        <strong id="hud-streak">0</strong>
+        <span id="hud-streak-fire" class="streak-badge-fire" style="display: none;">(On Fire 🔥)</span>
+      </div>
+      <div class="hud-stat-item hud-attempts-item" id="attempt-tracker" title="Tiros restantes para esta tarjeta">
+        <span class="hud-label-clean">Tiros:</span>
+        <strong id="hud-attempts">3</strong>
+        <div class="attempt-dots-wrap" id="attempt-dots"></div>
       </div>
     </div>
 
     <div class="header-right-arcade">
-      <!-- Selector Desplegable de Volumen (Estilo Volumen ▾ de la imagen) -->
+      <!-- Sonido -->
+      <button class="icon-btn-arcade" id="btn-sound-toggle" title="Sonido [S]" aria-label="Alternar efectos de sonido">
+        <i data-lucide="volume-2" id="icon-sound-state"></i>
+      </button>
+
+      <!-- Selector Desplegable de Volumen -->
       <div class="volume-dropdown-wrapper">
         <button class="btn-volume-dropdown" id="btn-volume-dropdown" title="Seleccionar Volumen del Mazo">
           <span id="volume-dropdown-label">Volumen</span>
@@ -209,32 +201,8 @@
         </div>
       </div>
 
-      <!-- Botón de Preventa / Comprar Baraja Física -->
-      <a href="https://wa.me/525542722156?text=Hola%20shellaquiles.org%2C%20me%20interesa%20apartar%20la%20edici%C3%B3n%20f%C3%ADsica%20de%20Hit-Cards%20Tech%20en%20preventa" target="_blank" rel="noopener noreferrer" class="btn-preorder-header" id="btn-preorder-header" title="Apartar cartas físicas en preventa por WhatsApp (+52 55 4272 2156)">
-        <i data-lucide="shopping-bag"></i>
-        <span class="preorder-label">Preventa</span>
-        <span class="preorder-badge">Físico</span>
-      </a>
-
-      <!-- Acciones de Utilidad Rápidas -->
-      <button class="icon-btn-arcade" id="btn-print" title="Imprimir cartas o descargar PDF [P]" aria-label="Imprimir cartas">
-        <i data-lucide="printer"></i>
-      </button>
-
-      <button class="icon-btn-arcade" id="btn-help-toggle" title="Reglas y atajos de teclado [?]" aria-label="Ver reglas y atajos">
-        <i data-lucide="help-circle"></i>
-      </button>
-
-      <button class="icon-btn-arcade" id="btn-sound-toggle" title="Sonido [S]" aria-label="Alternar efectos de sonido">
-        <i data-lucide="volume-2" id="icon-sound-state"></i>
-      </button>
-
-      <button class="icon-btn-arcade" id="btn-reset-game" title="Reiniciar partida [Shift+R]" aria-label="Reiniciar partida">
-        <i data-lucide="rotate-ccw"></i>
-      </button>
-
-      <!-- Menú Drawer para Navegación Móvil y Opciones Extendidas -->
-      <button class="icon-btn-arcade" id="btn-more-options" title="Menú de Navegación y Herramientas" aria-label="Más opciones">
+      <!-- Menú Drawer para Navegación y Herramientas -->
+      <button class="icon-btn-arcade" id="btn-more-options" title="Menú de Navegación y Herramientas [M]" aria-label="Menú de opciones">
         <i data-lucide="menu"></i>
       </button>
     </div>
@@ -367,6 +335,7 @@
                 <div class="deck-blueprint-lines"></div>
                 <div class="deck-card-content">
                   <span class="deck-label-discard">DISCARD</span>
+                  <span class="deck-count-badge" id="deck-right-count-text"><span id="pile-right-count">0</span> descartadas</span>
                 </div>
               </div>
             </div>
