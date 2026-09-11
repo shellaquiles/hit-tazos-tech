@@ -908,9 +908,14 @@ export class HitTazosApp {
 
     // 1. Pila Izquierda (Tech Trivia - Cartas Restantes en Mazo de Robo)
     const remainingCards = Math.max(0, deck.length - currentIndex);
+    const isCardMode = this.state.cardFormat === CARD_FORMATS.CARD;
 
     if (this.pileLeftCount) {
       this.pileLeftCount.textContent = remainingCards;
+    }
+    const leftNounEl = document.getElementById('pile-left-noun');
+    if (leftNounEl) {
+      leftNounEl.textContent = isCardMode ? 'cartas' : 'tazos';
     }
     if (this.pileLeft) {
       if (remainingCards === 0) {
@@ -920,7 +925,8 @@ export class HitTazosApp {
       } else {
         this.pileLeft.classList.remove('is-empty');
         this.pileLeft.removeAttribute('aria-disabled');
-        this.pileLeft.setAttribute('title', `Mazo Tech Trivia: ${remainingCards} cartas restantes [N / →]`);
+        const noun = isCardMode ? 'cartas restantes' : 'tazos restantes';
+        this.pileLeft.setAttribute('title', `Mazo Tech Trivia: ${remainingCards} ${noun} [N / →]`);
       }
     }
 
@@ -935,6 +941,10 @@ export class HitTazosApp {
     if (this.pileRightCount) {
       this.pileRightCount.textContent = totalDiscarded;
     }
+    const rightNounEl = document.getElementById('pile-right-noun');
+    if (rightNounEl) {
+      rightNounEl.textContent = isCardMode ? 'descartadas' : 'descartados';
+    }
     if (this.pileRight) {
       if (totalDiscarded === 0) {
         this.pileRight.classList.add('is-empty');
@@ -944,7 +954,8 @@ export class HitTazosApp {
         this.pileRight.classList.remove('is-empty');
         this.pileRight.removeAttribute('aria-disabled');
         const prevCard = deck[currentIndex - 1];
-        this.pileRight.setAttribute('title', `Pila de descarte: ${totalDiscarded} descartadas (Última: ${prevCard?.autor || 'Descarte'}) [P / ←]`);
+        const descNoun = isCardMode ? 'descartadas' : 'descartados';
+        this.pileRight.setAttribute('title', `Pila de descarte: ${totalDiscarded} ${descNoun} (Último: ${prevCard?.autor || 'Descarte'}) [P / ←]`);
       }
     }
 
@@ -1386,6 +1397,7 @@ export class HitTazosApp {
     if (!this.shelfCardsContainer) return;
     this.shelfCardsContainer.innerHTML = '';
     const currentCard = this.state.getCurrentCard();
+    const isDiscMode = this.state.cardFormat === CARD_FORMATS.DISC;
 
     shelf.forEach(c => {
       const chip = document.createElement('div');
@@ -1397,21 +1409,36 @@ export class HitTazosApp {
       const title = boldMatch ? boldMatch[1] : (c.autor || c.domain || 'Tecnología');
 
       const domainName = this.catalog?.domains?.[c.domain] || '';
-      chip.className = `shelf-rack-card ${isSelected ? 'active' : ''}`;
       chip.style.setProperty('--disc-color', theme.bg);
       chip.style.setProperty('--tazo-color', theme.bg);
       chip.setAttribute('data-card-id', c.id);
       chip.title = `${c.year} — ${c.autor || ''}: ${title} (#${chipNum})`;
       chip.setAttribute('role', 'button');
       chip.setAttribute('tabindex', '0');
-      chip.setAttribute('aria-label', `Ver tarjeta del año ${c.year}: ${title}`);
-      chip.innerHTML = `
-        <div class="shelf-rack-year-badge">${c.year}</div>
-        <div class="shelf-rack-title">
-          <strong>${title}</strong>
-          <span>${domainName || c.autor || ''}</span>
-        </div>
-      `;
+      chip.setAttribute('aria-label', `Ver ${isDiscMode ? 'tazo' : 'tarjeta'} del año ${c.year}: ${title}`);
+
+      if (isDiscMode) {
+        chip.className = `shelf-rack-card shelf-tazo-disc-chip ${isSelected ? 'active' : ''}`;
+        chip.innerHTML = `
+          <div class="shelf-tazo-notches" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="shelf-tazo-year-badge">${c.year}</div>
+          <div class="shelf-tazo-title">
+            <strong>${title}</strong>
+            <span>${domainName || c.autor || ''}</span>
+          </div>
+        `;
+      } else {
+        chip.className = `shelf-rack-card ${isSelected ? 'active' : ''}`;
+        chip.innerHTML = `
+          <div class="shelf-rack-year-badge">${c.year}</div>
+          <div class="shelf-rack-title">
+            <strong>${title}</strong>
+            <span>${domainName || c.autor || ''}</span>
+          </div>
+        `;
+      }
       this.shelfCardsContainer.appendChild(chip);
     });
 
@@ -1916,6 +1943,14 @@ export class HitTazosApp {
     const itemNoun = isCards ? 'cartas' : 'tazos';
     const itemNounSingular = isCards ? 'tarjeta' : 'tazo';
 
+    document.body.classList.toggle('version-cards-mode', isCards);
+    document.body.classList.toggle('version-tazo-mode', !isCards);
+
+    const arenaStage = document.querySelector('.arcade-arena-stage');
+    if (arenaStage) {
+      arenaStage.classList.toggle('is-disc-mode', !isCards);
+    }
+
     if (this.brandTitleText) {
       this.brandTitleText.textContent = 'Hit-Tazos Tech';
     }
@@ -1954,6 +1989,8 @@ export class HitTazosApp {
     }
     document.title = `${version.title} — Trivia Cronológica Open Source (576 Tarjetas)`;
     this.updateVersionModalOptions();
+    this.renderShelf(this.state.playerShelf || [], false);
+    this.renderDeckPiles();
     this.refreshIcons();
   }
 

@@ -1337,6 +1337,99 @@ body:has(#view-play.active) main {
   display: none !important;
 }
 
+/* ==========================================================================
+   HIT-TAZO: MAZOS LATERALES CIRCULARES 3D (TORRE / TUBO DE TAZOS APILADOS)
+   ========================================================================== */
+body.version-tazo-mode .arcade-deck-3d,
+.arcade-arena-stage.is-disc-mode .arcade-deck-3d {
+  width: 155px;
+  height: 155px;
+  border-radius: 50%;
+}
+
+body.version-tazo-mode .arcade-deck-3d::before,
+.arcade-arena-stage.is-disc-mode .arcade-deck-3d::before {
+  bottom: -28px;
+  left: -6px;
+  right: -6px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+body.version-tazo-mode .arcade-deck-3d .deck-3d-stack,
+.arcade-arena-stage.is-disc-mode .arcade-deck-3d .deck-3d-stack {
+  width: 155px;
+  height: 155px;
+  border-radius: 50%;
+}
+
+body.version-tazo-mode .pile-left .deck-3d-stack,
+.arcade-arena-stage.is-disc-mode .pile-left .deck-3d-stack {
+  transform: rotateX(28deg) rotateY(16deg) rotateZ(-5deg);
+}
+
+body.version-tazo-mode .pile-left:hover .deck-3d-stack,
+.arcade-arena-stage.is-disc-mode .pile-left:hover .deck-3d-stack {
+  transform: rotateX(22deg) rotateY(12deg) rotateZ(-3deg) translateY(-8px);
+}
+
+body.version-tazo-mode .pile-right .deck-3d-stack,
+.arcade-arena-stage.is-disc-mode .pile-right .deck-3d-stack {
+  transform: rotateX(28deg) rotateY(-16deg) rotateZ(5deg);
+}
+
+body.version-tazo-mode .pile-right:hover .deck-3d-stack,
+.arcade-arena-stage.is-disc-mode .pile-right:hover .deck-3d-stack {
+  transform: rotateX(22deg) rotateY(-12deg) rotateZ(3deg) translateY(-8px);
+}
+
+body.version-tazo-mode .deck-top-card-face,
+.arcade-arena-stage.is-disc-mode .deck-top-card-face {
+  border-radius: 50% !important;
+  aspect-ratio: 1 / 1 !important;
+  border: 3.5px solid rgba(56, 189, 248, 0.45) !important;
+  background: radial-gradient(circle at 45% 40%, #1e293b 0%, #0c1527 55%, #030712 100%) !important;
+  box-shadow: 
+    0 12px 28px rgba(0, 0, 0, 0.85),
+    inset 0 2px 4px rgba(255, 255, 255, 0.35),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.7),
+    inset 0 0 0 8px rgba(56, 189, 248, 0.12) !important;
+}
+
+body.version-tazo-mode .pile-right .deck-top-card-face,
+.arcade-arena-stage.is-disc-mode .pile-right .deck-top-card-face {
+  border-color: rgba(148, 163, 184, 0.3) !important;
+  background: radial-gradient(circle at 45% 40%, #1e1b4b 0%, #0f172a 55%, #020617 100%) !important;
+  box-shadow: 
+    0 12px 28px rgba(0, 0, 0, 0.85),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.7),
+    inset 0 0 0 8px rgba(148, 163, 184, 0.1) !important;
+}
+
+body.version-tazo-mode .deck-paper-edge-layers,
+.arcade-arena-stage.is-disc-mode .deck-paper-edge-layers {
+  left: 0 !important;
+  right: 0 !important;
+  bottom: -32px !important;
+  height: 38px !important;
+  border-radius: 0 0 50% 50% / 0 0 24px 24px !important;
+  background: repeating-linear-gradient(to bottom, #38bdf8 0px, #0284c7 2px, #0f172a 2.5px, #1e293b 4.5px, #38bdf8 5px) !important;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.95) !important;
+}
+
+body.version-tazo-mode .pile-right .deck-paper-edge-layers,
+.arcade-arena-stage.is-disc-mode .pile-right .deck-paper-edge-layers {
+  background: repeating-linear-gradient(to bottom, #475569 0px, #334155 2px, #0f172a 2.5px, #1e293b 4.5px, #475569 5px) !important;
+}
+
+body.version-tazo-mode .deck-blueprint-lines,
+.arcade-arena-stage.is-disc-mode .deck-blueprint-lines {
+  border-radius: 50% !important;
+  mask-image: radial-gradient(circle at 50% 50%, black 60%, transparent 95%) !important;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 60%, transparent 95%) !important;
+}
+
 /* 5. Chasis de la Tarjeta Central Horizontal Biselada */
 .arcade-card-stage {
   width: 580px;
@@ -2579,6 +2672,125 @@ body:has(#view-play.active) main {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* ==========================================================================
+   HIT-TAZO: FICHAS / DISCOS CIRCULARES EN LA LÍNEA DE TIEMPO (ESTANTE)
+   ========================================================================== */
+.shelf-tazo-disc-chip {
+  flex: 0 0 118px !important;
+  width: 118px !important;
+  height: 118px !important;
+  max-width: 118px !important;
+  max-height: 118px !important;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 50% !important;
+  background: radial-gradient(
+    circle at 50% 45%,
+    color-mix(in srgb, var(--tazo-color, #e86328) 85%, #000000 15%) 0%,
+    color-mix(in srgb, var(--tazo-color, #e86328) 95%, #000000 5%) 55%,
+    color-mix(in srgb, var(--tazo-color, #e86328) 60%, #000000 40%) 100%
+  ) !important;
+  border: 3.5px solid color-mix(in srgb, var(--tazo-color, #e86328) 70%, #ffffff 30%) !important;
+  box-shadow: 
+    0 10px 22px rgba(0, 0, 0, 0.75),
+    inset 0 1.5px 3px rgba(255, 255, 255, 0.45),
+    inset 0 -2.5px 5px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 6px rgba(0, 0, 0, 0.35) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0.55rem 0.6rem !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+  transition: transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.24s ease !important;
+  overflow: hidden !important;
+}
+
+.shelf-tazo-disc-chip:hover {
+  transform: translateY(-8px) scale(1.08) !important;
+  border-color: #fef08a !important;
+  box-shadow: 
+    0 16px 30px rgba(0, 0, 0, 0.85),
+    0 0 20px color-mix(in srgb, var(--tazo-color, #38bdf8) 65%, transparent) !important;
+}
+
+.shelf-tazo-disc-chip.active {
+  transform: translateY(-8px) scale(1.12) !important;
+  border-color: #f59e0b !important;
+  box-shadow: 
+    0 0 0 3px #f59e0b, 
+    0 14px 28px rgba(245, 158, 11, 0.6) !important;
+}
+
+/* Micro muescas CNC perimetrales en los tazos del estante */
+.shelf-tazo-notches {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.shelf-tazo-notches span {
+  position: absolute;
+  background: #0f172a;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.shelf-tazo-notches span:nth-child(1) { top: 2px; left: calc(50% - 1px); width: 2px; height: 5px; }
+.shelf-tazo-notches span:nth-child(2) { bottom: 2px; left: calc(50% - 1px); width: 2px; height: 5px; }
+.shelf-tazo-notches span:nth-child(3) { left: 2px; top: calc(50% - 1px); width: 5px; height: 2px; }
+.shelf-tazo-notches span:nth-child(4) { right: 2px; top: calc(50% - 1px); width: 5px; height: 2px; }
+
+.shelf-tazo-year-badge {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 1.08rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+  background: rgba(15, 23, 42, 0.78);
+  padding: 0.15rem 0.6rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin-bottom: 0.3rem;
+  z-index: 2;
+}
+
+.shelf-tazo-title {
+  font-size: 0.68rem;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  z-index: 2;
+  width: 90%;
+}
+
+.shelf-tazo-title strong {
+  color: #ffffff;
+  font-weight: 800;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.shelf-tazo-title span {
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .shelf-card-chip,
