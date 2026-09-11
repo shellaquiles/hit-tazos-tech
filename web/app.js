@@ -1291,10 +1291,17 @@ export class HitTazosApp {
     if (this.isTransitioning) return;
     const currentDisc = this.getActiveCardElement();
 
-    const exitX = direction === 'next' ? -260 : 260;
-    const enterX = direction === 'next' ? 260 : -260;
-    const exitRot = direction === 'next' ? -24 : 24;
-    const enterRot = direction === 'next' ? 24 : -24;
+    // Metáfora física coherente con los mazos y controles:
+    // Pila Izquierda = Tech Trivia (Mazo de robo)
+    // Pila Derecha = Discard (Mazo de descarte)
+    // Siguiente ('next', N / →): La carta actual sale hacia la DERECHA (+X, hacia descarte)
+    //                            y la nueva entra desde la IZQUIERDA (-X, desde mazo de robo).
+    // Anterior ('prev', P / ←): La carta actual sale hacia la IZQUIERDA (-X, hacia mazo)
+    //                           y la anterior regresa desde la DERECHA (+X, desde descarte).
+    const exitX = direction === 'next' ? 280 : -280;
+    const enterX = direction === 'next' ? -280 : 280;
+    const exitRot = direction === 'next' ? 18 : -18;
+    const enterRot = direction === 'next' ? -18 : 18;
 
     this.audio.play('flip');
 
