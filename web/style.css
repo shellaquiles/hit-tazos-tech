@@ -732,8 +732,10 @@ body:has(#view-play.active) main {
 .streak-badge-fire {
   color: #fb923c;
   font-weight: 800;
-  font-size: 1.08rem;
+  font-size: 0.92rem;
   margin-left: 0.25rem;
+  white-space: nowrap !important;
+  display: inline-block !important;
   animation: pulseFire 1.4s infinite alternate ease-in-out;
 }
 
@@ -4615,13 +4617,15 @@ body.version-tazo-mode .deck-blueprint-lines,
 
   /* 3. ESCENARIO DEL DISCO Y PROPORCIONES */
   .arcade-table-mat {
-    height: auto !important;
-    min-height: calc(100dvh - 48px) !important;
-    padding: 0.35rem 0.5rem 0.6rem 0.5rem !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    padding: 0.35rem 0.5rem 0.35rem 0.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
     justify-content: flex-start !important;
-    gap: 0.3rem !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
+    align-items: center !important;
+    gap: 0.2rem !important;
+    overflow: hidden !important;
     box-sizing: border-box !important;
   }
 
@@ -4629,7 +4633,7 @@ body.version-tazo-mode .deck-blueprint-lines,
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    gap: 0.3rem !important;
+    gap: 0.2rem !important;
     width: 100% !important;
     max-width: 100% !important;
   }
@@ -4638,12 +4642,14 @@ body.version-tazo-mode .deck-blueprint-lines,
   .tazo-arena-stage,
   .arcade-arena-stage {
     order: 1 !important;
+    flex: 1 1 auto !important;
     margin: 0 auto !important;
     gap: 0 !important;
     width: 100% !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
+    min-height: 0 !important;
   }
 
   .arcade-deck-3d,
@@ -4657,8 +4663,8 @@ body.version-tazo-mode .deck-blueprint-lines,
   .arcade-card-stage:has(.tazo-disc),
   .disc-stage,
   .tazo-stage {
-    width: min(250px, 72vw, 32vh) !important;
-    height: min(250px, 72vw, 32vh) !important;
+    width: min(280px, 76vw, 36vh) !important;
+    height: min(280px, 76vw, 36vh) !important;
     min-width: 0 !important;
     min-height: 0 !important;
     max-width: 100% !important;
@@ -4674,8 +4680,8 @@ body.version-tazo-mode .deck-blueprint-lines,
   .tazo-physical,
   .disc,
   .tazo-disc {
-    width: min(250px, 72vw, 32vh) !important;
-    height: min(250px, 72vw, 32vh) !important;
+    width: min(280px, 76vw, 36vh) !important;
+    height: min(280px, 76vw, 36vh) !important;
     min-width: 0 !important;
     min-height: 0 !important;
     max-width: 100% !important;
@@ -4717,28 +4723,38 @@ body.version-tazo-mode .deck-blueprint-lines,
     line-height: 1.28 !important;
   }
 
-  /* Núcleo central del disco con más aire para el texto */
+  /* Núcleo central del disco con más aire para el texto y sin desbordar el arco */
   .disc-core-front,
   .tazo-core-front {
-    width: 78% !important;
-    height: 78% !important;
+    width: 71% !important;
+    height: 71% !important;
     padding: 0.35rem 0.45rem !important;
+    overflow: hidden !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
   }
 
   .disc-hito-prose,
   .tazo-hito-prose {
-    font-size: clamp(0.72rem, 2.7vw, 0.82rem) !important;
-    line-height: 1.32 !important;
-    max-width: 96% !important;
+    font-size: clamp(0.70rem, 2.3vw, 0.82rem) !important;
+    line-height: 1.26 !important;
+    max-width: 90% !important;
+    max-height: 92% !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    text-align: center !important;
   }
 
   /* Texto en el aro curvado */
   .ring-label, .ring-sub {
     font-family: var(--font-sans, 'Outfit', sans-serif) !important;
     font-size: 8px !important;
-    letter-spacing: 0.3px !important;
-    font-weight: 700 !important;
+    letter-spacing: 0.4px !important;
+    font-weight: 800 !important;
     fill: #ffffff !important;
+    opacity: 0.95 !important;
   }
 
   .kbd-shortcut-hint {
@@ -4749,13 +4765,14 @@ body.version-tazo-mode .deck-blueprint-lines,
   .dial-launcher-wrapper,
   .arc-dial-wrapper {
     order: 2 !important;
+    flex: 0 0 auto !important;
     width: 100% !important;
     max-width: 340px !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     gap: 0.12rem !important;
-    margin: -6px auto 0.2rem auto !important;
+    margin: 0 auto !important;
     padding: 0 0.4rem !important;
     box-sizing: border-box !important;
   }
@@ -4822,12 +4839,13 @@ body.version-tazo-mode .deck-blueprint-lines,
   .timeline-shelf-arcade,
   #timeline-shelf {
     order: 3 !important;
+    flex: 0 0 auto !important;
     width: 100% !important;
-    max-width: 350px !important;
-    padding: 0.4rem 0.6rem !important;
+    max-width: 360px !important;
+    padding: 0.35rem 0.55rem !important;
     border-radius: 14px !important;
     box-sizing: border-box !important;
-    margin: 0.35rem auto 0.6rem auto !important;
+    margin: auto auto 0.25rem auto !important;
     background: rgba(11, 19, 41, 0.78) !important;
     border: 1px solid rgba(56, 189, 248, 0.22) !important;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
@@ -4856,8 +4874,8 @@ body.version-tazo-mode .deck-blueprint-lines,
   }
 
   .shelf-cards-row {
-    min-height: 64px !important;
-    padding: 0.35rem 0.75rem !important;
+    min-height: 66px !important;
+    padding: 0.25rem 0.75rem !important;
     gap: 0.55rem !important;
     justify-content: flex-start !important;
     overflow-x: auto !important;
@@ -4877,12 +4895,12 @@ body.version-tazo-mode .deck-blueprint-lines,
 
   /* Fichas Tazo en estante móvil */
   .shelf-tazo-disc-chip {
-    flex: 0 0 58px !important;
-    width: 58px !important;
-    height: 58px !important;
-    min-width: 58px !important;
-    max-width: 58px !important;
-    max-height: 58px !important;
+    flex: 0 0 54px !important;
+    width: 54px !important;
+    height: 54px !important;
+    min-width: 54px !important;
+    max-width: 54px !important;
+    max-height: 54px !important;
     border-width: 2px !important;
     padding: 0.15rem !important;
   }
@@ -4899,6 +4917,8 @@ body.version-tazo-mode .deck-blueprint-lines,
     line-height: 1.1 !important;
   }
 
+  .shelf-tazo-title span,
+  .shelf-rack-title span,
   .shelf-tazo-domain {
     display: none !important;
   }
@@ -4931,9 +4951,12 @@ body.version-tazo-mode .deck-blueprint-lines,
   }
 
   .arcade-table-mat {
-    padding: 0.25rem 0.4rem 0.4rem !important;
-    gap: 0.2rem !important;
+    padding: 0.2rem 0.4rem !important;
+    gap: 0.12rem !important;
     justify-content: space-between !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
   }
 
   .arcade-card-stage.is-disc-mode,
@@ -4949,8 +4972,8 @@ body.version-tazo-mode .deck-blueprint-lines,
   .tazo-physical,
   .disc,
   .tazo-disc {
-    width: min(190px, 54vw, 28vh) !important;
-    height: min(190px, 54vw, 28vh) !important;
+    width: min(215px, 62vw, 36vh) !important;
+    height: min(215px, 62vw, 36vh) !important;
   }
 
   .arcade-card-stage,
@@ -4966,9 +4989,15 @@ body.version-tazo-mode .deck-blueprint-lines,
 
   .disc-hito-prose,
   .tazo-hito-prose {
-    font-size: clamp(0.64rem, 2.2vh, 0.74rem) !important;
-    line-height: 1.24 !important;
-    max-width: 96% !important;
+    font-size: clamp(0.66rem, 2.1vh, 0.78rem) !important;
+    line-height: 1.22 !important;
+    max-width: 90% !important;
+    max-height: 92% !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    text-align: center !important;
   }
 
   .chrono-arc-container {
