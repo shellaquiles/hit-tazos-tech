@@ -31,7 +31,7 @@ if (allCards.length !== 576) {
 // Generate compiled output
 fs.writeFileSync(CARDS_FILE, JSON.stringify(allCards, null, 2), 'utf8');
 
-let appVersion = '1.0.0';
+let appVersion = '1.1.0';
 try {
   appVersion = fs.readFileSync(path.join(__dirname, '../VERSION'), 'utf8').trim();
 } catch (_) {}
@@ -51,14 +51,15 @@ const volumeList = files.map((file, idx) => {
   const title = catalogVolumes[slug] || slug;
   const cardsCount = data.length;
   const pagesCarta = Math.ceil(cardsCount / 6) * 2;
+  const pdfFilename = `hit-tazos-tech-vol${idx}-${slug}.pdf`;
   return {
     id: `vol${idx}`,
     slug,
     title,
     cardsCount,
     pagesCarta,
-    pdfFilename: `hit-tazos-tech-vol${idx}-${slug}.pdf`,
-    pdfPath: `/assets/print/hit-tazos-tech-vol${idx}-${slug}.pdf`
+    pdfFilename,
+    pdfPath: `https://github.com/shellaquiles/hit-tazos-tech/releases/latest/download/${pdfFilename}`
   };
 });
 

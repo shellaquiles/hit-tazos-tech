@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HIT-TAZOS Tech v1.0.0 | Trivia Cronológica Técnica — shellaquiles.org</title>
+  <title>HIT-TAZOS Tech v1.1.0 | Trivia Cronológica Técnica — shellaquiles.org</title>
 
   <!-- Indexación y Robots -->
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -31,7 +31,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://shellaquiles.org/hit-tazos-tech/">
   <meta property="og:site_name" content="shellaquiles.org">
-  <meta property="og:title" content="HIT-TAZOS Tech v1.0.0 | Trivia Cronológica Técnica">
+  <meta property="og:title" content="HIT-TAZOS Tech v1.1.0 | Trivia Cronológica Técnica">
   <meta property="og:description" content="Hitos cronológicos de tecnología, Python, DevOps, IA y Cultura Hacker. Juega en línea o imprime tus propias cartas con shellaquiles.org.">
   <meta property="og:locale" content="es_MX">
   <meta property="og:image" content="https://shellaquiles.org/hit-tazos-tech/assets/og-cover.png">
@@ -45,7 +45,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@shellaquiles">
   <meta name="twitter:creator" content="@shellaquiles">
-  <meta name="twitter:title" content="HIT-TAZOS Tech v1.0.0 — Trivia Cronológica Técnica">
+  <meta name="twitter:title" content="HIT-TAZOS Tech v1.1.0 — Trivia Cronológica Técnica">
   <meta name="twitter:description" content="Hitos cronológicos de tecnología, Python, DevOps, IA y Cultura Hacker. Creado por shellaquiles.org.">
   <meta name="twitter:image" content="https://shellaquiles.org/hit-tazos-tech/assets/og-cover.png">
   <meta name="twitter:image:alt" content="HIT-TAZOS Tech — Trivia Cronológica Técnica por shellaquiles.org">
@@ -64,7 +64,7 @@
         "description": "Juego libre de cartas y trivia cronológica técnica centrado en el ecosistema de software, Python, DevOps, IA y cultura hacker con hitos rigurosamente verificados.",
         "applicationCategory": "GameApplication",
         "operatingSystem": "All",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "inLanguage": "es",
         "license": "https://opensource.org/licenses/MIT",
         "image": "https://shellaquiles.org/hit-tazos-tech/assets/og-cover.png",
@@ -147,202 +147,242 @@
   </svg>
 
   <!-- Header -->
-  <header>
-    <div class="brand">
+  <header class="arcade-header">
+    <div class="brand arcade-brand">
       <div class="brand-icon" id="btn-brand-version" role="button" tabindex="0" title="Seleccionar versión del juego (Hit-Tazo / Hit-Cards) [V]" aria-label="Seleccionar versión del juego: Hit-Tazo o Hit-Cards">
         <i data-lucide="disc" id="brand-icon-glyph"></i>
       </div>
-      <div>
-        <h1 class="brand-title">
-          <span id="brand-title-text">HIT-TAZOS</span>
-          <span class="brand-badge" id="brand-badge-text">Tech</span>
-          <span class="brand-version-tag">v1.0.0</span>
-        </h1>
-        <div class="brand-subline">
-          por <a href="https://shellaquiles.org?utm_source=webapp&utm_medium=header&utm_campaign=hit-tazos-tech" target="_blank" rel="noopener noreferrer" class="brand-org-link">shellaquiles.org</a>
-        </div>
+      <h1 class="brand-title arcade-title-clean">
+        <span id="brand-title-text">Hit-Tazos Tech</span>
+      </h1>
+      <span class="brand-version-tag">v1.1.0</span>
+    </div>
+
+    <!-- HUD Central Limpio: Puntuación, Racha y Tiros -->
+    <div class="header-hud arcade-hud-center" id="header-hud">
+      <div class="hud-stat-item hud-score-item" title="Puntuación acumulada">
+        <span class="hud-label-clean">Puntuación:</span>
+        <strong id="hud-score">0</strong>
+      </div>
+      <div class="hud-stat-item hud-streak-item" id="hud-streak-box" title="Racha consecutiva actual">
+        <span class="hud-label-clean">Racha:</span>
+        <strong id="hud-streak">0</strong>
+        <span id="hud-streak-fire" class="streak-badge-fire" style="display: none;">(On Fire 🔥)</span>
+      </div>
+      <div class="hud-stat-item hud-attempts-item" id="attempt-tracker" title="Tiros restantes para esta tarjeta">
+        <span class="hud-label-clean">Tiros:</span>
+        <strong id="hud-attempts">3</strong>
+        <div class="attempt-dots-wrap" id="attempt-dots"></div>
       </div>
     </div>
 
-    <div class="nav-actions">
-      <!-- Selector Segmentado de Modo de Juego (Arcade Style Switch) -->
-      <div class="game-mode-switch" role="tablist" aria-label="Modo de vista">
-        <button class="tab-btn active" id="btn-tab-play" data-view="play" role="tab" aria-selected="true">
-          <i data-lucide="gamepad-2"></i>
-          <span>Modo Juego</span>
+    <div class="header-right-arcade">
+      <!-- Sonido -->
+      <button class="icon-btn-arcade" id="btn-sound-toggle" title="Sonido [S]" aria-label="Alternar efectos de sonido">
+        <i data-lucide="volume-2" id="icon-sound-state"></i>
+      </button>
+
+      <!-- Selector Desplegable de Volumen -->
+      <div class="volume-dropdown-wrapper">
+        <button class="btn-volume-dropdown" id="btn-volume-dropdown" title="Seleccionar Volumen del Mazo">
+          <span id="volume-dropdown-label">Volumen</span>
+          <i data-lucide="chevron-down"></i>
         </button>
-        <button class="tab-btn" id="btn-tab-gallery" data-view="gallery" role="tab" aria-selected="false">
-          <i data-lucide="layout-grid"></i>
-          <span>Explorador</span>
-        </button>
+        <div class="volume-dropdown-menu" id="volume-dropdown-menu">
+          <button class="volume-menu-item active" data-volumen="ALL">👑 Mazo Maestro (576)</button>
+          <button class="volume-menu-item" data-volumen="kernel-foundations">Vol 0: Kernel Foundations (128)</button>
+          <button class="volume-menu-item" data-volumen="cypherpunks-hacker-lore">Vol 1: Hacker Lore (64)</button>
+          <button class="volume-menu-item" data-volumen="embedded-silicon-hardware">Vol 2: Hardware (64)</button>
+          <button class="volume-menu-item" data-volumen="unix-sysadmin-networks">Vol 3: Unix & Nets (64)</button>
+          <button class="volume-menu-item" data-volumen="backend-distributed-systems">Vol 4: Backend (64)</button>
+          <button class="volume-menu-item" data-volumen="cloud-containers-sre">Vol 5: Cloud & SRE (64)</button>
+          <button class="volume-menu-item" data-volumen="python-track">Vol 6: Python Track (64)</button>
+          <button class="volume-menu-item" data-volumen="scifi-pop-culture-cinema">Vol 7: Sci-Fi & Pop (64)</button>
+        </div>
       </div>
 
-      <!-- Cluster de Acciones y Utilidades -->
-      <div class="utility-actions">
-        <!-- Botón de Preventa Física Destacado -->
-        <a href="https://wa.me/525542722156?text=Hola%20shellaquiles.org%2C%20me%20interesa%20apartar%20la%20edici%C3%B3n%20f%C3%ADsica%20de%20Hit-Cards%20Tech%20en%20preventa" target="_blank" rel="noopener noreferrer" class="btn-preorder-header" id="btn-preorder-header" title="Apartar cartas físicas en preventa por WhatsApp (+52 55 4272 2156)">
-          <i data-lucide="shopping-bag"></i>
-          <span class="preorder-label">Preventa Cartas</span>
-          <span class="preorder-badge">Físico</span>
-        </a>
-
-        <button class="icon-btn" id="btn-sound-toggle" title="Sonido [S]" aria-label="Alternar efectos de sonido">
-          <i data-lucide="volume-2" id="icon-sound-state"></i>
-        </button>
-        <button class="icon-btn" id="btn-reset-game" title="Reiniciar partida [Shift+R]" aria-label="Reiniciar partida">
-          <i data-lucide="rotate-ccw"></i>
-        </button>
-        <button class="icon-btn" id="btn-print" title="Imprimir cartas o comprar en preventa [P]" aria-label="Imprimir cartas o comprar en preventa">
-          <i data-lucide="printer"></i>
-        </button>
-        <button class="icon-btn" id="btn-help-toggle" title="Reglas y atajos de teclado [?]" aria-label="Ver reglas y atajos">
-          <i data-lucide="help-circle"></i>
-        </button>
-      </div>
+      <!-- Menú Drawer para Navegación y Herramientas -->
+      <button class="icon-btn-arcade" id="btn-more-options" title="Menú de Navegación y Herramientas [M]" aria-label="Menú de opciones">
+        <i data-lucide="menu"></i>
+      </button>
     </div>
   </header>
 
+  <!-- Backdrop oscurecido para el Drawer -->
+  <div class="drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
+
+  <!-- Menú Drawer Desplegable para Herramientas Secundarias -->
+  <aside class="arcade-tools-drawer" id="arcade-tools-drawer" aria-label="Panel de navegación y herramientas">
+      <div class="drawer-header">
+        <div class="drawer-title-group">
+          <i data-lucide="sliders" class="drawer-header-icon"></i>
+          <span class="drawer-title">Opciones & Herramientas</span>
+        </div>
+        <button class="icon-btn-arcade" id="btn-close-drawer" title="Cerrar menú [Esc]" aria-label="Cerrar menú">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="drawer-content">
+        <div class="drawer-section-label">MODO DE VISTA</div>
+        <div class="game-mode-switch drawer-mode-switch" role="tablist" aria-label="Modo de vista">
+          <button class="tab-btn active" id="btn-drawer-tab-play" data-view="play" role="tab" aria-selected="true">
+            <i data-lucide="gamepad-2"></i>
+            <span>Modo Juego 3D</span>
+          </button>
+          <button class="tab-btn" id="btn-drawer-tab-gallery" data-view="gallery" role="tab" aria-selected="false">
+            <i data-lucide="layout-grid"></i>
+            <span>Explorador (576)</span>
+          </button>
+        </div>
+
+        <div class="drawer-section-label">SELECCIONAR VOLUMEN</div>
+        <div class="drawer-volume-selector" style="padding: 0 0.5rem; margin-bottom: 0.5rem;">
+          <select id="drawer-volume-select" class="drawer-volume-dropdown" aria-label="Seleccionar Volumen de Trivia" style="width: 100%; background: #0c1527; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; color: #f8fafc; padding: 0.55rem 0.75rem; font-size: 0.85rem; font-weight: 600; cursor: pointer; outline: none;">
+            <option value="ALL">👑 Mazo Maestro (576)</option>
+            <option value="kernel-foundations">Vol 0: Kernel Foundations (128)</option>
+            <option value="cypherpunks-hacker-lore">Vol 1: Hacker Lore (64)</option>
+            <option value="embedded-silicon-hardware">Vol 2: Hardware (64)</option>
+            <option value="unix-sysadmin-networks">Vol 3: Unix & Nets (64)</option>
+            <option value="backend-distributed-systems">Vol 4: Backend (64)</option>
+            <option value="cloud-containers-sre">Vol 5: Cloud & SRE (64)</option>
+            <option value="python-track">Vol 6: Python Track (64)</option>
+            <option value="scifi-pop-culture-cinema">Vol 7: Sci-Fi & Pop (64)</option>
+          </select>
+        </div>
+
+        <div class="drawer-section-label">FORMATO Y EDICIÓN</div>
+        <button class="drawer-action-btn" id="btn-drawer-version">
+          <i data-lucide="disc"></i>
+          <div class="drawer-action-text">
+            <span class="drawer-action-primary">Cambiar Versión [V]</span>
+            <span class="drawer-action-sub">Hit-Tazo circular vs Hit-Cards 65×65mm</span>
+          </div>
+        </button>
+
+        <div class="drawer-section-label">HERRAMIENTAS</div>
+        <div class="drawer-actions-list">
+          <a href="https://wa.me/525542722156?text=Hola%20shellaquiles.org%2C%20me%20interesa%20apartar%20la%20edici%C3%B3n%20f%C3%ADsica%20de%20Hit-Cards%20Tech%20en%20preventa" target="_blank" rel="noopener noreferrer" class="drawer-action-btn preorder-highlight" id="btn-drawer-preorder">
+            <i data-lucide="shopping-bag"></i>
+            <div class="drawer-action-text">
+              <span class="drawer-action-primary">Comprar / Preventa Baraja</span>
+              <span class="drawer-action-sub">Cartas físicas producidas en imprenta</span>
+            </div>
+            <span class="drawer-badge-highlight">WhatsApp</span>
+          </a>
+
+          <button class="drawer-action-btn" id="btn-drawer-print">
+            <i data-lucide="printer"></i>
+            <div class="drawer-action-text">
+              <span class="drawer-action-primary">Imprimir Cartas (PDF) [P]</span>
+              <span class="drawer-action-sub">Descarga gratuita en Carta y Tabloide</span>
+            </div>
+          </button>
+
+          <button class="drawer-action-btn" id="btn-drawer-help">
+            <i data-lucide="help-circle"></i>
+            <div class="drawer-action-text">
+              <span class="drawer-action-primary">Reglas y Atajos [?]</span>
+              <span class="drawer-action-sub">Instrucciones de juego y puntuación</span>
+            </div>
+          </button>
+
+          <button class="drawer-action-btn btn-danger" id="btn-drawer-reset">
+            <i data-lucide="rotate-ccw"></i>
+            <div class="drawer-action-text">
+              <span class="drawer-action-primary">Reiniciar Partida [Shift+R]</span>
+              <span class="drawer-action-sub">Restablecer puntos, racha y estante</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </aside>
+
   <main>
-    <!-- VISTA 1: MODO JUEGO INTERACTIVO -->
+    <!-- VISTA 1: MODO JUEGO INTERACTIVO (MESA DARK ARCADE 3D) -->
     <section id="view-play" class="view-section active" aria-labelledby="heading-view-play">
       <h2 id="heading-view-play" class="sr-only">Modo Juego de Trivia Cronológica Interactiva</h2>
 
-      <!-- Deck Selector Ribbon (Exclusivo de Modo Juego con Identidad Cromática) -->
-      <div class="ribbon-wrapper">
-        <nav class="category-ribbon" id="group-ribbon" aria-label="Seleccionar Baraja de Trivia">
-          <button class="ribbon-pill pill-master active" data-volumen="ALL" data-accent="master" title="Mazo Maestro: 576 cartas de todos los volúmenes">
-            <i data-lucide="crown" class="pill-icon"></i>
-            <span class="pill-label">Mazo Maestro</span>
-            <span class="pill-count">576</span>
-          </button>
-          <button class="ribbon-pill pill-vol0" data-volumen="kernel-foundations" data-accent="vol0" title="Volumen 0: Kernel Foundations">
-            <i data-lucide="cpu" class="pill-icon"></i>
-            <span class="pill-label">Vol 0: Kernel</span>
-            <span class="pill-count">128</span>
-          </button>
-          <button class="ribbon-pill pill-vol1" data-volumen="cypherpunks-hacker-lore" data-accent="vol1" title="Volumen 1: Hacker Lore">
-            <i data-lucide="shield-alert" class="pill-icon"></i>
-            <span class="pill-label">Vol 1: Hacker Lore</span>
-            <span class="pill-count">64</span>
-          </button>
-          <button class="ribbon-pill pill-vol2" data-volumen="embedded-silicon-hardware" data-accent="vol2" title="Volumen 2: Hardware">
-            <i data-lucide="microchip" class="pill-icon"></i>
-            <span class="pill-label">Vol 2: Hardware</span>
-            <span class="pill-count">64</span>
-          </button>
-          <button class="ribbon-pill pill-vol3" data-volumen="unix-sysadmin-networks" data-accent="vol3" title="Volumen 3: Unix & Networks">
-            <i data-lucide="terminal" class="pill-icon"></i>
-            <span class="pill-label">Vol 3: Unix & Nets</span>
-            <span class="pill-count">64</span>
-          </button>
-          <button class="ribbon-pill pill-vol4" data-volumen="backend-distributed-systems" data-accent="vol4" title="Volumen 4: Backend">
-            <i data-lucide="server" class="pill-icon"></i>
-            <span class="pill-label">Vol 4: Backend</span>
-            <span class="pill-count">64</span>
-          </button>
-          <button class="ribbon-pill pill-vol5" data-volumen="cloud-containers-sre" data-accent="vol5" title="Volumen 5: Cloud & SRE">
-            <i data-lucide="cloud" class="pill-icon"></i>
-            <span class="pill-label">Vol 5: Cloud & SRE</span>
-            <span class="pill-count">64</span>
-          </button>
-          <button class="ribbon-pill pill-vol6" data-volumen="python-track" data-accent="vol6" title="Volumen 6: Python Track">
-            <i data-lucide="code-2" class="pill-icon"></i>
-            <span class="pill-label">Vol 6: Python Track</span>
-            <span class="pill-count">64</span>
-          </button>
-          <button class="ribbon-pill pill-vol7" data-volumen="scifi-pop-culture-cinema" data-accent="vol7" title="Volumen 7: Sci-Fi & Pop Culture">
-            <i data-lucide="sparkles" class="pill-icon"></i>
-            <span class="pill-label">Vol 7: Sci-Fi & Pop</span>
-            <span class="pill-count">64</span>
-          </button>
-        </nav>
-      </div>
+      <!-- Ribbon Selector accesible (sincronizado con el dropdown) -->
+      <nav class="category-ribbon sr-only" id="group-ribbon" aria-label="Seleccionar Baraja de Trivia">
+        <button class="ribbon-pill pill-master active" data-volumen="ALL">Mazo Maestro 576</button>
+        <button class="ribbon-pill pill-vol0" data-volumen="kernel-foundations">Vol 0</button>
+        <button class="ribbon-pill pill-vol1" data-volumen="cypherpunks-hacker-lore">Vol 1</button>
+        <button class="ribbon-pill pill-vol2" data-volumen="embedded-silicon-hardware">Vol 2</button>
+        <button class="ribbon-pill pill-vol3" data-volumen="unix-sysadmin-networks">Vol 3</button>
+        <button class="ribbon-pill pill-vol4" data-volumen="backend-distributed-systems">Vol 4</button>
+        <button class="ribbon-pill pill-vol5" data-volumen="cloud-containers-sre">Vol 5</button>
+        <button class="ribbon-pill pill-vol6" data-volumen="python-track">Vol 6</button>
+        <button class="ribbon-pill pill-vol7" data-volumen="scifi-pop-culture-cinema">Vol 7</button>
+      </nav>
 
-      <div class="arena-wrapper">
+      <div class="arena-wrapper arcade-table-mat">
+        <!-- Cuadrícula de Perspectiva 3D Táctica -->
+        <div class="table-perspective-grid" aria-hidden="true"></div>
 
-        <!-- HUD Superior -->
-        <div class="hud-bar">
-          <div class="hud-item" title="Puntos acumulados">
-            <i data-lucide="target"></i>
-            <span>Puntos:</span> <strong id="hud-score">0</strong>
-          </div>
-          <div class="hud-item hud-streak-item" id="hud-streak-box" title="Racha de aciertos seguidos">
-            <i data-lucide="flame"></i>
-            <span>Racha:</span> <strong id="hud-streak">0</strong>
-          </div>
-          <div class="hud-item hud-attempts-item" id="attempt-tracker" title="Tiros disponibles (3 por tazo)">
-            <i data-lucide="crosshair"></i>
-            <span>Tiros:</span> <strong id="hud-attempts">3</strong>
-            <div id="attempt-dots" class="attempt-visual-dots" aria-label="3 tiros disponibles">
-              <span class="attempt-pip" title="Tiro disponible"></span>
-              <span class="attempt-pip" title="Tiro disponible"></span>
-              <span class="attempt-pip" title="Tiro disponible"></span>
+        <!-- Escenario 3D con Mazos Laterales y Tarjeta Central -->
+        <div class="disc-arena-stage arcade-arena-stage">
+          <!-- Pila Izquierda: Tech Trivia 3D Stack -->
+          <aside class="desktop-card-pile pile-left arcade-deck-3d" id="pile-left" role="button" tabindex="0" title="Mazo Tech Trivia: siguiente tarjeta [N / →]" aria-label="Mazo siguiente">
+            <div class="deck-3d-stack">
+              <div class="deck-paper-edge-layers"></div>
+              <div class="deck-top-card-face">
+                <div class="deck-blueprint-lines"></div>
+                <div class="deck-card-content">
+                  <span class="deck-label-main">TECH</span>
+                  <span class="deck-label-sub">TRIVIA</span>
+                  <span class="deck-count-badge" id="deck-left-count-text"><span id="pile-left-count">0</span> <span id="pile-left-noun">tazos</span> rest.</span>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Escenario 3D del Tazo Físico Coleccionable con Aura Ambiental -->
-        <div class="disc-arena-stage">
-          <!-- Pila Izquierda: Cartas Anteriores (Escritorio, N=5) -->
-          <aside class="desktop-card-pile pile-left" id="pile-left" role="button" tabindex="0" title="Cartas anteriores [P / ←]" aria-label="Pila de cartas anteriores">
-            <div class="pile-badge">
-              <span class="pile-badge-text">ANTERIORES</span>
-              <span class="pile-badge-count" id="pile-left-count">0</span>
-            </div>
-            <div class="pile-cards-wrapper" id="pile-left-cards">
-              <!-- N=5 cartas apiladas -->
-            </div>
+            <div id="pile-left-cards" class="sr-only"></div>
           </aside>
 
-          <!-- Escenario del Tazo Disco 3D -->
-          <div class="disc-stage" id="card-stage" title="Toca o pulsa Espacio para voltear el Tazo">
-            <!-- Tazo inyectado dinámicamente -->
+          <!-- Escenario de la Tarjeta Central: Chasis Horizontal Biselado -->
+          <div class="disc-stage arcade-card-stage" id="card-stage" title="Toca o pulsa Espacio para voltear">
+            <!-- Tarjeta inyectada dinámicamente -->
           </div>
 
-          <!-- Pila Derecha: Siguientes Cartas (Escritorio, N=5) -->
-          <aside class="desktop-card-pile pile-right" id="pile-right" role="button" tabindex="0" title="Siguientes cartas del mazo [N / →]" aria-label="Pila de siguientes cartas">
-            <div class="pile-badge">
-              <span class="pile-badge-text">POR JUGAR</span>
-              <span class="pile-badge-count" id="pile-right-count">0</span>
+          <!-- Pila Derecha: Discard 3D Stack -->
+          <aside class="desktop-card-pile pile-right arcade-deck-3d" id="pile-right" role="button" tabindex="0" title="Pila de descarte: tarjeta anterior [P / ←]" aria-label="Mazo anterior">
+            <div class="deck-3d-stack">
+              <div class="deck-paper-edge-layers"></div>
+              <div class="deck-top-card-face">
+                <div class="deck-blueprint-lines"></div>
+                <div class="deck-card-content">
+                  <span class="deck-label-discard">DISCARD</span>
+                  <span class="deck-count-badge" id="deck-right-count-text"><span id="pile-right-count">0</span> <span id="pile-right-noun">descartados</span></span>
+                </div>
+              </div>
             </div>
-            <div class="pile-cards-wrapper" id="pile-right-cards">
-              <!-- N=5 cartas apiladas -->
-            </div>
+            <div id="pile-right-cards" class="sr-only"></div>
           </aside>
         </div>
 
-        <!-- Guía de Gestos Táctiles para Móvil -->
-        <div class="mobile-gesture-guide" aria-hidden="true">
-          <span class="gesture-item"><i data-lucide="hand"></i> Desliza para cambiar tazo</span>
-          <span class="gesture-sep">&bull;</span>
-          <span class="gesture-item"><i data-lucide="rotate-cw"></i> Toca para voltear</span>
-        </div>
-
-        <!-- Selector Chrono-Dial / Lanzador de Tiro -->
-        <div class="dial-launcher-wrapper">
-          <div class="dial-value-badge">
-            <span class="badge-title">AÑO ESTIMADO</span>
-            <span class="badge-year" id="display-selected-year">1990</span>
+        <!-- Selector Chrono Arc Dial con Botón LANZAR TIRO Integrado -->
+        <div class="dial-launcher-wrapper arc-dial-wrapper">
+          <!-- Contenedor del Dial Curvo en Arco SVG -->
+          <div class="chrono-arc-container" id="chrono-arc-container">
+            <!-- ArcChronoDial inyecta el SVG interactivo aquí -->
           </div>
 
-          <div class="dial-slider-container">
-            <span class="slider-boundary-year">1940</span>
+          <!-- Año Seleccionado y Slider Accesible Sincronizado -->
+          <div class="arc-year-display-wrap">
+            <span class="arc-selected-year" id="display-selected-year">1994</span>
             <input
               type="range"
               id="chrono-dial"
               min="1940"
               max="2026"
-              value="1990"
-              class="disc-year-slider"
+              value="1994"
+              class="disc-year-slider sr-only"
               aria-label="Seleccionar año con el dial cronológico"
             >
-            <span class="slider-boundary-year">2026</span>
           </div>
 
-          <div class="dial-action-row">
-            <button class="btn-slam" id="btn-submit-guess" title="Disparar tiro con el año seleccionado [Enter]">
-              <i data-lucide="zap"></i>
-              <span>¡LANZAR TIRO!</span>
+          <!-- Botón de Confirmación LANZAR TIRO (Flujo cognitivo: Elegir año en dial -> Lanzar tiro) -->
+          <div class="dial-action-row arc-action-bottom">
+            <button class="btn-slam btn-slam-arc" id="btn-submit-guess" title="Disparar tiro con el año seleccionado [Enter]">
+              <span>LANZAR TIRO</span>
             </button>
           </div>
 
@@ -351,50 +391,29 @@
           </div>
         </div>
 
-        <!-- Controles Rápidos de Navegación del Tazo -->
-        <div class="disc-nav-cluster">
-          <button class="btn-secondary btn-nav-disc" id="btn-prev" title="Tazo anterior [P]">
-            <i data-lucide="arrow-left"></i> Anterior
-          </button>
-          <button class="btn-secondary btn-nav-disc" id="btn-flip" title="Voltear disco [Espacio]">
-            <i data-lucide="rotate-cw"></i> Voltear
-          </button>
-          <button class="btn-secondary btn-nav-disc" id="btn-reveal" title="Revelar el año (-5 Pts) [R]">
-            <i data-lucide="eye"></i> Revelar (-5 pts)
-          </button>
-          <button class="btn-secondary btn-nav-disc" id="btn-next" title="Tazo siguiente [N]">
-            Siguiente <i data-lucide="arrow-right"></i>
-          </button>
-          <button class="btn-secondary btn-nav-disc" id="btn-shuffle" title="Barajar tazos">
-            <i data-lucide="shuffle"></i> Barajar
-          </button>
+        <!-- Controles Rápidos de Teclado y Ayuda Auxiliar -->
+        <div class="disc-nav-cluster sr-only">
+          <button class="btn-secondary btn-nav-disc" id="btn-prev">Anterior</button>
+          <button class="btn-secondary btn-nav-disc" id="btn-flip">Voltear</button>
+          <button class="btn-secondary btn-nav-disc" id="btn-reveal">Revelar (-5 pts)</button>
+          <button class="btn-secondary btn-nav-disc" id="btn-next">Siguiente</button>
+          <button class="btn-secondary btn-nav-disc" id="btn-shuffle">Barajar</button>
         </div>
 
-        <!-- Bandeja de Línea de Tiempo del Jugador (Rack Coleccionable) -->
-        <div class="timeline-shelf">
-          <div class="shelf-header">
-            <h3 class="shelf-title-wrap">
-              <i data-lucide="trophy"></i>
-              <span>Tu Línea de Tiempo Personal</span>
-            </h3>
-            <div class="shelf-header-actions">
-              <span id="shelf-counter">0 / 10 tazos para ganar</span>
-              <button class="btn-shelf-reset" id="btn-reset-shelf" title="Reiniciar partida y vaciar línea de tiempo" aria-label="Reiniciar partida">
-                <i data-lucide="rotate-ccw"></i>
-                <span>Reiniciar</span>
-              </button>
+        <!-- Bandeja de Línea de Tiempo del Jugador (3D Shelf Rack) -->
+        <div class="timeline-shelf timeline-shelf-arcade" id="timeline-shelf">
+          <div class="shelf-rack-rail">
+            <div class="shelf-rack-lip"></div>
+            <div class="shelf-cards-row shelf-rack-row" id="shelf-cards-container">
+              <!-- Upright rack cards with glowing badges: 1969, 1983, 1991, 2004, 2015 -->
             </div>
           </div>
-          <div class="shelf-progress-track">
-            <div class="shelf-progress-fill" id="shelf-progress-fill"></div>
-          </div>
-          <div class="shelf-cards-row" id="shelf-cards-container">
-            <div class="shelf-empty-prompt">
-              Adivina el año exacto o cercano (±2) para coleccionar cartas y completar tu línea de tiempo.
-            </div>
+          <div class="sr-only">
+            <span id="shelf-counter">0 / 10 cartas</span>
+            <div id="shelf-progress-fill"></div>
+            <button id="btn-reset-shelf"></button>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -402,6 +421,10 @@
     <section id="view-gallery" class="view-section" aria-labelledby="heading-view-gallery">
       <h2 id="heading-view-gallery" class="sr-only">Explorador y Catálogo Completo de Hitos Tecnológicos</h2>
       <div class="gallery-toolbar">
+        <button type="button" class="btn-gallery-back-play" id="btn-gallery-back-play" title="Volver a la Mesa de Juego Arcade">
+          <i data-lucide="gamepad-2"></i>
+          <span>Volver al Juego</span>
+        </button>
         <div class="search-field-wrap">
           <span class="search-icon-slot">
             <i data-lucide="search"></i>
@@ -746,7 +769,7 @@
   <!-- Application Footer -->
   <footer class="app-footer">
     <div class="footer-inner">
-      <span><a href="https://github.com/shellaquiles/hit-tazos-tech/releases/latest?utm_source=webapp&utm_medium=footer&utm_campaign=release" target="_blank" rel="noopener noreferrer" class="footer-link" title="Ver release en GitHub">Hit-Tazos Tech <strong class="footer-version">v1.0.0</strong></a></span>
+      <span><a href="https://github.com/shellaquiles/hit-tazos-tech/releases/latest?utm_source=webapp&utm_medium=footer&utm_campaign=release" target="_blank" rel="noopener noreferrer" class="footer-link" title="Ver release en GitHub">Hit-Tazos Tech <strong class="footer-version">v1.1.0</strong></a></span>
       <span class="footer-sep">•</span>
       <span>Un proyecto libre de <a href="https://shellaquiles.org?utm_source=webapp&utm_medium=footer&utm_campaign=hit-tazos-tech" target="_blank" rel="noopener noreferrer" class="footer-link">shellaquiles.org</a></span>
       <span class="footer-sep">•</span>

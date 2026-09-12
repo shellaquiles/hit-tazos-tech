@@ -21,14 +21,18 @@ export class CardRenderer {
 
   formatMarkdown(text) {
     if (!text) return '';
+    let html = '';
     if (typeof snarkdown === 'function') {
-      return snarkdown(text);
+      html = snarkdown(text);
+    } else {
+      // Fallback nativo
+      html = text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/`([^`]+)`/g, '<code>$1</code>');
     }
-    // Fallback nativo
-    return text
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em>$1</em>')
-      .replace(/`([^`]+)`/g, '<code>$1</code>');
+    // Evitar puntuaciones huérfanas en saltos de línea (ej. "Datadog , unificando")
+    return html.replace(/\s+([,.:;!?])/g, '$1');
   }
 
   getDiscPalette(card) {

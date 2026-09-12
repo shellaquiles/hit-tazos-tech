@@ -1,6 +1,6 @@
 # Hit-Tazos Tech 🕹️💻
 
-[![Version](https://img.shields.io/badge/version-1.0.0-orange.svg?style=flat-square)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.1.0-orange.svg?style=flat-square)](./CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](./LICENSE)
 [![Python](https://img.shields.io/badge/python-3.8%2B-3776AB.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![Node](https://img.shields.io/badge/node-%3E%3D18-339933.svg?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
@@ -67,7 +67,7 @@ El juego es libre bajo licencia MIT y puedes descargar los archivos listos para 
 Las cartas están diseñadas en formato cuadrado de **$65 \times 65\text{ mm}$** con esquinas redondeadas ($r=3\text{ mm}$), pensadas para imprimirse en cartulina de **$350\text{ g}$** con barniz mate anti-reflejante.
 
 ### Archivos PDF oficiales para imprenta (Print & Play)
-Los PDFs vectoriales oficiales con marcas de corte, sangrado de +3 mm y reversos espejados están disponibles para descarga directa en la [**Última Release Oficial (v1.0.0)**](https://github.com/shellaquiles/hit-tazos-tech/releases/latest):
+Los PDFs vectoriales oficiales con marcas de corte, sangrado de +3 mm y reversos espejados están disponibles para descarga directa en la [**Última Release Oficial (v1.1.0)**](https://github.com/shellaquiles/hit-tazos-tech/releases/latest):
 
 * 📦 **[Descarga de los 8 Volúmenes en PDF (Tamaño Carta)](https://github.com/shellaquiles/hit-tazos-tech/releases/latest)**: 6 cartas por pliego (65×65 mm c/u), optimizados para impresión dúplex.
 * 📐 Formatos profesionales multi-pliego disponibles para compilación local:
@@ -108,6 +108,7 @@ El mazo se divide en 8 volúmenes canónicos con taxonomía cerrada:
 | <kbd>P</kbd> / <kbd>N</kbd> | Navegar a la tarjeta Previa (<kbd>P</kbd>) o Siguiente (<kbd>N</kbd>) en las pilas. |
 | <kbd>V</kbd> | Abrir el modal de selección de formato (Hit-Tazo 3D vs. Hit-Cards). |
 | <kbd>T</kbd> | Alternar directamente entre formato Tazo y formato Tarjeta. |
+| <kbd>M</kbd> | Abrir o cerrar el menú lateral táctico (Drawer). |
 | <kbd>?</kbd> / <kbd>H</kbd> | Abrir la Guía Rápida de Juego (#help-dialog). |
 | <kbd>Shift</kbd> + <kbd>R</kbd> | Reiniciar partida completa (restablece puntos, racha y estante con confirmación). |
 
@@ -122,6 +123,7 @@ El código fuente del frontend reside bajo una arquitectura modular limpia en `w
 * **`web/core/storage.js`:** Adaptador de persistencia asíncrona dual (IndexedDB con fallback a `localStorage`).
 * **`web/core/state.js`:** Máquina de estado reactiva `GameState` con patrón Observer (Pub/Sub) desacoplado del DOM.
 * **`web/core/audio.js`:** Motor de efectos sonoros retro sintetizados con control de volumen y mute.
+* **`web/core/arc-dial.js`:** Dial interactivo arqueado continuo estilo velocímetro vintage con soporte táctil, rotación trigonométrica y marcas retroiluminadas.
 * **`web/core/tazo-renderer.js`:** Renderizado 3D de disco retro con bisel CNC, notches y radio seguro $r=112$.
 * **`web/core/cards-renderer.js`:** Renderizado de tarjetas de colección cuadradas de $65 \times 65\text{ mm}$.
 * **`web/app.js`:** Coordinador reactivo `HitTazosApp` enlazando eventos, gestos táctiles y teclado.
@@ -143,7 +145,7 @@ python3 -m http.server 3333
 
 ### Pruebas y compilación
 ```bash
-# Ejecutar suite de pruebas (24 tests unitarios, paridad de versión y auditoría en 4 niveles):
+# Ejecutar suite de pruebas (25 tests unitarios, paridad de versión y auditoría en 4 niveles):
 npm test
 
 # Compilar mazo maestro y actualizar manifest tras editar tarjetas:
