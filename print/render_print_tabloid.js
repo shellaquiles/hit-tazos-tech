@@ -183,38 +183,72 @@ function wrapTextToLines(text, maxCharsPerLine = 28) {
   return lines;
 }
 
-// Genera marcas de corte (crop marks) exteriores de 5mm en las 4 esquinas de una tarjeta
-function generateCropMarksSvg(cutX, cutY, cutW, cutH) {
-  const hL1_x1 = (cutX - BLEED_PT - CROP_LEN_PT).toFixed(2);
-  const hL1_x2 = (cutX - BLEED_PT - CROP_OFFSET_PT).toFixed(2);
-  const hR1_x1 = (cutX + cutW + BLEED_PT + CROP_OFFSET_PT).toFixed(2);
-  const hR1_x2 = (cutX + cutW + BLEED_PT + CROP_LEN_PT).toFixed(2);
+// Genera marcas de corte (crop marks) exteriores de 5mm en el perímetro del pliego
+// (Únicamente en los márgenes exteriores del papel, sin marcas interiores en las calles para proteger las tarjetas al guillotinar)
+function generatePerimeterCropMarksSvg(cols, rows, marginXPt, marginYPt) {
+  const gridWidthPt = cols * CARD_SIZE_PT + (cols - 1) * GUTTER_PT;
+  const gridHeightPt = rows * CARD_SIZE_PT + (rows - 1) * GUTTER_PT;
 
-  const vT1_y1 = (cutY - BLEED_PT - CROP_LEN_PT).toFixed(2);
-  const vT1_y2 = (cutY - BLEED_PT - CROP_OFFSET_PT).toFixed(2);
-  const vB1_y1 = (cutY + cutH + BLEED_PT + CROP_OFFSET_PT).toFixed(2);
-  const vB1_y2 = (cutY + cutH + BLEED_PT + CROP_LEN_PT).toFixed(2);
+  const gridLeft = marginXPt;
+  const gridRight = marginXPt + gridWidthPt;
+  const gridTop = marginYPt;
+  const gridBottom = marginYPt + gridHeightPt;
 
-  const yTop = cutY.toFixed(2);
-  const yBot = (cutY + cutH).toFixed(2);
-  const xLeft = cutX.toFixed(2);
-  const xRight = (cutX + cutW).toFixed(2);
+  // Posiciones de corte de columnas (borde izquierdo y borde derecho de cada columna)
+  const xCutPositions = [];
+  for (let c = 0; c < cols; c++) {
+    const xLeft = marginXPt + c * (CARD_SIZE_PT + GUTTER_PT);
+    const xRight = xLeft + CARD_SIZE_PT;
+    xCutPositions.push(xLeft, xRight);
+  }
 
-  return `      <!-- Marcas de corte (Crop marks 5mm) -->
-      <g stroke="#000000" stroke-width="0.5" stroke-linecap="square">
-        <!-- Top-Left -->
-        <line x1="${hL1_x1}" y1="${yTop}" x2="${hL1_x2}" y2="${yTop}" />
-        <line x1="${xLeft}" y1="${vT1_y1}" x2="${xLeft}" y2="${vT1_y2}" />
-        <!-- Top-Right -->
-        <line x1="${hR1_x1}" y1="${yTop}" x2="${hR1_x2}" y2="${yTop}" />
-        <line x1="${xRight}" y1="${vT1_y1}" x2="${xRight}" y2="${vT1_y2}" />
-        <!-- Bottom-Left -->
-        <line x1="${hL1_x1}" y1="${yBot}" x2="${hL1_x2}" y2="${yBot}" />
-        <line x1="${xLeft}" y1="${vB1_y1}" x2="${xLeft}" y2="${vB1_y2}" />
-        <!-- Bottom-Right -->
-        <line x1="${hR1_x1}" y1="${yBot}" x2="${hR1_x2}" y2="${yBot}" />
-        <line x1="${xRight}" y1="${vB1_y1}" x2="${xRight}" y2="${vB1_y2}" />
-      </g>\n`;
+  // Posiciones de corte de filas (borde superior e inferior de cada fila)
+  const yCutPositions = [];
+  for (let r = 0; r < rows; r++) {
+    const yTop = marginYPt + r * (CARD_SIZE_PT + GUTTER_PT);
+    const yBottom = yTop + CARD_SIZE_PT;
+    yCutPositions.push(yTop, yBottom);
+  }
+
+  // Coordenadas Y para marcas superiores e inferiores (fuera del sangrado de 3mm + 1mm offset)
+  const topY1 = (gridTop - BLEED_PT - CROP_OFFSET_PT).toFixed(2);
+  const topY2 = (gridTop - BLEED_PT - CROP_OFFSET_PT - CROP_LEN_PT).toFixed(2);
+
+  const botY1 = (gridBottom + BLEED_PT + CROP_OFFSET_PT).toFixed(2);
+  const botY2 = (gridBottom + BLEED_PT + CROP_OFFSET_PT + CROP_LEN_PT).toFixed(2);
+
+  // Coordenadas X para marcas izquierdas y derechas (fuera del sangrado de 3mm + 1mm offset)
+  const leftX1 = (gridLeft - BLEED_PT - CROP_OFFSET_PT).toFixed(2);
+  const leftX2 = (gridLeft - BLEED_PT - CROP_OFFSET_PT - CROP_LEN_PT).toFixed(2);
+
+  const rightX1 = (gridRight + BLEED_PT + CROP_OFFSET_PT).toFixed(2);
+  const rightX2 = (gridRight + BLEED_PT + CROP_OFFSET_PT + CROP_LEN_PT).toFixed(2);
+
+  let lines = '';
+
+  // 1. Marcas exteriores superiores (Top margin, apuntando hacia arriba)
+  xCutPositions.forEach(x => {
+    lines += `    <line x1="${x.toFixed(2)}" y1="${topY1}" x2="${x.toFixed(2)}" y2="${topY2}" />\n`;
+  });
+
+  // 2. Marcas exteriores inferiores (Bottom margin, apuntando hacia abajo)
+  xCutPositions.forEach(x => {
+    lines += `    <line x1="${x.toFixed(2)}" y1="${botY1}" x2="${x.toFixed(2)}" y2="${botY2}" />\n`;
+  });
+
+  // 3. Marcas exteriores izquierdas (Left margin, apuntando hacia la izquierda)
+  yCutPositions.forEach(y => {
+    lines += `    <line x1="${leftX1}" y1="${y.toFixed(2)}" x2="${leftX2}" y2="${y.toFixed(2)}" />\n`;
+  });
+
+  // 4. Marcas exteriores derechas (Right margin, apuntando hacia la derecha)
+  yCutPositions.forEach(y => {
+    lines += `    <line x1="${rightX1}" y1="${y.toFixed(2)}" x2="${rightX2}" y2="${y.toFixed(2)}" />\n`;
+  });
+
+  return `  <!-- Marcas de corte perimetrales del pliego (Solo exteriores, sin marcas internas en las calles) -->
+  <g id="marcas_corte_pliego" stroke="#000000" stroke-width="0.5" stroke-linecap="square">
+${lines}  </g>\n`;
 }
 
 const VERSION_PRINT_DIR = path.join(PRINT_DIR, `v${APP_VERSION}`);
@@ -326,6 +360,7 @@ function generateSvgSheets(cards, formatConfig, options) {
   const showMarks = options.crop === 'marks';
   const showGuides = options.crop === 'guides';
   const generatedFiles = [];
+  const sheetCropMarksSvg = showMarks ? generatePerimeterCropMarksSvg(cols, rows, marginXPt, marginYPt) : '';
 
   const paperLabel = formatConfig.shortLabel || formatConfig.label;
 
@@ -380,14 +415,8 @@ function generateSvgSheets(cards, formatConfig, options) {
       const bleedW = (CARD_SIZE_PT + 2 * BLEED_PT).toFixed(2);
       const bleedH = (CARD_SIZE_PT + 2 * BLEED_PT).toFixed(2);
 
-      let marksSvg = '';
-      if (showMarks) {
-        marksSvg = generateCropMarksSvg(cutX, cutY, CARD_SIZE_PT, CARD_SIZE_PT);
-      }
-
       frontCardsSvg += `    <!-- Tarjeta ${numStr} Frente -->
     <g id="carta_${volId}_${hexPart}_frente">
-      ${marksSvg}
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) -->
       <rect x="${bleedX}" y="${bleedY}" width="${bleedW}" height="${bleedH}" fill="${theme.frontBgHex}" />
 
@@ -431,12 +460,12 @@ function generateSvgSheets(cards, formatConfig, options) {
     </rdf:RDF>
   </metadata>
   <g id="encabezado_pliego">
-    <text x="${marginXPt.toFixed(2)}" y="${(marginYPt - 22).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="6.8" font-weight="700" fill="#333333">HIT-TAZOS TECH v${APP_VERSION} — PLIEGO ${s + 1} DE ${totalSheets} [CARA A: FRENTES]</text>
-    <text x="${(marginXPt + gridWidthPt).toFixed(2)}" y="${(marginYPt - 22).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="6.8" font-weight="700" fill="#333333" text-anchor="end">${paperLabel} · shellaquiles.org</text>
-    <text x="${marginXPt.toFixed(2)}" y="${(marginYPt - 12).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777">CORTE TERMINADO: 65 × 65 mm · SANGRADO: 3 mm · CALLE: 6 mm</text>
-    <text x="${(marginXPt + gridWidthPt).toFixed(2)}" y="${(marginYPt - 12).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO (LONG EDGE)</text>
+    <text x="${marginXPt.toFixed(2)}" y="${(marginYPt - 38).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="6.8" font-weight="700" fill="#333333">HIT-TAZOS TECH v${APP_VERSION} — PLIEGO ${s + 1} DE ${totalSheets} [CARA A: FRENTES]</text>
+    <text x="${(marginXPt + gridWidthPt).toFixed(2)}" y="${(marginYPt - 38).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="6.8" font-weight="700" fill="#333333" text-anchor="end">${paperLabel} · shellaquiles.org</text>
+    <text x="${marginXPt.toFixed(2)}" y="${(marginYPt - 28).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777">CORTE TERMINADO: 65 × 65 mm · SANGRADO: 3 mm · CALLE: 6 mm</text>
+    <text x="${(marginXPt + gridWidthPt).toFixed(2)}" y="${(marginYPt - 28).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO (LONG EDGE)</text>
   </g>
-  <g id="tarjetas_frente">
+${sheetCropMarksSvg}  <g id="tarjetas_frente">
 ${frontCardsSvg}  </g>
   <g id="pie_pliego">
     <text x="${(pageWidthPt / 2).toFixed(2)}" y="${(pageHeightPt - 24).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="500" fill="#777777" text-anchor="middle">© 2026 ${ORG_NAME} · Hit-Tazos Tech v${APP_VERSION} · Licencia MIT · Descarga gratuita y actualizaciones en ${ORG_URL}</text>
@@ -505,11 +534,6 @@ ${frontCardsSvg}  </g>
         const bleedW = (CARD_SIZE_PT + 2 * BLEED_PT).toFixed(2);
         const bleedH = (CARD_SIZE_PT + 2 * BLEED_PT).toFixed(2);
 
-        let marksSvg = '';
-        if (showMarks) {
-          marksSvg = generateCropMarksSvg(cutX, cutY, CARD_SIZE_PT, CARD_SIZE_PT);
-        }
-
         backCardsSvg += `    <!-- Tarjeta ${cleanCardNum} Reverso -->
     <g id="carta_${volId}_${hexPart}_reverso">
       <defs>
@@ -518,7 +542,6 @@ ${frontCardsSvg}  </g>
           <stop offset="100%" stop-color="${theme.bottomHex}" />
         </linearGradient>
       </defs>
-      ${marksSvg}
       <!-- Fondo con Sangrado Exterior 3mm (71x71 mm) con degradado vertical oficial -->
       <rect x="${bleedX}" y="${bleedY}" width="${bleedW}" height="${bleedH}" fill="url(#grad_card_${volId}_${hexPart}_s${s + 1})" />
 
@@ -566,12 +589,12 @@ ${frontCardsSvg}  </g>
     </rdf:RDF>
   </metadata>
   <g id="encabezado_pliego">
-    <text x="${marginXPt.toFixed(2)}" y="${(marginYPt - 22).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="6.8" font-weight="700" fill="#333333">HIT-TAZOS TECH v${APP_VERSION} — PLIEGO ${s + 1} DE ${totalSheets} [CARA B: REVERSOS ESPEJADOS]</text>
-    <text x="${(marginXPt + gridWidthPt).toFixed(2)}" y="${(marginYPt - 22).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="6.8" font-weight="700" fill="#333333" text-anchor="end">${paperLabel} · shellaquiles.org</text>
-    <text x="${marginXPt.toFixed(2)}" y="${(marginYPt - 12).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777">CORTE TERMINADO: 65 × 65 mm · SANGRADO: 3 mm · CALLE: 6 mm</text>
-    <text x="${(marginXPt + gridWidthPt).toFixed(2)}" y="${(marginYPt - 12).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO (LONG EDGE)</text>
+    <text x="${marginXPt.toFixed(2)}" y="${(marginYPt - 38).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="6.8" font-weight="700" fill="#333333">HIT-TAZOS TECH v${APP_VERSION} — PLIEGO ${s + 1} DE ${totalSheets} [CARA B: REVERSOS ESPEJADOS]</text>
+    <text x="${(marginXPt + gridWidthPt).toFixed(2)}" y="${(marginYPt - 38).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="6.8" font-weight="700" fill="#333333" text-anchor="end">${paperLabel} · shellaquiles.org</text>
+    <text x="${marginXPt.toFixed(2)}" y="${(marginYPt - 28).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777">CORTE TERMINADO: 65 × 65 mm · SANGRADO: 3 mm · CALLE: 6 mm</text>
+    <text x="${(marginXPt + gridWidthPt).toFixed(2)}" y="${(marginYPt - 28).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="5.4" font-weight="500" fill="#777777" text-anchor="end">DÚPLEX: VOLTEAR POR EL BORDE LARGO (LONG EDGE)</text>
   </g>
-  <g id="tarjetas_reverso">
+${sheetCropMarksSvg}  <g id="tarjetas_reverso">
 ${backCardsSvg}  </g>
   <g id="pie_pliego">
     <text x="${(pageWidthPt / 2).toFixed(2)}" y="${(pageHeightPt - 24).toFixed(2)}" font-family="'Outfit', sans-serif" font-size="5.8" font-weight="500" fill="#777777" text-anchor="middle">© 2026 ${ORG_NAME} · Hit-Tazos Tech v${APP_VERSION} · Licencia MIT · Descarga gratuita y actualizaciones en ${ORG_URL}</text>
@@ -794,4 +817,16 @@ function main() {
   console.log('======================================================\n');
 }
 
-main();
+if (require.main === module) {
+  main();
+}
+
+module.exports = {
+  generatePerimeterCropMarksSvg,
+  FORMAT_CONFIGS,
+  CARD_SIZE_PT,
+  BLEED_PT,
+  GUTTER_PT,
+  CROP_LEN_PT,
+  CROP_OFFSET_PT
+};
