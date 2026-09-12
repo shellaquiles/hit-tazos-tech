@@ -1871,8 +1871,10 @@ export class HitTazosApp {
       const card = document.createElement('a');
       card.className = 'pdf-compact-row';
       const filename = vol.pdfFilename || `hit-tazos-tech-${vol.id}-${vol.slug}.pdf`;
-      const url = `assets/print/${filename}`;
+      const url = vol.pdfPath || `https://github.com/shellaquiles/hit-tazos-tech/releases/latest/download/${filename}`;
       card.setAttribute('href', url);
+      card.setAttribute('target', '_blank');
+      card.setAttribute('rel', 'noopener noreferrer');
       card.setAttribute('download', filename);
 
       card.innerHTML = `

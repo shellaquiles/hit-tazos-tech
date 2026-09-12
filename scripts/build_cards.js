@@ -51,14 +51,15 @@ const volumeList = files.map((file, idx) => {
   const title = catalogVolumes[slug] || slug;
   const cardsCount = data.length;
   const pagesCarta = Math.ceil(cardsCount / 6) * 2;
+  const pdfFilename = `hit-tazos-tech-vol${idx}-${slug}.pdf`;
   return {
     id: `vol${idx}`,
     slug,
     title,
     cardsCount,
     pagesCarta,
-    pdfFilename: `hit-tazos-tech-vol${idx}-${slug}.pdf`,
-    pdfPath: `/assets/print/hit-tazos-tech-vol${idx}-${slug}.pdf`
+    pdfFilename,
+    pdfPath: `https://github.com/shellaquiles/hit-tazos-tech/releases/latest/download/${pdfFilename}`
   };
 });
 
