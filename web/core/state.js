@@ -12,7 +12,7 @@ export class GameState {
     this.currentIndex = 0;
     this.revealedCards = new Set();
     this.playerShelf = [];
-    this.cardFormat = CARD_FORMATS.DISC;
+    this.cardFormat = CARD_FORMATS.CARD;
     this.activeGroup = 'ALL';
     this.soundEnabled = true;
 

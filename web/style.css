@@ -23,16 +23,19 @@
 }
 
 :root {
-  --bg-primary: #f8fafc;
-  --bg-surface: #ffffff;
-  --bg-surface-elevated: #f1f5f9;
-  --bg-card-front: #ffffff;
-  --bg-card-back: #f8fafc;
-  --text-primary: #0f172a;
-  --text-secondary: #334155;
+  --bg-primary: #030712;
+  --bg-surface: #0b1329;
+  --bg-surface-elevated: #111e38;
+  --bg-card-front: #0f172a;
+  --bg-card-back: #0b1329;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
   --text-muted: #64748b;
-  --border-subtle: rgba(0, 0, 0, 0.08);
-  --border-glow: rgba(0, 0, 0, 0.14);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(56, 189, 248, 0.25);
+  --neon-cyan: #38bdf8;
+  --neon-amber: #f59e0b;
+  --neon-orange: #f97316;
 
   --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: 'Space Grotesk', var(--font-sans);
@@ -64,33 +67,32 @@
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--bg-primary);
+  background-color: #030712;
   color: var(--text-primary);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
-  /* Iluminación cálida y limpia de mesa de juego clara (estilo sobremesa/board game real) */
+  /* Iluminación Dark Arcade y mesa de juego azul marino profunda */
   background-image:
-    radial-gradient(ellipse 75% 55% at 50% 15%, rgba(255, 255, 255, 0.95) 0%, transparent 80%),
-    radial-gradient(circle at 50% 0%, rgba(226, 232, 240, 0.65) 0%, transparent 60%);
+    radial-gradient(ellipse 85% 60% at 50% 25%, #0c1836 0%, #030712 100%);
   background-attachment: fixed;
 }
 
 /* Header */
 header {
-  padding: 0.85rem 2rem;
+  padding: 0.75rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--border-subtle);
-  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(3, 7, 18, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .brand {
@@ -281,10 +283,10 @@ header {
 /* Ribbon Scroll Container con Mascarilla de Desvanecimiento Suave */
 .ribbon-wrapper {
   position: relative;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(11, 19, 41, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   width: 100%;
   overflow: hidden;
 }
@@ -319,9 +321,9 @@ header {
 
 /* Píldoras de Baraja (Tazo & Deck Selector Tactile Feel) */
 .ribbon-pill {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  color: #475569;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
   padding: 0.38rem 0.8rem;
   border-radius: 999px;
   font-size: 0.8rem;
@@ -332,7 +334,7 @@ header {
   gap: 0.5rem;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   user-select: none;
   flex-shrink: 0;
 }
@@ -344,10 +346,11 @@ header {
 }
 
 .ribbon-pill:hover {
-  color: #0f172a;
-  border-color: #cbd5e1;
-  background: #f8fafc;
+  color: #ffffff;
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(30, 41, 59, 0.85);
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
 }
 
 .ribbon-pill:hover .pill-icon {
@@ -364,8 +367,8 @@ header {
   font-weight: 700;
   padding: 0.1rem 0.45rem;
   border-radius: 999px;
-  background: #f1f5f9;
-  color: #64748b;
+  background: rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
   transition: all 0.2s ease;
 }
 
@@ -504,134 +507,1338 @@ main {
   display: block;
 }
 
-/* Game Arena Layout */
-.arena-wrapper {
+/* ==========================================================================
+   HIT-TAZOS TECH: EXACT DARK ARCADE 3D GAMEPLAY STYLING (web-ui-preview.jpg)
+   ========================================================================== */
+
+body:has(#view-play.active) {
+  overflow: hidden !important;
+  height: 100vh !important;
+  background: #030712 !important;
+}
+
+body:has(#view-play.active) .app-footer,
+.app-footer {
+  display: none !important;
+}
+
+body:has(#view-play.active) main {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: calc(100vh - 56px) !important;
+  overflow: hidden !important;
+}
+
+#view-play.active {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+}
+
+.brand-version-tag {
+  display: none !important;
+}
+
+/* 1. Header Minimalista Arcade */
+.arcade-header {
+  height: 56px;
+  background: #030712;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
-  min-height: 70vh;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  box-sizing: border-box;
   position: relative;
+  z-index: 50;
+  user-select: none;
 }
 
-.hud-bar {
+.arcade-brand {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  padding: 0.5rem 1.5rem;
-  border-radius: 999px;
-  box-shadow:
-    0 4px 14px rgba(0, 0, 0, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  gap: 0.75rem;
 }
 
-.hud-item {
-  font-size: 0.82rem;
-  color: #64748b;
+.arcade-brand .brand-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.35);
 }
 
-.hud-item strong {
-  font-family: var(--font-mono);
-  color: #0f172a;
+.arcade-title-clean {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.015em;
+  margin: 0;
+  white-space: nowrap;
 }
 
-.hud-streak-item {
-  color: #b45309;
-  background: #fef3c7;
-  padding: 0.2rem 0.65rem;
-  border-radius: 999px;
-  border: 1px solid #fde68a;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+.arcade-nav-center {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
 }
 
-.hud-streak-item.streak-hot {
-  color: #be123c;
-  background: #ffe4e6;
-  border-color: #fecdd3;
-  box-shadow: 0 0 12px rgba(244, 63, 94, 0.25);
-}
-
-/* Tracker visual de tiros/intentos en HUD */
-.hud-attempts-item {
-  color: #0369a1;
-  background: #f0f9ff;
-  padding: 0.2rem 0.65rem;
-  border-radius: 999px;
-  border: 1px solid #bae6fd;
+/* Selector Segmentado de Modo de Juego (Juego vs Explorador) */
+.arcade-mode-switch {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  transition: all 0.25s ease;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 3px;
+  gap: 3px;
+}
+
+.arcade-mode-switch .tab-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.arcade-mode-switch .tab-btn:hover:not(.active) {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.arcade-mode-switch .tab-btn.active {
+  background: #0ea5e9;
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(14, 165, 233, 0.55);
+}
+
+.arcade-mode-switch .tab-btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+.arcade-hud-center {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.05rem;
+}
+
+.hud-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.hud-label-clean {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.hud-score-item strong {
+  color: #38bdf8;
+  font-weight: 800;
+  font-size: 1.15rem;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.45);
+}
+
+.hud-streak-item strong {
+  color: #fb923c;
+  font-weight: 800;
+  font-size: 1.15rem;
+  text-shadow: 0 0 10px rgba(251, 146, 60, 0.45);
 }
 
 .hud-attempts-item strong {
-  font-family: var(--font-mono);
-  color: #0284c7;
+  color: #38bdf8;
   font-weight: 800;
-  min-width: 9px;
-  display: inline-block;
-  text-align: center;
+  font-size: 1.15rem;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.45);
+  transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
-.attempt-visual-dots {
+.hud-attempts-item strong.attempts-critical {
+  color: #ef4444 !important;
+  text-shadow: 0 0 12px rgba(239, 68, 68, 0.75) !important;
+}
+
+.attempt-dots-wrap {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
+  margin-left: 0.35rem;
 }
 
 .attempt-pip {
-  width: 11px;
-  height: 11px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #38bdf8, #0284c7);
-  border: 1.5px solid #0369a1;
-  box-shadow: 0 1px 4px rgba(2, 132, 199, 0.35);
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: radial-gradient(circle at 40% 35%, #bae6fd 0%, #38bdf8 45%, #0284c7 85%, #0369a1 100%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 
+    0 0 8px rgba(56, 189, 248, 0.85),
+    inset 0 1px 2px rgba(255, 255, 255, 0.7),
+    inset 0 0 0 2px rgba(2, 132, 199, 0.75);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-block;
   position: relative;
 }
 
-.attempt-pip::after {
-  content: '';
-  position: absolute;
-  top: 1px;
-  left: 1.5px;
-  right: 1.5px;
-  height: 35%;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 50% 50% 0 0;
-  pointer-events: none;
-}
-
 .attempt-pip.used {
-  background: #e2e8f0;
-  border-color: #cbd5e1;
-  box-shadow: none;
-  opacity: 0.35;
-  transform: scale(0.82);
-}
-.attempt-pip.used::after {
-  display: none;
+  background: radial-gradient(circle at 40% 35%, #334155 0%, #1e293b 100%);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6);
+  opacity: 0.45;
+  filter: grayscale(1);
 }
 
 .attempt-pip.critical {
-  background: linear-gradient(135deg, #fbbf24, #f97316);
-  border-color: #c2410c;
-  box-shadow: 0 0 8px rgba(249, 115, 22, 0.6);
-  animation: pipPulse 1.2s infinite ease-in-out;
+  background: radial-gradient(circle at 40% 35%, #fecaca 0%, #ef4444 50%, #b91c1c 100%);
+  border-color: #fee2e2;
+  box-shadow: 
+    0 0 12px rgba(239, 68, 68, 0.95),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8),
+    inset 0 0 0 2px rgba(185, 28, 28, 0.8);
+  animation: pulseCritical 0.9s infinite alternate ease-in-out;
 }
 
-@keyframes pipPulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.22); opacity: 0.85; }
+@keyframes pulseCritical {
+  0% { transform: scale(1); filter: brightness(1); }
+  100% { transform: scale(1.15); filter: brightness(1.3); }
 }
 
+.streak-badge-fire {
+  color: #fb923c;
+  font-weight: 800;
+  font-size: 0.92rem;
+  margin-left: 0.25rem;
+  white-space: nowrap !important;
+  display: inline-block !important;
+  animation: pulseFire 1.4s infinite alternate ease-in-out;
+}
 
+@keyframes pulseFire {
+  0% { transform: scale(1); filter: brightness(1); }
+  100% { transform: scale(1.05); filter: brightness(1.2); }
+}
+
+.header-right-arcade {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.icon-btn-arcade {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #cbd5e1;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  transition: all 0.15s ease;
+}
+
+.icon-btn-arcade:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.icon-btn-arcade svg {
+  width: 19px;
+  height: 19px;
+}
+
+/* Botón Destacado de Preventa Físico en Cabecera */
+.btn-preorder-header {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.18), rgba(5, 150, 105, 0.28));
+  border: 1px solid rgba(52, 211, 153, 0.45);
+  border-radius: 18px;
+  color: #6ee7b7;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.32rem 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.15);
+  white-space: nowrap;
+}
+
+.btn-preorder-header:hover {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.32), rgba(5, 150, 105, 0.45));
+  border-color: #34d399;
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(52, 211, 153, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-preorder-header svg {
+  width: 15px;
+  height: 15px;
+}
+
+.btn-preorder-header .preorder-badge {
+  background: #10b981;
+  color: #030712;
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 0.08rem 0.38rem;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* Botón Retorno a Mesa de Juego en Explorador */
+.btn-gallery-back-play {
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 10px;
+  color: #38bdf8;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.6rem 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-gallery-back-play:hover {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #38bdf8;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.45);
+}
+
+.btn-gallery-back-play svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Backdrop y Drawer Desplegable */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 7, 18, 0.75);
+  backdrop-filter: blur(6px);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+
+.drawer-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.arcade-tools-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;
+  max-width: 88vw;
+  height: 100vh;
+  height: 100dvh;
+  background: rgba(9, 16, 31, 0.98);
+  backdrop-filter: blur(24px);
+  border-left: 1px solid rgba(56, 189, 248, 0.25);
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.95);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.arcade-tools-drawer.is-open {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.drawer-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #ffffff;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.drawer-header-icon {
+  color: #38bdf8;
+  width: 20px;
+  height: 20px;
+}
+
+.drawer-content {
+  flex: 1;
+  min-height: 0;
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(56, 189, 248, 0.3) transparent;
+}
+
+.drawer-section-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.drawer-mode-switch {
+  display: flex;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.drawer-mode-switch .tab-btn {
+  flex: 1;
+  justify-content: center;
+  padding: 0.6rem;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.drawer-mode-switch .tab-btn.active {
+  background: #0ea5e9;
+  color: #ffffff;
+}
+
+.drawer-actions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.drawer-action-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  color: #e2e8f0;
+  font-family: var(--font-sans);
+  padding: 0.85rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.drawer-action-btn:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(56, 189, 248, 0.35);
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+.drawer-action-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.drawer-action-primary {
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.drawer-action-sub {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.drawer-action-btn.preorder-highlight {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.2));
+  border-color: rgba(52, 211, 153, 0.35);
+  color: #6ee7b7;
+}
+
+.drawer-badge-highlight {
+  background: #10b981;
+  color: #030712;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.15rem 0.45rem;
+  border-radius: 8px;
+}
+
+.drawer-action-btn.btn-danger {
+  color: #f87171;
+  border-color: rgba(248, 113, 113, 0.25);
+}
+
+.drawer-action-btn.btn-danger:hover {
+  background: rgba(248, 113, 113, 0.15);
+  border-color: #f87171;
+  color: #ffffff;
+}
+
+.volume-dropdown-wrapper {
+  position: relative;
+}
+
+.btn-volume-dropdown {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.38rem 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-volume-dropdown:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-volume-dropdown svg {
+  width: 14px;
+  height: 14px;
+  color: #94a3b8;
+}
+
+.volume-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background: #09101f;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 10px;
+  padding: 6px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.85);
+  z-index: 100;
+  min-width: 250px;
+}
+
+.volume-dropdown-menu.show {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.volume-menu-item {
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  color: #cbd5e1;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.volume-menu-item:hover,
+.volume-menu-item.active {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+}
+
+@media (max-width: 1100px) {
+  .arcade-header {
+    padding: 0 1.25rem;
+  }
+  .arcade-nav-center {
+    gap: 1.25rem;
+  }
+  .arcade-hud-center {
+    gap: 1.2rem;
+  }
+  .header-right-arcade {
+    gap: 0.4rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .btn-preorder-header .preorder-badge {
+    display: none;
+  }
+  .arcade-mode-switch {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .arcade-header {
+    height: 48px;
+    padding: 0 0.5rem;
+    gap: 0.35rem;
+  }
+  .arcade-brand {
+    gap: 0;
+    flex-shrink: 0;
+  }
+  .arcade-brand .brand-title,
+  .arcade-brand .brand-version-tag {
+    display: none !important;
+  }
+  .arcade-brand .brand-icon {
+    width: 32px;
+    height: 32px;
+  }
+  .arcade-hud-center {
+    font-size: 0.78rem;
+    gap: 0.45rem;
+    margin: 0 auto;
+    padding: 0 0.2rem;
+  }
+  .arcade-hud-center .hud-stat-item {
+    gap: 0.2rem;
+  }
+  .arcade-hud-center .hud-label-clean {
+    font-size: 0.70rem;
+    color: #94a3b8;
+  }
+  .header-right-arcade {
+    gap: 0.3rem;
+    flex-shrink: 0;
+  }
+  .header-right-arcade .volume-dropdown-wrapper {
+    display: none !important;
+  }
+  .header-right-arcade .icon-btn-arcade {
+    width: 32px;
+    height: 32px;
+  }
+  #btn-print,
+  #btn-help-toggle,
+  .btn-preorder-header {
+    display: none !important;
+  }
+}
+
+/* 2. Mesa Arcade y Cuadrícula de Perspectiva 3D */
+.arcade-table-mat {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: radial-gradient(circle at 50% 38%, #0d1a38 0%, #030712 75%);
+  box-sizing: border-box;
+  padding: 1.2rem 2rem 0;
+}
+
+.table-perspective-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(to right, rgba(56, 189, 248, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.12) 1px, transparent 1px);
+  background-size: 42px 42px;
+  transform: perspective(460px) rotateX(50deg);
+  transform-origin: center bottom;
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 55%, black 20%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 55%, black 20%, transparent 85%);
+  z-index: 0;
+}
+
+/* 3. Escenario Central con Mazos Laterales */
+.arcade-arena-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.2rem;
+  width: 100%;
+  max-width: 1240px;
+  position: relative;
+  z-index: 2;
+  margin-top: 0;
+}
+
+/* 4. Mazos 3D con Grosor Realista de Papel Apilado */
+.arcade-deck-3d {
+  display: block !important;
+  width: 135px;
+  height: 185px;
+  perspective: 900px;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  user-select: none;
+}
+
+/* Base / Bahía de contacto en el tablero para los mazos laterales */
+.arcade-deck-3d::before {
+  content: '';
+  position: absolute;
+  bottom: -22px;
+  left: -10px;
+  right: -10px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse 65% 50% at 50% 50%, rgba(2, 132, 199, 0.22) 0%, rgba(15, 23, 42, 0.7) 48%, transparent 75%);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  box-shadow: 
+    0 10px 24px rgba(0, 0, 0, 0.9),
+    inset 0 0 10px rgba(56, 189, 248, 0.1);
+  transform: perspective(320px) rotateX(60deg);
+  pointer-events: none;
+  z-index: 0;
+  transition: all 0.3s ease;
+}
+
+.arcade-deck-3d:hover::before {
+  background: radial-gradient(ellipse 65% 50% at 50% 50%, rgba(56, 189, 248, 0.35) 0%, rgba(15, 23, 42, 0.8) 52%, transparent 80%);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 
+    0 14px 28px rgba(0, 0, 0, 0.95),
+    0 0 16px rgba(56, 189, 248, 0.3);
+}
+
+.deck-3d-stack {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pile-left .deck-3d-stack {
+  transform: rotateX(24deg) rotateY(16deg) rotateZ(-5deg);
+}
+
+.pile-left:hover .deck-3d-stack {
+  transform: rotateX(20deg) rotateY(12deg) rotateZ(-3deg) translateY(-6px);
+}
+
+.pile-right .deck-3d-stack {
+  transform: rotateX(24deg) rotateY(-16deg) rotateZ(5deg);
+}
+
+.pile-right:hover .deck-3d-stack {
+  transform: rotateX(20deg) rotateY(-12deg) rotateZ(3deg) translateY(-6px);
+}
+
+.deck-top-card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background: #0c1527;
+  border: 1.5px solid rgba(56, 189, 248, 0.35);
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.deck-blueprint-lines {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(56, 189, 248, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.12) 1px, transparent 1px);
+  background-size: 14px 14px;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.deck-card-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.15rem;
+}
+
+.deck-label-main,
+.deck-label-sub {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.14em;
+  line-height: 1.15;
+}
+
+.deck-count-badge {
+  font-size: 0.76rem;
+  color: #94a3b8;
+  font-weight: 600;
+  margin-top: 0.4rem;
+}
+
+.deck-label-discard {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.16em;
+}
+
+.deck-paper-edge-layers {
+  position: absolute;
+  left: 2px;
+  right: -6px;
+  bottom: -32px;
+  height: 36px;
+  border-radius: 0 0 14px 14px;
+  background: repeating-linear-gradient(to bottom, #dcd2bd 0px, #dcd2bd 1px, #a89a7f 1.5px, #c8bc9f 2px, #dcd2bd 3px);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.9);
+  z-index: 1;
+}
+
+.pile-left.is-empty .deck-paper-edge-layers,
+.pile-right.is-empty .deck-paper-edge-layers {
+  display: none !important;
+}
+
+.pile-left.is-empty .deck-top-card-face,
+.pile-right.is-empty .deck-top-card-face {
+  opacity: 0.35;
+  border-style: dashed;
+}
+
+#pile-left-cards,
+#pile-right-cards {
+  display: none !important;
+}
+
+/* ==========================================================================
+   HIT-TAZO: MAZOS LATERALES CIRCULARES 3D (TORRE / TUBO DE TAZOS APILADOS)
+   ========================================================================== */
+body.version-tazo-mode .arcade-deck-3d,
+.arcade-arena-stage.is-disc-mode .arcade-deck-3d {
+  width: 155px;
+  height: 155px;
+  border-radius: 50%;
+}
+
+body.version-tazo-mode .arcade-deck-3d::before,
+.arcade-arena-stage.is-disc-mode .arcade-deck-3d::before {
+  bottom: -28px;
+  left: -6px;
+  right: -6px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+body.version-tazo-mode .arcade-deck-3d .deck-3d-stack,
+.arcade-arena-stage.is-disc-mode .arcade-deck-3d .deck-3d-stack {
+  width: 155px;
+  height: 155px;
+  border-radius: 50%;
+}
+
+body.version-tazo-mode .pile-left .deck-3d-stack,
+.arcade-arena-stage.is-disc-mode .pile-left .deck-3d-stack {
+  transform: rotateX(28deg) rotateY(16deg) rotateZ(-5deg);
+}
+
+body.version-tazo-mode .pile-left:hover .deck-3d-stack,
+.arcade-arena-stage.is-disc-mode .pile-left:hover .deck-3d-stack {
+  transform: rotateX(22deg) rotateY(12deg) rotateZ(-3deg) translateY(-8px);
+}
+
+body.version-tazo-mode .pile-right .deck-3d-stack,
+.arcade-arena-stage.is-disc-mode .pile-right .deck-3d-stack {
+  transform: rotateX(28deg) rotateY(-16deg) rotateZ(5deg);
+}
+
+body.version-tazo-mode .pile-right:hover .deck-3d-stack,
+.arcade-arena-stage.is-disc-mode .pile-right:hover .deck-3d-stack {
+  transform: rotateX(22deg) rotateY(-12deg) rotateZ(3deg) translateY(-8px);
+}
+
+body.version-tazo-mode .deck-top-card-face,
+.arcade-arena-stage.is-disc-mode .deck-top-card-face {
+  border-radius: 50% !important;
+  aspect-ratio: 1 / 1 !important;
+  border: 3.5px solid rgba(56, 189, 248, 0.45) !important;
+  background: radial-gradient(circle at 45% 40%, #1e293b 0%, #0c1527 55%, #030712 100%) !important;
+  box-shadow: 
+    0 12px 28px rgba(0, 0, 0, 0.85),
+    inset 0 2px 4px rgba(255, 255, 255, 0.35),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.7),
+    inset 0 0 0 8px rgba(56, 189, 248, 0.12) !important;
+}
+
+body.version-tazo-mode .pile-right .deck-top-card-face,
+.arcade-arena-stage.is-disc-mode .pile-right .deck-top-card-face {
+  border-color: rgba(148, 163, 184, 0.3) !important;
+  background: radial-gradient(circle at 45% 40%, #1e1b4b 0%, #0f172a 55%, #020617 100%) !important;
+  box-shadow: 
+    0 12px 28px rgba(0, 0, 0, 0.85),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.7),
+    inset 0 0 0 8px rgba(148, 163, 184, 0.1) !important;
+}
+
+body.version-tazo-mode .deck-paper-edge-layers,
+.arcade-arena-stage.is-disc-mode .deck-paper-edge-layers {
+  left: 0 !important;
+  right: 0 !important;
+  bottom: -32px !important;
+  height: 38px !important;
+  border-radius: 0 0 50% 50% / 0 0 24px 24px !important;
+  background: repeating-linear-gradient(to bottom, #38bdf8 0px, #0284c7 2px, #0f172a 2.5px, #1e293b 4.5px, #38bdf8 5px) !important;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.95) !important;
+}
+
+body.version-tazo-mode .pile-right .deck-paper-edge-layers,
+.arcade-arena-stage.is-disc-mode .pile-right .deck-paper-edge-layers {
+  background: repeating-linear-gradient(to bottom, #475569 0px, #334155 2px, #0f172a 2.5px, #1e293b 4.5px, #475569 5px) !important;
+}
+
+body.version-tazo-mode .deck-blueprint-lines,
+.arcade-arena-stage.is-disc-mode .deck-blueprint-lines {
+  border-radius: 50% !important;
+  mask-image: radial-gradient(circle at 50% 50%, black 60%, transparent 95%) !important;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 60%, transparent 95%) !important;
+}
+
+/* 5. Chasis de la Tarjeta Central Horizontal Biselada */
+.arcade-card-stage {
+  width: 580px;
+  max-width: 90vw;
+  height: 260px;
+  position: relative;
+  perspective: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.arcade-card-stage.is-disc-mode,
+.arcade-card-stage:has(.disc-physical),
+.arcade-card-stage:has(.tazo-disc) {
+  height: 340px;
+}
+
+.arcade-card-stage .disc-physical,
+.arcade-card-stage .tazo-physical,
+.arcade-card-stage .tazo-disc,
+.arcade-card-stage .disc {
+  width: 340px !important;
+  height: 340px !important;
+  min-width: 340px !important;
+  min-height: 340px !important;
+  max-width: 340px !important;
+  max-height: 340px !important;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 50% !important;
+  margin: 0 auto !important;
+  flex-shrink: 0 !important;
+}
+
+.arcade-card-stage .hittazos-card-3d {
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: auto !important;
+  border-radius: 28px !important;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: pointer;
+}
+
+.arcade-card-stage .card-sheet {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 28px !important;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-sizing: border-box;
+}
+
+.arcade-card-stage .sheet-front.hittazos-matte-card {
+  background: linear-gradient(145deg, #18233c 0%, #0a101e 100%) !important;
+  border: 2px solid rgba(255, 255, 255, 0.13) !important;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.25), 
+    inset 0 -2px 6px rgba(0, 0, 0, 0.7), 
+    0 24px 50px rgba(0, 0, 0, 0.8) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 2rem 3rem !important;
+}
+
+.arcade-card-stage .card-topbar-minimal,
+.arcade-card-stage .card-footbar-minimal {
+  display: none !important;
+}
+
+.arcade-card-stage .clue-stage-pure {
+  margin: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  width: 100%;
+}
+
+.arcade-card-stage .clue-quote {
+  font-family: var(--font-display, 'Outfit', -apple-system, sans-serif) !important;
+  font-size: 1.68rem !important;
+  font-weight: 700 !important;
+  line-height: 1.36 !important;
+  color: #ffffff !important;
+  text-align: center !important;
+  max-width: 520px !important;
+  margin: 0 auto !important;
+  letter-spacing: -0.01em !important;
+}
+
+.arcade-card-stage .clue-quote strong {
+  color: var(--card-accent, var(--hittazos-bg, #38bdf8)) !important;
+  font-weight: 800 !important;
+  text-shadow: 0 0 16px color-mix(in srgb, var(--card-accent, var(--hittazos-bg, #38bdf8)) 50%, transparent) !important;
+}
+
+.arcade-card-stage .sheet-back.hittazos-matte-card {
+  background: linear-gradient(145deg, #18233c 0%, #0a101e 100%) !important;
+  border: 2px solid rgba(255, 255, 255, 0.13) !important;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.25), 
+    inset 0 -2px 6px rgba(0, 0, 0, 0.7), 
+    0 24px 50px rgba(0, 0, 0, 0.8) !important;
+  transform: rotateY(180deg);
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 1.8rem 2.2rem !important;
+}
+
+.arcade-card-stage .back-author-title {
+  color: #94a3b8 !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+}
+
+.arcade-card-stage .year-digits-hero {
+  font-size: 3.4rem !important;
+  font-weight: 800 !important;
+  color: #38bdf8 !important;
+  text-shadow: 0 0 25px rgba(56, 189, 248, 0.6) !important;
+  letter-spacing: 0.05em !important;
+}
+
+.arcade-card-stage .year-mystery-box {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  margin: 0.2rem 0;
+}
+
+.arcade-card-stage .year-center-stage.is-hidden .year-mystery-box {
+  display: flex !important;
+  animation: pulseMystery 2.6s infinite ease-in-out;
+}
+
+.arcade-card-stage .year-mystery-digits {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif) !important;
+  font-size: 3.6rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.16em !important;
+  line-height: 1 !important;
+  color: #38bdf8 !important;
+  text-shadow: 
+    0 0 18px rgba(56, 189, 248, 0.85),
+    0 0 36px rgba(56, 189, 248, 0.45) !important;
+  text-align: center !important;
+  opacity: 0.95 !important;
+  margin-left: 0.16em;
+}
+
+.arcade-card-stage .year-reveal-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+  background: rgba(15, 23, 42, 0.94) !important;
+  color: #f8fafc !important;
+  padding: 0.32rem 0.95rem !important;
+  border-radius: 9999px !important;
+  border: 1.5px solid #38bdf8 !important;
+  font-family: var(--font-sans, 'Outfit', sans-serif) !important;
+  font-size: 0.74rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  box-shadow: 
+    0 0 16px rgba(56, 189, 248, 0.4),
+    0 4px 12px rgba(0, 0, 0, 0.5) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.arcade-card-stage .year-center-stage:hover .year-reveal-badge {
+  background: #0284c7 !important;
+  border-color: #7dd3fc !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 
+    0 0 24px rgba(56, 189, 248, 0.85),
+    0 6px 16px rgba(0, 0, 0, 0.7) !important;
+}
+
+.arcade-card-stage .back-trivia-phrase {
+  font-size: 0.95rem !important;
+  line-height: 1.4 !important;
+  color: #cbd5e1 !important;
+  text-align: center !important;
+  max-width: 480px !important;
+}
+
+.arcade-card-stage .back-trivia-phrase strong {
+  color: var(--card-accent, var(--hittazos-bg, #38bdf8)) !important;
+  font-weight: 700 !important;
+}
+
+/* 6. Arc Chrono Dial & Botón LANZAR TIRO */
+.arc-dial-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 3;
+  margin-top: -12px;
+}
+
+.arc-action-bottom,
+.arc-action-top {
+  margin-top: 0.35rem;
+  margin-bottom: 0.15rem;
+  z-index: 10;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-slam-arc {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.24) 0%, rgba(234, 88, 12, 0.4) 100%) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1.5px solid #f59e0b !important;
+  box-shadow: 
+    0 0 20px rgba(245, 158, 11, 0.45),
+    inset 0 1px 2px rgba(254, 240, 138, 0.4) !important;
+  border-radius: 9999px !important;
+  color: #fffbeb !important;
+  font-family: var(--font-display, 'Outfit', sans-serif) !important;
+  font-weight: 800 !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.1em !important;
+  padding: 0.52rem 2.2rem !important;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-slam-arc:hover:not(:disabled) {
+  background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%) !important;
+  color: #0f172a !important;
+  border-color: #fef08a !important;
+  box-shadow: 
+    0 0 32px rgba(245, 158, 11, 0.85),
+    0 4px 14px rgba(0, 0, 0, 0.4) !important;
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn-slam-arc:active:not(:disabled) {
+  transform: translateY(1px) scale(0.98);
+}
+
+.btn-slam-arc:disabled {
+  opacity: 0.4 !important;
+  border-color: #64748b !important;
+  color: #94a3b8 !important;
+  box-shadow: none !important;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.chrono-arc-container {
+  width: 560px;
+  max-width: 92vw;
+  height: 112px;
+  position: relative;
+}
+
+.arc-dial-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.arc-rail-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.arc-tick {
+  stroke-width: 7;
+  stroke-linecap: round;
+  transition: stroke 0.12s ease, filter 0.12s ease;
+}
+
+.arc-tick.tick-cyan {
+  stroke: #38bdf8;
+  stroke-width: 7;
+  filter: drop-shadow(0 0 7px rgba(56, 189, 248, 1));
+}
+
+.arc-tick.tick-amber {
+  stroke: #f59e0b;
+  stroke-width: 8;
+  filter: drop-shadow(0 0 10px rgba(245, 158, 11, 1));
+}
+
+.arc-tick.tick-inactive {
+  stroke: #22324e;
+  stroke-width: 6;
+}
+
+.arc-knob-pill {
+  fill: url(#amber-knob-gradient);
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 14px rgba(245, 158, 11, 1));
+  cursor: grab;
+}
+
+.arc-knob-group:hover .arc-knob-pill {
+  filter: drop-shadow(0 0 18px rgba(245, 158, 11, 1));
+}
+
+.arc-knob-notch {
+  stroke: rgba(0, 0, 0, 0.45);
+  stroke-width: 1.5;
+}
+
+.arc-year-display-wrap {
+  margin-top: -24px;
+  margin-bottom: 0.15rem;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+}
+
+.arc-selected-year {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.35);
+}
+
+.arc-rail-label {
+  fill: #cbd5e1 !important;
+  font-family: var(--font-display, 'Outfit', sans-serif) !important;
+  font-size: 16.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.03em !important;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.9)) !important;
+}
+
+.guess-feedback-row {
+  min-height: 24px;
+  margin-top: 4px;
+}
+
+.guess-result-pill {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
 
 /* ==========================================================================
    HIT-TAZOS TECH: ARQUITECTURA TAZO CIRCULAR 3D (DISCO NOVENTERO COLECCIONABLE)
@@ -1212,6 +2419,9 @@ main {
 
 .dial-action-row {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn-slam {
@@ -1390,18 +2600,19 @@ main {
   transform: translateY(1px);
 }
 
-/* Bandeja de Línea de Tiempo del Jugador (Carril de Cartas de Mesa) */
+/* Bandeja de Línea de Tiempo del Jugador (Carril de Mesa 3D y Rack Físico) */
 .timeline-shelf {
   width: 100%;
-  max-width: 900px;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
+  max-width: 960px;
+  background: rgba(11, 19, 41, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 18px;
   padding: 1.15rem 1.4rem;
   box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    0 15px 35px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   position: relative;
+  margin-top: 1.5rem;
 }
 
 .shelf-header {
@@ -1410,16 +2621,16 @@ main {
   align-items: center;
   margin-bottom: 0.65rem;
   font-size: 0.84rem;
-  color: #64748b;
+  color: #94a3b8;
 }
 
 .shelf-title-wrap {
   display: flex;
   align-items: center;
   gap: 0.45rem;
-  color: #ffffff;
+  color: #f8fafc;
   font-weight: 700;
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   font-family: var(--font-display);
   margin: 0;
   line-height: 1.2;
@@ -1430,16 +2641,16 @@ main {
   color: #f59e0b;
 }
 
-/* Asegurar contraste y grosor del contador en el estante */
+/* Contador en el estante con brillo sutil */
 #shelf-counter {
   font-family: var(--font-mono, monospace);
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   font-weight: 800;
-  color: #0f172a !important; /* Negro tinta sobre fondo blanco */
-  background: #f1f5f9;
-  padding: 0.18rem 0.6rem;
+  color: #38bdf8 !important;
+  background: rgba(56, 189, 248, 0.12);
+  padding: 0.18rem 0.65rem;
   border-radius: 999px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
 .shelf-progress-track {
@@ -1454,31 +2665,235 @@ main {
 .shelf-progress-fill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #f59e0b, #10b981);
+  background: linear-gradient(90deg, #38bdf8, #f59e0b, #10b981);
   border-radius: 999px;
   transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .shelf-cards-row {
   display: flex;
-  gap: 0.75rem;
+  justify-content: center;
+  gap: 1.25rem;
   overflow-x: auto;
-  padding: 0.5rem 0.2rem 0.8rem 0.2rem;
-  min-height: 100px;
+  padding: 0.75rem 0.8rem 1rem 0.8rem;
+  min-height: 120px;
   align-items: center;
   position: relative;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 
-/* Riel de línea de tiempo detrás de las cartas */
+.shelf-cards-row::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Riel de línea de tiempo detrás de las cartas (oculto para no interferir con las fichas) */
 .shelf-cards-row::before {
-  content: '';
+  display: none !important;
+}
+
+/* Tarjeta Vertical en Rack 3D (Estilo web-ui-preview.jpg) */
+.shelf-rack-card {
+  flex: 0 0 136px;
+  height: 142px;
+  background: linear-gradient(165deg, #111d38 0%, #080e1e 100%);
+  border: 1.5px solid rgba(56, 189, 248, 0.25);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.7rem 0.55rem;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-sizing: border-box;
+}
+
+.shelf-rack-card:hover {
+  transform: translateY(-6px) scale(1.05);
+  border-color: #38bdf8;
+  box-shadow: 0 14px 26px rgba(56, 189, 248, 0.35);
+}
+
+.shelf-rack-card.active {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 2px #f59e0b, 0 12px 24px rgba(245, 158, 11, 0.4);
+}
+
+.shelf-rack-year-badge {
+  border: 2px solid #f59e0b;
+  background: rgba(245, 158, 11, 0.15);
+  color: #fef08a;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.45);
+  border-radius: 7px;
+  padding: 0.15rem 0.65rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.03em;
+}
+
+.shelf-rack-card:nth-child(even) .shelf-rack-year-badge {
+  border-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  color: #e0f2fe;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.45);
+}
+
+.shelf-rack-title {
+  font-size: 0.76rem;
+  color: #cbd5e1;
+  text-align: center;
+  line-height: 1.25;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-top: auto;
+  width: 100%;
+}
+
+.shelf-rack-title strong {
+  color: #f8fafc;
+  font-weight: 700;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.shelf-rack-title span {
+  font-size: 0.68rem;
+  color: #94a3b8;
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   HIT-TAZO: FICHAS / DISCOS CIRCULARES EN LA LÍNEA DE TIEMPO (ESTANTE)
+   ========================================================================== */
+.shelf-tazo-disc-chip {
+  flex: 0 0 118px !important;
+  width: 118px !important;
+  height: 118px !important;
+  max-width: 118px !important;
+  max-height: 118px !important;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 50% !important;
+  background: radial-gradient(
+    circle at 50% 45%,
+    color-mix(in srgb, var(--tazo-color, #e86328) 85%, #000000 15%) 0%,
+    color-mix(in srgb, var(--tazo-color, #e86328) 95%, #000000 5%) 55%,
+    color-mix(in srgb, var(--tazo-color, #e86328) 60%, #000000 40%) 100%
+  ) !important;
+  border: 3.5px solid color-mix(in srgb, var(--tazo-color, #e86328) 70%, #ffffff 30%) !important;
+  box-shadow: 
+    0 10px 22px rgba(0, 0, 0, 0.75),
+    inset 0 1.5px 3px rgba(255, 255, 255, 0.45),
+    inset 0 -2.5px 5px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 6px rgba(0, 0, 0, 0.35) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0.55rem 0.6rem !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+  transition: transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.24s ease !important;
+  overflow: hidden !important;
+}
+
+.shelf-tazo-disc-chip:hover {
+  transform: translateY(-8px) scale(1.08) !important;
+  border-color: #fef08a !important;
+  box-shadow: 
+    0 16px 30px rgba(0, 0, 0, 0.85),
+    0 0 20px color-mix(in srgb, var(--tazo-color, #38bdf8) 65%, transparent) !important;
+}
+
+.shelf-tazo-disc-chip.active {
+  transform: translateY(-8px) scale(1.12) !important;
+  border-color: #f59e0b !important;
+  box-shadow: 
+    0 0 0 3px #f59e0b, 
+    0 14px 28px rgba(245, 158, 11, 0.6) !important;
+}
+
+/* Micro muescas CNC perimetrales en los tazos del estante */
+.shelf-tazo-notches {
   position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.06);
-  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.shelf-tazo-notches span {
+  position: absolute;
+  background: #0f172a;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.shelf-tazo-notches span:nth-child(1) { top: 2px; left: calc(50% - 1px); width: 2px; height: 5px; }
+.shelf-tazo-notches span:nth-child(2) { bottom: 2px; left: calc(50% - 1px); width: 2px; height: 5px; }
+.shelf-tazo-notches span:nth-child(3) { left: 2px; top: calc(50% - 1px); width: 5px; height: 2px; }
+.shelf-tazo-notches span:nth-child(4) { right: 2px; top: calc(50% - 1px); width: 5px; height: 2px; }
+
+.shelf-tazo-year-badge {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 1.08rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+  background: rgba(15, 23, 42, 0.78);
+  padding: 0.15rem 0.6rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin-bottom: 0.3rem;
+  z-index: 2;
+}
+
+.shelf-tazo-title {
+  font-size: 0.68rem;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  z-index: 2;
+  width: 90%;
+}
+
+.shelf-tazo-title strong {
+  color: #ffffff;
+  font-weight: 800;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.shelf-tazo-title span {
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .shelf-card-chip,
@@ -3208,268 +4623,461 @@ main {
   }
 
   /* 3. ESCENARIO DEL DISCO Y PROPORCIONES */
+  .arcade-table-mat {
+    height: 100% !important;
+    min-height: 0 !important;
+    padding: 0.35rem 0.5rem 0.35rem 0.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 0.2rem !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
   .arena-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.55rem;
-    min-height: auto;
-    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.2rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   .disc-arena-stage,
-  .tazo-arena-stage {
-    order: 2;
-    margin: 0.2rem auto 0.4rem auto;
+  .tazo-arena-stage,
+  .arcade-arena-stage {
+    order: 1 !important;
+    flex: 1 1 auto !important;
+    margin: 0 auto !important;
+    gap: 0 !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 0 !important;
   }
 
+  .arcade-deck-3d,
+  .desktop-card-pile {
+    display: none !important;
+  }
+
+  /* Tamaño adaptable del escenario del disco / carta en móvil */
+  .arcade-card-stage.is-disc-mode,
+  .arcade-card-stage:has(.disc-physical),
+  .arcade-card-stage:has(.tazo-disc),
   .disc-stage,
   .tazo-stage {
-    width: var(--card-width) !important;
-    height: var(--card-height) !important;
-    margin: 0 auto;
+    width: min(280px, 76vw, 36vh) !important;
+    height: min(280px, 76vw, 36vh) !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    margin: 0 auto !important;
   }
 
-  /* Núcleo central del disco con más aire para el texto */
+  .arcade-card-stage .disc-physical,
+  .arcade-card-stage .tazo-physical,
+  .arcade-card-stage .tazo-disc,
+  .arcade-card-stage .disc,
+  .disc-physical,
+  .tazo-physical,
+  .disc,
+  .tazo-disc {
+    width: min(280px, 76vw, 36vh) !important;
+    height: min(280px, 76vw, 36vh) !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+  }
+
+  /* Modo Hit-Cards rectangular en móvil */
+  .arcade-card-stage:not(.is-disc-mode):not(:has(.disc-physical)):not(:has(.tazo-disc)) {
+    width: min(340px, 92vw) !important;
+    height: min(210px, 28vh) !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+  }
+
+  .arcade-card-stage .sheet-front.hittazos-matte-card,
+  .arcade-card-stage .sheet-back.hittazos-matte-card {
+    padding: 0.85rem 1rem !important;
+  }
+
+  .arcade-card-stage .clue-quote {
+    font-size: clamp(0.92rem, 3.6vw, 1.1rem) !important;
+    line-height: 1.32 !important;
+  }
+
+  .arcade-card-stage .back-author-title {
+    font-size: 0.82rem !important;
+  }
+
+  .arcade-card-stage .year-digits-hero {
+    font-size: 2.5rem !important;
+  }
+
+  .arcade-card-stage .year-mystery-digits {
+    font-size: 2.2rem !important;
+  }
+
+  .arcade-card-stage .back-trivia-phrase {
+    font-size: 0.78rem !important;
+    line-height: 1.28 !important;
+  }
+
+  /* Núcleo central del disco con más aire para el texto y sin desbordar el arco */
   .disc-core-front,
   .tazo-core-front {
-    width: 82% !important;
-    height: 82% !important;
-    padding: 0.45rem !important;
+    width: 71% !important;
+    height: 71% !important;
+    padding: 0.35rem 0.45rem !important;
+    overflow: hidden !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
   }
 
   .disc-hito-prose,
   .tazo-hito-prose {
-    font-size: clamp(0.74rem, 2.7vw, 0.80rem) !important;
-    line-height: 1.32 !important;
-    max-width: 95% !important;
+    font-size: clamp(0.70rem, 2.3vw, 0.82rem) !important;
+    line-height: 1.26 !important;
+    max-width: 90% !important;
+    max-height: 92% !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    text-align: center !important;
   }
 
   /* Texto en el aro curvado */
   .ring-label, .ring-sub {
     font-family: var(--font-sans, 'Outfit', sans-serif) !important;
-    font-size: 8.2px !important;
-    letter-spacing: 0.35px !important;
-    font-weight: 700 !important;
+    font-size: 8px !important;
+    letter-spacing: 0.4px !important;
+    font-weight: 800 !important;
     fill: #ffffff !important;
+    opacity: 0.95 !important;
   }
 
   .kbd-shortcut-hint {
     display: none;
   }
 
-  /* Tipografía y márgenes internos en cartas */
-  .hittazos-matte-card {
-    padding: 0.85rem 0.95rem 0.7rem 0.95rem !important;
-  }
-
-  .card-topbar-minimal {
-    padding-bottom: 0.3rem;
-  }
-
-  .group-badge-tiny {
-    font-size: 0.6rem;
-  }
-
-  .category-badge-tiny {
-    font-size: 0.62rem;
-  }
-
-  .clue-quote {
-    font-size: clamp(0.78rem, 3.5vw, 0.96rem) !important;
-    line-height: 1.35 !important;
-  }
-
-  .clue-stage-pure {
-    padding: 0.3rem 0;
-  }
-
-  .year-digits-hero {
-    font-size: clamp(3.2rem, 15vw, 4.4rem) !important;
-  }
-
-  .year-mystery-digits {
-    font-size: clamp(2.8rem, 13vw, 4.0rem) !important;
-  }
-
-  .back-author-title {
-    font-size: clamp(0.85rem, 3.6vw, 0.98rem) !important;
-  }
-
-  .back-trivia-phrase {
-    font-size: clamp(0.74rem, 3.0vw, 0.82rem) !important;
-    line-height: 1.32 !important;
-    -webkit-line-clamp: 4;
-  }
-
-  /* Feedback de intento y guía de gestos como separador natural */
-  .mobile-gesture-guide {
-    order: 3;
+  /* 4. CHRONO-DIAL Y LANZADOR MÓVIL */
+  .dial-launcher-wrapper,
+  .arc-dial-wrapper {
+    order: 2 !important;
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: 340px !important;
     display: flex !important;
-    align-items: center;
-    justify-content: center;
-    gap: 0.55rem;
-    font-size: 0.65rem;
-    color: #64748b;
-    padding: 0.15rem 0.5rem;
-    margin: 0.1rem auto 0.45rem auto;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.12rem !important;
+    margin: 0 auto !important;
+    padding: 0 0.4rem !important;
+    box-sizing: border-box !important;
   }
 
-  /* 4. CHRONO-DIAL Y LANZADOR MÓVIL (Con holgura para evitar solapamientos) */
-  .dial-launcher-wrapper {
-    order: 4;
-    max-width: 320px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8rem;
-    margin: 0.25rem auto 0.6rem auto;
-    padding: 0 0.5rem;
-    box-sizing: border-box;
+  .chrono-arc-container {
+    width: 100% !important;
+    max-width: 320px !important;
+    height: 84px !important;
+    position: relative !important;
   }
 
-  .dial-value-badge {
-    padding: 0.25rem 1.2rem;
-    border-radius: 12px;
-    box-shadow:
-      0 2px 8px rgba(0, 0, 0, 0.06),
-      0 0 12px rgba(2, 132, 199, 0.1);
+  .chrono-arc-container .arc-dial-svg {
+    max-width: 310px !important;
+    height: auto !important;
+    margin: 0 auto !important;
   }
 
-  .badge-title {
-    font-size: 0.55rem;
-    letter-spacing: 0.1em;
+  .arc-rail-label {
+    font-size: 14px !important;
   }
 
-  .badge-year {
-    font-size: 1.65rem;
-    line-height: 1.05;
+  .arc-year-display-wrap {
+    margin-top: -16px !important;
+    margin-bottom: 0.1rem !important;
+    display: flex !important;
+    justify-content: center !important;
+    position: relative !important;
+    z-index: 5 !important;
   }
 
-  .dial-slider-container {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    width: 100%;
-    padding: 0.2rem 0;
+  .arc-selected-year {
+    font-size: 1.85rem !important;
   }
 
-  .slider-boundary-year {
-    font-size: 0.72rem;
+  .dial-action-row,
+  .arc-action-bottom {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-top: 0.15rem !important;
+    margin-bottom: 0.1rem !important;
+    z-index: 10 !important;
   }
 
-  .disc-year-slider,
-  .tazo-year-slider {
-    height: 10px;
-  }
-
-  .disc-year-slider::-webkit-slider-thumb,
-  .tazo-year-slider::-webkit-slider-thumb {
-    width: 24px;
-    height: 24px;
-  }
-
-  .btn-slam {
-    width: 100%;
-    padding: 0.65rem 1rem;
-    font-size: 0.90rem;
-    border-radius: 12px;
+  .btn-slam,
+  .btn-slam-arc {
+    width: auto !important;
+    min-width: 175px !important;
+    max-width: 240px !important;
+    padding: 0.44rem 1.6rem !important;
+    font-size: 0.88rem !important;
+    border-radius: 9999px !important;
+    margin: 0 auto !important;
   }
 
   .guess-feedback-row {
-    min-height: 20px;
+    min-height: 20px !important;
+    margin-top: 2px !important;
   }
 
-  /* 5. BANDEJA DE FICHAS GANADAS (LÍNEA DE TIEMPO) VISIBLE SIN SCROLL */
-  .timeline-shelf {
-    order: 5;
-    width: 100%;
-    max-width: 350px;
-    padding: 0.45rem 0.75rem;
-    border-radius: 12px;
-    box-sizing: border-box;
-    margin: 0.4rem auto 0.6rem auto;
-    background: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  .guess-result-pill {
+    font-size: 0.78rem !important;
+    padding: 0.2rem 0.65rem !important;
+  }
+
+  /* 5. BANDEJA DE LÍNEA DE TIEMPO (ESTANTE INFERIOR) */
+  .timeline-shelf,
+  .timeline-shelf-arcade,
+  #timeline-shelf {
+    order: 3 !important;
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: 360px !important;
+    padding: 0.35rem 0.55rem !important;
+    border-radius: 14px !important;
+    box-sizing: border-box !important;
+    margin: auto auto 0.25rem auto !important;
+    background: rgba(11, 19, 41, 0.78) !important;
+    border: 1px solid rgba(56, 189, 248, 0.22) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
   }
 
   .shelf-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.25rem;
-    font-size: 0.72rem;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 0.25rem !important;
+    font-size: 0.72rem !important;
   }
 
   .shelf-title-wrap {
-    font-size: 0.76rem;
-    gap: 0.35rem;
-  }
-
-  .shelf-title-wrap span {
-    font-weight: 700;
+    font-size: 0.76rem !important;
+    gap: 0.35rem !important;
   }
 
   #shelf-counter {
     font-size: 0.70rem !important;
-    color: #0f172a !important;
-  }
-
-  /* Ajuste de profundidad de muescas para no pisar el nuevo radio del texto */
-  .disc-notches span:nth-child(1),
-  .tazo-notches span:nth-child(1) {
-    top: -5px;
-    height: 12px;
-  }
-  .disc-notches span:nth-child(2),
-  .tazo-notches span:nth-child(2) {
-    bottom: -5px;
-    height: 12px;
+    color: #38bdf8 !important;
   }
 
   .shelf-progress-track {
-    height: 3.5px;
-    margin-bottom: 0.35rem;
+    display: none !important;
   }
 
   .shelf-cards-row {
-    min-height: 52px;
-    padding: 0.2rem 0;
-    gap: 0.45rem;
-    -webkit-overflow-scrolling: touch;
-    touch-action: pan-x;
+    min-height: 66px !important;
+    padding: 0.25rem 0.75rem !important;
+    gap: 0.55rem !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
   }
 
-  .shelf-card-chip,
-  .shelf-disc-chip,
-  .shelf-tazo-chip {
-    width: 46px;
-    height: 46px;
-    min-width: 46px;
-    border: 2px solid #ffffff;
-    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.2);
+  .shelf-cards-row::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
   }
 
-  .shelf-year,
-  .shelf-disc-year,
-  .shelf-tazo-year {
-    font-size: 0.75rem;
-    line-height: 1;
+  .shelf-cards-row::before {
+    display: none !important;
   }
 
-  .shelf-id,
-  .shelf-disc-id,
-  .shelf-tazo-id {
-    font-size: 0.50rem;
-    line-height: 1;
+  /* Fichas Tazo en estante móvil */
+  .shelf-tazo-disc-chip {
+    flex: 0 0 54px !important;
+    width: 54px !important;
+    height: 54px !important;
+    min-width: 54px !important;
+    max-width: 54px !important;
+    max-height: 54px !important;
+    border-width: 2px !important;
+    padding: 0.15rem !important;
   }
 
-  .shelf-empty-prompt {
-    font-size: 0.66rem;
-    padding: 0.25rem;
-    line-height: 1.25;
+  .shelf-tazo-year-badge {
+    font-size: 0.72rem !important;
+    padding: 1px 4px !important;
+    margin-bottom: 2px !important;
+    border-radius: 4px !important;
   }
+
+  .shelf-tazo-title {
+    font-size: 0.52rem !important;
+    line-height: 1.1 !important;
+  }
+
+  .shelf-tazo-title span,
+  .shelf-rack-title span,
+  .shelf-tazo-domain {
+    display: none !important;
+  }
+
+  /* Fichas Tarjeta en estante móvil */
+  .shelf-rack-card {
+    flex: 0 0 68px !important;
+    width: 68px !important;
+    height: 76px !important;
+    min-width: 68px !important;
+    padding: 0.3rem 0.2rem !important;
+  }
+
+  .shelf-rack-year-badge {
+    font-size: 0.76rem !important;
+    padding: 1px 4px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .shelf-rack-title {
+    font-size: 0.54rem !important;
+    line-height: 1.15 !important;
+  }
+}
+
+/* Teléfonos y vistas de baja altura (<= 640px de altura, como 455x554 o landscape) */
+@media (max-height: 640px) and (max-width: 768px) {
+  .arcade-header {
+    height: 42px !important;
+  }
+
+  .arcade-table-mat {
+    padding: 0.2rem 0.4rem !important;
+    gap: 0.12rem !important;
+    justify-content: space-between !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .arcade-card-stage.is-disc-mode,
+  .arcade-card-stage:has(.disc-physical),
+  .arcade-card-stage:has(.tazo-disc),
+  .disc-stage,
+  .tazo-stage,
+  .arcade-card-stage .disc-physical,
+  .arcade-card-stage .tazo-physical,
+  .arcade-card-stage .tazo-disc,
+  .arcade-card-stage .disc,
+  .disc-physical,
+  .tazo-physical,
+  .disc,
+  .tazo-disc {
+    width: min(215px, 62vw, 36vh) !important;
+    height: min(215px, 62vw, 36vh) !important;
+  }
+
+  .arcade-card-stage,
+  .arcade-card-stage .hittazos-card-3d {
+    height: min(150px, 25vh) !important;
+    min-height: 130px !important;
+  }
+
+  .arcade-card-stage .clue-quote {
+    font-size: clamp(0.76rem, 2.5vh, 0.92rem) !important;
+    line-height: 1.25 !important;
+  }
+
+  .disc-hito-prose,
+  .tazo-hito-prose {
+    font-size: clamp(0.66rem, 2.1vh, 0.78rem) !important;
+    line-height: 1.22 !important;
+    max-width: 90% !important;
+    max-height: 92% !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .chrono-arc-container {
+    height: 68px !important;
+  }
+
+  .chrono-arc-container .arc-dial-svg {
+    max-width: 270px !important;
+  }
+
+  .arc-year-display-wrap {
+    margin-top: -14px !important;
+  }
+
+  .arc-selected-year {
+    font-size: 1.6rem !important;
+  }
+
+  .btn-slam,
+  .btn-slam-arc {
+    padding: 0.35rem 1.4rem !important;
+    font-size: 0.82rem !important;
+    margin: 0 auto !important;
+  }
+
+  .guess-feedback-row {
+    min-height: 18px !important;
+    margin-top: 1px !important;
+  }
+
+  .timeline-shelf,
+  .timeline-shelf-arcade,
+  #timeline-shelf {
+    margin: 0.2rem auto 0.35rem auto !important;
+    padding: 0.25rem 0.4rem !important;
+  }
+
+  .shelf-cards-row {
+    min-height: 52px !important;
+  }
+
+  .shelf-tazo-disc-chip {
+    flex: 0 0 50px !important;
+    width: 50px !important;
+    height: 50px !important;
+    min-width: 50px !important;
+    max-width: 50px !important;
+    max-height: 50px !important;
+  }
+
+  .shelf-rack-card {
+    flex: 0 0 58px !important;
+    width: 58px !important;
+    height: 60px !important;
+    min-width: 58px !important;
+    padding: 0.2rem 0.15rem !important;
+  }
+
+  .shelf-rack-title span {
+    display: none !important;
+  }
+
+  .shelf-rack-title strong {
+    font-size: 0.55rem !important;
+    line-height: 1.15 !important;
+    -webkit-line-clamp: 2 !important;
+  }
+}
 
   /* 6. CONTROLES RÁPIDOS INFERIORES EN UNA SOLA FILA */
   .disc-nav-cluster,

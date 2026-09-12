@@ -8,8 +8,10 @@
 .tazo-physical,
 .disc,
 .tazo-disc {
-  width: 100%;
-  height: 100%;
+  width: 340px;
+  height: 340px;
+  max-width: 340px;
+  max-height: 340px;
   aspect-ratio: 1 / 1;
   position: relative;
   border-radius: 50%;
@@ -17,8 +19,9 @@
   cursor: pointer;
   transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
   box-shadow:
-    0 20px 40px -12px rgba(15, 23, 42, 0.28),
-    0 0 0 1px rgba(0, 0, 0, 0.06);
+    0 24px 50px -10px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  margin: 0 auto;
 }
 
 .disc-physical.is-flipped,
@@ -385,49 +388,52 @@
   shape-rendering: geometricPrecision;
 }
 
-/* 4. Textos en arco perimetral: Rediseño exacto del nuevo dial (Blanco puro, negrita, micro-relieve) */
+/* 4. Textos en arco perimetral: Alto contraste, semibold/bold nítido y micro-sombra */
 .ring-label, .ring-sub {
   font-family: var(--font-sans, 'Outfit', sans-serif) !important;
-  font-size: 9.2px !important;
-  font-weight: 700 !important;
+  font-size: 8.5px !important;
+  font-weight: 800 !important;
   fill: #ffffff !important;
-  stroke: none !important;
-  stroke-width: 0 !important;
-  paint-order: normal !important;
-  letter-spacing: 0.25px !important;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.75)) !important;
+  stroke: rgba(0, 0, 0, 0.65) !important;
+  stroke-width: 0.6px !important;
+  paint-order: stroke fill !important;
+  letter-spacing: 0.4px !important;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.9)) !important;
   text-shadow: none !important;
-  opacity: 1 !important;
+  opacity: 0.95 !important;
 }
 
-/* 2. Núcleo Anverso: superficie oscura de alto contraste con margen respecto al arco */
+/* 2. Núcleo Anverso: superficie amplia de alto contraste con espacio para que el texto respire */
 .disc-core-front,
 .tazo-core-front {
   position: relative;
   z-index: 10;
-  width: 70%;
-  height: 70%;
+  width: 71%;
+  height: 71%;
   border-radius: 50%;
   background: var(--tazo-front-bg, #111524) !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.75), 0 2px 8px rgba(0, 0, 0, 0.35);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.85), 0 2px 10px rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0.75rem;
+  padding: 0.6rem 0.8rem;
+  overflow: hidden;
   box-sizing: border-box;
 }
 
 .disc-hito-prose,
 .tazo-hito-prose {
   font-family: var(--font-sans, 'Outfit', sans-serif);
-  font-size: clamp(0.84rem, 2.5vw, 0.98rem);
+  font-size: clamp(0.78rem, 2.3vw, 0.96rem);
   color: #ffffff !important;
   font-weight: 500 !important;
-  line-height: 1.45 !important;
+  line-height: 1.38 !important;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important;
   max-width: 90%;
+  max-height: 92%;
+  overflow: hidden;
 }
 
 .disc-hito-prose strong,
@@ -453,14 +459,17 @@
 .tazo-core-back {
   position: relative;
   z-index: 10;
-  width: 72%;
-  height: 72%;
+  width: 70%;
+  height: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 0.18rem;
   text-align: center;
-  padding: 0.45rem 0.5rem;
+  padding: 0.35rem 0.45rem;
+  overflow: hidden;
+  border-radius: 50%;
   box-sizing: border-box;
 }
 
@@ -468,16 +477,16 @@
 .disc-back-author,
 .tazo-back-author {
   font-family: var(--font-sans, 'Outfit', sans-serif);
-  font-size: clamp(0.88rem, 2.6vw, 1.02rem);
+  font-size: clamp(0.72rem, 2.2vw, 0.84rem);
   font-weight: 700;
   color: var(--tazo-text, #111111) !important;
   letter-spacing: -0.01em;
   text-shadow: none !important;
   filter: none !important;
-  max-width: 90%;
-  line-height: 1.25;
+  max-width: 86%;
+  line-height: 1.15;
   text-wrap: balance;
-  margin-top: 0.1rem;
+  margin: 0;
 }
 
 .disc-back-author em,
@@ -500,8 +509,8 @@
   justify-content: center;
   cursor: pointer;
   user-select: none;
-  margin: 0.1rem 0;
-  min-height: 3.6rem;
+  margin: 0;
+  min-height: 2.2rem;
   transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -543,16 +552,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.35rem;
   background: rgba(15, 23, 42, 0.92);
   color: #f8fafc;
-  padding: 0.55rem 1.15rem;
+  padding: 0.32rem 0.85rem;
   border-radius: 9999px;
   border: 1.5px solid var(--disc-accent, #38bdf8);
   font-family: var(--font-display, 'Space Grotesk', sans-serif);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   box-shadow:
     0 4px 16px rgba(0, 0, 0, 0.7),
@@ -646,15 +655,19 @@
 .tazo-back-lore {
   font-family: var(--font-sans, 'Outfit', sans-serif);
   font-style: italic;
-  font-size: clamp(0.76rem, 2.2vw, 0.86rem);
-  line-height: 1.38;
+  font-size: clamp(0.60rem, 1.8vw, 0.72rem);
+  line-height: 1.22;
   color: var(--tazo-text, #111111) !important;
   font-weight: 500;
-  max-width: 90%;
+  max-width: 88%;
   text-shadow: none !important;
   filter: none !important;
   text-wrap: pretty;
-  margin-bottom: 0.1rem;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .disc-back-lore strong,
@@ -665,3 +678,175 @@
   text-shadow: none !important;
   filter: none !important;
 }
+
+/* ==========================================================================
+   OPTIMIZACIONES MÓVILES (SMARTPHONES Y PANTALLAS PEQUEÑAS)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .disc-physical,
+  .tazo-physical,
+  .disc,
+  .tazo-disc {
+    width: min(280px, 76vw, 36vh) !important;
+    height: min(280px, 76vw, 36vh) !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+  }
+
+  .disc-core-front,
+  .tazo-core-front {
+    width: 71% !important;
+    height: 71% !important;
+    padding: 0.4rem 0.5rem !important;
+    overflow: hidden !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+  }
+
+  .disc-hito-prose,
+  .tazo-hito-prose {
+    font-size: clamp(0.72rem, 2.3vw, 0.86rem) !important;
+    line-height: 1.28 !important;
+    max-width: 90% !important;
+    max-height: 92% !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .ring-label, .ring-sub {
+    font-size: 8px !important;
+    letter-spacing: 0.4px !important;
+    font-weight: 800 !important;
+    fill: #ffffff !important;
+    opacity: 0.95 !important;
+  }
+
+  .disc-core-back,
+  .tazo-core-back {
+    width: 70% !important;
+    height: 70% !important;
+    padding: 0.35rem 0.45rem !important;
+    overflow: hidden !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.2rem !important;
+  }
+
+  .disc-back-author,
+  .tazo-back-author {
+    font-size: clamp(0.72rem, 2.2vw, 0.84rem) !important;
+    line-height: 1.15 !important;
+    max-width: 86% !important;
+  }
+
+  .year-scratch-badge {
+    padding: 0.3rem 0.75rem !important;
+    font-size: 0.70rem !important;
+  }
+
+  .disc-year-giant,
+  .tazo-year-giant {
+    font-size: 2.1rem !important;
+    margin: 0 !important;
+  }
+
+  .disc-back-lore,
+  .tazo-back-lore {
+    font-size: clamp(0.60rem, 1.8vw, 0.70rem) !important;
+    line-height: 1.2 !important;
+    max-width: 88% !important;
+  }
+}
+
+@media (max-height: 640px) and (max-width: 768px) {
+  .disc-physical,
+  .tazo-physical,
+  .disc,
+  .tazo-disc,
+  .arcade-card-stage.is-disc-mode,
+  .arcade-card-stage:has(.disc-physical),
+  .arcade-card-stage:has(.tazo-disc),
+  .disc-stage,
+  .tazo-stage {
+    width: min(215px, 62vw, 36vh) !important;
+    height: min(215px, 62vw, 36vh) !important;
+  }
+
+  .disc-core-front,
+  .tazo-core-front {
+    width: 71% !important;
+    height: 71% !important;
+    padding: 0.28rem 0.38rem !important;
+    overflow: hidden !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+  }
+
+  .disc-hito-prose,
+  .tazo-hito-prose {
+    font-size: clamp(0.66rem, 2.1vh, 0.78rem) !important;
+    line-height: 1.22 !important;
+    max-width: 90% !important;
+    max-height: 92% !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .ring-label, .ring-sub {
+    font-size: 7.5px !important;
+    letter-spacing: 0.35px !important;
+    font-weight: 800 !important;
+    fill: #ffffff !important;
+    opacity: 0.95 !important;
+  }
+
+  .disc-core-back,
+  .tazo-core-back {
+    width: 70% !important;
+    height: 70% !important;
+    padding: 0.25rem 0.35rem !important;
+    overflow: hidden !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.15rem !important;
+  }
+
+  .disc-back-author,
+  .tazo-back-author {
+    font-size: clamp(0.68rem, 2vh, 0.78rem) !important;
+    line-height: 1.12 !important;
+    max-width: 86% !important;
+  }
+
+  .year-scratch-badge {
+    padding: 0.25rem 0.65rem !important;
+    font-size: 0.66rem !important;
+  }
+
+  .disc-year-giant,
+  .tazo-year-giant {
+    font-size: 1.8rem !important;
+    margin: 0 !important;
+  }
+
+  .disc-back-lore,
+  .tazo-back-lore {
+    font-size: clamp(0.56rem, 1.7vh, 0.66rem) !important;
+    line-height: 1.16 !important;
+    max-width: 88% !important;
+  }
+}
+
+
