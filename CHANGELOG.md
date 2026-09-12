@@ -18,6 +18,10 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 - **Drawer de Navegación Lateral y Cabecera Enfocada**:
   - Menú lateral deslizante a toda altura (`#drawer-menu`) con accesos directos a Modo Explorador, Guía de Juego, Imprimir & Play, Preventa física de barajas y repositorio GitHub.
   - Cabecera despejada conservando acceso rápido a alternar formato (Hit-Tazo vs. Hit-Cards), marcador reactivo de puntos y racha (*On Fire*).
+- **Imposición Profesional y Marcas de Corte Perimetrales (`print/render_print_tabloid.js`)**:
+  - Eliminación de marcas de corte internas en las calles intermedias (*gutters* de 6 mm) para evitar riesgos de filetes negros al corte en guillotina industrial.
+  - Implementación de marcas de corte perimetrales de 5 mm exclusivamente en los márgenes exteriores del pliego (`generatePerimeterCropMarksSvg`), manteniendo el interior limpio.
+  - Suite de pruebas unitarias automatizadas (`tests/print_imposition.test.js`) con validación de geometría en Carta y Tabloide.
 - **Gamificación Arcade y Micro-Detalles**:
   - Punteros de tiros disponibles (`.attempt-pip`) transformados en micro-tazos 3D con aro metálico, bisel reflectante y núcleo azul neón.
   - Botón "LANZAR TIRO" rediseñado con degradado neón ámbar/naranja translúcido, desenfoque de fondo (*backdrop-filter: blur*) y feedback activo al presionar.
@@ -28,6 +32,9 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
   - Texto curvado en arcos sobre radio seguro $r=112$ con tipografía blanca pura de alto contraste, trazo oscuro perimetral (`stroke`) y sombra profunda para legibilidad inmediata sobre cualquier paleta cromática.
   - Compactación del escenario central eliminando áreas muertas y reduciendo separación vertical con los controles.
   - Centrado equilibrado de las tarjetas ganadas en la línea de tiempo (`justify-content: center`).
+- **Alineación Flexbox y Layout Arcade Móvil**:
+  - Centrado responsivo de las filas de acción y botones principales mediante Flexbox.
+  - Optimización de proporciones, tipografía y respiro visual en pantallas móviles para el modo Hit-Tazo y el nuevo dial continuo.
 
 ### Corregido
 - **Legibilidad y Contraste de Dígitos Ocultos ("????")**:
