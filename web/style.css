@@ -1691,6 +1691,10 @@ body.version-tazo-mode .deck-blueprint-lines,
   margin-bottom: 0.15rem;
   z-index: 10;
   position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn-slam-arc {
@@ -2415,6 +2419,9 @@ body.version-tazo-mode .deck-blueprint-lines,
 
 .dial-action-row {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn-slam {
@@ -4809,6 +4816,10 @@ body.version-tazo-mode .deck-blueprint-lines,
 
   .dial-action-row,
   .arc-action-bottom {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     margin-top: 0.15rem !important;
     margin-bottom: 0.1rem !important;
     z-index: 10 !important;
@@ -4822,6 +4833,7 @@ body.version-tazo-mode .deck-blueprint-lines,
     padding: 0.44rem 1.6rem !important;
     font-size: 0.88rem !important;
     border-radius: 9999px !important;
+    margin: 0 auto !important;
   }
 
   .guess-feedback-row {
@@ -5020,6 +5032,7 @@ body.version-tazo-mode .deck-blueprint-lines,
   .btn-slam-arc {
     padding: 0.35rem 1.4rem !important;
     font-size: 0.82rem !important;
+    margin: 0 auto !important;
   }
 
   .guess-feedback-row {
