@@ -191,7 +191,7 @@ npm test
 # Scripts individuales si se requiere depuración granular:
 npm run version:check   # Comprueba coherencia de VERSION
 npm run audit           # Valida las 576 tarjetas contra Data Contract y anti-spoilers
-npm run test:unit       # Ejecuta los 25 tests unitarios en Node.js (tests/*.test.js)
+npm run test:unit       # Ejecuta los 28 tests unitarios en Node.js (tests/*.test.js)
 
 # Paso 2: Compilación de baraja maestra y actualización de manifest
 npm run build
