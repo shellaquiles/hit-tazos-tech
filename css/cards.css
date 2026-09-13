@@ -1,0 +1,622 @@
+/* ==========================================================================
+   HIT-TAZOS TECH: ESTILOS DEDICADOS PARA HIT-CARDS (TARJETAS CUADRADAS 65x65MM)
+   Tacto Mate de Sobremesa 350g, Diagramación Editorial y Ficha Técnica
+   ========================================================================== */
+
+/* La tarjeta cuadrada clásica Hit-Cards (65x65mm) */
+.hittazos-card-3d {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  border-radius: var(--card-radius, 18px);
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+  box-shadow:
+    0 20px 40px -12px rgba(15, 23, 42, 0.28),
+    0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.hittazos-card-3d.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.disc-stage:active .hittazos-card-3d,
+.tazo-stage:active .hittazos-card-3d,
+.card-perspective-stage:active .hittazos-card-3d {
+  box-shadow:
+    0 8px 18px -4px rgba(15, 23, 42, 0.22),
+    0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.hittazos-card-3d .card-sheet {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--card-radius, 18px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-sizing: border-box;
+}
+
+.hittazos-card-3d .sheet-front {
+  transform: rotateY(0deg);
+}
+
+.hittazos-card-3d .sheet-back {
+  transform: rotateY(180deg);
+}
+
+/* Soporte específico Firefox Gecko para flip 3D en Hit-Cards */
+@supports (-moz-appearance: none) {
+  .hittazos-card-3d.is-flipped .sheet-front {
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+  .hittazos-card-3d:not(.is-flipped) .sheet-back {
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+  .hittazos-card-3d.is-flipped .sheet-back {
+    visibility: visible !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    z-index: 10 !important;
+  }
+  .hittazos-card-3d:not(.is-flipped) .sheet-front {
+    visibility: visible !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    z-index: 10 !important;
+  }
+}
+
+.hittazos-matte-card {
+  background: var(--card-bg-gradient, var(--hittazos-bg, var(--card-bg, #e86328))) !important;
+  color: #111111;
+  padding: 1.25rem 1.3rem 1.0rem 1.3rem;
+  border-radius: var(--card-radius, 28px);
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.15),
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    0 24px 48px -12px rgba(0, 0, 0, 0.5) !important;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.hittazos-matte-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  filter: url(#paper-grain);
+  opacity: 0.13;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+/* 1. FRONT FACE: Editorial limpia (Header + Divider + Centered Clue + Corner Meta) */
+.sheet-front.hittazos-matte-card {
+  background: var(--hittazos-front-bg, var(--card-front-bg, #111524)) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.13) !important;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    0 24px 48px -12px rgba(0, 0, 0, 0.55) !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-topbar-minimal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  position: relative;
+  z-index: 2;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 0.5rem;
+  width: 100%;
+}
+
+.group-badge-tiny {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-transform: uppercase;
+  color: var(--hittazos-bg, var(--card-bg, #38bdf8));
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.group-badge-tiny svg {
+  width: 13px;
+  height: 13px;
+}
+
+.category-badge-tiny {
+  color: #a0aec0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.7rem;
+  line-height: 1.3;
+  text-align: left;
+  white-space: normal;
+  display: block;
+}
+
+.clue-stage-pure {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  padding: 1.0rem 0.2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.clue-quote {
+  font-family: var(--font-sans);
+  font-size: 1.08rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  text-align: left;
+  width: 100%;
+}
+
+.clue-quote strong {
+  color: var(--hittazos-bg, var(--card-bg, #38bdf8)) !important;
+  font-weight: 800;
+  text-shadow: 0 2px 10px color-mix(in srgb, var(--hittazos-bg, var(--card-bg, #38bdf8)) 45%, transparent) !important;
+}
+
+.clue-quote em {
+  font-style: italic;
+  color: inherit;
+}
+
+.clue-quote code {
+  font-family: var(--font-mono, monospace);
+  background: rgba(0, 0, 0, 0.4);
+  color: var(--hittazos-bg, var(--card-bg, #38bdf8)) !important;
+  padding: 0.14rem 0.45rem;
+  border-radius: 5px;
+  border: 1px solid color-mix(in srgb, var(--hittazos-bg, var(--card-bg, #38bdf8)) 40%, transparent) !important;
+  font-size: 0.88em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Footbar en ambas caras */
+.card-footbar-minimal {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  z-index: 2;
+  padding-top: 0.35rem;
+  width: 100%;
+}
+
+.sheet-front .corner-meta-left {
+  font-family: var(--font-sans);
+  font-size: 0.45rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.sheet-front .corner-meta-right {
+  font-family: var(--font-display);
+  font-size: 0.45rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.flip-pill {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.flip-pill:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.04);
+}
+
+.flip-pill svg {
+  width: 11px;
+  height: 11px;
+}
+
+/* 2. BACK FACE: Pure Harmonic Proportions */
+.sheet-back.hittazos-matte-card {
+  background: var(--card-bg-gradient, var(--hittazos-bg, var(--card-bg, #e86328))) !important;
+  color: #111111 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Autor / Creador: Centrado, peso 600, sin cursiva */
+.card-back-top {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.1rem 0.4rem;
+}
+
+.back-author-title {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #111111 !important;
+  letter-spacing: -0.01em;
+  font-style: normal;
+  max-width: 95%;
+}
+
+.back-author-title em {
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Año: Centro absoluto, interactivo (oculto por defecto para adivinar), negro puro */
+.year-center-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  margin: 0;
+  cursor: pointer;
+  user-select: none;
+  pointer-events: auto !important;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.year-center-stage:hover {
+  transform: scale(1.035);
+}
+
+.year-digits-hero {
+  font-family: var(--font-display);
+  font-size: 5.6rem;
+  font-weight: 900;
+  letter-spacing: -1.8px;
+  line-height: 0.85;
+  color: #111111 !important;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* Estado Oculto (Misterio) */
+.year-center-stage.is-hidden .year-digits-hero {
+  display: none !important;
+}
+
+.year-mystery-box {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  pointer-events: none;
+}
+
+.year-center-stage.is-hidden .year-mystery-box {
+  display: flex;
+  animation: pulseMystery 2.8s infinite ease-in-out;
+}
+
+.year-mystery-digits {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 4rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  color: #38bdf8 !important;
+  text-shadow: 
+    0 0 18px rgba(56, 189, 248, 0.8),
+    0 0 36px rgba(56, 189, 248, 0.45) !important;
+  text-align: center;
+  opacity: 0.95;
+  pointer-events: none;
+  margin-left: 0.16em;
+}
+
+.year-reveal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(15, 23, 42, 0.95);
+  color: #f8fafc;
+  padding: 0.35rem 1rem;
+  pointer-events: none;
+  border-radius: 9999px;
+  border: 1.5px solid #38bdf8;
+  font-family: var(--font-sans, 'Outfit', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: 
+    0 0 14px rgba(56, 189, 248, 0.4),
+    0 4px 12px rgba(0, 0, 0, 0.6);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.year-center-stage:hover .year-reveal-badge {
+  background: #0284c7;
+  border-color: #7dd3fc;
+  color: #ffffff;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 
+    0 0 22px rgba(56, 189, 248, 0.8),
+    0 6px 16px rgba(0, 0, 0, 0.7);
+}
+
+@keyframes pulseMystery {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.4));
+  }
+  50% {
+    transform: scale(1.03);
+    filter: drop-shadow(0 0 22px rgba(56, 189, 248, 0.85));
+  }
+}
+
+.year-reveal-badge i,
+.year-reveal-badge svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Animación de Revelado */
+.year-center-stage.is-revealed .year-digits-hero {
+  display: block;
+  animation: revealPop 0.42s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Curiosidad / Lore: Abajo, centrado, cursiva elegante, negro puro */
+.card-back-bottom {
+  text-align: center;
+  padding: 0 0.5rem 0.2rem 0.5rem;
+  position: relative;
+  z-index: 2;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-trivia-phrase {
+  font-family: var(--font-sans);
+  font-style: italic;
+  font-size: 0.88rem;
+  line-height: 1.42;
+  color: #111111 !important;
+  font-weight: 400;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.back-trivia-phrase strong {
+  font-weight: 700;
+  font-style: italic;
+  color: inherit;
+}
+
+.back-trivia-phrase em {
+  font-style: italic;
+  color: inherit;
+}
+
+.back-trivia-phrase code {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 0.85em;
+  background: rgba(0, 0, 0, 0.08);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+/* Metadatos de esquinas reverso: discretos, sutiles y sin protagonismo */
+.sheet-back .corner-meta-left {
+  font-family: var(--font-sans);
+  color: rgba(0, 0, 0, 0.25) !important;
+  font-size: 0.45rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.sheet-back .corner-meta-right {
+  font-family: var(--font-display);
+  color: rgba(0, 0, 0, 0.25) !important;
+  font-size: 0.45rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   ARCADE ARENA OVERRIDE: WIDE HORIZONTAL CHASSIS CARD (web-ui-preview.jpg)
+   ========================================================================== */
+.arcade-card-stage {
+  width: 580px !important;
+  max-width: 90vw !important;
+  height: 260px !important;
+  aspect-ratio: auto !important;
+}
+
+.arcade-card-stage .hittazos-card-3d {
+  width: 580px !important;
+  max-width: 90vw !important;
+  height: 260px !important;
+  aspect-ratio: auto !important;
+  border-radius: 28px !important;
+}
+
+.arcade-card-stage .card-sheet {
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: auto !important;
+  border-radius: 28px !important;
+  box-sizing: border-box !important;
+}
+
+.arcade-card-stage .sheet-front.hittazos-matte-card {
+  background: linear-gradient(145deg, #18233c 0%, #0a101e 100%) !important;
+  border: 2px solid rgba(255, 255, 255, 0.13) !important;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.25), 
+    inset 0 -2px 6px rgba(0, 0, 0, 0.7), 
+    0 24px 50px rgba(0, 0, 0, 0.8) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 2.2rem 3rem !important;
+}
+
+.arcade-card-stage .card-topbar-minimal,
+.arcade-card-stage .card-footbar-minimal {
+  display: none !important;
+}
+
+.arcade-card-stage .clue-stage-pure {
+  margin: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.arcade-card-stage .clue-quote {
+  font-family: var(--font-display, 'Outfit', -apple-system, sans-serif) !important;
+  font-size: 1.68rem !important;
+  font-weight: 700 !important;
+  line-height: 1.36 !important;
+  color: #ffffff !important;
+  text-align: center !important;
+  max-width: 520px !important;
+  margin: 0 auto !important;
+  letter-spacing: -0.01em !important;
+}
+
+.arcade-card-stage .clue-quote strong {
+  color: var(--card-accent, var(--hittazos-bg, #38bdf8)) !important;
+  font-weight: 800 !important;
+  text-shadow: 0 0 16px color-mix(in srgb, var(--card-accent, var(--hittazos-bg, #38bdf8)) 50%, transparent) !important;
+}
+
+/* ==========================================================================
+   OPTIMIZACIONES MÓVILES PARA HIT-CARDS (<= 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .arcade-card-stage,
+  .arcade-card-stage .hittazos-card-3d {
+    width: min(340px, 92vw) !important;
+    max-width: 92vw !important;
+    height: min(200px, 30vh) !important;
+    min-height: 150px !important;
+    border-radius: 18px !important;
+  }
+
+  .arcade-card-stage .card-sheet {
+    border-radius: 18px !important;
+  }
+
+  .arcade-card-stage .sheet-front.hittazos-matte-card {
+    padding: 0.75rem 1rem !important;
+    border-radius: 18px !important;
+  }
+
+  .arcade-card-stage .clue-quote {
+    font-size: clamp(0.84rem, 3.2vw, 1.05rem) !important;
+    line-height: 1.32 !important;
+    max-width: 96% !important;
+  }
+
+  .arcade-card-stage .sheet-back.hittazos-matte-card {
+    padding: 0.75rem 1rem !important;
+    border-radius: 18px !important;
+  }
+
+  .arcade-card-stage .back-author-title {
+    font-size: 0.82rem !important;
+  }
+
+  .arcade-card-stage .year-digits-hero {
+    font-size: 2.3rem !important;
+  }
+
+  .arcade-card-stage .year-mystery-digits {
+    font-size: 2rem !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  .arcade-card-stage .back-trivia-phrase {
+    font-size: 0.74rem !important;
+    line-height: 1.25 !important;
+  }
+}
+
+@media (max-height: 640px) and (max-width: 768px) {
+  .arcade-card-stage,
+  .arcade-card-stage .hittazos-card-3d {
+    width: min(340px, 92vw) !important;
+    max-width: 92vw !important;
+    height: min(155px, 26vh) !important;
+    min-height: 130px !important;
+  }
+
+  .arcade-card-stage .sheet-front.hittazos-matte-card,
+  .arcade-card-stage .sheet-back.hittazos-matte-card {
+    padding: 0.55rem 0.85rem !important;
+  }
+
+  .arcade-card-stage .clue-quote {
+    font-size: clamp(0.78rem, 2.7vw, 0.95rem) !important;
+    line-height: 1.28 !important;
+  }
+}
+
