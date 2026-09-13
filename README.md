@@ -1,26 +1,36 @@
-# Hit-Tazos Tech 🕹️💻
+<p align="center">
+  <img src="web/assets/og-cover.png" alt="Hit-Tazos Tech — Juego de Cartas y Trivia Cronológica para Programadores y Desarrolladores (576 Cartas)" width="100%">
+</p>
 
-[![Version](https://img.shields.io/badge/version-1.1.0-orange.svg?style=flat-square)](./CHANGELOG.md)
+# Hit-Tazos Tech — Juego de Cartas y Trivia Cronológica Técnica
+
+[![Version](https://img.shields.io/badge/version-1.1.1-orange.svg?style=flat-square)](./CHANGELOG.md)
+[![Cards](https://img.shields.io/badge/cards-576%20canon-blue.svg?style=flat-square)](#-contenido-del-mazo-576-cartas-en-8-volúmenes)
+[![Editorial Audit](https://img.shields.io/badge/editorial%20audit-4--level%20100%25-brightgreen.svg?style=flat-square)](./data/audit.json)
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](./LICENSE)
-[![Python](https://img.shields.io/badge/python-3.8%2B-3776AB.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![Node](https://img.shields.io/badge/node-%3E%3D18-339933.svg?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Python](https://img.shields.io/badge/python-3.8%2B-3776AB.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 
-Juego de trivia y orden cronológico sobre historia de la computación, software libre, sistemas, IA, silicio y el ecosistema Python. 
+**Hit-Tazos Tech** es un juego independiente de trivia cronológica técnica que desafía a desarrolladores de software, sysadmins, entusiastas del software libre y hackers a ordenar en el tiempo los hitos más legendarios de la computación. 
 
-Funciona como aplicación web interactiva en el navegador y como juego de cartas físico de 576 tarjetas coleccionables.
+Inspirado en la dinámica social de juegos de sobremesa como *Timeline* y *Hitster*, pero reimaginado con **576 tarjetas rigurosamente investigadas y auditadas en 4 niveles** (Kernel de Linux, C, Python, Cypherpunks, Arquitectura de Microprocesadores, Redes Unix, Sistemas Distribuidos, Cloud y Cultura Hacker).
+
+Cuenta con soporte nativo para **dos formatos de visualización:**
+* 💿 **Hit-Tazo:** Discos físicos 3D noventeros con muescas de ensamble CNC y dial retroiluminado.
+* 🃏 **Hit-Cards:** Tarjetas cuadradas de sobremesa contemporáneas de **$65 \times 65\text{ mm}$**.
 
 ---
 
-## 🎮 Jugar en línea
+## 🎮 Jugar en línea (Web 3D sin instalación)
 
-Pruébalo directo en el navegador sin instalar nada:
+Pruébalo directo en el navegador sin registrarte ni instalar nada:
 
-👉 **[shellaquiles.github.io/hit-tazos-tech](https://shellaquiles.github.io/hit-tazos-tech/)**
+👉 **[Jugar en Línea Gratis: shellaquiles.github.io/hit-tazos-tech](https://shellaquiles.github.io/hit-tazos-tech/?utm_source=github&utm_medium=readme&utm_campaign=hero)**
 
 La versión web incluye:
 * Selector de formato: **Tazo circular 3D** o **Carta cuadrada** ($65 \times 65\text{ mm}$).
-* Partida interactiva con dial de años, pistas por proximidad (frío/tibio/caliente) y sonido retro vía Web Audio API.
-* Catálogo completo con buscador en tiempo real y vista en abanico.
+* Partida interactiva con dial de años, pistas cualitativas anti-spoiler (frío/tibio/caliente) y audio procedural retro.
+* Catálogo completo con buscador difuso en tiempo real y vista en abanico.
 
 ---
 
@@ -67,7 +77,7 @@ El juego es libre bajo licencia MIT y puedes descargar los archivos listos para 
 Las cartas están diseñadas en formato cuadrado de **$65 \times 65\text{ mm}$** con esquinas redondeadas ($r=3\text{ mm}$), pensadas para imprimirse en cartulina de **$350\text{ g}$** con barniz mate anti-reflejante.
 
 ### Archivos PDF oficiales para imprenta (Print & Play)
-Los PDFs vectoriales oficiales con marcas de corte, sangrado de +3 mm y reversos espejados están disponibles para descarga directa en la [**Última Release Oficial (v1.1.0)**](https://github.com/shellaquiles/hit-tazos-tech/releases/latest):
+Los PDFs vectoriales oficiales con marcas de corte, sangrado de +3 mm y reversos espejados están disponibles para descarga directa en la [**Última Release Oficial (v1.1.1)**](https://github.com/shellaquiles/hit-tazos-tech/releases/latest):
 
 * 📦 **[Descarga de los 8 Volúmenes en PDF (Tamaño Carta)](https://github.com/shellaquiles/hit-tazos-tech/releases/latest)**: 6 cartas por pliego (65×65 mm c/u), optimizados para impresión dúplex.
 * 📐 Formatos profesionales multi-pliego disponibles para compilación local:
@@ -145,7 +155,7 @@ python3 -m http.server 3333
 
 ### Pruebas y compilación
 ```bash
-# Ejecutar suite de pruebas (25 tests unitarios, paridad de versión y auditoría en 4 niveles):
+# Ejecutar suite de pruebas (28 tests unitarios, paridad de versión y auditoría en 4 niveles):
 npm test
 
 # Compilar mazo maestro y actualizar manifest tras editar tarjetas:

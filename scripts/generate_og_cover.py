@@ -1,4 +1,51 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+#!/usr/bin/env python3
+"""
+Generador Maestro de Portada Open Graph (Squint Test / Cartel de Rock)
+Hit-Tazos Tech — Genera web/assets/og-cover.svg y compila web/assets/og-cover.png
+"""
+import math
+import subprocess
+from pathlib import Path
+
+ROOT = Path(__file__).parent.parent
+SVG_PATH = ROOT / "web" / "assets" / "og-cover.svg"
+PNG_PATH = ROOT / "web" / "assets" / "og-cover.png"
+VERSION_FILE = ROOT / "VERSION"
+
+def get_version():
+    if VERSION_FILE.exists():
+        return VERSION_FILE.read_text(encoding="utf-8").strip()
+    return "1.1.1"
+
+def render_arc_text(cx, cy, r, text, start_angle, end_angle, font_size, fill, font_family="'Outfit', sans-serif"):
+    chars = list(text)
+    n = len(chars)
+    if n == 0:
+        return ""
+    if n == 1:
+        angles = [(start_angle + end_angle) / 2]
+    else:
+        step = (end_angle - start_angle) / (n - 1)
+        angles = [start_angle + i * step for i in range(n)]
+
+    out = []
+    for char, ang_deg in zip(chars, angles):
+        ang_rad = math.radians(ang_deg)
+        x = cx + r * math.sin(ang_rad)
+        y = cy - r * math.cos(ang_rad)
+        out.append(
+            f'<text x="{x:.2f}" y="{y:.2f}" font-family="{font_family}" font-size="{font_size}" font-weight="800" '
+            f'fill="{fill}" text-anchor="middle" dominant-baseline="central" '
+            f'transform="rotate({ang_deg:.1f} {x:.2f} {y:.2f})">{char}</text>'
+        )
+    return "\n        ".join(out)
+
+def build_og_cover():
+    ver = get_version()
+    top_arc = render_arc_text(100, 100, 74, "HIT-TAZO TECH", -50, 50, 9.5, "#fbbf24")
+    bottom_arc = render_arc_text(100, 100, 74, "SHELLAQUILES", 135, 225, 9, "#94a3b8")
+
+    svg_content = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
   <defs>
     <!-- Fondo Oscuro Profundo Minimalista -->
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -99,7 +146,7 @@
         576 CARTAS · OPEN SOURCE
       </text>
       <!-- Tag Canónico VERSION para sync_version.py -->
-      <g display="none"><text font-family="'JetBrains Mono', monospace, monospace" font-size="16" font-weight="600" fill="#94a3b8">v1.1.1</text></g>
+      <g display="none"><text font-family="'JetBrains Mono', monospace, monospace" font-size="16" font-weight="600" fill="#94a3b8">v{ver}</text></g>
     </g>
   </g>
 
@@ -157,34 +204,21 @@
     <rect x="184" y="94" width="12" height="12" rx="3" fill="#050811"/>
 
     <!-- Texto Curvado en Arco Circular -->
-    <text x="43.31" y="52.43" font-family="'Outfit', sans-serif" font-size="9.5" font-weight="800" fill="#fbbf24" text-anchor="middle" dominant-baseline="central" transform="rotate(-50.0 43.31 52.43)">H</text>
-        <text x="50.81" y="44.72" font-family="'Outfit', sans-serif" font-size="9.5" font-weight="800" fill="#fbbf24" text-anchor="middle" dominant-baseline="central" transform="rotate(-41.7 50.81 44.72)">I</text>
-        <text x="59.34" y="38.17" font-family="'Outfit', sans-serif" font-size="9.5" font-weight="800" fill="#fbbf24" text-anchor="middle" dominant-baseline="central" transform="rotate(-33.3 59.34 38.17)">T</text>
-        <text x="68.73" y="32.93" font-family="'Outfit', sans-serif" font-size="9.5" font-weight="800" fill="#fbbf24" text-anchor="middle" dominant-baseline="central" transform="rotate(-25.0 68.73 32.93)">-</text>
-        <text x="78.78" y="29.11" font-family="'Outfit', sans-serif" font-size="9.5" font-weight="800" fill="#fbbf24" text-anchor="middle" dominant-baseline="central" transform="rotate(-16.7 78.78 29.11)">T</text>
-        <text x="89.28" y="26.78" font-family="'Outfit', sans-serif" font-size="9.5" font-weight="800" fill="#fbbf24" text-anchor="middle" dominant-baseline="central" transform="rotate(-8.3 89.28 26.78)">A</text>
-        <text x="100.00" y="26.00" font-family="'Outfit', sans-serif" font-size="9.5" font-weight="800" fill="#fbbf24" text-anchor="middle" dominant-baseline="central" transform="rotate(0.0 100.00 26.00)">Z</text>
-        <text x="110.72" y="26.78" font-family="'Outfit', sans-serif" font-size="9.5" font-weight="800" fill="#fbbf24" text-anchor="middle" dominant-baseline="central" transform="rotate(8.3 110.72 26.78)">O</text>
-        <text x="121.22" y="29.11" font-family="'Outfit', sans-serif" font-size="9.5" font-weight="800" fill="#fbbf24" text-anchor="middle" dominant-baseline="central" transform="rotate(16.7 121.22 29.11)"> </text>
-        <text x="131.27" y="32.93" font-family="'Outfit', sans-serif" font-size="9.5" font-weight="800" fill="#fbbf24" text-anchor="middle" dominant-baseline="central" transform="rotate(25.0 131.27 32.93)">T</text>
-        <text x="140.66" y="38.17" font-family="'Outfit', sans-serif" font-size="9.5" font-weight="800" fill="#fbbf24" text-anchor="middle" dominant-baseline="central" transform="rotate(33.3 140.66 38.17)">E</text>
-        <text x="149.19" y="44.72" font-family="'Outfit', sans-serif" font-size="9.5" font-weight="800" fill="#fbbf24" text-anchor="middle" dominant-baseline="central" transform="rotate(41.7 149.19 44.72)">C</text>
-        <text x="156.69" y="52.43" font-family="'Outfit', sans-serif" font-size="9.5" font-weight="800" fill="#fbbf24" text-anchor="middle" dominant-baseline="central" transform="rotate(50.0 156.69 52.43)">H</text>
-    <text x="152.33" y="152.33" font-family="'Outfit', sans-serif" font-size="9" font-weight="800" fill="#94a3b8" text-anchor="middle" dominant-baseline="central" transform="rotate(135.0 152.33 152.33)">S</text>
-        <text x="144.35" y="159.24" font-family="'Outfit', sans-serif" font-size="9" font-weight="800" fill="#94a3b8" text-anchor="middle" dominant-baseline="central" transform="rotate(143.2 144.35 159.24)">H</text>
-        <text x="135.46" y="164.95" font-family="'Outfit', sans-serif" font-size="9" font-weight="800" fill="#94a3b8" text-anchor="middle" dominant-baseline="central" transform="rotate(151.4 135.46 164.95)">E</text>
-        <text x="125.86" y="169.33" font-family="'Outfit', sans-serif" font-size="9" font-weight="800" fill="#94a3b8" text-anchor="middle" dominant-baseline="central" transform="rotate(159.5 125.86 169.33)">L</text>
-        <text x="115.73" y="172.31" font-family="'Outfit', sans-serif" font-size="9" font-weight="800" fill="#94a3b8" text-anchor="middle" dominant-baseline="central" transform="rotate(167.7 115.73 172.31)">L</text>
-        <text x="105.28" y="173.81" font-family="'Outfit', sans-serif" font-size="9" font-weight="800" fill="#94a3b8" text-anchor="middle" dominant-baseline="central" transform="rotate(175.9 105.28 173.81)">A</text>
-        <text x="94.72" y="173.81" font-family="'Outfit', sans-serif" font-size="9" font-weight="800" fill="#94a3b8" text-anchor="middle" dominant-baseline="central" transform="rotate(184.1 94.72 173.81)">Q</text>
-        <text x="84.27" y="172.31" font-family="'Outfit', sans-serif" font-size="9" font-weight="800" fill="#94a3b8" text-anchor="middle" dominant-baseline="central" transform="rotate(192.3 84.27 172.31)">U</text>
-        <text x="74.14" y="169.33" font-family="'Outfit', sans-serif" font-size="9" font-weight="800" fill="#94a3b8" text-anchor="middle" dominant-baseline="central" transform="rotate(200.5 74.14 169.33)">I</text>
-        <text x="64.54" y="164.95" font-family="'Outfit', sans-serif" font-size="9" font-weight="800" fill="#94a3b8" text-anchor="middle" dominant-baseline="central" transform="rotate(208.6 64.54 164.95)">L</text>
-        <text x="55.65" y="159.24" font-family="'Outfit', sans-serif" font-size="9" font-weight="800" fill="#94a3b8" text-anchor="middle" dominant-baseline="central" transform="rotate(216.8 55.65 159.24)">E</text>
-        <text x="47.67" y="152.33" font-family="'Outfit', sans-serif" font-size="9" font-weight="800" fill="#94a3b8" text-anchor="middle" dominant-baseline="central" transform="rotate(225.0 47.67 152.33)">S</text>
+    {top_arc}
+    {bottom_arc}
 
     <!-- Núcleo con Rayo Anodizado Dorado -->
     <circle cx="100" cy="100" r="38" fill="#12192c" stroke="#fbbf24" stroke-width="2"/>
     <path d="M 105 78 L 89 100 L 101 100 L 96 122 L 112 96 L 102 96 Z" fill="#fbbf24"/>
   </g>
-</svg>
+</svg>"""
+
+    SVG_PATH.write_text(svg_content, encoding="utf-8")
+    print(f"SVG generado exitosamente en: {SVG_PATH}")
+
+    cmd = ["rsvg-convert", "-w", "1200", "-h", "630", "-f", "png", str(SVG_PATH), "-o", str(PNG_PATH)]
+    subprocess.run(cmd, check=True)
+    print(f"PNG compilado exitosamente en: {PNG_PATH}")
+
+if __name__ == "__main__":
+    build_og_cover()
