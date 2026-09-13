@@ -1,6 +1,6 @@
 # Hit-Tazos Tech 🕹️💻
 
-[![Version](https://img.shields.io/badge/version-1.1.0-orange.svg?style=flat-square)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.1.1-orange.svg?style=flat-square)](./CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](./LICENSE)
 [![Python](https://img.shields.io/badge/python-3.8%2B-3776AB.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![Node](https://img.shields.io/badge/node-%3E%3D18-339933.svg?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
@@ -67,7 +67,7 @@ El juego es libre bajo licencia MIT y puedes descargar los archivos listos para 
 Las cartas están diseñadas en formato cuadrado de **$65 \times 65\text{ mm}$** con esquinas redondeadas ($r=3\text{ mm}$), pensadas para imprimirse en cartulina de **$350\text{ g}$** con barniz mate anti-reflejante.
 
 ### Archivos PDF oficiales para imprenta (Print & Play)
-Los PDFs vectoriales oficiales con marcas de corte, sangrado de +3 mm y reversos espejados están disponibles para descarga directa en la [**Última Release Oficial (v1.1.0)**](https://github.com/shellaquiles/hit-tazos-tech/releases/latest):
+Los PDFs vectoriales oficiales con marcas de corte, sangrado de +3 mm y reversos espejados están disponibles para descarga directa en la [**Última Release Oficial (v1.1.1)**](https://github.com/shellaquiles/hit-tazos-tech/releases/latest):
 
 * 📦 **[Descarga de los 8 Volúmenes en PDF (Tamaño Carta)](https://github.com/shellaquiles/hit-tazos-tech/releases/latest)**: 6 cartas por pliego (65×65 mm c/u), optimizados para impresión dúplex.
 * 📐 Formatos profesionales multi-pliego disponibles para compilación local:
